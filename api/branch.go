@@ -2,7 +2,6 @@ package api
 
 import (
 	"encoding/json"
-	"strings"
 )
 
 // Branch is a basic yes/no input.
@@ -19,22 +18,6 @@ func (entity *Branch) Unmarshal(raw []byte) error {
 // Marshal to payload structure
 func (entity *Branch) Marshal() Payload {
 	return MarshalPayloadEntity("branch", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *Branch) Valid() (bool, error) {
-	var stack ErrorStack
-
-	trimmed := strings.TrimSpace(string(entity.Value))
-	if trimmed == "" {
-		stack.Append("Branch", ErrFieldRequired{"Branch value is required"})
-	}
-
-	if trimmed != "Yes" && trimmed != "No" {
-		stack.Append("Branch", ErrFieldInvalid{"Invalid value for branch"})
-	}
-
-	return !stack.HasErrors(), stack
 }
 
 // ClearNo resets a "no" answer to unset

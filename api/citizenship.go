@@ -34,7 +34,6 @@ type CitizenshipStatus struct {
 	PayloadPermanentResidentCardNumber Payload `json:"PermanentResidentCardNumber" sql:"-"`
 	PayloadResidenceStatus             Payload `json:"ResidenceStatus" sql:"-"`
 
-	// Validator specific fields
 	CitizenshipStatus           *Radio       `json:"-"`
 	AbroadDocumentation         *Radio       `json:"-"`
 	Explanation                 *Textarea    `json:"-"`
@@ -60,34 +59,6 @@ type CitizenshipStatus struct {
 	Basis                       *Radio       `json:"-"`
 	PermanentResidentCardNumber *Text        `json:"-"`
 	ResidenceStatus             *Text        `json:"-"`
-
-	// Persister specific fields
-	ID                            int `json:"-"`
-	CitizenshipStatusID           int `json:"-" pg:", fk:CitizenshipStatus"`
-	AbroadDocumentationID         int `json:"-" pg:", fk:AbroadDocumentation"`
-	ExplanationID                 int `json:"-" pg:", fk:Explanation"`
-	DocumentNumberID              int `json:"-" pg:", fk:DocumentNumber"`
-	DocumentIssuedID              int `json:"-" pg:", fk:DocumentIssued"`
-	DocumentNameID                int `json:"-" pg:", fk:DocumentName"`
-	DocumentExpirationID          int `json:"-" pg:", fk:DocumentExpiration"`
-	DocumentTypeID                int `json:"-" pg:", fk:DocumentType"`
-	PlaceIssuedID                 int `json:"-" pg:", fk:PlaceIssued"`
-	CertificateNumberID           int `json:"-" pg:", fk:CertificateNumber"`
-	CertificateIssuedID           int `json:"-" pg:", fk:CertificateIssued"`
-	CertificateNameID             int `json:"-" pg:", fk:CertificateName"`
-	CertificateCourtNameID        int `json:"-" pg:", fk:CertificateCourtName"`
-	CertificateCourtAddressID     int `json:"-" pg:", fk:CertificateCourtAddress"`
-	BornOnMilitaryInstallationID  int `json:"-" pg:", fk:BornOnMilitaryInstallation"`
-	MilitaryBaseID                int `json:"-" pg:", fk:MilitaryBase"`
-	EntryDateID                   int `json:"-" pg:", fk:EntryDate"`
-	EntryLocationID               int `json:"-" pg:", fk:EntryLocation"`
-	PriorCitizenshipID            int `json:"-" pg:", fk:PriorCitizenship"`
-	HasAlienRegistrationID        int `json:"-" pg:", fk:HasAlienRegistration"`
-	AlienRegistrationNumberID     int `json:"-" pg:", fk:AlienRegistrationNumber"`
-	AlienRegistrationExpirationID int `json:"-" pg:", fk:AlienRegistrationExpiration"`
-	BasisID                       int `json:"-" pg:", fk:Basis"`
-	PermanentResidentCardNumberID int `json:"-" pg:", fk:PermanentResidentCardNumber"`
-	ResidenceStatusID             int `json:"-" pg:", fk:ResidenceStatus"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -330,115 +301,6 @@ func (entity *CitizenshipStatus) Marshal() Payload {
 	return MarshalPayloadEntity("citizenship.status", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *CitizenshipStatus) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.CitizenshipStatus.Valid(); !ok {
-		stack.Append("CitizenshipStatus", err)
-	}
-
-	switch entity.CitizenshipStatus.Value {
-	case "Citizen":
-	case "ForeignBorn":
-		if ok, err := entity.DocumentNumber.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.DocumentIssued.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.PlaceIssued.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.DocumentName.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.CertificateNumber.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.CertificateIssued.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.CertificateName.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-	case "Naturalized":
-		if ok, err := entity.EntryDate.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.EntryLocation.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.PriorCitizenship.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.CertificateNumber.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.CertificateCourtName.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.CertificateCourtAddress.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.CertificateIssued.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.CertificateName.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-	case "Derived":
-		if ok, err := entity.AlienRegistrationNumber.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.PermanentResidentCardNumber.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.CertificateNumber.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.CertificateName.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.CertificateIssued.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-	case "NotCitizen":
-		if ok, err := entity.ResidenceStatus.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.EntryDate.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.EntryLocation.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.PriorCitizenship.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.AlienRegistrationNumber.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.AlienRegistrationExpiration.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.DocumentNumber.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.DocumentName.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.DocumentIssued.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-		if ok, err := entity.DocumentExpiration.Valid(); !ok {
-			stack.Append("CitizenshipStatus", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears any questions answered nos on a kickback
 func (entity *CitizenshipStatus) ClearNoBranches() error {
 
@@ -456,14 +318,8 @@ type CitizenshipMultiple struct {
 	PayloadHasMultiple Payload `json:"HasMultiple" sql:"-"`
 	PayloadList        Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	HasMultiple *Branch     `json:"-"`
 	List        *Collection `json:"-"`
-
-	// Persister specific fields
-	ID            int `json:"-"`
-	HasMultipleID int `json:"-" pg:", fk:HasMultiple"`
-	ListID        int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -499,23 +355,6 @@ func (entity *CitizenshipMultiple) Marshal() Payload {
 	return MarshalPayloadEntity("citizenship.multiple", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *CitizenshipMultiple) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.HasMultiple.Valid(); !ok {
-		stack.Append("CitizenshipMultiple", err)
-	}
-
-	if entity.HasMultiple.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("CitizenshipMultiple", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears any questions answered nos on a kickback
 func (entity *CitizenshipMultiple) ClearNoBranches() error {
 
@@ -535,12 +374,7 @@ func (entity *CitizenshipMultiple) ClearNoBranches() error {
 type CitizenshipPassports struct {
 	PayloadPassports Payload `json:"Passports" sql:"-"`
 
-	// Validator specific fields
 	Passports *Collection `json:"-"`
-
-	// Persister specific fields
-	ID          int `json:"-"`
-	PassportsID int `json:"-" pg:", fk:Passports"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -552,7 +386,7 @@ func (entity *CitizenshipPassports) Unmarshal(raw []byte) error {
 
 	passports, err := entity.PayloadPassports.Entity()
 	if err != nil {
-		entity.Passports = &Collection{ID: entity.PassportsID}
+		entity.Passports = &Collection{}
 		return err
 	}
 	entity.Passports = passports.(*Collection)
@@ -566,11 +400,6 @@ func (entity *CitizenshipPassports) Marshal() Payload {
 		entity.PayloadPassports = entity.Passports.Marshal()
 	}
 	return MarshalPayloadEntity("citizenship.passports", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *CitizenshipPassports) Valid() (bool, error) {
-	return entity.Passports.Valid()
 }
 
 // ClearNoBranches clears any questions answered nos on a kickback

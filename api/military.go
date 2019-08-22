@@ -14,20 +14,11 @@ type MilitarySelective struct {
 	PayloadExplanation                Payload `json:"Explanation" sql:"-"`
 	PayloadHasRegisteredNotApplicable Payload `json:"HasRegisteredNotApplicable" sql:"-"`
 
-	// Validator specific fields
 	WasBornAfter               *Branch        `json:"-"`
 	HasRegistered              *Branch        `json:"-"`
 	RegistrationNumber         *Text          `json:"-"`
 	Explanation                *Textarea      `json:"-"`
 	HasRegisteredNotApplicable *NotApplicable `json:"-"`
-
-	// Persister specific fields
-	ID                           int `json:"-"`
-	WasBornAfterID               int `json:"-" pg:", fk:WasBornAfter"`
-	HasRegisteredID              int `json:"-" pg:", fk:HasRegistered"`
-	RegistrationNumberID         int `json:"-" pg:", fk:RegistrationNumber"`
-	ExplanationID                int `json:"-" pg:", fk:Explanation"`
-	HasRegisteredNotApplicableID int `json:"-" pg:", fk:HasRegisteredNotApplicable"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -90,39 +81,6 @@ func (entity *MilitarySelective) Marshal() Payload {
 	return MarshalPayloadEntity("military.selective", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *MilitarySelective) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.WasBornAfter.Valid(); !ok {
-		stack.Append("MilitarySelective", err)
-	}
-
-	if entity.WasBornAfter.Value == "Yes" {
-		if ok, err := entity.HasRegistered.Valid(); !ok {
-			stack.Append("MilitarySelective", err)
-		} else {
-			if entity.HasRegistered.Value == "Yes" {
-				if ok, err := entity.RegistrationNumber.Valid(); !ok {
-					stack.Append("MilitarySelective", err)
-				}
-			} else if entity.HasRegistered.Value == "No" {
-				if ok, err := entity.Explanation.Valid(); !ok {
-					stack.Append("MilitarySelective", err)
-				}
-			}
-		}
-	}
-
-	if entity.HasRegisteredNotApplicable != nil {
-		if ok, err := entity.HasRegisteredNotApplicable.Valid(); !ok {
-			return false, err
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears any questions answered nos on a kickback
 func (entity *MilitarySelective) ClearNoBranches() error {
 
@@ -136,14 +94,8 @@ type MilitaryHistory struct {
 	PayloadHasServed Payload `json:"HasServed" sql:"-"`
 	PayloadList      Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	HasServed *Branch     `json:"-"`
 	List      *Collection `json:"-"`
-
-	// Persister specific fields
-	ID          int `json:"-"`
-	HasServedID int `json:"-" pg:", fk:HasServed"`
-	ListID      int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -179,23 +131,6 @@ func (entity *MilitaryHistory) Marshal() Payload {
 	return MarshalPayloadEntity("military.history", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *MilitaryHistory) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.HasServed.Valid(); !ok {
-		stack.Append("MilitaryHistory", err)
-	}
-
-	if entity.HasServed.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("MilitaryHistory", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears any questions answered nos on a kickback
 func (entity *MilitaryHistory) ClearNoBranches() error {
 
@@ -216,14 +151,8 @@ type MilitaryDisciplinary struct {
 	PayloadHasDisciplinary Payload `json:"HasDisciplinary" sql:"-"`
 	PayloadList            Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	HasDisciplinary *Branch     `json:"-"`
 	List            *Collection `json:"-"`
-
-	// Persister specific fields
-	ID                int `json:"-"`
-	HasDisciplinaryID int `json:"-" pg:", fk:HasDisciplinary"`
-	ListID            int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -259,23 +188,6 @@ func (entity *MilitaryDisciplinary) Marshal() Payload {
 	return MarshalPayloadEntity("military.disciplinary", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *MilitaryDisciplinary) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.HasDisciplinary.Valid(); !ok {
-		stack.Append("MilitaryDisciplinary", err)
-	}
-
-	if entity.HasDisciplinary.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("MilitaryDisciplinary", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears any questions answered nos on a kickback
 func (entity *MilitaryDisciplinary) ClearNoBranches() error {
 
@@ -290,12 +202,7 @@ func (entity *MilitaryDisciplinary) ClearNoBranches() error {
 type MilitaryForeign struct {
 	PayloadList Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	List *Collection `json:"-"`
-
-	// Persister specific fields
-	ID     int `json:"-"`
-	ListID int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -320,17 +227,6 @@ func (entity *MilitaryForeign) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("military.foreign", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *MilitaryForeign) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.List.Valid(); !ok {
-		stack.Append("MilitaryForeign", err)
-	}
-
-	return !stack.HasErrors(), stack
 }
 
 // ClearNoBranches clears any questions answered nos on a kickback

@@ -23,7 +23,6 @@ type ForeignPassport struct {
 	PayloadExpiration   Payload `json:"Expiration" sql:"-"`
 	PayloadComments     Payload `json:"Comments" sql:"-"`
 
-	// Validator specific fields
 	HasPassports *Branch      `json:"-"`
 	Name         *Name        `json:"-"`
 	Card         *Radio       `json:"-"`
@@ -31,16 +30,6 @@ type ForeignPassport struct {
 	Issued       *DateControl `json:"-"`
 	Expiration   *DateControl `json:"-"`
 	Comments     *Textarea    `json:"-"`
-
-	// Persister specific fields
-	ID             int `json:"-"`
-	HasPassportsID int `json:"-" pg:",fk:HasPassports"`
-	NameID         int `json:"-" pg:",fk:Name"`
-	CardID         int `json:"-" pg:",fk:Card"`
-	NumberID       int `json:"-" pg:",fk:Number"`
-	IssuedID       int `json:"-" pg:",fk:Issued"`
-	ExpirationID   int `json:"-" pg:",fk:Expiration"`
-	CommentsID     int `json:"-" pg:",fk:Comments"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -121,37 +110,6 @@ func (entity *ForeignPassport) Marshal() Payload {
 	return MarshalPayloadEntity("foreign.passport", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignPassport) Valid() (bool, error) {
-	if entity.HasPassports.Value == "No" {
-		return true, nil
-	}
-
-	if ok, err := entity.Name.Valid(); !ok {
-		return false, err
-	}
-
-	if entity.Card.Value == "Book" {
-		if ok := formatPassportBook.MatchString(entity.Number.Value); !ok {
-			return false, errors.New("Invalid format for passport book")
-		}
-	} else if entity.Card.Value == "Card" {
-		if ok := formatPassportCard.MatchString(entity.Number.Value); !ok {
-			return false, errors.New("Invalid format for passport card")
-		}
-	}
-
-	if ok, err := entity.Issued.Valid(); !ok {
-		return false, err
-	}
-
-	if ok, err := entity.Expiration.Valid(); !ok {
-		return false, err
-	}
-
-	return true, nil
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *ForeignPassport) ClearNoBranches() error {
 	entity.HasPassports.ClearNo()
@@ -164,14 +122,8 @@ type ForeignContacts struct {
 	PayloadHasForeignContacts Payload `json:"HasForeignContacts" sql:"-"`
 	PayloadList               Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	HasForeignContacts *Branch     `json:"-"`
 	List               *Collection `json:"-"`
-
-	// Persister specific fields
-	ID                   int `json:"-"`
-	HasForeignContactsID int `json:"-" pg:", fk:HasForeignContacts"`
-	ListID               int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -207,15 +159,6 @@ func (entity *ForeignContacts) Marshal() Payload {
 	return MarshalPayloadEntity("foreign.contacts", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignContacts) Valid() (bool, error) {
-	if entity.HasForeignContacts.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *ForeignContacts) ClearNoBranches() error {
 	entity.HasForeignContacts.ClearNo()
@@ -236,16 +179,9 @@ type ForeignTravel struct {
 	PayloadHasForeignTravelOfficial Payload `json:"HasForeignTravelOfficial" sql:"-"`
 	PayloadList                     Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	HasForeignTravelOutside  *Branch     `json:"-"`
 	HasForeignTravelOfficial *Branch     `json:"-"`
 	List                     *Collection `json:"-"`
-
-	// Persister specific fields
-	ID                         int `json:"-"`
-	HasForeignTravelOutsideID  int `json:"-" pg:", fk:HasForeignTravelOutside"`
-	HasForeignTravelOfficialID int `json:"-" pg:", fk:HasForeignTravelOfficial"`
-	ListID                     int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -290,19 +226,6 @@ func (entity *ForeignTravel) Marshal() Payload {
 	return MarshalPayloadEntity("foreign.travel", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignTravel) Valid() (bool, error) {
-	if entity.HasForeignTravelOutside.Value == "No" {
-		return true, nil
-	}
-
-	if entity.HasForeignTravelOfficial.Value == "Yes" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *ForeignTravel) ClearNoBranches() error {
 	entity.HasForeignTravelOutside.ClearNo()
@@ -327,14 +250,8 @@ type ForeignActivitiesBenefits struct {
 	PayloadHasBenefits Payload `json:"HasBenefits" sql:"-"`
 	PayloadList        Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	HasBenefits *Branch     `json:"-"`
 	List        *Collection `json:"-"`
-
-	// Persister specific fields
-	ID            int `json:"-"`
-	HasBenefitsID int `json:"-" pg:", fk:HasBenefits"`
-	ListID        int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -368,15 +285,6 @@ func (entity *ForeignActivitiesBenefits) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("foreign.activities.benefits", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignActivitiesBenefits) Valid() (bool, error) {
-	if entity.HasBenefits.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
 }
 
 // ClearNoBranches clears the "no" answers on application rejection
@@ -419,14 +327,8 @@ type ForeignActivitiesDirect struct {
 	PayloadHasInterests Payload `json:"HasInterests" sql:"-"`
 	PayloadList         Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	HasInterests *Branch     `json:"-"`
 	List         *Collection `json:"-"`
-
-	// Persister specific fields
-	ID             int `json:"-"`
-	HasInterestsID int `json:"-" pg:", fk:HasInterests"`
-	ListID         int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -460,15 +362,6 @@ func (entity *ForeignActivitiesDirect) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("foreign.activities.direct", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignActivitiesDirect) Valid() (bool, error) {
-	if entity.HasInterests.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
 }
 
 // ClearNoBranches clears the "no" answers on application rejection
@@ -506,14 +399,8 @@ type ForeignActivitiesIndirect struct {
 	PayloadHasInterests Payload `json:"HasInterests" sql:"-"`
 	PayloadList         Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	HasInterests *Branch     `json:"-"`
 	List         *Collection `json:"-"`
-
-	// Persister specific fields
-	ID             int `json:"-"`
-	HasInterestsID int `json:"-" pg:", fk:HasInterests"`
-	ListID         int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -549,15 +436,6 @@ func (entity *ForeignActivitiesIndirect) Marshal() Payload {
 	return MarshalPayloadEntity("foreign.activities.indirect", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignActivitiesIndirect) Valid() (bool, error) {
-	if entity.HasInterests.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *ForeignActivitiesIndirect) ClearNoBranches() error {
 
@@ -574,14 +452,8 @@ type ForeignActivitiesRealEstate struct {
 	PayloadHasInterests Payload `json:"HasInterests" sql:"-"`
 	PayloadList         Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	HasInterests *Branch     `json:"-"`
 	List         *Collection `json:"-"`
-
-	// Persister specific fields
-	ID             int `json:"-"`
-	HasInterestsID int `json:"-" pg:", fk:HasInterests"`
-	ListID         int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -617,15 +489,6 @@ func (entity *ForeignActivitiesRealEstate) Marshal() Payload {
 	return MarshalPayloadEntity("foreign.activities.realestate", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignActivitiesRealEstate) Valid() (bool, error) {
-	if entity.HasInterests.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *ForeignActivitiesRealEstate) ClearNoBranches() error {
 
@@ -642,14 +505,8 @@ type ForeignActivitiesSupport struct {
 	PayloadHasForeignSupport Payload `json:"HasForeignSupport" sql:"-"`
 	PayloadList              Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	HasForeignSupport *Branch     `json:"-"`
 	List              *Collection `json:"-"`
-
-	// Persister specific fields
-	ID                  int `json:"-"`
-	HasForeignSupportID int `json:"-" pg:", fk:HasForeignSupport"`
-	ListID              int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -685,15 +542,6 @@ func (entity *ForeignActivitiesSupport) Marshal() Payload {
 	return MarshalPayloadEntity("foreign.activities.support", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignActivitiesSupport) Valid() (bool, error) {
-	if entity.HasForeignSupport.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *ForeignActivitiesSupport) ClearNoBranches() error {
 
@@ -710,14 +558,8 @@ type ForeignBusinessAdvice struct {
 	PayloadHasForeignAdvice Payload `json:"HasForeignAdvice" sql:"-"`
 	PayloadList             Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	HasForeignAdvice *Branch     `json:"-"`
 	List             *Collection `json:"-"`
-
-	// Persister specific fields
-	ID                 int `json:"-"`
-	HasForeignAdviceID int `json:"-" pg:", fk:HasForeignAdvice"`
-	ListID             int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -753,15 +595,6 @@ func (entity *ForeignBusinessAdvice) Marshal() Payload {
 	return MarshalPayloadEntity("foreign.business.advice", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignBusinessAdvice) Valid() (bool, error) {
-	if entity.HasForeignAdvice.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *ForeignBusinessAdvice) ClearNoBranches() error {
 	entity.HasForeignAdvice.ClearNo()
@@ -774,14 +607,8 @@ type ForeignBusinessConferences struct {
 	PayloadHasForeignConferences Payload `json:"HasForeignConferences" sql:"-"`
 	PayloadList                  Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	HasForeignConferences *Branch     `json:"-"`
 	List                  *Collection `json:"-"`
-
-	// Persister specific fields
-	ID                      int `json:"-"`
-	HasForeignConferencesID int `json:"-" pg:", fk:HasForeignConferences"`
-	ListID                  int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -817,15 +644,6 @@ func (entity *ForeignBusinessConferences) Marshal() Payload {
 	return MarshalPayloadEntity("foreign.business.conferences", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignBusinessConferences) Valid() (bool, error) {
-	if entity.HasForeignConferences.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *ForeignBusinessConferences) ClearNoBranches() error {
 	entity.HasForeignConferences.ClearNo()
@@ -857,14 +675,8 @@ type ForeignBusinessContact struct {
 	PayloadHasForeignContact Payload `json:"HasForeignContact" sql:"-"`
 	PayloadList              Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	HasForeignContact *Branch     `json:"-"`
 	List              *Collection `json:"-"`
-
-	// Persister specific fields
-	ID                  int `json:"-"`
-	HasForeignContactID int `json:"-" pg:", fk:HasForeignContact"`
-	ListID              int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -900,15 +712,6 @@ func (entity *ForeignBusinessContact) Marshal() Payload {
 	return MarshalPayloadEntity("foreign.business.contact", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignBusinessContact) Valid() (bool, error) {
-	if entity.HasForeignContact.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *ForeignBusinessContact) ClearNoBranches() error {
 	entity.HasForeignContact.ClearNo()
@@ -940,14 +743,8 @@ type ForeignBusinessEmployment struct {
 	PayloadHasForeignEmployment Payload `json:"HasForeignEmployment" sql:"-"`
 	PayloadList                 Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	HasForeignEmployment *Branch     `json:"-"`
 	List                 *Collection `json:"-"`
-
-	// Persister specific fields
-	ID                     int `json:"-"`
-	HasForeignEmploymentID int `json:"-" pg:", fk:HasForeignEmployment"`
-	ListID                 int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -983,15 +780,6 @@ func (entity *ForeignBusinessEmployment) Marshal() Payload {
 	return MarshalPayloadEntity("foreign.business.employment", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignBusinessEmployment) Valid() (bool, error) {
-	if entity.HasForeignEmployment.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *ForeignBusinessEmployment) ClearNoBranches() error {
 	entity.HasForeignEmployment.ClearNo()
@@ -1004,14 +792,8 @@ type ForeignBusinessFamily struct {
 	PayloadHasForeignFamily Payload `json:"HasForeignFamily" sql:"-"`
 	PayloadList             Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	HasForeignFamily *Branch     `json:"-"`
 	List             *Collection `json:"-"`
-
-	// Persister specific fields
-	ID                 int `json:"-"`
-	HasForeignFamilyID int `json:"-" pg:", fk:HasForeignFamily"`
-	ListID             int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1047,15 +829,6 @@ func (entity *ForeignBusinessFamily) Marshal() Payload {
 	return MarshalPayloadEntity("foreign.business.family", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignBusinessFamily) Valid() (bool, error) {
-	if entity.HasForeignFamily.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *ForeignBusinessFamily) ClearNoBranches() error {
 	entity.HasForeignFamily.ClearNo()
@@ -1068,14 +841,8 @@ type ForeignBusinessPolitical struct {
 	PayloadHasForeignPolitical Payload `json:"HasForeignPolitical" sql:"-"`
 	PayloadList                Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	HasForeignPolitical *Branch     `json:"-"`
 	List                *Collection `json:"-"`
-
-	// Persister specific fields
-	ID                    int `json:"-"`
-	HasForeignPoliticalID int `json:"-" pg:", fk:HasForeignPolitical"`
-	ListID                int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1111,15 +878,6 @@ func (entity *ForeignBusinessPolitical) Marshal() Payload {
 	return MarshalPayloadEntity("foreign.business.political", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignBusinessPolitical) Valid() (bool, error) {
-	if entity.HasForeignPolitical.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *ForeignBusinessPolitical) ClearNoBranches() error {
 	entity.HasForeignPolitical.ClearNo()
@@ -1132,14 +890,8 @@ type ForeignBusinessSponsorship struct {
 	PayloadHasForeignSponsorship Payload `json:"HasForeignSponsorship" sql:"-"`
 	PayloadList                  Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	HasForeignSponsorship *Branch     `json:"-"`
 	List                  *Collection `json:"-"`
-
-	// Persister specific fields
-	ID                      int `json:"-"`
-	HasForeignSponsorshipID int `json:"-" pg:", fk:HasForeignSponsorship"`
-	ListID                  int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1175,15 +927,6 @@ func (entity *ForeignBusinessSponsorship) Marshal() Payload {
 	return MarshalPayloadEntity("foreign.business.sponsorship", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignBusinessSponsorship) Valid() (bool, error) {
-	if entity.HasForeignSponsorship.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *ForeignBusinessSponsorship) ClearNoBranches() error {
 	entity.HasForeignSponsorship.ClearNo()
@@ -1196,14 +939,8 @@ type ForeignBusinessVentures struct {
 	PayloadHasForeignVentures Payload `json:"HasForeignVentures" sql:"-"`
 	PayloadList               Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	HasForeignVentures *Branch     `json:"-"`
 	List               *Collection `json:"-"`
-
-	// Persister specific fields
-	ID                   int `json:"-"`
-	HasForeignVenturesID int `json:"-" pg:", fk:HasForeignVentures"`
-	ListID               int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1239,15 +976,6 @@ func (entity *ForeignBusinessVentures) Marshal() Payload {
 	return MarshalPayloadEntity("foreign.business.ventures", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignBusinessVentures) Valid() (bool, error) {
-	if entity.HasForeignVentures.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *ForeignBusinessVentures) ClearNoBranches() error {
 	entity.HasForeignVentures.ClearNo()
@@ -1260,14 +988,8 @@ type ForeignBusinessVoting struct {
 	PayloadHasForeignVoting Payload `json:"HasForeignVoting" sql:"-"`
 	PayloadList             Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	HasForeignVoting *Branch     `json:"-"`
 	List             *Collection `json:"-"`
-
-	// Persister specific fields
-	ID                 int `json:"-"`
-	HasForeignVotingID int `json:"-" pg:", fk:HasForeignVoting"`
-	ListID             int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1301,15 +1023,6 @@ func (entity *ForeignBusinessVoting) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("foreign.business.voting", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignBusinessVoting) Valid() (bool, error) {
-	if entity.HasForeignVoting.Value == "No" {
-		return true, nil
-	}
-
-	return entity.List.Valid()
 }
 
 // ClearNoBranches clears the "no" answers on application rejection
