@@ -13,7 +13,7 @@ Here are some of the major directories:
   - [`config/formSections/formTypes.js`](../src/config/formSections/formTypes.js): Config file that defines the different form types
   - [`config/locales/`](../src/config/locales): Where any user-visible text is stored
   - [`constants/`](../src/constants): Contains all the enums/constants used throughout the application
-  - [helpers/branches.js](../src/helpers/branches): Contains functions that define whether a subsection/question is required by a specific form type. These are primarily used by the [selectors](../src/selectors/branches.js), which extract the data from Redux.
+  - [`helpers/branches.js`](../src/helpers/branches): Contains functions that define whether a subsection/question is required by a specific form type. These are primarily used by the [selectors](../src/selectors/branches.js), which extract the data from Redux.
   - [`models/`](../src/models): Contains all the model definitions for sections and subsections that are used for validations
   - [`reducers/`](../src/reducers): [Redux reducers](https://redux.js.org/basics/reducers)
   - [`sass/`](../src/sass): Handful of shared SASS files
