@@ -1,6 +1,6 @@
 # Frontend
 
-The frontend is built in [React](https://reactjs.org/), wired up with [React Router](https://reacttraining.com/react-router/) and [Redux](https://redux.js.org), compiled using [Webpack](https://webpack.js.org/) and [Babel](https://babeljs.io). Styles are written in [SASS](https://sass-lang.com/).
+The frontend is built in [React](https://reactjs.org/), wired up with [React Router](https://reacttraining.com/react-router/) and [Redux](https://redux.js.org), compiled using [Webpack](https://webpack.js.org/) and [Babel](https://babeljs.io). Styles are written in [SASS](https://sass-lang.com/), leveraging [USWDS](https://designsystem.digital.gov/).
 
 Here are some of the major directories:
 
@@ -9,7 +9,12 @@ Here are some of the major directories:
 - [`src/`](../src): All the frontend source files live here
   - [`actions/`](../src/actions): [Redux action creators](https://redux.js.org/basics/actions#action-creators)
   - [`components/`](../src/components): Underlying React components used by the views or other components. Each should have corresponding styles (where applicable), tests, etc. in the same subdirectory.
+  - [`config/formSections/`](../src/config/formSections): Contains the section definitions for eApp supported forms
+  - [`config/formSections/formTypes.js`](../src/config/formSections/formTypes.js): Config file that defines the different form types
   - [`config/locales/`](../src/config/locales): Where any user-visible text is stored
+  - [`constants/`](../src/constants): Contains all the enums/constants used throughout the application
+  - [helpers/branches.js](../src/helpers/branches): Contains functions that define whether a subsection/question is required by a specific form type. These are primarily used by the [selectors](../src/selectors/branches.js), which extract the data from Redux.
+  - [`models/`](../src/models): Contains all the model definitions for sections and subsections that are used for validations
   - [`reducers/`](../src/reducers): [Redux reducers](https://redux.js.org/basics/reducers)
   - [`sass/`](../src/sass): Handful of shared SASS files
   - [`validators/`](../src/validators): The validation logic
