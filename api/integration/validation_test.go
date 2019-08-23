@@ -51,7 +51,7 @@ func TestCanNotValidateSomethingElse(t *testing.T) {
 	resp := w.Result()
 
 	if resp.StatusCode != 400 {
-		t.Fatal("Should have gotten an error validating a non-address . ", resp.StatusCode)
+		t.Fatal("Should have gotten an error validating a non-address. ", resp.StatusCode)
 	}
 
 }

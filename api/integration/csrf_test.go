@@ -260,3 +260,13 @@ func TestGarbageCSRFToken(t *testing.T) {
 	}
 
 }
+
+func TestCSRFTokenSetsAuthKey(t *testing.T) {
+	services := cleanTestServices(t)
+
+	authKey := []byte("")
+	_, csrfErr := http.NewCSRFMiddleware(services.log, authKey, true)
+	if csrfErr != nil {
+		t.Fatal(csrfErr)
+	}
+}
