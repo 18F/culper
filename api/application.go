@@ -127,6 +127,14 @@ func (a *Application) UnmarshalJSON(bytes []byte) error {
 	return nil
 }
 
+func (a Application) FormType() string {
+	return a.formType
+}
+
+func (a Application) FormVersion() string {
+	return a.formVersion
+}
+
 // Hash returns the SHA256 hash of the application state in hexadecimal
 func (a *Application) Hash() (string, error) {
 	jsonBytes, jsonErr := json.Marshal(a)

@@ -40,6 +40,22 @@ func NewXMLServiceWithMockClock(templatePath string, clock clock.Clock) Service 
 	}
 }
 
+// applicationPackager is created for each call to PackageXML. It maintains some state
+// required for packaging the entire applicaiton
+type applicationPackager struct {
+	xmlService     Service
+	appFormType    string
+	appFormVersion string
+}
+
+func newApplicationPackager(xmlService Service, application api.Application) applicationPackager {
+	return applicationPackager{
+		xmlService:     xmlService,
+		appFormType:    application.FormType(),
+		appFormVersion: application.FormVersion(),
+	}
+}
+
 // PackageXML returns the XML representation of an application
 func (service Service) PackageXML(app api.Application) (template.HTML, error) {
 	// This is perhaps silly. I think that things might work with just the raw application sections
@@ -55,27 +71,29 @@ func (service Service) PackageXML(app api.Application) (template.HTML, error) {
 		return template.HTML(""), errors.Wrap(jsonErr, "Unable to re-un-marshal application")
 	}
 
-	return service.DefaultTemplate("application.xml", data)
+	packager := newApplicationPackager(service, app)
+
+	return packager.defaultTemplate("application.xml", data)
 
 }
 
-// DefaultTemplate returns a template given data.
-func (service Service) DefaultTemplate(templateName string, data map[string]interface{}) (template.HTML, error) {
+// defaultTemplate returns a template given data.
+func (p applicationPackager) defaultTemplate(templateName string, data map[string]interface{}) (template.HTML, error) {
 
-	fmap := service.templateFMap()
-	return service.xmlTemplateWithFuncs(templateName, data, fmap)
+	fmap := p.templateFMap()
+	return p.xmlTemplateWithFuncs(templateName, data, fmap)
 }
 
-func (service Service) templateFMap() template.FuncMap {
+func (p applicationPackager) templateFMap() template.FuncMap {
 
 	// fmap is a mapping of functions to be used within the XML template execution.
 	// These can be helper functions for formatting or even to process complex structure
 	// types.
 	fmap := template.FuncMap{
-		"address":                service.address,
+		"address":                p.address,
 		"addressIn":              addressIn,
 		"agencyType":             agencyType,
-		"apoFpo":                 service.apoFpo,
+		"apoFpo":                 p.apoFpo,
 		"branch":                 branch,
 		"branchToBool":           branchToBool,
 		"branchcollectionHas":    branchcollectionHas,
@@ -84,14 +102,14 @@ func (service Service) templateFMap() template.FuncMap {
 		"checkboxHas":            checkboxHas,
 		"checkboxTrueFalse":      checkboxTrueFalse,
 		"citizenshipStatus":      citizenshipStatus,
-		"country":                service.countryValue,
+		"country":                p.countryValue,
 		"countryComments":        countryComments,
 		"citizenshipHas":         citizenshipHas,
 		"clearanceType":          clearanceType,
-		"date":                   service.date,
-		"dateOptional":           service.dateOptional,
+		"date":                   p.date,
+		"dateOptional":           p.dateOptional,
 		"dateEstimated":          dateEstimated,
-		"daterange":              service.daterange,
+		"daterange":              p.daterange,
 		"daysInRange":            daysInRange,
 		"deceased":               deceased,
 		"degreeType":             degreeType,
@@ -106,25 +124,26 @@ func (service Service) templateFMap() template.FuncMap {
 		"foreignAffiliation":     foreignAffiliation,
 		"frequencyType":          frequencyType,
 		"email":                  email,
-		"emailOptional":          service.emailOptional,
+		"emailOptional":          p.emailOptional,
 		"employmentType":         employmentType,
 		"hairType":               hairType,
 		"hasRelativeType":        hasRelativeType,
 		"inc":                    inc,
+		"formType":               p.formType,
 		"isPostOffice":           isPostOffice,
 		"isDomestic":             isDomestic,
 		"isInternational":        isInternational,
-		"location":               service.location,
-		"locationOverrideLayout": service.locationOverrideLayout,
-		"militaryAddress":        service.militaryAddress,
+		"location":               p.location,
+		"locationOverrideLayout": p.locationOverrideLayout,
+		"militaryAddress":        p.militaryAddress,
 		"militaryStatus":         militaryStatus,
-		"monthYear":              service.monthYear,
-		"monthYearOptional":      service.monthYearOptional,
-		"monthYearDaterange":     service.monthYearDaterange,
-		"name":                   service.name,
-		"nameLastFirst":          service.nameLastFirst,
+		"monthYear":              p.monthYear,
+		"monthYearOptional":      p.monthYearOptional,
+		"monthYearDaterange":     p.monthYearDaterange,
+		"name":                   p.name,
+		"nameLastFirst":          p.nameLastFirst,
 		"notApplicable":          notApplicable,
-		"now":                    service.now,
+		"now":                    p.now,
 		"number":                 number,
 		"padDigits":              padDigits,
 		"radio":                  radio,
@@ -137,15 +156,15 @@ func (service Service) templateFMap() template.FuncMap {
 		"suffixType":             suffixType,
 		"relationshipType":       relationshipType,
 		"relativeForeignDocType": relativeForeignDocType,
-		"telephone":              service.telephone,
+		"telephone":              p.telephone,
 		"telephoneNoNumber":      telephoneNoNumber,
-		"telephoneNoTimeOfDay":   service.telephoneNoTimeOfDay,
+		"telephoneNoTimeOfDay":   p.telephoneNoTimeOfDay,
 		"text":                   text,
 		"textarea":               textarea,
 		"toUpper":                toUpper,
-		"treatment":              service.treatment,
+		"treatment":              p.treatment,
 		"treatmentAnswerType":    treatmentAnswerType,
-		"tmpl":                   service.DefaultTemplate,
+		"tmpl":                   p.defaultTemplate,
 	}
 	return fmap
 }
@@ -174,14 +193,14 @@ func applyBulkFixes(xml string) string {
 	return x
 }
 
-func (service Service) xmlTemplate(name string, data map[string]interface{}) (template.HTML, error) {
-	return service.xmlTemplateWithFuncs(name, data, template.FuncMap{})
+func (p applicationPackager) xmlTemplate(name string, data map[string]interface{}) (template.HTML, error) {
+	return p.xmlTemplateWithFuncs(name, data, template.FuncMap{})
 }
 
 // xmlTemplateWithFuncs executes an XML template with mapped functions to be used with the
 // given entity.
-func (service Service) xmlTemplateWithFuncs(name string, data map[string]interface{}, fmap template.FuncMap) (template.HTML, error) {
-	path := path.Join(service.templatePath, name)
+func (p applicationPackager) xmlTemplateWithFuncs(name string, data map[string]interface{}, fmap template.FuncMap) (template.HTML, error) {
+	path := path.Join(p.xmlService.templatePath, name)
 	tmpl := template.Must(template.New(name).Funcs(fmap).ParseFiles(path))
 	var output bytes.Buffer
 	if err := tmpl.Execute(&output, data); err != nil {
@@ -199,9 +218,31 @@ func getInterfaceAsBytes(anon interface{}) []byte {
 }
 
 // now returns the server's local time in yyyy-MM-dd
-func (service Service) now() string {
-	t := service.clock.Now()
+func (p applicationPackager) now() string {
+	t := p.xmlService.clock.Now()
 	return fmt.Sprintf("%d-%02d-%02d", t.Year(), t.Month(), t.Day())
+}
+
+// formType returns true if the supplied string matches the current application
+// format of formList is comma separated form identifiers. You can include either just
+// the FormType or `FormType.FormVersion`. It would be reasonable to add excludes
+// in the future as well, but that's left as an exercise to the reader
+// example: {{if formType "SF86,SF85.2017-12-draft7"}}
+// example: {{if formType "SF86,SF85P"}}
+func (p applicationPackager) formType(formList string) bool {
+
+	formTypes := strings.Split(formList, ",")
+
+	for _, formT := range formTypes {
+		if formT == p.appFormType {
+			return true
+		}
+		if formT == fmt.Sprintf("%s.%s", p.appFormType, p.appFormVersion) {
+			return true
+		}
+	}
+
+	return false
 }
 
 func apoFpoView(primary map[string]interface{}, altAddress map[string]interface{}) map[string]interface{} {
@@ -225,11 +266,11 @@ func apoFpoView(primary map[string]interface{}, altAddress map[string]interface{
 
 // apoFpo generates the APOFPO element, given a primary address and an alternate address.
 // primary is a required location type. altAddress is an optionally populated physicaladdress type.
-func (service Service) apoFpo(primary map[string]interface{}, altAddress map[string]interface{}) (template.HTML, error) {
+func (p applicationPackager) apoFpo(primary map[string]interface{}, altAddress map[string]interface{}) (template.HTML, error) {
 	// Templates operate on a single dot set, so create a single view on the data
 	view := apoFpoView(primary, altAddress)
-	fmap := service.templateFMap()
-	return service.xmlTemplateWithFuncs("apofpo.xml", view, fmap)
+	fmap := p.templateFMap()
+	return p.xmlTemplateWithFuncs("apofpo.xml", view, fmap)
 }
 
 // selectBenefit returns the appropriate sub-tree from Foreign.BenefitActivity.props.List.props.items[*],
@@ -244,14 +285,14 @@ func selectBenefit(freqType string, benefitItem map[string]interface{}) (map[str
 	return nil, errors.New(selector + " not found in benefit item")
 }
 
-func (service Service) address(loc map[string]interface{}, dnk map[string]interface{}) (template.HTML, error) {
+func (p applicationPackager) address(loc map[string]interface{}, dnk map[string]interface{}) (template.HTML, error) {
 	view := make(map[string]interface{})
 	view["Location"] = loc
 	view["DoNotKnow"] = dnk
 
-	fmap := service.templateFMap()
+	fmap := p.templateFMap()
 
-	return service.xmlTemplateWithFuncs("address.xml", view, fmap)
+	return p.xmlTemplateWithFuncs("address.xml", view, fmap)
 }
 
 // Put simple structures here where they only output a string
@@ -350,7 +391,7 @@ func email(data map[string]interface{}) string {
 	return simpleValue(data)
 }
 
-func (service Service) emailOptional(e, dnk map[string]interface{}) (template.HTML, error) {
+func (p applicationPackager) emailOptional(e, dnk map[string]interface{}) (template.HTML, error) {
 	view := make(map[string]interface{})
 	view["Email"] = e
 	view["DoNotKnow"] = dnk
@@ -360,7 +401,7 @@ func (service Service) emailOptional(e, dnk map[string]interface{}) (template.HT
 		"email":         email,
 	}
 
-	return service.xmlTemplateWithFuncs("email-optional.xml", view, fmap)
+	return p.xmlTemplateWithFuncs("email-optional.xml", view, fmap)
 }
 
 func text(data map[string]interface{}) string {
@@ -800,64 +841,64 @@ func countryComments(data map[string]interface{}) string {
 
 // Put "complex" XML structures here where they output from another template
 
-func (service Service) telephone(data map[string]interface{}) (template.HTML, error) {
-	return service.xmlTemplate("telephone.xml", data)
+func (p applicationPackager) telephone(data map[string]interface{}) (template.HTML, error) {
+	return p.xmlTemplate("telephone.xml", data)
 }
 
-func (service Service) telephoneNoTimeOfDay(data map[string]interface{}) (template.HTML, error) {
-	return service.xmlTemplate("telephone-no-time-of-day.xml", data)
+func (p applicationPackager) telephoneNoTimeOfDay(data map[string]interface{}) (template.HTML, error) {
+	return p.xmlTemplate("telephone-no-time-of-day.xml", data)
 }
 
-func (service Service) name(data map[string]interface{}) (template.HTML, error) {
-	fmap := service.templateFMap()
-	return service.xmlTemplateWithFuncs("name.xml", data, fmap)
+func (p applicationPackager) name(data map[string]interface{}) (template.HTML, error) {
+	fmap := p.templateFMap()
+	return p.xmlTemplateWithFuncs("name.xml", data, fmap)
 }
 
-func (service Service) nameLastFirst(data map[string]interface{}) (template.HTML, error) {
-	return service.xmlTemplate("name-last-first.xml", data)
+func (p applicationPackager) nameLastFirst(data map[string]interface{}) (template.HTML, error) {
+	return p.xmlTemplate("name-last-first.xml", data)
 }
 
-func (service Service) daterange(data map[string]interface{}) (template.HTML, error) {
-	fmap := service.templateFMap()
-	return service.xmlTemplateWithFuncs("date-range.xml", data, fmap)
+func (p applicationPackager) daterange(data map[string]interface{}) (template.HTML, error) {
+	fmap := p.templateFMap()
+	return p.xmlTemplateWithFuncs("date-range.xml", data, fmap)
 }
 
-func (service Service) monthYearDaterange(data map[string]interface{}) (template.HTML, error) {
-	fmap := service.templateFMap()
-	fmap["date"] = service.monthYear // This is the only place where we swap out what the default list of functions uses.
-	return service.xmlTemplateWithFuncs("date-range.xml", data, fmap)
+func (p applicationPackager) monthYearDaterange(data map[string]interface{}) (template.HTML, error) {
+	fmap := p.templateFMap()
+	fmap["date"] = p.monthYear // This is the only place where we swap out what the default list of functions uses.
+	return p.xmlTemplateWithFuncs("date-range.xml", data, fmap)
 }
 
-func (service Service) dateOptional(d, dnk map[string]interface{}) (template.HTML, error) {
+func (p applicationPackager) dateOptional(d, dnk map[string]interface{}) (template.HTML, error) {
 	view := make(map[string]interface{})
 	view["Date"] = d
 	view["DoNotKnow"] = dnk
 
-	fmap := service.templateFMap()
-	return service.xmlTemplateWithFuncs("date-month-day-year-optional.xml", view, fmap)
+	fmap := p.templateFMap()
+	return p.xmlTemplateWithFuncs("date-month-day-year-optional.xml", view, fmap)
 }
 
-func (service Service) date(data map[string]interface{}) (template.HTML, error) {
-	fmap := service.templateFMap()
-	return service.xmlTemplateWithFuncs("date-month-day-year.xml", data, fmap)
+func (p applicationPackager) date(data map[string]interface{}) (template.HTML, error) {
+	fmap := p.templateFMap()
+	return p.xmlTemplateWithFuncs("date-month-day-year.xml", data, fmap)
 }
 
-func (service Service) monthYearOptional(d, dnk map[string]interface{}) (template.HTML, error) {
+func (p applicationPackager) monthYearOptional(d, dnk map[string]interface{}) (template.HTML, error) {
 	view := make(map[string]interface{})
 	view["Date"] = d
 	view["DoNotKnow"] = dnk
 
-	fmap := service.templateFMap()
-	return service.xmlTemplateWithFuncs("date-month-year-optional.xml", view, fmap)
+	fmap := p.templateFMap()
+	return p.xmlTemplateWithFuncs("date-month-year-optional.xml", view, fmap)
 }
 
-func (service Service) monthYear(data map[string]interface{}) (template.HTML, error) {
-	fmap := service.templateFMap()
-	return service.xmlTemplateWithFuncs("date-month-year.xml", data, fmap)
+func (p applicationPackager) monthYear(data map[string]interface{}) (template.HTML, error) {
+	fmap := p.templateFMap()
+	return p.xmlTemplateWithFuncs("date-month-year.xml", data, fmap)
 }
 
-func (service Service) location(data map[string]interface{}) (template.HTML, error) {
-	return service.locationOverrideLayout(data, "")
+func (p applicationPackager) location(data map[string]interface{}) (template.HTML, error) {
+	return p.locationOverrideLayout(data, "")
 }
 
 func street(data map[string]interface{}) string {
@@ -869,12 +910,12 @@ func street(data map[string]interface{}) string {
 	return s1
 }
 
-func (service Service) militaryAddress(data map[string]interface{}) (template.HTML, error) {
-	return service.locationOverrideLayout(data, api.LayoutMilitaryAddress)
+func (p applicationPackager) militaryAddress(data map[string]interface{}) (template.HTML, error) {
+	return p.locationOverrideLayout(data, api.LayoutMilitaryAddress)
 }
 
 // location assumes the data comes in as the props
-func (service Service) locationOverrideLayout(data map[string]interface{}, override string) (template.HTML, error) {
+func (p applicationPackager) locationOverrideLayout(data map[string]interface{}, override string) (template.HTML, error) {
 	// Deserialize the initial payload from a JSON structure
 	payload := &api.Payload{}
 	// entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
@@ -891,7 +932,7 @@ func (service Service) locationOverrideLayout(data map[string]interface{}, overr
 	// Work-around issue in UI where it does not
 	// normalize case of state abbrevations. See:
 	// https://github.com/18F/e-QIP-prototype/issues/716
-	fmap := service.templateFMap()
+	fmap := p.templateFMap()
 
 	// XXX
 	// Work-around issue in UI where it does not
@@ -905,82 +946,82 @@ func (service Service) locationOverrideLayout(data map[string]interface{}, overr
 	switch layout {
 	case api.LayoutOffense:
 		if domestic {
-			return service.xmlTemplateWithFuncs("location-city-state-zipcode-county.xml", data, fmap)
+			return p.xmlTemplateWithFuncs("location-city-state-zipcode-county.xml", data, fmap)
 		}
 
-		return service.xmlTemplateWithFuncs("location-city-country.xml", data, fmap)
+		return p.xmlTemplateWithFuncs("location-city-country.xml", data, fmap)
 	case api.LayoutBirthPlace:
 		if domestic {
-			return service.xmlTemplateWithFuncs("location-city-state-county.xml", data, fmap)
+			return p.xmlTemplateWithFuncs("location-city-state-county.xml", data, fmap)
 		}
-		return service.xmlTemplateWithFuncs("location-city-country.xml", data, fmap)
+		return p.xmlTemplateWithFuncs("location-city-country.xml", data, fmap)
 	case api.LayoutBirthPlaceNoUS:
 		if domestic {
-			return service.xmlTemplateWithFuncs("location-city-state-county-no-country.xml", data, fmap)
+			return p.xmlTemplateWithFuncs("location-city-state-county-no-country.xml", data, fmap)
 		}
-		return service.xmlTemplateWithFuncs("location-city-country.xml", data, fmap)
+		return p.xmlTemplateWithFuncs("location-city-country.xml", data, fmap)
 	case api.LayoutBirthPlaceWithoutCounty:
 		if domestic {
-			return service.xmlTemplateWithFuncs("location-city-state.xml", data, fmap)
+			return p.xmlTemplateWithFuncs("location-city-state.xml", data, fmap)
 		}
-		return service.xmlTemplateWithFuncs("location-city-country.xml", data, fmap)
+		return p.xmlTemplateWithFuncs("location-city-country.xml", data, fmap)
 	case api.LayoutBirthPlaceWithoutCountyNoUS:
 		if domestic {
-			return service.xmlTemplateWithFuncs("location-city-state-no-country.xml", data, fmap)
+			return p.xmlTemplateWithFuncs("location-city-state-no-country.xml", data, fmap)
 		}
-		return service.xmlTemplateWithFuncs("location-city-country.xml", data, fmap)
+		return p.xmlTemplateWithFuncs("location-city-country.xml", data, fmap)
 	case api.LayoutCountry:
-		return service.xmlTemplateWithFuncs("location-country.xml", data, fmap)
+		return p.xmlTemplateWithFuncs("location-country.xml", data, fmap)
 	case api.LayoutUSCityStateInternationalCity:
 		if domestic {
-			return service.xmlTemplateWithFuncs("location-city-state.xml", data, fmap)
+			return p.xmlTemplateWithFuncs("location-city-state.xml", data, fmap)
 		}
-		return service.xmlTemplateWithFuncs("location-city-country.xml", data, fmap)
+		return p.xmlTemplateWithFuncs("location-city-country.xml", data, fmap)
 	case api.LayoutUSCityStateInternationalCityCountry:
 		if domestic {
-			return service.xmlTemplateWithFuncs("location-city-state.xml", data, fmap)
+			return p.xmlTemplateWithFuncs("location-city-state.xml", data, fmap)
 		}
-		return service.xmlTemplateWithFuncs("location-city-country.xml", data, fmap)
+		return p.xmlTemplateWithFuncs("location-city-country.xml", data, fmap)
 	case api.LayoutState:
-		return service.xmlTemplateWithFuncs("location-state.xml", data, fmap)
+		return p.xmlTemplateWithFuncs("location-state.xml", data, fmap)
 	case api.LayoutCityState:
-		return service.xmlTemplateWithFuncs("location-city-state.xml", data, fmap)
+		return p.xmlTemplateWithFuncs("location-city-state.xml", data, fmap)
 	case api.LayoutStreetCityCountry:
-		return service.xmlTemplateWithFuncs("location-street-city-country.xml", data, fmap)
+		return p.xmlTemplateWithFuncs("location-street-city-country.xml", data, fmap)
 	case api.LayoutCityCountry:
-		return service.xmlTemplateWithFuncs("location-city-country.xml", data, fmap)
+		return p.xmlTemplateWithFuncs("location-city-country.xml", data, fmap)
 	case api.LayoutUSCityStateZipcodeInternationalCity:
 		if domestic {
-			return service.xmlTemplateWithFuncs("location-city-state-zipcode.xml", data, fmap)
+			return p.xmlTemplateWithFuncs("location-city-state-zipcode.xml", data, fmap)
 		}
-		return service.xmlTemplateWithFuncs("location-city-country.xml", data, fmap)
+		return p.xmlTemplateWithFuncs("location-city-country.xml", data, fmap)
 	case api.LayoutCityStateCountry:
-		return service.xmlTemplateWithFuncs("location-city-state-country.xml", data, fmap)
+		return p.xmlTemplateWithFuncs("location-city-state-country.xml", data, fmap)
 	case api.LayoutUSAddress:
-		return service.xmlTemplateWithFuncs("location-street-city-state-zipcode.xml", data, fmap)
+		return p.xmlTemplateWithFuncs("location-street-city-state-zipcode.xml", data, fmap)
 	case api.LayoutStreetCity:
-		return service.xmlTemplateWithFuncs("location-street-city.xml", data, fmap)
+		return p.xmlTemplateWithFuncs("location-street-city.xml", data, fmap)
 	case api.LayoutMilitaryAddress:
-		return service.xmlTemplateWithFuncs("location-address-apofpo-state-zipcode.xml", data, fmap)
+		return p.xmlTemplateWithFuncs("location-address-apofpo-state-zipcode.xml", data, fmap)
 	case api.LayoutPhysicalDomestic:
-		return service.xmlTemplateWithFuncs("location-physical-address-domestic.xml", data, fmap)
+		return p.xmlTemplateWithFuncs("location-physical-address-domestic.xml", data, fmap)
 	case api.LayoutPhysicalInternational:
-		return service.xmlTemplateWithFuncs("location-physical-address-international.xml", data, fmap)
+		return p.xmlTemplateWithFuncs("location-physical-address-international.xml", data, fmap)
 	default:
 		if domestic || postoffice {
-			return service.xmlTemplateWithFuncs("location-street-city-state-zipcode.xml", data, fmap)
+			return p.xmlTemplateWithFuncs("location-street-city-state-zipcode.xml", data, fmap)
 		}
-		return service.xmlTemplateWithFuncs("location-street-city-country.xml", data, fmap)
+		return p.xmlTemplateWithFuncs("location-street-city-country.xml", data, fmap)
 	}
 }
 
-func (service Service) countryValue(data map[string]interface{}) (template.HTML, error) {
-	return service.xmlTemplate("country.xml", data)
+func (p applicationPackager) countryValue(data map[string]interface{}) (template.HTML, error) {
+	return p.xmlTemplate("country.xml", data)
 }
 
-func (service Service) treatment(data map[string]interface{}) (template.HTML, error) {
-	fmap := service.templateFMap()
-	return service.xmlTemplateWithFuncs("treatment.xml", data, fmap)
+func (p applicationPackager) treatment(data map[string]interface{}) (template.HTML, error) {
+	fmap := p.templateFMap()
+	return p.xmlTemplateWithFuncs("treatment.xml", data, fmap)
 }
 
 func padDigits(digits string) string {

@@ -89,6 +89,7 @@ xmlsec1
 /api/coverage.txt
 api/coverage-integration.txt
 /jest*
+/api/integration/xsds/
 
 # Ignore Mac DS_Store files
 .DS_Store

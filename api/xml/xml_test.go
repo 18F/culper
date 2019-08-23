@@ -132,7 +132,10 @@ func TestPackage(t *testing.T) {
 	for _, test := range tests {
 		t.Run(test.Schema, func(t *testing.T) {
 
-			result, err := service.DefaultTemplate(test.Schema, test.Data)
+			app := api.BlankApplication(-1, "SF86", "2017-07")
+			p := newApplicationPackager(service, app)
+
+			result, err := p.defaultTemplate(test.Schema, test.Data)
 			if err != nil {
 				t.Fatal(err)
 			}
@@ -519,7 +522,10 @@ func loadFormData(t *testing.T, form map[string]interface{}, filepath string) {
 func applyForm(t *testing.T, template string, data map[string]interface{}) string {
 	service := NewXMLServiceWithMockClock("../templates/", mockedClock())
 
-	snippet, err := service.DefaultTemplate(template, data)
+	app := api.BlankApplication(-1, "SF86", "2017-07")
+	p := newApplicationPackager(service, app)
+
+	snippet, err := p.defaultTemplate(template, data)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -606,4 +612,31 @@ func assertHasNone(t *testing.T, template string, xpath string, snippet string) 
 	if len(list) != 0 {
 		t.Fatalf("XML derived from `%s` should not have `%s`: %s", template, xpath, snippet)
 	}
+}
+
+func TestFormTypeCheck(t *testing.T) {
+
+	service := NewXMLServiceWithMockClock("../templates", mockedClock())
+	app := api.BlankApplication(-1, "SF86", "2017-07")
+	p := newApplicationPackager(service, app)
+
+	tests := []struct {
+		typeList   string
+		shouldPass bool
+	}{
+		{"foo", false},
+		{"SF86,SF85,SF85P", true},
+		{"SF85,SF85P", false},
+		{"SF86.foo,SF85", false},
+		{"SF86.2017-07,SF85", true},
+		{"SF86", true},
+	}
+
+	for _, test := range tests {
+		if p.formType(test.typeList) != test.shouldPass {
+			t.Log("Didn't match correctly: ", test.typeList)
+			t.Fail()
+		}
+	}
+
 }

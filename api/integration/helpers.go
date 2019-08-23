@@ -139,6 +139,29 @@ func createTestAccount(t *testing.T, db api.DatabaseService) api.Account {
 
 }
 
+func create85TestAccount(t *testing.T, db api.DatabaseService) api.Account {
+	t.Helper()
+
+	email := randomEmail()
+
+	account := api.Account{
+		Username:    email,
+		Email:       simplestore.NonNullString(email),
+		FormType:    "SF85",
+		FormVersion: "2017-12-draft7",
+		Status:      api.StatusIncomplete,
+		ExternalID:  uuid.New().String(),
+	}
+
+	_, err := account.Save(db, -1)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	return account
+
+}
+
 // readTestData pulls in test data as a string
 func readTestData(t *testing.T, filepath string) []byte {
 	t.Helper()
@@ -191,6 +214,10 @@ func saveFormJSON(t *testing.T, services serviceSet, formJSON []byte, account ap
 	}
 
 	for sectionName := range form {
+		if sectionName == "Metadata" {
+			continue
+		}
+
 		for subSectionName := range form[sectionName] {
 			sectionJSON := form[sectionName][subSectionName]
 
