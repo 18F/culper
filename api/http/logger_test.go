@@ -8,7 +8,7 @@ import (
 	"github.com/18F/e-QIP-prototype/api/mock"
 )
 
-func TestLoggerMiddlewareSUccess(t *testing.T) {
+func TestLoggerMiddlewareSuccess(t *testing.T) {
 	mockLog := mock.LogService{}
 	loggingHandler := LoggingHandler{
 		Log: &mockLog,
