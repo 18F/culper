@@ -251,7 +251,6 @@
                   "Location": {
                     "type": "location",
                     "props": {
-                      "uid": "Location-676cdce4-06a8-5f90-ea24-6f40f66fa3d2",
                       "city": "Sarajevo",
                       "zipcode": "",
                       "state": "",
@@ -554,7 +553,6 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "uid": "CourtAddress-c03df0db-885e-1c5d-711a-4242dd4bee18",
                       "street": "1234 Main St",
                       "street2": "",
                       "city": "Alameda",
@@ -688,7 +686,6 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "uid": "Address-262d806b-84c8-29c0-356a-92366dcfccd2",
                       "street": "361 Kings Highway",
                       "city": "Yakima",
                       "zipcode": "98901",
@@ -781,7 +778,6 @@
                   "Location": {
                     "type": "location",
                     "props": {
-                      "uid": "Location-28c3de0b-f5af-97e4-87ac-f90988f765a7",
                       "city": "Washington",
                       "state": "DC",
                       "layout": "City, State",
@@ -858,7 +854,6 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "uid": "CourtAddress-788553b8-1f55-6a62-b4e8-05da67680695",
                       "street": "1903 Western Michigan Avenue",
                       "city": "Kalamazoo",
                       "zipcode": "49008",
@@ -1936,7 +1931,6 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "uid": "Address-259bf228-f83b-d5b3-ff93-8b73bc4cf2da",
                       "street": "Harvard University",
                       "city": "Cambridge",
                       "zipcode": "02138",
@@ -2018,7 +2012,6 @@
                   "ReferenceAddress": {
                     "type": "location",
                     "props": {
-                      "uid": "ReferenceAddress-37a37f49-dbad-9f75-d5cb-bdf321d57dd7",
                       "street": "110 Mt Auburn St",
                       "street2": "Room 301",
                       "city": "Cambridge",
@@ -2089,7 +2082,6 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "uid": "Address-68b58d12-a694-20ef-991d-e0bf6961f944",
                       "street": "450 Serra Mall",
                       "city": "Stanford",
                       "zipcode": "94305",
@@ -2274,7 +2266,6 @@
                   "ReferenceAddress": {
                     "type": "location",
                     "props": {
-                      "uid": "ReferenceAddress-5e82c03c-8b1c-693c-c4d2-381bf24c3a46",
                       "street": "123 Stanford St",
                       "street2": "",
                       "city": "Standford",
@@ -2345,7 +2336,6 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "uid": "Address-d5a7d7ee-be68-3463-c401-97ed951a6788",
                       "street": "8181 2e Avenue",
                       "city": "Montreal",
                       "zipcode": "",
@@ -2559,7 +2549,6 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "uid": "Address-a491270d-b9d1-9893-4c39-7dbf8719861b",
                       "street": "Fort Hamilton",
                       "street2": "Suite P",
                       "city": "Brooklyn",
@@ -2964,7 +2953,6 @@
                       "Address": {
                         "type": "location",
                         "props": {
-                          "uid": "Address-4b2cdc9e-511f-4783-2d89-0f2363302677",
                           "street": "1600 Pennsylvania Ave NW",
                           "street2": "Oval Office",
                           "city": "Washington",
@@ -3074,7 +3062,6 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "uid": "Address-e8870af0-bc3c-2b7f-8dba-7304485f6763",
                       "street": "1730 Pennsylvania Ave NW",
                       "street2": "2nd Floor",
                       "city": "Washington",
@@ -3163,7 +3150,6 @@
                       "Address": {
                         "type": "location",
                         "props": {
-                          "uid": "address-8b070d2d-8412-9cc7-4114-9a81e143e5ae",
                           "street": "1730 Pennsylvania Ave NW",
                           "street2": "3rd Floor",
                           "city": "Washington",
@@ -3482,7 +3468,6 @@
                       "Address": {
                         "type": "location",
                         "props": {
-                          "uid": "Address-a56b4e6c-222c-ba89-f37f-9e4b14cfc01f",
                           "street": "The Louvre, Rue de Rivoli",
                           "street2": "1st Floor",
                           "city": "Paris",
@@ -3559,7 +3544,6 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "uid": "Address-2f3b45b3-c604-272b-673c-8755488d6d22",
                       "street": "1066 E 16th St",
                       "street2": "",
                       "city": "Kansas City",
@@ -3643,7 +3627,6 @@
                       "Address": {
                         "type": "location",
                         "props": {
-                          "uid": "address-980fd988-1af2-08b0-b113-5e430b052a67",
                           "street": "1514 Campbell St",
                           "street2": "Apt 5",
                           "city": "Kansas City",
@@ -3737,7 +3720,6 @@
                   "ReferenceAddress": {
                     "type": "location",
                     "props": {
-                      "uid": "ReferenceAddress-199517c2-47be-736c-58c7-a85ae170fe5c",
                       "street": "78 Broad St",
                       "street2": "",
                       "city": "Oakland",
@@ -3929,7 +3911,6 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "uid": "Address-0067c3aa-d8b2-1637-cd5e-39d8ee20a51e",
                       "street": "1430 Mountain Ave",
                       "street2": "Suite 101",
                       "city": "Duarte",
@@ -3989,7 +3970,6 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "uid": "Address-b7cb7085-565c-1602-cf62-d19b1e48f416",
                       "street": "537 Cooking Lane",
                       "street2": "",
                       "city": "Chicago",
@@ -4065,7 +4045,6 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "uid": "Address-86fd3643-2982-bbba-cc47-cf7f534406c9",
                       "street": "66 Northish Dr.",
                       "street2": "Apt 9",
                       "city": "Berkeley",
@@ -4129,7 +4108,6 @@
                   "ReferenceAddress": {
                     "type": "location",
                     "props": {
-                      "uid": "ReferenceAddress-ef817d09-1268-4379-1e28-4e74cf60aae1",
                       "street": "188 Windermearly Blvd",
                       "street2": "",
                       "city": "Ithaca",
@@ -4274,7 +4252,6 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "uid": "Address-25f1237f-8bcf-a3e0-bff9-1a43cb1d2c66",
                       "street": "144 Mar Mediterráneo",
                       "street2": "Apt 2",
                       "city": "Boca Del Río",
@@ -4297,7 +4274,6 @@
                       "Address": {
                         "type": "location",
                         "props": {
-                          "uid": "location-fe4ff28b-1533-d290-28e9-a5406a3c7219",
                           "street": "1400 John F Kennedy Blvd",
                           "city": "APO",
                           "zipcode": "34087",
@@ -4348,7 +4324,6 @@
                   "ReferenceAddress": {
                     "type": "location",
                     "props": {
-                      "uid": "ReferenceAddress-67f96ce8-ca1a-8c1b-78f5-eeaee892925a",
                       "street": "145 Mar Mediterráneo",
                       "street2": "",
                       "city": "Boca del Río",
@@ -4491,7 +4466,6 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "uid": "Address-3baa696f-f723-f045-7c2c-67f8f0b23fab",
                       "street": "16 60th St",
                       "street2": "5th Floor",
                       "city": "Brooklyn",
@@ -4556,7 +4530,6 @@
                   "ReferenceAddress": {
                     "type": "location",
                     "props": {
-                      "uid": "ReferenceAddress-d787df9c-67f7-073e-7698-a4640cd44b71",
                       "street": "612 66th St",
                       "street2": "Apt 12",
                       "city": "Brooklyn",
@@ -4699,7 +4672,6 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "uid": "Address-56183b5c-be5b-e08a-5976-af51eb5e57f7",
                       "street": "19 S 22nd St",
                       "city": "DPO",
                       "zipcode": "34003",
@@ -4721,7 +4693,6 @@
                       "Address": {
                         "type": "location",
                         "props": {
-                          "uid": "location-e8c6dc51-1bf1-95bb-37f7-84258058e20c",
                           "street": "19 S 22nd St",
                           "street2": "Suite Z",
                           "city": "Philadelphia",
@@ -4853,7 +4824,6 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "uid": "Address-d4c952eb-65e7-c4a3-417e-19501b7185c5",
                       "street": "2869 Broadway",
                       "street2": "Floor 10",
                       "city": "Oakland",
@@ -4995,7 +4965,6 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "uid": "Address-745130cf-bbe1-e0fb-e643-b4d11b02d9c9",
                       "street": "3010 Maingate Ln",
                       "street2": "Building X",
                       "city": "Kissimmee",
@@ -6049,7 +6018,6 @@
                   "Location": {
                     "type": "location",
                     "props": {
-                      "uid": "Location-62fd3e9c-d048-3fb5-3dc7-e09be9e55fee",
                       "street": "1821 S Bascom Ave",
                       "city": "Campbell",
                       "zipcode": "95008",
@@ -6090,7 +6058,6 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "uid": "Address-2039e1d3-51cc-285e-3f57-4b688d57961a",
                       "street": "2740 State St",
                       "city": "Salt Lake City",
                       "zipcode": "84115",
@@ -6201,7 +6168,6 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "uid": "Address-b392671a-1930-8cb8-1189-11541606e5bf",
                       "street": "1012 Haven Rd",
                       "city": "Little Falls",
                       "zipcode": "56345",
@@ -6321,7 +6287,6 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "uid": "CourtAddress-fc9b94ac-240d-e6c0-860b-99a226488336",
                       "street": "1500 Maybrook Dr",
                       "city": "Maywood",
                       "zipcode": "60153",
@@ -6390,7 +6355,6 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "uid": "CourtAddress-4294cf29-99c1-593f-02e8-bf30ddca41d7",
                       "city": "Alameda",
                       "zipcode": "94706",
                       "state": "CA",
@@ -6456,7 +6420,6 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "uid": "Address-fb1b6538-fb42-d76c-dcb5-ad9f28a50fe4",
                       "city": "Rochester",
                       "zipcode": "14624",
                       "state": "NY",
@@ -6469,7 +6432,6 @@
                   "AgencyAddress": {
                     "type": "location",
                     "props": {
-                      "uid": "AgencyAddress-7a498d30-dd00-5ec8-5b5d-6adb9f0c9c4b",
                       "city": "Rochester",
                       "zipcode": "14624",
                       "state": "NY",
@@ -6505,7 +6467,6 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "uid": "CourtAddress-123205d6-7a03-f439-721b-c81d2e588cc4",
                       "city": "Rochester",
                       "zipcode": "14624",
                       "state": "NY",
@@ -6698,7 +6659,6 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "uid": "Address-a87691f8-4f39-a409-814f-ca8f85571ef5",
                       "city": "Chicago",
                       "zipcode": "60605",
                       "state": "IL",
@@ -6711,7 +6671,6 @@
                   "AgencyAddress": {
                     "type": "location",
                     "props": {
-                      "uid": "AgencyAddress-64f41746-de63-3285-0979-e585c7c2afe0",
                       "city": "East Chicago",
                       "zipcode": "46312",
                       "state": "IN",
@@ -6747,7 +6706,6 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "uid": "CourtAddress-1afdcb56-6a2f-f1eb-5699-99b2a71ee5d2",
                       "city": "East Chicago",
                       "zipcode": "46312",
                       "state": "IN",
@@ -6988,7 +6946,6 @@
                   "CourtAddress": {
                     "type": "location",
                     "props": {
-                      "uid": "CourtAddress-6e59c4cb-a16c-a73f-f374-59f41766532b",
                       "city": "Broken Bow",
                       "zipcode": "68822",
                       "state": "NE",
@@ -7206,7 +7163,6 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "uid": "Address-79086f91-80b3-d3c9-ade8-246dffbcdcb0",
                       "street": "9000 Southside Dr",
                       "street2": "",
                       "city": "Yosemite Valley",
@@ -7341,7 +7297,6 @@
                   "Location": {
                     "type": "location",
                     "props": {
-                      "uid": "Location-b0698269-e9d9-1fac-5d88-34ba515f5095",
                       "street": "1572 20th St",
                       "city": "Severy",
                       "zipcode": "67137",
@@ -7407,7 +7362,6 @@
                   "Location": {
                     "type": "location",
                     "props": {
-                      "uid": "Location-6422e9c2-4990-d3c0-86af-214575ceeffd",
                       "street": "555 Main St",
                       "city": "Salt Lake City",
                       "zipcode": "84111",
@@ -8114,7 +8068,6 @@
                   "BirthPlace": {
                     "type": "location",
                     "props": {
-                      "uid": "birthplace-46e761eb-e095-d703-fef3-ce1fa70af7f9",
                       "city": "Mexico City",
                       "zipcode": "",
                       "state": "",
@@ -8661,7 +8614,6 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "uid": "address-495b0081-a050-d2fa-299a-e703d058c3cd",
                       "city": "Burmingham",
                       "state": "AL",
                       "country": "United States",
@@ -8672,7 +8624,6 @@
                   "BirthPlace": {
                     "type": "location",
                     "props": {
-                      "uid": "birthplace-7dbb4130-38c0-54d6-6a22-33451c7581b8",
                       "city": "Burmingham",
                       "state": "AL",
                       "country": "United States",
@@ -8774,7 +8725,6 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "uid": "address-f1310f96-ecc7-941c-1237-6ba55c209a43",
                       "city": "Philadelphia",
                       "state": "PA",
                       "country": "United States",
@@ -8785,7 +8735,6 @@
                   "BirthPlace": {
                     "type": "location",
                     "props": {
-                      "uid": "birthplace-47c5f2cd-51e4-939c-0f8e-69d6292bf488",
                       "city": "Brasilia",
                       "zipcode": "",
                       "state": "",
@@ -8889,7 +8838,6 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "uid": "address-f95af24d-c740-dafc-ff46-ed861daa9d13",
                       "city": "Nice",
                       "zipcode": "",
                       "state": "",
@@ -8901,7 +8849,6 @@
                   "BirthPlace": {
                     "type": "location",
                     "props": {
-                      "uid": "birthplace-9b78066b-4cd4-771c-580a-621c1242d025",
                       "city": "Paris",
                       "zipcode": "",
                       "state": "",
@@ -8955,7 +8902,6 @@
                   "DeceasedAddress": {
                     "type": "location",
                     "props": {
-                      "uid": "location-e5212b79-f75e-20cc-853c-d5b816016cd7",
                       "street": "4 Rue du Général Leclerc",
                       "city": "Ostwald",
                       "zipcode": "",
@@ -8974,7 +8920,6 @@
                   "DivorceLocation": {
                     "type": "location",
                     "props": {
-                      "uid": "location-e2068492-b5fd-7f23-d665-ff59bfe327a4",
                       "city": "Strasbourg",
                       "zipcode": "",
                       "state": "",
@@ -9045,7 +8990,6 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "uid": "Address-ce506824-9100-786a-ea0e-6fc317e428cc",
                       "street": "783 South Van Ness",
                       "street2": "",
                       "city": "San Francisco",
@@ -9164,7 +9108,6 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "uid": "Address-dd253f2f-e9ed-259a-451f-8aa3b3e1564d",
                       "street": "Kleiner Schloßplatz 15",
                       "city": "Stuttgart",
                       "zipcode": "",
@@ -9283,7 +9226,6 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "uid": "Address-b328ae0f-c34e-2a16-f714-b6083f53ca21",
                       "street": "11 Great George St",
                       "street2": "Apt 2",
                       "city": "London",
@@ -9502,7 +9444,6 @@
                   "Birthplace": {
                     "type": "location",
                     "props": {
-                      "uid": "Birthplace-877a7062-0fcf-dd95-2771-58d40a01bb57",
                       "city": "Amsterdam",
                       "state": "NY",
                       "country": "United States",
@@ -9671,7 +9612,6 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "uid": "Address-7bc8b40b-a149-8165-9c87-8c99a835a59b",
                       "street": "221 E Kellogg St",
                       "city": "Wichita",
                       "zipcode": "67202",
@@ -9823,7 +9763,6 @@
                   "Birthplace": {
                     "type": "location",
                     "props": {
-                      "uid": "Birthplace-bb8bc8b8-1184-0531-46c1-d4afe8ab9510",
                       "city": "Wichita",
                       "zipcode": "",
                       "state": "KS",
@@ -9980,7 +9919,6 @@
                   "Address": {
                     "type": "location",
                     "props": {
-                      "uid": "Address-64033082-b05c-c752-4137-9ad57ea8d2ea",
                       "street": "545 Main St",
                       "city": "Marin",
                       "zipcode": "94106",
@@ -10030,7 +9968,6 @@
                   "Birthplace": {
                     "type": "location",
                     "props": {
-                      "uid": "Birthplace-9b2d72eb-d303-162f-6b18-bf5b021d1edb",
                       "city": "Moscow",
                       "zipcode": "",
                       "state": "",
@@ -10226,7 +10163,6 @@
                   "Birthplace": {
                     "type": "location",
                     "props": {
-                      "uid": "Birthplace-c2e362ab-f3de-fc5a-1426-1293cd132779",
                       "city": "Buffalo",
                       "state": "NC",
                       "country": "United States",
@@ -11066,7 +11002,6 @@
                   "TreatmentProviderAddress": {
                     "type": "location",
                     "props": {
-                      "uid": "TreatmentProviderAddress-30f9db82-9c38-c1c7-c6c8-4b037854ca74",
                       "street": "101 4th Ave SE",
                       "street2": "",
                       "city": "Carmel",
@@ -11261,7 +11196,6 @@
                   "TreatmentProviderAddress": {
                     "type": "location",
                     "props": {
-                      "uid": "TreatmentProviderAddress-35eb1348-9b13-f936-5d62-33b096aa7b15",
                       "street": "190 Jay St",
                       "city": "Rochester",
                       "zipcode": "14608",
@@ -11376,7 +11310,6 @@
                   "TreatmentProviderAddress": {
                     "type": "location",
                     "props": {
-                      "uid": "TreatmentProviderAddress-4629fdfc-acae-c06c-6240-e28f76908425",
                       "street": "1001 S Main St",
                       "city": "Lamar",
                       "zipcode": "81052",
