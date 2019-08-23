@@ -9,7 +9,7 @@ import {
   Accordion,
 } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
-import ErrorMessage from 'components/ErrorMessage'
+import ErrorMessageList from 'components/ErrorMessageList'
 
 import Subsection from 'components/Section/shared/Subsection'
 import connectSubsection from 'components/Section/shared/SubsectionConnector'
@@ -76,15 +76,17 @@ export class Multiple extends Subsection {
     })
   }
 
-  getSectionErrors = (errorKey) => {
-    const errorList = {
+  getSectionErrors = () => {
+    return {
       'List.accordion.items.length.LENGTH_TOO_SHORT': {
-        title: i18n.t('error.validMinimumCitizenships.title'),
-        message: i18n.t('error.validMinimumCitizenships.message'),
+        errors: [{
+          title: i18n.t('error.validMinimumCitizenships.title'),
+          message: i18n.t('error.validMinimumCitizenships.message'),
+          shouldDisplayError: () => true,
+        }],
       },
     }
 
-    return errorList[errorKey]
   }
 
   render() {
@@ -111,20 +113,10 @@ export class Multiple extends Subsection {
 
         <Show when={this.props.HasMultiple.value === 'Yes'}>
           {List.branch && List.branch.value === 'No' && (
-            errors.map((errorKey) => {
-              const errorItem = this.getSectionErrors(errorKey)
-              if (errorItem) {
-                return (
-                  <ErrorMessage
-                    errorKey={errorKey}
-                    title={errorItem.title}
-                    message={errorItem.message}
-                    note={errorItem.note}
-                  />
-                )
-              }
-              return null
-            })
+            <ErrorMessageList
+              errors={errors}
+              errorMap={this.getSectionErrors()}
+            />
           )}
 
           <Accordion

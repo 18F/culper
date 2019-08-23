@@ -7,7 +7,7 @@ import validate, { RelativeValidator } from 'validators'
 
 import { RELATIONSHIPS, RELATIONSHIPS_RELATIVES } from 'config/formSections/relationships'
 import { MARRIED, SEPARATED } from 'constants/enums/relationshipOptions'
-import ErrorMessage from 'components/ErrorMessage'
+import ErrorMessageList from 'components/ErrorMessageList'
 import { Summary, NameSummary } from 'components/Summary'
 import { Field, Accordion } from 'components/Form'
 
@@ -38,7 +38,7 @@ export class Relatives extends Subsection {
     this.storeKey = storeKey
   }
 
-  getSectionErrors = (errorKey) => {
+  getSectionErrors = () => {
     const { maritalStatus } = this.props
     const errorList = {
       'List.containsRequiredItems.REQUIREMENT_NOT_MET': {
@@ -60,7 +60,7 @@ export class Relatives extends Subsection {
         ],
       },
     }
-    return errorList[errorKey]
+    return errorList
   }
 
   update = (queue) => {
@@ -121,25 +121,10 @@ export class Relatives extends Subsection {
         </Field>
 
         {List.branch && List.branch.value === 'No' && (
-          errors.map((errorKey) => {
-            const errorItem = this.getSectionErrors(errorKey)
-            if (errorItem) {
-              return errorItem.errors.map((error) => {
-                if (error.shouldDisplayError()) {
-                  return (
-                    <ErrorMessage
-                      errorKey={error.key || errorKey}
-                      title={error.title}
-                      message={error.message}
-                      note={error.note}
-                    />
-                  )
-                }
-                return null
-              })
-            }
-            return null
-          })
+          <ErrorMessageList
+            errors={errors}
+            errorMap={this.getSectionErrors()}
+          />
         )}
 
         <Accordion
