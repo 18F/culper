@@ -8,12 +8,14 @@
       <DrugsUsed>{{text $Item.PrescriptionName}}</DrugsUsed>
       {{monthYearDaterange $Item.InvolvementDates}}
       <Circumstances>{{textarea $Item.Reason}}</Circumstances>
+      {{ if formType "SF86,SF85P" }}
       <InvolvementWhileEmployedAsLawEnforcement>
         <Answer>{{branch $Item.UseWhileEmployed}}</Answer>
       </InvolvementWhileEmployedAsLawEnforcement>
       <InvolvementWhilePossessingASecurityClearance>
         <Answer>{{branch $Item.UseWithClearance}}</Answer>
       </InvolvementWhilePossessingASecurityClearance>
+      {{ end }}
       <Comment></Comment>
     </Instance>
     {{end}}

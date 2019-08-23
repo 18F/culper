@@ -1,5 +1,7 @@
 {{tmpl "legal-police.xml" .}}
-{{tmpl "legal-court.xml" .Legal.NonCriminalCourtActions}}
-{{tmpl "legal-technology.xml" .}}
+{{ if formType "SF86,SF85P" }}
+    {{tmpl "legal-court.xml" .Legal.NonCriminalCourtActions}}
+    {{tmpl "legal-technology.xml" .}}
+{{end}}
 {{tmpl "legal-associations.xml" .}}
 {{tmpl "legal-investigations.xml" .}}

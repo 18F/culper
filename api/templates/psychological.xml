@@ -1,3 +1,4 @@
+{{ if formType "SF86" }}
 <MedicalRecord2 Version="1" Type="Pooled">
   {{tmpl "psychological-competence.xml" .Psychological.Competence}}
   {{tmpl "psychological-consultations.xml" .Psychological.Consultations}}
@@ -14,3 +15,4 @@
   {{end}}
   {{end}}
 </MedicalRecord2>
+{{end}}

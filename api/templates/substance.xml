@@ -1,14 +1,20 @@
+{{ if formType "SF86,SF85P" }}
 <UseOfAlcohol Version="1" Type="Pooled">
   {{tmpl "substance-alcohol-additional.xml" .Substance.ReceivedCounselings}}
   {{tmpl "substance-alcohol-negative.xml" .Substance.NegativeImpacts}}
   {{tmpl "substance-alcohol-ordered.xml" .Substance.OrderedCounselings}}
   {{tmpl "substance-alcohol-voluntary.xml" .Substance.VoluntaryCounselings}}
 </UseOfAlcohol>
+{{ end }}
 <IllegalDrugUse Version="1" Type="Pooled">
-  {{tmpl "substance-drug-clearance.xml" .Substance.DrugClearanceUses}}
+  {{ if formType "SF86" }}
+    {{tmpl "substance-drug-clearance.xml" .Substance.DrugClearanceUses}}
+  {{ end }}
+  {{ if formType "SF86,SF85P" }}
+    {{tmpl "substance-drug-publicsafety.xml" .Substance.DrugPublicSafetyUses}}
+  {{ end }}
   {{tmpl "substance-drug-misuse.xml" .Substance.PrescriptionUses}}
   {{tmpl "substance-drug-ordered.xml" .Substance.OrderedTreatments}}
-  {{tmpl "substance-drug-publicsafety.xml" .Substance.DrugPublicSafetyUses}}
   {{tmpl "substance-drug-purchase.xml" .Substance.DrugInvolvements}}
   {{tmpl "substance-drug-usage.xml" .Substance.DrugUses}}
   {{tmpl "substance-drug-voluntary.xml" .Substance.VoluntaryTreatments}}

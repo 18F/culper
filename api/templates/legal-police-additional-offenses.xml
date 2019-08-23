@@ -42,11 +42,13 @@
           {{if branchToBool $Item.InvolvedViolence | eq "True"}}
           Domestic="True"
           {{end}}
+          {{if formType "SF86"}}
           {{if branchToBool $Item.InvolvedFirearms | eq "True"}}
           Firearms="True"
           {{end}}
           {{if branchToBool $Item.InvolvedSubstances | eq "True"}}
           Alcohol="True"
+          {{end}}
           {{end}}
           />
       <Sentenced>

@@ -6,9 +6,11 @@
     {{with $Item := $item.Item}}
     <Incident ID="{{inc $index}}">
       <AccountNumber>{{text $Item.AccountNumber}}</AccountNumber>
+      {{ if formType "SF86,SF85P" }}
       <Agency>
         <Name>{{text $Item.Name}}</Name>
       </Agency>
+      {{ end }}
       <Amount Estimated="{{checkboxTrueFalse $Item.AmountEstimated}}">{{number $Item.Amount}}</Amount>
       <Comment></Comment>
       <Court>
@@ -17,43 +19,40 @@
       </Court>
       <DateBegan Type="{{dateEstimated $Item.Date}}">{{monthYear $Item.Date}}</DateBegan>
       <DateResolved Type="{{dateEstimated $Item.Resolved}}" 
-        {{ if (notApplicable $Item.ResolvedNotApplicable) | eq "True" }}
-        NotResolved="True"
+        {{ if (notApplicable $Item.ResolvedNotApplicable) | eq "True" }} NotResolved="True"
         {{end}}
         >
         {{ if (notApplicable $Item.ResolvedNotApplicable) | eq "False" }}
         {{monthYear $Item.Resolved}}
         {{end}}
       </DateResolved>
-      <Description>{{textarea $Item.Description}}</Description>
-      <IssueType>
-        <Answer>{{if checkbox $Item.Infractions}}Yes{{else}}No{{end}}</Answer>
-        <!-- Note: Judgement with an 'e' and Judgment without an 'e' -->
-        <Options
-          {{ if (checkboxHas $Item.Infractions "Alimony") | eq "True" }}
-          Alimony="True"
+<Description>{{textarea $Item.Description}}</Description>
+{{ if formType "SF86,SF85P" }}
+<IssueType>
+<Answer>{{if checkbox $Item.Infractions}}Yes{{else}}No{{end}}</Answer>
+<!-- Note: Judgement with an 'e' and Judgment without an 'e' -->
+<Options
+          {{ if (checkboxHas $Item.Infractions "Alimony") | eq "True" }} Alimony="True"
           {{end}}
-          {{ if (checkboxHas $Item.Infractions "Judgement") | eq "True" }}
-          Judgment="True"
+          {{ if (checkboxHas $Item.Infractions "Judgement") | eq "True" }} Judgment="True"
           {{end}}
-          {{ if (checkboxHas $Item.Infractions "Lien") | eq "True" }}
-          Lien="True"
+          {{ if (checkboxHas $Item.Infractions "Lien") | eq "True" }} Lien="True"
           {{end}}
-          {{ if (checkboxHas $Item.Infractions "Federal") | eq "True" }}
-          FederalDebt="True"
+          {{ if (checkboxHas $Item.Infractions "Federal") | eq "True" }} FederalDebt="True"
           {{end}}
           />
-      </IssueType>
-      <PropertyType>{{text $Item.PropertyType}}</PropertyType>
-      <Reason>{{textarea $Item.Reason}}</Reason>
-      <Status>{{text $Item.Status}}</Status>
-    </Incident>
+</IssueType>
+{{ end }}
+<PropertyType>{{text $Item.PropertyType}}</PropertyType>
+<Reason>{{textarea $Item.Reason}}</Reason>
+<Status>{{text $Item.Status}}</Status>
+</Incident>
     {{end}}
     {{end}}
   </Incidents>
 
   {{- if branch .props.HasDelinquent | eq "Yes"}}
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
-  <SummaryComment></SummaryComment>
+<SummaryComment></SummaryComment>
   {{end}}
 </DelinquencyInvolvingEnforcement>

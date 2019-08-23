@@ -9,6 +9,7 @@
       <FirstInvolvementDate Type="{{dateEstimated $Item.FirstInvolvement}}">{{monthYear $Item.FirstInvolvement}}</FirstInvolvementDate>
       <MostRecentInvolvementDate Type="{{dateEstimated $Item.RecentInvolvement}}">{{monthYear $Item.RecentInvolvement}}</MostRecentInvolvementDate>
       <Nature>{{textarea $Item.NatureOfInvolvement}}</Nature>
+      {{ if formType "SF86,SF85P" }}
       <InvolvedWhileEmployedAsLawEnforcementOfficerProsecutorOrCourtOfficial>
         <Answer>{{branch $Item.InvolvementWhileEmployed}}</Answer>
       </InvolvedWhileEmployedAsLawEnforcementOfficerProsecutorOrCourtOfficial>
@@ -20,6 +21,7 @@
         <Comment></Comment>
         <Explanation>{{textarea $Item.Explanation}}</Explanation>
       </IntendToEngageInFutureActivities>
+      {{ end }}
       <Reason>{{textarea $Item.Reasons}}</Reason>
       <Comment></Comment>
     </Activity>
