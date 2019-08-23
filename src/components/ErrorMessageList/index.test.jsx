@@ -38,7 +38,7 @@ describe('The ErrorMessageList component', () => {
       <ErrorMessageList errors={errors} errorMap={errorMap} />
     )
 
-    expect(component.find(ErrorMessage).length).toEqual(1)
+    expect(component.find(ErrorMessage).length).toEqual(0)
   })
 
   it('renders errors', () => {
