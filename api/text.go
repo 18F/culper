@@ -2,7 +2,6 @@ package api
 
 import (
 	"encoding/json"
-	"strings"
 )
 
 // Text is a basic input.
@@ -19,15 +18,4 @@ func (entity *Text) Unmarshal(raw []byte) error {
 // Marshal to payload structure
 func (entity *Text) Marshal() Payload {
 	return MarshalPayloadEntity("text", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *Text) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if strings.TrimSpace(string(entity.Value)) == "" {
-		stack.Append("Text", ErrFieldRequired{"Text is required"})
-	}
-
-	return !stack.HasErrors(), stack
 }

@@ -25,7 +25,6 @@ type CivilUnion struct {
 	PayloadTelephone                     Payload `json:"Telephone" sql:"-"`
 	PayloadUseCurrentAddress             Payload `json:"UseCurrentAddress" sql:"-"`
 
-	// Validator specific fields
 	Address                       *Location            `json:"-"`
 	AddressSeparated              *Location            `json:"-"`
 	AddressSeparatedNotApplicable *NotApplicable       `json:"-"`
@@ -46,30 +45,6 @@ type CivilUnion struct {
 	Separated                     *Branch              `json:"-"`
 	Telephone                     *Telephone           `json:"-"`
 	UseCurrentAddress             *NotApplicable       `json:"-"`
-
-	// Persister specific fields
-	ID                              int `json:"-" sql:",pk"`
-	AccountID                       int `json:"-" sql:",pk"`
-	AddressID                       int `json:"-"`
-	AddressSeparatedID              int `json:"-"`
-	AddressSeparatedNotApplicableID int `json:"-"`
-	AlternateAddressID              int `json:"-"`
-	BirthPlaceID                    int `json:"-"`
-	BirthdateID                     int `json:"-"`
-	CitizenshipID                   int `json:"-"`
-	DateSeparatedID                 int `json:"-"`
-	DivorcedID                      int `json:"-"`
-	EmailID                         int `json:"-"`
-	EmailNotApplicableID            int `json:"-"`
-	EnteredCivilUnionID             int `json:"-"`
-	ForeignBornDocumentID           int `json:"-"`
-	LocationID                      int `json:"-"`
-	NameID                          int `json:"-"`
-	OtherNamesID                    int `json:"-"`
-	SSNID                           int `json:"-"`
-	SeparatedID                     int `json:"-"`
-	TelephoneID                     int `json:"-"`
-	UseCurrentAddressID             int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -265,104 +240,4 @@ func (entity *CivilUnion) Marshal() Payload {
 		entity.PayloadUseCurrentAddress = entity.UseCurrentAddress.Marshal()
 	}
 	return MarshalPayloadEntity("civilunion", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *CivilUnion) Valid() (bool, error) {
-	if entity.Address != nil {
-		if ok, err := entity.Address.Valid(); !ok {
-			return false, err
-		}
-	}
-	if entity.AddressSeparated != nil {
-		if ok, err := entity.AddressSeparated.Valid(); !ok {
-			return false, err
-		}
-	}
-	if entity.AddressSeparatedNotApplicable != nil {
-		if ok, err := entity.AddressSeparatedNotApplicable.Valid(); !ok {
-			return false, err
-		}
-	}
-	if entity.BirthPlace != nil {
-		if ok, err := entity.BirthPlace.Valid(); !ok {
-			return false, err
-		}
-	}
-	if entity.Birthdate != nil {
-		if ok, err := entity.Birthdate.Valid(); !ok {
-			return false, err
-		}
-	}
-	if entity.Citizenship != nil {
-		if ok, err := entity.Citizenship.Valid(); !ok {
-			return false, err
-		}
-	}
-	if entity.DateSeparated != nil {
-		if ok, err := entity.DateSeparated.Valid(); !ok {
-			return false, err
-		}
-	}
-	if entity.Divorced != nil {
-		if ok, err := entity.Divorced.Valid(); !ok {
-			return false, err
-		}
-	}
-	if entity.Email != nil {
-		if ok, err := entity.Email.Valid(); !ok {
-			return false, err
-		}
-	}
-	if entity.EmailNotApplicable != nil {
-		if ok, err := entity.EmailNotApplicable.Valid(); !ok {
-			return false, err
-		}
-	}
-	if entity.EnteredCivilUnion != nil {
-		if ok, err := entity.EnteredCivilUnion.Valid(); !ok {
-			return false, err
-		}
-	}
-	if entity.ForeignBornDocument != nil {
-		if ok, err := entity.ForeignBornDocument.Valid(); !ok {
-			return false, err
-		}
-	}
-	if entity.Location != nil {
-		if ok, err := entity.Location.Valid(); !ok {
-			return false, err
-		}
-	}
-	if entity.Name != nil {
-		if ok, err := entity.Name.Valid(); !ok {
-			return false, err
-		}
-	}
-	if entity.OtherNames != nil {
-		if ok, err := entity.OtherNames.Valid(); !ok {
-			return false, err
-		}
-	}
-	if entity.SSN != nil {
-		if ok, err := entity.SSN.Valid(); !ok {
-			return false, err
-		}
-	}
-	if entity.Separated != nil {
-		if ok, err := entity.Separated.Valid(); !ok {
-			return false, err
-		}
-	}
-	if entity.Telephone != nil {
-		if ok, err := entity.Telephone.Valid(); !ok {
-			return false, err
-		}
-	}
-	if entity.UseCurrentAddress != nil {
-		if ok, err := entity.UseCurrentAddress.Valid(); !ok {
-			return false, err
-		}
-	}
-	return true, nil
 }
