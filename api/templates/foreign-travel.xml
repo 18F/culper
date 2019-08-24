@@ -15,6 +15,7 @@
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
     <Travel ID="{{inc $index}}">
+      {{ if formType "SF86" }}
       <ContactedByForeignMilitaryOrganization>
         <Answer>{{branch $Item.Contacted}}</Answer>
         {{ if branch $Item.Contacted | eq "Yes" }}
@@ -33,6 +34,7 @@
         <Explanation>{{text $Item.InterestExplanation}}</Explanation>
         {{end}}
       </ContactedByPersonWithInterestInYourJob>
+      {{end}}
       {{country $Item.Country}}
       {{monthYearDaterange $Item.Dates}}
       <Detained>
@@ -45,11 +47,13 @@
         <NumberOfDaysRange>{{radio $Item.Days | daysInRange}}</NumberOfDaysRange>
       </Duration>
       <EntryComment></EntryComment>
+      {{ if formType "SF86" }}
       <InvolvedInCounterintelligence>
         <Answer>{{branch $Item.Counter}}</Answer>
         {{ if branch $Item.Counter | eq "Yes" }}
         <Explanation>{{text $Item.CounterExplanation}}</Explanation>        {{end}}
       </InvolvedInCounterintelligence>
+      {{end}}
       <PoliceEncounter>
         <Answer>{{branch $Item.Encounter}}</Answer>
         {{ if branch $Item.Encounter | eq "Yes" }}

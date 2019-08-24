@@ -72,6 +72,7 @@
       {{- $usCitizen := citizenshipHas $Item.Citizenship "United States" }}
       {{- $usAddress := isDomestic $Item.Address }}
 
+      {{ if formType "SF86" }}
       {{- if or (and $usCitizen $foreignPOB $deceased) (and $usCitizen $foreignPOB $usAddress) (and $usAddress (not $usCitizen) (not $deceased)) }}
       <Citizenship>
         <ProofOfStatus>
@@ -100,6 +101,7 @@
         </ProofOfStatus>
       </Citizenship>
       {{- end}}
+      {{ end }}
 
       <CountriesOfCitizenship>
         {{- range $index, $country := $Item.Citizenship.props.value}}
@@ -115,6 +117,7 @@
       </Deceased>
       <EntryComment></EntryComment>
 
+      {{ if formType "SF86" }}
       {{- if and (not $usCitizen) (not $deceased) }}
       <ForeignRelative>
         <AffiliatedWithForeignGovernment>
@@ -164,6 +167,7 @@
             />
           <MethodsOfContactTypeOtherExplanation>{{text $Item.MethodsComments}}</MethodsOfContactTypeOtherExplanation>
         </ForeignRelative>
+        {{end}}
         {{end}}
 
         <LegalName>

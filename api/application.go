@@ -127,10 +127,12 @@ func (a *Application) UnmarshalJSON(bytes []byte) error {
 	return nil
 }
 
+// FormType is the type of the form
 func (a Application) FormType() string {
 	return a.formType
 }
 
+// FormVersion is the version of the form
 func (a Application) FormVersion() string {
 	return a.formVersion
 }

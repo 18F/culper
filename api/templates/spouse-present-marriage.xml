@@ -22,7 +22,9 @@
     <Citizenship>
       <ProofOfStatus>
         <Comment></Comment>
+        {{ if formType "SF86" }}
         <DocumentExpiration Type="{{dateEstimated $doc.DocumentExpiration}}">{{date $doc.DocumentExpiration}}</DocumentExpiration>
+        {{ end }}
         <DocumentNumber>{{text $doc.DocumentNumber}}</DocumentNumber>
         <Type>{{text $doc.DocumentType | spouseForeignDocType}}</Type>
         <TypeOtherExplanation>{{text $doc.OtherExplanation}}</TypeOtherExplanation>

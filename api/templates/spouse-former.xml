@@ -52,10 +52,12 @@
       </DivorceRecordLocation>
       {{end}}
     </Separation>
-    {{if telephoneNoNumber $Item.Telephone | eq "True"}}
+    {{ if formType "SF86" }}
+      {{if telephoneNoNumber $Item.Telephone | eq "True"}}
     <Telephone DoNotKnow="True"></Telephone>
-    {{else}}
+      {{else}}
     <Telephone>{{telephone $Item.Telephone}}</Telephone>
+      {{end}}
     {{end}}
   </FormerSpouse>
   {{end}}

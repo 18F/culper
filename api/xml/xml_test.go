@@ -361,6 +361,15 @@ func TestScenario11(t *testing.T) {
 // including formatting whitespace, will result in a test failure.
 func executeScenario(t *testing.T, name string) {
 	form := readSectionData(t, path.Join(scenarioDir, name+".json"))
+
+	metadataSection := map[string]string{
+		"type":         "metadata",
+		"form_type":    "SF86",
+		"form_version": "2017-07",
+	}
+
+	form["Metadata"] = metadataSection
+
 	snippet := applyForm(t, "application.xml", form)
 	formatted := formatXML(t, snippet)
 	reference := readReference(t, name+".xml")
