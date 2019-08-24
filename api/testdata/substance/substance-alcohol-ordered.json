@@ -19,28 +19,16 @@
         "items": [
           {
             "Item": {
-              "Seekers": {
-                "type": "checkboxgroup",
-                "props": {
-                  "values": ["Other", "NotOrdered"]
-                }
-              },
-              "OtherSeeker": {
-                "type": "text",
-                "props": {
-                  "value": "something else"
-                }
-              },
               "ActionTaken": {
                 "type": "branch",
                 "props": {
                   "value": "Yes"
                 }
               },
-              "NoActionTakenExplanation": {
-                "type": "textarea",
+              "CompletedTreatment": {
+                "type": "branch",
                 "props": {
-                  "value": "no action taken explanation"
+                  "value": "No"
                 }
               },
               "CounselingDates": {
@@ -52,8 +40,7 @@
                       "month": "7",
                       "day": "1",
                       "year": "2017",
-                      "estimated": false,
-                      "date": "2017-07-01T00:00:00Z"
+                      "estimated": false
                     }
                   },
                   "to": {
@@ -62,17 +49,37 @@
                       "month": "7",
                       "day": "25",
                       "year": "2017",
-                      "estimated": false,
-                      "date": "2017-07-25T00:00:00Z"
+                      "estimated": false
                     }
                   },
                   "present": false
                 }
               },
-              "TreatmentProviderName": {
+              "NoActionTakenExplanation": {
+                "type": "textarea",
+                "props": {
+                  "value": "no action taken explanation"
+                }
+              },
+              "NoCompletedTreatmentExplanation": {
+                "type": "textarea",
+                "props": {
+                  "value": "went on vacation for oktoberfest"
+                }
+              },
+              "OtherSeeker": {
                 "type": "text",
                 "props": {
-                  "value": "provider name"
+                  "value": "something else"
+                }
+              },
+              "Seekers": {
+                "type": "checkboxgroup",
+                "props": {
+                  "values": [
+                    "Other",
+                    "NotOrdered"
+                  ]
                 }
               },
               "TreatmentProviderAddress": {
@@ -80,13 +87,16 @@
                 "props": {
                   "layout": "Address",
                   "street": "123 Some Rd",
-                  "street2": "",
                   "city": "Arlington",
                   "state": "VA",
                   "zipcode": "22202",
-                  "county": "",
-                  "country": "United States",
-                  "validated": false
+                  "country": "United States"
+                }
+              },
+              "TreatmentProviderName": {
+                "type": "text",
+                "props": {
+                  "value": "provider name"
                 }
               },
               "TreatmentProviderTelephone": {
@@ -99,39 +109,21 @@
                   "extension": "",
                   "noNumber": false
                 }
-              },
-              "CompletedTreatment": {
-                "type": "branch",
-                "props": {
-                  "value": "No"
-                }
-              },
-              "NoCompletedTreatmentExplanation": {
-                "type": "textarea",
-                "props": {
-                  "value": "went on vacation for oktoberfest"
-                }
               }
             }
           },
           {
             "Item": {
-              "Seekers": {
-                "type": "checkboxgroup",
-                "props": {
-                  "values": ["Other", "NotOrdered"]
-                }
-              },
-              "OtherSeeker": {
-                "type": "text",
-                "props": {
-                  "value": "something else"
-                }
-              },
               "ActionTaken": {
                 "type": "branch",
                 "props": {
                   "value": "No"
+                }
+              },
+              "CompletedTreatment": {
+                "type": "branch",
+                "props": {
+                  "value": ""
                 }
               },
               "NoActionTakenExplanation": {
@@ -140,9 +132,20 @@
                   "value": "no action taken explanation"
                 }
               },
-              "CompletedTreatment": {
-                "type": "branch",
-                "props": {}
+              "OtherSeeker": {
+                "type": "text",
+                "props": {
+                  "value": "something else"
+                }
+              },
+              "Seekers": {
+                "type": "checkboxgroup",
+                "props": {
+                  "values": [
+                    "Other",
+                    "NotOrdered"
+                  ]
+                }
               }
             }
           }

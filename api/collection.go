@@ -11,14 +11,8 @@ import (
 type Collection struct {
 	PayloadBranch Payload `json:"branch" sql:"-"`
 
-	// Validator specific fields
 	Branch *Branch           `json:"-" sql:"-"`
 	Items  []*CollectionItem `json:"items" sql:"-"`
-
-	// Persister specific fields
-	ID        int `json:"-"`
-	AccountID int `json:"-"`
-	BranchID  int `json:"-" pg:",fk:Branch"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -45,56 +39,6 @@ func (entity *Collection) Marshal() Payload {
 	return MarshalPayloadEntity("collection", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *Collection) Valid() (bool, error) {
-	var stack ErrorStack
-
-	// Iterate through each property in `Items` validating them as we go.
-	for _, item := range entity.Items {
-		if ok, err := item.Valid(); !ok {
-			stack.Append("Item", err)
-		}
-	}
-
-	// Custom errors
-	if entity.PayloadBranch.Type != "" {
-		if ok, err := entity.Branch.Valid(); !ok {
-			stack.Append("Item", err)
-		} else {
-			if entity.Branch.Value != "No" {
-				stack.Append("Collection", ErrFieldInvalid{"Collection branch value is required"})
-			}
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
-// collectionItemIDs the Collection item identifiers.
-func (entity *Collection) collectionItemIDs(context DatabaseService) {
-	var count int
-	context.CountExpr(&CollectionItem{}, "max(index) as max", &count, "id = ?", entity.ID)
-	entity.Items = []*CollectionItem{}
-	for i := 0; i < count; i++ {
-		entity.Items = append(entity.Items, &CollectionItem{ID: entity.ID, Index: i + 1})
-	}
-}
-
-// Find the previous entity stored if one is available.
-func (entity *Collection) Find(context DatabaseService) error {
-	context.Find(&Collection{ID: entity.ID, AccountID: entity.AccountID}, func(result interface{}) {
-		previous := result.(*Collection)
-		if previous.BranchID != 0 {
-			if entity.Branch == nil {
-				entity.Branch = &Branch{}
-			}
-			entity.Branch.ID = previous.BranchID
-			entity.BranchID = previous.BranchID
-		}
-	})
-	return nil
-}
-
 // CollectionItem is an item of named payloads directly used in a `Collection`.
 type CollectionItem struct {
 	Item map[string]json.RawMessage `json:"Item" sql:"-"`
@@ -106,19 +50,47 @@ type CollectionItem struct {
 	ItemID int    `json:"-"`
 }
 
-// Valid iterates through each named property of an item validating
-// each payload.
-func (ci *CollectionItem) Valid() (bool, error) {
-	err := ci.Each(func(name, entityType string, entity Entity, err error) error {
-		if err != nil {
-			return err
+// MarshalJSON implements json.Marshaller
+// This implementation of MarshalJSON ensures that the values in Item have actually
+// been turned into their Go representation at some point instead of just storing whatever
+// is sent in /save
+// This fixes a bug introduced by simplestorage where json objets with no correspondence to
+// their go represenations would end up stored in collections and break XML generation
+func (ci CollectionItem) MarshalJSON() ([]byte, error) {
+	itemMap := make(map[string]interface{})
+
+	eachErr := ci.Each(func(name, entityType string, entity Entity, innerErr error) error {
+		if innerErr != nil {
+			return innerErr
 		}
 
-		_, err = entity.Valid()
-		return err
-	})
+		payload := entity.Marshal()
 
-	return err != nil, err
+		itemMap[name] = payload
+		return nil
+	})
+	if eachErr != nil {
+		return []byte{}, eachErr
+	}
+
+	ciMap := make(map[string]interface{})
+	ciMap["Item"] = itemMap
+
+	return json.Marshal(ciMap)
+
+}
+
+// UnmarshalJSON implements json.Unmarshaller
+func (ci *CollectionItem) UnmarshalJSON(bytes []byte) error {
+	var ciMap map[string]map[string]json.RawMessage
+
+	jsonErr := json.Unmarshal(bytes, &ciMap)
+	if jsonErr != nil {
+		return jsonErr
+	}
+
+	ci.Item = ciMap["Item"]
+	return nil
 }
 
 // Each loops through each entity in the collection item performing a given action
@@ -244,15 +216,4 @@ func getItemEntity(raw json.RawMessage) (string, Entity, error) {
 	// Find the appropriate entity for the payload
 	entity, err := payload.Entity()
 	return payload.Type, entity, err
-}
-
-// getItemPropertyNames retrieves the number of items in the collection item and assigns
-// property names so they may be filled.
-func (ci *CollectionItem) getItemPropertyNames(context DatabaseService) {
-	propertyNames := []string{}
-	context.Array(&CollectionItem{}, "array_agg(name)", &propertyNames, "id = ?", ci.ID)
-	ci.Item = make(map[string]json.RawMessage)
-	for _, propertyName := range propertyNames {
-		ci.Item[propertyName] = []byte{}
-	}
 }

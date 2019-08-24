@@ -7,14 +7,8 @@ type SubstanceDrugUsage struct {
 	PayloadUsedDrugs Payload `json:"UsedDrugs" sql:"-"`
 	PayloadList      Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	UsedDrugs *Branch     `json:"-"`
 	List      *Collection `json:"-"`
-
-	// Persister specific fields
-	ID          int `json:"-"`
-	UsedDrugsID int `json:"-" pg:", fk:UsedDrugs"`
-	ListID      int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -50,23 +44,6 @@ func (entity *SubstanceDrugUsage) Marshal() Payload {
 	return MarshalPayloadEntity("substance.drugs.usage", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *SubstanceDrugUsage) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.UsedDrugs.Valid(); !ok {
-		stack.Append("DrugUsage", err)
-	}
-
-	if entity.UsedDrugs.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("DrugUsage", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *SubstanceDrugUsage) ClearNoBranches() error {
 	entity.UsedDrugs.ClearNo()
@@ -79,14 +56,8 @@ type SubstanceDrugPurchase struct {
 	PayloadInvolved Payload `json:"Involved" sql:"-"`
 	PayloadList     Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	Involved *Branch     `json:"-"`
 	List     *Collection `json:"-"`
-
-	// Persister specific fields
-	ID         int `json:"-"`
-	InvolvedID int `json:"-" pg:", fk:Involved"`
-	ListID     int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -122,23 +93,6 @@ func (entity *SubstanceDrugPurchase) Marshal() Payload {
 	return MarshalPayloadEntity("substance.drugs.purchase", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *SubstanceDrugPurchase) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.Involved.Valid(); !ok {
-		stack.Append("DrugPurchase", err)
-	}
-
-	if entity.Involved.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("DrugPurchase", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *SubstanceDrugPurchase) ClearNoBranches() error {
 	entity.Involved.ClearNo()
@@ -157,14 +111,8 @@ type SubstanceDrugClearance struct {
 	PayloadUsedDrugs Payload `json:"UsedDrugs" sql:"-"`
 	PayloadList      Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	UsedDrugs *Branch     `json:"-"`
 	List      *Collection `json:"-"`
-
-	// Persister specific fields
-	ID          int `json:"-"`
-	UsedDrugsID int `json:"-" pg:", fk:UsedDrugs"`
-	ListID      int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -200,23 +148,6 @@ func (entity *SubstanceDrugClearance) Marshal() Payload {
 	return MarshalPayloadEntity("substance.drugs.clearance", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *SubstanceDrugClearance) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.UsedDrugs.Valid(); !ok {
-		stack.Append("DrugClearance", err)
-	}
-
-	if entity.UsedDrugs.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("DrugClearance", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *SubstanceDrugClearance) ClearNoBranches() error {
 	entity.UsedDrugs.ClearNo()
@@ -229,14 +160,8 @@ type SubstanceDrugPublicSafety struct {
 	PayloadUsedDrugs Payload `json:"UsedDrugs" sql:"-"`
 	PayloadList      Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	UsedDrugs *Branch     `json:"-"`
 	List      *Collection `json:"-"`
-
-	// Persister specific fields
-	ID          int `json:"-"`
-	UsedDrugsID int `json:"-" pg:", fk:UsedDrugs"`
-	ListID      int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -272,23 +197,6 @@ func (entity *SubstanceDrugPublicSafety) Marshal() Payload {
 	return MarshalPayloadEntity("substance.drugs.publicsafety", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *SubstanceDrugPublicSafety) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.UsedDrugs.Valid(); !ok {
-		stack.Append("PublicSafety", err)
-	}
-
-	if entity.UsedDrugs.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("PublicSafety", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *SubstanceDrugPublicSafety) ClearNoBranches() error {
 	entity.UsedDrugs.ClearNo()
@@ -301,14 +209,8 @@ type SubstanceDrugMisuse struct {
 	PayloadUsedDrugs Payload `json:"MisusedDrugs" sql:"-"`
 	PayloadList      Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	UsedDrugs *Branch     `json:"-"`
 	List      *Collection `json:"-"`
-
-	// Persister specific fields
-	ID          int `json:"-"`
-	UsedDrugsID int `json:"-" pg:", fk:MisusedDrugs"`
-	ListID      int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -344,23 +246,6 @@ func (entity *SubstanceDrugMisuse) Marshal() Payload {
 	return MarshalPayloadEntity("substance.drugs.misuse", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *SubstanceDrugMisuse) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.UsedDrugs.Valid(); !ok {
-		stack.Append("DrugMisuse", err)
-	}
-
-	if entity.UsedDrugs.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("DrugMisuse", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *SubstanceDrugMisuse) ClearNoBranches() error {
 	entity.UsedDrugs.ClearNo()
@@ -373,14 +258,8 @@ type SubstanceDrugOrdered struct {
 	PayloadTreatmentOrdered Payload `json:"TreatmentOrdered" sql:"-"`
 	PayloadList             Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	TreatmentOrdered *Branch     `json:"-"`
 	List             *Collection `json:"-"`
-
-	// Persister specific fields
-	ID         int `json:"-"`
-	InvolvedID int `json:"-" pg:", fk:TreatmentOrdered"`
-	ListID     int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -416,23 +295,6 @@ func (entity *SubstanceDrugOrdered) Marshal() Payload {
 	return MarshalPayloadEntity("substance.drugs.ordered", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *SubstanceDrugOrdered) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.TreatmentOrdered.Valid(); !ok {
-		stack.Append("DrugOrdered", err)
-	}
-
-	if entity.TreatmentOrdered.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("DrugOrdered", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *SubstanceDrugOrdered) ClearNoBranches() error {
 	entity.TreatmentOrdered.ClearNo()
@@ -449,14 +311,8 @@ type SubstanceDrugVoluntary struct {
 	PayloadTreatmentVoluntary Payload `json:"TreatmentVoluntary" sql:"-"`
 	PayloadList               Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	TreatmentVoluntary *Branch     `json:"-"`
 	List               *Collection `json:"-"`
-
-	// Persister specific fields
-	ID         int `json:"-"`
-	InvolvedID int `json:"-" pg:", fk:TreatmentVoluntary"`
-	ListID     int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -492,23 +348,6 @@ func (entity *SubstanceDrugVoluntary) Marshal() Payload {
 	return MarshalPayloadEntity("substance.drugs.voluntary", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *SubstanceDrugVoluntary) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.TreatmentVoluntary.Valid(); !ok {
-		stack.Append("DrugVoluntary", err)
-	}
-
-	if entity.TreatmentVoluntary.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("DrugVoluntary", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *SubstanceDrugVoluntary) ClearNoBranches() error {
 	entity.TreatmentVoluntary.ClearNo()
@@ -525,14 +364,8 @@ type SubstanceAlcoholNegative struct {
 	PayloadHasImpacts Payload `json:"HasImpacts" sql:"-"`
 	PayloadList       Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	HasImpacts *Branch     `json:"-"`
 	List       *Collection `json:"-"`
-
-	// Persister specific fields
-	ID           int `json:"-"`
-	HasImpactsID int `json:"-" pg:", fk:HasImpacts"`
-	ListID       int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -568,23 +401,6 @@ func (entity *SubstanceAlcoholNegative) Marshal() Payload {
 	return MarshalPayloadEntity("substance.alcohol.negative", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *SubstanceAlcoholNegative) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.HasImpacts.Valid(); !ok {
-		stack.Append("AlcoholNegative", err)
-	}
-
-	if entity.HasImpacts.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("AlcoholNegative", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *SubstanceAlcoholNegative) ClearNoBranches() error {
 	entity.HasImpacts.ClearNo()
@@ -597,14 +413,8 @@ type SubstanceAlcoholOrdered struct {
 	PayloadHasBeenOrdered Payload `json:"HasBeenOrdered" sql:"-"`
 	PayloadList           Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	HasBeenOrdered *Branch     `json:"-"`
 	List           *Collection `json:"-"`
-
-	// Persister specific fields
-	ID               int `json:"-"`
-	HasBeenOrderedID int `json:"-" pg:", fk:HasBeenOrdered"`
-	ListID           int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -640,23 +450,6 @@ func (entity *SubstanceAlcoholOrdered) Marshal() Payload {
 	return MarshalPayloadEntity("substance.alcohol.ordered", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *SubstanceAlcoholOrdered) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.HasBeenOrdered.Valid(); !ok {
-		stack.Append("AlcoholOrdered", err)
-	}
-
-	if entity.HasBeenOrdered.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("AlcoholOrdered", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *SubstanceAlcoholOrdered) ClearNoBranches() error {
 	entity.HasBeenOrdered.ClearNo()
@@ -675,14 +468,8 @@ type SubstanceAlcoholVoluntary struct {
 	PayloadSoughtTreatment Payload `json:"SoughtTreatment" sql:"-"`
 	PayloadList            Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	SoughtTreatment *Branch     `json:"-"`
 	List            *Collection `json:"-"`
-
-	// Persister specific fields
-	ID                int `json:"-"`
-	SoughtTreatmentID int `json:"-" pg:", fk:SoughtTreatment"`
-	ListID            int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -718,23 +505,6 @@ func (entity *SubstanceAlcoholVoluntary) Marshal() Payload {
 	return MarshalPayloadEntity("substance.alcohol.voluntary", entity)
 }
 
-// Valid checks the value(s) against an battery of tests.
-func (entity *SubstanceAlcoholVoluntary) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.SoughtTreatment.Valid(); !ok {
-		stack.Append("AlcoholVoluntary", err)
-	}
-
-	if entity.SoughtTreatment.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("AlcoholVoluntary", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
-
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *SubstanceAlcoholVoluntary) ClearNoBranches() error {
 	entity.SoughtTreatment.ClearNo()
@@ -753,14 +523,8 @@ type SubstanceAlcoholAdditional struct {
 	PayloadReceivedTreatment Payload `json:"ReceivedTreatment" sql:"-"`
 	PayloadList              Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	ReceivedTreatment *Branch     `json:"-"`
 	List              *Collection `json:"-"`
-
-	// Persister specific fields
-	ID                  int `json:"-"`
-	ReceivedTreatmentID int `json:"-" pg:", fk:ReceivedTreatment"`
-	ListID              int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -794,23 +558,6 @@ func (entity *SubstanceAlcoholAdditional) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("substance.alcohol.additional", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *SubstanceAlcoholAdditional) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.ReceivedTreatment.Valid(); !ok {
-		stack.Append("AlcoholAdditional", err)
-	}
-
-	if entity.ReceivedTreatment.Value == "Yes" {
-		if ok, err := entity.List.Valid(); !ok {
-			stack.Append("AlcoholAdditional", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
 }
 
 // ClearNoBranches clears the "no" answers on application rejection

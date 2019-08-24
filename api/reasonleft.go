@@ -8,17 +8,9 @@ type ReasonLeft struct {
 	PayloadReasons           Payload `json:"Reasons" sql:"-"`
 	PayloadReasonDescription Payload `json:"ReasonDescription" sql:"-"`
 
-	// Validator specific fields
 	Comments          *Textarea   `json:"-"`
 	Reasons           *Collection `json:"-"`
 	ReasonDescription *Textarea   `json:"-"`
-
-	// Persister specific fields
-	ID                  int `json:"-"`
-	AccountID           int `json:"-"`
-	CommentsID          int `json:"-"`
-	ReasonsID           int `json:"-"`
-	ReasonDescriptionID int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -61,17 +53,4 @@ func (entity *ReasonLeft) Marshal() Payload {
 		entity.PayloadReasonDescription = entity.ReasonDescription.Marshal()
 	}
 	return MarshalPayloadEntity("reasonleft", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *ReasonLeft) Valid() (bool, error) {
-	if ok, err := entity.ReasonDescription.Valid(); !ok {
-		return false, err
-	}
-
-	if ok, err := entity.Reasons.Valid(); !ok {
-		return false, err
-	}
-
-	return true, nil
 }
