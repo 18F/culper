@@ -10,50 +10,22 @@
     "List": {
       "type": "collection",
       "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
         "items": [
           {
             "Item": {
-              "Name": {
-                "type": "name",
-                "props": {
-                  "first": "John",
-                  "firstInitialOnly": false,
-                  "last": "Smith",
-                  "middle": "H",
-                  "middleInitialOnly": true,
-                  "noMiddleName": false,
-                  "suffix": "Other",
-                  "suffixOther": "XX"
-                }
-              },
-              "Location": {
-                "type": "location",
-                "props": {
-                  "layout": "US City, State, International city",
-                  "street": "",
-                  "street2": "",
-                  "city": "Arlington",
-                  "state": "VA",
-                  "zipcode": "",
-                  "county": "",
-                  "country": "United States",
-                  "validated": false
-                }
-              },
               "Date": {
                 "type": "datecontrol",
                 "props": {
                   "month": "7",
                   "day": "25",
                   "year": "2017",
-                  "estimated": false,
-                  "date": "2017-07-25T00:00:00Z"
-                }
-              },
-              "Governments": {
-                "type": "country",
-                "props": {
-                  "value": ["Germany"]
+                  "estimated": false
                 }
               },
               "Establishment": {
@@ -62,16 +34,46 @@
                   "value": "my est"
                 }
               },
-              "Representatives": {
-                "type": "textarea",
+              "Governments": {
+                "type": "country",
                 "props": {
-                  "value": "my reps"
+                  "value": [
+                    "Germany"
+                  ]
+                }
+              },
+              "Location": {
+                "type": "location",
+                "props": {
+                  "layout": "US City, State, International city",
+                  "city": "Arlington",
+                  "state": "VA",
+                  "country": "United States"
+                }
+              },
+              "Name": {
+                "type": "name",
+                "props": {
+                  "first": "John",
+                  "firstInitialOnly": false,
+                  "middle": "H",
+                  "middleInitialOnly": true,
+                  "noMiddleName": false,
+                  "last": "Smith",
+                  "suffix": "Other",
+                  "suffixOther": "XX"
                 }
               },
               "Purpose": {
                 "type": "textarea",
                 "props": {
                   "value": "my purpose"
+                }
+              },
+              "Representatives": {
+                "type": "textarea",
+                "props": {
+                  "value": "my reps"
                 }
               },
               "SubsequentContacts": {
@@ -89,16 +91,16 @@
                       "items": [
                         {
                           "Item": {
+                            "Future": {
+                              "type": "textarea",
+                              "props": {
+                                "value": "my future"
+                              }
+                            },
                             "Has": {
                               "type": "branch",
                               "props": {
                                 "value": "Yes"
-                              }
-                            },
-                            "Subsequent": {
-                              "type": "textarea",
-                              "props": {
-                                "value": "my sub"
                               }
                             },
                             "Recent": {
@@ -107,14 +109,13 @@
                                 "month": "7",
                                 "day": "25",
                                 "year": "2017",
-                                "estimated": false,
-                                "date": "2017-07-25T00:00:00Z"
+                                "estimated": false
                               }
                             },
-                            "Future": {
+                            "Subsequent": {
                               "type": "textarea",
                               "props": {
-                                "value": "my future"
+                                "value": "my sub"
                               }
                             }
                           }
@@ -136,13 +137,7 @@
               }
             }
           }
-        ],
-        "branch": {
-          "type": "branch",
-          "props": {
-            "value": "No"
-          }
-        }
+        ]
       }
     }
   }

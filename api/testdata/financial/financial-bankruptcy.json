@@ -19,25 +19,15 @@
         "items": [
           {
             "Item": {
-              "PetitionType": {
-                "type": "radio",
-                "props": {
-                  "value": "Chapter13",
-                  "checked": true
-                }
-              },
               "CourtAddress": {
                 "type": "location",
                 "props": {
                   "layout": "Address",
                   "street": "123 Some Rd",
-                  "street2": "",
                   "city": "Arlington",
                   "state": "VA",
                   "zipcode": "22202",
-                  "county": "",
-                  "country": "United States",
-                  "validated": false
+                  "country": "United States"
                 }
               },
               "CourtInvolved": {
@@ -52,17 +42,60 @@
                   "value": "the court number"
                 }
               },
+              "DateDischarged": {
+                "type": "datecontrol",
+                "props": {
+                  "month": "7",
+                  "day": "25",
+                  "year": "2017",
+                  "estimated": false
+                }
+              },
+              "DateDischargedNotApplicable": {
+                "type": "notapplicable",
+                "props": {
+                  "applicable": true
+                }
+              },
+              "DateFiled": {
+                "type": "datecontrol",
+                "props": {
+                  "month": "7",
+                  "day": "25",
+                  "year": "2017",
+                  "estimated": false
+                }
+              },
+              "DischargeExplanation": {
+                "type": "textarea",
+                "props": {
+                  "value": "the explanation"
+                }
+              },
+              "HasDischargeExplanation": {
+                "type": "branch",
+                "props": {
+                  "value": "Yes"
+                }
+              },
               "NameDebt": {
                 "type": "name",
                 "props": {
                   "first": "John",
                   "firstInitialOnly": false,
-                  "last": "Smith",
                   "middle": "H",
                   "middleInitialOnly": true,
                   "noMiddleName": false,
+                  "last": "Smith",
                   "suffix": "Other",
                   "suffixOther": "XX"
+                }
+              },
+              "PetitionType": {
+                "type": "radio",
+                "props": {
+                  "value": "Chapter13",
+                  "checked": true
                 }
               },
               "TotalAmount": {
@@ -74,45 +107,8 @@
               "TotalAmountEstimated": {
                 "type": "checkbox",
                 "props": {
+                  "value": "",
                   "checked": true
-                }
-              },
-              "DateFiled": {
-                "type": "datecontrol",
-                "props": {
-                  "month": "7",
-                  "day": "25",
-                  "year": "2017",
-                  "estimated": false,
-                  "date": "2017-07-25T00:00:00Z"
-                }
-              },
-              "DateDischarged": {
-                "type": "datecontrol",
-                "props": {
-                  "month": "7",
-                  "day": "25",
-                  "year": "2017",
-                  "estimated": false,
-                  "date": "2017-07-25T00:00:00Z"
-                }
-              },
-              "DateDischargedNotApplicable": {
-                "type": "notapplicable",
-                "props": {
-                  "applicable": true
-                }
-              },
-              "HasDischargeExplanation": {
-                "type": "branch",
-                "props": {
-                  "value": "Yes"
-                }
-              },
-              "DischargeExplanation": {
-                "type": "textarea",
-                "props": {
-                  "value": "the explanation"
                 }
               },
               "Trustee": {
@@ -126,13 +122,10 @@
                 "props": {
                   "layout": "Address",
                   "street": "123 Some Rd",
-                  "street2": "",
                   "city": "Arlington",
                   "state": "VA",
                   "zipcode": "22202",
-                  "county": "",
-                  "country": "United States",
-                  "validated": false
+                  "country": "United States"
                 }
               }
             }

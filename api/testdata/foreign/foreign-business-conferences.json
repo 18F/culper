@@ -19,60 +19,10 @@
         "items": [
           {
             "Item": {
-              "Description": {
-                "type": "textarea",
-                "props": {
-                  "value": "my description"
-                }
-              },
-              "Sponsor": {
-                "type": "text",
-                "props": {
-                  "value": "my sponsor"
-                }
-              },
               "City": {
                 "type": "text",
                 "props": {
                   "value": "my city"
-                }
-              },
-              "Country": {
-                "type": "country",
-                "props": {
-                  "value": ["Germany"]
-                }
-              },
-              "Dates": {
-                "type": "daterange",
-                "props": {
-                  "from": {
-                    "type": "datecontrol",
-                    "props": {
-                      "month": "7",
-                      "day": "1",
-                      "year": "2017",
-                      "estimated": false,
-                      "date": "2017-07-01T00:00:00Z"
-                    }
-                  },
-                  "to": {
-                    "type": "datecontrol",
-                    "props": {
-                      "month": "7",
-                      "day": "25",
-                      "year": "2017",
-                      "estimated": false,
-                      "date": "2017-07-25T00:00:00Z"
-                    }
-                  },
-                  "present": false
-                }
-              },
-              "Purpose": {
-                "type": "textarea",
-                "props": {
-                  "value": "my purpose"
                 }
               },
               "Contacts": {
@@ -90,16 +40,16 @@
                       "items": [
                         {
                           "Item": {
-                            "Has": {
-                              "type": "branch",
-                              "props": {
-                                "value": "Yes"
-                              }
-                            },
                             "Explanation": {
                               "type": "textarea",
                               "props": {
                                 "value": "my explanation"
+                              }
+                            },
+                            "Has": {
+                              "type": "branch",
+                              "props": {
+                                "value": "Yes"
                               }
                             }
                           }
@@ -117,6 +67,56 @@
                       ]
                     }
                   }
+                }
+              },
+              "Country": {
+                "type": "country",
+                "props": {
+                  "value": [
+                    "Germany"
+                  ]
+                }
+              },
+              "Dates": {
+                "type": "daterange",
+                "props": {
+                  "from": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "7",
+                      "day": "1",
+                      "year": "2017",
+                      "estimated": false
+                    }
+                  },
+                  "to": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "7",
+                      "day": "25",
+                      "year": "2017",
+                      "estimated": false
+                    }
+                  },
+                  "present": false
+                }
+              },
+              "Description": {
+                "type": "textarea",
+                "props": {
+                  "value": "my description"
+                }
+              },
+              "Purpose": {
+                "type": "textarea",
+                "props": {
+                  "value": "my purpose"
+                }
+              },
+              "Sponsor": {
+                "type": "text",
+                "props": {
+                  "value": "my sponsor"
                 }
               }
             }

@@ -19,29 +19,18 @@
         "items": [
           {
             "Item": {
-              "Name": {
-                "type": "name",
+              "Compensation": {
+                "type": "textarea",
                 "props": {
-                  "first": "John",
-                  "firstInitialOnly": false,
-                  "last": "Smith",
-                  "middle": "H",
-                  "middleInitialOnly": true,
-                  "noMiddleName": false,
-                  "suffix": "Other",
-                  "suffixOther": "XX"
-                }
-              },
-              "Organization": {
-                "type": "text",
-                "props": {
-                  "value": "my organization"
+                  "value": "my compensation"
                 }
               },
               "Country": {
                 "type": "country",
                 "props": {
-                  "value": ["Germany"]
+                  "value": [
+                    "Germany"
+                  ]
                 }
               },
               "Dates": {
@@ -53,8 +42,7 @@
                       "month": "7",
                       "day": "1",
                       "year": "2017",
-                      "estimated": false,
-                      "date": "2017-07-01T00:00:00Z"
+                      "estimated": false
                     }
                   },
                   "to": {
@@ -63,17 +51,29 @@
                       "month": "7",
                       "day": "25",
                       "year": "2017",
-                      "estimated": false,
-                      "date": "2017-07-25T00:00:00Z"
+                      "estimated": false
                     }
                   },
                   "present": false
                 }
               },
-              "Compensation": {
-                "type": "textarea",
+              "Name": {
+                "type": "name",
                 "props": {
-                  "value": "my compensation"
+                  "first": "John",
+                  "firstInitialOnly": false,
+                  "middle": "H",
+                  "middleInitialOnly": true,
+                  "noMiddleName": false,
+                  "last": "Smith",
+                  "suffix": "Other",
+                  "suffixOther": "XX"
+                }
+              },
+              "Organization": {
+                "type": "text",
+                "props": {
+                  "value": "my organization"
                 }
               }
             }

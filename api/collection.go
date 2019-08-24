@@ -50,6 +50,49 @@ type CollectionItem struct {
 	ItemID int    `json:"-"`
 }
 
+// MarshalJSON implements json.Marshaller
+// This implementation of MarshalJSON ensures that the values in Item have actually
+// been turned into their Go representation at some point instead of just storing whatever
+// is sent in /save
+// This fixes a bug introduced by simplestorage where json objets with no correspondence to
+// their go represenations would end up stored in collections and break XML generation
+func (ci CollectionItem) MarshalJSON() ([]byte, error) {
+	itemMap := make(map[string]interface{})
+
+	eachErr := ci.Each(func(name, entityType string, entity Entity, innerErr error) error {
+		if innerErr != nil {
+			return innerErr
+		}
+
+		payload := entity.Marshal()
+
+		itemMap[name] = payload
+		return nil
+	})
+	if eachErr != nil {
+		return []byte{}, eachErr
+	}
+
+	ciMap := make(map[string]interface{})
+	ciMap["Item"] = itemMap
+
+	return json.Marshal(ciMap)
+
+}
+
+// UnmarshalJSON implements json.Unmarshaller
+func (ci *CollectionItem) UnmarshalJSON(bytes []byte) error {
+	var ciMap map[string]map[string]json.RawMessage
+
+	jsonErr := json.Unmarshal(bytes, &ciMap)
+	if jsonErr != nil {
+		return jsonErr
+	}
+
+	ci.Item = ciMap["Item"]
+	return nil
+}
+
 // Each loops through each entity in the collection item performing a given action
 func (ci CollectionItem) Each(action func(string, string, Entity, error) error) error {
 	var err error
@@ -173,15 +216,4 @@ func getItemEntity(raw json.RawMessage) (string, Entity, error) {
 	// Find the appropriate entity for the payload
 	entity, err := payload.Entity()
 	return payload.Type, entity, err
-}
-
-// getItemPropertyNames retrieves the number of items in the collection item and assigns
-// property names so they may be filled.
-func (ci *CollectionItem) getItemPropertyNames(context DatabaseService) {
-	propertyNames := []string{}
-	context.Array(&CollectionItem{}, "array_agg(name)", &propertyNames, "id = ?", ci.ID)
-	ci.Item = make(map[string]json.RawMessage)
-	for _, propertyName := range propertyNames {
-		ci.Item[propertyName] = []byte{}
-	}
 }
