@@ -162,6 +162,29 @@ func create85TestAccount(t *testing.T, db api.DatabaseService) api.Account {
 
 }
 
+func create85PTestAccount(t *testing.T, db api.DatabaseService) api.Account {
+	t.Helper()
+
+	email := randomEmail()
+
+	account := api.Account{
+		Username:    email,
+		Email:       simplestore.NonNullString(email),
+		FormType:    "SF85P",
+		FormVersion: "2017-10-draft3",
+		Status:      api.StatusIncomplete,
+		ExternalID:  uuid.New().String(),
+	}
+
+	_, err := account.Save(db, -1)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	return account
+
+}
+
 // readTestData pulls in test data as a string
 func readTestData(t *testing.T, filepath string) []byte {
 	t.Helper()
