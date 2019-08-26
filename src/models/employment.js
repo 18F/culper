@@ -44,23 +44,6 @@ const supervisor = {
     return { presence: true, model: { validator: email } }
   },
   Address: { presence: true, location: { validator: address } },
-  AlternateAddress: (value, attributes) => {
-    if (attributes.Address && isInternational(attributes.Address)) {
-      return {
-        presence: true,
-        model: { validator: physicalAddress, militaryAddress: true },
-      }
-    }
-
-    if (attributes.Address && isPO(attributes.Address)) {
-      return {
-        presence: true,
-        model: { validator: physicalAddress, militaryAddress: false },
-      }
-    }
-
-    return {}
-  },
   Telephone: { presence: true, model: { validator: phone, requireNumber: true } },
 }
 
@@ -311,6 +294,23 @@ const employment = {
     }
 
     if (attributes.ReferenceAddress && isPO(attributes.ReferenceAddress)) {
+      return {
+        presence: true,
+        model: { validator: physicalAddress, militaryAddress: false },
+      }
+    }
+
+    return {}
+  },
+  SupervisorAlternateAddress: (value, attributes) => {
+    if (attributes.Address && isInternational(attributes.Address)) {
+      return {
+        presence: true,
+        model: { validator: physicalAddress, militaryAddress: true },
+      }
+    }
+
+    if (attributes.Address && isPO(attributes.Address)) {
       return {
         presence: true,
         model: { validator: physicalAddress, militaryAddress: false },
