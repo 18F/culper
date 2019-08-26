@@ -110,7 +110,7 @@ class Form extends React.Component {
       <div id="eapp-form" className="eapp-form">
         <div id="info">
           <Section section={params.section} subsection={subsection} />
-          <SavedIndicator interval="30000" />
+          <SavedIndicator interval={30000} />
           {showSessionWarning && <TimeoutWarning timeout={env.SessionTimeout()} />}
         </div>
       </div>
