@@ -22,7 +22,21 @@
               "Country": {
                 "type": "country",
                 "props": {
-                  "value": ["Germany"]
+                  "value": [
+                    "Germany"
+                  ]
+                }
+              },
+              "Current": {
+                "type": "branch",
+                "props": {
+                  "value": "Yes"
+                }
+              },
+              "CurrentExplanation": {
+                "type": "textarea",
+                "props": {
+                  "value": "current explanation"
                 }
               },
               "Dates": {
@@ -34,8 +48,7 @@
                       "month": "7",
                       "day": "1",
                       "year": "2017",
-                      "estimated": false,
-                      "date": "2017-07-01T00:00:00Z"
+                      "estimated": false
                     }
                   },
                   "to": {
@@ -44,8 +57,7 @@
                       "month": "7",
                       "day": "25",
                       "year": "2017",
-                      "estimated": false,
-                      "date": "2017-07-25T00:00:00Z"
+                      "estimated": false
                     }
                   },
                   "present": false
@@ -67,18 +79,6 @@
                 "type": "textarea",
                 "props": {
                   "value": "renounced explanation"
-                }
-              },
-              "Current": {
-                "type": "branch",
-                "props": {
-                  "value": "Yes"
-                }
-              },
-              "CurrentExplanation": {
-                "type": "textarea",
-                "props": {
-                  "value": "current explanation"
                 }
               }
             }

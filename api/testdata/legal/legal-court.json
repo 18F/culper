@@ -10,6 +10,12 @@
     "List": {
       "type": "collection",
       "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
         "items": [
           {
             "Item": {
@@ -19,8 +25,18 @@
                   "month": "7",
                   "day": "25",
                   "year": "2017",
-                  "estimated": false,
-                  "date": "2017-07-25T00:00:00Z"
+                  "estimated": false
+                }
+              },
+              "CourtAddress": {
+                "type": "location",
+                "props": {
+                  "layout": "Address",
+                  "street": "123 Some Rd",
+                  "city": "Arlington",
+                  "state": "VA",
+                  "zipcode": "22202",
+                  "country": "United States"
                 }
               },
               "CourtName": {
@@ -29,30 +45,10 @@
                   "value": "my court name"
                 }
               },
-              "CourtAddress": {
-                "type": "location",
-                "props": {
-                  "layout": "Address",
-                  "street": "123 Some Rd",
-                  "street2": "",
-                  "city": "Arlington",
-                  "state": "VA",
-                  "zipcode": "22202",
-                  "county": "",
-                  "country": "United States",
-                  "validated": false
-                }
-              },
               "NatureOfAction": {
                 "type": "textarea",
                 "props": {
                   "value": "my nature of the action"
-                }
-              },
-              "ResultsOfAction": {
-                "type": "textarea",
-                "props": {
-                  "value": "my results of the action"
                 }
               },
               "PrincipalPartyNames": {
@@ -60,16 +56,16 @@
                 "props": {
                   "value": "principal party names"
                 }
+              },
+              "ResultsOfAction": {
+                "type": "textarea",
+                "props": {
+                  "value": "my results of the action"
+                }
               }
             }
           }
-        ],
-        "branch": {
-          "type": "branch",
-          "props": {
-            "value": "No"
-          }
-        }
+        ]
       }
     }
   }

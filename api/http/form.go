@@ -1,6 +1,7 @@
 package http
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -47,6 +48,17 @@ func (service FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		service.Log.WarnError(api.FormDecodingError, jsonErr, api.LogFields{})
 		RespondWithStructuredError(w, api.FormDecodingError, http.StatusInternalServerError)
 		return
+	}
+
+	if service.Env.True(api.IndentJSON) {
+		prettyJSONBuff := bytes.Buffer{}
+		indentErr := json.Indent(&prettyJSONBuff, jsonBytes, "", "  ")
+		if indentErr != nil {
+			service.Log.WarnError(api.FormDecodingError, jsonErr, api.LogFields{})
+			RespondWithStructuredError(w, api.FormDecodingError, http.StatusInternalServerError)
+			return
+		}
+		jsonBytes = prettyJSONBuff.Bytes()
 	}
 
 	fmt.Fprint(w, string(jsonBytes))

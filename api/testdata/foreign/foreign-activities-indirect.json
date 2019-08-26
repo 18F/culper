@@ -1,6 +1,6 @@
 {
   "type": "foreign.activities.indirect",
-  "props":  {
+  "props": {
     "HasInterests": {
       "type": "branch",
       "props": {
@@ -10,101 +10,22 @@
     "List": {
       "type": "collection",
       "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
         "items": [
           {
             "Item": {
-              "InterestTypes": {
-                "type": "checkboxgroup",
-                "props": {
-                  "values": ["Spouse"]
-                }
-              },
-              "InterestType": {
-                "type": "text",
-                "props": {
-                  "value": "interest type"
-                }
-              },
-              "Firstname": {
-                "type": "text",
-                "props": {
-                  "value": "my firstname"
-                }
-              },
-              "Lastname": {
-                "type": "text",
-                "props": {
-                  "value": "my lastname"
-                }
-              },
-              "Relationship": {
-                "type": "textarea",
-                "props": {
-                  "value": "my relationship"
-                }
-              },
               "Acquired": {
                 "type": "datecontrol",
                 "props": {
                   "month": "7",
                   "day": "25",
                   "year": "2017",
-                  "estimated": false,
-                  "date": "2017-07-25T00:00:00Z"
-                }
-              },
-              "HowAcquired": {
-                "type": "textarea",
-                "props": {
-                  "value": "how it was acquired"
-                }
-              },
-              "Cost": {
-                "type": "number",
-                "props": {
-                  "value": "10000"
-                }
-              },
-              "CostEstimated": {
-                "type": "checkbox",
-                "props": {
-                  "value": "",
-                  "checked": false
-                }
-              },
-              "Value": {
-                "type": "number",
-                "props": {
-                  "value": "10000"
-                }
-              },
-              "ValueEstimated": {
-                "type": "checkbox",
-                "props": {
-                  "value": "",
-                  "checked": false
-                }
-              },
-              "Sold": {
-                "type": "datecontrol",
-                "props": {
-                  "month": "7",
-                  "day": "25",
-                  "year": "2017",
-                  "estimated": false,
-                  "date": "2017-07-25T00:00:00Z"
-                }
-              },
-              "SoldNotApplicable": {
-                "type": "notapplicable",
-                "props": {
-                  "applicable": true
-                }
-              },
-              "Explanation": {
-                "type": "textarea",
-                "props": {
-                  "value": "my explanation"
+                  "estimated": false
                 }
               },
               "CoOwners": {
@@ -122,6 +43,25 @@
                       "items": [
                         {
                           "Item": {
+                            "Address": {
+                              "type": "location",
+                              "props": {
+                                "layout": "Address",
+                                "street": "123 Some Rd",
+                                "city": "Arlington",
+                                "state": "VA",
+                                "zipcode": "22202",
+                                "country": "United States"
+                              }
+                            },
+                            "Countries": {
+                              "type": "country",
+                              "props": {
+                                "value": [
+                                  "Germany"
+                                ]
+                              }
+                            },
                             "Has": {
                               "type": "branch",
                               "props": {
@@ -133,32 +73,12 @@
                               "props": {
                                 "first": "John",
                                 "firstInitialOnly": false,
-                                "last": "Smith",
                                 "middle": "H",
                                 "middleInitialOnly": true,
                                 "noMiddleName": false,
+                                "last": "Smith",
                                 "suffix": "Other",
                                 "suffixOther": "XX"
-                              }
-                            },
-                            "Address": {
-                              "type": "location",
-                              "props": {
-                                "layout": "Address",
-                                "street": "123 Some Rd",
-                                "street2": "",
-                                "city": "Arlington",
-                                "state": "VA",
-                                "zipcode": "22202",
-                                "county": "",
-                                "country": "United States",
-                                "validated": false
-                              }
-                            },
-                            "Countries": {
-                              "type": "country",
-                              "props": {
-                                "value": ["Germany"]
                               }
                             },
                             "RelationshipNature": {
@@ -183,16 +103,93 @@
                     }
                   }
                 }
+              },
+              "Cost": {
+                "type": "number",
+                "props": {
+                  "value": "10000"
+                }
+              },
+              "CostEstimated": {
+                "type": "checkbox",
+                "props": {
+                  "value": ""
+                }
+              },
+              "Explanation": {
+                "type": "textarea",
+                "props": {
+                  "value": "my explanation"
+                }
+              },
+              "Firstname": {
+                "type": "text",
+                "props": {
+                  "value": "my firstname"
+                }
+              },
+              "HowAcquired": {
+                "type": "textarea",
+                "props": {
+                  "value": "how it was acquired"
+                }
+              },
+              "InterestType": {
+                "type": "text",
+                "props": {
+                  "value": "interest type"
+                }
+              },
+              "InterestTypes": {
+                "type": "checkboxgroup",
+                "props": {
+                  "values": [
+                    "Spouse"
+                  ]
+                }
+              },
+              "Lastname": {
+                "type": "text",
+                "props": {
+                  "value": "my lastname"
+                }
+              },
+              "Relationship": {
+                "type": "textarea",
+                "props": {
+                  "value": "my relationship"
+                }
+              },
+              "Sold": {
+                "type": "datecontrol",
+                "props": {
+                  "month": "7",
+                  "day": "25",
+                  "year": "2017",
+                  "estimated": false
+                }
+              },
+              "SoldNotApplicable": {
+                "type": "notapplicable",
+                "props": {
+                  "applicable": true
+                }
+              },
+              "Value": {
+                "type": "number",
+                "props": {
+                  "value": "10000"
+                }
+              },
+              "ValueEstimated": {
+                "type": "checkbox",
+                "props": {
+                  "value": ""
+                }
               }
             }
           }
-        ],
-        "branch": {
-          "type": "branch",
-          "props": {
-            "value": "No"
-          }
-        }
+        ]
       }
     }
   }

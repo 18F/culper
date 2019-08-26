@@ -17,6 +17,7 @@ import (
 	"github.com/18F/e-QIP-prototype/api/http"
 	"github.com/18F/e-QIP-prototype/api/saml"
 	"github.com/18F/e-QIP-prototype/api/session"
+	"github.com/nsf/jsondiff"
 )
 
 func makeAuthenticatedFormRequest(services serviceSet, sessionService *session.Service, sessionKey string) *gohttp.Response {
@@ -164,10 +165,15 @@ func TestFullSessionHTTPFlow_SAMLAuthenticated(t *testing.T) {
 		t.Fatal(readAuthedErr)
 	}
 
-	if string(authdBody) != `{"Metadata":{"form_type":"SF86","form_version":"2017-07","type":"metadata"}}` {
-		t.Fatal("GET /me/form didn't return the expected body: ", authdBody)
-	}
+	expectedJSON := `{"Metadata":{"form_type":"SF86","form_version":"2017-07","type":"metadata"}}`
 
+	opts := jsondiff.DefaultConsoleOptions()
+	diff, output := jsondiff.Compare([]byte(expectedJSON), authdBody, &opts)
+	if diff != jsondiff.FullMatch {
+		fmt.Println("Not Equal", output)
+		fmt.Println("Raw", string(authdBody))
+		t.Fail()
+	}
 	// now, get a logout request, make sure it has a session index
 
 	logoutRequestHandler := http.SamlSLORequestHandler{
@@ -306,8 +312,14 @@ func TestFullSessionHTTPFlow_BasicAuthenticated(t *testing.T) {
 		t.Fatal(readAuthedErr)
 	}
 
-	if string(authdBody) != `{"Metadata":{"form_type":"SF86","form_version":"2017-07","type":"metadata"}}` {
-		t.Fatal("GET /me/form didn't return the expected body: ", authdBody)
+	expectedJSON := `{"Metadata":{"form_type":"SF86","form_version":"2017-07","type":"metadata"}}`
+
+	opts := jsondiff.DefaultConsoleOptions()
+	diff, output := jsondiff.Compare([]byte(expectedJSON), authdBody, &opts)
+	if diff != jsondiff.FullMatch {
+		fmt.Println("Not Equal", output)
+		fmt.Println("Raw", string(authdBody))
+		t.Fail()
 	}
 
 	// Make a logout request

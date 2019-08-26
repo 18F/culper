@@ -1,6 +1,7 @@
 package integration
 
 import (
+	"bytes"
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -283,19 +284,16 @@ func getBranchItemValue(t *testing.T, item *api.CollectionItem, key string) *api
 func compareGoldenJSON(t *testing.T, testJSON []byte, goldenPath string) {
 	t.Helper()
 
+	// Reindent the json for comparision/saving/printing
+	prettyJSONBuff := bytes.Buffer{}
+	indentErr := json.Indent(&prettyJSONBuff, testJSON, "", "  ")
+	if indentErr != nil {
+		t.Fatal(indentErr)
+	}
+
+	prettyJSON := prettyJSONBuff.Bytes()
+
 	if *updateGolden {
-
-		// To get the format right, we unmarshal then marshal indent whatever we are comparing
-		var parsed interface{}
-		unmarshalErr := json.Unmarshal(testJSON, &parsed)
-		if unmarshalErr != nil {
-			t.Fatal(unmarshalErr)
-		}
-		prettyJSON, marshalErr := json.MarshalIndent(parsed, "", "  ")
-		if marshalErr != nil {
-			t.Fatal(marshalErr)
-		}
-
 		writeErr := ioutil.WriteFile(goldenPath, prettyJSON, 0644)
 		if writeErr != nil {
 			t.Fatal(writeErr)
@@ -303,7 +301,6 @@ func compareGoldenJSON(t *testing.T, testJSON []byte, goldenPath string) {
 
 		t.Log("Wrote new Golden File for ", goldenPath)
 		t.Fail()
-
 	}
 
 	expectedJSON, readErr := ioutil.ReadFile(goldenPath)
@@ -312,10 +309,10 @@ func compareGoldenJSON(t *testing.T, testJSON []byte, goldenPath string) {
 	}
 
 	opts := jsondiff.DefaultConsoleOptions()
-	diff, output := jsondiff.Compare(expectedJSON, testJSON, &opts)
+	diff, output := jsondiff.Compare(expectedJSON, prettyJSON, &opts)
 	if diff != jsondiff.FullMatch {
 		fmt.Println("Not Equal", output)
-		fmt.Println("Raw", string(testJSON))
+		fmt.Println("Raw", string(prettyJSON))
 		t.Log(fmt.Sprintf("Didn't get the same thing back in %s", goldenPath))
 		t.Fail()
 	}
