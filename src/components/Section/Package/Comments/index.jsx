@@ -21,7 +21,7 @@ const sectionConfig = {
 
 const PackageComments = (props) => {
   const {
-    HasComments, Comments, required, dispatch, location,
+    HasComments, Comments, required, dispatch, location, formType,
   } = props
 
   const updateBranch = (values) => {
@@ -38,7 +38,7 @@ const PackageComments = (props) => {
       validateSection({
         data: { HasComments, Comments, ...updatedValues },
         key: sectionConfig.key,
-      }) === true
+      }, formType) === true
     ))
   }
 
@@ -56,7 +56,7 @@ const PackageComments = (props) => {
       validateSection({
         data: { HasComments, Comments, ...updatedValues },
         key: sectionConfig.key,
-      }) === true
+      }, formType) === true
     ))
   }
 
@@ -105,6 +105,7 @@ PackageComments.propTypes = {
   required: PropTypes.bool,
   dispatch: PropTypes.func,
   location: PropTypes.object,
+  formType: PropTypes.string,
 }
 
 PackageComments.defaultProps = {
@@ -113,6 +114,7 @@ PackageComments.defaultProps = {
   required: false,
   dispatch: () => {},
   location: {},
+  formType: '',
 }
 
 const mapStateToProps = (state) => {
@@ -123,6 +125,7 @@ const mapStateToProps = (state) => {
   return {
     HasComments: Comments.HasComments,
     Comments: Comments.Comments,
+    formType: application.Settings.formType,
   }
 }
 
