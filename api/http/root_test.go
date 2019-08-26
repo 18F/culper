@@ -17,8 +17,10 @@ func TestRoot(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	// Set env var for SAML to test that route as well
+	// Set env var for SAML, Attachments, and Basic auth enabled to test that route as well
 	os.Setenv(api.SamlEnabled, "1")
+	os.Setenv(api.AttachmentsEnabled, "1")
+	os.Setenv(api.BasicEnabled, "1")
 
 	rec := httptest.NewRecorder()
 	handler := http.HandlerFunc(RootHandler{Env: mock.Native{}}.ServeHTTP)
