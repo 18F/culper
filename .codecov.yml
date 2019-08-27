@@ -14,4 +14,6 @@ coverage:
         target: 70%
         threshold: 100%
         base: auto
+    ignore:
+      - "api/mock/.*"
     changes: off
