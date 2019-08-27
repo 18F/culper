@@ -13,7 +13,7 @@ import (
 	"github.com/18F/e-QIP-prototype/api/xml"
 )
 
-func TestDeleteSingaturePDFs(t *testing.T) {
+func TestDeleteSignaturePDFs(t *testing.T) {
 
 	services := cleanTestServices(t)
 	account := createTestAccount(t, services.db)
