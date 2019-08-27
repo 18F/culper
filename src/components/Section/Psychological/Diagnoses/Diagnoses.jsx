@@ -91,11 +91,11 @@ export class Diagnoses extends Subsection {
   }
 
   summary = (item, index) => {
-    const o = (item || {}).Diagnosis || {}
-    const date = o.Diagnosed || {}
+    const diagnosisItem = (item || {}).Item || {}
+    const date = (diagnosisItem || {}).Diagnosed || {}
     // const diagnosisDate = dateRangeFormat(date)
     const diagnosisDate = DateSummary(date)
-    const facility = (o.Condition || {}).value || ''
+    const facility = (diagnosisItem.Condition || {}).value || ''
 
     return Summary({
       type: i18n.t('psychological.diagnoses.collection.itemType'),
