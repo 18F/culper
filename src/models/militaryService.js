@@ -46,7 +46,7 @@ const militaryService = {
       }
     }
 
-    return { requireEmpty: true }
+    return {}
   },
   HasBeenDischarged: {
     presence: true,
