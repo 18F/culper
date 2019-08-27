@@ -1,5 +1,5 @@
 coverage:
-  precision: 0
+  precision: 2
   round: nearest
   range: "70...100"
 
@@ -15,3 +15,6 @@ coverage:
         threshold: 100%
         base: auto
     changes: off
+# The mock packages should not be included in code coverage
+ignore:
+    - "api/mock/.*"
