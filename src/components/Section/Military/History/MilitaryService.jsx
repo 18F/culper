@@ -52,7 +52,10 @@ export default class MilitaryService extends ValidationElement {
 
   updateService(values) {
     this.update({
-      Service: values
+      Service: values,
+      ServiceState: ['AirNationalGuard', 'ArmyNationalGuard'].includes(values.value)
+        ? this.props.ServiceState
+        : {}
     })
   }
 
