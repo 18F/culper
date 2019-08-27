@@ -6925,7 +6925,7 @@
             "branch": {
               "type": "branch",
               "props": {
-                "value": ""
+                "value": "No"
               }
             },
             "items": [
@@ -6933,15 +6933,21 @@
                 "Item": {
                   "AwaitingTrial": {
                     "type": "branch",
-                    "props": {}
+                    "props": {
+                      "value": "No"
+                    }
                   },
                   "AwaitingTrialExplanation": {
                     "type": "textarea",
-                    "props": {}
+                    "props": {
+                      "value": "Released"
+                    }
                   },
                   "ChargeType": {
                     "type": "radio",
-                    "props": {}
+                    "props": {
+                      "value": "Felony"
+                    }
                   },
                   "CourtAddress": {
                     "type": "location",
@@ -6957,11 +6963,18 @@
                   },
                   "CourtCharge": {
                     "type": "text",
-                    "props": {}
+                    "props": {
+                      "value": "Test charge"
+                    }
                   },
                   "CourtDate": {
                     "type": "datecontrol",
-                    "props": {}
+                    "props": {
+                      "month": "10",
+                      "day": "1",
+                      "year": "2014",
+                      "estimated": false
+                    }
                   },
                   "CourtName": {
                     "type": "text",
@@ -6972,7 +6985,9 @@
                   },
                   "CourtOutcome": {
                     "type": "text",
-                    "props": {}
+                    "props": {
+                      "value": "Test outcome"
+                    }
                   },
                   "Date": {
                     "type": "datecontrol",
@@ -7060,7 +7075,9 @@
                   },
                   "WasSentenced": {
                     "type": "branch",
-                    "props": {}
+                    "props": {
+                      "value":"No"
+                    }
                   }
                 }
               }
