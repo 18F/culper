@@ -1,5 +1,3 @@
-//+build !test
-
 package mock
 
 // DatabaseService mock implementation.

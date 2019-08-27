@@ -15,5 +15,6 @@ coverage:
         threshold: 100%
         base: auto
     changes: off
+# The mock packages should not be included in code coverage
 ignore:
     - "api/mock/.*"
