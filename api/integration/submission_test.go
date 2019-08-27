@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	gohttp "net/http"
 	"os"
 	"os/exec"
 	"strconv"
@@ -211,4 +212,48 @@ func TestSubmitter(t *testing.T) {
 			checkInfoRelease(t, attachment)
 		}
 	}
+}
+
+func TestLockedAccountSubmitter(t *testing.T) {
+	services := cleanTestServices(t)
+	account := createTestAccount(t, services.db)
+	account.Status = api.StatusSubmitted
+
+	mockClock := clock.NewMock()
+	const base = 1536570831 // Epoch seconds for September 10, 2018 PDT
+	mockClock.Add(base * time.Second)
+
+	xmlService := xml.NewXMLServiceWithMockClock("../templates/", mockClock)
+	pdfService := pdf.NewPDFService("../pdf/templates/")
+	submitter := admin.NewSubmitter(services.db, services.store, xmlService, pdfService)
+
+	submitHandler := http.SubmitHandler{
+		Env:       services.env,
+		Log:       services.log,
+		Database:  services.db,
+		Store:     services.store,
+		Submitter: submitter,
+	}
+
+	// call the /form/submit handler. It's a dummy handler that just returns
+	// the XML on success.
+	w, req := standardResponseAndRequest("POST", "/me/form/submit", nil, account)
+	submitHandler.ServeHTTP(w, req)
+
+	submitResp := w.Result()
+
+	if submitResp.StatusCode != gohttp.StatusForbidden {
+		t.Errorf("handler returned wrong status code: got %v want %v",
+			submitResp.StatusCode, gohttp.StatusForbidden)
+		t.Fail()
+	}
+
+	// Check the response body is what we expect.
+	responseJSON, err := ioutil.ReadAll(submitResp.Body)
+	if err != nil {
+		t.Log("Error reading the response: ", err)
+		t.Fail()
+	}
+	// Check the error message is what we expect
+	confirmErrorMsg(t, responseJSON, api.AccountLocked)
 }
