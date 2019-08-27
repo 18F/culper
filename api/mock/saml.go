@@ -1,3 +1,5 @@
+//+build !test
+
 package mock
 
 // SamlService mock implementation of SAML handling.
