@@ -16,9 +16,9 @@
     {{- $foreignPOB := ne $birthCountry "United States" }}
     {{- $usCitizen := citizenshipHas $Item.Citizenship "United States" }}
 
-    <!--XXX
-        See https://github.com/18F/e-QIP-prototype/issues/733 and
-        compare with similar logic for applicant XML --> 
+    <!-- Required elements are different for cohabitants/current spouse than the applicant;
+        e.g., if living outside US and foreign born, then should specify 'Other' and
+        provide an explanation. --> 
     {{- if or (and $usCitizen $foreignPOB) (not $usCitizen) }}
     {{- with $doc := $Item.ForeignBornDocument.props}}
     {{- if text $doc.DocumentType | ne ""}}
