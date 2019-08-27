@@ -1,5 +1,5 @@
 coverage:
-  precision: 0
+  precision: 2
   round: nearest
   range: "70...100"
 
@@ -14,6 +14,6 @@ coverage:
         target: 70%
         threshold: 100%
         base: auto
-    ignore:
-      - "api/mock/.*"
     changes: off
+ignore:
+    - "api/mock/.*"
