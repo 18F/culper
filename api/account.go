@@ -28,6 +28,10 @@ var knownFormVersions = map[string][]string{
 	"SF85": []string{
 		"2017-12-draft7",
 	},
+
+	"SF85P": []string{
+		"2017-10-draft3",
+	},
 }
 
 const (
