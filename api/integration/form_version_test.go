@@ -14,7 +14,7 @@ func TestFormVersionReturned(t *testing.T) {
 	services := cleanTestServices(t)
 	account := createTestAccount(t, services.db)
 
-	w, r := standardResponseAndRequest("GET", "/me/form", nil, account.ID)
+	w, r := standardResponseAndRequest("GET", "/me/form", nil, account)
 
 	formHandler := http.FormHandler{
 		Env:      services.env,
@@ -76,7 +76,7 @@ func TestFormVersionSave(t *testing.T) {
 	"form_version": "2017-07"
 }`
 
-	resp := saveJSON(services, []byte(metadataBody), account.ID)
+	resp := saveJSON(services, []byte(metadataBody), account)
 
 	if resp.StatusCode != 400 {
 		t.Log(fmt.Sprintf("Status should have been 400: %d", resp.StatusCode))

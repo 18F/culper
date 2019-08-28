@@ -837,13 +837,13 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                   >
                     Instructions
                   </button>
-                  <a
+                  <button
                     className="logout"
-                    href="#"
                     onClick={[Function]}
+                    type="button"
                   >
                     Logout
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -2106,6 +2106,23 @@ exports[`App component for the SF85 renders the homepage 1`] = `
                     <a
                       aria-current={null}
                       className="section-link"
+                      href="/form/package/comments"
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="section-name"
+                      >
+                        Additional Comments
+                      </span>
+                      <span
+                        className="eapp-status-icon"
+                      />
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      aria-current={null}
+                      className="section-link"
                       href="/form/package/review"
                       onClick={[Function]}
                     >
@@ -3044,13 +3061,13 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                   >
                     Instructions
                   </button>
-                  <a
+                  <button
                     className="logout"
-                    href="#"
                     onClick={[Function]}
+                    type="button"
                   >
                     Logout
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -4883,6 +4900,23 @@ exports[`App component for the SF85P renders the homepage 1`] = `
                     <a
                       aria-current={null}
                       className="section-link"
+                      href="/form/package/comments"
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="section-name"
+                      >
+                        Additional Comments
+                      </span>
+                      <span
+                        className="eapp-status-icon"
+                      />
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      aria-current={null}
+                      className="section-link"
                       href="/form/package/review"
                       onClick={[Function]}
                     >
@@ -5777,13 +5811,13 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                   >
                     Instructions
                   </button>
-                  <a
+                  <button
                     className="logout"
-                    href="#"
                     onClick={[Function]}
+                    type="button"
                   >
                     Logout
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -8090,6 +8124,23 @@ exports[`App component for the SF86 renders the homepage 1`] = `
                 <ol
                   className="usa-accordion usa-sidenav-sub_list"
                 >
+                  <li>
+                    <a
+                      aria-current={null}
+                      className="section-link"
+                      href="/form/package/comments"
+                      onClick={[Function]}
+                    >
+                      <span
+                        className="section-name"
+                      >
+                        Additional Comments
+                      </span>
+                      <span
+                        className="eapp-status-icon"
+                      />
+                    </a>
+                  </li>
                   <li>
                     <a
                       aria-current={null}

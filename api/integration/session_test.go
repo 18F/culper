@@ -6,6 +6,7 @@ import (
 
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/session"
+	"github.com/18F/e-QIP-prototype/api/simplestore"
 )
 
 func TestFullSessionFlow(t *testing.T) {
@@ -16,16 +17,16 @@ func TestFullSessionFlow(t *testing.T) {
 	testUser := createTestAccount(t, services.db)
 
 	// get a session service
-	sessionService := session.NewSessionService(5*time.Second, services.store)
+	sessionService := session.NewSessionService(5*time.Second, services.store, services.log)
 
 	// create a session for the user
-	sessionKey, userAuthdErr := sessionService.UserDidAuthenticate(testUser.ID)
+	sessionKey, userAuthdErr := sessionService.UserDidAuthenticate(testUser.ID, simplestore.NullString())
 	if userAuthdErr != nil {
 		t.Fatal("Failed to authenticate user", userAuthdErr)
 	}
 
 	// verify there is now a session for the user
-	account, getAccountErr := sessionService.GetAccountIfSessionIsValid(sessionKey)
+	account, _, getAccountErr := sessionService.GetAccountIfSessionIsValid(sessionKey)
 	if getAccountErr != nil {
 		t.Fatal("Failed to retrieve user's account", getAccountErr)
 	}
@@ -41,7 +42,7 @@ func TestFullSessionFlow(t *testing.T) {
 	}
 
 	// verify session key is now invalid
-	_, expectedErr := sessionService.GetAccountIfSessionIsValid(sessionKey)
+	_, _, expectedErr := sessionService.GetAccountIfSessionIsValid(sessionKey)
 	if expectedErr != api.ErrValidSessionNotFound {
 		t.Fatal("Failed to invalidate session during logout")
 	}

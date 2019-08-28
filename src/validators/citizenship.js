@@ -12,7 +12,7 @@ export const validateCitizenshipStatus = (data) => {
 
   return validateModel(data, citizenshipStatus, {
     requireForeignBornDocumentation: !hasValidUSPassport,
-  }) === true
+  })
 }
 
 export const isCertificateRequired = (data, requireForeignBornDocumentation) => (
@@ -70,6 +70,6 @@ export default class CitizenshipValidator {
   }
 
   isValid() {
-    return validateCitizenshipStatus(this.data)
+    return validateCitizenshipStatus(this.data) === true
   }
 }

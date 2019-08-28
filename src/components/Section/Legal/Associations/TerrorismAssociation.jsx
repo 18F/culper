@@ -13,7 +13,7 @@ import {
   LEGAL_ASSOCIATIONS_TERRORISM_ASSOCIATION,
 } from 'config/formSections/legal'
 import Subsection from 'components/Section/shared/Subsection'
-import connectLegalSection from '../LegalConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 
 const sectionConfig = {
   key: LEGAL_ASSOCIATIONS_TERRORISM_ASSOCIATION.key,
@@ -112,4 +112,4 @@ TerrorismAssociation.defaultProps = {
   validator: data => validate(schema('legal.associations.terrorism-association', data)),
 }
 
-export default connectLegalSection(TerrorismAssociation, sectionConfig)
+export default connectSubsection(TerrorismAssociation, sectionConfig)

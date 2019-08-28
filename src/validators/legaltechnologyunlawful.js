@@ -2,7 +2,7 @@ import { validateModel, hasYesOrNo } from 'models/validate'
 import unlawfulTech from 'models/unlawfulTech'
 
 export const validateUnlawfulTech = data => (
-  validateModel(data, unlawfulTech) === true
+  validateModel(data, unlawfulTech)
 )
 
 export const validateLegalTechnologyUnlawful = (data) => {
@@ -19,7 +19,7 @@ export const validateLegalTechnologyUnlawful = (data) => {
     },
   }
 
-  return validateModel(data, legalTechnologyUnlawfulModel) === true
+  return validateModel(data, legalTechnologyUnlawfulModel)
 }
 
 export default class LegalTechnologyUnlawfulValidator {
@@ -28,7 +28,7 @@ export default class LegalTechnologyUnlawfulValidator {
   }
 
   isValid() {
-    return validateLegalTechnologyUnlawful(this.data)
+    return validateLegalTechnologyUnlawful(this.data) === true
   }
 }
 
@@ -62,6 +62,6 @@ export class UnlawfulValidator {
   }
 
   isValid() {
-    return validateUnlawfulTech(this.data)
+    return validateUnlawfulTech(this.data) === true
   }
 }

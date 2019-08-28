@@ -25,7 +25,7 @@ export default class DiagnosisValidator {
   }
 
   isValid() {
-    return validateDiagnosis(this.data, this.prefix === 'existingConditions.diagnosis')
+    return validateDiagnosis(this.data, this.prefix === 'existingConditions.diagnosis') === true
   }
 }
 

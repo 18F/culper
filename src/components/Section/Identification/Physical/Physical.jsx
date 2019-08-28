@@ -9,8 +9,8 @@ import {
 } from 'components/Form'
 
 import { IDENTIFICATION, IDENTIFICATION_PHYSICAL } from 'config/formSections/identification'
-import connectIdentificationSection from '../IdentificationConnector'
-import Subsection from '../../shared/Subsection'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
+import Subsection from 'components/Section/shared/Subsection'
 
 const sectionConfig = {
   key: IDENTIFICATION_PHYSICAL.key,
@@ -161,4 +161,4 @@ Physical.defaultProps = {
   required: false,
 }
 
-export default connectIdentificationSection(Physical, sectionConfig)
+export default connectSubsection(Physical, sectionConfig)

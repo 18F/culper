@@ -9,7 +9,7 @@ import {
   LEGAL_ASSOCIATIONS_MEMBERSHIP_OVERTHROW,
 } from 'config/formSections/legal'
 import Subsection from 'components/Section/shared/Subsection'
-import connectLegalSection from '../LegalConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import MembershipOverthrowItem from './MembershipOverthrowItem'
 
 const sectionConfig = {
@@ -136,4 +136,4 @@ MembershipOverthrow.defaultProps = {
   scrollToBottom: '',
 }
 
-export default connectLegalSection(MembershipOverthrow, sectionConfig)
+export default connectSubsection(MembershipOverthrow, sectionConfig)

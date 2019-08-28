@@ -6,7 +6,7 @@ import { Summary, NameSummary } from 'components/Summary'
 import { Branch, Show, Accordion } from 'components/Form'
 import { FOREIGN, FOREIGN_ACTIVITIES_SUPPORT } from 'config/formSections/foreign'
 import Subsection from 'components/Section/shared/Subsection'
-import connectForeignSection from '../ForeignConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import SupportItem from './SupportItem'
 
 const sectionConfig = {
@@ -126,4 +126,4 @@ Support.defaultProps = {
   defaultState: true,
 }
 
-export default connectForeignSection(Support, sectionConfig)
+export default connectSubsection(Support, sectionConfig)

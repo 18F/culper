@@ -2,19 +2,21 @@ import { validateModel } from 'models/validate'
 import phone from 'models/shared/phone'
 import email from 'models/shared/email'
 
+// TODO
+
 export const validateContactEmail = data => (
-  validateModel(data, email) === true
+  validateModel(data, email)
 )
 
 export const validateContactPhoneNumber = (data = {}) => {
   const { Telephone } = data
-  return validateModel(Telephone, phone, { requireNumberType: true }) === true
+  return validateModel(Telephone, phone, { requireNumberType: true })
 }
 
 // Requires at least one valid phone number item
 export const validateContactPhoneNumbers = (data = []) => (
   data && data.length > 0
-    && data.some(i => validateContactPhoneNumber(i.Item))
+    && data.some(i => validateContactPhoneNumber(i.Item) === true)
 )
 
 // There can only be one of each phone number type (Cell, Home, Work)
@@ -40,8 +42,8 @@ export const validateIdentificationContactInformation = (data = {}) => {
   const validEmailPresent = (HomeEmail && validateContactEmail(HomeEmail))
     || (WorkEmail && validateContactEmail(WorkEmail))
 
-  return validateContactPhoneNumbers(PhoneNumbers.items)
-    && validateContactPhoneTypes(PhoneNumbers.items)
+  return validateContactPhoneNumbers(PhoneNumbers.items) === true
+    && validateContactPhoneTypes(PhoneNumbers.items) === true
     && validEmailPresent
 }
 
@@ -64,7 +66,7 @@ export default class IdentificationContactInformationValidator {
    * Validates emails and phone numbers
    */
   isValid() {
-    return validateIdentificationContactInformation(this.data)
+    return validateIdentificationContactInformation(this.data) === true
   }
 }
 
@@ -74,6 +76,6 @@ export class ContactPhoneNumberValidator {
   }
 
   isValid() {
-    return validateContactPhoneNumber(this.data)
+    return validateContactPhoneNumber(this.data) === true
   }
 }

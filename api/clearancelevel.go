@@ -9,15 +9,8 @@ type ClearanceLevel struct {
 	PayloadLevel       Payload `json:"Level" sql:"-"`
 	PayloadExplanation Payload `json:"Explanation" sql:"-"`
 
-	// Validator specific fields
 	Level       *Radio    `json:"-"`
 	Explanation *Textarea `json:"-"`
-
-	// Persister specific fields
-	ID            int `json:"-"`
-	AccountID     int `json:"-"`
-	LevelID       int `json:"-"`
-	ExplanationID int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -51,19 +44,4 @@ func (entity *ClearanceLevel) Marshal() Payload {
 		entity.PayloadExplanation = entity.Explanation.Marshal()
 	}
 	return MarshalPayloadEntity("clearancelevel", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *ClearanceLevel) Valid() (bool, error) {
-	if ok, err := entity.Level.Valid(); !ok {
-		return false, err
-	}
-
-	if entity.Level.Value == "Other" {
-		if ok, err := entity.Explanation.Valid(); !ok {
-			return false, err
-		}
-	}
-
-	return true, nil
 }

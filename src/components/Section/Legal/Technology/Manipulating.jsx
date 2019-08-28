@@ -9,7 +9,7 @@ import {
   LEGAL_TECHNOLOGY_MANIPULATING,
 } from 'config/formSections/legal'
 import Subsection from 'components/Section/shared/Subsection'
-import connectLegalSection from '../LegalConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import ManipulatingItem from './ManipulatingItem'
 
 const sectionConfig = {
@@ -136,4 +136,4 @@ Manipulating.defaultProps = {
   scrollToBottom: '',
 }
 
-export default connectLegalSection(Manipulating, sectionConfig)
+export default connectSubsection(Manipulating, sectionConfig)

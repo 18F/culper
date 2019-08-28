@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { i18n } from 'config'
 import { HISTORY, HISTORY_REVIEW } from 'config/formSections/history'
@@ -6,7 +7,7 @@ import * as formConfig from 'config/forms'
 
 import { Show } from 'components/Form'
 
-import connectHistorySection from './HistoryConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 
 import ResidenceSummaryProgress from './Residence/ResidenceSummaryProgress'
 import EmploymentSummaryProgress from './Employment/EmploymentSummaryProgress'
@@ -76,7 +77,7 @@ const Review = (props) => {
       <ConnectedResidence
         {...subsectionProps}
         totalYears={residenceYears}
-        realtime
+        realtime={true}
       />
 
       <hr className="section-divider" />
@@ -87,19 +88,39 @@ const Review = (props) => {
         {...subsectionProps}
         totalYears={employmentYears}
         recordYears={employmentRecordYears}
-        realtime
+        realtime={true}
       />
 
       <hr className="section-divider" />
       <h1 className="section-header">
         {i18n.t('history.education.collection.caption')}
       </h1>
-      <EducationWrapper inReview />
+      <EducationWrapper inReview={true} />
 
       {requireHistoryFederalSection && <hr className="section-divider" />}
-      {requireHistoryFederalSection && <FederalWrapper inReview />}
+      {requireHistoryFederalSection && <FederalWrapper inReview={true} />}
     </div>
   )
 }
 
-export default connectHistorySection(Review, sectionConfig)
+Review.propTypes = {
+  Birthdate: PropTypes.instanceOf(Date),
+  Education: PropTypes.object,
+  Residence: PropTypes.object,
+  Employment: PropTypes.object,
+  formType: PropTypes.string,
+  requireHistoryFederalSection: PropTypes.bool,
+  forPrint: PropTypes.bool,
+}
+
+Review.defaultProps = {
+  Birthdate: null,
+  Education: { HasAttended: '', HasDegree10: '', List: { items: [] } },
+  Residence: { List: { items: [] } },
+  Employment: { List: { items: [] } },
+  formType: null,
+  requireHistoryFederalSection: true,
+  forPrint: false,
+}
+
+export default connectSubsection(Review, sectionConfig)

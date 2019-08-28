@@ -11,7 +11,7 @@ import {
   SUBSTANCE_USE_ALCOHOL_VOLUNTARY,
 } from 'config/formSections/substanceUse'
 import Subsection from 'components/Section/shared/Subsection'
-import connectSubstanceUseSection from '../SubstanceUseConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import VoluntaryCounseling from './VoluntaryCounseling'
 
 const sectionConfig = {
@@ -147,4 +147,4 @@ VoluntaryCounselings.defaultProps = {
   scrollToBottom: '',
 }
 
-export default connectSubstanceUseSection(VoluntaryCounselings, sectionConfig)
+export default connectSubsection(VoluntaryCounselings, sectionConfig)

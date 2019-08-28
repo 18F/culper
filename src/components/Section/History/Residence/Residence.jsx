@@ -8,14 +8,13 @@ import {
   ResidenceValidator,
 } from 'validators'
 
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import Subsection from 'components/Section/shared/Subsection'
 
 import { Accordion } from 'components/Form'
 import { newGuid } from 'components/Form/ValidationElement'
 import { openState } from 'components/Form/Accordion/Accordion'
 import { today, daysAgo } from 'components/Section/History/dateranges'
-
-import connectHistorySection from '../HistoryConnector'
 
 import { InjectGaps, ResidenceCustomSummary } from '../summaries'
 import ResidenceItem from './ResidenceItem'
@@ -76,7 +75,7 @@ export class Residence extends Subsection {
       overrideInitial,
       'history.residence.collection.summary.incomplete',
       this.props.required,
-      i => new ResidenceValidator(i, null).isValid(),
+      i => new ResidenceValidator(i, null).isValid() === true,
     )
   }
 
@@ -180,7 +179,7 @@ Residence.defaultProps = {
   onError: (value, arr) => arr,
   addressBooks: {},
   dispatch: () => {},
-  validator: data => new HistoryResidenceValidator(data).isValid(),
+  validator: data => new HistoryResidenceValidator(data).isValid() === true,
 }
 
-export default connectHistorySection(Residence, sectionConfig)
+export default connectSubsection(Residence, sectionConfig)

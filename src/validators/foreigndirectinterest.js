@@ -2,7 +2,8 @@ import { validateModel } from 'models/validate'
 import foreignDirectInterest from 'models/foreignDirectInterest'
 
 export const validateForeignDirectInterest = data => (
-  validateModel(data, foreignDirectInterest) === true)
+  validateModel(data, foreignDirectInterest)
+)
 
 export default class ForeignDirectInterestValidator {
   constructor(data = {}) {
@@ -16,6 +17,6 @@ export default class ForeignDirectInterestValidator {
   }
 
   isValid() {
-    return validateForeignDirectInterest(this.data)
+    return validateForeignDirectInterest(this.data) === true
   }
 }

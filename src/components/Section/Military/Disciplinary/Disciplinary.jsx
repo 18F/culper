@@ -10,10 +10,10 @@ import validate, { ProcedureValidator } from 'validators'
 
 import { Summary, DateSummary } from 'components/Summary'
 import { Branch, Show, Accordion } from 'components/Form'
-import Subsection from 'components/Section/shared/Subsection'
 import Procedure from 'components/Section/Military/Disciplinary/Procedure'
 
-import connectMilitarySection from 'components/Section/Military/MilitaryConnector'
+import Subsection from 'components/Section/shared/Subsection'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 
 const sectionConfig = {
   key: MILITARY_DISCIPLINARY.key,
@@ -148,4 +148,4 @@ Disciplinary.defaultProps = {
   defaultState: true,
 }
 
-export default connectMilitarySection(Disciplinary, sectionConfig)
+export default connectSubsection(Disciplinary, sectionConfig)

@@ -3,11 +3,11 @@ import { MILITARY, MILITARY_HISTORY } from 'config/formSections/military'
 import { i18n } from 'config'
 import schema from 'schema'
 import validate, { MilitaryServiceValidator } from 'validators'
-import Subsection from 'components/Section/shared/Subsection'
 import { Branch, Show, Accordion } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
 import MilitaryService from 'components/Section/Military/History/MilitaryService'
-import connectMilitarySection from 'components/Section/Military/MilitaryConnector'
+import Subsection from 'components/Section/shared/Subsection'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 
 const sectionConfig = {
   key: MILITARY_HISTORY.key,
@@ -165,4 +165,4 @@ History.defaultProps = {
   required: false,
 }
 
-export default connectMilitarySection(History, sectionConfig)
+export default connectSubsection(History, sectionConfig)

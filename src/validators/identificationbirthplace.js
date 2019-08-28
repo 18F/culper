@@ -9,7 +9,7 @@ export const validateIdentificationBirthPlace = (data) => {
     },
   }
 
-  return validateModel(data, applicantBirthPlaceModel) === true
+  return validateModel(data, applicantBirthPlaceModel)
 }
 
 export default class IdentificationBirthPlaceValidator {
@@ -18,6 +18,6 @@ export default class IdentificationBirthPlaceValidator {
   }
 
   isValid() {
-    return validateIdentificationBirthPlace(this.data)
+    return validateIdentificationBirthPlace(this.data) === true
   }
 }

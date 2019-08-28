@@ -14,7 +14,7 @@ import * as formConfig from 'config/forms'
 import { getNumberOfYearsString } from 'helpers/text'
 
 import Subsection from 'components/Section/shared/Subsection'
-import connectSubstanceUseSection from '../SubstanceUseConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import DrugInvolvement from './DrugInvolvement'
 
 const sectionConfig = {
@@ -62,7 +62,7 @@ export class DrugInvolvements extends Subsection {
 
   summary = (item, index) => {
     const o = (item || {}).Item || {}
-    let drug = (o.DrugType || {}).DrugType
+    let drug = (o.DrugType || {}).value
     if (drug === 'Other') {
       drug = ((o.DrugType || {}).DrugTypeOther || {}).value
     }
@@ -146,4 +146,4 @@ DrugInvolvements.defaultProps = {
   scrollToBottom: '',
 }
 
-export default connectSubstanceUseSection(DrugInvolvements, sectionConfig)
+export default connectSubsection(DrugInvolvements, sectionConfig)

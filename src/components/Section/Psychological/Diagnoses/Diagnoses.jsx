@@ -15,9 +15,9 @@ import {
 } from 'components/Form'
 
 import Subsection from 'components/Section/shared/Subsection'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 
 import { PSYCHOLOGICAL, PSYCHOLOGICAL_DIAGNOSES } from 'config/formSections/psychological'
-import connectPsychologicalSection from '../PsychologicalConnector'
 
 import Diagnosis from './Diagnosis'
 import Treatment from '../Treatment'
@@ -91,11 +91,11 @@ export class Diagnoses extends Subsection {
   }
 
   summary = (item, index) => {
-    const o = (item || {}).Diagnosis || {}
-    const date = o.Diagnosed || {}
+    const diagnosisItem = (item || {}).Item || {}
+    const date = (diagnosisItem || {}).Diagnosed || {}
     // const diagnosisDate = dateRangeFormat(date)
     const diagnosisDate = DateSummary(date)
-    const facility = (o.Condition || {}).value || ''
+    const facility = (diagnosisItem.Condition || {}).value || ''
 
     return Summary({
       type: i18n.t('psychological.diagnoses.collection.itemType'),
@@ -263,4 +263,4 @@ Diagnoses.defaultProps = {
   scrollToBottom: '.bottom-btns',
 }
 
-export default connectPsychologicalSection(Diagnoses, sectionConfig)
+export default connectSubsection(Diagnoses, sectionConfig)

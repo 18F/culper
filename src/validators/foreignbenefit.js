@@ -3,11 +3,11 @@ import foreignBenefit from 'models/foreignBenefit'
 import foreignBenefitType from 'models/foreignBenefitType'
 
 export const validateForeignBenefit = data => (
-  validateModel(data, foreignBenefit) === true
+  validateModel(data, foreignBenefit)
 )
 
 export const validateForeignBenefitType = (data, options = {}) => (
-  validateModel(data, foreignBenefitType, options) === true
+  validateModel(data, foreignBenefitType, options)
 )
 
 export default class ForeignBenefitValidator {
@@ -33,7 +33,7 @@ export default class ForeignBenefitValidator {
   }
 
   isValid() {
-    return validateForeignBenefit(this.data)
+    return validateForeignBenefit(this.data) === true
   }
 }
 
@@ -50,7 +50,7 @@ export class OneTimeBenefitValidator {
   }
 
   isValid() {
-    return validateForeignBenefitType(this.data, { benefitType: 'OneTime' })
+    return validateForeignBenefitType(this.data, { benefitType: 'OneTime' }) === true
   }
 }
 
@@ -74,7 +74,7 @@ export class FutureBenefitValidator {
   }
 
   isValid() {
-    return validateForeignBenefitType(this.data, { benefitType: 'Future' })
+    return validateForeignBenefitType(this.data, { benefitType: 'Future' }) === true
   }
 }
 
@@ -98,7 +98,7 @@ export class ContinuingBenefitValidator {
   }
 
   isValid() {
-    return validateForeignBenefitType(this.data, { benefitType: 'Continuing' })
+    return validateForeignBenefitType(this.data, { benefitType: 'Continuing' }) === true
   }
 }
 
@@ -115,6 +115,6 @@ export class OtherBenefitValidator {
   }
 
   isValid() {
-    return validateForeignBenefitType(this.data, { benefitType: 'Other' })
+    return validateForeignBenefitType(this.data, { benefitType: 'Other' }) === true
   }
 }

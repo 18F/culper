@@ -2,7 +2,7 @@ import { validateModel } from 'models/validate'
 import consultation from 'models/consultation'
 
 export const validateConsultations = data => (
-  validateModel(data, consultation) === true
+  validateModel(data, consultation)
 )
 
 export default class ConsultationValidator {
@@ -11,6 +11,6 @@ export default class ConsultationValidator {
   }
 
   isValid() {
-    return validateConsultations(this.data)
+    return validateConsultations(this.data) === true
   }
 }

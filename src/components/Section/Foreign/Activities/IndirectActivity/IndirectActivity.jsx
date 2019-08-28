@@ -6,7 +6,7 @@ import { Summary } from 'components/Summary'
 import { Accordion, Branch, Show } from 'components/Form'
 import { FOREIGN, FOREIGN_ACTIVITIES_INDIRECT } from 'config/formSections/foreign'
 import Subsection from 'components/Section/shared/Subsection'
-import connectForeignSection from '../../ForeignConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import IndirectInterest from './IndirectInterest'
 
 const sectionConfig = {
@@ -143,4 +143,4 @@ IndirectActivity.defaultProps = {
   scrollToBottom: '',
 }
 
-export default connectForeignSection(IndirectActivity, sectionConfig)
+export default connectSubsection(IndirectActivity, sectionConfig)

@@ -8,7 +8,8 @@ import { formTypeSelector } from 'selectors/formType'
 import { validateSection } from 'helpers/validation'
 import { reportCompletion } from 'actions/ApplicationActions'
 
-import { selectState } from './index'
+import { selectState } from 'sagas/selectors'
+
 import {
   updateSectionStatus,
   validateFormData,

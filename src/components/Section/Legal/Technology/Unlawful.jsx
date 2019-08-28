@@ -9,7 +9,7 @@ import {
   LEGAL_TECHNOLOGY_UNLAWFUL,
 } from 'config/formSections/legal'
 import Subsection from 'components/Section/shared/Subsection'
-import connectLegalSection from '../LegalConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import UnlawfulItem from './UnlawfulItem'
 
 const sectionConfig = {
@@ -135,4 +135,4 @@ Unlawful.defaultProps = {
   scrollToBottom: '',
 }
 
-export default connectLegalSection(Unlawful, sectionConfig)
+export default connectSubsection(Unlawful, sectionConfig)

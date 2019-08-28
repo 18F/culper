@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"testing"
+
+	"github.com/nsf/jsondiff"
 )
 
 func TestSaveSection(t *testing.T) {
@@ -108,6 +110,8 @@ func TestSaveSection(t *testing.T) {
 		{"../testdata/psychological/psychological-conditions.json", "Psychological", "ExistingConditions"},
 		{"../testdata/psychological/psychological-hospitalizations.json", "Psychological", "Hospitalizations"},
 
+		{"../testdata/package/comments.json", "Package", "Comments"},
+
 		{"../testdata/submission.json", "Submission", "Releases"},
 	}
 
@@ -116,12 +120,12 @@ func TestSaveSection(t *testing.T) {
 		t.Run(fmt.Sprintf("%s:%s", secTest.section, secTest.subSection), func(t *testing.T) {
 			section := readTestData(t, secTest.path)
 
-			resp := saveJSON(services, section, account.ID)
+			resp := saveJSON(services, section, account)
 			if resp.StatusCode != 200 {
 				t.Fatal(fmt.Sprintf("Failed to save %s %s", secTest.section, secTest.subSection), resp.StatusCode)
 			}
 
-			formResp := getForm(services, account.ID)
+			formResp := getForm(services, account)
 			if formResp.StatusCode != 200 {
 				t.Fatal(fmt.Sprintf("Failed to load %s %s", secTest.section, secTest.subSection), resp.StatusCode)
 			}
@@ -151,12 +155,12 @@ func TestSaveMultipleSections(t *testing.T) {
 
 	employmentSection := readTestData(t, "../testdata/history/history-employment-full.json")
 
-	resp := saveJSON(services, employmentSection, account.ID)
+	resp := saveJSON(services, employmentSection, account)
 	if resp.StatusCode != 200 {
 		t.Fatal("Failed to save Employment History", resp.StatusCode)
 	}
 
-	formResp := getForm(services, account.ID)
+	formResp := getForm(services, account)
 	if formResp.StatusCode != 200 {
 		t.Fatal("Failed to load Employment History", resp.StatusCode)
 	}
@@ -182,12 +186,12 @@ func TestSaveMultipleSections(t *testing.T) {
 
 	nameSection := readTestData(t, "../testdata/identification/identification-name.json")
 
-	resp = saveJSON(services, nameSection, account.ID)
+	resp = saveJSON(services, nameSection, account)
 	if resp.StatusCode != 200 {
 		t.Fatal("Failed to save Name", resp.StatusCode)
 	}
 
-	formResp = getForm(services, account.ID)
+	formResp = getForm(services, account)
 	if formResp.StatusCode != 200 {
 		t.Fatal("Failed to load Name", resp.StatusCode)
 	}
@@ -227,7 +231,7 @@ func TestDeleteApplication(t *testing.T) {
 
 	section := readTestData(t, "../testdata/identification/identification-birthplace-full.json")
 
-	resp := saveJSON(services, section, account.ID)
+	resp := saveJSON(services, section, account)
 	if resp.StatusCode != 200 {
 		t.Fatal("Failed to save a section", resp.StatusCode)
 	}
@@ -237,14 +241,20 @@ func TestDeleteApplication(t *testing.T) {
 		t.Fatal(delErr)
 	}
 
-	formResp := getForm(services, account.ID)
+	formResp := getForm(services, account)
 	if formResp.StatusCode != 200 {
 		t.Fatal(fmt.Sprintf("Failed to load form"), resp.StatusCode)
 	}
 	body := readBody(t, formResp)
 
-	if string(body) != `{"Metadata":{"form_type":"SF86","form_version":"2017-07","type":"metadata"}}` {
-		t.Fatal("Should have just got back the metadata")
+	expectedJSON := `{"Metadata":{"form_type":"SF86","form_version":"2017-07","type":"metadata"}}`
+
+	opts := jsondiff.DefaultConsoleOptions()
+	diff, output := jsondiff.Compare([]byte(expectedJSON), []byte(body), &opts)
+	if diff != jsondiff.FullMatch {
+		fmt.Println("Not Equal", output)
+		fmt.Println("Raw", string(body))
+		t.Fail()
 	}
 
 }

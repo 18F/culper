@@ -8,10 +8,10 @@ import validate, { ConsultationOrderValidator } from 'validators'
 
 import { Summary, DateSummary } from 'components/Summary'
 import { Accordion, Branch, Show } from 'components/Form'
-import Subsection from 'components/Section/shared/Subsection'
 
 import { PSYCHOLOGICAL, PSYCHOLOGICAL_CONSULTATIONS } from 'config/formSections/psychological'
-import connectPsychologicalSection from '../PsychologicalConnector'
+import Subsection from 'components/Section/shared/Subsection'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 
 import Order from '../Order'
 
@@ -145,4 +145,4 @@ Consultation.defaultProps = {
   scrollToBottom: '.bottom-btns',
 }
 
-export default connectPsychologicalSection(Consultation, sectionConfig)
+export default connectSubsection(Consultation, sectionConfig)

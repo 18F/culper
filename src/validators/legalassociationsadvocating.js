@@ -2,7 +2,7 @@ import { validateModel, hasYesOrNo } from 'models/validate'
 import terrorismAdvocate from 'models/terrorismAdvocate'
 
 export const validateAdvocate = data => (
-  validateModel(data, terrorismAdvocate) === true
+  validateModel(data, terrorismAdvocate)
 )
 
 export const validateLegalAssociationAdvocate = (data) => {
@@ -20,7 +20,7 @@ export const validateLegalAssociationAdvocate = (data) => {
     },
   }
 
-  return validateModel(data, legalAssociationAdvocateModel) === true
+  return validateModel(data, legalAssociationAdvocateModel)
 }
 
 export default class LegalAssociationAdvocatingValidator {
@@ -29,7 +29,7 @@ export default class LegalAssociationAdvocatingValidator {
   }
 
   isValid() {
-    return validateLegalAssociationAdvocate(this.data)
+    return validateLegalAssociationAdvocate(this.data) === true
   }
 }
 
@@ -51,6 +51,6 @@ export class AdvocatingValidator {
   }
 
   isValid() {
-    return validateAdvocate(this.data)
+    return validateAdvocate(this.data) === true
   }
 }

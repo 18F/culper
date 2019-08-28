@@ -16,7 +16,7 @@ const schoolRangesList = (items) => {
       return
     }
 
-    if (new EducationItemValidator(i.Item).isValid()) {
+    if (new EducationItemValidator(i.Item).isValid() === true) {
       dates.push(i.Item.Dates)
     }
   })
@@ -30,7 +30,7 @@ const diplomasRangesList = (items) => {
   items.forEach((i) => {
     if (!i.Item) { return }
 
-    if (!new EducationItemValidator(i.Item).isValid()) {
+    if (new EducationItemValidator(i.Item).isValid() !== true) {
       return
     }
 

@@ -6,10 +6,10 @@ import validate, { CardAbuseItemValidator } from 'validators'
 
 import { Branch, Show, Accordion } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import Subsection from 'components/Section/shared/Subsection'
 
 import { FINANCIAL, FINANCIAL_CARD } from 'config/formSections/financial'
-import connectFinancialSection from '../FinancialConnector'
 
 import CardItem from './CardItem'
 
@@ -145,4 +145,4 @@ Card.defaultProps = {
   requireFinancialCardDisciplinaryDate: true,
 }
 
-export default connectFinancialSection(Card, sectionConfig)
+export default connectSubsection(Card, sectionConfig)

@@ -2,7 +2,7 @@ import { validateModel, hasYesOrNo } from 'models/validate'
 import alcoholVoluntaryCounseling from 'models/alcoholVoluntaryCounseling'
 
 export const validateVoluntaryCounseling = data => (
-  validateModel(data, alcoholVoluntaryCounseling) === true
+  validateModel(data, alcoholVoluntaryCounseling)
 )
 
 export const validateVoluntaryCounselings = (data) => {
@@ -17,7 +17,7 @@ export const validateVoluntaryCounselings = (data) => {
     },
   }
 
-  return validateModel(data, voluntaryCounselingsModel) === true
+  return validateModel(data, voluntaryCounselingsModel)
 }
 
 export default class VoluntaryCounselingsValidator {
@@ -26,7 +26,7 @@ export default class VoluntaryCounselingsValidator {
   }
 
   isValid() {
-    return validateVoluntaryCounselings(this.data)
+    return validateVoluntaryCounselings(this.data) === true
   }
 }
 
@@ -43,6 +43,6 @@ export class VoluntaryCounselingValidator {
   }
 
   isValid() {
-    return validateVoluntaryCounseling(this.data)
+    return validateVoluntaryCounseling(this.data) === true
   }
 }

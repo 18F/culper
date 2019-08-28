@@ -9,7 +9,7 @@ import {
   SUBSTANCE_USE_ALCOHOL_NEGATIVE,
 } from 'config/formSections/substanceUse'
 import Subsection from 'components/Section/shared/Subsection'
-import connectSubstanceUseSection from '../SubstanceUseConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import NegativeImpact from './NegativeImpact'
 
 const sectionConfig = {
@@ -128,4 +128,4 @@ NegativeImpacts.defaultProps = {
   scrollToBottom: '',
 }
 
-export default connectSubstanceUseSection(NegativeImpacts, sectionConfig)
+export default connectSubsection(NegativeImpacts, sectionConfig)

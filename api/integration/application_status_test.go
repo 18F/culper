@@ -32,13 +32,13 @@ func TestStatus(t *testing.T) {
 	for _, section := range sections {
 		body := readTestData(t, section.path)
 
-		resp := saveJSON(services, body, account.ID)
+		resp := saveJSON(services, body, account)
 		if resp.StatusCode != 200 {
 			t.Fatal(fmt.Sprintf("Failed to save %s", section.path), resp.StatusCode)
 		}
 	}
 
-	w, req := standardResponseAndRequest("GET", "/me/status", nil, account.ID)
+	w, req := standardResponseAndRequest("GET", "/me/status", nil, account)
 
 	statusHandler := http.StatusHandler{
 		Env:      services.env,
@@ -86,7 +86,7 @@ func TestStatus(t *testing.T) {
 	additionalSectionPath := "../testdata/financial/financial-bankruptcy.json"
 	additionalSection := readTestData(t, additionalSectionPath)
 
-	addSecResp := saveJSON(services, additionalSection, account.ID)
+	addSecResp := saveJSON(services, additionalSection, account)
 	if addSecResp.StatusCode != 200 {
 		t.Fatal(fmt.Sprintf("Failed to save %s", additionalSectionPath), addSecResp.StatusCode)
 	}
@@ -128,7 +128,7 @@ func TestLockedStatus(t *testing.T) {
 	services := cleanTestServices(t)
 	account := createLockedTestAccount(t, services.db)
 
-	w, req := standardResponseAndRequest("GET", "/me/status", nil, account.ID)
+	w, req := standardResponseAndRequest("GET", "/me/status", nil, account)
 
 	statusHandler := http.StatusHandler{
 		Env:      services.env,

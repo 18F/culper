@@ -11,7 +11,7 @@ import {
   SUBSTANCE_USE_ALCOHOL_ORDERED,
 } from 'config/formSections/substanceUse'
 import Subsection from 'components/Section/shared/Subsection'
-import connectSubstanceUseSection from '../SubstanceUseConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import OrderedCounseling from './OrderedCounseling'
 
 const sectionConfig = {
@@ -164,4 +164,4 @@ OrderedCounselings.defaultProps = {
   requireAlcoholOrderedCounselingParty: true,
 }
 
-export default connectSubstanceUseSection(OrderedCounselings, sectionConfig)
+export default connectSubsection(OrderedCounselings, sectionConfig)

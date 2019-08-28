@@ -14,7 +14,7 @@ import * as formConfig from 'config/forms'
 import { getNumberOfYearsString } from 'helpers/text'
 
 import Subsection from 'components/Section/shared/Subsection'
-import connectLegalSection from '../LegalConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import RevokedItem from './RevokedItem'
 
 const sectionConfig = {
@@ -148,4 +148,4 @@ Revoked.defaultProps = {
   scrollToBottom: '',
 }
 
-export default connectLegalSection(Revoked, sectionConfig)
+export default connectSubsection(Revoked, sectionConfig)

@@ -11,7 +11,7 @@ import {
   SUBSTANCE_USE_DRUGS_PUBLIC_SAFETY,
 } from 'config/formSections/substanceUse'
 import Subsection from 'components/Section/shared/Subsection'
-import connectSubstanceUseSection from '../SubstanceUseConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import DrugPublicSafetyUse from './DrugPublicSafetyUse'
 
 const sectionConfig = {
@@ -141,4 +141,4 @@ DrugPublicSafetyUses.defaultProps = {
   scrollToBottom: '',
 }
 
-export default connectSubstanceUseSection(DrugPublicSafetyUses, sectionConfig)
+export default connectSubsection(DrugPublicSafetyUses, sectionConfig)

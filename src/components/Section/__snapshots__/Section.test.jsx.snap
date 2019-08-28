@@ -33317,11 +33317,11 @@ exports[`The section component renders PSYCHOLOGICAL_REVIEW 1`] = `
             className="btn-spacer"
           />
           <a
-            aria-label="Go to next section Submit"
+            aria-label="Go to next section Additional Comments"
             className="btn-cell next"
-            href="/form/package/review"
+            href="/form/package/comments"
             onClick={[Function]}
-            title="Go to next section Submit"
+            title="Go to next section Additional Comments"
           >
             <div
               className="actions next"
@@ -33337,7 +33337,7 @@ exports[`The section component renders PSYCHOLOGICAL_REVIEW 1`] = `
                 <div
                   className="label"
                 >
-                  Submit
+                  Additional Comments
                 </div>
               </div>
               <div

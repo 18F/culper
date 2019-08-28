@@ -10,13 +10,21 @@
     "List": {
       "type": "collection",
       "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
         "items": [
           {
             "Item": {
-              "Position": {
-                "type": "text",
+              "Country": {
+                "type": "country",
                 "props": {
-                  "value": "my position"
+                  "value": [
+                    "Germany"
+                  ]
                 }
               },
               "Dates": {
@@ -28,8 +36,7 @@
                       "month": "7",
                       "day": "1",
                       "year": "2017",
-                      "estimated": false,
-                      "date": "2017-07-01T00:00:00Z"
+                      "estimated": false
                     }
                   },
                   "to": {
@@ -38,23 +45,10 @@
                       "month": "7",
                       "day": "25",
                       "year": "2017",
-                      "estimated": false,
-                      "date": "2017-07-25T00:00:00Z"
+                      "estimated": false
                     }
                   },
                   "present": false
-                }
-              },
-              "Country": {
-                "type": "country",
-                "props": {
-                  "value": ["Germany"]
-                }
-              },
-              "Reason": {
-                "type": "textarea",
-                "props": {
-                  "value": "my reason"
                 }
               },
               "Eligibility": {
@@ -62,16 +56,22 @@
                 "props": {
                   "value": "my eligibility"
                 }
+              },
+              "Position": {
+                "type": "text",
+                "props": {
+                  "value": "my position"
+                }
+              },
+              "Reason": {
+                "type": "textarea",
+                "props": {
+                  "value": "my reason"
+                }
               }
             }
           }
-        ],
-        "branch": {
-          "type": "branch",
-          "props": {
-            "value": "No"
-          }
-        }
+        ]
       }
     }
   }

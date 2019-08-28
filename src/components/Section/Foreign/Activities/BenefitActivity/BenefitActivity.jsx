@@ -6,7 +6,7 @@ import { Summary, DateSummary } from 'components/Summary'
 import { Accordion, Branch, Show } from 'components/Form'
 import { FOREIGN, FOREIGN_ACTIVITIES_BENEFITS } from 'config/formSections/foreign'
 import Subsection from 'components/Section/shared/Subsection'
-import connectForeignSection from '../../ForeignConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import Benefit from './Benefit'
 
 const sectionConfig = {
@@ -161,4 +161,4 @@ BenefitActivity.defaultProps = {
   scrollToBottom: '',
 }
 
-export default connectForeignSection(BenefitActivity, sectionConfig)
+export default connectSubsection(BenefitActivity, sectionConfig)

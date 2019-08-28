@@ -107,17 +107,17 @@ func TestSubmitter(t *testing.T) {
 
 	// Setup a test scenario
 	form := readTestData(t, "../testdata/complete-scenarios/test1.json")
-	saveFormJSON(t, services, form, account.ID)
+	saveFormJSON(t, services, form, account)
 	// in addition to the base form data, we need submission data to get the date signed
 	submissionJSON := readTestData(t, "../testdata/submission-test1.json")
-	resp := saveJSON(services, submissionJSON, account.ID)
+	resp := saveJSON(services, submissionJSON, account)
 	if resp.StatusCode != 200 {
 		t.Fatal("Didn't save the submission section")
 	}
 
 	// call the /form/submit handler. It's a dummy handler that just returns
 	// the XML on success.
-	w, req := standardResponseAndRequest("POST", "/me/form/submit", nil, account.ID)
+	w, req := standardResponseAndRequest("POST", "/me/form/submit", nil, account)
 	submitHandler.ServeHTTP(w, req)
 
 	submitResp := w.Result()
@@ -142,7 +142,7 @@ func TestSubmitter(t *testing.T) {
 		Store:    services.store,
 	}
 
-	w, indexReq := standardResponseAndRequest("GET", "/me/attachments/", nil, account.ID)
+	w, indexReq := standardResponseAndRequest("GET", "/me/attachments/", nil, account)
 	listAttachmentHandler.ServeHTTP(w, indexReq)
 
 	indexResp := w.Result()
@@ -174,7 +174,7 @@ func TestSubmitter(t *testing.T) {
 	for _, attachment := range retrievedAttachments {
 		if attachment.DocType == pdf.DocumentTypeInformationRelease {
 
-			w, req := standardResponseAndRequest("GET", "/attachements/id", nil, account.ID)
+			w, req := standardResponseAndRequest("GET", "/attachements/id", nil, account)
 			req = mux.SetURLVars(req, map[string]string{
 				"id": strconv.Itoa(attachment.ID),
 			})

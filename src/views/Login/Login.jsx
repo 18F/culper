@@ -1,131 +1,156 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import classnames from 'classnames'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
-import Cookies from 'js-cookie'
-import { i18n, env } from '../../config'
-import { api, getQueryValue, deleteCookie } from '../../services'
-import { login, handleLoginSuccess } from '../../actions/AuthActions'
-import { Consent } from '../../components/Form'
+
+import i18n from 'util/i18n'
+import { env } from 'config'
+import { api, getQueryValue } from 'services'
+import { login } from 'actions/AuthActions'
+import * as errorCodes from 'constants/errorCodes'
+import { Consent } from 'components/Form'
 
 export class Login extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      authenticated: this.props.authenticated,
-      username: this.props.username,
-      password: this.props.password,
-      showPassword: this.props.showPassword,
-      saml: {}
-    }
 
-    this.onUsernameChange = this.onUsernameChange.bind(this)
-    this.onPasswordChange = this.onPasswordChange.bind(this)
-    this.togglePassword = this.togglePassword.bind(this)
-    this.login = this.login.bind(this)
+    this.state = {
+      username: '',
+      password: '',
+      showPassword: false,
+      samlData: {},
+      samlError: null,
+    }
   }
 
   componentWillMount() {
     this.redirect()
+
     if (env.SamlEnabled()) {
-      api.saml().then(response => {
-        this.setState({ saml: response.data || {} })
+      api.saml().then((response) => {
+        const { data } = response
+        this.setState({ samlData: data })
+      }).catch((e) => {
+        console.warn('SAML initialization failed', e)
+        // TODO - what are potential errors here?
+        this.setState({
+          samlData: {},
+          samlError: i18n.t('login.error.saml'),
+        })
       })
     }
   }
 
-  redirect() {
-    // If user is authenticated, redirect to home page
-    if (this.props.authenticated) {
-      this.props.history.push('/loading')
-      return
-    }
+  onUsernameChange = (e) => {
+    this.setState({ username: e.target.value })
+  }
 
-    // transfer the token from the cookie to the window - SAML only
-    const token = Cookies.get('token')
-    if (token) {
-      deleteCookie('token')
-      api.setToken(token)
-      this.props.dispatch(handleLoginSuccess())
-      this.props.history.push('/loading')
-      return
-    }
+  onPasswordChange = (e) => {
+    this.setState({ password: e.target.value })
+  }
+
+  togglePassword = () => {
+    this.setState(prev => ({
+      showPassword: !prev.showPassword,
+    }))
+  }
+
+  login = (event) => {
+    const { dispatch } = this.props
+    const { username, password } = this.state
+
+    event.preventDefault()
+    dispatch(login(username, password))
+  }
+
+  redirect() {
+    const { history } = this.props
 
     const err = getQueryValue(window.location.search, 'error')
     if (err) {
       switch (err) {
         case 'token':
-          this.props.history.push('/token')
+          history.push('/token')
           return
         case 'access_denied':
-          this.props.history.push('/accessdenied')
+          history.push('/accessdenied')
           return
+        case 'saml_logout_failed':
+          history.push('/error')
+          break
+        default:
+          history.push('/error')
+          break
       }
     }
   }
 
-  onUsernameChange(e) {
-    if (env.BasicAuthenticationEnabled()) {
-      this.setState({ username: e.target.value })
-    }
-  }
-
-  onPasswordChange(e) {
-    if (env.BasicAuthenticationEnabled()) {
-      this.setState({ password: e.target.value })
-    }
-  }
-
-  togglePassword() {
-    if (env.BasicAuthenticationEnabled()) {
-      this.setState({ showPassword: !this.state.showPassword })
-    }
-  }
-
-  login(event) {
-    event.preventDefault()
-    if (env.BasicAuthenticationEnabled()) {
-      this.props.dispatch(login(this.state.username, this.state.password))
-    }
-  }
-
   errorMessage() {
-    if (!this.props.error) {
-      return ''
-    }
+    const { errors } = this.props
 
-    const msg =
-      this.props.error.indexOf('pg: ') === -1
-        ? this.props.error
-        : i18n.m('login.error.generic')
-
-    return (
-      <div className="field no-margin-bottom">
-        <div className="table">
-          <div className="usa-alert usa-alert-error" role="alert">
-            <div className="usa-alert-body">
-              <h5 className="usa-alert-heading">{i18n.t('login.error.title')}</h5>
-              <p>{msg}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
-  authSAML() {
-    if (!env.SamlEnabled()) {
+    if (!errors || errors.length < 0) {
       return null
     }
 
+    // Only show first error for now? UI TBD if multiple
+    const [error] = errors
+    const { message, code } = error
+
+    let errorMessage
+    switch (code) {
+      case errorCodes.USERNAME_MISSING:
+      case errorCodes.PASSWORD_MISSING:
+        errorMessage = i18n.t('login.error.generic')
+        break
+      case errorCodes.NETWORK_ERROR:
+        errorMessage = i18n.t('login.error.network')
+        break
+      case errorCodes.UNKNOWN_ERROR:
+        errorMessage = i18n.t('login.error.network', { code })
+        break
+      default:
+        errorMessage = message // default to message sent by API
+    }
+
+    return this.renderLoginError(errorMessage)
+  }
+
+  renderLoginError = error => (
+    <div className="field no-margin-bottom">
+      <div className="table">
+        <div className="usa-alert usa-alert-error" role="alert">
+          <div className="usa-alert-body">
+            <h5 className="usa-alert-heading">{i18n.t('login.error.title')}</h5>
+            <p>{error}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+
+  renderSAMLAuth() {
+    const { samlData, samlError } = this.state
+    const { URL = '', Base64XML } = samlData
+
     return (
       <div id="saml" className="auth saml">
-        <form method="post" action={this.state.saml.URL}>
-          <input
-            type="hidden"
-            name="SAMLRequest"
-            value={this.state.saml.Base64XML}
-          />
-          <button type="submit" className="usa-button-big">
+        <form method="post" action={URL}>
+          {Base64XML && (
+            <input
+              type="hidden"
+              name="SAMLRequest"
+              value={Base64XML}
+            />
+          )}
+
+          {samlError && this.renderLoginError(samlError)}
+
+          <button
+            type="submit"
+            className="usa-button-big"
+            disabled={!URL || !Base64XML}
+          >
             <span>{i18n.t('login.saml.button')}</span>
           </button>
         </form>
@@ -133,16 +158,22 @@ export class Login extends React.Component {
     )
   }
 
-  authBasic() {
-    if (!env.BasicAuthenticationEnabled()) {
-      return null
-    }
+  renderBasicAuth() {
+    const { errors } = this.props
+    const { username, password, showPassword } = this.state
+    const pwClass = classnames(
+      'password',
+      'help',
+      { 'usa-input-error': errors && errors.length }
+    )
 
-    const authValid = this.props.error === undefined || this.props.error === ''
-    let pwClass = 'password help'
-    if (!authValid) {
-      pwClass += ' usa-input-error'
-    }
+    const showPasswordButtonTitle = showPassword
+      ? i18n.t('login.basic.hide.title')
+      : i18n.t('login.basic.show.title')
+
+    const showPasswordButtonText = showPassword
+      ? i18n.t('login.basic.hide.text')
+      : i18n.t('login.basic.show.text')
 
     return (
       <div id="basic" className="auth basic">
@@ -153,7 +184,7 @@ export class Login extends React.Component {
               id="user"
               name="user"
               type="text"
-              value={this.state.username}
+              value={username}
               onChange={this.onUsernameChange}
             />
           </div>
@@ -164,26 +195,19 @@ export class Login extends React.Component {
             <input
               id="password"
               name="password"
-              type={this.state.showPassword ? 'text' : 'password'}
-              value={this.state.password}
+              type={showPassword ? 'text' : 'password'}
+              value={password}
               onChange={this.onPasswordChange}
             />
             <div className="peek">
-              <a
+              <button
+                type="button"
                 id="show-password"
                 onClick={this.togglePassword}
-                href="javascript:;;"
-                title={i18n.t(
-                  `login.basic.${
-                    this.state.showPassword ? 'hide' : 'show'
-                  }.title`
-                )}>
-                {i18n.t(
-                  `login.basic.${
-                    this.state.showPassword ? 'hide' : 'show'
-                  }.text`
-                )}
-              </a>
+                title={showPasswordButtonTitle}
+              >
+                {showPasswordButtonText}
+              </button>
             </div>
             {this.errorMessage()}
           </div>
@@ -193,8 +217,9 @@ export class Login extends React.Component {
             </button>
             <a
               id="forgot-password"
-              href="javascript:;;"
-              title={i18n.t('login.basic.forgot.title')}>
+              href="#TODO"
+              title={i18n.t('login.basic.forgot.title')}
+            >
               {i18n.t('login.basic.forgot.text')}
             </a>
           </div>
@@ -203,48 +228,37 @@ export class Login extends React.Component {
     )
   }
 
-  loginFormClass(auths) {
-    let count = 0
-    for (const auth of auths) {
-      if (auth) {
-        count++
-      }
-    }
+  renderLogin() {
+    const samlEnabled = env.SamlEnabled()
+    const basicEnabled = env.BasicAuthenticationEnabled()
 
-    switch (count) {
-      case 3:
-        return 'table three'
-      case 2:
-        return 'table two'
-      case 1:
-        return 'table one'
-      default:
-        return 'table zero'
-    }
-  }
-
-  loginForm() {
-    const saml = this.authSAML()
-    const basic = this.authBasic()
+    const loginClasses = classnames('table', {
+      two: samlEnabled && basicEnabled,
+      one: (samlEnabled && !basicEnabled) || (!samlEnabled && basicEnabled),
+      zero: !samlEnabled && !basicEnabled,
+    })
 
     return (
-      <div className={this.loginFormClass([saml, basic])}>
-        {saml}
-        {basic}
+      <div className={loginClasses}>
+        {samlEnabled && this.renderSAMLAuth()}
+        {basicEnabled && this.renderBasicAuth()}
       </div>
     )
   }
 
   render() {
+    const { dispatch, authenticated } = this.props
     const modalOpen = document.body.classList.contains('modal-open')
+
     return (
       <div className="login eapp-core" id="login">
-        <Consent dispatch={this.props.dispatch} />
+        <Consent dispatch={dispatch} />
         <div
           id="seal-header"
           className="seal-header text-center"
           aria-hidden={modalOpen}
-          aria-disabled={modalOpen}>
+          aria-disabled={modalOpen}
+        >
           <div className="content">
             <img
               src="/img/nbis-seal.png"
@@ -256,19 +270,27 @@ export class Login extends React.Component {
         <div
           className="content"
           aria-hidden={modalOpen}
-          aria-disabled={modalOpen}>
-          {!this.props.authenticated && this.loginForm()}
+          aria-disabled={modalOpen}
+        >
+          {!authenticated && this.renderLogin()}
         </div>
       </div>
     )
   }
 }
 
+Login.propTypes = {
+  authenticated: PropTypes.bool,
+  history: PropTypes.object,
+  dispatch: PropTypes.func,
+  errors: PropTypes.array,
+}
+
 Login.defaultProps = {
   authenticated: false,
-  username: '',
-  password: '',
-  showPassword: false
+  history: {},
+  dispatch: () => {},
+  errors: null,
 }
 
 /**
@@ -278,11 +300,11 @@ Login.defaultProps = {
  * method is executed which causes a re-render.
  */
 function mapStateToProps(state) {
-  const auth = state.authentication
+  const { authentication } = state
+
   return {
-    authenticated: auth.authenticated,
-    token: auth.token,
-    error: auth.error
+    authenticated: authentication.authenticated,
+    errors: authentication.error,
   }
 }
 

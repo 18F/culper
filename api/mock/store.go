@@ -1,6 +1,7 @@
 package mock
 
 import (
+	"database/sql"
 	"time"
 
 	"github.com/18F/e-QIP-prototype/api"
@@ -54,9 +55,14 @@ func (s *StorageService) DeleteAttachment(accountID int, attachmentID int) error
 	return nil
 }
 
-// CreateOrUpdateSession creates a new session record in the db
-func (s *StorageService) CreateOrUpdateSession(accountID int, sessionKey string, expirationDate time.Time) error {
+// CreateSession creates a new session record in the db
+func (s *StorageService) CreateSession(accountID int, sessionKey string, sessionIndex sql.NullString, expirationduration time.Duration) error {
 	return nil
+}
+
+// FetchPossiblyExpiredSession retrieves a session
+func (s *StorageService) FetchPossiblyExpiredSession(accountID int) (api.Session, error) {
+	return api.Session{}, nil
 }
 
 // DeleteSession removes a session record from the db
@@ -64,7 +70,7 @@ func (s *StorageService) DeleteSession(sessionKey string) error {
 	return nil
 }
 
-// FetchSessionAccount fetches an account and session data from the db
-func (s *StorageService) FetchSessionAccount(sessionKey string) (api.Account, error) {
-	return api.Account{}, nil
+// ExtendAndFetchSessionAccount fetches an account and session data from the db
+func (s *StorageService) ExtendAndFetchSessionAccount(sessionKey string, sessionDuration time.Duration) (api.Account, api.Session, error) {
+	return api.Account{}, api.Session{}, nil
 }

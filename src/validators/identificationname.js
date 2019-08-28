@@ -9,7 +9,7 @@ export const validateIdentificationName = (data) => {
     },
   }
 
-  return validateModel(data, applicantNameModel) === true
+  return validateModel(data, applicantNameModel)
 }
 
 /** LEGACY */
@@ -19,6 +19,6 @@ export default class IdentificationNameValidator {
   }
 
   isValid() {
-    return validateIdentificationName(this.data)
+    return validateIdentificationName(this.data) === true
   }
 }

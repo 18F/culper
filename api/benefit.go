@@ -19,7 +19,6 @@ type Benefit struct {
 	PayloadObligated                     Payload `json:"Obligated" sql:"-"`
 	PayloadObligatedExplanation          Payload `json:"ObligatedExplanation" sql:"-"`
 
-	// Validator specific fields
 	Begin                         *DateControl `json:"-"`
 	End                           *DateControl `json:"-"`
 	Frequency                     *Radio       `json:"-"`
@@ -32,22 +31,6 @@ type Benefit struct {
 	Reason                        *Textarea    `json:"-"`
 	Obligated                     *Branch      `json:"-"`
 	ObligatedExplanation          *Textarea    `json:"-"`
-
-	// Persister specific fields
-	ID                              int `json:"-"`
-	AccountID                       int `json:"-"`
-	BeginID                         int `json:"-" pg:",fk:Begin"`
-	EndID                           int `json:"-" pg:",fk:End"`
-	FrequencyID                     int `json:"-" pg:",fk:Frequency"`
-	OtherFrequencyID                int `json:"-" pg:",fk:OtherFrequency"`
-	OtherFrequencyTypeExplanationID int `json:"-" pg:",fk:OtherFrequencyTypeExplanation"`
-	ReceivedID                      int `json:"-" pg:",fk:Received"`
-	CountryID                       int `json:"-" pg:",fk:Country"`
-	ValueID                         int `json:"-" pg:",fk:Value"`
-	ValueEstimatedID                int `json:"-" pg:",fk:ValueEstimated"`
-	ReasonID                        int `json:"-" pg:",fk:Reason"`
-	ObligatedID                     int `json:"-" pg:",fk:Obligated"`
-	ObligatedExplanationID          int `json:"-" pg:",fk:ObligatedExplanation"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -183,31 +166,4 @@ func (entity *Benefit) Marshal() Payload {
 		entity.PayloadObligatedExplanation = entity.ObligatedExplanation.Marshal()
 	}
 	return MarshalPayloadEntity("benefit", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *Benefit) Valid() (bool, error) {
-	if ok, err := entity.Country.Valid(); !ok {
-		return false, err
-	}
-
-	if ok, err := entity.Value.Valid(); !ok {
-		return false, err
-	}
-
-	if ok, err := entity.Reason.Valid(); !ok {
-		return false, err
-	}
-
-	if ok, err := entity.Obligated.Valid(); !ok {
-		return false, err
-	}
-
-	if entity.Obligated.Value == "Yes" {
-		if ok, err := entity.ObligatedExplanation.Valid(); !ok {
-			return false, err
-		}
-	}
-
-	return true, nil
 }

@@ -7,9 +7,9 @@ import schema from 'schema'
 import validate from 'validators'
 
 import Subsection from 'components/Section/shared/Subsection'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import { BranchCollection } from 'components/Form'
 import ForeignService from 'components/Section/Military/Foreign/ForeignService'
-import connectMilitarySection from 'components/Section/Military/MilitaryConnector'
 
 const sectionConfig = {
   key: MILITARY_FOREIGN.key,
@@ -91,4 +91,4 @@ Foreign.defaultProps = {
   requireForeignMilitaryMaintainsContact: true,
 }
 
-export default connectMilitarySection(Foreign, sectionConfig)
+export default connectSubsection(Foreign, sectionConfig)

@@ -6,7 +6,7 @@ import { Summary, AddressSummary, DateSummary } from 'components/Summary'
 import { Accordion, Branch, Show } from 'components/Form'
 import { FOREIGN, FOREIGN_ACTIVITIES_REAL_ESTATE } from 'config/formSections/foreign'
 import Subsection from 'components/Section/shared/Subsection'
-import connectForeignSection from '../../ForeignConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import RealEstateInterest from './RealEstateInterest'
 
 const sectionConfig = {
@@ -139,4 +139,4 @@ RealEstateActivity.defaultProps = {
   scrollToBottom: '',
 }
 
-export default connectForeignSection(RealEstateActivity, sectionConfig)
+export default connectSubsection(RealEstateActivity, sectionConfig)

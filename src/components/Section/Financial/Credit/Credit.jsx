@@ -6,10 +6,10 @@ import validate, { CreditItemValidator } from 'validators'
 
 import { Branch, Show, Accordion } from 'components/Form'
 import { Summary } from 'components/Summary'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import Subsection from 'components/Section/shared/Subsection'
 
 import { FINANCIAL, FINANCIAL_CREDIT } from 'config/formSections/financial'
-import connectFinancialSection from '../FinancialConnector'
 
 import CreditItem from './CreditItem'
 
@@ -141,4 +141,4 @@ Credit.defaultProps = {
   scrollToBottom: '.bottom-btns',
 }
 
-export default connectFinancialSection(Credit, sectionConfig)
+export default connectSubsection(Credit, sectionConfig)

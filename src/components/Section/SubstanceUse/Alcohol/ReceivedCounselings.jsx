@@ -9,7 +9,7 @@ import {
   SUBSTANCE_USE_ALCOHOL_ADDITIONAL,
 } from 'config/formSections/substanceUse'
 import Subsection from 'components/Section/shared/Subsection'
-import connectSubstanceUseSection from '../SubstanceUseConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import ReceivedCounseling from './ReceivedCounseling'
 
 const sectionConfig = {
@@ -134,4 +134,4 @@ ReceivedCounselings.defaultProps = {
   scrollToBottom: '',
 }
 
-export default connectSubstanceUseSection(ReceivedCounselings, sectionConfig)
+export default connectSubsection(ReceivedCounselings, sectionConfig)

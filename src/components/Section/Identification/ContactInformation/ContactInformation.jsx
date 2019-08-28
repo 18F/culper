@@ -17,8 +17,8 @@ import {
 import { Summary, TelephoneSummary } from 'components/Summary'
 import { IDENTIFICATION, IDENTIFICATION_CONTACTS } from 'config/formSections/identification'
 
-import connectIdentificationSection from '../IdentificationConnector'
-import Subsection from '../../shared/Subsection'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
+import Subsection from 'components/Section/shared/Subsection'
 
 
 const sectionConfig = {
@@ -235,10 +235,10 @@ ContactInformation.defaultProps = {
   onError: (value, arr) => arr,
   dispatch: () => {},
   validator: data => (
-    new IdentificationContactInformationValidator(data).isValid()
+    new IdentificationContactInformationValidator(data).isValid() === true
   ),
   defaultState: true,
   isReview: false,
 }
 
-export default connectIdentificationSection(ContactInformation, sectionConfig)
+export default connectSubsection(ContactInformation, sectionConfig)

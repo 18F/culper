@@ -32,7 +32,7 @@ export const validateFinancialDelinquent = (data, formType = formTypes.SF86) => 
   return validateModel(data, delinquentItemsModel, {
     requiredFinancialDelinquentName,
     requiredFinancialDelinquentInfraction,
-  }) === true
+  })
 }
 
 /** Object Validators (as classes) - legacy */
@@ -63,7 +63,7 @@ export default class DelinquentValidator {
   }
 
   isValid() {
-    return validateFinancialDelinquent(this.data, this.formType)
+    return validateFinancialDelinquent(this.data, this.formType) === true
   }
 }
 
@@ -75,7 +75,7 @@ const validateDelinquentItem = (data, formType = formTypes.SF86) => {
     data,
     financialDelinquentPayments,
     { requiredFinancialDelinquentName, requiredFinancialDelinquentInfraction },
-  ) === true
+  )
 }
 
 export class DelinquentItemValidator {
@@ -179,6 +179,6 @@ export class DelinquentItemValidator {
   }
 
   isValid() {
-    return validateDelinquentItem(this.data, this.formType)
+    return validateDelinquentItem(this.data, this.formType) === true
   }
 }

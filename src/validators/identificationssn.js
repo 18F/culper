@@ -1,5 +1,6 @@
 import { validateModel } from 'models/validate'
 
+// TODO
 export const validateIdentificationSSN = (data) => {
   const { verified, ssn } = data
 
@@ -16,7 +17,7 @@ export const validateIdentificationSSN = (data) => {
     },
   }
 
-  return validateModel({ ssn }, ssnModel) === true
+  return validateModel({ ssn }, ssnModel)
 }
 
 /** LEGACY */
@@ -26,6 +27,6 @@ export default class IdentificationSSNValidator {
   }
 
   isValid() {
-    return validateIdentificationSSN(this.data)
+    return validateIdentificationSSN(this.data) === true
   }
 }

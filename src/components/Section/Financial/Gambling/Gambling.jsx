@@ -7,10 +7,10 @@ import * as formConfig from 'config/forms'
 import { getNumberOfYearsString } from 'helpers/text'
 import { Branch, Show, Accordion } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import Subsection from 'components/Section/shared/Subsection'
 
 import { FINANCIAL, FINANCIAL_GAMBLING } from 'config/formSections/financial'
-import connectFinancialSection from '../FinancialConnector'
 
 import GamblingItem from './GamblingItem'
 
@@ -161,4 +161,4 @@ Gambling.defaultProps = {
   scrollToBottom: '.bottom-btns',
 }
 
-export default connectFinancialSection(Gambling, sectionConfig)
+export default connectSubsection(Gambling, sectionConfig)

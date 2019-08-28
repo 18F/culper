@@ -9,7 +9,7 @@ import {
   LEGAL_TECHNOLOGY_UNAUTHORIZED,
 } from 'config/formSections/legal'
 import Subsection from 'components/Section/shared/Subsection'
-import connectLegalSection from '../LegalConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import UnauthorizedItem from './UnauthorizedItem'
 
 const sectionConfig = {
@@ -136,4 +136,4 @@ Unauthorized.defaultProps = {
   scrollToBottom: '',
 }
 
-export default connectLegalSection(Unauthorized, sectionConfig)
+export default connectSubsection(Unauthorized, sectionConfig)

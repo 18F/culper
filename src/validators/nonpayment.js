@@ -19,7 +19,7 @@ const nonpaymentModel = {
 }
 
 export const validateFinancialNonpayment = data => (
-  validateModel(data, nonpaymentModel) === true
+  validateModel(data, nonpaymentModel)
 )
 
 export default class NonpaymentValidator {
@@ -36,12 +36,12 @@ export default class NonpaymentValidator {
   }
 
   isValid() {
-    return validateFinancialNonpayment(this.data)
+    return validateFinancialNonpayment(this.data) === true
   }
 }
 
 const validateNonpaymentItem = data => (
-  validateModel(data, financialNonpayment) === true
+  validateModel(data, financialNonpayment)
 )
 
 export class NonpaymentItemValidator {
@@ -90,6 +90,6 @@ export class NonpaymentItemValidator {
   }
 
   isValid() {
-    return validateNonpaymentItem(this.data)
+    return validateNonpaymentItem(this.data) === true
   }
 }

@@ -1,6 +1,7 @@
 package api
 
 import (
+	"database/sql"
 	"fmt"
 
 	"github.com/pkg/errors"
@@ -27,6 +28,10 @@ var knownFormVersions = map[string][]string{
 	"SF85": []string{
 		"2017-12-draft7",
 	},
+
+	"SF85P": []string{
+		"2017-10-draft3",
+	},
 }
 
 const (
@@ -46,7 +51,7 @@ type Account struct {
 	Lastname    string
 	Token       string
 	TokenUsed   bool
-	Email       string
+	Email       sql.NullString
 	Status      string
 	FormType    string `db:"form_type"`
 	FormVersion string `db:"form_version"`

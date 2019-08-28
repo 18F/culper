@@ -9,7 +9,7 @@ import {
   LEGAL_POLICE_ADDITIONAL_OFFENSES,
 } from 'config/formSections/legal'
 import Subsection from 'components/Section/shared/Subsection'
-import connectLegalSection from '../LegalConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import OtherOffense from './OtherOffense'
 
 const sectionConfig = {
@@ -169,4 +169,4 @@ OtherOffenses.defaultProps = {
   requireLegalPoliceDrugs: true,
 }
 
-export default connectLegalSection(OtherOffenses, sectionConfig)
+export default connectSubsection(OtherOffenses, sectionConfig)

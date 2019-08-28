@@ -2,12 +2,12 @@ import { validateModel, checkValue } from 'models/validate'
 import usPassport from 'models/usPassport'
 
 export const validateUsPassport = data => (
-  validateModel(data, usPassport) === true
+  validateModel(data, usPassport)
 )
 
 export const hasValidUSPassport = (data = {}) => {
   const { HasPassports = {} } = data
-  return checkValue(HasPassports, 'Yes') && validateUsPassport(data)
+  return checkValue(HasPassports, 'Yes') && validateUsPassport(data) === true
 }
 
 /**
@@ -50,6 +50,6 @@ export default class PassportValidator {
   }
 
   isValid() {
-    return validateUsPassport(this.data)
+    return validateUsPassport(this.data) === true
   }
 }

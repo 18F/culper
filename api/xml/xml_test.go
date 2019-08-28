@@ -117,6 +117,7 @@ func TestPackage(t *testing.T) {
 		{Schema: "legal-associations-engaged-in-terrorism.xml", Data: r("legal/legal-associations-engaged-in-terrorism.json")},
 		{Schema: "legal-associations-terrorism-association.xml", Data: r("legal/legal-associations-terrorism-association.json")},
 		{Schema: "legal-associations-membership-overthrow.xml", Data: r("legal/legal-associations-membership-overthrow.json")},
+		{Schema: "additional-comments.xml", Data: r("package/comments.json")},
 		{Schema: "psychological.xml", Data: application},
 		{Schema: "psychological-competence.xml", Data: r("psychological/psychological-competence.json")},
 		{Schema: "psychological-conditions.xml", Data: r("psychological/psychological-conditions.json")},
@@ -280,6 +281,7 @@ func TestScenario2(t *testing.T) {
 // * #12.4 People Who Knew You - When a education item is
 //   within 3 years, that item needs a reference/verifier.
 //   However, that person does not need a name nor an email.
+// * At the end of the form in Review, this test case has additional comments.
 func TestScenario3(t *testing.T) {
 	executeScenario(t, "test3")
 }
@@ -471,6 +473,7 @@ func applicationData(t *testing.T) map[string]interface{} {
 		"legal/legal-associations-engaged-in-terrorism.json",
 		"legal/legal-associations-terrorism-association.json",
 		"legal/legal-associations-membership-overthrow.json",
+		"package/comments.json",
 		"psychological/psychological-competence.json",
 		"psychological/psychological-conditions.json",
 		"psychological/psychological-consultations.json",

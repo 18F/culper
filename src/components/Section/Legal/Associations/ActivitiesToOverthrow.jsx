@@ -9,7 +9,7 @@ import {
   LEGAL_ASSOCIATIONS_ACTIVITIES_TO_OVERTHROW,
 } from 'config/formSections/legal'
 import Subsection from 'components/Section/shared/Subsection'
-import connectLegalSection from '../LegalConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import ActivitiesToOverthrowItem from './ActivitiesToOverthrowItem'
 
 const sectionConfig = {
@@ -132,4 +132,4 @@ ActivitiesToOverthrow.defaultProps = {
   scrollToBottom: '',
 }
 
-export default connectLegalSection(ActivitiesToOverthrow, sectionConfig)
+export default connectSubsection(ActivitiesToOverthrow, sectionConfig)

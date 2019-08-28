@@ -9,8 +9,8 @@ import { validSSN } from 'validators/helpers'
 import { Field, SSN, Show } from 'components/Form'
 import { IDENTIFICATION, IDENTIFICATION_SSN } from 'config/formSections/identification'
 
-import connectIdentificationSection from '../IdentificationConnector'
-import Subsection from '../../shared/Subsection'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
+import Subsection from 'components/Section/shared/Subsection'
 
 
 const sectionConfig = {
@@ -207,4 +207,4 @@ ApplicantSSN.errors = [
   },
 ]
 
-export default connectIdentificationSection(ApplicantSSN, sectionConfig)
+export default connectSubsection(ApplicantSSN, sectionConfig)

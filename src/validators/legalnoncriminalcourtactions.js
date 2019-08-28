@@ -2,7 +2,7 @@ import { validateModel, hasYesOrNo } from 'models/validate'
 import nonCriminalCourtAction from 'models/nonCriminalCourtAction'
 
 export const validateNonCriminalCourtAction = data => (
-  validateModel(data, nonCriminalCourtAction) === true
+  validateModel(data, nonCriminalCourtAction)
 )
 
 export const validateLegalNonCriminalCourtActions = (data) => {
@@ -19,7 +19,7 @@ export const validateLegalNonCriminalCourtActions = (data) => {
     },
   }
 
-  return validateModel(data, legalNonCriminalCourtActionsModel) === true
+  return validateModel(data, legalNonCriminalCourtActionsModel)
 }
 
 export default class NonCriminalCourtActionsValidator {
@@ -28,7 +28,7 @@ export default class NonCriminalCourtActionsValidator {
   }
 
   isValid() {
-    return validateLegalNonCriminalCourtActions(this.data)
+    return validateLegalNonCriminalCourtActions(this.data) === true
   }
 }
 
@@ -38,6 +38,6 @@ export class NonCriminalCourtActionValidator {
   }
 
   isValid() {
-    return validateNonCriminalCourtAction(this.data)
+    return validateNonCriminalCourtAction(this.data) === true
   }
 }

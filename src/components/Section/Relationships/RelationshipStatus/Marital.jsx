@@ -8,12 +8,12 @@ import validate, { DivorceValidator } from 'validators'
 import { RELATIONSHIPS, RELATIONSHIPS_STATUS_MARITAL } from 'config/formSections/relationships'
 
 import Subsection from 'components/Section/shared/Subsection'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
+
 import { Summary, NameSummary, DateSummary } from 'components/Summary'
 import {
   Field, Show, RadioGroup, Radio, Accordion,
 } from 'components/Form'
-
-import connectRelationshipsSection from '../RelationshipsConnector'
 
 import CivilUnion from './CivilUnion'
 import Divorce from './Divorce'
@@ -235,4 +235,4 @@ Marital.defaultProps = {
   scrollIntoView: false,
 }
 
-export default connectRelationshipsSection(Marital, sectionConfig)
+export default connectSubsection(Marital, sectionConfig)

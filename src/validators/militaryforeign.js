@@ -5,7 +5,7 @@ import * as formTypes from 'constants/formTypes'
 import { requireForeignMilitaryMaintainsContact } from 'helpers/branches'
 
 const validateForeignContact = data => (
-  validateModel(data, foreignMilitaryContact) === true
+  validateModel(data, foreignMilitaryContact)
 )
 export class ForeignContactValidator {
   constructor(data) {
@@ -13,7 +13,7 @@ export class ForeignContactValidator {
   }
 
   isValid() {
-    return validateForeignContact(this.data)
+    return validateForeignContact(this.data) === true
   }
 }
 
@@ -44,7 +44,7 @@ const militaryForeignModel = {
 export const validateMilitaryForeign = (data, formType = formTypes.SF86) => (
   validateModel(data, militaryForeignModel, {
     requireForeignMilitaryMaintainsContact: requireForeignMilitaryMaintainsContact(formType),
-  }) === true
+  })
 )
 
 export default class MilitaryForeignValidator {
@@ -56,6 +56,6 @@ export default class MilitaryForeignValidator {
   }
 
   isValid() {
-    return validateMilitaryForeign(this.data, this.formType)
+    return validateMilitaryForeign(this.data, this.formType) === true
   }
 }

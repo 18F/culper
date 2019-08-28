@@ -1,9 +1,8 @@
 package postgresql
 
 import (
+	"database/sql"
 	"testing"
-
-	"github.com/google/uuid"
 
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/env"
@@ -30,11 +29,11 @@ func TestAccountPersistence(t *testing.T) {
 
 	account := api.Account{
 		Username:    "buzz1@example.com",
-		Email:       "buzz1@example.com",
+		Email:       sql.NullString{"buzz1@example.com", true},
 		FormType:    "SF86",
 		FormVersion: "2017-07",
 		Status:      api.StatusIncomplete,
-		ExternalID:  uuid.New().String(),
+		ExternalID:  "ccc21c9d-20c4-47fa-83ed-2f1bd26fac7d",
 	}
 
 	_, err := account.Get(service, -1)
@@ -50,7 +49,7 @@ func TestAccountPersistence(t *testing.T) {
 	}
 
 	// modify and save again to trigger the Update behavior
-	account.Email = "buzz2@example.com"
+	account.Email = sql.NullString{"buzz2@example.com", true}
 
 	_, saveAgainErr := account.Save(service, -1)
 	if saveAgainErr != nil {

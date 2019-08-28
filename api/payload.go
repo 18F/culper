@@ -2,6 +2,7 @@ package api
 
 import (
 	"encoding/json"
+
 	"github.com/pkg/errors"
 )
 
@@ -88,17 +89,3 @@ func (payload Payload) UnmarshalEntity(raw []byte) (Entity, error) {
 	// Extract the entity interface of the payload and validate it
 	return payload.Entity()
 }
-
-// Valid return whether the entity validates.
-func (payload Payload) Valid() (bool, error) {
-	entity, err := payload.Entity()
-	if err != nil {
-		return false, err
-	}
-
-	return entity.Valid()
-}
-
-// PayloadProperties is a structure of JSON where it is an object
-// of named properties which each value being that of a Payload.
-// type PayloadProperties map[string]Payload

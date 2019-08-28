@@ -2,7 +2,7 @@ import { validateModel, hasYesOrNo } from 'models/validate'
 import activitiesOverthrow from 'models/activitiesOverthrow'
 
 export const validateActivities = data => (
-  validateModel(data, activitiesOverthrow) === true
+  validateModel(data, activitiesOverthrow)
 )
 
 export const validateLegalAssociationActivities = (data) => {
@@ -20,7 +20,7 @@ export const validateLegalAssociationActivities = (data) => {
     },
   }
 
-  return validateModel(data, legalAssociationActivitiesModel) === true
+  return validateModel(data, legalAssociationActivitiesModel)
 }
 
 export default class LegalAssociationActivitiesValidator {
@@ -29,7 +29,7 @@ export default class LegalAssociationActivitiesValidator {
   }
 
   isValid() {
-    return validateLegalAssociationActivities(this.data)
+    return validateLegalAssociationActivities(this.data) === true
   }
 }
 
@@ -51,6 +51,6 @@ export class ActivitiesValidator {
   }
 
   isValid() {
-    return validateActivities(this.data)
+    return validateActivities(this.data) === true
   }
 }

@@ -471,27 +471,33 @@ export const SF86 = [
 export const reviewSections = {
   ...formSections.REVIEW_AND_SUBMIT,
   subsections: [
+    formSections.REVIEW_AND_SUBMIT_COMMENTS,
     formSections.REVIEW_AND_SUBMIT_REVIEW,
     formSections.REVIEW_AND_SUBMIT_SUBMIT,
     formSections.REVIEW_AND_SUBMIT_PRINT,
   ],
 }
 
-export const reduceSubsections = (sections, parentPath, breadcrumbs = []) => (
+export const reduceSubsections = (sections, parentPath, breadcrumbs = [], parentStore) => (
   sections.reduce((accumulator, section) => {
     if (section.subsections && section.subsections.length) {
       const builtPath = parentPath
         ? `${parentPath}/${section.path}`
         : section.path
 
+      const store = parentStore || section.store
+
       /* eslint no-param-reassign: 0 */
       accumulator = accumulator
-        .concat(reduceSubsections(section.subsections, builtPath, [...breadcrumbs, section.label]))
+        .concat(
+          reduceSubsections(section.subsections, builtPath, [...breadcrumbs, section.label], store)
+        )
     } else {
       accumulator.push({
         ...section,
         fullPath: `/form/${parentPath}/${section.path}`,
         breadcrumbs: [...breadcrumbs, section.label],
+        parentStore,
       })
     }
 

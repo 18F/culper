@@ -9,7 +9,7 @@ import {
   LEGAL_INVESTIGATIONS_HISTORY,
 } from 'config/formSections/legal'
 import Subsection from 'components/Section/shared/Subsection'
-import connectLegalSection from '../LegalConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import HistoryItem from './HistoryItem'
 
 const sectionConfig = {
@@ -58,7 +58,7 @@ export class History extends Subsection {
   summary = (item, index) => {
     const o = (item && item.Item) || {}
     const dates = DateSummary(o.Granted)
-    const agency = (o.Agency || {}).Agency || ''
+    const agency = (o.Agency || {}).value || ''
 
     return Summary({
       type: i18n.t('legal.investigations.history.collection.item'),
@@ -135,4 +135,4 @@ History.defaultProps = {
   scrollToBottom: '',
 }
 
-export default connectLegalSection(History, sectionConfig)
+export default connectSubsection(History, sectionConfig)

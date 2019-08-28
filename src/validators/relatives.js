@@ -21,10 +21,10 @@ export const validateRelative = (data, formType) => (
       requireRelationshipRelativesForeignBornDoc: requireRelationshipRelativesForeignBornDoc(formType),
       requireRelationshipRelativesUSResidenceDoc: requireRelationshipRelativesUSResidenceDoc(formType),
     },
-  ) === true
+  )
 )
 
-export const validateAlias = data => validateModel(data, alias) === true
+export const validateAlias = data => validateModel(data, alias)
 
 export const getMaritalStatus = () => {
   const state = store.getState()
@@ -65,7 +65,7 @@ export const validateRelatives = (data, formType) => {
       requireRelationshipRelativesForeignBornDoc: requireRelationshipRelativesForeignBornDoc(formType),
       requireRelationshipRelativesUSResidenceDoc: requireRelationshipRelativesUSResidenceDoc(formType),
     },
-  ) === true
+  )
 }
 
 export default class RelativesValidator {
@@ -120,7 +120,7 @@ export default class RelativesValidator {
   }
 
   isValid() {
-    return validateRelatives(this.data, this.formType)
+    return validateRelatives(this.data, this.formType) === true
   }
 }
 
@@ -254,7 +254,7 @@ export class RelativeValidator {
   }
 
   isValid() {
-    return validateRelative(this.data, this.formType, this.options)
+    return validateRelative(this.data, this.formType, this.options) === true
   }
 }
 
@@ -264,6 +264,6 @@ export class AliasValidator {
   }
 
   isValid() {
-    return validateAlias(this.data)
+    return validateAlias(this.data) === true
   }
 }

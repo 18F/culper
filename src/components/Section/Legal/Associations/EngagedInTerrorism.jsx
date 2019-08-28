@@ -9,7 +9,7 @@ import {
   LEGAL_ASSOCIATIONS_ENGAGED_IN_TERRORISM,
 } from 'config/formSections/legal'
 import Subsection from 'components/Section/shared/Subsection'
-import connectLegalSection from '../LegalConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import EngagedInTerrorismItem from './EngagedInTerrorismItem'
 
 const sectionConfig = {
@@ -132,4 +132,4 @@ EngagedInTerrorism.defaultProps = {
   scrollToBottom: '',
 }
 
-export default connectLegalSection(EngagedInTerrorism, sectionConfig)
+export default connectSubsection(EngagedInTerrorism, sectionConfig)

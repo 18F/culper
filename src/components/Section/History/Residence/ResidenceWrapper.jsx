@@ -9,9 +9,10 @@ import { sectionHasGaps } from 'components/Section/History/helpers'
 import { HISTORY, HISTORY_RESIDENCE } from 'config/formSections/history'
 import * as formConfig from 'config/forms'
 
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
+
 import ConnectedResidence from './Residence'
 import ResidenceSummaryProgress from './ResidenceSummaryProgress'
-import connectHistorySection from '../HistoryConnector'
 
 const sectionConfig = {
   section: HISTORY.name,
@@ -43,7 +44,7 @@ const ResidenceWrapper = (props) => {
       <Field
         title={i18n.t('history.residence.info', { years })}
         titleSize="h3"
-        optional
+        optional={true}
         className="no-margin-bottom"
       >
         {i18n.m('history.residence.info2')}
@@ -62,7 +63,7 @@ const ResidenceWrapper = (props) => {
       />
 
       <ConnectedResidence
-        realtime
+        realtime={true}
         scrollToTop="scrollToHistory"
         totalYears={years}
       />
@@ -74,7 +75,7 @@ const ResidenceWrapper = (props) => {
           <Field
             title={i18n.t('history.residence.heading.exiting')}
             titleSize="h4"
-            optional
+            optional={true}
             className="no-margin-bottom"
           >
             {i18n.m('history.residence.para.exiting', { years, formName })}
@@ -97,4 +98,4 @@ ResidenceWrapper.defaultProps = {
   Birthdate: undefined,
 }
 
-export default connectHistorySection(ResidenceWrapper, sectionConfig)
+export default connectSubsection(ResidenceWrapper, sectionConfig)

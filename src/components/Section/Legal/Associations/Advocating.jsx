@@ -9,7 +9,7 @@ import {
   LEGAL_ASSOCIATIONS_ADVOCATING,
 } from 'config/formSections/legal'
 import Subsection from 'components/Section/shared/Subsection'
-import connectLegalSection from '../LegalConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import AdvocatingItem from './AdvocatingItem'
 
 const sectionConfig = {
@@ -132,4 +132,4 @@ Advocating.defaultProps = {
   scrollToBottom: '',
 }
 
-export default connectLegalSection(Advocating, sectionConfig)
+export default connectSubsection(Advocating, sectionConfig)
