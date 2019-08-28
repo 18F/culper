@@ -24,8 +24,7 @@ func TestRefreshHandler(t *testing.T) {
 
 	reqBody := strings.NewReader(validJSON)
 
-	// Create a request to pass to our handler. We don't have any query parameters for now, so we'll
-	// pass 'nil' as the third parameter.
+	// Create a request to pass to our handler.
 	req := httptest.NewRequest("POST", "/me/refresh", reqBody)
 	account := api.Account{
 		ID: 1,

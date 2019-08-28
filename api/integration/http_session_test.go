@@ -76,6 +76,30 @@ func TestFullSessionHTTPFlow_BadAuthentication(t *testing.T) {
 	}
 }
 
+func TestFormIndent(t *testing.T) {
+	os.Setenv(api.IndentJSON, "1")
+	services := cleanTestServices(t)
+	account := createTestAccount(t, services.db)
+
+	w, r := standardResponseAndRequest("GET", "/me/form", nil, account)
+
+	formHandler := http.FormHandler{
+		Env:      services.env,
+		Log:      services.log,
+		Database: services.db,
+		Store:    services.store,
+	}
+
+	formHandler.ServeHTTP(w, r)
+
+	resp := w.Result()
+
+	if resp.StatusCode != 200 {
+		t.Log(fmt.Sprintf("Status should have been 200: %d", resp.StatusCode))
+		t.Fail()
+	}
+}
+
 func TestFullSessionHTTPFlow_SAMLAuthenticated(t *testing.T) {
 	os.Setenv("API_BASE_URL", "http://localhost:3000")
 	os.Setenv("SAML_PUBLIC_CERT", "../saml/testdata/test_cert.pem")

@@ -103,8 +103,7 @@ func TestSaveHandler(t *testing.T) {
 
 	reqBody := strings.NewReader(validJSON)
 
-	// Create a request to pass to our handler. We don't have any query parameters for now, so we'll
-	// pass 'nil' as the third parameter.
+	// Create a request to pass to our handler.
 	req := httptest.NewRequest("POST", "/me/save", reqBody)
 	account := api.Account{
 		ID: 1,
@@ -156,8 +155,7 @@ func TestSaveHandlerBadEntity(t *testing.T) {
     }`
 	reqBody := strings.NewReader(requestJSON)
 
-	// Create a request to pass to our handler. We don't have any query parameters for now, so we'll
-	// pass 'nil' as the third parameter.
+	// Create a request to pass to our handler.
 	req := httptest.NewRequest("POST", "/me/save", reqBody)
 	account := api.Account{
 		ID: 1,
@@ -202,8 +200,7 @@ func TestSaveHandlerLockedAccount(t *testing.T) {
 
 	reqBody := strings.NewReader(validJSON)
 
-	// Create a request to pass to our handler. We don't have any query parameters for now, so we'll
-	// pass 'nil' as the third parameter.
+	// Create a request to pass to our handler.
 	req := httptest.NewRequest("POST", "/me/save", reqBody)
 	// This account has already has a submission
 	account := api.Account{
@@ -250,8 +247,7 @@ func TestSaveHandlerBadPayloadDeserialization(t *testing.T) {
 	requestJSON := `{[}`
 	reqBody := strings.NewReader(requestJSON)
 
-	// Create a request to pass to our handler. We don't have any query parameters for now, so we'll
-	// pass 'nil' as the third parameter.
+	// Create a request to pass to our handler.
 	req := httptest.NewRequest("POST", "/me/save", reqBody)
 	// This account has already has a submission
 	account := api.Account{
@@ -296,8 +292,7 @@ func TestCreateApplicationExistsFailure(t *testing.T) {
 
 	reqBody := strings.NewReader(validJSON)
 
-	// Create a request to pass to our handler. We don't have any query parameters for now, so we'll
-	// pass 'nil' as the third parameter.
+	// Create a request to pass to our handler.
 	req := httptest.NewRequest("POST", "/me/save", reqBody)
 	account := api.Account{
 		ID: 1,
@@ -346,8 +341,7 @@ func TestCreateApplicationAppDoesNotExistFailure(t *testing.T) {
 
 	reqBody := strings.NewReader(validJSON)
 
-	// Create a request to pass to our handler. We don't have any query parameters for now, so we'll
-	// pass 'nil' as the third parameter.
+	// Create a request to pass to our handler.
 	req := httptest.NewRequest("POST", "/me/save", reqBody)
 	account := api.Account{
 		ID: 1,
@@ -396,8 +390,7 @@ func TestSaveApplicationErrorResolves(t *testing.T) {
 
 	reqBody := strings.NewReader(validJSON)
 
-	// Create a request to pass to our handler. We don't have any query parameters for now, so we'll
-	// pass 'nil' as the third parameter.
+	// Create a request to pass to our handler.
 	req := httptest.NewRequest("POST", "/me/save", reqBody)
 	account := api.Account{
 		ID: 1,
@@ -444,8 +437,7 @@ func TestOtherSaveAppFailure(t *testing.T) {
 
 	reqBody := strings.NewReader(validJSON)
 
-	// Create a request to pass to our handler. We don't have any query parameters for now, so we'll
-	// pass 'nil' as the third parameter.
+	// Create a request to pass to our handler.
 	req := httptest.NewRequest("POST", "/me/save", reqBody)
 	account := api.Account{
 		ID: 1,
@@ -494,8 +486,7 @@ func TestOtherCreateApplicationFailure(t *testing.T) {
 
 	reqBody := strings.NewReader(validJSON)
 
-	// Create a request to pass to our handler. We don't have any query parameters for now, so we'll
-	// pass 'nil' as the third parameter.
+	// Create a request to pass to our handler.
 	req := httptest.NewRequest("POST", "/me/save", reqBody)
 	account := api.Account{
 		ID: 1,
