@@ -36,14 +36,6 @@ func (s *errorAdminListAttachmentsMetadataStore) ListAttachmentsMetadata(account
 	return []api.Attachment{}, errors.New("list attachment metadata error")
 }
 
-type errorAdminDeleteAttachmentStore struct {
-	mock.StorageService
-}
-
-func (s *errorAdminDeleteAttachmentStore) DeleteAttachment(accountID int, attachmentID int) error {
-	return errors.New("delete attachment error")
-}
-
 //
 // REJECT tests
 //
@@ -133,28 +125,6 @@ func TestRejectAccountListAttachmentsMetadataFailure(t *testing.T) {
 	err := rejector.Reject(&account)
 	if err == nil {
 		t.Log("Should have received an error from ListAttachmentsMetadata, instead got nil. ")
-		t.Fail()
-	}
-}
-
-func TestRejectDeleteAttachmentFailure(t *testing.T) {
-	var mockDB mock.DatabaseService
-	var mockStore errorAdminListAttachmentsMetadataStore
-
-	email := "dogs@iloveyou.com"
-	account := api.Account{
-		Username:    email,
-		Email:       simplestore.NonNullString(email),
-		FormType:    "SF86",
-		FormVersion: "2017-07",
-		Status:      api.StatusSubmitted,
-		ExternalID:  uuid.New().String(),
-	}
-	// Reject this submission
-	rejector := NewRejecter(&mockDB, &mockStore)
-	err := rejector.Reject(&account)
-	if err == nil {
-		t.Log("Should have received an error from DeleteAttachment, instead got nil. ")
 		t.Fail()
 	}
 }
