@@ -76,6 +76,30 @@ func TestFullSessionHTTPFlow_BadAuthentication(t *testing.T) {
 	}
 }
 
+func TestFormIndent(t *testing.T) {
+	os.Setenv(api.IndentJSON, "1")
+	services := cleanTestServices(t)
+	account := createTestAccount(t, services.db)
+
+	w, r := standardResponseAndRequest("GET", "/me/form", nil, account)
+
+	formHandler := http.FormHandler{
+		Env:      services.env,
+		Log:      services.log,
+		Database: services.db,
+		Store:    services.store,
+	}
+
+	formHandler.ServeHTTP(w, r)
+
+	resp := w.Result()
+
+	if resp.StatusCode != 200 {
+		t.Log(fmt.Sprintf("Status should have been 200: %d", resp.StatusCode))
+		t.Fail()
+	}
+}
+
 func TestFullSessionHTTPFlow_SAMLAuthenticated(t *testing.T) {
 	os.Setenv("API_BASE_URL", "http://localhost:3000")
 	os.Setenv("SAML_PUBLIC_CERT", "../saml/testdata/test_cert.pem")
@@ -221,11 +245,67 @@ func TestFullSessionHTTPFlow_SAMLAuthenticated(t *testing.T) {
 	if !strings.Contains(string(decodedSLO), "fake-session-index") {
 		t.Fatal("The SAML response did not contain the SessionIndex")
 	}
+}
 
+func TestFullSessionHTTPFlow_SAMLFailure(t *testing.T) {
+	// Disable SAML
+	os.Setenv(api.SamlEnabled, "0")
+
+	services := cleanTestServices(t)
+	sessionService := session.NewSessionService(5*time.Minute, services.store, services.log)
+
+	samlService := &saml.Service{
+		Log: services.log,
+		Env: services.env,
+	}
+
+	loginRequestHandler := http.SamlResponseHandler{
+		Env:      services.env,
+		Log:      services.log,
+		Database: services.db,
+		SAML:     samlService,
+		Session:  sessionService,
+	}
+
+	conf := saml.TestResponseConfig{
+		SigningCert:    "../saml/testdata/test_cert.pem",
+		SigningKey:     "../saml/testdata/test_key.pem",
+		IDPIssuerURL:   "http://localhost:8080",
+		SSODescription: "http://localhost:8080",
+		CallbackURL:    "http://localhost:3000/auth/saml/callback",
+	}
+	encodedResponse := saml.CreateSamlTestResponse(t, conf)
+
+	// encode authn in the URL. This isn't how WSO2 does this but it comes out the same in the go code
+	data := url.Values{}
+	data.Set("SAMLResponse", encodedResponse)
+	req := httptest.NewRequest("POST", fmt.Sprintf("/saml/callback?%s", data.Encode()), nil)
+
+	responseWriter := httptest.NewRecorder()
+	loginRequestHandler.ServeHTTP(responseWriter, req)
+
+	// confirm login succeeded
+	response := responseWriter.Result()
+
+	body, readErr := ioutil.ReadAll(response.Body)
+	if readErr != nil {
+		t.Log("Error reading the response: ", readErr)
+		t.Fatal(readErr)
+	}
+	// Should get expected status code
+	if response.StatusCode != gohttp.StatusInternalServerError {
+		t.Errorf("handler returned wrong status code: got %v want %v",
+			response.StatusCode, gohttp.StatusInternalServerError)
+	}
+
+	// Check the error message is what we expect
+	confirmErrorMsg(t, body, "SAML is not implemented")
+	// Reenable SAML
+	os.Setenv(api.SamlEnabled, "1")
 }
 
 func TestFullSessionHTTPFlow_BasicAuthenticated(t *testing.T) {
-	os.Setenv("BASIC_ENABLED", "1")
+	os.Setenv(api.BasicEnabled, "1")
 	services := cleanTestServices(t)
 	sessionService := session.NewSessionService(5*time.Minute, services.store, services.log)
 
