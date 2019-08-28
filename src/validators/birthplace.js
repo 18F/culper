@@ -29,12 +29,11 @@ export default class BirthPlaceValidator {
     }
 
     if (!this.hideCounty) {
-      if (!this.county) {
+      if (!this.county && !this.city) {
         return false
       }
     }
-
-    if (!this.city) {
+    else if (!this.city) {
       return false
     }
 

@@ -19,7 +19,7 @@ describe('Birthplace component validation', function() {
           county: 'Arlington',
           state: 'VA'
         },
-        expected: false
+        expected: true
       },
       {
         data: {
@@ -28,7 +28,7 @@ describe('Birthplace component validation', function() {
           county: '',
           state: 'VA'
         },
-        expected: false
+        expected: true
       },
       {
         data: {

@@ -767,6 +767,11 @@ export const error = {
           message: 'City name should be between 2 and 100 characters.',
           note: '',
         },
+        required: {
+          title: 'There is a problem with the City',
+          message: 'City is required if County is not filled in',
+          note: '',
+        }
       },
       state: {
         notfound: {
@@ -785,6 +790,11 @@ export const error = {
           message: 'County name must be between 2 and 100 characters',
           note: '',
         },
+        required: {
+          title: 'There is a problem with the County',
+          message: 'County is required if City is not filled in',
+          note: '',
+        }
       },
       zipcode: {
         pattern: {
