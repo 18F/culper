@@ -303,14 +303,22 @@ const employment = {
     return {}
   },
   SupervisorAlternateAddress: (value, attributes) => {
-    if (attributes.Address && isInternational(attributes.Address)) {
+    if (
+      attributes.Supervisor
+      && attributes.Supervisor.Address
+      && isInternational(attributes.Supervisor.Address)
+    ) {
       return {
         presence: true,
         model: { validator: physicalAddress, militaryAddress: true },
       }
     }
 
-    if (attributes.Address && isPO(attributes.Address)) {
+    if (
+      attributes.Supervisor
+      && attributes.Supervisor.Address
+      && isPO(attributes.Supervisor.Address)
+    ) {
       return {
         presence: true,
         model: { validator: physicalAddress, militaryAddress: false },
