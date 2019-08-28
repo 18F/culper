@@ -1,16 +1,30 @@
 import locationModel from '../location'
 
 const locationBirthplace = {
-  city: {
-    ...locationModel.city,
-    presence: locationModel.county ? false : true,
+  city: (value, attributes, attributeName, options) => {
+    if (options.requireCity)
+      return {
+        ...locationModel.city,
+        presence: true,
+      }
+      return {
+        ...locationModel.city,
+        presence: false,
+      }
   },
   state: locationModel.state,
   country: locationModel.country,
-  county: {
-    ...locationModel.county,
-    presence: locationModel.city ? false : true,
-  }
+  county: (value, attributes, attributeName, options) => {
+    if (options.requireCounty)
+      return {
+        ...locationModel.county,
+        presence: true,
+      }
+      return {
+        ...locationModel.county,
+        presence: false,
+      }
+  },
 }
 
 export default locationBirthplace

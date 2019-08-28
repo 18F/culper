@@ -5,7 +5,7 @@ export const validateIdentificationBirthPlace = (data) => {
   const applicantBirthPlaceModel = {
     Location: {
       presence: true,
-      location: { validator: birthplace },
+      location: { validator: birthplace, requireCity: !data.county, requireCounty: !data.city },
     },
   }
 

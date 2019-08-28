@@ -685,6 +685,18 @@ export default class Location extends ValidationElement {
    */
   fieldMappings() {
     switch (this.props.layout) {
+      case Location.IDENTIFICATION_BIRTH_PLACE:
+        return (
+          <ToggleableLocation
+            {...this.props}
+            domesticFields={['city', 'state', 'county']}
+            internationalFields={['city', 'country']}
+            onBlur={this.handleBlur}
+            onUpdate={this.updateToggleableLocation}
+            onError={this.handleError}
+            required={this.props.required}
+          />
+        )
       case Location.BIRTHPLACE:
         return (
           <ToggleableLocation
@@ -828,6 +840,7 @@ export default class Location extends ValidationElement {
 
 // Define all possible layouts for location fields
 Location.BIRTHPLACE = Layouts.BIRTHPLACE
+Location.IDENTIFICATION_BIRTH_PLACE = Layouts.IDENTIFICATION_BIRTH_PLACE
 Location.COUNTRY = Layouts.COUNTRY
 Location.US_CITY_STATE_INTERNATIONAL_CITY_COUNTRY = Layouts.US_CITY_STATE_INTERNATIONAL_CITY_COUNTRY
 Location.BIRTHPLACE_WITHOUT_COUNTY = Layouts.BIRTHPLACE_WITHOUT_COUNTY
@@ -862,8 +875,8 @@ Location.defaultProps = {
   addressBook: '',
   isPoBoxAllowed: true,
   showPostOffice: false,
-  onUpdate: () => {},
-  dispatch: () => {},
+  onUpdate: () => { },
+  dispatch: () => { },
   onError: (value, arr) => arr,
 }
 
