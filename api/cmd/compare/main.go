@@ -3,10 +3,10 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"flag"
 	"fmt"
 	"io/ioutil"
 	"log"
-	"net/http"
 	"os"
 	"strings"
 
@@ -15,6 +15,11 @@ import (
 )
 
 func main() {
+
+	wccFlags := cmd.SetupWebClientFlags("compare", "path/to/section.json [another/path/to/section.json]")
+	flag.Parse()
+	webclient := wccFlags.ConfiguredClient()
+
 	var payloads []json.RawMessage
 	if cmd.IsPiped() {
 		// Read the contents from standard input
@@ -33,7 +38,7 @@ func main() {
 	} else {
 		// If there are files to test against then loop
 		// through each.
-		for _, file := range os.Args[1:] {
+		for _, file := range flag.Args() {
 			// Read the file contents
 			buffer, err := ioutil.ReadFile(file)
 			if err != nil {
@@ -44,12 +49,10 @@ func main() {
 		}
 	}
 
-	// Create a web client to interface with the RESTful API.
-	webclient := &cmd.WebClient{
-		Client: &http.Client{},
-	}
-	form := webclient.Form()
-	webclient.Logout()
+	var form json.RawMessage
+	webclient.WithAuth(func() {
+		form = webclient.Form()
+	})
 
 	// Loop through all sections received
 	for _, payload := range payloads {

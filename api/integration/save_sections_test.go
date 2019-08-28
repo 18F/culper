@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"testing"
+
+	"github.com/nsf/jsondiff"
 )
 
 func TestSaveSection(t *testing.T) {
@@ -107,6 +109,8 @@ func TestSaveSection(t *testing.T) {
 		{"../testdata/psychological/psychological-diagnoses.json", "Psychological", "Diagnoses"},
 		{"../testdata/psychological/psychological-conditions.json", "Psychological", "ExistingConditions"},
 		{"../testdata/psychological/psychological-hospitalizations.json", "Psychological", "Hospitalizations"},
+
+		{"../testdata/package/comments.json", "Package", "Comments"},
 
 		{"../testdata/submission.json", "Submission", "Releases"},
 	}
@@ -243,8 +247,14 @@ func TestDeleteApplication(t *testing.T) {
 	}
 	body := readBody(t, formResp)
 
-	if string(body) != `{"Metadata":{"form_type":"SF86","form_version":"2017-07","type":"metadata"}}` {
-		t.Fatal("Should have just got back the metadata")
+	expectedJSON := `{"Metadata":{"form_type":"SF86","form_version":"2017-07","type":"metadata"}}`
+
+	opts := jsondiff.DefaultConsoleOptions()
+	diff, output := jsondiff.Compare([]byte(expectedJSON), []byte(body), &opts)
+	if diff != jsondiff.FullMatch {
+		fmt.Println("Not Equal", output)
+		fmt.Println("Raw", string(body))
+		t.Fail()
 	}
 
 }

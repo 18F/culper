@@ -55,6 +55,7 @@ const (
 	PayloadEntityError                         = "Error converting payload into valid entity"
 	PayloadInvalid                             = "Payload is invalid"
 	PayloadMissingType                         = "Payload is missing a type"
+	InvalidValidation                          = "The validation api is only for validating locations with the USPS"
 	PdfError                                   = "Error generating archival signature PDFs"
 	RetrievingAccount                          = "Retrieving account"
 	SamlNotImplemented                         = "SAML is not implemented"

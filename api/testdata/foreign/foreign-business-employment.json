@@ -10,26 +10,28 @@
     "List": {
       "type": "collection",
       "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
         "items": [
           {
             "Item": {
-              "Name": {
-                "type": "name",
+              "Accepted": {
+                "type": "branch",
                 "props": {
-                  "first": "John",
-                  "firstInitialOnly": false,
-                  "last": "Smith",
-                  "middle": "H",
-                  "middleInitialOnly": true,
-                  "noMiddleName": false,
-                  "suffix": "Other",
-                  "suffixOther": "XX"
+                  "value": "Yes"
                 }
               },
-              "Description": {
-                "type": "textarea",
+              "Address": {
+                "type": "location",
                 "props": {
-                  "value": "my desc"
+                  "layout": "US City, State, International city",
+                  "city": "Arlington",
+                  "state": "VA",
+                  "country": "United States"
                 }
               },
               "Date": {
@@ -38,28 +40,13 @@
                   "month": "7",
                   "day": "25",
                   "year": "2017",
-                  "estimated": false,
-                  "date": "2017-07-25T00:00:00Z"
+                  "estimated": false
                 }
               },
-              "Address": {
-                "type": "location",
+              "Description": {
+                "type": "textarea",
                 "props": {
-                  "layout": "US City, State, International city",
-                  "street": "",
-                  "street2": "",
-                  "city": "Arlington",
-                  "state": "VA",
-                  "zipcode": "",
-                  "county": "",
-                  "country": "United States",
-                  "validated": false
-                }
-              },
-              "Accepted": {
-                "type": "branch",
-                "props": {
-                  "value": "Yes"
+                  "value": "my desc"
                 }
               },
               "Explanation": {
@@ -67,16 +54,23 @@
                 "props": {
                   "value": "my explanation"
                 }
+              },
+              "Name": {
+                "type": "name",
+                "props": {
+                  "first": "John",
+                  "firstInitialOnly": false,
+                  "middle": "H",
+                  "middleInitialOnly": true,
+                  "noMiddleName": false,
+                  "last": "Smith",
+                  "suffix": "Other",
+                  "suffixOther": "XX"
+                }
               }
             }
           }
-        ],
-        "branch": {
-          "type": "branch",
-          "props": {
-            "value": "No"
-          }
-        }
+        ]
       }
     }
   }

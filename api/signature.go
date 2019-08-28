@@ -9,15 +9,8 @@ type Signature struct {
 	PayloadName Payload `json:"Name" sql:"-"`
 	PayloadDate Payload `json:"Date" sql:"-"`
 
-	// Validator specific fields
 	Name *Text        `json:"-" sql:"-"`
 	Date *DateControl `json:"-" sql:"-"`
-
-	// Persister specific fields
-	ID        int `json:"-"`
-	AccountID int `json:"-"`
-	NameID    int `json:"-"`
-	DateID    int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -51,19 +44,4 @@ func (entity *Signature) Marshal() Payload {
 		entity.PayloadDate = entity.Date.Marshal()
 	}
 	return MarshalPayloadEntity("signature", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *Signature) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.Name.Valid(); !ok {
-		stack.Append("Name", err)
-	}
-
-	if ok, err := entity.Date.Valid(); !ok {
-		stack.Append("Date", err)
-	}
-
-	return !stack.HasErrors(), stack
 }

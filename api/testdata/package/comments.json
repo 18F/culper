@@ -1,0 +1,17 @@
+{
+  "type":"package.comments",
+  "props":{
+    "HasComments":{
+      "type":"branch",
+      "props":{
+        "value":"Yes"
+      }
+    },
+    "Comments":{
+      "type":"textarea",
+      "props":{
+        "value":"Test Test"
+      }
+    }
+  }
+}

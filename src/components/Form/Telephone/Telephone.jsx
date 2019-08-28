@@ -148,7 +148,7 @@ export default class Telephone extends ValidationElement {
     }, () => {
       this.update({
         noNumber: !this.props.noNumber,
-        timeOfDay: '',
+        timeOfDay: this.props.noNumber ? 'Both' : '',
         numberType: '',
         extension: '',
       })
@@ -325,7 +325,7 @@ export default class Telephone extends ValidationElement {
               ariaLabel={i18n.t('telephone.aria.domesticAreaCode')}
               disabled={this.props.noNumber}
               maxlength="3"
-              pattern="\d{3}"
+              pattern="^((?!(0))\d{3})"
               prefilter={digitsOnly}
               readonly={this.props.readonly}
               required={this.required('Domestic')}

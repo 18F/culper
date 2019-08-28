@@ -54,7 +54,7 @@ describe('The legal investigations history component', () => {
           {
             Item: {
               Agency: {
-                Agency: 'U.S. Department of Defense',
+                value: 'U.S. Department of Defense',
               },
               Granted: {
                 month: '1',

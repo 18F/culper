@@ -973,6 +973,15 @@ func TestClearComplexSectionNos(t *testing.T) {
 			}
 		}},
 
+		{"../testdata/package/comments_no.json", "package.comments", func(t *testing.T, section api.Section) {
+			association := section.(*api.AdditionalComments)
+
+			if association.HasComments.Value != "" {
+				t.Log("Should have cleared the lone no")
+				t.Fail()
+			}
+		}},
+
 		{"../testdata/psychological/psychological-competence.json", "psychological.competence", func(t *testing.T, section api.Section) {
 			competence := section.(*api.PsychologicalCompetence)
 

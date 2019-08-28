@@ -91,6 +91,8 @@ import { validateHospitalizations } from 'validators/hospitalization'
 import { validateDiagnoses } from 'validators/diagnoses'
 import { validateExistingConditions } from 'validators/existingconditions'
 
+import validatePackageComments from 'validators/packagecomments'
+
 import * as logic from '.'
 
 /**
@@ -203,6 +205,7 @@ const validators = {
   'legal.technology.manipulating': validateLegalTechnologyManipulating,
   'legal.technology.unauthorized': validateLegalTechnologyUnauthorized,
   'legal.technology.unlawful': validateLegalTechnologyUnlawful,
+  'package.comments': validatePackageComments,
   'psychological.competence': validateCompetence,
   'psychological.conditions': validateExistingConditions,
   'psychological.consultations': validateConsultations,

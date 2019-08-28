@@ -1,12 +1,6 @@
 {
   "type": "history.employment",
   "props": {
-    "EmploymentRecord": {
-      "type": "branch",
-      "props": {
-        "value": "Yes"
-      }
-    },
     "List": {
       "type": "collection",
       "props": {
@@ -19,77 +13,6 @@
         "items": [
           {
             "Item": {
-              "EmploymentActivity": {
-                "type": "employmentactivity",
-                "props": {
-                  "value": "Other",
-                  "otherExplanation": "Some other activity"
-                }
-              },
-              "Dates": {
-                "type": "daterange",
-                "props": {
-                  "from": {
-                    "type": "datecontrol",
-                    "props": {
-                      "month": "7",
-                      "day": "1",
-                      "year": "2017",
-                      "estimated": false,
-                      "date": "2017-07-01T00:00:00Z"
-                    }
-                  },
-                  "to": {
-                    "type": "datecontrol",
-                    "props": {
-                      "month": "7",
-                      "day": "25",
-                      "year": "2017",
-                      "estimated": false,
-                      "date": "2017-07-25T00:00:00Z"
-                    }
-                  },
-                  "present": false
-                }
-              },
-              "Employment": {
-                "type": "text",
-                "props": {
-                  "value": "employment"
-                }
-              },
-              "Status": {
-                "type": "radio",
-                "props": {
-                  "value": "Fulltime"
-                }
-              },
-              "Title": {
-                "type": "text",
-                "props": {
-                  "value": "my title"
-                }
-              },
-              "DutyStation": {
-                "type": "text",
-                "props": {
-                  "value": "duty station"
-                }
-              },
-              "Address": {
-                "type": "location",
-                "props": {
-                  "layout": "Address",
-                  "street": "123 Some Rd",
-                  "street2": "",
-                  "city": "Arlington",
-                  "state": "VA",
-                  "zipcode": "22202",
-                  "county": "",
-                  "country": "United States",
-                  "validated": false
-                }
-              },
               "Additional": {
                 "type": "collection",
                 "props": {
@@ -102,6 +25,30 @@
                   "items": [
                     {
                       "Item": {
+                        "DatesEmployed": {
+                          "type": "daterange",
+                          "props": {
+                            "from": {
+                              "type": "datecontrol",
+                              "props": {
+                                "month": "7",
+                                "day": "1",
+                                "year": "2017",
+                                "estimated": false
+                              }
+                            },
+                            "to": {
+                              "type": "datecontrol",
+                              "props": {
+                                "month": "7",
+                                "day": "25",
+                                "year": "2017",
+                                "estimated": false
+                              }
+                            },
+                            "present": false
+                          }
+                        },
                         "Has": {
                           "type": "branch",
                           "props": {
@@ -119,32 +66,6 @@
                           "props": {
                             "value": "my supervisor"
                           }
-                        },
-                        "DatesEmployed": {
-                          "type": "daterange",
-                          "props": {
-                            "from": {
-                              "type": "datecontrol",
-                              "props": {
-                                "month": "7",
-                                "day": "1",
-                                "year": "2017",
-                                "estimated": false,
-                                "date": "2017-07-01T00:00:00Z"
-                              }
-                            },
-                            "to": {
-                              "type": "datecontrol",
-                              "props": {
-                                "month": "7",
-                                "day": "25",
-                                "year": "2017",
-                                "estimated": false,
-                                "date": "2017-07-25T00:00:00Z"
-                              }
-                            },
-                            "present": false
-                          }
                         }
                       }
                     },
@@ -161,15 +82,58 @@
                   ]
                 }
               },
-              "Telephone": {
-                "type": "telephone",
+              "Address": {
+                "type": "location",
                 "props": {
-                  "timeOfDay": "Both",
-                  "type": "Domestic",
-                  "numberType": "",
-                  "number": "2128675309",
-                  "extension": "",
-                  "noNumber": false
+                  "layout": "Address",
+                  "street": "123 Some Rd",
+                  "city": "Arlington",
+                  "state": "VA",
+                  "zipcode": "22202",
+                  "country": "United States"
+                }
+              },
+              "Dates": {
+                "type": "daterange",
+                "props": {
+                  "from": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "7",
+                      "day": "1",
+                      "year": "2017",
+                      "estimated": false
+                    }
+                  },
+                  "to": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "7",
+                      "day": "25",
+                      "year": "2017",
+                      "estimated": false
+                    }
+                  },
+                  "present": false
+                }
+              },
+              "DutyStation": {
+                "type": "text",
+                "props": {
+                  "value": "duty station"
+                }
+              },
+              "Employment": {
+                "type": "text",
+                "props": {
+                  "value": "employment"
+                }
+              },
+              "EmploymentActivity": {
+                "type": "employmentactivity",
+                "props": {
+                  "value": "Other",
+                  "otherExplanation": "Some other activity"
                 }
               },
               "PhysicalAddress": {
@@ -186,13 +150,10 @@
                     "props": {
                       "layout": "Address",
                       "street": "123 Some Rd",
-                      "street2": "",
                       "city": "Arlington",
                       "state": "VA",
                       "zipcode": "22202",
-                      "county": "",
-                      "country": "United States",
-                      "validated": false
+                      "country": "United States"
                     }
                   },
                   "Telephone": {
@@ -229,6 +190,15 @@
                       "items": [
                         {
                           "Item": {
+                            "Date": {
+                              "type": "datecontrol",
+                              "props": {
+                                "month": "7",
+                                "day": "25",
+                                "year": "2017",
+                                "estimated": false
+                              }
+                            },
                             "Has": {
                               "type": "branch",
                               "props": {
@@ -245,16 +215,6 @@
                               "type": "textarea",
                               "props": {
                                 "value": "my explanation"
-                              }
-                            },
-                            "Date": {
-                              "type": "datecontrol",
-                              "props": {
-                                "month": "7",
-                                "day": "25",
-                                "year": "2017",
-                                "estimated": false,
-                                "date": "2017-07-25T00:00:00Z"
                               }
                             }
                           }
@@ -280,6 +240,41 @@
                   }
                 }
               },
+              "ReferenceAddress": {
+                "type": "location",
+                "props": {
+                  "layout": "Address",
+                  "street": "123 Some Rd",
+                  "city": "Arlington",
+                  "state": "VA",
+                  "zipcode": "22202",
+                  "country": "United States"
+                }
+              },
+              "ReferenceName": {
+                "type": "name",
+                "props": {
+                  "first": "John",
+                  "firstInitialOnly": false,
+                  "middle": "H",
+                  "middleInitialOnly": true,
+                  "noMiddleName": false,
+                  "last": "Smith",
+                  "suffix": "Other",
+                  "suffixOther": "XX"
+                }
+              },
+              "ReferencePhone": {
+                "type": "telephone",
+                "props": {
+                  "timeOfDay": "Both",
+                  "type": "Domestic",
+                  "numberType": "",
+                  "number": "2128675309",
+                  "extension": "",
+                  "noNumber": false
+                }
+              },
               "Reprimand": {
                 "type": "collection",
                 "props": {
@@ -292,6 +287,15 @@
                   "items": [
                     {
                       "Item": {
+                        "Date": {
+                          "type": "datecontrol",
+                          "props": {
+                            "month": "7",
+                            "day": "25",
+                            "year": "2017",
+                            "estimated": false
+                          }
+                        },
                         "Has": {
                           "type": "branch",
                           "props": {
@@ -302,16 +306,6 @@
                           "type": "textarea",
                           "props": {
                             "value": "my explanation"
-                          }
-                        },
-                        "Date": {
-                          "type": "datecontrol",
-                          "props": {
-                            "month": "7",
-                            "day": "25",
-                            "year": "2017",
-                            "estimated": false,
-                            "date": "2017-07-25T00:00:00Z"
                           }
                         }
                       }
@@ -327,6 +321,12 @@
                       }
                     }
                   ]
+                }
+              },
+              "Status": {
+                "type": "radio",
+                "props": {
+                  "value": "Fulltime"
                 }
               },
               "Supervisor": {
@@ -361,13 +361,10 @@
                     "props": {
                       "layout": "Address",
                       "street": "123 Some Rd",
-                      "street2": "",
                       "city": "Arlington",
                       "state": "VA",
                       "zipcode": "22202",
-                      "county": "",
-                      "country": "United States",
-                      "validated": false
+                      "country": "United States"
                     }
                   },
                   "Telephone": {
@@ -383,20 +380,7 @@
                   }
                 }
               },
-              "ReferenceName": {
-                "type": "name",
-                "props": {
-                  "first": "John",
-                  "firstInitialOnly": false,
-                  "last": "Smith",
-                  "middle": "H",
-                  "middleInitialOnly": true,
-                  "noMiddleName": false,
-                  "suffix": "Other",
-                  "suffixOther": "XX"
-                }
-              },
-              "ReferencePhone": {
+              "Telephone": {
                 "type": "telephone",
                 "props": {
                   "timeOfDay": "Both",
@@ -407,23 +391,21 @@
                   "noNumber": false
                 }
               },
-              "ReferenceAddress": {
-                "type": "location",
+              "Title": {
+                "type": "text",
                 "props": {
-                  "layout": "Address",
-                  "street": "123 Some Rd",
-                  "street2": "",
-                  "city": "Arlington",
-                  "state": "VA",
-                  "zipcode": "22202",
-                  "county": "",
-                  "country": "United States",
-                  "validated": false
+                  "value": "my title"
                 }
               }
             }
           }
         ]
+      }
+    },
+    "EmploymentRecord": {
+      "type": "branch",
+      "props": {
+        "value": "Yes"
       }
     }
   }

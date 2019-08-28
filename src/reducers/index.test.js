@@ -14,6 +14,7 @@ describe('Root Reducer', () => {
       Identification: {},
       Legal: {},
       Military: {},
+      Package: {},
       Psychological: {},
       Relationships: {},
       Settings: {

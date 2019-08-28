@@ -19,18 +19,71 @@
         "items": [
           {
             "Item": {
+              "Appeals": {
+                "type": "collection",
+                "props": {
+                  "branch": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "items": [
+                    {
+                      "Item": {
+                        "CourtAddress": {
+                          "type": "location",
+                          "props": {
+                            "layout": "Address",
+                            "street": "123 Some Rd",
+                            "city": "Arlington",
+                            "state": "VA",
+                            "zipcode": "22202",
+                            "country": "United States"
+                          }
+                        },
+                        "CourtName": {
+                          "type": "text",
+                          "props": {
+                            "value": "the appeals court"
+                          }
+                        },
+                        "Disposition": {
+                          "type": "text",
+                          "props": {
+                            "value": "the final disposition"
+                          }
+                        },
+                        "Has": {
+                          "type": "branch",
+                          "props": {
+                            "value": "Yes"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "Item": {
+                        "Has": {
+                          "type": "branch",
+                          "props": {
+                            "value": "No"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
               "CourtAddress": {
                 "type": "location",
                 "props": {
                   "layout": "Address",
                   "street": "123 Some Rd",
-                  "street2": "",
                   "city": "Arlington",
                   "state": "VA",
                   "zipcode": "22202",
-                  "county": "",
-                  "country": "United States",
-                  "validated": false
+                  "country": "United States"
                 }
               },
               "CourtName": {
@@ -51,67 +104,7 @@
                   "month": "7",
                   "day": "1",
                   "year": "2017",
-                  "estimated": false,
-                  "date": "2017-07-01T00:00:00Z"
-                }
-              },
-              "Appeals": {
-                "type": "collection",
-                "props": {
-                  "branch": {
-                    "type": "branch",
-                    "props": {
-                      "value": ""
-                    }
-                  },
-                  "items": [
-                    {
-                      "Item": {
-                        "Has": {
-                          "type": "branch",
-                          "props": {
-                            "value": "Yes"
-                          }
-                        },
-                        "CourtName": {
-                          "type": "text",
-                          "props": {
-                            "value": "the appeals court"
-                          }
-                        },
-                        "CourtAddress": {
-                          "type": "location",
-                          "props": {
-                            "layout": "Address",
-                            "street": "123 Some Rd",
-                            "street2": "",
-                            "city": "Arlington",
-                            "state": "VA",
-                            "zipcode": "22202",
-                            "county": "",
-                            "country": "United States",
-                            "validated": false
-                          }
-                        },
-                        "Disposition": {
-                          "type": "text",
-                          "props": {
-                            "value": "the final disposition"
-                          }
-                        }
-                      }
-                    },
-                    {
-                      "Item": {
-                        "Has": {
-                          "type": "branch",
-                          "props": {
-                            "value": "No"
-                          }
-                        }
-                      }
-                    }
-                  ]
+                  "estimated": false
                 }
               }
             }

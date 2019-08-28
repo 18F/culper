@@ -3,7 +3,6 @@ package api
 import (
 	"encoding/json"
 	"strconv"
-	"strings"
 	"time"
 )
 
@@ -44,27 +43,4 @@ func (entity *DateControl) Unmarshal(raw []byte) error {
 // Marshal to payload structure
 func (entity *DateControl) Marshal() Payload {
 	return MarshalPayloadEntity("datecontrol", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *DateControl) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if strings.TrimSpace(entity.Month) == "" {
-		stack.Append("Month", ErrFieldRequired{"Month is required"})
-	}
-
-	if strings.TrimSpace(entity.Day) == "" {
-		if entity.Estimated {
-			entity.Day = "15"
-		} else {
-			stack.Append("Day", ErrFieldRequired{"Day is required"})
-		}
-	}
-
-	if strings.TrimSpace(entity.Year) == "" {
-		stack.Append("Year", ErrFieldRequired{"Year is required"})
-	}
-
-	return !stack.HasErrors(), stack
 }

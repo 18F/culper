@@ -11,23 +11,12 @@ type Supervisor struct {
 	PayloadAddress            Payload `json:"Address" sql:"-"`
 	PayloadTelephone          Payload `json:"Telephone" sql:"-"`
 
-	// Validator specific fields
 	SupervisorName     *Text          `json:"-"`
 	Title              *Text          `json:"-"`
 	Email              *Email         `json:"-"`
 	EmailNotApplicable *NotApplicable `json:"-"`
 	Address            *Location      `json:"-"`
 	Telephone          *Telephone     `json:"-"`
-
-	// Persister specific fields
-	ID                   int `json:"-"`
-	AccountID            int `json:"-"`
-	SupervisorNameID     int `json:"-"`
-	TitleID              int `json:"-"`
-	EmailID              int `json:"-"`
-	EmailNotApplicableID int `json:"-"`
-	AddressID            int `json:"-"`
-	TelephoneID          int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -97,31 +86,4 @@ func (entity *Supervisor) Marshal() Payload {
 		entity.PayloadTelephone = entity.Telephone.Marshal()
 	}
 	return MarshalPayloadEntity("supervisor", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *Supervisor) Valid() (bool, error) {
-	if ok, err := entity.SupervisorName.Valid(); !ok {
-		return false, err
-	}
-
-	if ok, err := entity.Title.Valid(); !ok {
-		return false, err
-	}
-
-	if entity.EmailNotApplicable.Applicable {
-		if ok, err := entity.Email.Valid(); !ok {
-			return false, err
-		}
-	}
-
-	if ok, err := entity.Address.Valid(); !ok {
-		return false, err
-	}
-
-	if ok, err := entity.Telephone.Valid(); !ok {
-		return false, err
-	}
-
-	return true, nil
 }

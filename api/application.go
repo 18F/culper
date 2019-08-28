@@ -643,6 +643,12 @@ var (
 			hashable:   true,
 		},
 		{
+			Name:       "Package",
+			Subsection: "Comments",
+			Payload:    "package.comments",
+			hashable:   false,
+		},
+		{
 			Name:       "Submission",
 			Subsection: "Releases",
 			Payload:    "submission.releases",

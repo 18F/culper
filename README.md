@@ -1,12 +1,15 @@
-# e-QIP Prototype
+# Project Culper
 
 [![Build Status][badge_ci_18f]][2] [![codecov][badge_cov_18f]][24] [![Code Climate][badge_cc_18f]][3] [![Go Report Card][badge_goreportcard_18f]][22]
 
-To create the e-QIP questionnaire prototype, the project team is employing a user-centered design approach leveraging key principles from the [U.S. Digital Services Playbook][8]:
+To create the applicant questionnaire for the National Background Investigation System (NBIS), the project team is employing a user-centered design approach leveraging key principles from the [U.S. Digital Services Playbook][8]:
 
 1. Understand what people need
 1. Address the whole experience, from start to finish
 1. Make it simple and intuitive
+
+_Culper_ is a responsive, mobile-friendly web application that applicants can use to fill out an [SF-86][26], [SF-85][27], or [SF-85P][28]. It forms the foundation of _eApp_, which is part of a larger [NBIS information technology system][25].
+
 
 ## Table of contents
 
@@ -18,7 +21,7 @@ To create the e-QIP questionnaire prototype, the project team is employing a use
 
 ## Project Management
 
-The project team primarily utilizes a [private NBIS tool](https://docs.google.com/document/d/1X-4M4-hLOziK6CyXoe8GhdfSjzzY5EYQLXcLmXpNqds) to administer user stories, defects, and tasks. Users of this open source code however are welcome to report issues via [GitHub](https://github.com/18F/e-QIP-prototype/issues). Higher-level and non-development tasks are tracked in [a Trello board](https://trello.com/b/xexcFZ81/eapp-internal).
+The project team primarily utilizes a [private NBIS tool](https://docs.google.com/document/d/1X-4M4-hLOziK6CyXoe8GhdfSjzzY5EYQLXcLmXpNqds) to administer user stories, defects, and tasks. Users of this open source code however are welcome to report issues via [GitHub](https://github.com/18F/culper/issues). Higher-level and non-development tasks are tracked in [a Trello board](https://trello.com/b/xexcFZ81/eapp-internal).
 
 Documentation for this software is maintained under [`docs`](./docs) and in a [private wiki](https://docs.google.com/document/d/1pgFmYxVQIbfOi68CUypXWdrPAU7kPivKeLCSW0qgHso).
 
@@ -40,8 +43,8 @@ For more information on licenses and third-party source code, use a tool like [t
 Clone the repository and `cd` into it:
 
 ```shell
-git clone https://github.com/18F/e-QIP-prototype
-cd e-QIP-prototype
+git clone https://github.com/18F/culper
+cd culper
 ```
 
 Then to develop locally, create a [`.env`](.env.example) file:
@@ -125,17 +128,13 @@ For command-line alternatives there are the following:
 Please refer to the [contributing documentation][18].
 
 [badge_chat]: https://img.shields.io/badge/chat-slack-green.svg
-[badge_ci_18f]: https://circleci.com/gh/18F/e-QIP-prototype.svg?style=shield
-[badge_cc_18f]: https://codeclimate.com/github/18F/e-QIP-prototype/badges/gpa.svg
-[badge_cov_18f]: https://codecov.io/gh/18F/e-QIP-prototype/branch/master/graph/badge.svg
-[badge_goreportcard_18f]: https://goreportcard.com/badge/github.com/18F/e-QIP-prototype
+[badge_ci_18f]: https://circleci.com/gh/18F/culper.svg?style=shield
+[badge_cc_18f]: https://codeclimate.com/github/18F/culper/badges/gpa.svg
+[badge_cov_18f]: https://codecov.io/gh/18F/culper/branch/master/graph/badge.svg
+[badge_goreportcard_18f]: https://goreportcard.com/badge/github.com/18F/culper
 [1]: https://gsa-tts.slack.com/messages/acq-e-qip-vendor
-[2]: https://circleci.com/gh/18F/e-QIP-prototype
-[3]: https://codeclimate.com/github/18F/e-QIP-prototype
-[4]: https://continua11y.18f.gov/18F/e-QIP-prototype
-[5]: https://circleci.com/gh/18F/e-QIP-prototype
-[6]: https://codeclimate.com/github/18F/e-QIP-prototype
-[7]: https://continua11y.18f.gov/truetandem/e-QIP-prototype
+[2]: https://circleci.com/gh/18F/culper
+[3]: https://codeclimate.com/github/18F/culper
 [8]: https://playbook.cio.gov/#plays_index_anchor
 [9]: https://help.github.com/articles/tracking-the-progress-of-your-work-with-projects
 [14]: http://jshint.com
@@ -145,6 +144,9 @@ Please refer to the [contributing documentation][18].
 [19]: https://yarnpkg.com
 [20]: https://docs.docker.com/compose
 [21]: https://docker.com
-[22]: https://goreportcard.com/report/github.com/18F/e-QIP-prototype
-[23]: https://goreportcard.com/report/github.com/18F/e-QIP-prototype
-[24]: https://codecov.io/gh/18F/e-QIP-prototype
+[22]: https://goreportcard.com/report/github.com/18F/culper
+[24]: https://codecov.io/gh/18F/culper
+[25]: https://disa.mil/NewsandEvents/2018/security_clearance_investigations
+[26]: https://www.gsa.gov/forms-library/questionnaire-national-security-positions
+[27]: https://www.gsa.gov/forms-library/questionnaire-non-sensitive-positions
+[28]: https://www.gsa.gov/forms-library/questionnaire-public-trust-positions

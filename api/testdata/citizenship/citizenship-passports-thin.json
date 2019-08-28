@@ -1,14 +1,14 @@
 {
+  "type": "citizenship.passports",
   "props": {
     "Passports": {
+      "type": "collection",
       "props": {
         "branch": {
           "type": ""
         },
         "items": []
-      },
-      "type": "collection"
+      }
     }
-  },
-  "type": "citizenship.passports"
+  }
 }

@@ -2,9 +2,9 @@ package main
 
 import (
 	"encoding/json"
+	"flag"
 	"io/ioutil"
 	"log"
-	"net/http"
 	"os"
 
 	"github.com/18F/e-QIP-prototype/api/cmd"
@@ -14,6 +14,11 @@ func main() {
 	var payloads []json.RawMessage
 	var buffer []byte
 	var err error
+
+	wccFlags := cmd.SetupWebClientFlags("load", "test-case.json [test-case.json]")
+
+	flag.Parse()
+	webclient := wccFlags.ConfiguredClient()
 
 	// Figure out if the input is coming from an argument or a pipe.
 	if cmd.IsPiped() {
@@ -31,7 +36,7 @@ func main() {
 			return
 		}
 	} else {
-		for _, file := range os.Args[1:] {
+		for _, file := range flag.Args() {
 			buffer, err = ioutil.ReadFile(file)
 			if err != nil {
 				log.Println("error reading from file:", err)
@@ -41,15 +46,11 @@ func main() {
 		}
 	}
 
-	// Create a web client to interface with the RESTful API.
-	webclient := &cmd.WebClient{
-		Client: &http.Client{},
-	}
-
-	// Loop through all sections received
-	for _, payload := range payloads {
-		// POST a save request for section
-		webclient.Save(payload)
-	}
-	webclient.Logout()
+	webclient.WithAuth(func() {
+		// Loop through all sections received
+		for _, payload := range payloads {
+			// POST a save request for section
+			webclient.Save(payload)
+		}
+	})
 }

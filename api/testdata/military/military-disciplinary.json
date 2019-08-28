@@ -19,20 +19,19 @@
         "items": [
           {
             "Item": {
+              "Court": {
+                "type": "textarea",
+                "props": {
+                  "value": "the court description"
+                }
+              },
               "Date": {
                 "type": "datecontrol",
                 "props": {
                   "month": "7",
                   "day": "25",
                   "year": "2017",
-                  "estimated": false,
-                  "date": "2017-07-25T00:00:00Z"
-                }
-              },
-              "Offenses": {
-                "type": "textarea",
-                "props": {
-                  "value": "description of the offenses"
+                  "estimated": false
                 }
               },
               "Name": {
@@ -41,10 +40,10 @@
                   "value": "the name of the procedure"
                 }
               },
-              "Court": {
+              "Offenses": {
                 "type": "textarea",
                 "props": {
-                  "value": "the court description"
+                  "value": "description of the offenses"
                 }
               },
               "Outcome": {

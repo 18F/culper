@@ -471,6 +471,7 @@ export const SF86 = [
 export const reviewSections = {
   ...formSections.REVIEW_AND_SUBMIT,
   subsections: [
+    formSections.REVIEW_AND_SUBMIT_COMMENTS,
     formSections.REVIEW_AND_SUBMIT_REVIEW,
     formSections.REVIEW_AND_SUBMIT_SUBMIT,
     formSections.REVIEW_AND_SUBMIT_PRINT,

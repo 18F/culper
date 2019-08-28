@@ -35,7 +35,6 @@ const getFormSectionStatuses = (sections = [], store = '', state = {}) => {
       } else {
         sectionData = application[store][s.storeKey] || {}
       }
-
       const isValid = validateSection({ ...s, data: sectionData }, formType) === true
 
       return {
@@ -48,7 +47,7 @@ const getFormSectionStatuses = (sections = [], store = '', state = {}) => {
 }
 
 const getFormStatus = (state) => {
-  const formSections = nestedFormSectionsSelector(state)
+  const formSections = nestedFormSectionsSelector(state, true)
   const formSectionStatuses = getFormSectionStatuses(formSections, '', state)
   return formSectionStatuses
 }
