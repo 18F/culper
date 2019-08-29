@@ -14,6 +14,7 @@ import {
   AccordionItem,
   Telephone,
 } from 'components/Form'
+import ErrorMessageList from 'components/ErrorMessageList'
 import { Summary, TelephoneSummary } from 'components/Summary'
 import { IDENTIFICATION, IDENTIFICATION_CONTACTS } from 'config/formSections/identification'
 
@@ -96,6 +97,27 @@ export class ContactInformation extends Subsection {
     return new IdentificationContactInformationValidator(
       this.props
     ).validPhoneTypes()
+  }
+
+  getSectionErrors = () => {
+    const { errors = [] } = this.props
+    const errorList = {
+      'PhoneNumbers.accordion.DUPLICATE_PHONE_NUMBER_TYPES': {
+        key: 'PhoneNumbers.accordion.DUPLICATE_PHONE_NUMBER_TYPES',
+        title: i18n.t('error.validPhoneTypes.title'),
+        message: i18n.t('error.validPhoneTypes.message'),
+        shouldDisplayError: true,
+      },
+    }
+    const sectionErrors = []
+    errors.forEach((error) => {
+      const errorItem = errorList[error]
+      if (errorItem && errorItem.shouldDisplayError) {
+        sectionErrors.push(errorItem)
+      }
+    })
+
+    return sectionErrors
   }
 
   render() {
@@ -184,10 +206,7 @@ export class ContactInformation extends Subsection {
           {i18n.m('identification.contacts.para.phoneNumber')}
         </Field>
 
-        <Field
-          errors={[{ code: 'validPhoneTypes', valid: this.uniquePhoneTypes() }]}
-          className={this.uniquePhoneTypes() && 'hidden'}
-        />
+        <ErrorMessageList errors={this.getSectionErrors()} />
 
         <div className={`${klass} telephone-collection`}>
           <Accordion
