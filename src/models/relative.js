@@ -142,7 +142,11 @@ const relative = {
 
     return {
       presence: true,
-      model: { validator: physicalAddress, militaryAddress: true },
+      model: {
+        validator: physicalAddress,
+        militaryAddress: true,
+        hasTelephone: false,
+      },
     }
   },
   CitizenshipDocumentation: (value, attributes, attributeNane, options) => {
