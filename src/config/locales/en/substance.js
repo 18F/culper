@@ -423,7 +423,7 @@ export const substance = {
         useWhileEmployed: {
           title: 'Need help with the use?',
           message:
-            'Was your use while you were employed as a law enforcement officer, prosecutor, or courtroom official, or while in a position directly and immediately affecting the public safety',
+            'Was your use while you were employed as a law enforcement officer, prosecutor, or courtroom official, or while in a position directly and immediately affecting the public safety?',
           note: '',
         },
         useWithClearance: {
@@ -497,7 +497,7 @@ export const substance = {
         involvementWhileEmployed: {
           title: 'Need help with the use?',
           message:
-            'Was your use while you were employed as a law enforcement officer, prosecutor, or courtroom official, or while in a position directly and immediately affecting the public safety',
+            'Was your use while you were employed as a law enforcement officer, prosecutor, or courtroom official, or while in a position directly and immediately affecting the public safety?',
           note: '',
         },
         involvementWithClearance: {
