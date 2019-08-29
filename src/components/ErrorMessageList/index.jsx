@@ -11,7 +11,7 @@ const ErrorMessageList = ({ errors }) => (
   <div>
     {errors.map(error => (
       <ErrorMessage
-        errorKey={error.key}
+        key={error.key}
         title={error.title}
         message={error.message}
         note={error.note}

@@ -2,15 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const ErrorMessage = ({
-  errorKey, title, message, note,
+  key, title, message, note,
 }) => (
   <div
     className="message error usa-alert usa-alert-error"
     role="alert"
     aria-live="polite"
   >
-    <div data-testid={errorKey} className="usa-alert-body">
-      <div data-i18n={errorKey}>
+    <div data-testid={key} className="usa-alert-body">
+      <div data-i18n={key}>
         {title && (
           <h5 data-testid="title" className="usa-alert-heading">{title}</h5>
         )}
@@ -26,14 +26,14 @@ const ErrorMessage = ({
 )
 
 ErrorMessage.propTypes = {
-  errorKey: PropTypes.string,
+  key: PropTypes.string,
   title: PropTypes.string,
   message: PropTypes.string,
   note: PropTypes.string,
 }
 
 ErrorMessage.defaultProps = {
-  errorKey: '',
+  key: '',
   title: '',
   message: '',
   note: '',
