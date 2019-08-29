@@ -39,7 +39,7 @@ export class Relatives extends Subsection {
   }
 
   getSectionErrors = () => {
-    const { maritalStatus } = this.props
+    const { errors = [], maritalStatus } = this.props
     const errorList = {
       'List.containsRequiredItems.REQUIREMENT_NOT_MET': {
         errors: [
@@ -47,20 +47,33 @@ export class Relatives extends Subsection {
             key: 'relatives-mother-father-required-error',
             title: i18n.t('error.validRelation.title'),
             message: i18n.t('error.validRelation.message'),
-            shouldDisplayError: () => true,
+            shouldDisplayError: true,
           },
           {
             key: 'relatives-mil-fil-required-error',
             title: i18n.t('error.validMaritalRelation.title'),
             message: i18n.t('error.validMaritalRelation.message'),
-            shouldDisplayError: () => (
+            shouldDisplayError: (
               [MARRIED, SEPARATED].includes(maritalStatus)
             ),
           },
         ],
       },
     }
-    return errorList
+
+    const sectionErrors = []
+    errors.forEach((error) => {
+      const errorItem = errorList[error]
+      if (errorItem) {
+        errorItem.errors.forEach((err) => {
+          if (err.shouldDisplayError) {
+            sectionErrors.push(err)
+          }
+        })
+      }
+    })
+
+    return sectionErrors
   }
 
   update = (queue) => {
@@ -98,11 +111,11 @@ export class Relatives extends Subsection {
 
   render() {
     const {
-      errors = [],
       List,
       requireRelationshipRelativesUSResidenceDoc,
       requireRelationshipRelativesForeignGovtAffExplanation,
     } = this.props
+
     return (
       <div
         className="section-content relatives"
@@ -121,10 +134,7 @@ export class Relatives extends Subsection {
         </Field>
 
         {List.branch && List.branch.value === 'No' && (
-          <ErrorMessageList
-            errors={errors}
-            errorMap={this.getSectionErrors()}
-          />
+          <ErrorMessageList errors={this.getSectionErrors()} />
         )}
 
         <Accordion

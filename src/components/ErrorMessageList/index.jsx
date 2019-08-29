@@ -5,40 +5,27 @@ import ErrorMessage from 'components/ErrorMessage'
 
 /**
  *
- * @param {Array} errors An array of errory keys
- * @param {object} errorMap An object with error keys and error values
+ * @param {Array} errors An array of errors
  */
-const ErrorMessageList = ({ errors, errorMap }) => (
+const ErrorMessageList = ({ errors }) => (
   <div>
-    {errors.map((errorKey) => {
-      if (errorMap[errorKey]) {
-        return errorMap[errorKey].errors.map((error) => {
-          if (error.shouldDisplayError()) {
-            return (
-              <ErrorMessage
-                errorKey={error.key || errorKey}
-                title={error.title}
-                message={error.message}
-                note={error.note}
-              />
-            )
-          }
-          return null
-        })
-      }
-      return null
-    })}
+    {errors.map(error => (
+      <ErrorMessage
+        errorKey={error.key}
+        title={error.title}
+        message={error.message}
+        note={error.note}
+      />
+    ))}
   </div>
 )
 
 ErrorMessageList.propTypes = {
-  errors: PropTypes.arrayOf(PropTypes.string),
-  errorMap: PropTypes.object,
+  errors: PropTypes.arrayOf(PropTypes.object),
 }
 
 ErrorMessageList.defaultProps = {
   errors: [],
-  errorMap: {},
 }
 
 export default ErrorMessageList
