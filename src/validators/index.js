@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import validate from './validate'
 import DateControlValidator from './datecontrol'
 import DateRangeValidator from './daterange'
@@ -147,9 +148,6 @@ import ForeignBusinessVotingValidator, {
   VotingValidator,
 } from './foreignbusinessvoting'
 import ForeignTravelValidator, { TravelValidator } from './foreigntravel'
-import AlcoholNegativeImpactsValidator, {
-  NegativeImpactValidator,
-} from './alcoholnegativeimpact'
 import AlcoholOrderedCounselingsValidator, {
   OrderedCounselingValidator,
 } from './alcoholorderedcounseling'
@@ -322,8 +320,6 @@ export {
   VotingValidator,
   ForeignTravelValidator,
   TravelValidator,
-  AlcoholNegativeImpactsValidator,
-  NegativeImpactValidator,
   AlcoholOrderedCounselingsValidator,
   OrderedCounselingValidator,
   AlcoholVoluntaryCounselingsValidator,

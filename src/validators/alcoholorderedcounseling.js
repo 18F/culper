@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { validateModel, hasYesOrNo } from 'models/validate'
 import * as formTypes from 'constants/formTypes'
 import alcoholOrderedCounseling from 'models/alcoholOrderedCounseling'
@@ -27,19 +28,6 @@ export const validateOrderedCounselings = (data, formType = formTypes.SF86) => {
   }
 
   return validateModel(data, orderedCounselingsModel, options)
-}
-
-export default class OrderedCounselingsValidator {
-  constructor(data = {}) {
-    const state = store.getState()
-    const { formType } = state.application.Settings
-    this.data = data
-    this.formType = formType
-  }
-
-  isValid() {
-    return validateOrderedCounselings(this.data, this.formType) === true
-  }
 }
 
 export class OrderedCounselingValidator {

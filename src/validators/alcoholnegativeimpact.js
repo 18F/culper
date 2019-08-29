@@ -18,23 +18,3 @@ export const validateNegativeImpacts = (data) => {
 
   return validateModel(data, negativeImpactsModel)
 }
-
-export default class NegativeImpactsValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  isValid() {
-    return validateNegativeImpacts(this.data) === true
-  }
-}
-
-export class NegativeImpactValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  isValid() {
-    return validateNegativeImpact(this.data) === true
-  }
-}
