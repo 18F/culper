@@ -79,19 +79,6 @@ describe('The military service model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  describe('if Service is not National Guard', () => {
-    it('ServiceState must be empty', () => {
-      const testData = {
-        Service: { value: 'Army' },
-        ServiceState: { value: 'MA' },
-      }
-      const expectedErrors = ['ServiceState.requireEmpty.VALUE_NOT_EMPTY']
-
-      expect(validateModel(testData, militaryService))
-        .toEqual(expect.arrayContaining(expectedErrors))
-    })
-  })
-
   it('requires HasBeenDischarged to be filled', () => {
     const testData = {
       HasBeenDischarged: {
