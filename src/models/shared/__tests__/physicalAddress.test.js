@@ -108,7 +108,7 @@ describe('The PhysicalAddress model', () => {
       const expectedErrors = [
         'Telephone.model.noNumber.inclusion.INCLUSION',
       ]
-      expect(validateModel(testData, physicalAddress))
+      expect(validateModel(testData, physicalAddress, { hasTelephone: true }))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
@@ -207,6 +207,68 @@ describe('The PhysicalAddress model', () => {
 
       expect(validateModel(testData, physicalAddress, { militaryAddress: false }))
         .toEqual(true)
+    })
+  })
+
+  describe('with hasTelephone option', () => {
+    it('errors without a telephone number', () => {
+      const options = { hasTelephone: true }
+      const testData = {
+        HasDifferentAddress: { value: 'Yes' },
+        Address: {
+          street: '123 Main ST',
+          city: 'New York',
+          state: 'NY',
+          zipcode: '10003',
+          country: 'United States',
+        },
+        Telephone: {
+          timeOfDay: '',
+          type: '',
+          numberType: '',
+          number: '',
+          extension: '',
+          noNumber: false,
+        },
+      }
+      const expectedErrors = [
+        'Telephone.model.timeOfDay.presence.REQUIRED',
+        'Telephone.model.type.inclusion.INCLUSION',
+        'Telephone.model.number.presence.REQUIRED',
+      ]
+      expect(validateModel(testData, physicalAddress, options))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+  })
+
+  describe('without hasTelephone option', () => {
+    it('does not have errors without a telephone number', () => {
+      const options = { hasTelephone: false }
+      const testData = {
+        HasDifferentAddress: { value: 'Yes' },
+        Address: {
+          street: '123 Main ST',
+          city: 'New York',
+          state: 'NY',
+          zipcode: '10003',
+          country: 'United States',
+        },
+        Telephone: {
+          timeOfDay: '',
+          type: '',
+          numberType: '',
+          number: '',
+          extension: '',
+          noNumber: false,
+        },
+      }
+      const expectedErrors = [
+        'Telephone.model.timeOfDay.presence.REQUIRED',
+        'Telephone.model.type.inclusion.INCLUSION',
+        'Telephone.model.number.presence.REQUIRED',
+      ]
+      expect(validateModel(testData, physicalAddress, options))
+        .toEqual(expect.not.arrayContaining(expectedErrors))
     })
   })
 })

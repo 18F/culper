@@ -35,14 +35,24 @@ const residence = {
     if (attributes.Address && isInternational(attributes.Address)) {
       return {
         presence: true,
-        model: { validator: physicalAddress, militaryAddress: true, allowPOBox: false },
+        model: {
+          validator: physicalAddress,
+          militaryAddress: true,
+          allowPOBox: false,
+          hasTelephone: false,
+        },
       }
     }
 
     if (attributes.Address && isPO(attributes.Address)) {
       return {
         presence: true,
-        model: { validator: physicalAddress, militaryAddress: false, allowPOBox: false },
+        model: {
+          validator: physicalAddress,
+          militaryAddress: false,
+          allowPOBox: false,
+          hasTelephone: false,
+        },
       }
     }
 
@@ -151,14 +161,22 @@ const residence = {
     if (attributes.ReferenceAddress && isInternational(attributes.ReferenceAddress)) {
       return {
         presence: true,
-        model: { validator: physicalAddress, militaryAddress: true },
+        model: {
+          validator: physicalAddress,
+          militaryAddress: true,
+          hasTelephone: false,
+        },
       }
     }
 
     if (attributes.ReferenceAddress && isPO(attributes.ReferenceAddress)) {
       return {
         presence: true,
-        model: { validator: physicalAddress, militaryAddress: false },
+        model: {
+          validator: physicalAddress,
+          militaryAddress: false,
+          hasTelephone: false,
+        },
       }
     }
 
