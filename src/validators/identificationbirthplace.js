@@ -2,7 +2,7 @@ import { validateModel } from 'models/validate'
 import birthplace from 'models/shared/locations/birthplace'
 
 export const validateIdentificationBirthPlace = (data) => {
-  console.log(data);
+
   const applicantBirthPlaceModel = {
     Location: {
       presence: true,
