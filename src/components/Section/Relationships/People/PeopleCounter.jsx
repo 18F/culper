@@ -1,30 +1,34 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import { PeopleValidator } from '../../../../validators'
+import PropTypes from 'prop-types'
+import classnames from 'classnames'
+import i18n from 'util/i18n'
 
-export default class PeopleCounter extends React.Component {
-  validPeople() {
-    return new PeopleValidator(this.props).validCount()
-  }
+const PeopleCounter = ({ minimum, validCount }) => {
+  const covered = validCount > minimum ? minimum : validCount
 
-  render() {
-    const valid = this.validPeople()
-    const covered = valid > this.props.minimum ? this.props.minimum : valid
-    const countClass = `count ${
-      valid >= this.props.minimum ? 'covered' : ''
-    }`.trim()
-    return (
-      <div className="people-counter">
-        <div className={countClass}>
-          {covered}/{this.props.minimum}
-        </div>
-        <div className="unit">{i18n.t('relationships.people.label.unit')}</div>
+  const countClass = classnames(
+    'count',
+    { covered: validCount >= minimum }
+  )
+
+  return (
+    <div className="people-counter">
+      <div className={countClass}>
+        {`${covered}/${minimum}`}
       </div>
-    )
-  }
+      <div className="unit">{i18n.t('relationships.people.label.unit')}</div>
+    </div>
+  )
+}
+
+PeopleCounter.propTypes = {
+  minimum: PropTypes.number,
+  validCount: PropTypes.number,
 }
 
 PeopleCounter.defaultProps = {
-  List: { branch: {}, items: [] },
-  minimum: 3
+  minimum: 3,
+  validCount: 0,
 }
+
+export default PeopleCounter

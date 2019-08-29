@@ -142,8 +142,13 @@ export class People extends Subsection {
   inject = items => InjectGaps(items, daysAgo(today, 365 * this.props.totalYears))
 
   render() {
-    const { errors } = this.props
+    const { errors, List } = this.props
     const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
+    // Number of list items with no errors
+    const validCount = List.items
+      .filter(i => i && i.Item && errors.filter(e => e.indexOf(i.uuid) > -1).length <= 0)
+      .length
 
     return (
       <div
@@ -174,7 +179,7 @@ export class People extends Subsection {
             </SummaryProgress>
           </div>
           <div className="summaryprogress counter">
-            <PeopleCounter List={this.props.List} />
+            <PeopleCounter minimum={3} validCount={validCount} />
           </div>
         </div>
 

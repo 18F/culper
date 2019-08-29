@@ -50,6 +50,7 @@ import {
   selectForeignMilitaryMaintainsContact,
   selectRelationshipMaritalForeignBornDocExpiration,
   selectRelationshipMaritalDivorcePhoneNumber,
+  selectRelationshipRelativesForeignBornDoc,
   selectRelationshipRelativesUSResidenceDoc,
   selectRelationshipRelativesForeignGovtAffExplanation,
   selectDrugWhileSafetySection,
@@ -260,6 +261,7 @@ const connectSubsection = (Component, {
         currentAddress: History && History.CurrentAddress,
         ...selectRelationshipMaritalForeignBornDocExpiration(state),
         ...selectRelationshipMaritalDivorcePhoneNumber(state),
+        ...selectRelationshipRelativesForeignBornDoc(state),
         ...selectRelationshipRelativesUSResidenceDoc(state),
         ...selectRelationshipRelativesForeignGovtAffExplanation(state),
 

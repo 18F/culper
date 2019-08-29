@@ -23,7 +23,7 @@ import {
   Location,
 } from 'components/Form'
 import ConnectedAlternateAddress from 'components/Form/Location/AlternateAddress'
-import { RelativeValidator } from 'validators'
+import { isCitizen, requireCitizenshipDocumentation } from 'models/relative'
 import { countryString } from 'validators/location'
 import Alias from './Alias'
 
@@ -304,6 +304,7 @@ export default class Relative extends ValidationElement {
 
   render() {
     const {
+      requireRelationshipRelativesForeignBornDoc,
       requireRelationshipRelativesUSResidenceDoc,
       requireRelationshipRelativesForeignGovtAffExplanation,
     } = this.props
@@ -312,7 +313,13 @@ export default class Relative extends ValidationElement {
       this.props.applicantBirthdate,
       this.props.Birthdate,
     ])
-    const validator = new RelativeValidator(this.props, null)
+
+    const relativeIsCitizen = isCitizen(this.props)
+    const citizenshipDocumentationRequired = requireCitizenshipDocumentation(this.props, {
+      requireRelationshipRelativesForeignBornDoc,
+      requireRelationshipRelativesUSResidenceDoc,
+    })
+
     const mother = (this.props.Relation || {}).value === 'Mother'
     const father = (this.props.Relation || {}).value === 'Father'
     const immediateFamily = [
@@ -363,7 +370,7 @@ export default class Relative extends ValidationElement {
 
         <Field
           title={i18n.t('relationships.relatives.heading.name')}
-          optional
+          optional={true}
           filterErrors={Name.requiredErrorsOnly}
           scrollIntoView={this.props.scrollIntoView}
         >
@@ -383,7 +390,7 @@ export default class Relative extends ValidationElement {
           help="relationships.relatives.help.birthdate"
           adjustFor="labels"
           scrollIntoView={this.props.scrollIntoView}
-          shrink
+          shrink={true}
         >
           <DateControl
             name="Birthdate"
@@ -409,7 +416,7 @@ export default class Relative extends ValidationElement {
             label={i18n.t('relationships.relatives.label.birthplace')}
             layout={Location.BIRTHPLACE_WITHOUT_COUNTY}
             help=""
-            hideCounty
+            hideCounty={true}
             className="relative-birthplace"
             onError={this.props.onError}
             onUpdate={(value) => { this.updateField('Birthplace', value) }}
@@ -424,7 +431,7 @@ export default class Relative extends ValidationElement {
         >
           <Country
             name="Citizenship"
-            multiple
+            multiple={true}
             {...this.props.Citizenship}
             className="relative-citizenship"
             onError={this.props.onError}
@@ -450,7 +457,7 @@ export default class Relative extends ValidationElement {
             />
             <Show when={this.props.MaidenSameAsListed.value === 'No'}>
               <Field
-                optional
+                optional={true}
                 filterErrors={Name.requiredErrorsOnly}
                 scrollIntoView={this.props.scrollIntoView}
               >
@@ -489,7 +496,7 @@ export default class Relative extends ValidationElement {
                 hideMaiden={mother}
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
-                bind
+                bind={true}
               />
             </div>
           </BranchCollection>
@@ -509,7 +516,7 @@ export default class Relative extends ValidationElement {
         <Show when={(this.props.IsDeceased || {}).value === 'No'}>
           <Field
             title={i18n.t('relationships.relatives.heading.deceased.address')}
-            optional
+            optional={true}
             help="relationships.relatives.help.address"
             scrollIntoView={this.props.scrollIntoView}
             adjustFor="address"
@@ -522,7 +529,7 @@ export default class Relative extends ValidationElement {
               addressBook={this.props.addressBook}
               dispatch={this.props.dispatch}
               layout={Location.ADDRESS}
-              geocode
+              geocode={true}
               onUpdate={(value) => { this.updateField('Address', value) }}
               onError={this.props.onError}
               required={this.props.required}
@@ -533,13 +540,13 @@ export default class Relative extends ValidationElement {
             addressBook={this.props.addressBook}
             belongingTo="AlternateAddress"
             country={countryString(this.props.Address.country)}
-            forceAPO
+            forceAPO={true}
             militaryAddressLabel={i18n.t('address.militaryAddress.relative')}
             onUpdate={this.update}
           />
         </Show>
 
-        <Show when={validator.requiresCitizenshipDocumentation()}>
+        <Show when={citizenshipDocumentationRequired}>
           <div>
             <Field
               title={i18n.t('relationships.relatives.heading.us.title')}
@@ -686,7 +693,7 @@ export default class Relative extends ValidationElement {
 
             <Field
               title={i18n.t('relationships.relatives.heading.us.address')}
-              optional
+              optional={true}
               scrollIntoView={this.props.scrollIntoView}
               help="relationships.relatives.help.courtaddress"
               adjustFor="labels"
@@ -695,7 +702,7 @@ export default class Relative extends ValidationElement {
                 name="CourtAddress"
                 {...this.props.CourtAddress}
                 layout={Location.US_ADDRESS}
-                geocode
+                geocode={true}
                 className="relative-courtaddress"
                 onError={this.props.onError}
                 onUpdate={(value) => { this.updateField('CourtAddress', value) }}
@@ -709,7 +716,7 @@ export default class Relative extends ValidationElement {
           when={
             requireRelationshipRelativesUSResidenceDoc
             && this.props.Citizenship.value
-            && !validator.citizen()
+            && !relativeIsCitizen
             && this.props.IsDeceased.value === 'No'
           }
         >
@@ -789,7 +796,7 @@ export default class Relative extends ValidationElement {
                   )}
                   adjustFor="labels"
                   scrollIntoView={this.props.scrollIntoView}
-                  shrink
+                  shrink={true}
                 >
                   <DateControl
                     name="Expiration"
@@ -799,7 +806,7 @@ export default class Relative extends ValidationElement {
                     applicantBirthdate={this.props.Birthdate}
                     onError={this.props.onError}
                     onUpdate={(value) => { this.updateField('Expiration', value) }}
-                    noMaxDate
+                    noMaxDate={true}
                     required={this.props.required}
                   />
                 </Field>
@@ -813,14 +820,14 @@ export default class Relative extends ValidationElement {
               help="relationships.relatives.help.firstcontact"
               adjustFor="labels"
               scrollIntoView={this.props.scrollIntoView}
-              shrink
+              shrink={true}
             >
               <DateControl
                 name="FirstContact"
                 className="relative-first-contact"
                 {...this.props.FirstContact}
                 minDate={relativeContactMinDate}
-                minDateEqualTo
+                minDateEqualTo={true}
                 onError={this.props.onError}
                 onUpdate={(value) => { this.updateField('FirstContact', value) }}
                 required={this.props.required}
@@ -834,7 +841,7 @@ export default class Relative extends ValidationElement {
               help="relationships.relatives.help.lastcontact"
               adjustFor="labels"
               scrollIntoView={this.props.scrollIntoView}
-              shrink
+              shrink={true}
             >
               <DateControl
                 name="LastContact"
@@ -842,7 +849,7 @@ export default class Relative extends ValidationElement {
                 {...this.props.LastContact}
                 prefix="relative"
                 minDate={this.props.FirstContact}
-                minDateEqualTo
+                minDateEqualTo={true}
                 onError={this.props.onError}
                 onUpdate={(value) => { this.updateField('LastContact', value) }}
                 required={this.props.required}
@@ -961,7 +968,7 @@ export default class Relative extends ValidationElement {
               title={i18n.t('relationships.relatives.heading.employer.name')}
               adjustFor="buttons"
               scrollIntoView={this.props.scrollIntoView}
-              shrink
+              shrink={true}
             >
               <NotApplicable
                 {...this.props.EmployerNotApplicable}
@@ -1000,9 +1007,9 @@ export default class Relative extends ValidationElement {
                   {...this.props.EmployerAddress}
                   isEnabled={this.props.EmployerAddressNotApplicable.applicable}
                   layout={Location.ADDRESS}
-                  geocode
+                  geocode={true}
                   className="relative-employer-address"
-                  showPostOffice
+                  showPostOffice={true}
                   onError={this.props.onError}
                   onUpdate={(value) => { this.updateEmployerAddress(value) }}
                   required={this.props.required}
