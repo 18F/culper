@@ -2,10 +2,11 @@ import { validateModel } from 'models/validate'
 import birthplace from 'models/shared/locations/birthplace'
 
 export const validateIdentificationBirthPlace = (data) => {
+  console.log(data);
   const applicantBirthPlaceModel = {
     Location: {
       presence: true,
-      location: { validator: birthplace, requireCity: !data.county, requireCounty: !data.city },
+      location: { validator: birthplace, requireCity: !data.Location.county, requireCounty: !data.Location.city },
     },
   }
 
