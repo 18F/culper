@@ -48,7 +48,7 @@ const location = {
       }
     }
 
-    return { requireEmpty: true }
+    return {}
   },
   zipcode: (value, attributes = {}) => {
     if (!isInternational(attributes)) {
@@ -59,7 +59,7 @@ const location = {
       }
     }
 
-    return { requireEmpty: true }
+    return {}
   },
   country: (value, attributes, attributeName, options) => {
     if (options.militaryAddress === true) {
@@ -83,7 +83,7 @@ const location = {
       return { presence: true }
     }
 
-    return { requireEmpty: true }
+    return {}
   },
 }
 

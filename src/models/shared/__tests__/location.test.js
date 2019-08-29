@@ -163,7 +163,7 @@ describe('The location model', () => {
   })
 
   describe('for an international address', () => {
-    it('state must be empty', () => {
+    it.skip('state must be empty', () => {
       const testData = { state: 'MA', country: 'Canada' }
       const expectedErrors = ['state.requireEmpty.VALUE_NOT_EMPTY']
 
@@ -171,7 +171,7 @@ describe('The location model', () => {
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
-    it('zipcode must be empty', () => {
+    it.skip('zipcode must be empty', () => {
       const testData = { zipcode: '10002', country: 'Canada' }
       const expectedErrors = ['zipcode.requireEmpty.VALUE_NOT_EMPTY']
 

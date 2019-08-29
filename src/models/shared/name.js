@@ -24,7 +24,7 @@ const name = {
   hideMiddleName: {},
   middle: (value, attributes = {}, attributeName, options = {}) => {
     if (options.hideMiddleName || attributes.hideMiddleName || attributes.noMiddleName) {
-      return { requireEmpty: true }
+      return {}
     }
 
     if (attributes.middleInitialOnly) {

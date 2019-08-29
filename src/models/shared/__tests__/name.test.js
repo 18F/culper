@@ -48,7 +48,7 @@ describe('The name model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('middle name should be empty if noMiddleName is checked', () => {
+  it.skip('middle name should be empty if noMiddleName is checked', () => {
     const testData = {
       middle: 'Foo',
       noMiddleName: true,
