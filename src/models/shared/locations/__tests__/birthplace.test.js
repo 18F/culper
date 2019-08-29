@@ -27,14 +27,6 @@ describe('The location/birthplace model', () => {
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
-    it('county is required', () => {
-      const testData = { state: 'NY', country: 'United States' }
-      const expectedErrors = ['county.presence.REQUIRED']
-
-      expect(validateModel(testData, birthplace))
-        .toEqual(expect.arrayContaining(expectedErrors))
-    })
-
     it('passes a valid domestic address', () => {
       const testData = {
         city: 'New York',
@@ -63,6 +55,35 @@ describe('The location/birthplace model', () => {
       }
 
       expect(validateModel(testData, birthplace)).toEqual(true)
+    })
+  })
+
+  describe('for set required fields', () => {
+
+    it('passes when city is not required', () => {
+      const testData = {
+        state: 'NY',
+        country: 'United States',
+        county: 'Manhattan',
+      }
+      const options = {
+        requireCity: false
+      }
+
+      expect(validateModel(testData, birthplace, options)).toEqual(true)
+    })
+
+    it('passes when county is not required', () => {
+      const testData = {
+        city: 'New York',
+        state: 'NY',
+        country: 'United States',
+      }
+      const options = {
+        requireCounty: false
+      }
+
+      expect(validateModel(testData, birthplace, options)).toEqual(true)
     })
   })
 })

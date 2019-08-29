@@ -3,37 +3,28 @@ import { isPO, isUS, isInternational } from 'helpers/location'
 
 const locationBirthplace = {
   city: (value, attributes, attributeName, options) => {
-    if (options.requireCity || isInternational(attributes))
+    if (options.requireCity === false)
       return {
         ...locationModel.city,
-        presence: true,
+        presence: false,
       }
     return {
       ...locationModel.city,
-      presence: false,
+      presence: true,
     }
   },
-  state: (value, attributes, attributeName, options) => {
-    if (isUS(attributes))
-      return {
-        ...locationModel.state,
-        presence: true,
-      }
-    return {
-      ...locationModel.state,
-      presence: false,
-    }
-  },
+  state: locationModel.state,
+
   country: locationModel.country,
   county: (value, attributes, attributeName, options) => {
-    if (options.requireCounty)
+    if (options.requireCounty === false || isInternational(attributes))
       return {
         ...locationModel.county,
-        presence: true,
+        presence: false,
       }
     return {
       ...locationModel.county,
-      presence: false,
+      presence: true,
     }
   },
 }
