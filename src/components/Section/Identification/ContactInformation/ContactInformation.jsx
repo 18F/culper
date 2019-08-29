@@ -93,12 +93,6 @@ export class ContactInformation extends Subsection {
     return callback()
   }
 
-  uniquePhoneTypes() {
-    return new IdentificationContactInformationValidator(
-      this.props
-    ).validPhoneTypes()
-  }
-
   getSectionErrors = () => {
     const { errors = [] } = this.props
     const errorList = {
