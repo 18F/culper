@@ -2,6 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
+import {
+  HISTORY_REVIEW,
+  HISTORY_RESIDENCE,
+  HISTORY_EMPLOYMENT,
+  HISTORY_EDUCATION,
+} from 'config/formSections/history'
+
 import { handleSubsectionUpdate } from 'actions/FormActions'
 
 import {
@@ -143,8 +150,22 @@ const connectSubsection = (Component, {
   const mapStateToProps = (state) => {
     const { form = {}, application = {} } = state
 
+    const props = {} // props to return
+
     // New section data & errors (state.form)
     const sectionData = form[key]
+
+    // Special cases
+    if (key === HISTORY_REVIEW.key) {
+      props.errors = {
+        [HISTORY_EDUCATION.key]: form[HISTORY_EDUCATION.key]
+          && form[HISTORY_EDUCATION.key].errors,
+        [HISTORY_EMPLOYMENT.key]: form[HISTORY_EMPLOYMENT.key]
+          && form[HISTORY_EMPLOYMENT.key].errors,
+        [HISTORY_RESIDENCE.key]: form[HISTORY_RESIDENCE.key]
+          && form[HISTORY_RESIDENCE.key].errors,
+      }
+    }
 
     // Legacy form data (state.application)
     const {
@@ -168,6 +189,8 @@ const connectSubsection = (Component, {
 
     try {
       return {
+        ...props,
+
         // Section-specific data
         ...sectionData && sectionData.data,
         ...sectionData,

@@ -20,7 +20,9 @@ const sectionConfig = {
 }
 
 const ResidenceWrapper = (props) => {
-  const { Residence, Birthdate, formType } = props
+  const {
+    Residence, Birthdate, formType, errors,
+  } = props
 
   const years = formType
     && formConfig[formType]
@@ -60,6 +62,7 @@ const ResidenceWrapper = (props) => {
         Residence={Residence}
         Birthdate={Birthdate}
         years={years}
+        errors={errors}
       />
 
       <ConnectedResidence
@@ -91,11 +94,13 @@ ResidenceWrapper.propTypes = {
   Residence: PropTypes.object,
   Birthdate: PropTypes.any,
   formType: PropTypes.string.isRequired,
+  errors: PropTypes.array,
 }
 
 ResidenceWrapper.defaultProps = {
   Residence: undefined,
   Birthdate: undefined,
+  errors: [],
 }
 
 export default connectSubsection(ResidenceWrapper, sectionConfig)

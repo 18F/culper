@@ -9,7 +9,6 @@ import * as formConfig from 'config/forms'
 import { Field, Show, Branch } from 'components/Form'
 
 import { reportCompletion } from 'actions/ApplicationActions'
-import { HistoryEducationValidator } from 'validators'
 
 import connectSubsection from 'components/Section/shared/SubsectionConnector'
 
@@ -25,7 +24,9 @@ const sectionConfig = {
 
 class EducationWrapper extends React.Component {
   updateBranchAttendance = (values) => {
-    const { Education, onUpdate, dispatch } = this.props
+    const {
+      Education, onUpdate, dispatch, errors,
+    } = this.props
     const education = Education || {}
     education.HasAttended = values
     education.HasDegree10 = values.value === 'No' ? education.HasDegree10 : {}
@@ -36,13 +37,15 @@ class EducationWrapper extends React.Component {
       reportCompletion(
         'history',
         'education',
-        new HistoryEducationValidator(education, education).isValid() === true,
+        !errors || errors.length <= 0
       ),
     )
   }
 
   updateBranchDegree10 = (values) => {
-    const { Education, onUpdate, dispatch } = this.props
+    const {
+      Education, onUpdate, dispatch, errors,
+    } = this.props
     const education = Education || {}
     education.HasDegree10 = values
     education.List = values.value === 'Yes' ? education.List : { items: [], branch: {} }
@@ -52,7 +55,7 @@ class EducationWrapper extends React.Component {
       reportCompletion(
         'history',
         'education',
-        new HistoryEducationValidator(education, education).isValid() === true,
+        !errors || errors.length <= 0
       ),
     )
   }
@@ -66,7 +69,7 @@ class EducationWrapper extends React.Component {
 
   render() {
     const {
-      Education, Birthdate, formType, inReview,
+      Education, Birthdate, formType, inReview, errors,
     } = this.props
 
     const years = formType
@@ -140,6 +143,7 @@ class EducationWrapper extends React.Component {
                 Education={Education}
                 Birthdate={Birthdate}
                 years={years}
+                errors={errors}
               />
             )}
 
@@ -163,6 +167,7 @@ EducationWrapper.propTypes = {
   inReview: PropTypes.bool,
   onUpdate: PropTypes.func,
   dispatch: PropTypes.func,
+  errors: PropTypes.array,
 }
 
 EducationWrapper.defaultProps = {
@@ -175,6 +180,7 @@ EducationWrapper.defaultProps = {
   inReview: false,
   onUpdate: () => {},
   dispatch: () => {},
+  errors: [],
 }
 
 export default connectSubsection(EducationWrapper, sectionConfig)
