@@ -75,7 +75,7 @@ export function* handleSubsectionUpdate({ key, data }) {
   // This because currently, data is updated a whole subsection at a time
   // Consider changing to updateSectionData for field-level updates in the future
   const newData = { ...formSection.data, ...data }
-  const errors = yield call(validateSection, { key, data: newData, formType })
+  const errors = yield call(validateSection, { key, data: newData }, formType)
 
   const newFormSection = {
     data: newData,

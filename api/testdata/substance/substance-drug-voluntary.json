@@ -26,35 +26,16 @@
                   "checked": true
                 }
               },
-              "TreatmentProvider": {
-                "type": "text",
+              "NoTreatmentExplanation": {
+                "type": "textarea",
                 "props": {
-                  "value": "the provider"
+                  "value": "stopped going"
                 }
               },
-              "TreatmentProviderAddress": {
-                "type": "location",
+              "TreatmentCompleted": {
+                "type": "branch",
                 "props": {
-                  "layout": "Address",
-                  "street": "123 Some Rd",
-                  "street2": "",
-                  "city": "Arlington",
-                  "state": "VA",
-                  "zipcode": "22202",
-                  "county": "",
-                  "country": "United States",
-                  "validated": false
-                }
-              },
-              "TreatmentProviderTelephone": {
-                "type": "telephone",
-                "props": {
-                  "timeOfDay": "Both",
-                  "type": "Domestic",
-                  "numberType": "",
-                  "number": "2128675309",
-                  "extension": "",
-                  "noNumber": false
+                  "value": "No"
                 }
               },
               "TreatmentDates": {
@@ -66,8 +47,7 @@
                       "month": "7",
                       "day": "1",
                       "year": "2017",
-                      "estimated": false,
-                      "date": "2017-07-01T00:00:00Z"
+                      "estimated": false
                     }
                   },
                   "to": {
@@ -76,23 +56,38 @@
                       "month": "7",
                       "day": "25",
                       "year": "2017",
-                      "estimated": false,
-                      "date": "2017-07-25T00:00:00Z"
+                      "estimated": false
                     }
                   },
                   "present": false
                 }
               },
-              "TreatmentCompleted": {
-                "type": "branch",
+              "TreatmentProvider": {
+                "type": "text",
                 "props": {
-                  "value": "No"
+                  "value": "the provider"
                 }
               },
-              "NoTreatmentExplanation": {
-                "type": "textarea",
+              "TreatmentProviderAddress": {
+                "type": "location",
                 "props": {
-                  "value": "stopped going"
+                  "layout": "Address",
+                  "street": "123 Some Rd",
+                  "city": "Arlington",
+                  "state": "VA",
+                  "zipcode": "22202",
+                  "country": "United States"
+                }
+              },
+              "TreatmentProviderTelephone": {
+                "type": "telephone",
+                "props": {
+                  "timeOfDay": "Both",
+                  "type": "Domestic",
+                  "numberType": "",
+                  "number": "2128675309",
+                  "extension": "",
+                  "noNumber": false
                 }
               }
             }

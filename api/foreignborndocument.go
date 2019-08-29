@@ -10,21 +10,11 @@ type ForeignBornDocument struct {
 	PayloadDocumentExpiration              Payload `json:"DocumentExpiration" sql:"-"`
 	PayloadDocumentExpirationNotApplicable Payload `json:"DocumentExpirationNotApplicable" sql:"-"`
 
-	// Validator specific fields
 	DocumentType                    *Radio         `json:"-"`
 	OtherExplanation                *Textarea      `json:"-"`
 	DocumentNumber                  *Text          `json:"-"`
 	DocumentExpiration              *DateControl   `json:"-"`
 	DocumentExpirationNotApplicable *NotApplicable `json:"-"`
-
-	// Persister specific fields
-	ID                                int `json:"-"`
-	AccountID                         int `json:"-"`
-	DocumentTypeID                    int `json:"-"`
-	OtherExplanationID                int `json:"-"`
-	DocumentNumberID                  int `json:"-"`
-	DocumentExpirationID              int `json:"-"`
-	DocumentExpirationNotApplicableID int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -85,21 +75,4 @@ func (entity *ForeignBornDocument) Marshal() Payload {
 		entity.PayloadDocumentExpirationNotApplicable = entity.DocumentExpirationNotApplicable.Marshal()
 	}
 	return MarshalPayloadEntity("foreignborndocument", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *ForeignBornDocument) Valid() (bool, error) {
-	if entity.DocumentType.Value == "Other" {
-		if ok, err := entity.OtherExplanation.Valid(); !ok {
-			return false, err
-		}
-	}
-
-	if entity.DocumentExpirationNotApplicable.Applicable {
-		if ok, err := entity.DocumentNumber.Valid(); !ok {
-			return false, err
-		}
-	}
-
-	return true, nil
 }

@@ -19,18 +19,6 @@
         "items": [
           {
             "Item": {
-              "Losses": {
-                "type": "number",
-                "props": {
-                  "value": "1000"
-                }
-              },
-              "Description": {
-                "type": "textarea",
-                "props": {
-                  "value": "the description"
-                }
-              },
               "Actions": {
                 "type": "textarea",
                 "props": {
@@ -46,8 +34,7 @@
                       "month": "7",
                       "day": "1",
                       "year": "2017",
-                      "estimated": false,
-                      "date": "2017-07-01T00:00:00Z"
+                      "estimated": false
                     }
                   },
                   "to": {
@@ -56,11 +43,22 @@
                       "month": "7",
                       "day": "25",
                       "year": "2017",
-                      "estimated": false,
-                      "date": "2017-07-25T00:00:00Z"
+                      "estimated": false
                     }
                   },
                   "present": false
+                }
+              },
+              "Description": {
+                "type": "textarea",
+                "props": {
+                  "value": "the description"
+                }
+              },
+              "Losses": {
+                "type": "number",
+                "props": {
+                  "value": "1000"
                 }
               }
             }

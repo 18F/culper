@@ -10,20 +10,24 @@
     "CohabitantList": {
       "type": "collection",
       "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
         "items": [
           {
             "Item": {
-              "Name": {
-                "type": "name",
+              "BirthPlace": {
+                "type": "location",
                 "props": {
-                  "first": "John",
-                  "firstInitialOnly": false,
-                  "last": "Smith",
-                  "middle": "H",
-                  "middleInitialOnly": true,
-                  "noMiddleName": false,
-                  "suffix": "Other",
-                  "suffixOther": "XX"
+                  "layout": "Address",
+                  "street": "123 Some Rd",
+                  "city": "Arlington",
+                  "state": "VA",
+                  "zipcode": "22202",
+                  "country": "United States"
                 }
               },
               "Birthdate": {
@@ -32,22 +36,24 @@
                   "month": "7",
                   "day": "25",
                   "year": "2017",
-                  "estimated": false,
-                  "date": "2017-07-25T00:00:00Z"
+                  "estimated": false
                 }
               },
-              "BirthPlace": {
-                "type": "location",
+              "Citizenship": {
+                "type": "country",
                 "props": {
-                  "layout": "Address",
-                  "street": "123 Some Rd",
-                  "street2": "",
-                  "city": "Arlington",
-                  "state": "VA",
-                  "zipcode": "22202",
-                  "county": "",
-                  "country": "United States",
-                  "validated": false
+                  "value": [
+                    "Germany"
+                  ]
+                }
+              },
+              "CohabitationBegan": {
+                "type": "datecontrol",
+                "props": {
+                  "month": "7",
+                  "day": "25",
+                  "year": "2017",
+                  "estimated": false
                 }
               },
               "ForeignBornDocument": {
@@ -78,8 +84,7 @@
                       "month": "7",
                       "day": "25",
                       "year": "2017",
-                      "estimated": false,
-                      "date": "2017-07-25T00:00:00Z"
+                      "estimated": false
                     }
                   },
                   "DocumentExpirationNotApplicable": {
@@ -90,13 +95,17 @@
                   }
                 }
               },
-              "SSN": {
-                "type": "ssn",
+              "Name": {
+                "type": "name",
                 "props": {
-                  "first": "123",
-                  "middle": "12",
-                  "last": "1234",
-                  "notApplicable": false
+                  "first": "John",
+                  "firstInitialOnly": false,
+                  "middle": "H",
+                  "middleInitialOnly": true,
+                  "noMiddleName": false,
+                  "last": "Smith",
+                  "suffix": "Other",
+                  "suffixOther": "XX"
                 }
               },
               "OtherNames": {
@@ -111,25 +120,6 @@
                   "items": [
                     {
                       "Item": {
-                        "OtherName": {
-                          "type": "name",
-                          "props": {
-                            "first": "John",
-                            "firstInitialOnly": false,
-                            "last": "Smith",
-                            "middle": "H",
-                            "middleInitialOnly": true,
-                            "noMiddleName": false,
-                            "suffix": "Other",
-                            "suffixOther": "XX"
-                          }
-                        },
-                        "MaidenName": {
-                          "type": "branch",
-                          "props": {
-                            "value": "Yes"
-                          }
-                        },
                         "DatesUsed": {
                           "type": "daterange",
                           "props": {
@@ -139,8 +129,7 @@
                                 "month": "7",
                                 "day": "1",
                                 "year": "2017",
-                                "estimated": false,
-                                "date": "2017-07-01T00:00:00Z"
+                                "estimated": false
                               }
                             },
                             "to": {
@@ -149,11 +138,29 @@
                                 "month": "7",
                                 "day": "25",
                                 "year": "2017",
-                                "estimated": false,
-                                "date": "2017-07-25T00:00:00Z"
+                                "estimated": false
                               }
                             },
                             "present": false
+                          }
+                        },
+                        "MaidenName": {
+                          "type": "branch",
+                          "props": {
+                            "value": "Yes"
+                          }
+                        },
+                        "OtherName": {
+                          "type": "name",
+                          "props": {
+                            "first": "John",
+                            "firstInitialOnly": false,
+                            "middle": "H",
+                            "middleInitialOnly": true,
+                            "noMiddleName": false,
+                            "last": "Smith",
+                            "suffix": "Other",
+                            "suffixOther": "XX"
                           }
                         }
                       }
@@ -161,31 +168,18 @@
                   ]
                 }
               },
-              "Citizenship": {
-                "type": "country",
+              "SSN": {
+                "type": "ssn",
                 "props": {
-                  "value": ["Germany"]
-                }
-              },
-              "CohabitationBegan": {
-                "type": "datecontrol",
-                "props": {
-                  "month": "7",
-                  "day": "25",
-                  "year": "2017",
-                  "estimated": false,
-                  "date": "2017-07-25T00:00:00Z"
+                  "first": "123",
+                  "middle": "12",
+                  "last": "1234",
+                  "notApplicable": false
                 }
               }
             }
           }
-        ],
-        "branch": {
-          "type": "branch",
-          "props": {
-            "value": "No"
-          }
-        }
+        ]
       }
     }
   }

@@ -4,9 +4,32 @@
     "List": {
       "type": "collection",
       "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
         "items": [
           {
             "Item": {
+              "Address": {
+                "type": "location",
+                "props": {
+                  "layout": "Address",
+                  "street": "123 Some Rd",
+                  "city": "Arlington",
+                  "state": "VA",
+                  "zipcode": "22202",
+                  "country": "United States"
+                }
+              },
+              "Comments": {
+                "type": "textarea",
+                "props": {
+                  "value": "my comments"
+                }
+              },
               "Dates": {
                 "type": "daterange",
                 "props": {
@@ -16,8 +39,7 @@
                       "month": "7",
                       "day": "1",
                       "year": "2017",
-                      "estimated": false,
-                      "date": "2017-07-01T00:00:00Z"
+                      "estimated": false
                     }
                   },
                   "to": {
@@ -26,14 +48,13 @@
                       "month": "7",
                       "day": "25",
                       "year": "2017",
-                      "estimated": false,
-                      "date": "2017-07-25T00:00:00Z"
+                      "estimated": false
                     }
                   },
                   "present": true
                 }
               },
-              "Address": {
+              "ReferenceAddress": {
                 "type": "location",
                 "props": {
                   "layout": "Address",
@@ -41,28 +62,19 @@
                   "city": "Arlington",
                   "state": "VA",
                   "zipcode": "22202",
-                  "county": "",
-                  "country": "United States",
-                  "validated": false
+                  "country": "United States"
                 }
               },
-              "Comments": {
-                "type": "textarea",
+              "ReferenceEmail": {
+                "type": "email",
                 "props": {
-                  "value": "my comments"
+                  "value": "test@abc.com"
                 }
               },
-              "ReferenceName": {
-                "type": "name",
+              "ReferenceEmailNotApplicable": {
+                "type": "notapplicable",
                 "props": {
-                  "first": "John",
-                  "firstInitialOnly": false,
-                  "last": "Smith",
-                  "middle": "H",
-                  "middleInitialOnly": true,
-                  "noMiddleName": false,
-                  "suffix": "Other",
-                  "suffixOther": "XX"
+                  "applicable": true
                 }
               },
               "ReferenceLastContact": {
@@ -71,29 +83,23 @@
                   "month": "7",
                   "day": "25",
                   "year": "2017",
-                  "estimated": false,
-                  "date": "2017-07-25T00:00:00Z"
+                  "estimated": false
                 }
               },
-              "ReferenceRelationshipComments": {
-                "type": "text",
+              "ReferenceName": {
+                "type": "name",
                 "props": {
-                  "value": "just some comments"
+                  "first": "John",
+                  "firstInitialOnly": false,
+                  "middle": "H",
+                  "middleInitialOnly": true,
+                  "noMiddleName": false,
+                  "last": "Smith",
+                  "suffix": "Other",
+                  "suffixOther": "XX"
                 }
               },
-              "ReferenceRelationship": {
-                "type": "checkboxgroup",
-                "props": {
-                  "values": ["Other"]
-                }
-              },
-              "ReferenceRelationshipOther": {
-                "type": "text",
-                "props": {
-                  "value": "other type of relationship"
-                }
-              },
-              "ReferencePhoneEvening": {
+              "ReferencePhoneDay": {
                 "type": "telephone",
                 "props": {
                   "timeOfDay": "Both",
@@ -104,7 +110,7 @@
                   "noNumber": false
                 }
               },
-              "ReferencePhoneDay": {
+              "ReferencePhoneEvening": {
                 "type": "telephone",
                 "props": {
                   "timeOfDay": "Both",
@@ -126,30 +132,24 @@
                   "noNumber": false
                 }
               },
-              "ReferenceEmail": {
-                "type": "email",
+              "ReferenceRelationship": {
+                "type": "checkboxgroup",
                 "props": {
-                  "value": "test@abc.com"
+                  "values": [
+                    "Other"
+                  ]
                 }
               },
-              "ReferenceEmailNotApplicable": {
-                "type": "notapplicable",
+              "ReferenceRelationshipComments": {
+                "type": "text",
                 "props": {
-                  "applicable": true
+                  "value": "just some comments"
                 }
               },
-              "ReferenceAddress": {
-                "type": "location",
+              "ReferenceRelationshipOther": {
+                "type": "text",
                 "props": {
-                  "layout": "Address",
-                  "street": "123 Some Rd",
-                  "street2": "",
-                  "city": "Arlington",
-                  "state": "VA",
-                  "zipcode": "22202",
-                  "county": "",
-                  "country": "United States",
-                  "validated": false
+                  "value": "other type of relationship"
                 }
               },
               "Role": {
@@ -167,13 +167,7 @@
               }
             }
           }
-        ],
-        "branch": {
-          "type": "branch",
-          "props": {
-            "value": "No"
-          }
-        }
+        ]
       }
     }
   }

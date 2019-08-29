@@ -259,8 +259,12 @@ func (wc *WebClient) addCSRF(r *http.Request) {
 		req.AddCookie(wc.sessionCookie)
 
 		resp, err := wc.client.Do(req)
-		if err != nil || resp.StatusCode != 200 {
-			log.Fatalln("Error or bad response while saving payload.", err, resp.StatusCode)
+		if err != nil {
+			log.Fatalln("Error while fetching status.", err)
+		}
+
+		if resp.StatusCode != 200 {
+			log.Fatalln("got a bad response fetching /status", resp.StatusCode)
 		}
 		defer resp.Body.Close()
 
@@ -298,8 +302,12 @@ func (wc *WebClient) Save(payload json.RawMessage) {
 	req.Header.Add("Content-Type", "application/json")
 
 	resp, err := wc.client.Do(req)
-	if err != nil || resp.StatusCode < 200 || resp.StatusCode > 299 {
-		log.Fatalln("Error or bad response while saving payload.", err, resp.StatusCode)
+	if err != nil {
+		log.Fatalln("Error while saving payload.", err)
+	}
+
+	if resp.StatusCode < 200 || resp.StatusCode > 299 {
+		log.Fatalln("Error bad response while saving payload.", resp.StatusCode)
 	}
 	defer resp.Body.Close()
 }
@@ -313,8 +321,12 @@ func (wc *WebClient) Form() json.RawMessage {
 	req.AddCookie(wc.sessionCookie)
 
 	resp, err := wc.client.Do(req)
-	if err != nil || resp.StatusCode < 200 || resp.StatusCode > 299 {
-		log.Fatalln("Error or bad response while submitting application.", err)
+	if err != nil {
+		log.Fatalln("err while submitting application.", err)
+	}
+
+	if resp.StatusCode < 200 || resp.StatusCode > 299 {
+		log.Fatalln("bad response while submitting application.", resp.StatusCode)
 	}
 	defer resp.Body.Close()
 
@@ -335,8 +347,12 @@ func (wc *WebClient) Submit() {
 	req.AddCookie(wc.sessionCookie)
 
 	resp, err := wc.client.Do(req)
-	if err != nil || resp.StatusCode < 200 || resp.StatusCode > 299 {
-		log.Fatalln("Error or bad response while submitting application.", err, resp.StatusCode)
+	if err != nil {
+		log.Fatalln("Error while submitting application.", err)
+	}
+
+	if resp.StatusCode < 200 || resp.StatusCode > 299 {
+		log.Fatalln("bad response while submitting application.", resp.StatusCode)
 	}
 	defer resp.Body.Close()
 }
@@ -351,8 +367,12 @@ func (wc *WebClient) Logout() {
 	req.AddCookie(wc.sessionCookie)
 
 	resp, err := wc.client.Do(req)
-	if err != nil || resp.StatusCode < 200 || resp.StatusCode > 299 {
-		log.Fatalln("Error or bad response while logging out.", err, resp.StatusCode)
+	if err != nil {
+		log.Fatalln("Error while logging out.", err)
+	}
+
+	if resp.StatusCode < 200 || resp.StatusCode > 299 {
+		log.Fatalln("bad response while logging out.", resp.StatusCode)
 	}
 	defer resp.Body.Close()
 }

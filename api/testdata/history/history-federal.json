@@ -10,9 +10,26 @@
     "List": {
       "type": "collection",
       "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
         "items": [
           {
             "Item": {
+              "Address": {
+                "type": "location",
+                "props": {
+                  "layout": "Address",
+                  "street": "123 Some Rd",
+                  "city": "Arlington",
+                  "state": "VA",
+                  "zipcode": "22202",
+                  "country": "United States"
+                }
+              },
               "Dates": {
                 "type": "daterange",
                 "props": {
@@ -22,8 +39,7 @@
                       "month": "7",
                       "day": "1",
                       "year": "2017",
-                      "estimated": false,
-                      "date": "2017-07-01T00:00:00Z"
+                      "estimated": false
                     }
                   },
                   "to": {
@@ -32,8 +48,7 @@
                       "month": "7",
                       "day": "25",
                       "year": "2017",
-                      "estimated": false,
-                      "date": "2017-07-25T00:00:00Z"
+                      "estimated": false
                     }
                   },
                   "present": false
@@ -50,30 +65,10 @@
                 "props": {
                   "value": "my position"
                 }
-              },
-              "Address": {
-                "type": "location",
-                "props": {
-                  "layout": "Address",
-                  "street": "123 Some Rd",
-                  "street2": "",
-                  "city": "Arlington",
-                  "state": "VA",
-                  "zipcode": "22202",
-                  "county": "",
-                  "country": "United States",
-                  "validated": false
-                }
               }
             }
           }
-        ],
-        "branch": {
-          "type": "branch",
-          "props": {
-            "value": "No"
-          }
-        }
+        ]
       }
     }
   }

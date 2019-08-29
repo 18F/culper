@@ -58,7 +58,7 @@ export class History extends Subsection {
   summary = (item, index) => {
     const o = (item && item.Item) || {}
     const dates = DateSummary(o.Granted)
-    const agency = (o.Agency || {}).Agency || ''
+    const agency = (o.Agency || {}).value || ''
 
     return Summary({
       type: i18n.t('legal.investigations.history.collection.item'),

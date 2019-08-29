@@ -346,6 +346,12 @@ const (
 	// Default: ".tiff;.png;.pdf"
 	FileTypes = "FILE_TYPES"
 
+	// IndentJSON set to indent response JSON.
+	//
+	// Target: Back-end (api)
+	// Default: ""
+	IndentJSON = "INDENT_JSON"
+
 	// DevUseInsecureCookie wether to use a cookie with Secure set to false in development.
 	//
 	// Target: Back-end (api)

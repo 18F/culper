@@ -41,8 +41,7 @@
                       "month": "7",
                       "day": "1",
                       "year": "2017",
-                      "estimated": false,
-                      "date": "2017-07-01T00:00:00Z"
+                      "estimated": false
                     }
                   },
                   "to": {
@@ -51,11 +50,22 @@
                       "month": "7",
                       "day": "25",
                       "year": "2017",
-                      "estimated": false,
-                      "date": "2017-07-25T00:00:00Z"
+                      "estimated": false
                     }
                   },
                   "present": false
+                }
+              },
+              "Effective": {
+                "type": "branch",
+                "props": {
+                  "value": "No"
+                }
+              },
+              "Explanation": {
+                "type": "textarea",
+                "props": {
+                  "value": "this is the explanation"
                 }
               },
               "Treatment": {
@@ -83,13 +93,10 @@
                     "props": {
                       "layout": "Address",
                       "street": "123 Some Rd",
-                      "street2": "",
                       "city": "Arlington",
                       "state": "VA",
                       "zipcode": "22202",
-                      "county": "",
-                      "country": "United States",
-                      "validated": false
+                      "country": "United States"
                     }
                   }
                 }
@@ -119,27 +126,12 @@
                     "props": {
                       "layout": "Address",
                       "street": "123 Some Rd",
-                      "street2": "",
                       "city": "Arlington",
                       "state": "VA",
                       "zipcode": "22202",
-                      "county": "",
-                      "country": "United States",
-                      "validated": false
+                      "country": "United States"
                     }
                   }
-                }
-              },
-              "Effective": {
-                "type": "branch",
-                "props": {
-                  "value": "No"
-                }
-              },
-              "Explanation": {
-                "type": "textarea",
-                "props": {
-                  "value": "this is the explanation"
                 }
               }
             }
@@ -165,6 +157,17 @@
         "items": [
           {
             "Item": {
+              "Address": {
+                "type": "location",
+                "props": {
+                  "layout": "Address",
+                  "street": "123 Some Rd",
+                  "city": "Arlington",
+                  "state": "VA",
+                  "zipcode": "22202",
+                  "country": "United States"
+                }
+              },
               "Name": {
                 "type": "text",
                 "props": {
@@ -180,20 +183,6 @@
                   "number": "2128675309",
                   "extension": "",
                   "noNumber": false
-                }
-              },
-              "Address": {
-                "type": "location",
-                "props": {
-                  "layout": "Address",
-                  "street": "123 Some Rd",
-                  "street2": "",
-                  "city": "Arlington",
-                  "state": "VA",
-                  "zipcode": "22202",
-                  "county": "",
-                  "country": "United States",
-                  "validated": false
                 }
               }
             }

@@ -17,8 +17,3 @@ func (entity *NotApplicable) Unmarshal(raw []byte) error {
 func (entity *NotApplicable) Marshal() Payload {
 	return MarshalPayloadEntity("notapplicable", entity)
 }
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *NotApplicable) Valid() (bool, error) {
-	return true, nil
-}

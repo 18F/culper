@@ -1,0 +1,39 @@
+{
+    "type": "history.employment",
+    "props": {
+        "List": {
+            "type": "collection",
+            "props": {
+                "branch": {
+                    "type": "branch",
+                    "props": {
+                        "value": "No"
+                    }
+                },
+                "items": [
+                    {
+                        "Item": {
+                            "EmploymentActivity": {
+                                "type": "employmentactivity",
+                                "props": {
+                                    "value": "Unemployment",
+                                    "otherExplanation": ""
+                                }
+                            },
+                            "Status": {
+                                "type": "radio",
+                                "props": {}
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "EmploymentRecord": {
+            "type": "branch",
+            "props": {
+                "value": "No"
+            }
+        }
+    }
+}

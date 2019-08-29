@@ -157,8 +157,7 @@ describe('The handleSubsectionUpdate saga', () => {
       .toEqual(call(validateSection, {
         key: 'IDENTIFICATION_NAME',
         data: newState,
-        formType: 'SF-86',
-      }))
+      }, 'SF-86'))
   })
 
   it('dispatches the new section data', () => {

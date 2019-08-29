@@ -11,184 +11,6 @@
     "CivilUnion": {
       "type": "civilunion",
       "props": {
-        "Name": {
-          "type": "name",
-          "props": {
-            "first": "John",
-            "firstInitialOnly": false,
-            "last": "Smith",
-            "middle": "H",
-            "middleInitialOnly": true,
-            "noMiddleName": false,
-            "suffix": "Other",
-            "suffixOther": "XX"
-          }
-        },
-        "Birthdate": {
-          "type": "datecontrol",
-          "props": {
-            "month": "7",
-            "day": "25",
-            "year": "2017",
-            "estimated": false
-          }
-        },
-        "BirthPlace": {
-          "type": "location",
-          "props": {
-            "layout": "Birthplace",
-            "city": "Arlington",
-            "state": "VA",
-            "county": "Maricopa",
-            "country": "United States"
-          }
-        },
-        "ForeignBornDocument": {
-          "type": "foreignborndocument",
-          "props": {
-            "DocumentType": {
-              "type": "radio",
-              "props": {
-                "value": "Other",
-                "checked": true
-              }
-            },
-            "OtherExplanation": {
-              "type": "textarea",
-              "props": {
-                "value": "my foreign born document type"
-              }
-            },
-            "DocumentNumber": {
-              "type": "text",
-              "props": {
-                "value": "document number"
-              }
-            },
-            "DocumentExpiration": {
-              "type": "datecontrol",
-              "props": {
-                "month": "7",
-                "day": "25",
-                "year": "2017",
-                "estimated": false              }
-            },
-            "DocumentExpirationNotApplicable": {
-              "type": "notapplicable",
-              "props": {
-                "applicable": true
-              }
-            }
-          }
-        },
-        "SSN": {
-          "type": "ssn",
-          "props": {
-            "first": "123",
-            "middle": "12",
-            "last": "1234",
-            "notApplicable": false
-          }
-        },
-        "OtherNames": {
-          "type": "collection",
-          "props": {
-            "branch": {
-              "type": "branch",
-              "props": {
-                "value": "No"
-              }
-            },
-            "items": [
-              {
-                "Item": {
-                  "Has": {
-                    "type": "branch",
-                    "props": {
-                      "value": "Yes"
-                    }
-                  },
-                  "Name": {
-                    "type": "name",
-                    "props": {
-                      "first": "John",
-                      "firstInitialOnly": false,
-                      "last": "Smith",
-                      "middle": "H",
-                      "middleInitialOnly": true,
-                      "noMiddleName": false,
-                      "suffix": "Other",
-                      "suffixOther": "XX"
-                    }
-                  },
-                  "MaidenName": {
-                    "type": "branch",
-                    "props": {
-                      "value": "Yes"
-                    }
-                  },
-                  "DatesUsed": {
-                    "type": "daterange",
-                    "props": {
-                      "from": {
-                        "type": "datecontrol",
-                        "props": {
-                          "month": "7",
-                          "day": "1",
-                          "year": "2017",
-                          "estimated": false
-                        }
-                      },
-                      "to": {
-                        "type": "datecontrol",
-                        "props": {
-                          "month": "7",
-                          "day": "25",
-                          "year": "2017",
-                          "estimated": false                        }
-                      },
-                      "present": false
-                    }
-                  }
-                }
-              },
-              {
-                "Item": {
-                  "Has": {
-                    "type": "branch",
-                    "props": {
-                      "value": "No"
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        },
-        "Citizenship": {
-          "type": "country",
-          "props": {
-            "value": ["Germany"]
-          }
-        },
-        "EnteredCivilUnion": {
-          "type": "datecontrol",
-          "props": {
-            "month": "7",
-            "day": "25",
-            "year": "2017",
-            "estimated": false          }
-        },
-        "Location": {
-          "type": "location",
-          "props": {
-            "layout": "Birthplace",
-            "city": "Arlington",
-            "state": "VA",
-            "county": "Maricopa",
-            "country": "United States"
-          }
-        },
         "Address": {
           "type": "location",
           "props": {
@@ -198,6 +20,21 @@
             "state": "VA",
             "zipcode": "22202",
             "country": "United States"
+          }
+        },
+        "AddressSeparated": {
+          "type": "location",
+          "props": {
+            "layout": "US City, State, International city",
+            "city": "Arlington",
+            "state": "VA",
+            "country": "United States"
+          }
+        },
+        "AddressSeparatedNotApplicable": {
+          "type": "notapplicable",
+          "props": {
+            "applicable": true
           }
         },
         "AlternateAddress": {
@@ -233,15 +70,46 @@
             }
           }
         },
-        "Telephone": {
-          "type": "telephone",
+        "BirthPlace": {
+          "type": "location",
           "props": {
-            "timeOfDay": "Both",
-            "type": "Domestic",
-            "numberType": "",
-            "number": "2128675309",
-            "extension": "",
-            "noNumber": false
+            "layout": "Birthplace",
+            "city": "Arlington",
+            "state": "VA",
+            "county": "Maricopa",
+            "country": "United States"
+          }
+        },
+        "Birthdate": {
+          "type": "datecontrol",
+          "props": {
+            "month": "7",
+            "day": "25",
+            "year": "2017",
+            "estimated": false
+          }
+        },
+        "Citizenship": {
+          "type": "country",
+          "props": {
+            "value": [
+              "Germany"
+            ]
+          }
+        },
+        "DateSeparated": {
+          "type": "datecontrol",
+          "props": {
+            "month": "7",
+            "day": "25",
+            "year": "2017",
+            "estimated": false
+          }
+        },
+        "Divorced": {
+          "type": "branch",
+          "props": {
+            "value": "Yes"
           }
         },
         "Email": {
@@ -256,39 +124,177 @@
             "applicable": true
           }
         },
+        "EnteredCivilUnion": {
+          "type": "datecontrol",
+          "props": {
+            "month": "7",
+            "day": "25",
+            "year": "2017",
+            "estimated": false
+          }
+        },
+        "ForeignBornDocument": {
+          "type": "foreignborndocument",
+          "props": {
+            "DocumentType": {
+              "type": "radio",
+              "props": {
+                "value": "Other",
+                "checked": true
+              }
+            },
+            "OtherExplanation": {
+              "type": "textarea",
+              "props": {
+                "value": "my foreign born document type"
+              }
+            },
+            "DocumentNumber": {
+              "type": "text",
+              "props": {
+                "value": "document number"
+              }
+            },
+            "DocumentExpiration": {
+              "type": "datecontrol",
+              "props": {
+                "month": "7",
+                "day": "25",
+                "year": "2017",
+                "estimated": false
+              }
+            },
+            "DocumentExpirationNotApplicable": {
+              "type": "notapplicable",
+              "props": {
+                "applicable": true
+              }
+            }
+          }
+        },
+        "Location": {
+          "type": "location",
+          "props": {
+            "layout": "Birthplace",
+            "city": "Arlington",
+            "state": "VA",
+            "county": "Maricopa",
+            "country": "United States"
+          }
+        },
+        "Name": {
+          "type": "name",
+          "props": {
+            "first": "John",
+            "firstInitialOnly": false,
+            "middle": "H",
+            "middleInitialOnly": true,
+            "noMiddleName": false,
+            "last": "Smith",
+            "suffix": "Other",
+            "suffixOther": "XX"
+          }
+        },
+        "OtherNames": {
+          "type": "collection",
+          "props": {
+            "branch": {
+              "type": "branch",
+              "props": {
+                "value": "No"
+              }
+            },
+            "items": [
+              {
+                "Item": {
+                  "DatesUsed": {
+                    "type": "daterange",
+                    "props": {
+                      "from": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "7",
+                          "day": "1",
+                          "year": "2017",
+                          "estimated": false
+                        }
+                      },
+                      "to": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "7",
+                          "day": "25",
+                          "year": "2017",
+                          "estimated": false
+                        }
+                      },
+                      "present": false
+                    }
+                  },
+                  "Has": {
+                    "type": "branch",
+                    "props": {
+                      "value": "Yes"
+                    }
+                  },
+                  "MaidenName": {
+                    "type": "branch",
+                    "props": {
+                      "value": "Yes"
+                    }
+                  },
+                  "Name": {
+                    "type": "name",
+                    "props": {
+                      "first": "John",
+                      "firstInitialOnly": false,
+                      "middle": "H",
+                      "middleInitialOnly": true,
+                      "noMiddleName": false,
+                      "last": "Smith",
+                      "suffix": "Other",
+                      "suffixOther": "XX"
+                    }
+                  }
+                }
+              },
+              {
+                "Item": {
+                  "Has": {
+                    "type": "branch",
+                    "props": {
+                      "value": "No"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "SSN": {
+          "type": "ssn",
+          "props": {
+            "first": "123",
+            "middle": "12",
+            "last": "1234",
+            "notApplicable": false
+          }
+        },
         "Separated": {
           "type": "branch",
           "props": {
             "value": "Yes"
           }
         },
-        "DateSeparated": {
-          "type": "datecontrol",
+        "Telephone": {
+          "type": "telephone",
           "props": {
-            "month": "7",
-            "day": "25",
-            "year": "2017",
-            "estimated": false          }
-        },
-        "AddressSeparated": {
-          "type": "location",
-          "props": {
-            "layout": "US City, State, International city",
-            "city": "Arlington",
-            "state": "VA",
-            "country": "United States"
-          }
-        },
-        "AddressSeparatedNotApplicable": {
-          "type": "notapplicable",
-          "props": {
-            "applicable": true
-          }
-        },
-        "Divorced": {
-          "type": "branch",
-          "props": {
-            "value": "Yes"
+            "timeOfDay": "Both",
+            "type": "Domestic",
+            "numberType": "",
+            "number": "2128675309",
+            "extension": "",
+            "noNumber": false
           }
         },
         "UseCurrentAddress": {
@@ -311,55 +317,6 @@
         "items": [
           {
             "Item": {
-              "Name": {
-                "type": "name",
-                "props": {
-                  "first": "John",
-                  "firstInitialOnly": false,
-                  "last": "Smith",
-                  "middle": "H",
-                  "middleInitialOnly": true,
-                  "noMiddleName": false,
-                  "suffix": "Other",
-                  "suffixOther": "XX"
-                }
-              },
-              "Birthdate": {
-                "type": "datecontrol",
-                "props": {
-                  "month": "7",
-                  "day": "25",
-                  "year": "2017",
-                  "estimated": false                }
-              },
-              "BirthPlace": {
-                "type": "location",
-                "props": {
-                  "layout": "Birthplace",
-                  "city": "Arlington",
-                  "state": "VA",
-                  "county": "Maricopa",
-                  "country": "United States"                }
-              },
-              "Telephone": {
-                "type": "telephone",
-                "props": {
-                  "timeOfDay": "Both",
-                  "type": "Domestic",
-                  "numberType": "",
-                  "number": "2128675309",
-                  "extension": "",
-                  "noNumber": false
-                }
-              },
-              "Recognized": {
-                "type": "datecontrol",
-                "props": {
-                  "month": "7",
-                  "day": "25",
-                  "year": "2017",
-                  "estimated": false                }
-              },
               "Address": {
                 "type": "location",
                 "props": {
@@ -371,29 +328,32 @@
                   "country": "United States"
                 }
               },
+              "BirthPlace": {
+                "type": "location",
+                "props": {
+                  "layout": "Birthplace",
+                  "city": "Arlington",
+                  "state": "VA",
+                  "county": "Maricopa",
+                  "country": "United States"
+                }
+              },
+              "Birthdate": {
+                "type": "datecontrol",
+                "props": {
+                  "month": "7",
+                  "day": "25",
+                  "year": "2017",
+                  "estimated": false
+                }
+              },
               "DateDivorced": {
                 "type": "datecontrol",
                 "props": {
                   "month": "7",
                   "day": "25",
                   "year": "2017",
-                  "estimated": false                }
-              },
-              "DivorceLocation": {
-                "type": "location",
-                "props": {
-                  "layout": "US City, State, Zipcode International city",
-                  "city": "Arlington",
-                  "state": "VA",
-                  "zipcode": "22202",
-                  "country": "United States"
-                }
-              },
-              "Status": {
-                "type": "radio",
-                "props": {
-                  "value": "Divorced",
-                  "checked": true
+                  "estimated": false
                 }
               },
               "Deceased": {
@@ -418,6 +378,56 @@
                 "type": "notapplicable",
                 "props": {
                   "applicable": true
+                }
+              },
+              "DivorceLocation": {
+                "type": "location",
+                "props": {
+                  "layout": "US City, State, Zipcode International city",
+                  "city": "Arlington",
+                  "state": "VA",
+                  "zipcode": "22202",
+                  "country": "United States"
+                }
+              },
+              "Name": {
+                "type": "name",
+                "props": {
+                  "first": "John",
+                  "firstInitialOnly": false,
+                  "middle": "H",
+                  "middleInitialOnly": true,
+                  "noMiddleName": false,
+                  "last": "Smith",
+                  "suffix": "Other",
+                  "suffixOther": "XX"
+                }
+              },
+              "Recognized": {
+                "type": "datecontrol",
+                "props": {
+                  "month": "7",
+                  "day": "25",
+                  "year": "2017",
+                  "estimated": false
+                }
+              },
+              "Status": {
+                "type": "radio",
+                "props": {
+                  "value": "Divorced",
+                  "checked": true
+                }
+              },
+              "Telephone": {
+                "type": "telephone",
+                "props": {
+                  "timeOfDay": "Both",
+                  "type": "Domestic",
+                  "numberType": "",
+                  "number": "2128675309",
+                  "extension": "",
+                  "noNumber": false
                 }
               }
             }

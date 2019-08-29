@@ -7,7 +7,6 @@ type AdditionalComments struct {
 	PayloadHasComments Payload `json:"HasComments" sql:"-"`
 	PayloadComments    Payload `json:"Comments" sql:"-"`
 
-	// Validator specific fields
 	HasComments *Branch   `json:"-"`
 	Comments    *Textarea `json:"-"`
 }
@@ -44,23 +43,6 @@ func (entity *AdditionalComments) Marshal() Payload {
 		entity.PayloadComments = entity.Comments.Marshal()
 	}
 	return MarshalPayloadEntity("package.comments", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *AdditionalComments) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.HasComments.Valid(); !ok {
-		stack.Append("AdditionalComments", err)
-	}
-
-	if entity.HasComments.Value == "Yes" {
-		if ok, err := entity.Comments.Valid(); !ok {
-			stack.Append("AdditionalComments", err)
-		}
-	}
-
-	return !stack.HasErrors(), stack
 }
 
 // ClearNoBranches clears any questions answered nos on a kickback

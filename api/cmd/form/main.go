@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"flag"
 	"log"
 	"os"
@@ -25,20 +26,20 @@ func main() {
 
 	webclient := wccFlags.ConfiguredClient()
 
+	var formJS json.RawMessage
 	webclient.WithAuth(func() {
-		js := webclient.Form()
-		webclient.Logout()
-
-		f, err := os.Create(flag.Args()[0])
-		if err != nil {
-			log.Fatal(err)
-		}
-		defer f.Close()
-
-		_, err = f.WriteString(string(js))
-		if err != nil {
-			log.Fatal(err)
-		}
+		formJS = webclient.Form()
 	})
+
+	f, err := os.Create(flag.Args()[0])
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer f.Close()
+
+	_, err = f.WriteString(string(formJS))
+	if err != nil {
+		log.Fatal(err)
+	}
 
 }
