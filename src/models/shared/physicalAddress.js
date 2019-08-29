@@ -22,14 +22,18 @@ const physicalAddress = {
 
     return {}
   },
-  Telephone: (value, attributes = {}) => {
+  Telephone: (value, attributes = {}, attributeName, options) => {
     const { HasDifferentAddress } = attributes
-    if (HasDifferentAddress
-      && HasDifferentAddress.value
-      && HasDifferentAddress.value === 'Yes') {
-      return {
-        presence: false, // Telephone is optional
-        model: { validator: phone, requireNumber: true },
+    // Employment is one of the few (if not the only) sections that has
+    // addresses with telephone numbers in the data model.
+    if (options.hasTelephone) {
+      if (HasDifferentAddress
+        && HasDifferentAddress.value
+        && HasDifferentAddress.value === 'Yes') {
+        return {
+          presence: false, // Telephone is optional
+          model: { validator: phone, requireNumber: true },
+        }
       }
     }
 
