@@ -8,8 +8,6 @@ import * as formConfig from 'config/forms'
 
 import { Field, Show, Branch } from 'components/Form'
 
-import { reportCompletion } from 'actions/ApplicationActions'
-
 import connectSubsection from 'components/Section/shared/SubsectionConnector'
 
 import ConnectedEducation from './Education'
@@ -24,40 +22,22 @@ const sectionConfig = {
 
 class EducationWrapper extends React.Component {
   updateBranchAttendance = (values) => {
-    const {
-      Education, onUpdate, dispatch, errors,
-    } = this.props
+    const { Education, onUpdate } = this.props
     const education = Education || {}
     education.HasAttended = values
     education.HasDegree10 = values.value === 'No' ? education.HasDegree10 : {}
     education.List = values.value === 'Yes' ? education.List : { items: [], branch: {} }
 
     onUpdate('Education', education)
-    dispatch(
-      reportCompletion(
-        'history',
-        'education',
-        !errors || errors.length <= 0
-      ),
-    )
   }
 
   updateBranchDegree10 = (values) => {
-    const {
-      Education, onUpdate, dispatch, errors,
-    } = this.props
+    const { Education, onUpdate } = this.props
     const education = Education || {}
     education.HasDegree10 = values
     education.List = values.value === 'Yes' ? education.List : { items: [], branch: {} }
 
     onUpdate('Education', education)
-    dispatch(
-      reportCompletion(
-        'history',
-        'education',
-        !errors || errors.length <= 0
-      ),
-    )
   }
 
   handleUpdate = (values) => {
