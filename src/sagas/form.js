@@ -15,6 +15,8 @@ import { validateSection } from 'helpers/validation'
 import sectionKeys from 'helpers/sectionKeys'
 import { unschema } from 'schema'
 import { env } from 'config'
+import { selectApplicantBirthdate } from 'selectors/data'
+
 import { selectSubsection, formTypeSelector } from './selectors'
 
 /** LEGACY ACTIONS - store.application */
@@ -68,12 +70,18 @@ export const updateSectionData = (prevData, field, data) => ({
 
 export function* handleSubsectionUpdate({ key, data }) {
   const formType = yield select(formTypeSelector)
+  const applicantBirthdate = yield select(selectApplicantBirthdate)
+
   const formSection = yield select(selectSubsection, key)
 
   // This because currently, data is updated a whole subsection at a time
   // Consider changing to updateSectionData for field-level updates in the future
   const newData = { ...formSection.data, ...data }
-  const errors = yield call(validateSection, { key, data: newData }, formType)
+  const errors = yield call(validateSection, {
+    key,
+    data: newData,
+    options: { applicantBirthdate }, // pass any x-section form data required to validate here
+  }, formType)
 
   const newFormSection = {
     data: newData,

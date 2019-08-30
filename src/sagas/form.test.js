@@ -12,6 +12,7 @@ import { env } from 'config'
 
 import { validateSection } from 'helpers/validation'
 import sectionKeys from 'helpers/sectionKeys'
+import { selectApplicantBirthdate } from 'selectors/data'
 
 import { selectSubsection, formTypeSelector } from './selectors'
 
@@ -139,8 +140,13 @@ describe('The handleSubsectionUpdate saga', () => {
       .toEqual(select(formTypeSelector))
   })
 
-  it('selects the form section from state', () => {
+  it('selects the applicant birthdate from state', () => {
     expect(generator.next('SF-86').value)
+      .toEqual(select(selectApplicantBirthdate))
+  })
+
+  it('selects the form section from state', () => {
+    expect(generator.next({ month: 5, day: 16, year: 1988 }).value)
       .toEqual(select(selectSubsection, 'IDENTIFICATION_NAME'))
   })
 
@@ -152,6 +158,7 @@ describe('The handleSubsectionUpdate saga', () => {
       .toEqual(call(validateSection, {
         key: 'IDENTIFICATION_NAME',
         data: newState,
+        options: { applicantBirthdate: { month: 5, day: 16, year: 1988 } },
       }, 'SF-86'))
   })
 
