@@ -65,7 +65,7 @@ describe('The identificationContactInfo section', () => {
         .toEqual(expect.not.arrayContaining(expectedErrors))
     })
 
-    it('does not require a value in both email addresses', () => {
+    it('does not require a work email if has home email', () => {
       const testData = {
         HomeEmail: { value: 'foobar2@local.dev' },
         WorkEmail: { value: '' },
@@ -95,6 +95,37 @@ describe('The identificationContactInfo section', () => {
       expect(validateModel(testData, identificationContactInfo))
         .toEqual(expect.not.arrayContaining(expectedErrors))
     })
+  })
+
+  it('does not require a home email if has work email', () => {
+    const testData = {
+      HomeEmail: { value: '' },
+      WorkEmail: { value: 'foobar2@local.dev' },
+      PhoneNumbers: {
+        items: [
+          {
+            Item: {
+              Telephone: {
+                noNumber: false,
+                number: '7031112222',
+                numberType: 'Home',
+                type: 'Domestic',
+                timeOfDay: 'Both',
+                extension: '',
+              },
+            },
+          },
+        ],
+      },
+    }
+
+    const expectedErrors = [
+      'WorkEmail.model.value.presence.REQUIRED',
+      'WorkEmail.model.value.email.INVALID_EMAIL',
+    ]
+
+    expect(validateModel(testData, identificationContactInfo))
+      .toEqual(expect.not.arrayContaining(expectedErrors))
   })
 
   it('does not allow more than one of the same phone number type', () => {
