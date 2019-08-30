@@ -14,9 +14,12 @@ export const contactPhoneNumber = {
 const identificationContactInfo = {
   HomeEmail: (value, attributes) => {
     if (attributes.WorkEmail && attributes.WorkEmail.value) {
-      return {
-        model: { validator: email },
+      if (attributes.HomeEmail && attributes.HomeEmail.value) {
+        return {
+          model: { validator: email },
+        }
       }
+      return {}
     }
 
     return {
@@ -26,9 +29,12 @@ const identificationContactInfo = {
   },
   WorkEmail: (value, attributes) => {
     if (attributes.HomeEmail && attributes.HomeEmail.value) {
-      return {
-        model: { validator: email },
+      if (attributes.WorkEmail && attributes.WorkEmail.value) {
+        return {
+          model: { validator: email },
+        }
       }
+      return {}
     }
 
     return {
