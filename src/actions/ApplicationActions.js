@@ -1,9 +1,3 @@
-import * as actionTypes from 'constants/actionTypes'
-
-export const validateFormData = () => ({
-  type: actionTypes.VALIDATE_FORM_DATA,
-})
-
 export function updateApplication(section, property, values) {
   return {
     type: `${section}.${property}`,

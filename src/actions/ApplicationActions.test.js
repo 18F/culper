@@ -1,23 +1,12 @@
-import * as actionTypes from 'constants/actionTypes'
-
 import {
   updateIdentificationApplicantName,
   updateIdentificationBirthPlace,
   updateIdentificationBirthDate,
   updateIdentificationSSN,
   reportErrors,
-  validateFormData,
 } from './ApplicationActions'
 
 describe('Application actions', () => {
-  it('should create an action for validating the form data', () => {
-    const expectedAction = {
-      type: actionTypes.VALIDATE_FORM_DATA,
-    }
-
-    expect(validateFormData()).toEqual(expectedAction)
-  })
-
   it('should create an action for updating identification properties', () => {
     const tests = [
       {

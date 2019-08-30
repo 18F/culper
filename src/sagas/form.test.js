@@ -6,7 +6,7 @@ import { HANDLE_SUBSECTION_UPDATE } from 'constants/actionTypes'
 import {
   updateSubsection, handleSubsectionUpdate as handleSubsectionUpdateAction,
 } from 'actions/FormActions'
-import { updateApplication, validateFormData } from 'actions/ApplicationActions'
+import { updateApplication } from 'actions/ApplicationActions'
 
 import { env } from 'config'
 
@@ -56,11 +56,6 @@ describe('setFormData saga', () => {
         all(['Identification', 'History', 'Relationships', 'Metadata']
           .map(s => call(updateSectionDataLegacy, s, testSections[s])))
       )
-    })
-
-    it('puts the validateFormData action', () => {
-      expect(generator.next().value)
-        .toEqual(put(validateFormData()))
     })
 
     it('is done', () => {

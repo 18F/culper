@@ -9,7 +9,7 @@ import { HANDLE_SUBSECTION_UPDATE } from 'constants/actionTypes'
 import {
   updateSubsection, handleSubsectionUpdate as handleSubsectionUpdateAction,
 } from 'actions/FormActions'
-import { updateApplication, validateFormData } from 'actions/ApplicationActions'
+import { updateApplication } from 'actions/ApplicationActions'
 
 import { validateSection } from 'helpers/validation'
 import sectionKeys from 'helpers/sectionKeys'
@@ -50,8 +50,6 @@ export function* setFormData(data) {
 
     yield all(Object.keys(data)
       .map(section => call(updateSectionDataLegacy, section, data[section])))
-
-    yield put(validateFormData())
   } catch (e) {
     console.warn('failed to set form data', e)
     yield call(env.History().push, '/error')
