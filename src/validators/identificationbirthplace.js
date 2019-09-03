@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import { validateModel } from 'models/validate'
-import identificationPlaceOfBirth from 'models/sections/identificationPlaceOfBirth'
+import birthplace from 'models/shared/locations/birthplace'
 
 export const validateIdentificationBirthPlace = (data) => {
 
