@@ -5,9 +5,9 @@ import { Provider } from 'react-redux'
 
 import { mount } from 'enzyme'
 
-import connectHistorySection from './HistoryConnector'
+import connectSubsection from './SubsectionConnector'
 
-describe('The HistoryConnector HOC', () => {
+describe('The SubsectionConnector HOC', () => {
   const mockStore = configureMockStore()
 
   const TestComponent = () => (
@@ -21,7 +21,7 @@ describe('The HistoryConnector HOC', () => {
     storeKey: '',
   }
 
-  const Wrapper = connectHistorySection(TestComponent, testConfig)
+  const Wrapper = connectSubsection(TestComponent, testConfig)
 
   describe('default behavior', () => {
     const store = mockStore({
