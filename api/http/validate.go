@@ -46,10 +46,11 @@ func (service ValidateHandler) ServeHTTP(w http.ResponseWriter, r *http.Request)
 		return
 	}
 
-	// Extract the entity interface of the payload and validate it
+	// Perform minimal field validation on location and send it
+	// to the USPS geocoding service. Validation errors of this
+	// nature are normal, expected, and parsed by the caller.
 	if ok, err := location.Valid(); !ok {
-		service.Log.WarnError(api.PayloadInvalid, err, api.LogFields{})
-		RespondWithStructuredError(w, api.PayloadInvalid, http.StatusBadRequest)
+		EncodeErrJSON(w, err)
 		return
 	}
 
