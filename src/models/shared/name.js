@@ -24,7 +24,17 @@ const name = {
   hideMiddleName: {},
   middle: (value, attributes = {}, attributeName, options = {}) => {
     if (options.hideMiddleName || attributes.hideMiddleName || attributes.noMiddleName) {
-      return { requireEmpty: true }
+      return {}
+
+    /**
+     * The requireEmpty constraint was added to force certain fields to have no
+     * value based on certain conditions. However, this broke some test data
+     * since currently some data structures retain dead/unused data when values
+     * are changed. For now all validation constraints are ignored for
+     * irrelevant values, but this can be added back in the future.
+     * See JIRA issue [EN-3928]
+     * */
+      // return { requireEmpty: true }
     }
 
     if (attributes.middleInitialOnly) {
