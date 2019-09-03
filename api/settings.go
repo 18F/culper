@@ -352,7 +352,8 @@ const (
 	// Default: ""
 	IndentJSON = "INDENT_JSON"
 
-	// DevUseInsecureCookie wether to use a cookie with Secure set to false in development.
+	// DevUseInsecureCookie controls whether to use a cookie with Secure set to false in development.
+	// Also controls the Strict-Transport-Security header that's set in security_headers.go
 	//
 	// Target: Back-end (api)
 	// Default: ""

@@ -65,7 +65,7 @@ func (env Native) Configure() {
 	env.ensure(api.DevUseInsecureCookie, "")
 }
 
-// Has returns if the environment has a value for the given environment variable.
+// Has returns true if the environment has a value for the given environment variable.
 func (env Native) Has(name string) bool {
 	if os.Getenv(name) == "" {
 		return false
