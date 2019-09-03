@@ -1,4 +1,4 @@
-import IdentificationBirthPlaceValidator, {
+import {
   validateIdentificationBirthPlace,
 } from './identificationbirthplace'
 
