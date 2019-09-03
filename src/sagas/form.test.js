@@ -12,7 +12,8 @@ import { env } from 'config'
 
 import { validateSection } from 'helpers/validation'
 import sectionKeys from 'helpers/sectionKeys'
-import { selectApplicantBirthdate } from 'selectors/data'
+import { selectApplicantBirthdate, selectMaritalStatus } from 'selectors/data'
+import { selectValidUSPassport } from 'selectors/misc'
 
 import { selectSubsection, formTypeSelector } from './selectors'
 
@@ -145,8 +146,18 @@ describe('The handleSubsectionUpdate saga', () => {
       .toEqual(select(selectApplicantBirthdate))
   })
 
-  it('selects the form section from state', () => {
+  it('selects the applicant’s marital status from state', () => {
     expect(generator.next({ month: 5, day: 16, year: 1988 }).value)
+      .toEqual(select(selectMaritalStatus))
+  })
+
+  it('selects the applicant’s US passport status from state', () => {
+    expect(generator.next('Married').value)
+      .toEqual(select(selectValidUSPassport))
+  })
+
+  it('selects the form section from state', () => {
+    expect(generator.next({ hasValidUSPassport: false }).value)
       .toEqual(select(selectSubsection, 'IDENTIFICATION_NAME'))
   })
 
@@ -158,7 +169,11 @@ describe('The handleSubsectionUpdate saga', () => {
       .toEqual(call(validateSection, {
         key: 'IDENTIFICATION_NAME',
         data: newState,
-        options: { applicantBirthdate: { month: 5, day: 16, year: 1988 } },
+        options: {
+          applicantBirthdate: { month: 5, day: 16, year: 1988 },
+          maritalStatus: 'Married',
+          hasValidUSPassport: false,
+        },
       }, 'SF-86'))
   })
 
