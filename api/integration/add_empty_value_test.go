@@ -8,6 +8,7 @@ import (
 
 func TestAddEmptyValue(t *testing.T) {
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 
 	section := readTestData(t, "../testdata/history/history-employment-no-value.json")

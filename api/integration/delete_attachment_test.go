@@ -26,6 +26,7 @@ func TestDeleteAttachment(t *testing.T) {
 	// Attachments enabled
 	os.Setenv(api.AttachmentsEnabled, "1")
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 
 	certificationPath := "../testdata/attachments/signature-form.pdf"
@@ -122,6 +123,7 @@ func TestDeleteAttachmentDisabled(t *testing.T) {
 	// Attachments enabled
 	os.Setenv(api.AttachmentsEnabled, "1")
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 
 	certificationPath := "../testdata/attachments/signature-form.pdf"
@@ -194,6 +196,7 @@ func TestDeleteAttachmentDisabled(t *testing.T) {
 
 func TestDeleteAttachmentLockedAccount(t *testing.T) {
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 	// Lock account
 	account.Status = api.StatusSubmitted
@@ -232,6 +235,7 @@ func TestDeleteAttachmentLockedAccount(t *testing.T) {
 func TestDeleteAttachmentError(t *testing.T) {
 	var mockStore errorDeleteAttachmentStore
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 
 	delAttachmentHandler := http.AttachmentDeleteHandler{
@@ -277,6 +281,7 @@ func TestDeleteAttachmentError(t *testing.T) {
 
 func TestDeleteAttachmentBadID(t *testing.T) {
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 
 	delAttachmentHandler := http.AttachmentDeleteHandler{

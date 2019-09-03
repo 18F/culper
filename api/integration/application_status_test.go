@@ -17,6 +17,7 @@ import (
 func TestStatus(t *testing.T) {
 
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 
 	sections := []struct {
@@ -137,6 +138,7 @@ func (s errorStatusStore) LoadApplication(accountID int) (api.Application, error
 func TestStatusFetchError(t *testing.T) {
 	var mockStore errorStatusStore
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createLockedTestAccount(t, services.db)
 
 	w, req := standardResponseAndRequest("GET", "/me/status", nil, account)
@@ -172,6 +174,7 @@ func TestStatusFetchError(t *testing.T) {
 func TestLockedStatus(t *testing.T) {
 
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createLockedTestAccount(t, services.db)
 
 	w, req := standardResponseAndRequest("GET", "/me/status", nil, account)

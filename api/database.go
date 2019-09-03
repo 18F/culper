@@ -35,4 +35,5 @@ type DatabaseService interface {
 	Count(model interface{}, condition string, params ...interface{}) int
 	CountExpr(model interface{}, expr string, retval interface{}, condition string, params ...interface{})
 	Array(model interface{}, expr string, retval interface{}, condition string, params ...interface{})
+	Close() error
 }

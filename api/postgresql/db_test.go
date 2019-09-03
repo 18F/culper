@@ -24,6 +24,7 @@ func TestAccountPersistence(t *testing.T) {
 	}
 
 	service := NewPostgresService(dbConf, logger)
+	defer service.Close()
 
 	api.Geocode = mock.Geocoder{}
 
