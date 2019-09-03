@@ -72,5 +72,117 @@ func TestValidFormType(t *testing.T) {
 		}
 
 	}
+}
 
+func TestAccountUsernameValidation(t *testing.T) {
+
+	account := &Account{
+		Username:    "",
+		Email:       sql.NullString{},
+		FormType:    "SF86",
+		FormVersion: "2017-07",
+	}
+	err := account.validate()
+	if err == nil {
+		t.Errorf("expected a Missing Username error")
+		t.Fail()
+	}
+}
+
+func TestAccountFormTypeValidation(t *testing.T) {
+
+	account := &Account{
+		Username:    "glarbal@example.com",
+		Email:       sql.NullString{},
+		FormType:    "Dogs",
+		FormVersion: "2017-07",
+	}
+	err := account.validate()
+	if err == nil {
+		t.Errorf("expected a Known Form error")
+		t.Fail()
+	}
+}
+
+func TestGetAccountID(t *testing.T) {
+
+	accountID := 148958398
+	account := &Account{
+		Username:    "glarbal@example.com",
+		Email:       sql.NullString{},
+		FormType:    "Dogs",
+		FormVersion: "2017-07",
+		ID:          accountID,
+	}
+	if account.GetID() != accountID {
+		t.Errorf("incorrect account ID")
+		t.Fail()
+	}
+}
+
+func TestSetAccountID(t *testing.T) {
+
+	accountID := 148958398
+	account := &Account{
+		Username:    "glarbal@example.com",
+		Email:       sql.NullString{},
+		FormType:    "Dogs",
+		FormVersion: "2017-07",
+		ID:          1835833,
+	}
+	account.SetID(accountID)
+	if account.ID != accountID {
+		t.Errorf("account ID set failure")
+		t.Fail()
+	}
+}
+
+func TestSubmitAccount(t *testing.T) {
+
+	account := &Account{
+		Username:    "glarbal@example.com",
+		Email:       sql.NullString{},
+		FormType:    "Dogs",
+		FormVersion: "2017-07",
+		Status:      StatusSubmitted,
+	}
+	if account.CanSubmit() {
+		t.Errorf("Expect to be unable to submit account")
+		t.Fail()
+	}
+}
+
+func TestUnsubmitAccount(t *testing.T) {
+
+	account := &Account{
+		Username:    "glarbal@example.com",
+		Email:       sql.NullString{},
+		FormType:    "Dogs",
+		FormVersion: "2017-07",
+	}
+	account.Unsubmit()
+	if account.Status != StatusIncomplete {
+		t.Errorf("Expect to be have set account status to incomplete")
+		t.Fail()
+	}
+}
+
+func TestDefaultFormVersion(t *testing.T) {
+	form, err := DefaultFormVersion("SF86")
+	if err != nil {
+		t.Log("Error finding default form: ", err)
+		t.Fail()
+	}
+	if form != "2017-07" {
+		t.Errorf("Returned wrong form, expected SF86, got %v.", form)
+		t.Fail()
+	}
+}
+
+func TestDefaultFormVersionFail(t *testing.T) {
+	_, err := DefaultFormVersion("SF101")
+	if err == nil {
+		t.Log("Expected to fine an error, did not receive one")
+		t.Fail()
+	}
 }

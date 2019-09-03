@@ -88,6 +88,7 @@ xmlsec1
 # Test artifacts
 /api/coverage.txt
 api/coverage-integration.txt
+api/full-coverage.txt
 /jest*
 /api/integration/xsds/
 

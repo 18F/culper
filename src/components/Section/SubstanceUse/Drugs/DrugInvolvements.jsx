@@ -62,7 +62,7 @@ export class DrugInvolvements extends Subsection {
 
   summary = (item, index) => {
     const o = (item || {}).Item || {}
-    let drug = (o.DrugType || {}).DrugType
+    let drug = (o.DrugType || {}).value
     if (drug === 'Other') {
       drug = ((o.DrugType || {}).DrugTypeOther || {}).value
     }

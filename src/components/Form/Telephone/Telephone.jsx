@@ -148,7 +148,7 @@ export default class Telephone extends ValidationElement {
     }, () => {
       this.update({
         noNumber: !this.props.noNumber,
-        timeOfDay: '',
+        timeOfDay: this.props.noNumber ? 'Both' : '',
         numberType: '',
         extension: '',
       })
