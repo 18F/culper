@@ -1,13 +1,14 @@
 import React from 'react'
-import { i18n } from '../../../config'
-import SubsectionElement from '../SubsectionElement'
-import { SignatureValidator } from '../../../validators'
+
+import { i18n } from 'config'
+import Subsection from 'components/Section/shared/Subsection'
+import { SignatureValidator } from 'validators'
 import Signature from './Signature'
 
 // TODO: Rename this component and relevant references (frontend and backend)
 // This section of the application was improperly named and never got fixed.
 // See https://github.com/ryanhofdotgov/e-QIP-prototype-truetandem/issues/657#issuecomment-349350305
-export default class AdditionalComments extends SubsectionElement {
+export default class AdditionalComments extends Subsection {
   constructor(props) {
     super(props)
 

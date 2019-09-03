@@ -11,8 +11,8 @@ import { nestedFormSectionsSelector } from 'selectors/navigation'
 
 /**
  * Recursive function that loops through sections and their subsections, checks
- * section validity using validateSection helper, and adds the isValid boolean
- * to the section object.
+ * section validity from Redux, and adds the isValid boolean to the section
+ * object.
  */
 const getFormSectionStatuses = (sections = [], store = '', state = {}) => {
   const { form } = state

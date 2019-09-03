@@ -35,17 +35,6 @@ export function reportErrors(section, subsection, codes) {
   return updateApplication('Errors', section, mappedCodes)
 }
 
-export function reportCompletion(section, subsection, status) {
-  return updateApplication('Completed', section, [
-    {
-      code: `${section}/${subsection}`.trim(),
-      section,
-      subsection,
-      valid: status,
-    },
-  ])
-}
-
 export function updateIdentificationApplicantName(values) {
   return updateApplication('Identification', 'ApplicantName', values)
 }
