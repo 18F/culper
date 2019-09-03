@@ -163,6 +163,7 @@ describe('The location model', () => {
   })
 
   describe('for an international address', () => {
+    // Skipped to fix [EN-3928], see comment in models/shared/location.js
     it.skip('state must be empty', () => {
       const testData = { state: 'MA', country: 'Canada' }
       const expectedErrors = ['state.requireEmpty.VALUE_NOT_EMPTY']
@@ -171,6 +172,7 @@ describe('The location model', () => {
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
+    // Skipped to fix [EN-3928], see comment in models/shared/location.js
     it.skip('zipcode must be empty', () => {
       const testData = { zipcode: '10002', country: 'Canada' }
       const expectedErrors = ['zipcode.requireEmpty.VALUE_NOT_EMPTY']

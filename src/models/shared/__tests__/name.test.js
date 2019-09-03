@@ -48,6 +48,7 @@ describe('The name model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  // Skipped to fix [EN-3928], see comment in models/shared/name.js
   it.skip('middle name should be empty if noMiddleName is checked', () => {
     const testData = {
       middle: 'Foo',

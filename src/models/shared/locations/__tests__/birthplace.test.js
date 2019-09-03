@@ -47,6 +47,7 @@ describe('The location/birthplace model', () => {
     })
   })
 
+  // Skipped to fix [EN-3928], see comment in models/shared/location.js
   describe('for an international address', () => {
     it.skip('state must be empty', () => {
       const testData = { state: 'MA', country: 'Canada' }
