@@ -1,6 +1,8 @@
 {{ if formType "SF86,SF85P" }}
 <UseOfAlcohol Version="1" Type="Pooled">
+  {{ if formType "SF86" }}
   {{tmpl "substance-alcohol-additional.xml" .Substance.ReceivedCounselings}}
+  {{end}}
   {{tmpl "substance-alcohol-negative.xml" .Substance.NegativeImpacts}}
   {{tmpl "substance-alcohol-ordered.xml" .Substance.OrderedCounselings}}
   {{tmpl "substance-alcohol-voluntary.xml" .Substance.VoluntaryCounselings}}
