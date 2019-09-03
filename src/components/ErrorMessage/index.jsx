@@ -5,7 +5,7 @@ const ErrorMessage = ({
   id, title, message, note,
 }) => (
   <div
-    className="message error usa-alert usa-alert-error"
+    className="error-message error usa-alert usa-alert-error"
     role="alert"
     aria-live="polite"
   >
