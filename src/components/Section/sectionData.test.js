@@ -1,4 +1,5 @@
-import sectionData from './sectionData'
+import { SF85, SF85P, SF86 } from 'config/formTypes'
+import sectionData, { getForm, getSubsections, getLegalPoliceSubsections } from './sectionData'
 
 describe('Retrieving section data', () => {
   it('can get section data', () => {
@@ -514,6 +515,164 @@ describe('Retrieving section data', () => {
         }
         expect(r.data).toBe(true)
       }
+    })
+  })
+})
+
+describe('sectionData', () => {
+  const defaultApplication = {
+    Identification: {},
+    Financial: {},
+    Relationships: {},
+    Citizenship: {},
+    Military: {},
+    History: {},
+    Foreign: {},
+    Legal: {},
+    Psychological: {},
+    Substance: {},
+  }
+
+  describe('SF86', () => {
+    const application = {
+      ...defaultApplication,
+      Settings: { formType: 'SF86' },
+    }
+
+    it('has correct identification sections', () => {
+      expect(sectionData('identification', 'review', application).length)
+        .toEqual(7)
+    })
+
+    it('has correct history sections', () => {
+      expect(sectionData('history', 'review', application).length)
+        .toEqual(4)
+    })
+
+    it('has correct relationships sections', () => {
+      expect(sectionData('relationships', 'review', application).length)
+        .toEqual(4)
+    })
+
+    it('has correct citizenship sections', () => {
+      expect(sectionData('citizenship', 'review', application).length)
+        .toEqual(4)
+    })
+
+    it('has correct military sections', () => {
+      expect(sectionData('military', 'review', application).length)
+        .toEqual(4)
+    })
+
+    it('has correct foreign sections', () => {
+      expect(sectionData('foreign', 'review', application).length)
+        .toEqual(16)
+    })
+
+    it('has correct financial sections', () => {
+      expect(sectionData('financial', 'review', application).length)
+        .toEqual(7)
+    })
+
+    it('has correct substance sections', () => {
+      expect(sectionData('substance', 'review', application).length)
+        .toEqual(11)
+    })
+
+    it('has correct psychological sections', () => {
+      expect(sectionData('psychological', 'review', application).length)
+        .toEqual(5)
+    })
+
+    it('has correct legal sections', () => {
+      expect(sectionData('legal', 'review', application).length)
+        .toEqual(17)
+    })
+  })
+
+  describe('SF85', () => {
+    const application = {
+      ...defaultApplication,
+      Settings: { formType: 'SF85' },
+    }
+
+    it('has correct identification sections', () => {
+      expect(sectionData('identification', 'review', application).length)
+        .toEqual(7)
+    })
+
+    it('has correct history sections', () => {
+      expect(sectionData('history', 'review', application).length)
+        .toEqual(3)
+    })
+
+    it('has correct citizenship sections', () => {
+      expect(sectionData('citizenship', 'review', application).length)
+        .toEqual(3)
+    })
+
+    it('has correct military sections', () => {
+      expect(sectionData('military', 'review', application).length)
+        .toEqual(4)
+    })
+
+    it('has correct financial sections', () => {
+      expect(sectionData('financial', 'review', application).length)
+        .toEqual(2)
+    })
+
+    it('has correct substance sections', () => {
+      expect(sectionData('substance', 'review', application).length)
+        .toEqual(5)
+    })
+
+    it('has correct legal sections', () => {
+      expect(sectionData('legal', 'review', application).length)
+        .toEqual(12)
+    })
+  })
+})
+
+describe('getForm', () => {
+  it('gets the correct form', () => {
+    expect(getForm({ formType: 'SF86' })).toEqual(SF86)
+    expect(getForm({ formType: 'SF85P' })).toEqual(SF85P)
+    expect(getForm({ formType: 'SF85' })).toEqual(SF85)
+  })
+
+  it('defaults to the SF86', () => {
+    expect(getForm({ formType: '' })).toEqual(SF86)
+  })
+})
+
+describe('getSubsections', () => {
+  describe('SF86', () => {
+    it('filters down to only get the correct subsections', () => {
+      expect(getSubsections('financial', { Settings: { formType: 'SF86' } }).length)
+        .toEqual(7)
+    })
+  })
+
+  describe('SF85', () => {
+    it('filters down to only get the correct subsections', () => {
+      expect(getSubsections('financial', { Settings: { formType: 'SF85' } }).length)
+        .toEqual(2)
+    })
+  })
+})
+
+describe('getLegalPoliceSubsections', () => {
+  describe('SF86', () => {
+    it('filters down to only get the correct subsections', () => {
+      expect(getLegalPoliceSubsections({ Settings: { formType: 'SF86' } }).length)
+        .toEqual(3)
+    })
+  })
+
+  describe('SF85', () => {
+    it('filters down to only get the correct subsections', () => {
+      expect(getLegalPoliceSubsections({ Settings: { formType: 'SF85' } }).length)
+        .toEqual(2)
     })
   })
 })

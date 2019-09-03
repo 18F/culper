@@ -359,75 +359,6 @@
     }
   },
   "Financial": {
-    "Bankruptcy": {
-      "type": "financial.bankruptcy",
-      "props": {
-        "HasBankruptcy": {
-          "type": "branch",
-          "props": {
-            "value": ""
-          }
-        },
-        "List": {
-          "type": "collection",
-          "props": {
-            "branch": {
-              "type": "branch",
-              "props": {
-                "value": ""
-              }
-            },
-            "items": []
-          }
-        }
-      }
-    },
-    "Card": {
-      "type": "financial.card",
-      "props": {
-        "HasCardAbuse": {
-          "type": "branch",
-          "props": {
-            "value": ""
-          }
-        },
-        "List": {
-          "type": "collection",
-          "props": {
-            "branch": {
-              "type": "branch",
-              "props": {
-                "value": ""
-              }
-            },
-            "items": []
-          }
-        }
-      }
-    },
-    "Credit": {
-      "type": "financial.credit",
-      "props": {
-        "HasCreditCounseling": {
-          "type": "branch",
-          "props": {
-            "value": ""
-          }
-        },
-        "List": {
-          "type": "collection",
-          "props": {
-            "branch": {
-              "type": "branch",
-              "props": {
-                "value": ""
-              }
-            },
-            "items": []
-          }
-        }
-      }
-    },
     "Delinquent": {
       "type": "financial.delinquent",
       "props": {
@@ -550,52 +481,6 @@
                 }
               }
             ]
-          }
-        }
-      }
-    },
-    "Gambling": {
-      "type": "financial.gambling",
-      "props": {
-        "HasGamblingDebt": {
-          "type": "branch",
-          "props": {
-            "value": ""
-          }
-        },
-        "List": {
-          "type": "collection",
-          "props": {
-            "branch": {
-              "type": "branch",
-              "props": {
-                "value": ""
-              }
-            },
-            "items": []
-          }
-        }
-      }
-    },
-    "Nonpayment": {
-      "type": "financial.nonpayment",
-      "props": {
-        "HasNonpayment": {
-          "type": "branch",
-          "props": {
-            "value": ""
-          }
-        },
-        "List": {
-          "type": "collection",
-          "props": {
-            "branch": {
-              "type": "branch",
-              "props": {
-                "value": ""
-              }
-            },
-            "items": []
           }
         }
       }
@@ -1683,90 +1568,6 @@
         }
       }
     },
-    "Federal": {
-      "type": "history.federal",
-      "props": {
-        "HasFederalService": {
-          "type": "branch",
-          "props": {
-            "value": "Yes"
-          }
-        },
-        "List": {
-          "type": "collection",
-          "props": {
-            "branch": {
-              "type": "branch",
-              "props": {
-                "value": "No"
-              }
-            },
-            "items": [
-              {
-                "Item": {
-                  "Address": {
-                    "type": "location",
-                    "props": {
-                      "uid": "Address-12aa6ee5-7d15-54a5-afff-970cd79f4630",
-                      "street": "100 FBI building way",
-                      "street2": "",
-                      "city": "Burlington",
-                      "zipcode": "05401",
-                      "state": "VT",
-                      "country": "United States",
-                      "layout": "Address",
-                      "validated": true
-                    }
-                  },
-                  "Dates": {
-                    "type": "daterange",
-                    "props": {
-                      "to": {
-                        "type": "datecontrol",
-                        "props": {
-                          "name": "to",
-                          "month": "8",
-                          "day": "8",
-                          "year": "2008",
-                          "estimated": false,
-                          "touched": true
-                        }
-                      },
-                      "from": {
-                        "type": "datecontrol",
-                        "props": {
-                          "name": "from",
-                          "month": "6",
-                          "day": "6",
-                          "year": "2006",
-                          "estimated": false,
-                          "touched": true
-                        }
-                      },
-                      "present": false
-                    }
-                  },
-                  "Name": {
-                    "type": "text",
-                    "props": {
-                      "value": "FBI",
-                      "name": "Name"
-                    }
-                  },
-                  "Position": {
-                    "type": "text",
-                    "props": {
-                      "value": "Agent",
-                      "name": "Position"
-                    }
-                  }
-                }
-              }
-            ]
-          }
-        }
-      }
-    },
     "Residence": {
       "type": "history.residence",
       "props": {
@@ -2739,26 +2540,6 @@
         }
       }
     },
-    "Manipulating": {
-      "type": "legal.technology.manipulating",
-      "props": {
-        "HasManipulating": {
-          "type": "branch",
-          "props": {
-            "value": ""
-          }
-        },
-        "List": {
-          "type": "collection",
-          "props": {
-            "branch": {
-              "type": ""
-            },
-            "items": []
-          }
-        }
-      }
-    },
     "MembershipOverthrow": {
       "type": "legal.associations.membership-overthrow",
       "props": {
@@ -2971,26 +2752,6 @@
                 }
               }
             ]
-          }
-        }
-      }
-    },
-    "NonCriminalCourtActions": {
-      "type": "legal.court",
-      "props": {
-        "HasCourtActions": {
-          "type": "branch",
-          "props": {
-            "value": ""
-          }
-        },
-        "List": {
-          "type": "collection",
-          "props": {
-            "branch": {
-              "type": ""
-            },
-            "items": []
           }
         }
       }
@@ -3312,26 +3073,6 @@
         }
       }
     },
-    "PoliceOtherOffenses": {
-      "type": "legal.police.additionaloffenses",
-      "props": {
-        "HasOtherOffenses": {
-          "type": "branch",
-          "props": {
-            "value": ""
-          }
-        },
-        "List": {
-          "type": "collection",
-          "props": {
-            "branch": {
-              "type": ""
-            },
-            "items": []
-          }
-        }
-      }
-    },
     "Revoked": {
       "type": "legal.investigations.revoked",
       "props": {
@@ -3506,46 +3247,6 @@
                 }
               }
             ]
-          }
-        }
-      }
-    },
-    "Unauthorized": {
-      "type": "legal.technology.unauthorized",
-      "props": {
-        "HasUnauthorized": {
-          "type": "branch",
-          "props": {
-            "value": ""
-          }
-        },
-        "List": {
-          "type": "collection",
-          "props": {
-            "branch": {
-              "type": ""
-            },
-            "items": []
-          }
-        }
-      }
-    },
-    "Unlawful": {
-      "type": "legal.technology.unlawful",
-      "props": {
-        "HasUnlawful": {
-          "type": "branch",
-          "props": {
-            "value": ""
-          }
-        },
-        "List": {
-          "type": "collection",
-          "props": {
-            "branch": {
-              "type": ""
-            },
-            "items": []
           }
         }
       }
@@ -4912,29 +4613,6 @@
     }
   },
   "Substance": {
-    "DrugClearanceUses": {
-      "type": "substance.drugs.clearance",
-      "props": {
-        "UsedDrugs": {
-          "type": "branch",
-          "props": {
-            "value": ""
-          }
-        },
-        "List": {
-          "type": "collection",
-          "props": {
-            "branch": {
-              "type": "branch",
-              "props": {
-                "value": ""
-              }
-            },
-            "items": []
-          }
-        }
-      }
-    },
     "DrugInvolvements": {
       "type": "substance.drugs.purchase",
       "props": {
@@ -5021,29 +4699,6 @@
         }
       }
     },
-    "DrugPublicSafetyUses": {
-      "type": "substance.drugs.publicsafety",
-      "props": {
-        "UsedDrugs": {
-          "type": "branch",
-          "props": {
-            "value": ""
-          }
-        },
-        "List": {
-          "type": "collection",
-          "props": {
-            "branch": {
-              "type": "branch",
-              "props": {
-                "value": ""
-              }
-            },
-            "items": []
-          }
-        }
-      }
-    },
     "DrugUses": {
       "type": "substance.drugs.usage",
       "props": {
@@ -5119,52 +4774,6 @@
                 }
               }
             ]
-          }
-        }
-      }
-    },
-    "NegativeImpacts": {
-      "type": "substance.alcohol.negative",
-      "props": {
-        "HasImpacts": {
-          "type": "branch",
-          "props": {
-            "value": ""
-          }
-        },
-        "List": {
-          "type": "collection",
-          "props": {
-            "branch": {
-              "type": "branch",
-              "props": {
-                "value": ""
-              }
-            },
-            "items": []
-          }
-        }
-      }
-    },
-    "OrderedCounselings": {
-      "type": "substance.alcohol.ordered",
-      "props": {
-        "HasBeenOrdered": {
-          "type": "branch",
-          "props": {
-            "value": ""
-          }
-        },
-        "List": {
-          "type": "collection",
-          "props": {
-            "branch": {
-              "type": "branch",
-              "props": {
-                "value": ""
-              }
-            },
-            "items": []
           }
         }
       }
@@ -5376,52 +4985,6 @@
                 }
               }
             ]
-          }
-        }
-      }
-    },
-    "ReceivedCounselings": {
-      "type": "substance.alcohol.additional",
-      "props": {
-        "ReceivedTreatment": {
-          "type": "branch",
-          "props": {
-            "value": ""
-          }
-        },
-        "List": {
-          "type": "collection",
-          "props": {
-            "branch": {
-              "type": "branch",
-              "props": {
-                "value": ""
-              }
-            },
-            "items": []
-          }
-        }
-      }
-    },
-    "VoluntaryCounselings": {
-      "type": "substance.alcohol.voluntary",
-      "props": {
-        "SoughtTreatment": {
-          "type": "branch",
-          "props": {
-            "value": ""
-          }
-        },
-        "List": {
-          "type": "collection",
-          "props": {
-            "branch": {
-              "type": "branch",
-              "props": {
-                "value": ""
-              }
-            },
-            "items": []
           }
         }
       }
