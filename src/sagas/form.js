@@ -15,7 +15,8 @@ import { validateSection } from 'helpers/validation'
 import sectionKeys from 'helpers/sectionKeys'
 import { unschema } from 'schema'
 import { env } from 'config'
-import { selectApplicantBirthdate } from 'selectors/data'
+import { selectApplicantBirthdate, selectMaritalStatus } from 'selectors/data'
+import { selectValidUSPassport } from 'selectors/misc'
 
 import { selectSubsection, formTypeSelector } from './selectors'
 
@@ -71,6 +72,8 @@ export const updateSectionData = (prevData, field, data) => ({
 export function* handleSubsectionUpdate({ key, data }) {
   const formType = yield select(formTypeSelector)
   const applicantBirthdate = yield select(selectApplicantBirthdate)
+  const maritalStatus = yield select(selectMaritalStatus)
+  const hasValidUSPassport = yield select(selectValidUSPassport)
 
   const formSection = yield select(selectSubsection, key)
 
@@ -80,7 +83,11 @@ export function* handleSubsectionUpdate({ key, data }) {
   const errors = yield call(validateSection, {
     key,
     data: newData,
-    options: { applicantBirthdate }, // pass any x-section form data required to validate here
+    options: { // pass any x-section form data required to validate here
+      applicantBirthdate,
+      maritalStatus,
+      ...hasValidUSPassport,
+    },
   }, formType)
 
   const newFormSection = {
