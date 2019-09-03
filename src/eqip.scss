@@ -11,6 +11,7 @@ $fa-font-path: '/fonts/';
 
 // COMPONENTS
 @import 'components/ErrorList/ErrorList';
+@import 'components/ErrorMessage/index';
 @import 'components/Form/Accordion/Accordion';
 @import 'components/Form/ApoFpo/ApoFpo';
 @import 'components/Form/Branch/Branch';
