@@ -180,6 +180,7 @@ func TestDeleteSessionRemovesRecord(t *testing.T) {
 
 func TestDeleteSessionReturnsErrIfSessionNotFound(t *testing.T) {
 	store := getSimpleStore()
+	defer store.Close()
 	sessionKeyWithNoAssociatedRecord := uuid.New().String()
 
 	err := store.DeleteSession(sessionKeyWithNoAssociatedRecord)

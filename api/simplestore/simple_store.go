@@ -41,3 +41,8 @@ func NewSimpleStore(connectionString string, logger api.LogService, serializer a
 
 	return store, nil
 }
+
+// Close closes the db connection
+func (s SimpleStore) Close() error {
+	return s.db.Close()
+}

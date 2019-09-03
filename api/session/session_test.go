@@ -46,6 +46,7 @@ func TestAuthExists(t *testing.T) {
 
 	timeout := 5 * time.Second
 	store := getSimpleStore()
+	defer store.Close()
 	sessionLog := &mock.LogService{}
 	session := NewSessionService(timeout, store, sessionLog)
 
@@ -56,6 +57,7 @@ func TestLogSessionCreatedDestroyed(t *testing.T) {
 
 	timeout := 5 * time.Second
 	store := getSimpleStore()
+	defer store.Close()
 	sessionLog := &logRecorder{}
 
 	session := NewSessionService(timeout, store, sessionLog)
@@ -129,6 +131,7 @@ func TestLogSessionExpired(t *testing.T) {
 
 	timeout := -5 * time.Second
 	store := getSimpleStore()
+	defer store.Close()
 	sessionLog := &logRecorder{}
 
 	session := NewSessionService(timeout, store, sessionLog)
@@ -177,6 +180,7 @@ func TestLogConcurrentSession(t *testing.T) {
 
 	timeout := 5 * time.Second
 	store := getSimpleStore()
+	defer store.Close()
 	sessionLog := &logRecorder{}
 
 	session := NewSessionService(timeout, store, sessionLog)

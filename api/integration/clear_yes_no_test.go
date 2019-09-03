@@ -19,6 +19,7 @@ import (
 func TestClearEmptyAccount(t *testing.T) {
 	// get a setup environment.
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 
 	// Hacky, but seems OK for these tests. Technically you shouldn't be able to submit
@@ -147,6 +148,7 @@ func rejectSection(t *testing.T, services serviceSet, json []byte, sectionName s
 
 func TestClearBasicSectionNos(t *testing.T) {
 	services := cleanTestServices(t)
+	defer services.closeDB()
 
 	basicTests := []struct {
 		path       string
@@ -261,6 +263,7 @@ func TestClearBasicSectionNos(t *testing.T) {
 
 func TestClearComplexSectionNos(t *testing.T) {
 	services := cleanTestServices(t)
+	defer services.closeDB()
 
 	tests := []struct {
 		path string

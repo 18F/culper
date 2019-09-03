@@ -29,6 +29,7 @@ func TestBasicAuthDisabled(t *testing.T) {
 	// Basic Auth not enabled
 	os.Setenv(api.BasicEnabled, "0")
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	sessionService := session.NewSessionService(5*time.Minute, services.store, services.log)
 
 	account := createTestAccount(t, services.db)
@@ -93,6 +94,7 @@ func TestBasicNoPassword(t *testing.T) {
 	// Basic Auth enabled
 	os.Setenv(api.BasicEnabled, "1")
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	sessionService := session.NewSessionService(5*time.Minute, services.store, services.log)
 
 	account := createTestAccount(t, services.db)
@@ -156,6 +158,7 @@ func TestBasicNoUsername(t *testing.T) {
 	// Basic Auth enabled
 	os.Setenv(api.BasicEnabled, "1")
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	sessionService := session.NewSessionService(5*time.Minute, services.store, services.log)
 
 	account := createTestAccount(t, services.db)
@@ -219,6 +222,7 @@ func TestBasicAccountError(t *testing.T) {
 	// Basic Auth enabled
 	os.Setenv(api.BasicEnabled, "1")
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	sessionService := session.NewSessionService(5*time.Minute, services.store, services.log)
 
 	account := createTestAccount(t, services.db)
@@ -284,6 +288,7 @@ func TestBasicWrongPassword(t *testing.T) {
 	// Basic Auth enabled
 	os.Setenv(api.BasicEnabled, "1")
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	sessionService := session.NewSessionService(5*time.Minute, services.store, services.log)
 
 	account := createTestAccount(t, services.db)

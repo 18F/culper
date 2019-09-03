@@ -55,6 +55,7 @@ func makeAuthenticatedFormRequest(services serviceSet, sessionService *session.S
 
 func TestFullSessionHTTPFlow_Unauthenticated(t *testing.T) {
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	sessionService := session.NewSessionService(5*time.Minute, services.store, services.log)
 
 	response := makeAuthenticatedFormRequest(services, sessionService, "")
@@ -66,6 +67,7 @@ func TestFullSessionHTTPFlow_Unauthenticated(t *testing.T) {
 
 func TestFullSessionHTTPFlow_BadAuthentication(t *testing.T) {
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	sessionService := session.NewSessionService(5*time.Minute, services.store, services.log)
 
 	response := makeAuthenticatedFormRequest(services, sessionService, "GARBAGE")
@@ -79,6 +81,7 @@ func TestFullSessionHTTPFlow_BadAuthentication(t *testing.T) {
 func TestFormIndent(t *testing.T) {
 	os.Setenv(api.IndentJSON, "1")
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 
 	w, r := standardResponseAndRequest("GET", "/me/form", nil, account)
@@ -113,6 +116,7 @@ func TestFullSessionHTTPFlow_SAMLAuthenticated(t *testing.T) {
 	os.Setenv("SAML_CONSUMER_SERVICE_URL", "")
 
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	sessionService := session.NewSessionService(5*time.Minute, services.store, services.log)
 
 	samlService := &saml.Service{
@@ -252,6 +256,7 @@ func TestFullSessionHTTPFlow_SAMLFailure(t *testing.T) {
 	os.Setenv(api.SamlEnabled, "0")
 
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	sessionService := session.NewSessionService(5*time.Minute, services.store, services.log)
 
 	samlService := &saml.Service{
@@ -307,6 +312,7 @@ func TestFullSessionHTTPFlow_SAMLFailure(t *testing.T) {
 func TestFullSessionHTTPFlow_BasicAuthenticated(t *testing.T) {
 	os.Setenv(api.BasicEnabled, "1")
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	sessionService := session.NewSessionService(5*time.Minute, services.store, services.log)
 
 	account := createTestAccount(t, services.db)

@@ -68,3 +68,8 @@ func (service *DatabaseService) Select(query interface{}) error {
 	service.SelectCount++
 	return service.SelectFn(query)
 }
+
+// Close closes the db connection
+func (service *DatabaseService) Close() error {
+	return nil
+}

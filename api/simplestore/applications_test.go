@@ -11,6 +11,7 @@ import (
 func TestSaveSection(t *testing.T) {
 
 	store := getSimpleStore()
+	defer store.Close()
 	account := CreateTestAccount(t, store)
 
 	sectionFilename := "../testdata/identification/identification-name.json"
@@ -91,6 +92,7 @@ func TestSaveSection(t *testing.T) {
 func TestStoreErrors(t *testing.T) {
 
 	store := getSimpleStore()
+	defer store.Close()
 	account := CreateTestAccount(t, store)
 
 	sectionFilename := "../testdata/identification/identification-name.json"
