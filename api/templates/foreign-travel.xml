@@ -83,12 +83,14 @@
         Other="True"
         {{end}}
         />
+      {{ if formType "SF86" }}
       <Threatened>
         <Answer>{{branch $Item.Threatened}}</Answer>
         {{ if branch $Item.Threatened | eq "Yes" }}
         <Explanation>{{text $Item.ThreatenedExplanation}}</Explanation>
         {{end}}
       </Threatened>
+      {{end}}
     </Travel>
     {{end}}
     {{end}}
