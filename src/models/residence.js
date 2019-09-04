@@ -1,4 +1,5 @@
 import { relationshipOptions, roleOptions } from 'constants/enums/residenceOptions'
+import { DEFAULT_LATEST } from 'constants/dateLimits'
 
 import address from 'models/shared/locations/address'
 import name from 'models/shared/name'
@@ -19,9 +20,13 @@ const residenceRequiresReference = (dates = {}) => {
 }
 
 const residence = {
-  Dates: {
-    presence: true,
-    daterange: true,
+  Dates: (value, attributes, attributeName, options = {}) => {
+    const { applicantBirthdate } = options
+
+    return {
+      presence: true,
+      daterange: { earliest: applicantBirthdate, latest: DEFAULT_LATEST },
+    }
   },
   Address: {
     presence: true,

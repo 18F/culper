@@ -5,6 +5,7 @@ import {
   SELF_EMPLOYMENT,
   UNEMPLOYMENT,
 } from 'constants/enums/employmentOptions'
+import { DEFAULT_LATEST } from 'constants/dateLimits'
 
 import physicalAddress from 'models/shared/physicalAddress'
 import name from 'models/shared/name'
@@ -100,9 +101,13 @@ const employment = {
       },
     },
   },
-  Dates: {
-    presence: true,
-    daterange: true,
+  Dates: (value, attributes, attributeName, options = {}) => {
+    const { applicantBirthdate } = options
+
+    return {
+      presence: true,
+      daterange: { earliest: applicantBirthdate, latest: DEFAULT_LATEST },
+    }
   },
 
   // Required by all but Unemployment
