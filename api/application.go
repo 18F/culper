@@ -689,10 +689,24 @@ func EqipClient(env Settings) (*eqip.Client, error) {
 }
 
 // EqipRequest returns a new eqip.ImportRequest, configured with the WS_* environment variables.
-func EqipRequest(env Settings, application map[string]interface{}, xmlContent string) (*eqip.ImportRequest, error) {
+func (a *Application) EqipRequest(env Settings, xmlContent string) (*eqip.ImportRequest, error) {
 	var ciAgencyUserPseudoSSN bool
 	var agencyID int
 	var agencyGroupID int
+
+	// This is perhaps silly. I think that things might work with just the raw application sections
+	// but I think that rather than expose that it will be better to keep the JSON as the interface
+	// same as we are doing in xml.go, FWIF
+	jsonBytes, jsonErr := json.Marshal(a)
+	if jsonErr != nil {
+		return nil, errors.Wrap(jsonErr, "Unable to marshal application")
+	}
+
+	var data map[string]interface{}
+	unmarhalErr := json.Unmarshal(jsonBytes, &data)
+	if unmarhalErr != nil {
+		return nil, errors.Wrap(jsonErr, "Unable to re-un-marshal application")
+	}
 
 	ciAgencyIDEnv := env.String(WsCallerinfoAgencyID)
 	if ciAgencyIDEnv == "" {
@@ -734,5 +748,5 @@ func EqipRequest(env Settings, application map[string]interface{}, xmlContent st
 	ciAgencyUserPseudoSSN = b
 
 	ci := eqip.NewCallerInfo(ciAgencyIDEnv, ciAgencyUserPseudoSSN, ciAgencyUserSSNEnv)
-	return eqip.NewImportRequest(ci, agencyID, agencyGroupID, application, xmlContent)
+	return eqip.NewImportRequest(ci, agencyID, agencyGroupID, data, xmlContent)
 }
