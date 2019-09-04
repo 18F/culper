@@ -62,6 +62,35 @@ describe('The sentence model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('IncarcerationDates from date cannot be before applicant birthdate', () => {
+    const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+    const testData = {
+      IncarcerationDates: {
+        from: { month: 1, year: 1970, day: 2 },
+      },
+    }
+    const expectedErrors = [
+      'IncarcerationDates.daterange.from.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, sentence, { applicantBirthdate }))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('IncarcerationDates to date cannot be in the future', () => {
+    const testData = {
+      IncarcerationDates: {
+        to: { month: 1, year: 2050, day: 2 },
+      },
+    }
+    const expectedErrors = [
+      'IncarcerationDates.daterange.to.date.date.datetime.DATE_TOO_LATE',
+    ]
+
+    expect(validateModel(testData, sentence))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   describe('if ExceedsYear is "Yes"', () => {
     it('passes a valid sentence', () => {
       const testData = {
@@ -152,6 +181,35 @@ describe('The sentence model', () => {
 
     const expectedErrors = [
       'ProbationDates.daterange.INVALID_DATE_RANGE',
+    ]
+
+    expect(validateModel(testData, sentence))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('ProbationDates from date cannot be before applicant birthdate', () => {
+    const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+    const testData = {
+      ProbationDates: {
+        from: { month: 1, year: 1970, day: 2 },
+      },
+    }
+    const expectedErrors = [
+      'ProbationDates.daterange.from.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, sentence, { applicantBirthdate }))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('ProbationDates to date cannot be in the future', () => {
+    const testData = {
+      ProbationDates: {
+        to: { month: 1, year: 2050, day: 2 },
+      },
+    }
+    const expectedErrors = [
+      'ProbationDates.daterange.to.date.date.datetime.DATE_TOO_LATE',
     ]
 
     expect(validateModel(testData, sentence))

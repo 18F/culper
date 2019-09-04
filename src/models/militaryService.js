@@ -4,6 +4,7 @@ import militaryServiceOptions from 'constants/enums/militaryServiceOptions'
 import militaryStatusOptions from 'constants/enums/militaryStatusOptions'
 import militaryOfficerOptions from 'constants/enums/militaryOfficerOptions'
 import militaryDischargeOptions from 'constants/enums/militaryDischargeOptions'
+import { DEFAULT_LATEST } from 'constants/dateLimits'
 
 const isAirOrArmyNationalGuard = serviceType => (
   serviceType
@@ -36,7 +37,14 @@ const militaryService = {
       },
     },
   },
-  Dates: { presence: true, daterange: true },
+  Dates: (value, attributes, attributeName, options = {}) => {
+    const { applicantBirthdate } = options
+
+    return {
+      presence: true,
+      daterange: { earliest: applicantBirthdate, latest: DEFAULT_LATEST },
+    }
+  },
   ServiceNumber: { presence: true, hasValue: true },
   ServiceState: (value, attributes) => {
     if (isAirOrArmyNationalGuard(attributes.Service)) {

@@ -41,6 +41,35 @@ describe('The drugPrescriptionUse model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('InvolvementDates from date cannot be before applicant birthdate', () => {
+    const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+    const testData = {
+      InvolvementDates: {
+        from: { month: 1, year: 1970, day: 2 },
+      },
+    }
+    const expectedErrors = [
+      'InvolvementDates.daterange.from.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, drugPrescriptionUse, { applicantBirthdate }))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('InvolvementDates to date cannot be in the future', () => {
+    const testData = {
+      InvolvementDates: {
+        to: { month: 1, year: 2050, day: 2 },
+      },
+    }
+    const expectedErrors = [
+      'InvolvementDates.daterange.to.date.date.datetime.DATE_TOO_LATE',
+    ]
+
+    expect(validateModel(testData, drugPrescriptionUse))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('Reason must have a value', () => {
     const testData = {
       Reason: 'testing',
