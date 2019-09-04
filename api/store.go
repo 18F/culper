@@ -51,4 +51,7 @@ type StorageService interface {
 	DeleteSession(sessionKey string) error
 	// ExtendAndFetchSessionAccount fetches an account and session data from the db
 	ExtendAndFetchSessionAccount(sessionKey string, expirationDuration time.Duration) (Account, Session, error)
+
+	// Close closes the db connection
+	Close() error
 }

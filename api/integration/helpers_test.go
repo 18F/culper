@@ -40,6 +40,15 @@ type serviceSet struct {
 	store api.StorageService
 }
 
+func (s serviceSet) closeDB() {
+	dbErr := s.db.Close()
+	storeErr := s.store.Close()
+	if dbErr != nil || storeErr != nil {
+		// Since this is always called in tests in defer, we just swallow the errors and log them.
+		fmt.Println("Got an error trying to close the db: ", dbErr, storeErr)
+	}
+}
+
 func cleanTestServices(t *testing.T) serviceSet {
 	t.Helper()
 
@@ -317,4 +326,23 @@ func compareGoldenJSON(t *testing.T, testJSON []byte, goldenPath string) {
 		t.Fail()
 	}
 
+}
+
+func confirmErrorMsg(t *testing.T, responseJSON []byte, expectedErr string) {
+	t.Helper()
+	var errorsJSON map[string][]map[string]string
+	jsonErr := json.Unmarshal(responseJSON, &errorsJSON)
+	if jsonErr != nil {
+		t.Fatal(jsonErr)
+	}
+
+	message, ok := errorsJSON["errors"][0]["message"]
+	if !ok {
+		t.Fatal("Error with message missing from response")
+	}
+	// Check the response body is what we expect.
+	if message != expectedErr {
+		t.Log("Got the wrong error message: ", message)
+		t.Fail()
+	}
 }

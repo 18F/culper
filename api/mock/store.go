@@ -74,3 +74,8 @@ func (s *StorageService) DeleteSession(sessionKey string) error {
 func (s *StorageService) ExtendAndFetchSessionAccount(sessionKey string, sessionDuration time.Duration) (api.Account, api.Session, error) {
 	return api.Account{}, api.Session{}, nil
 }
+
+// Close closes the db connection
+func (s *StorageService) Close() error {
+	return nil
+}

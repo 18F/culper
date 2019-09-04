@@ -2,9 +2,6 @@ import React from 'react'
 
 import i18n from 'util/i18n'
 
-import schema from 'schema'
-import validate, { CompetenceOrderValidator } from 'validators'
-
 import { Summary, DateSummary } from 'components/Summary'
 import { Accordion, Branch, Show } from 'components/Form'
 
@@ -74,6 +71,9 @@ export class Competence extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content competence"
@@ -101,7 +101,7 @@ export class Competence extends Subsection {
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={CompetenceOrderValidator}
+            errors={accordionErrors}
             description={i18n.t(
               'psychological.competence.collection.description'
             )}
@@ -138,8 +138,8 @@ Competence.defaultProps = {
   onError: (value, arr) => arr,
   addressBooks: {},
   dispatch: () => {},
-  validator: data => validate(schema('psychological.competence', data)),
   scrollToBottom: '.bottom-btns',
+  errors: [],
 }
 
 export default connectSubsection(Competence, sectionConfig)

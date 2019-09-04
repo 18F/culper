@@ -5,7 +5,6 @@ describe('The drugOrderedTreatment model', () => {
   it('validates required fields', () => {
     const testData = {}
     const expectedErrors = [
-      'DrugType.presence.REQUIRED',
       'Explanation.presence.REQUIRED',
       'ActionTaken.presence.REQUIRED',
       'OrderedBy.presence.REQUIRED',
@@ -15,8 +14,9 @@ describe('The drugOrderedTreatment model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('DrugType must have a valid value', () => {
+  it('DrugType must have a valid value if ActionTaken', () => {
     const testData = {
+      ActionTaken: { value: 'Yes' },
       DrugType: { value: '' },
     }
     const expectedErrors = [

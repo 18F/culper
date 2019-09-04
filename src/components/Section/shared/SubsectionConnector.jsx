@@ -2,6 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
+import {
+  HISTORY_REVIEW,
+  HISTORY_RESIDENCE,
+  HISTORY_EMPLOYMENT,
+  HISTORY_EDUCATION,
+} from 'config/formSections/history'
+
 import { handleSubsectionUpdate } from 'actions/FormActions'
 
 import {
@@ -43,6 +50,7 @@ import {
   selectForeignMilitaryMaintainsContact,
   selectRelationshipMaritalForeignBornDocExpiration,
   selectRelationshipMaritalDivorcePhoneNumber,
+  selectRelationshipRelativesForeignBornDoc,
   selectRelationshipRelativesUSResidenceDoc,
   selectRelationshipRelativesForeignGovtAffExplanation,
   selectDrugWhileSafetySection,
@@ -143,8 +151,22 @@ const connectSubsection = (Component, {
   const mapStateToProps = (state) => {
     const { form = {}, application = {} } = state
 
+    const props = {} // props to return
+
     // New section data & errors (state.form)
     const sectionData = form[key]
+
+    // Special cases
+    if (key === HISTORY_REVIEW.key) {
+      props.errors = {
+        [HISTORY_EDUCATION.key]: form[HISTORY_EDUCATION.key]
+          && form[HISTORY_EDUCATION.key].errors,
+        [HISTORY_EMPLOYMENT.key]: form[HISTORY_EMPLOYMENT.key]
+          && form[HISTORY_EMPLOYMENT.key].errors,
+        [HISTORY_RESIDENCE.key]: form[HISTORY_RESIDENCE.key]
+          && form[HISTORY_RESIDENCE.key].errors,
+      }
+    }
 
     // Legacy form data (state.application)
     const {
@@ -158,6 +180,11 @@ const connectSubsection = (Component, {
     const { formType } = Settings
     const names = extractOtherNames(application)
     const applicantBirthdate = (Identification.ApplicantBirthDate || {}).Date
+    const maritalStatus = (
+      Relationships.Marital
+      && Relationships.Marital.Status
+      && Relationships.Marital.Status.value
+    )
     const spouse = Relationships && extractSpouse(Relationships.Marital)
 
     const {
@@ -168,6 +195,8 @@ const connectSubsection = (Component, {
 
     try {
       return {
+        ...props,
+
         // Section-specific data
         ...sectionData && sectionData.data,
         ...sectionData,
@@ -233,10 +262,12 @@ const connectSubsection = (Component, {
         showExistingConditions: !hideExistingConditionsSelector(state),
 
         // Relationships
+        maritalStatus,
         spouse,
         currentAddress: History && History.CurrentAddress,
         ...selectRelationshipMaritalForeignBornDocExpiration(state),
         ...selectRelationshipMaritalDivorcePhoneNumber(state),
+        ...selectRelationshipRelativesForeignBornDoc(state),
         ...selectRelationshipRelativesUSResidenceDoc(state),
         ...selectRelationshipRelativesForeignGovtAffExplanation(state),
 

@@ -1,8 +1,6 @@
 import React from 'react'
 
 import i18n from 'util/i18n'
-import schema from 'schema'
-import validate, { DebarredValidator } from 'validators'
 import { Summary, DateSummary } from 'components/Summary'
 import { Accordion, Branch, Show } from 'components/Form'
 
@@ -75,10 +73,12 @@ export class Debarred extends Subsection {
   }
 
   render() {
-    const { formType } = this.props
+    const { formType, errors } = this.props
     const formTypeConfig = formType && formConfig[formType]
     const years = formTypeConfig && formTypeConfig.LEGAL_INVESTIGATED_DEBARRED_YEARS
     const numberOfYearsString = getNumberOfYearsString(years)
+
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
 
     const titleCopy = years === 'EVER'
       ? i18n.t('legal.investigations.debarred.heading.titleEver')
@@ -112,7 +112,7 @@ export class Debarred extends Subsection {
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={DebarredValidator}
+            errors={accordionErrors}
             description={i18n.t('legal.investigations.debarred.collection.description')}
             appendTitle={i18n.t('legal.investigations.debarred.collection.appendTitle')}
             appendLabel={i18n.t('legal.investigations.debarred.collection.appendLabel')}
@@ -142,8 +142,8 @@ Debarred.defaultProps = {
   section: 'legal',
   subsection: 'investigations/debarred',
   dispatch: () => {},
-  validator: data => validate(schema('legal.investigations.debarred', data)),
   scrollToBottom: '',
+  errors: [],
 }
 
 export default connectSubsection(Debarred, sectionConfig)

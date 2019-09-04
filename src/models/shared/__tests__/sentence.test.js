@@ -63,20 +63,6 @@ describe('The sentence model', () => {
   })
 
   describe('if ExceedsYear is "Yes"', () => {
-    it('IncarcerationDates must cover a duration greater than a year', () => {
-      const testData = {
-        ExceedsYear: { value: 'Yes' },
-        IncarcerationDates: {
-          from: { day: 5, month: 5, year: 2000 },
-          to: { day: 2, month: 8, year: 2000 },
-        },
-      }
-      const expectedErrors = ['IncarcerationDates.daterange.DATE_RANGE_TOO_SHORT']
-
-      expect(validateModel(testData, sentence))
-        .toEqual(expect.arrayContaining(expectedErrors))
-    })
-
     it('passes a valid sentence', () => {
       const testData = {
         Description: { value: 'Something' },
@@ -97,20 +83,6 @@ describe('The sentence model', () => {
   })
 
   describe('if ExceedsYear is "No"', () => {
-    it('IncarcerationDates must cover a duration less than or equal to one year', () => {
-      const testData = {
-        ExceedsYear: { value: 'No' },
-        IncarcerationDates: {
-          from: { day: 5, month: 5, year: 2000 },
-          to: { day: 2, month: 8, year: 2001 },
-        },
-      }
-      const expectedErrors = ['IncarcerationDates.daterange.DATE_RANGE_TOO_LONG']
-
-      expect(validateModel(testData, sentence))
-        .toEqual(expect.arrayContaining(expectedErrors))
-    })
-
     it('passes a valid sentence', () => {
       const testData = {
         Description: { value: 'Something' },
@@ -122,11 +94,43 @@ describe('The sentence model', () => {
         },
         IncarcerationDates: {
           from: { day: 5, month: 5, year: 2000 },
-          to: { day: 2, month: 8, year: 2000 },
+          to: { day: 5, month: 5, year: 2001 },
         },
       }
 
       expect(validateModel(testData, sentence)).toEqual(true)
+    })
+  })
+
+  describe('if Incarcerated is "Yes"', () => {
+    it('IncarcerationDates must cover a duration greater than a year', () => {
+      const testData = {
+        Incarcerated: { value: 'Yes' },
+        IncarcerationDates: {
+          from: { day: 5, month: 5, year: 2000 },
+          to: { day: 2, month: 8, year: 2000 },
+        },
+      }
+      const expectedErrors = ['IncarcerationDates.daterange.DATE_RANGE_TOO_SHORT']
+
+      expect(validateModel(testData, sentence))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+  })
+
+  describe('if Incarcerated is "No"', () => {
+    it('IncarcerationDates must cover a duration less than or equal to one year', () => {
+      const testData = {
+        Incarcerated: { value: 'No' },
+        IncarcerationDates: {
+          from: { day: 5, month: 5, year: 2000 },
+          to: { day: 2, month: 8, year: 2001 },
+        },
+      }
+      const expectedErrors = ['IncarcerationDates.daterange.DATE_RANGE_TOO_LONG']
+
+      expect(validateModel(testData, sentence))
+        .toEqual(expect.arrayContaining(expectedErrors))
     })
   })
 
@@ -164,8 +168,8 @@ describe('The sentence model', () => {
         to: { year: 2013, month: 10, day: 1 },
       },
       IncarcerationDates: {
-        from: { year: 1995, month: 2, day: 10 },
-        to: { year: 1995, month: 10, day: 1 },
+        from: { year: 1995, month: 10, day: 10 },
+        to: { year: 1996, month: 10, day: 10 },
       },
     }
 

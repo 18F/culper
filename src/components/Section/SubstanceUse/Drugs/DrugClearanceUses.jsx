@@ -1,7 +1,5 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { DrugClearanceUseValidator } from 'validators'
 import { Accordion, Branch, Show } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
 import {
@@ -70,6 +68,9 @@ export class DrugClearanceUses extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content drug-clearance-uses"
@@ -98,7 +99,7 @@ export class DrugClearanceUses extends Subsection {
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={DrugClearanceUseValidator}
+            errors={accordionErrors}
             description={i18n.t('substance.drugs.clearance.collection.description')}
             appendTitle={i18n.t('substance.drugs.clearance.collection.appendTitle')}
             appendLabel={i18n.t('substance.drugs.clearance.collection.appendLabel')}
@@ -125,8 +126,8 @@ DrugClearanceUses.defaultProps = {
   section: 'substance',
   subsection: 'drugs/clearance',
   dispatch: () => {},
-  validator: data => validate(schema('substance.drugs.clearance', data)),
   scrollToBottom: '',
+  errors: [],
 }
 
 export default connectSubsection(DrugClearanceUses, sectionConfig)

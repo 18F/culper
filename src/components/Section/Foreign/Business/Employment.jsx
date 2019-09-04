@@ -1,7 +1,5 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { ForeignBusinessEmploymentItemValidator } from 'validators'
 import { Summary, DateSummary, NameSummary } from 'components/Summary'
 import { Branch, Show, Accordion } from 'components/Form'
 import { FOREIGN, FOREIGN_BUSINESS_EMPLOYMENT } from 'config/formSections/foreign'
@@ -68,6 +66,9 @@ export class Employment extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content foreign-business-employment"
@@ -93,7 +94,7 @@ export class Employment extends Subsection {
             defaultState={this.props.defaultState}
             scrollToBottom={this.props.scrollToBottom}
             onUpdate={this.updateList}
-            validator={ForeignBusinessEmploymentItemValidator}
+            errors={accordionErrors}
             onError={this.handleError}
             summary={this.summary}
             description={i18n.t('foreign.business.employment.collection.summary.title')}
@@ -124,9 +125,9 @@ Employment.defaultProps = {
   section: 'foreign',
   subsection: 'business/employment',
   dispatch: () => {},
-  validator: data => validate(schema('foreign.business.employment', data)),
   defaultState: true,
   scrollToBottom: '',
+  errors: [],
 }
 
 export default connectSubsection(Employment, sectionConfig)

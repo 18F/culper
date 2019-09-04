@@ -1,8 +1,6 @@
 import React from 'react'
 
 import i18n from 'util/i18n'
-import schema from 'schema'
-import validate, { DrugOrderedTreatmentValidator } from 'validators'
 import { Accordion, Branch, Show } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
 
@@ -75,7 +73,7 @@ export class OrderedTreatments extends Subsection {
   }
 
   render() {
-    const { formType } = this.props
+    const { formType, errors } = this.props
     const formTypeConfig = formType && formConfig[formType]
     const years = formTypeConfig && formTypeConfig.SUBSTANCE_DRUG_TREATMENT_YEARS
 
@@ -86,6 +84,8 @@ export class OrderedTreatments extends Subsection {
       const numberOfYearsString = getNumberOfYearsString(years)
       branchLabelCopy = i18n.t('substance.drugs.heading.orderedTreatments', { numberOfYearsString })
     }
+
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
 
     return (
       <div
@@ -115,7 +115,7 @@ export class OrderedTreatments extends Subsection {
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={DrugOrderedTreatmentValidator}
+            errors={accordionErrors}
             description={i18n.t('substance.drugs.ordered.collection.description')}
             appendTitle={i18n.t('substance.drugs.ordered.collection.appendTitle')}
             appendLabel={i18n.t('substance.drugs.ordered.collection.appendLabel')}
@@ -145,8 +145,8 @@ OrderedTreatments.defaultProps = {
   subsection: 'drugs/ordered',
   addressBooks: {},
   dispatch: () => {},
-  validator: data => validate(schema('substance.drugs.ordered', data)),
   scrollToBottom: '',
+  errors: [],
 }
 
 export default connectSubsection(OrderedTreatments, sectionConfig)

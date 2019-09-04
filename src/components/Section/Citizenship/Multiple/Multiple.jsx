@@ -1,18 +1,13 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, {
-  CitizenshipMultipleValidator,
-  CitizenshipItemValidator,
-} from 'validators'
 import { countryString } from 'validators/location'
 import {
-  Field,
   Branch,
   Show,
   Accordion,
 } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
+import ErrorMessageList from 'components/ErrorMessageList'
 
 import Subsection from 'components/Section/shared/Subsection'
 import connectSubsection from 'components/Section/shared/SubsectionConnector'
@@ -79,11 +74,32 @@ export class Multiple extends Subsection {
     })
   }
 
-  validMinimumCitizenships = () => (
-    new CitizenshipMultipleValidator(this.props).validMinimumCitizenships()
-  )
+  getSectionErrors = () => {
+    const { errors = [] } = this.props
+    const errorList = {
+      'List.accordion.items.length.LENGTH_TOO_SHORT': {
+        key: 'List.accordion.items.length.LENGTH_TOO_SHORT',
+        title: i18n.t('error.validMinimumCitizenships.title'),
+        message: i18n.t('error.validMinimumCitizenships.message'),
+        shouldDisplayError: true,
+      },
+    }
+
+    const sectionErrors = []
+    errors.forEach((error) => {
+      const errorItem = errorList[error]
+      if (errorItem && errorItem.shouldDisplayError) {
+        sectionErrors.push(errorItem)
+      }
+    })
+
+    return sectionErrors
+  }
 
   render() {
+    const { List, errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content multiple"
@@ -105,15 +121,9 @@ export class Multiple extends Subsection {
         />
 
         <Show when={this.props.HasMultiple.value === 'Yes'}>
-          <Field
-            errors={[
-              {
-                code: 'validMinimumCitizenships',
-                valid: this.validMinimumCitizenships(),
-              },
-            ]}
-            className={this.validMinimumCitizenships() && 'hidden'}
-          />
+          {List.branch && List.branch.value === 'No' && (
+            <ErrorMessageList errors={this.getSectionErrors()} />
+          )}
 
           <Accordion
             {...this.props.List}
@@ -121,7 +131,7 @@ export class Multiple extends Subsection {
             scrollToBottom={this.props.scrollToBottom}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={CitizenshipItemValidator}
+            errors={accordionErrors}
             summary={this.summaryList}
             description={i18n.t('citizenship.multiple.collection.citizenship.summary.title')}
             appendTitle={i18n.t('citizenship.multiple.collection.citizenship.appendTitle')}
@@ -149,11 +159,11 @@ Multiple.defaultProps = {
   onUpdate: () => {},
   onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => validate(schema('citizenship.multiple', data)),
   defaultState: true,
   required: false,
   scrollIntoView: false,
   requireMultipleCitizenshipRenounced: true,
+  errors: [],
 }
 
 export default connectSubsection(Multiple, sectionConfig)

@@ -149,7 +149,11 @@ const foreignContact = {
   },
   AlternateAddress: {
     presence: true,
-    model: { validator: physicalAddress, militaryAddress: true },
+    model: {
+      validator: physicalAddress,
+      militaryAddress: true,
+      hasTelephone: false,
+    },
   },
   Employer: (value, attributes) => {
     const { EmployerNotApplicable } = attributes
