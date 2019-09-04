@@ -14,6 +14,7 @@ import (
 
 func TestCanValidateLocation(t *testing.T) {
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 	api.Geocode = mock.Geocoder{}
 
@@ -37,6 +38,7 @@ func TestCanValidateLocation(t *testing.T) {
 
 func TestCanNotValidateSomethingElse(t *testing.T) {
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 	api.Geocode = mock.Geocoder{}
 
@@ -60,6 +62,7 @@ func TestCanNotValidateSomethingElse(t *testing.T) {
 
 func TestValidateHandlerInvalidAddress(t *testing.T) {
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 	api.Geocode = mock.Geocoder{}
 
@@ -93,6 +96,7 @@ func TestValidateHandlerInvalidAddress(t *testing.T) {
 
 func TestValidateHandlerBadEntity(t *testing.T) {
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 	api.Geocode = mock.Geocoder{}
 

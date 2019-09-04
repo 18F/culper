@@ -44,6 +44,7 @@ func postAttachmentRequest(t *testing.T, filename string, filebytes []byte, acco
 func TestSaveAttachment(t *testing.T) {
 
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 
 	certificationPath := "../testdata/attachments/signature-form.pdf"
@@ -125,6 +126,7 @@ func TestSaveAttachmentDisabled(t *testing.T) {
 	os.Setenv(api.AttachmentsEnabled, "0")
 
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 
 	saveAttachmentHandler := http.AttachmentSaveHandler{
@@ -161,6 +163,7 @@ func TestSaveAttachmentLockedAccount(t *testing.T) {
 	// Attachments enabled
 	os.Setenv(api.AttachmentsEnabled, "1")
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 	// Lock account
 	account.Status = api.StatusSubmitted
@@ -199,6 +202,7 @@ func TestSaveAttachmentNoFile(t *testing.T) {
 	// Attachments enabled
 	os.Setenv(api.AttachmentsEnabled, "1")
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 
 	saveAttachmentHandler := http.AttachmentSaveHandler{
@@ -234,6 +238,7 @@ func TestSaveAttachmentTooBig(t *testing.T) {
 	// Set FileMaximumSize very small
 	os.Setenv(api.FileMaximumSize, "1")
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 
 	certificationPath := "../testdata/attachments/signature-form.pdf"
@@ -286,6 +291,7 @@ func TestCreateAttachmentError(t *testing.T) {
 	os.Setenv(api.AttachmentsEnabled, "1")
 	var mockStore errorCreateAttachmentStore
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 
 	certificationPath := "../testdata/attachments/signature-form.pdf"
@@ -328,6 +334,7 @@ func TestGetAttachmentsDisabled(t *testing.T) {
 	os.Setenv(api.AttachmentsEnabled, "1")
 
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 
 	certificationPath := "../testdata/attachments/signature-form.pdf"
@@ -404,6 +411,7 @@ func TestGetAttachmentBadID(t *testing.T) {
 	os.Setenv(api.AttachmentsEnabled, "1")
 
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 
 	certificationPath := "../testdata/attachments/signature-form.pdf"

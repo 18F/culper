@@ -1998,77 +1998,7 @@ exports[`The identification section renders the IdentificationSections component
         </span>
       </div>
     </div>
-    <div
-      aria-label=""
-      className="field required"
-      data-uuid="field-MOCK-GUID"
-    >
-      <a
-        aria-hidden="true"
-        className="anchor"
-        id="field-MOCK-GUID"
-        name="field-MOCK-GUID"
-      />
-      <span
-        className="icon"
-      />
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages help-messages"
-        />
-      </div>
-      <div
-        className="table expand"
-      >
-        <span
-          aria-live="polite"
-          className="messages error-messages"
-          role="alert"
-        >
-          <div
-            aria-live="polite"
-            className="message error usa-alert usa-alert-error"
-            role="alert"
-          >
-            <div
-              className="usa-alert-body"
-            >
-              <div
-                data-i18n="error.validPhoneTypes"
-              >
-                <h5
-                  className="usa-alert-heading"
-                >
-                  There is a problem with your phone numbers
-                </h5>
-                <span>
-                  <div>
-                    <p>
-                      Please provide only one of each phone number type.
-                    </p>
-                  </div>
-                </span>
-                
-              </div>
-            </div>
-          </div>
-        </span>
-      </div>
-      <div
-        className="table"
-      >
-        <span
-          className="content"
-        >
-          <span
-            className="component"
-          />
-        </span>
-      </div>
-    </div>
+    <div />
     <div
       className=" telephone-collection"
     >

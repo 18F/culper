@@ -91,7 +91,6 @@ describe('The ContactInformation component', () => {
   })
 
   it('should filter empty items out leaving only the minimum visible', () => {
-    const phoneNumbers = {}
     const expected = {
       shouldFilterEmptyItems: true,
       PhoneNumbers: {
@@ -117,5 +116,46 @@ describe('The ContactInformation component', () => {
         .at(0)
         .text()
     ).toEqual('+001 1234567890')
+  })
+
+  it('errors when two duplicate phone numbers are displayed', () => {
+    const error = 'PhoneNumbers.accordion.DUPLICATE_PHONE_NUMBER_TYPES'
+    const expected = {
+      HomeEmail: {},
+      WorkEmail: {},
+      PhoneNumbers: {
+        items: [
+          {
+            Item: {
+              Telephone: {
+                timeOfDay: 'Both',
+                type: 'Domestic',
+                numberType: 'Work',
+                number: '1234567890',
+                extension: '',
+                noNumber: false,
+              },
+            },
+          },
+          {
+            Item: {
+              Telephone: {
+                timeOfDay: 'Both',
+                type: 'Domestic',
+                numberType: 'Work',
+                number: '1234568908',
+                extension: '',
+                noNumber: false,
+              },
+            },
+          },
+        ],
+      },
+      errors: [error],
+    }
+
+    const component = mount(<ContactInformation {...expected} />)
+    expect(component.find(`[data-testid="${error}"]`).length)
+      .toEqual(1)
   })
 })

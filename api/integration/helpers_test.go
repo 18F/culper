@@ -40,6 +40,15 @@ type serviceSet struct {
 	store api.StorageService
 }
 
+func (s serviceSet) closeDB() {
+	dbErr := s.db.Close()
+	storeErr := s.store.Close()
+	if dbErr != nil || storeErr != nil {
+		// Since this is always called in tests in defer, we just swallow the errors and log them.
+		fmt.Println("Got an error trying to close the db: ", dbErr, storeErr)
+	}
+}
+
 func cleanTestServices(t *testing.T) serviceSet {
 	t.Helper()
 
