@@ -1,5 +1,5 @@
 import locationModel from '../location'
-import { isPO, isUS, isInternational } from 'helpers/location'
+import { isInternational } from 'helpers/location'
 
 const locationBirthplace = {
   city: (value, attributes, attributeName, options) => {
