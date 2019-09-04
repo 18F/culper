@@ -2,8 +2,6 @@
 import React from 'react'
 
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { OtherNameValidator } from 'validators'
 
 import {
   Field,
@@ -87,6 +85,9 @@ export class OtherNames extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content other-names"
@@ -123,7 +124,7 @@ export class OtherNames extends Subsection {
             onError={this.handleError}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
-            validator={OtherNameValidator}
+            errors={accordionErrors}
             summary={this.summary}
             description={i18n.t(
               'identification.othernames.collection.summary.title'
@@ -153,9 +154,9 @@ OtherNames.defaultProps = {
   onUpdate: () => {},
   onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => validate(schema('identification.othernames', data)),
   defaultState: true,
   required: false,
+  errors: [],
 }
 
 export default connectSubsection(OtherNames, sectionConfig)

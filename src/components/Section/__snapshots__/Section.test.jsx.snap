@@ -33533,9 +33533,7 @@ exports[`The section component renders RELATIONSHIPS_PEOPLE 1`] = `
               <div
                 className="count"
               >
-                0
-                /
-                3
+                0/3
               </div>
               <div
                 className="unit"
@@ -34616,9 +34614,7 @@ exports[`The section component renders RELATIONSHIPS_REVIEW 1`] = `
                 <div
                   className="count"
                 >
-                  0
-                  /
-                  3
+                  0/3
                 </div>
                 <div
                   className="unit"

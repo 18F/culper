@@ -1,7 +1,5 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { VenturesValidator } from 'validators'
 import { Summary, DateSummary, NameSummary } from 'components/Summary'
 import { Branch, Show, Accordion } from 'components/Form'
 import { FOREIGN, FOREIGN_BUSINESS_VENTURES } from 'config/formSections/foreign'
@@ -69,6 +67,9 @@ export class Ventures extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content foreign-business-ventures"
@@ -98,7 +99,7 @@ export class Ventures extends Subsection {
             scrollToBottom={this.props.scrollToBottom}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={VenturesValidator}
+            errors={accordionErrors}
             summary={this.summary}
             description={i18n.t('foreign.business.ventures.collection.summary.title')}
             appendTitle={i18n.t('foreign.business.ventures.collection.appendTitle')}
@@ -130,9 +131,9 @@ Ventures.defaultProps = {
   subsection: 'business/ventures',
   addressBooks: {},
   dispatch: () => {},
-  validator: data => validate(schema('foreign.business.ventures', data)),
   defaultState: true,
   scrollToBottom: '',
+  errors: [],
 }
 
 export default connectSubsection(Ventures, sectionConfig)

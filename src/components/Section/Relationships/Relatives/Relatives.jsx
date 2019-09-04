@@ -2,9 +2,6 @@ import React from 'react'
 
 import i18n from 'util/i18n'
 
-import schema from 'schema'
-import validate, { RelativeValidator } from 'validators'
-
 import { RELATIONSHIPS, RELATIONSHIPS_RELATIVES } from 'config/formSections/relationships'
 import { MARRIED, SEPARATED } from 'constants/enums/relationshipOptions'
 import ErrorMessageList from 'components/ErrorMessageList'
@@ -114,7 +111,10 @@ export class Relatives extends Subsection {
       List,
       requireRelationshipRelativesUSResidenceDoc,
       requireRelationshipRelativesForeignGovtAffExplanation,
+      errors,
     } = this.props
+
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
 
     return (
       <div
@@ -148,7 +148,7 @@ export class Relatives extends Subsection {
             'relationships.relatives.collection.summary.title'
           )}
           required={this.props.required}
-          validator={RelativeValidator}
+          errors={accordionErrors}
           scrollIntoView={this.props.scrollIntoView}
           appendTitle={i18n.t('relationships.relatives.collection.appendTitle')}
           appendLabel={i18n.t('relationships.relatives.collection.append')}
@@ -161,7 +161,8 @@ export class Relatives extends Subsection {
             bind={true}
             scrollIntoView={this.props.scrollIntoView}
             required={this.props.required}
-            requireRelationshipRelativesForeignGovtAffExplanation={requireRelationshipRelativesForeignGovtAffExplanation}
+            requireRelationshipRelativesForeignGovtAffExplanation={
+              requireRelationshipRelativesForeignGovtAffExplanation}
             requireRelationshipRelativesUSResidenceDoc={requireRelationshipRelativesUSResidenceDoc}
           />
         </Accordion>
@@ -178,10 +179,10 @@ Relatives.defaultProps = {
   subsection: 'relatives',
   addressBooks: {},
   dispatch: () => {},
-  validator: data => validate(schema('relationships.relatives', data)),
   defaultState: true,
   scrollToBottom: '.bottom-btns',
   scrollIntoView: false,
+  errors: [],
 }
 
 export default connectSubsection(Relatives, sectionConfig)

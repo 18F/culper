@@ -1,6 +1,6 @@
 import React from 'react'
-import { i18n } from '../../../../config'
-import { pickDate } from '../../../../validators/helpers'
+
+import i18n from 'util/i18n'
 import {
   Field,
   DateControl,
@@ -13,9 +13,10 @@ import {
   Show,
   Country,
   Location,
-} from '../../../Form'
-import { CohabitantValidator } from '../../../../validators/cohabitant'
-import { countryString } from '../../../../validators/location'
+} from 'components/Form'
+import { pickDate } from 'validators/helpers'
+import { countryString } from 'validators/location'
+
 import OtherName from './OtherName'
 
 export default class Cohabitant extends ValidationElement {
@@ -77,13 +78,25 @@ export default class Cohabitant extends ValidationElement {
       return
     }
 
-    const similarSpouse = new CohabitantValidator({
-      Name: values,
-    }).similarSpouse(this.props.spouse)
+    const similarSpouse = this.hasSimilarSpouse(values)
+
     this.update({
       Name: values,
       SameSpouse: similarSpouse,
     })
+  }
+
+  hasSimilarSpouse = (data) => {
+    const { spouse } = this.props
+
+    if (!data || !spouse) return false
+
+    const { first, middle, last } = data
+    if (first === spouse.first
+      && middle === spouse.middle
+      && last === spouse.last) return true
+
+    return false
   }
 
   updateBirthdate(values) {
@@ -129,7 +142,7 @@ export default class Cohabitant extends ValidationElement {
   }
 
   renderSpouseSuggestion() {
-    const spouse = this.props.spouse
+    const { spouse } = this.props
     const name = spouse
       ? `${spouse.first || ''} ${spouse.middle || ''} ${spouse.last
           || ''}`.trim()
@@ -193,7 +206,7 @@ export default class Cohabitant extends ValidationElement {
         />
         <Field
           title={i18n.t('relationships.cohabitant.heading.name')}
-          optional
+          optional={true}
           filterErrors={Name.requiredErrorsOnly}
           scrollIntoView={this.props.scrollIntoView}
         >
@@ -283,7 +296,7 @@ export default class Cohabitant extends ValidationElement {
         >
           <OtherName
             name="Item"
-            bind
+            bind={true}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
           />
@@ -298,7 +311,7 @@ export default class Cohabitant extends ValidationElement {
           <Country
             name="Citizenship"
             {...this.props.Citizenship}
-            multiple
+            multiple={true}
             className="relationships-cohabitant-citizenship"
             onUpdate={this.updateCitizenship}
             onError={this.props.onError}
@@ -318,7 +331,7 @@ export default class Cohabitant extends ValidationElement {
             prefix="cohabitant"
             minDate={cohabitationBeganMinDate}
             {...this.props.CohabitationBegan}
-            minDateEqualTo
+            minDateEqualTo={true}
             onUpdate={this.updateCohabitationBegan}
             onError={this.props.onError}
             required={this.props.required}

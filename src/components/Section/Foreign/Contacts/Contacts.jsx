@@ -1,7 +1,5 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { ForeignNationalValidator } from 'validators'
 import { Summary, NameSummary } from 'components/Summary'
 import { Branch, Show, Accordion } from 'components/Form'
 import { FOREIGN, FOREIGN_CONTACTS } from 'config/formSections/foreign'
@@ -65,6 +63,9 @@ export class Contacts extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content foreign-contacts"
@@ -93,7 +94,7 @@ export class Contacts extends Subsection {
             scrollToBottom={this.props.scrollToBottom}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={ForeignNationalValidator}
+            errors={accordionErrors}
             summary={this.summary}
             description={i18n.t('foreign.contacts.collection.summary.title')}
             appendTitle={i18n.t('foreign.contacts.collection.appendTitle')}
@@ -127,9 +128,9 @@ Contacts.defaultProps = {
   subsection: 'contacts',
   addressBooks: {},
   dispatch: () => {},
-  validator: data => validate(schema('foreign.contacts', data)),
   defaultState: true,
   scrollToBottom: '',
+  errors: [],
 }
 
 export default connectSubsection(Contacts, sectionConfig)

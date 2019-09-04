@@ -2,13 +2,6 @@ import React from 'react'
 
 import i18n from 'util/i18n'
 
-import schema from 'schema'
-
-import validate, {
-  DiagnosisValidator,
-  TreatmentValidator,
-} from 'validators'
-
 import { Summary, DateSummary } from 'components/Summary'
 import {
   Accordion, Branch, Show, Field,
@@ -121,6 +114,11 @@ export class Diagnoses extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+
+    const diagnosisErrors = errors && errors.filter(e => e.indexOf('DiagnosisList.accordion') === 0)
+    const treatmentErrors = errors && errors.filter(e => e.indexOf('TreatmentList.accordion') === 0)
+
     return (
       <div
         className="section-content diagnoses"
@@ -152,7 +150,7 @@ export class Diagnoses extends Subsection {
               onUpdate={this.updateDiagnosisList}
               summary={this.summary}
               onError={this.handleError}
-              validator={DiagnosisValidator}
+              errors={diagnosisErrors}
               description={i18n.t(
                 'psychological.diagnoses.collection.description'
               )}
@@ -211,7 +209,7 @@ export class Diagnoses extends Subsection {
                 onUpdate={this.updateTreatmentList}
                 summary={this.treatmentSummary}
                 onError={this.handleError}
-                validator={TreatmentValidator}
+                errors={treatmentErrors}
                 appendTitle={i18n.t(
                   'psychological.diagnoses.treatment.collection.appendTitle'
                 )}
@@ -259,8 +257,8 @@ Diagnoses.defaultProps = {
   onError: (value, arr) => arr,
   addressBooks: {},
   dispatch: () => {},
-  validator: data => validate(schema('psychological.diagnoses', data)),
   scrollToBottom: '.bottom-btns',
+  errors: [],
 }
 
 export default connectSubsection(Diagnoses, sectionConfig)

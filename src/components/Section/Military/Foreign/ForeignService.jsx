@@ -2,8 +2,6 @@ import React from 'react'
 
 import { i18n } from 'config'
 
-import { ForeignContactValidator } from 'validators'
-
 import {
   ValidationElement,
   Branch,
@@ -120,14 +118,15 @@ export default class ForeignService extends ValidationElement {
   }
 
   render() {
-    const { requireMaintainsContact } = this.props
+    const { requireMaintainsContact, errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
 
     return (
       <div className="foreign-service">
         <Field
           title={i18n.t('military.foreign.heading.organization')}
           adjustFor="big-buttons"
-          shrink
+          shrink={true}
           scrollIntoView={this.props.scrollIntoView}
         >
           <RadioGroup
@@ -214,13 +213,13 @@ export default class ForeignService extends ValidationElement {
           title={i18n.t('military.foreign.heading.dates')}
           help="military.foreign.help.dates"
           adjustFor="daterange"
-          shrink
+          shrink={true}
           scrollIntoView={this.props.scrollIntoView}
         >
           <DateRange
             name="Dates"
             className="foreign-service-dates"
-            minDateEqualTo
+            minDateEqualTo={true}
             {...this.props.Dates}
             onUpdate={this.updateDates}
             onError={this.props.onError}
@@ -323,7 +322,7 @@ export default class ForeignService extends ValidationElement {
               <Field
                 title={i18n.t('military.foreign.heading.contact.details')}
                 titleSize="h3"
-                optional
+                optional={true}
                 className="no-margin-bottom"
               >
                 {i18n.m('military.foreign.para.contact')}
@@ -335,7 +334,7 @@ export default class ForeignService extends ValidationElement {
                 defaultState={this.props.defaultState}
                 onUpdate={this.updateList}
                 onError={this.props.onError}
-                validator={ForeignContactValidator}
+                errors={accordionErrors}
                 summary={this.summary}
                 description={i18n.t(
                   'military.foreign.collection.contacts.summary.title'
@@ -351,7 +350,7 @@ export default class ForeignService extends ValidationElement {
               >
                 <ForeignContact
                   name="Item"
-                  bind
+                  bind={true}
                   addressBooks={this.props.addressBooks}
                   dispatch={this.props.dispatch}
                   required={this.props.required}

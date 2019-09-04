@@ -1,7 +1,5 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate from 'validators'
 import {
   Field,
   Show,
@@ -308,7 +306,7 @@ UsPassport.defaultProps = {
   section: 'foreign',
   subsection: 'passport',
   dispatch: () => {},
-  validator: data => validate(schema('foreign.passport', data)),
+  errors: [],
 }
 
 export default connectSubsection(UsPassport, sectionConfig)

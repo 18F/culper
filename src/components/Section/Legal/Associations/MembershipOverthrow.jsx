@@ -1,7 +1,5 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { OverthrowValidator } from 'validators'
 import { Summary, DateSummary } from 'components/Summary'
 import { Accordion, Branch, Show } from 'components/Form'
 import {
@@ -70,6 +68,9 @@ export class MembershipOverthrow extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content legal-associations-overthrow"
@@ -85,7 +86,6 @@ export class MembershipOverthrow extends Subsection {
           {...this.props.HasOverthrow}
           warning={true}
           onError={this.handleError}
-          validator={OverthrowValidator}
           required={this.props.required}
           onUpdate={this.updateBranch}
           scrollIntoView={this.props.scrollIntoView}
@@ -96,7 +96,7 @@ export class MembershipOverthrow extends Subsection {
             defaultState={this.props.defaultState}
             {...this.props.List}
             scrollToBottom={this.props.scrollToBottom}
-            validator={OverthrowValidator}
+            errors={accordionErrors}
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
@@ -132,8 +132,8 @@ MembershipOverthrow.defaultProps = {
   subsection: 'associations/membership-overthrow',
   addressBooks: {},
   dispatch: () => {},
-  validator: data => validate(schema('legal.associations.membership-overthrow', data)),
   scrollToBottom: '',
+  errors: [],
 }
 
 export default connectSubsection(MembershipOverthrow, sectionConfig)

@@ -1,7 +1,5 @@
 import React from 'react'
 import i18n from 'util/i18n'
-import schema from 'schema'
-import validate, { NonCriminalCourtActionValidator } from 'validators'
 import * as formConfig from 'config/forms'
 import { getNumberOfYearsString } from 'helpers/text'
 import { Accordion, Branch, Show } from 'components/Form'
@@ -72,11 +70,14 @@ export class NonCriminalCourtActions extends Subsection {
   }
 
   render() {
-    const { formType } = this.props
+    const { formType, errors } = this.props
     const formTypeConfig = formType && formConfig[formType]
     const years = formTypeConfig && formTypeConfig.LEGAL_COURT_YEARS
     const numberOfYearsString = getNumberOfYearsString(years)
     const branchLabelCopy = i18n.t('legal.nonCriminalAction.heading.hasCourtActions', { numberOfYearsString })
+
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content non-criminal-court-actions"
@@ -105,7 +106,7 @@ export class NonCriminalCourtActions extends Subsection {
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={NonCriminalCourtActionValidator}
+            errors={accordionErrors}
             description={i18n.t('legal.nonCriminalAction.collection.description')}
             appendTitle={i18n.t('legal.nonCriminalAction.collection.appendTitle')}
             appendLabel={i18n.t('legal.nonCriminalAction.collection.appendLabel')}
@@ -136,8 +137,8 @@ NonCriminalCourtActions.defaultProps = {
   subsection: 'court',
   addressBooks: {},
   dispatch: () => {},
-  validator: data => validate(schema('legal.court', data)),
   scrollToBottom: '',
+  errors: [],
 }
 
 export default connectSubsection(NonCriminalCourtActions, sectionConfig)

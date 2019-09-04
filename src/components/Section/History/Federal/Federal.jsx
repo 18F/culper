@@ -5,10 +5,6 @@ import i18n from 'util/i18n'
 import { HISTORY, HISTORY_FEDERAL } from 'config/formSections/history'
 import * as formConfig from 'config/forms'
 
-import schema from 'schema'
-
-import validate, { FederalServiceItemValidator } from 'validators'
-
 import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import Subsection from 'components/Section/shared/Subsection'
 import { Branch, Show, Accordion } from 'components/Form'
@@ -77,8 +73,8 @@ export class Federal extends Subsection {
   }
 
   render() {
-    const { formType } = this.props
-
+    const { formType, errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
     const years = formType
       && formConfig[formType]
       && formConfig[formType].HISTORY_FEDERAL_YEARS
@@ -113,7 +109,7 @@ export class Federal extends Subsection {
             appendTitle={i18n.t('history.federal.collection.appendTitle')}
             appendLabel={i18n.t('history.federal.collection.append')}
             required={this.props.required}
-            validator={FederalServiceItemValidator}
+            errors={accordionErrors}
             scrollIntoView={this.props.scrollIntoView}
           >
             <FederalItem
@@ -139,8 +135,8 @@ Federal.defaultProps = {
   subsection: 'federal',
   addressBooks: {},
   dispatch: () => {},
-  validator: data => validate(schema('history.federal', data)),
   defaultState: true,
+  errors: [],
 }
 
 export default connectSubsection(Federal, sectionConfig)

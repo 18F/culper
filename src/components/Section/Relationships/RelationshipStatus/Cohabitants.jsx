@@ -2,9 +2,6 @@ import React from 'react'
 
 import i18n from 'util/i18n'
 
-import schema from 'schema'
-import validate, { CohabitantValidator } from 'validators'
-
 import { RELATIONSHIPS, RELATIONSHIPS_STATUS_COHABITANTS } from 'config/formSections/relationships'
 
 import Subsection from 'components/Section/shared/Subsection'
@@ -75,7 +72,9 @@ export class Cohabitants extends Subsection {
   }
 
   render() {
-    const { requireRelationshipMaritalForeignBornDocExpiration } = this.props
+    const { requireRelationshipMaritalForeignBornDocExpiration, errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content cohabitants"
@@ -106,7 +105,7 @@ export class Cohabitants extends Subsection {
             summary={this.summary}
             onUpdate={this.updateCohabitantList}
             onError={this.handleError}
-            validator={CohabitantValidator}
+            errors={accordionErrors}
             required={this.props.required}
             description={i18n.t(
               'relationships.cohabitant.collection.description'
@@ -124,7 +123,8 @@ export class Cohabitants extends Subsection {
               spouse={this.props.spouse}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
-              requireRelationshipMaritalForeignBornDocExpiration={requireRelationshipMaritalForeignBornDocExpiration}
+              requireRelationshipMaritalForeignBornDocExpiration={
+                requireRelationshipMaritalForeignBornDocExpiration}
               bind={true}
             />
           </Accordion>
@@ -140,11 +140,11 @@ Cohabitants.defaultProps = {
   onUpdate: () => {},
   onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => validate(schema('relationships.status.cohabitant', data)),
   defaultState: true,
   scrollToBottom: '.bottom-btns',
   scrollIntoView: false,
   requireRelationshipMaritalForeignBornDocExpiration: true,
+  errors: [],
 }
 
 export default connectSubsection(Cohabitants, sectionConfig)
