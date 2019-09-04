@@ -41,6 +41,7 @@ const digitsOnly = (value = '') => {
 export default class Telephone extends ValidationElement {
   constructor(props) {
     super(props)
+
     this.state = {
       uid: `${this.props.name}-${super.guid()}`,
       domestic: {
@@ -49,10 +50,9 @@ export default class Telephone extends ValidationElement {
         third: this.parseNumber(6, 10, props.number),
       },
       international: {
-        first: this.parseNumber(props.number),
+        first: props.number,
       },
     }
-
     this.domestic = this.domestic.bind(this)
     this.international = this.international.bind(this)
     this.errors = []
@@ -175,11 +175,7 @@ export default class Telephone extends ValidationElement {
           .join('')
           .trim()
       case 'International':
-        return [
-          this.state.international.first,
-        ]
-          .join('')
-          .trim()
+        return this.state.international.first.trim()
       default:
         return ''
     }
@@ -597,7 +593,7 @@ export default class Telephone extends ValidationElement {
           <div
             className={`phonetype ${
               this.props.noNumber ? 'disabled' : ''
-            }`.trim()}
+              }`.trim()}
           >
             <label>{i18n.t('telephone.numberType.title')}</label>
             <RadioGroup
@@ -659,7 +655,7 @@ Telephone.defaultProps = {
   tab: (input) => {
     input.focus()
   },
-  onUpdate: () => {},
+  onUpdate: () => { },
   onError: (value, arr) => arr,
 }
 
