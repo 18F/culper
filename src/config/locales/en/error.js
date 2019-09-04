@@ -1055,33 +1055,15 @@ export const error = {
     international: {
       first: {
         pattern: {
-          title: 'There is a problem with this country code',
-          message:
-            'The country code of the international number should be 3 digits between 0 and 9.',
-          note: '',
-        },
-        length: {
-          title: 'There is a problem with this country code',
-          message:
-            'The country code of the international number should be 3 digits between 0 and 9.',
-          note: '',
-        },
-        required: {
-          title: 'Your response is required',
-          message: '',
-        },
-      },
-      second: {
-        pattern: {
           title: 'There is a problem with this number',
           message:
-            'The international number should be 10 digits between 0 and 9.',
+            'The international number should be 4-20 digits between 0 and 9.',
           note: '',
         },
         length: {
           title: 'There is a problem with this number',
           message:
-            'The international number should be 10 digits between 0 and 9.',
+            'The international number should be 4-20 digits between 0 and 9.',
           note: '',
         },
         required: {
