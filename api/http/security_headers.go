@@ -1,7 +1,6 @@
 package http
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/18F/e-QIP-prototype/api"
@@ -18,7 +17,7 @@ func (service SecurityHandler) Middleware(next http.Handler) http.Handler {
 
 	handler := func(w http.ResponseWriter, r *http.Request) {
 
-		if !service.Env.True(api.DevUseInsecureCookie) {
+		if !service.Env.True(api.DevDisableSSL) {
 			w.Header().Set("Strict-Transport-Security", "max-age = 31536000; includeSubDomains")
 		}
 

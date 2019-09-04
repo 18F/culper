@@ -62,7 +62,7 @@ func (env Native) Configure() {
 	env.ensure(api.FileMaximumSize, "5000000")
 	env.ensure(api.FileTypes, ".tiff;.png;.pdf")
 	env.ensure(api.WsEnabled, "1")
-	env.ensure(api.DevUseInsecureCookie, "")
+	env.ensure(api.DevDisableSSL, "0")
 }
 
 // Has returns true if the environment has a value for the given environment variable.

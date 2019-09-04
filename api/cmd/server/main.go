@@ -59,7 +59,7 @@ func main() {
 	sessionService := session.NewSessionService(sessionTimeout, store, logger)
 	samlsvc := &saml.Service{Log: logger, Env: settings}
 
-	secureCookie := !settings.True(api.DevUseInsecureCookie)
+	secureCookie := !settings.True(api.DevDisableSSL)
 	cookieService := http.NewSessionCookieService(secureCookie)
 
 	api.Geocode = usps.Geocoder{Log: logger, Env: settings}
@@ -125,7 +125,6 @@ func main() {
 	security := http.SecurityHandler{Log: logger, Env: settings}
 	cors := http.CORSHandler{Log: logger, Env: settings}
 	logging := http.LoggingHandler{Log: logger}
-	//router := caching.Middleware(cors.Middleware(logging.Middleware(r)))
 	router := caching.Middleware(security.Middleware(cors.Middleware(logging.Middleware(r))))
 
 	// Get the public address
