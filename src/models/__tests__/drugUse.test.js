@@ -61,6 +61,35 @@ describe('The drugUse model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('FirstUse cannot be before applicant birthdate', () => {
+    const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+    const testData = {
+      FirstUse: { month: 1, year: 1970, day: 2 },
+    }
+
+    const expectedErrors = [
+      'FirstUse.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, drugUse, {
+      applicantBirthdate,
+    }))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('FirstUse cannot be in the future', () => {
+    const testData = {
+      FirstUse: { month: 1, year: 2050, day: 2 },
+    }
+
+    const expectedErrors = [
+      'FirstUse.date.date.datetime.DATE_TOO_LATE',
+    ]
+
+    expect(validateModel(testData, drugUse))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('RecentUse must be a valid month/year', () => {
     const testData = {
       RecentUse: { day: 5, month: 10 },

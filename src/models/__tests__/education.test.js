@@ -163,6 +163,55 @@ describe('The education model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('Diploma Date cannot be before applicant birthdate', () => {
+    const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+    const testData = {
+      Diplomas: {
+        items: [
+          {
+            Item: {
+              Has: { value: 'Yes' },
+              Date: { month: 1, year: 1970, day: 2 },
+            },
+          },
+          { Item: { Has: { value: 'No' } } },
+        ],
+      },
+    }
+
+    const expectedErrors = [
+      'Diplomas.branchCollection.0.Date.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, education, {
+      applicantBirthdate,
+    }))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Diploma Date cannot be in the future', () => {
+    const testData = {
+      Diplomas: {
+        items: [
+          {
+            Item: {
+              Has: { value: 'Yes' },
+              Date: { month: 1, year: 2050, day: 2 },
+            },
+          },
+          { Item: { Has: { value: 'No' } } },
+        ],
+      },
+    }
+
+    const expectedErrors = [
+      'Diplomas.branchCollection.0.Date.date.date.datetime.DATE_TOO_LATE',
+    ]
+
+    expect(validateModel(testData, education))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('Diploma items must be valid', () => {
     const testData = {
       Diplomas: {

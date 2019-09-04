@@ -495,6 +495,42 @@ describe('The citizenshipStatus model', () => {
               .toEqual(expect.arrayContaining(expectedErrors))
           })
 
+          it('DocumentIssued cannot be before applicant birthdate', () => {
+            const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+            const testData = {
+              CitizenshipStatus: { value: 'ForeignBorn' },
+              AbroadDocumentation: { value: 'FS-240' },
+              DocumentIssued: { month: 1, year: 1970, day: 2 },
+            }
+
+            const expectedErrors = [
+              'DocumentIssued.date.date.datetime.DATE_TOO_EARLY',
+            ]
+
+            expect(validateModel(testData, citizenshipStatus, {
+              applicantBirthdate,
+              requireForeignBornDocumentation: true,
+            }))
+              .toEqual(expect.arrayContaining(expectedErrors))
+          })
+
+          it('DocumentIssued cannot be in the future', () => {
+            const testData = {
+              CitizenshipStatus: { value: 'ForeignBorn' },
+              AbroadDocumentation: { value: 'FS-240' },
+              DocumentIssued: { month: 1, year: 2050, day: 2 },
+            }
+
+            const expectedErrors = [
+              'DocumentIssued.date.date.datetime.DATE_TOO_LATE',
+            ]
+
+            expect(validateModel(testData, citizenshipStatus, {
+              requireForeignBornDocumentation: true,
+            }))
+              .toEqual(expect.arrayContaining(expectedErrors))
+          })
+
           it('PlaceIssued must be a valid location', () => {
             const testData = {
               CitizenshipStatus: { value: 'ForeignBorn' },
@@ -792,6 +828,37 @@ describe('The citizenshipStatus model', () => {
       }
       const expectedErrors = [
         'CertificateIssued.date.year.presence.REQUIRED',
+      ]
+
+      expect(validateModel(testData, citizenshipStatus))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('CertificateIssued cannot be before applicant birthdate', () => {
+      const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+      const testData = {
+        CitizenshipStatus: { value: 'Naturalized' },
+        CertificateIssued: { month: 1, year: 1970, day: 2 },
+      }
+
+      const expectedErrors = [
+        'CertificateIssued.date.date.datetime.DATE_TOO_EARLY',
+      ]
+
+      expect(validateModel(testData, citizenshipStatus, {
+        applicantBirthdate,
+      }))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('CertificateIssued cannot be in the future', () => {
+      const testData = {
+        CitizenshipStatus: { value: 'Naturalized' },
+        CertificateIssued: { month: 1, year: 2050, day: 2 },
+      }
+
+      const expectedErrors = [
+        'CertificateIssued.date.date.datetime.DATE_TOO_LATE',
       ]
 
       expect(validateModel(testData, citizenshipStatus))
@@ -1134,6 +1201,37 @@ describe('The citizenshipStatus model', () => {
         'EntryDate.date.day.presence.REQUIRED',
         'EntryDate.date.month.presence.REQUIRED',
         'EntryDate.date.year.presence.REQUIRED',
+      ]
+
+      expect(validateModel(testData, citizenshipStatus))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('EntryDate cannot be before applicant birthdate', () => {
+      const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+      const testData = {
+        CitizenshipStatus: { value: 'NotCitizen' },
+        EntryDate: { month: 1, year: 1970, day: 2 },
+      }
+
+      const expectedErrors = [
+        'EntryDate.date.date.datetime.DATE_TOO_EARLY',
+      ]
+
+      expect(validateModel(testData, citizenshipStatus, {
+        applicantBirthdate,
+      }))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('EntryDate cannot be in the future', () => {
+      const testData = {
+        CitizenshipStatus: { value: 'NotCitizen' },
+        EntryDate: { month: 1, year: 2050, day: 2 },
+      }
+
+      const expectedErrors = [
+        'EntryDate.date.date.datetime.DATE_TOO_LATE',
       ]
 
       expect(validateModel(testData, citizenshipStatus))
