@@ -1,7 +1,6 @@
 package mock
 
 import (
-	"errors"
 	"fmt"
 
 	"github.com/18F/e-QIP-prototype/api"
@@ -62,7 +61,7 @@ func (r *LogRecorder) AddField(name string, value interface{}) {
 func (r *LogRecorder) GetOnlyMatchingMessage(message string) (LogLine, error) {
 	messages := r.MatchingMessages(message)
 	if len(messages) != 1 {
-		return LogLine{}, errors.New(fmt.Sprintf("Didn't find only one line for message: %s (%s) ", message, messages))
+		return LogLine{}, fmt.Errorf("Didn't find only one line for message: %s (%s) ", message, messages)
 	}
 	return messages[0], nil
 }
