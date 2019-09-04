@@ -56,12 +56,26 @@ const additional = {
 
 const reprimand = {
   Text: { presence: true, hasValue: true },
-  Date: { presence: true, date: { requireDay: false } },
+  Date: (value, attributes, attributeName, options = {}) => {
+    const { applicantBirthdate } = options
+
+    return {
+      presence: true,
+      date: { requireDay: false, earliest: applicantBirthdate, latest: DEFAULT_LATEST },
+    }
+  },
 }
 
 const reasonLeftReason = {
   Reason: { presence: true, hasValue: true },
-  Date: { presence: true, date: true },
+  Date: (value, attributes, attributeName, options = {}) => {
+    const { applicantBirthdate } = options
+
+    return {
+      presence: true,
+      date: { earliest: applicantBirthdate, latest: DEFAULT_LATEST },
+    }
+  },
   Text: { presence: true, hasValue: true },
 }
 
