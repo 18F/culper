@@ -137,9 +137,6 @@ describe('The Telephone component', () => {
       .find({ type: 'text', name: 'int_first' })
       .simulate('change', { target: { value: '111' } })
     component
-      .find({ type: 'text', name: 'int_second' })
-      .simulate('change', { target: { value: '222' } })
-    component
       .find({ type: 'text', name: 'int_extension' })
       .simulate('change', { target: { value: '4444' } })
     component.find('.nonumber input').simulate('change')
@@ -189,7 +186,7 @@ describe('The Telephone component', () => {
 
     tabbed = false
     componentInternational
-      .find({ type: 'text', name: 'int_second' })
+      .find({ type: 'text', name: 'int_extension' })
       .simulate('keydown', { keyCode: 48, target: { value: '1234567890' } })
     expect(tabbed).toBe(true)
   })
@@ -235,7 +232,7 @@ describe('The Telephone component', () => {
 
     tabbed = false
     componentInternational
-      .find({ type: 'text', name: 'int_second' })
+      .find({ type: 'text', name: 'int_first' })
       .simulate('keydown', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(true)
   })
