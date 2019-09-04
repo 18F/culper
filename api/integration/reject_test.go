@@ -16,6 +16,7 @@ import (
 func TestDeleteSignaturePDFs(t *testing.T) {
 
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 
 	xmlService := xml.NewXMLService("../templates/")

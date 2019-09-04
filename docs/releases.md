@@ -1,5 +1,19 @@
 # Releases
 
+## Versioning nomenclature
+
+Versions of this project are intended to align with the NBIS program increment (PI) cycle, where at the end of a PI, a major release of NBIS is prepared for release. For PI4, the NBIS program designated that as `2.1.0`. For PI5, it is `2.2.0`.
+
+Each PI has a series of numbered sprints, laid out according to a master schedule distributed across the program. For example, in PI5, you have sprint 5.1, 5.2, 5.3, etc. 
+
+While the intent of each sprint is to produce a potentially shippable release, it is not necessarily the offical, coordinated NBIS program release, so we designate each end-of-sprint tag as a "preview".
+
+The convention for each tag is:
+`v${PROGRAM_INCREMENT_VERSION}-preview.${SPRINT-NUMBER}`
+
+For an official, coordinated NBIS program release, hypothetically the most recent tag for that PI could be re-tagged as simply `v${PROGRAM_INCREMENT_VERSION}`.
+
+
 ## Tagging the release
 
 Tagging process:

@@ -12,6 +12,7 @@ import (
 func TestFormVersionReturned(t *testing.T) {
 
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 
 	w, r := standardResponseAndRequest("GET", "/me/form", nil, account)
@@ -65,6 +66,7 @@ func TestFormVersionSave(t *testing.T) {
 	// The client cannot set the form version via the API, this test confirms it's an error.
 
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 
 	fmt.Println("Account ID", account.ID)

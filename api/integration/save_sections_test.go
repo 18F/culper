@@ -10,6 +10,7 @@ import (
 
 func TestSaveSection(t *testing.T) {
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 
 	tests := []struct {
@@ -151,6 +152,7 @@ func TestSaveSection(t *testing.T) {
 // TestSaveMultipleSections makes sure that calls to /save are addative.
 func TestSaveMultipleSections(t *testing.T) {
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 
 	employmentSection := readTestData(t, "../testdata/history/history-employment-full.json")
@@ -227,6 +229,7 @@ func TestSaveMultipleSections(t *testing.T) {
 func TestDeleteApplication(t *testing.T) {
 
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 
 	section := readTestData(t, "../testdata/identification/identification-birthplace-full.json")

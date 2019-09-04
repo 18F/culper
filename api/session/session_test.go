@@ -44,6 +44,8 @@ func TestAuthExists(t *testing.T) {
 
 	timeout := 5 * time.Second
 	store := getSimpleStore()
+	defer store.Close()
+
 	sessionLog := &mock.LogService{}
 	session := NewSessionService(timeout, store, sessionLog)
 
@@ -54,10 +56,10 @@ func TestLogSessionCreatedDestroyed(t *testing.T) {
 
 	timeout := 5 * time.Second
 	store := getSimpleStore()
+	defer store.Close()
+
 	sessionLog := &mock.LogRecorder{}
-
 	session := NewSessionService(timeout, store, sessionLog)
-
 	account := simplestore.CreateTestAccount(t, store.(simplestore.SimpleStore))
 
 	sessionKey, authErr := session.UserDidAuthenticate(account.ID, simplestore.NullString())
@@ -131,10 +133,10 @@ func TestLogSessionExpired(t *testing.T) {
 
 	timeout := -5 * time.Second
 	store := getSimpleStore()
+	defer store.Close()
+
 	sessionLog := &mock.LogRecorder{}
-
 	session := NewSessionService(timeout, store, sessionLog)
-
 	account := simplestore.CreateTestAccount(t, store.(simplestore.SimpleStore))
 
 	sessionKey, authErr := session.UserDidAuthenticate(account.ID, simplestore.NullString())
@@ -183,10 +185,10 @@ func TestLogConcurrentSession(t *testing.T) {
 
 	timeout := 5 * time.Second
 	store := getSimpleStore()
+	defer store.Close()
+
 	sessionLog := &mock.LogRecorder{}
-
 	session := NewSessionService(timeout, store, sessionLog)
-
 	account := simplestore.CreateTestAccount(t, store.(simplestore.SimpleStore))
 
 	_, authErr := session.UserDidAuthenticate(account.ID, simplestore.NullString())

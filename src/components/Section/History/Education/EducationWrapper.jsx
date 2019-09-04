@@ -9,7 +9,7 @@ import * as formConfig from 'config/forms'
 import { Field, Show, Branch } from 'components/Form'
 
 import { reportCompletion } from 'actions/ApplicationActions'
-import { HistoryEducationValidator } from 'validators'
+import { validateHistoryEducation } from 'validators/education'
 
 import connectSubsection from 'components/Section/shared/SubsectionConnector'
 
@@ -36,7 +36,7 @@ class EducationWrapper extends React.Component {
       reportCompletion(
         'history',
         'education',
-        new HistoryEducationValidator(education, education).isValid() === true,
+        validateHistoryEducation(education) === true,
       ),
     )
   }
@@ -52,7 +52,7 @@ class EducationWrapper extends React.Component {
       reportCompletion(
         'history',
         'education',
-        new HistoryEducationValidator(education, education).isValid() === true,
+        validateHistoryEducation(education) === true
       ),
     )
   }

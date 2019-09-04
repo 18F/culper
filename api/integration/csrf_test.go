@@ -23,6 +23,7 @@ func giveCookie(t *testing.T, response *gohttp.Response, request *gohttp.Request
 
 func TestCSRFToken(t *testing.T) {
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 
 	statusRespW, statusReq := standardResponseAndRequest("GET", "/me/status", nil, account)
@@ -110,6 +111,7 @@ func TestCSRFToken(t *testing.T) {
 
 func TestGoodCSRFToken(t *testing.T) {
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 
 	statusRespW, statusReq := standardResponseAndRequest("GET", "/me/status", nil, account)
@@ -176,6 +178,7 @@ func TestGoodCSRFToken(t *testing.T) {
 
 func TestGarbageCSRFToken(t *testing.T) {
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 
 	statusRespW, statusReq := standardResponseAndRequest("GET", "/me/status", nil, account)
@@ -263,6 +266,7 @@ func TestGarbageCSRFToken(t *testing.T) {
 
 func TestCSRFTokenSetsAuthKey(t *testing.T) {
 	services := cleanTestServices(t)
+	defer services.closeDB()
 
 	authKey := []byte("")
 	_, csrfErr := http.NewCSRFMiddleware(services.log, authKey, true)
