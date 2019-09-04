@@ -1199,7 +1199,7 @@ export const error = {
       'You indicated that you are married or separated, please provide entries for mother-in-law and father-in-law.',
   },
   validMaritalRelationWarning: {
-    title: 'Placeholder',
+    title: 'Information for mother-in-law and father-in-law must be provided',
     message: 'If you do not know your mother and/or father in-law, please enter as much information as possible for the required fields.',
   },
   validRelation: {
@@ -1208,7 +1208,7 @@ export const error = {
       'If you do not know your mother or father, please enter "I don\'t know" and provide a comment explaining your relationship.',
   },
   validRelationWarning: {
-    title: 'Placeholder',
+    title: 'Information for mother and father must be provided',
     message: 'If you do not know your mother and/or father, please enter as much information as possible for the required fields.',
   },
   validPhoneTypes: {
