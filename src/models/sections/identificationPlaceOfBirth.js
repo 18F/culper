@@ -6,7 +6,7 @@ const identificationPlaceOfBirth = {
     return {
       presence: true,
       model: {
-        validator: birthplace, requireCity: !value.county, requireCounty: !value.city
+        validator: birthplace, requireCity: !attributes.Location.county, requireCounty: !attributes.Location.city
       }
     }
   },
