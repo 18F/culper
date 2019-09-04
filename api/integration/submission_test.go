@@ -88,6 +88,7 @@ func checkInfoRelease(t *testing.T, release api.Attachment) {
 
 func TestSubmitter(t *testing.T) {
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 
 	mockClock := clock.NewMock()
@@ -216,6 +217,7 @@ func TestSubmitter(t *testing.T) {
 
 func TestLockedAccountSubmitter(t *testing.T) {
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 	account.Status = api.StatusSubmitted
 

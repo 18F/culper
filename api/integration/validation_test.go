@@ -14,6 +14,7 @@ import (
 
 func TestCanValidateLocation(t *testing.T) {
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 	api.Geocode = mock.Geocoder{}
 
@@ -37,6 +38,7 @@ func TestCanValidateLocation(t *testing.T) {
 
 func TestCanNotValidateSomethingElse(t *testing.T) {
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 	api.Geocode = mock.Geocoder{}
 
@@ -60,11 +62,12 @@ func TestCanNotValidateSomethingElse(t *testing.T) {
 
 func TestValidateHandlerInvalidAddress(t *testing.T) {
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 	api.Geocode = mock.Geocoder{}
 
 	// Pass a bad address
-	location := readTestData(t, "../testdata/bad-address.json")
+	location := readTestData(t, "../testdata/nonstandardized-address.json")
 
 	w, r := standardResponseAndRequest("POST", "/me/validate", strings.NewReader(string(location)), account)
 
@@ -73,7 +76,7 @@ func TestValidateHandlerInvalidAddress(t *testing.T) {
 	}
 
 	validationHandler.ServeHTTP(w, r)
-	if status := w.Code; status != gohttp.StatusBadRequest {
+	if status := w.Code; status != gohttp.StatusOK {
 		t.Errorf("handler returned wrong status code: got %v want %v",
 			status, gohttp.StatusBadRequest)
 	}
@@ -84,12 +87,16 @@ func TestValidateHandlerInvalidAddress(t *testing.T) {
 		t.Log("Error reading the response: ", err)
 		t.Fail()
 	}
-	// Check the error message is what we expect
-	confirmErrorMsg(t, responseJSON, "Payload is invalid")
+
+	// mock geocoder does not populate geocoding JSON response
+	if len(responseJSON) != 0 {
+		t.Fail()
+	}
 }
 
 func TestValidateHandlerBadEntity(t *testing.T) {
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 	api.Geocode = mock.Geocoder{}
 

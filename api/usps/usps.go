@@ -69,18 +69,18 @@ func (g Geocoder) query(geoValues api.GeocodeValues) (results api.GeocodeResults
 	// Check if we've encountered an error
 	if foundAddress.Error != nil {
 		if errCode, ok := ErrorCodes[foundAddress.Error.Number]; ok {
-			g.Log.Warn(api.USPSKnownErrorCode, api.LogFields{"code": errCode})
+			g.Log.Debug(api.USPSKnownErrorCode, api.LogFields{"code": errCode})
 			return results, fmt.Errorf("%v", errCode)
 		}
 		errCode := ErrorCodes["Generic"]
-		g.Log.Warn(api.USPSUnknownErrorCode, api.LogFields{"code": errCode})
+		g.Log.Debug(api.USPSUnknownErrorCode, api.LogFields{"code": errCode})
 		return results, fmt.Errorf("%v", errCode)
 
 	}
 
 	if strings.ContainsAny(foundAddress.ReturnText, "Default Address") {
 		errCode := ErrorCodes["Default Address"]
-		g.Log.Warn(api.USPSKnownErrorCode, api.LogFields{"code": errCode})
+		g.Log.Debug(api.USPSKnownErrorCode, api.LogFields{"code": errCode})
 		return results, fmt.Errorf("%v", errCode)
 	}
 
@@ -91,7 +91,7 @@ func (g Geocoder) query(geoValues api.GeocodeValues) (results api.GeocodeResults
 	// returned by the validation response. If there is a mismatch, mark as partial
 	if results.HasPartial() {
 		errCode := ErrorCodes["Partial"]
-		g.Log.Warn(api.USPSKnownErrorCode, api.LogFields{"code": errCode})
+		g.Log.Debug(api.USPSKnownErrorCode, api.LogFields{"code": errCode})
 		return results, fmt.Errorf(errCode)
 	}
 

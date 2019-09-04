@@ -11,7 +11,8 @@ import (
 
 func TestFullSessionFlow(t *testing.T) {
 	// get a store
-	services := cleanTestServices(t) // actually *returning* clean test services
+	services := cleanTestServices(t)
+	defer services.closeDB() // actually *returning* clean test services
 
 	// create a user
 	testUser := createTestAccount(t, services.db)

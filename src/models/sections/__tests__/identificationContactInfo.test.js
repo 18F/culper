@@ -34,10 +34,73 @@ describe('The identificationContactInfo section', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('does not require both email addresses', () => {
+  describe('has atleast one valid email', () => {
+    it('does not require both email addresses', () => {
+      const testData = {
+        HomeEmail: { value: 'foobar2@local.dev' },
+        WorkEmail: {},
+        PhoneNumbers: {
+          items: [
+            {
+              Item: {
+                Telephone: {
+                  noNumber: false,
+                  number: '7031112222',
+                  numberType: 'Home',
+                  type: 'Domestic',
+                  timeOfDay: 'Both',
+                  extension: '',
+                },
+              },
+            },
+          ],
+        },
+      }
+
+      const expectedErrors = [
+        'WorkEmail.presence.REQUIRED',
+      ]
+
+      expect(validateModel(testData, identificationContactInfo))
+        .toEqual(expect.not.arrayContaining(expectedErrors))
+    })
+
+    it('does not require a work email if has home email', () => {
+      const testData = {
+        HomeEmail: { value: 'foobar2@local.dev' },
+        WorkEmail: { value: '' },
+        PhoneNumbers: {
+          items: [
+            {
+              Item: {
+                Telephone: {
+                  noNumber: false,
+                  number: '7031112222',
+                  numberType: 'Home',
+                  type: 'Domestic',
+                  timeOfDay: 'Both',
+                  extension: '',
+                },
+              },
+            },
+          ],
+        },
+      }
+
+      const expectedErrors = [
+        'WorkEmail.model.value.presence.REQUIRED',
+        'WorkEmail.model.value.email.INVALID_EMAIL',
+      ]
+
+      expect(validateModel(testData, identificationContactInfo))
+        .toEqual(expect.not.arrayContaining(expectedErrors))
+    })
+  })
+
+  it('does not require a home email if has work email', () => {
     const testData = {
-      HomeEmail: { value: 'foobar2@local.dev' },
-      WorkEmail: {},
+      HomeEmail: { value: '' },
+      WorkEmail: { value: 'foobar2@local.dev' },
       PhoneNumbers: {
         items: [
           {
@@ -57,11 +120,12 @@ describe('The identificationContactInfo section', () => {
     }
 
     const expectedErrors = [
-      'WorkEmail.presence.REQUIRED',
+      'WorkEmail.model.value.presence.REQUIRED',
+      'WorkEmail.model.value.email.INVALID_EMAIL',
     ]
 
     expect(validateModel(testData, identificationContactInfo))
-      .not.toEqual(expect.arrayContaining(expectedErrors))
+      .toEqual(expect.not.arrayContaining(expectedErrors))
   })
 
   it('does not allow more than one of the same phone number type', () => {
