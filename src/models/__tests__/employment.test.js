@@ -510,6 +510,65 @@ describe('The employment model', () => {
             .toEqual(expect.arrayContaining(expectedErrors))
         })
 
+        it('Reprimand Date cannot be before applicant birthdate', () => {
+          const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+          const testData = {
+            EmploymentActivity: { value: 'Other' },
+            Dates: {
+              from: { year: 2010, month: 1, day: 1 },
+              present: true,
+            },
+            Reprimand: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'Yes' },
+                    Date: { month: 1, year: 1970, day: 2 },
+                  },
+                },
+                { Item: { Has: { value: 'No' } } },
+              ],
+            },
+          }
+
+          const expectedErrors = [
+            'Reprimand.branchCollection.0.Date.date.date.datetime.DATE_TOO_EARLY',
+          ]
+
+          expect(validateModel(testData, employment, {
+            applicantBirthdate,
+          }))
+            .toEqual(expect.arrayContaining(expectedErrors))
+        })
+
+        it('Reprimand Date cannot be in the future', () => {
+          const testData = {
+            EmploymentActivity: { value: 'Other' },
+            Dates: {
+              from: { year: 2010, month: 1, day: 1 },
+              present: true,
+            },
+            Reprimand: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'Yes' },
+                    Date: { month: 1, year: 2050, day: 2 },
+                  },
+                },
+                { Item: { Has: { value: 'No' } } },
+              ],
+            },
+          }
+
+          const expectedErrors = [
+            'Reprimand.branchCollection.0.Date.date.date.datetime.DATE_TOO_LATE',
+          ]
+
+          expect(validateModel(testData, employment))
+            .toEqual(expect.arrayContaining(expectedErrors))
+        })
+
         it('passes if valid reprimands', () => {
           const testData = {
             EmploymentActivity: { value: 'Other' },
@@ -656,6 +715,73 @@ describe('The employment model', () => {
 
           const expectedErrors = [
             'ReasonLeft.model.Reasons.branchCollection.INCOMPLETE_COLLECTION',
+          ]
+
+          expect(validateModel(testData, employment))
+            .toEqual(expect.arrayContaining(expectedErrors))
+        })
+
+        it('ReasonLeft reason Date cannot be before applicant birthdate', () => {
+          const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+          const testData = {
+            EmploymentActivity: { value: 'Other' },
+            Dates: {
+              from: { year: 2017, month: 2, day: 5 },
+              to: { year: 2018, month: 10, day: 20 },
+              present: false,
+            },
+            ReasonLeft: {
+              ReasonDescription: { value: 'My reason' },
+              Reasons: {
+                items: [
+                  {
+                    Item: {
+                      Has: { value: 'Yes' },
+                      Date: { month: 1, year: 1970, day: 2 },
+                    },
+                  },
+                  { Item: { Has: { value: 'No' } } },
+                ],
+              },
+            },
+          }
+
+          const expectedErrors = [
+            'ReasonLeft.model.Reasons.branchCollection.0.Date.date.date.datetime.DATE_TOO_EARLY',
+          ]
+
+          expect(validateModel(testData, employment, {
+            applicantBirthdate,
+          }))
+            .toEqual(expect.arrayContaining(expectedErrors))
+        })
+
+        it('ReasonLeft reason Date cannot be in the future', () => {
+          const testData = {
+            EmploymentActivity: { value: 'Other' },
+            Dates: {
+              from: { year: 2017, month: 2, day: 5 },
+              to: { year: 2018, month: 10, day: 20 },
+              present: false,
+            },
+            ReasonLeft: {
+              ReasonDescription: { value: 'My reason' },
+              Reasons: {
+                items: [
+                  {
+                    Item: {
+                      Has: { value: 'Yes' },
+                      Date: { month: 1, year: 2050, day: 2 },
+                    },
+                  },
+                  { Item: { Has: { value: 'No' } } },
+                ],
+              },
+            },
+          }
+
+          const expectedErrors = [
+            'ReasonLeft.model.Reasons.branchCollection.0.Date.date.date.datetime.DATE_TOO_LATE',
           ]
 
           expect(validateModel(testData, employment))

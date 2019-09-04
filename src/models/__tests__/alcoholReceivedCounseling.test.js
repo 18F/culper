@@ -20,6 +20,20 @@ describe('The alcoholReceivedCounseling model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('TreatmentBeganDate cannot be before applicant birthdate', () => {
+    const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+    const testData = {
+      TreatmentBeganDate: { month: 1, year: 1970, day: 2 },
+    }
+
+    const expectedErrors = [
+      'TreatmentBeganDate.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, alcoholReceivedCounseling, { applicantBirthdate }))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('TreatmentEndDate must be after the TreatmentBeganDate', () => {
     const testData = {
       TreatmentBeganDate: { month: 1, day: 2, year: 2018 },
