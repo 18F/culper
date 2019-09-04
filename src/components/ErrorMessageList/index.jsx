@@ -7,7 +7,7 @@ import ErrorMessage from 'components/ErrorMessage'
  *
  * @param {Array} errors An array of errors
  */
-const ErrorMessageList = ({ errors }) => (
+const ErrorMessageList = ({ errors, isWarning }) => (
   <div>
     {errors.map(error => (
       <ErrorMessage
@@ -16,6 +16,7 @@ const ErrorMessageList = ({ errors }) => (
         title={error.title}
         message={error.message}
         note={error.note}
+        isWarning={isWarning}
       />
     ))}
   </div>
@@ -23,10 +24,12 @@ const ErrorMessageList = ({ errors }) => (
 
 ErrorMessageList.propTypes = {
   errors: PropTypes.arrayOf(PropTypes.object),
+  isWarning: PropTypes.bool,
 }
 
 ErrorMessageList.defaultProps = {
   errors: [],
+  isWarning: false,
 }
 
 export default ErrorMessageList
