@@ -6,8 +6,6 @@ import (
 	"testing"
 	"time"
 
-	"github.com/pkg/errors"
-
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/env"
 	"github.com/18F/e-QIP-prototype/api/log"
@@ -56,7 +54,7 @@ func TestLogSessionCreatedDestroyed(t *testing.T) {
 
 	timeout := 5 * time.Second
 	store := getSimpleStore()
-	sessionLog := &logRecorder{}
+	sessionLog := &mock.LogRecorder{}
 
 	session := NewSessionService(timeout, store, sessionLog)
 
@@ -67,16 +65,16 @@ func TestLogSessionCreatedDestroyed(t *testing.T) {
 		t.Fatal(authErr)
 	}
 
-	createMsg, logErr := sessionLog.getOnlyMatchingMessage(api.SessionCreated)
+	createMsg, logErr := sessionLog.GetOnlyMatchingMessage(api.SessionCreated)
 	if logErr != nil {
 		t.Fatal(logErr)
 	}
 
-	if createMsg.level != "INFO" {
-		t.Fatal("Wrong Log Level", createMsg.level)
+	if createMsg.Level != "INFO" {
+		t.Fatal("Wrong Log Level", createMsg.Level)
 	}
 
-	sessionHash, ok := createMsg.fields["session_hash"]
+	sessionHash, ok := createMsg.Fields["session_hash"]
 	if !ok {
 		t.Fatal("Didn't log the hashed session key")
 	}
@@ -90,12 +88,16 @@ func TestLogSessionCreatedDestroyed(t *testing.T) {
 		t.Fatal(delErr)
 	}
 
-	delMsg, delLogErr := sessionLog.getOnlyMatchingMessage(api.SessionDestroyed)
+	delMsg, delLogErr := sessionLog.GetOnlyMatchingMessage(api.SessionDestroyed)
 	if delLogErr != nil {
 		t.Fatal(delLogErr)
 	}
 
-	delSessionHash, ok := delMsg.fields["session_hash"]
+	if delMsg.Level != "INFO" {
+		t.Fatal("Wrong Log Level", delMsg.Level)
+	}
+
+	delSessionHash, ok := delMsg.Fields["session_hash"]
 	if !ok {
 		t.Fatal("Didn't log the hashed session key")
 	}
@@ -109,12 +111,12 @@ func TestLogSessionCreatedDestroyed(t *testing.T) {
 		t.Fatal(getErr)
 	}
 
-	nonExistantMsg, logNonExistantErr := sessionLog.getOnlyMatchingMessage(api.SessionDoesNotExist)
+	nonExistantMsg, logNonExistantErr := sessionLog.GetOnlyMatchingMessage(api.SessionDoesNotExist)
 	if logNonExistantErr != nil {
 		t.Fatal(logNonExistantErr)
 	}
 
-	nonExistantSessionHash, ok := nonExistantMsg.fields["session_hash"]
+	nonExistantSessionHash, ok := nonExistantMsg.Fields["session_hash"]
 	if !ok {
 		t.Fatal("Didn't log the hashed session key")
 	}
@@ -129,7 +131,7 @@ func TestLogSessionExpired(t *testing.T) {
 
 	timeout := -5 * time.Second
 	store := getSimpleStore()
-	sessionLog := &logRecorder{}
+	sessionLog := &mock.LogRecorder{}
 
 	session := NewSessionService(timeout, store, sessionLog)
 
@@ -140,9 +142,13 @@ func TestLogSessionExpired(t *testing.T) {
 		t.Fatal(authErr)
 	}
 
-	_, logCreateErr := sessionLog.getOnlyMatchingMessage(api.SessionCreated)
+	logCreateMsg, logCreateErr := sessionLog.GetOnlyMatchingMessage(api.SessionCreated)
 	if logCreateErr != nil {
 		t.Fatal(logCreateErr)
+	}
+
+	if logCreateMsg.Level != "INFO" {
+		t.Fatal("Wrong Log Level", logCreateMsg.Level)
 	}
 
 	_, _, getErr := session.GetAccountIfSessionIsValid(sessionKey)
@@ -150,12 +156,12 @@ func TestLogSessionExpired(t *testing.T) {
 		t.Fatal("didn't get the right error back getting the expired session:", getErr)
 	}
 
-	expiredMsg, logExpiredErr := sessionLog.getOnlyMatchingMessage(api.SessionExpired)
+	expiredMsg, logExpiredErr := sessionLog.GetOnlyMatchingMessage(api.SessionExpired)
 	if logExpiredErr != nil {
 		t.Fatal(logExpiredErr)
 	}
 
-	expiredSessionHash, ok := expiredMsg.fields["session_hash"]
+	expiredSessionHash, ok := expiredMsg.Fields["session_hash"]
 	if !ok {
 		t.Fatal("Didn't log the hashed session key")
 	}
@@ -177,7 +183,7 @@ func TestLogConcurrentSession(t *testing.T) {
 
 	timeout := 5 * time.Second
 	store := getSimpleStore()
-	sessionLog := &logRecorder{}
+	sessionLog := &mock.LogRecorder{}
 
 	session := NewSessionService(timeout, store, sessionLog)
 
@@ -188,7 +194,7 @@ func TestLogConcurrentSession(t *testing.T) {
 		t.Fatal(authErr)
 	}
 
-	_, logCreateErr := sessionLog.getOnlyMatchingMessage(api.SessionCreated)
+	_, logCreateErr := sessionLog.GetOnlyMatchingMessage(api.SessionCreated)
 	if logCreateErr != nil {
 		t.Fatal(logCreateErr)
 	}
@@ -199,78 +205,14 @@ func TestLogConcurrentSession(t *testing.T) {
 		t.Fatal(authAgainErr)
 	}
 
-	createMessages := sessionLog.matchingMessages(api.SessionCreated)
+	createMessages := sessionLog.MatchingMessages(api.SessionCreated)
 	if len(createMessages) != 2 {
 		t.Fatal("Should have 2 create messages now")
 	}
 
-	_, logConcurrentErr := sessionLog.getOnlyMatchingMessage(api.SessionConcurrentLogin)
+	_, logConcurrentErr := sessionLog.GetOnlyMatchingMessage(api.SessionConcurrentLogin)
 	if logConcurrentErr != nil {
 		t.Fatal(logConcurrentErr)
 	}
 
-}
-
-// Log Recorder
-
-type logLine struct {
-	level   string
-	message string
-	fields  api.LogFields
-}
-
-type logRecorder struct {
-	mock.LogService
-	lines   []logLine
-	globals api.LogFields
-}
-
-func (r *logRecorder) recordLine(level string, message string, fields api.LogFields) logLine {
-	newLine := logLine{
-		level:   level,
-		message: message,
-		fields:  api.LogFields{},
-	}
-
-	for k, v := range r.globals {
-		newLine.fields[k] = v
-	}
-
-	for k, v := range fields {
-		newLine.fields[k] = v
-	}
-
-	r.lines = append(r.lines, newLine)
-
-	return newLine
-}
-
-func (r *logRecorder) Info(message string, fields api.LogFields) {
-	line := r.recordLine("INFO", message, fields)
-	r.LogService.Info(line.message, line.fields)
-}
-
-func (r *logRecorder) AddField(name string, value interface{}) {
-	if r.globals == nil {
-		r.globals = api.LogFields{}
-	}
-	r.globals[name] = value
-}
-
-func (r *logRecorder) getOnlyMatchingMessage(message string) (logLine, error) {
-	messages := r.matchingMessages(message)
-	if len(messages) != 1 {
-		return logLine{}, errors.New(fmt.Sprintf("Didn't find only one line for message: %s (%s) ", message, messages))
-	}
-	return messages[0], nil
-}
-
-func (r *logRecorder) matchingMessages(message string) []logLine {
-	matches := []logLine{}
-	for _, line := range r.lines {
-		if line.message == message {
-			matches = append(matches, line)
-		}
-	}
-	return matches
 }
