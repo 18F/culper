@@ -5,7 +5,7 @@ export const validateAdvocate = data => (
   validateModel(data, terrorismAdvocate)
 )
 
-export const validateLegalAssociationAdvocate = (data) => {
+export const validateLegalAssociationAdvocate = (data, formType, options = {}) => {
   const legalAssociationAdvocateModel = {
     HasAdvocated: { presence: true, hasValue: { validator: hasYesOrNo } },
     List: (value, attributes) => {
@@ -20,7 +20,7 @@ export const validateLegalAssociationAdvocate = (data) => {
     },
   }
 
-  return validateModel(data, legalAssociationAdvocateModel)
+  return validateModel(data, legalAssociationAdvocateModel, options)
 }
 
 export default class LegalAssociationAdvocatingValidator {

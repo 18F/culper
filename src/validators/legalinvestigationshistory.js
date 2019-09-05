@@ -5,7 +5,7 @@ export const validateInvestigation = data => (
   validateModel(data, investigation)
 )
 
-export const validateLegalInvestigationsHistory = (data) => {
+export const validateLegalInvestigationsHistory = (data, formType, options = {}) => {
   const legalInvestigationsHistoryModel = {
     HasHistory: { presence: true, hasValue: { validator: hasYesOrNo } },
     List: (value, attributes) => {
@@ -19,7 +19,7 @@ export const validateLegalInvestigationsHistory = (data) => {
     },
   }
 
-  return validateModel(data, legalInvestigationsHistoryModel)
+  return validateModel(data, legalInvestigationsHistoryModel, options)
 }
 
 export default class LegalInvestigationsHistoryValidator {

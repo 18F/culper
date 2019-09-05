@@ -18,8 +18,8 @@ const nonpaymentModel = {
   },
 }
 
-export const validateFinancialNonpayment = data => (
-  validateModel(data, nonpaymentModel)
+export const validateFinancialNonpayment = (data, formType, options = {}) => (
+  validateModel(data, nonpaymentModel, options)
 )
 
 export default class NonpaymentValidator {

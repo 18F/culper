@@ -6,8 +6,8 @@ export const validateEducation = data => (
   validateModel(data, education)
 )
 
-export const validateHistoryEducation = data => (
-  validateModel(data, historyEducation)
+export const validateHistoryEducation = (data, formType, options = {}) => (
+  validateModel(data, historyEducation, options)
 )
 
 export class EducationItemValidator {

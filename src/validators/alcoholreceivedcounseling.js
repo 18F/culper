@@ -13,7 +13,7 @@ export const validateReceivedCounseling = (data) => {
   return validateModel(modelData, alcoholReceivedCounseling)
 }
 
-export const validateReceivedCounselings = (data) => {
+export const validateReceivedCounselings = (data, formType, options = {}) => {
   const receivedCounselingsModel = {
     ReceivedTreatment: { presence: true, hasValue: { validator: hasYesOrNo } },
     List: (value, attributes) => {
@@ -42,7 +42,7 @@ export const validateReceivedCounselings = (data) => {
     modelData.List.items = newItems
   }
 
-  return validateModel(modelData, receivedCounselingsModel)
+  return validateModel(modelData, receivedCounselingsModel, options)
 }
 
 export default class ReceivedCounselingsValidator {

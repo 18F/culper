@@ -17,7 +17,7 @@ export const validateDrugInvolvement = (data = {}, formType = formTypes.SF86) =>
   })
 )
 
-export const validateDrugInvolvements = (data = {}, formType = formTypes.SF86) => {
+export const validateDrugInvolvements = (data = {}, formType, options = {}) => {
   const drugInvolvementsModel = {
     Involved: { presence: true, hasValue: { validator: hasYesOrNo } },
     List: (value, attributes) => {
@@ -36,7 +36,7 @@ export const validateDrugInvolvements = (data = {}, formType = formTypes.SF86) =
     },
   }
 
-  return validateModel(data, drugInvolvementsModel)
+  return validateModel(data, drugInvolvementsModel, options)
 }
 
 /** Object Validators (as classes) - legacy */

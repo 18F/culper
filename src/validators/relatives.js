@@ -18,21 +18,23 @@ export const validateRelative = (data, formType) => (
     data,
     relative,
     {
-      requireRelationshipRelativesForeignBornDoc: requireRelationshipRelativesForeignBornDoc(formType),
-      requireRelationshipRelativesUSResidenceDoc: requireRelationshipRelativesUSResidenceDoc(formType),
+      requireRelationshipRelativesForeignBornDoc:
+        requireRelationshipRelativesForeignBornDoc(formType),
+      requireRelationshipRelativesUSResidenceDoc:
+        requireRelationshipRelativesUSResidenceDoc(formType),
     },
   )
 )
 
 export const validateAlias = data => validateModel(data, alias)
 
-export const getMaritalStatus = () => {
+const getMaritalStatus = () => {
   const state = store.getState()
   return selectMaritalStatus(state)
 }
 
-export const validateRelatives = (data, formType) => {
-  const maritalStatus = getMaritalStatus()
+export const validateRelatives = (data, formType, options = {}) => {
+  const { maritalStatus } = options
 
   const requiredRelations = [
     i => i.Item && i.Item.Relation && i.Item.Relation.value === MOTHER,
@@ -62,8 +64,11 @@ export const validateRelatives = (data, formType) => {
     data,
     relativesModel,
     {
-      requireRelationshipRelativesForeignBornDoc: requireRelationshipRelativesForeignBornDoc(formType),
-      requireRelationshipRelativesUSResidenceDoc: requireRelationshipRelativesUSResidenceDoc(formType),
+      ...options,
+      requireRelationshipRelativesForeignBornDoc:
+        requireRelationshipRelativesForeignBornDoc(formType),
+      requireRelationshipRelativesUSResidenceDoc:
+        requireRelationshipRelativesUSResidenceDoc(formType),
     },
   )
 }
@@ -131,8 +136,10 @@ export class RelativeValidator {
     this.data = data
     this.formType = formType
     this.options = {
-      requireRelationshipRelativesForeignBornDoc: requireRelationshipRelativesForeignBornDoc(formType),
-      requireRelationshipRelativesUSResidenceDoc: requireRelationshipRelativesUSResidenceDoc(formType),
+      requireRelationshipRelativesForeignBornDoc:
+        requireRelationshipRelativesForeignBornDoc(formType),
+      requireRelationshipRelativesUSResidenceDoc:
+        requireRelationshipRelativesUSResidenceDoc(formType),
     }
   }
 
@@ -188,7 +195,9 @@ export class RelativeValidator {
   }
 
   validDocumentNumber() {
-    return validateModel(this.data, { DocumentNumber: relative.DocumentNumber }, this.options) === true
+    return validateModel(this.data, {
+      DocumentNumber: relative.DocumentNumber,
+    }, this.options) === true
   }
 
   validCourtName() {
@@ -243,7 +252,9 @@ export class RelativeValidator {
   }
 
   validEmployerAddress() {
-    return validateModel(this.data, { EmployerAddress: relative.EmployerAddress }, this.options) === true
+    return validateModel(this.data, {
+      EmployerAddress: relative.EmployerAddress,
+    }, this.options) === true
   }
 
   validEmployerRelationship() {

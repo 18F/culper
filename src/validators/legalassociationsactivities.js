@@ -5,7 +5,7 @@ export const validateActivities = data => (
   validateModel(data, activitiesOverthrow)
 )
 
-export const validateLegalAssociationActivities = (data, formType, options) => {
+export const validateLegalAssociationActivities = (data, formType, options = {}) => {
   const legalAssociationActivitiesModel = {
     HasActivities: { presence: true, hasValue: { validator: hasYesOrNo } },
     List: (value, attributes) => {
