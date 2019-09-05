@@ -2,6 +2,6 @@
 import { validateModel } from 'models/validate'
 import identificationSSN from 'models/sections/identificationSSN'
 
-export const validateIdentificationSSN = data => (
-  validateModel(data, identificationSSN)
+export const validateIdentificationSSN = (data, formType, options = {}) => (
+  validateModel(data, identificationSSN, options)
 )

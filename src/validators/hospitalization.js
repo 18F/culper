@@ -18,8 +18,8 @@ export const validateHospitalization = data => (
   validateModel(data, hospitalization)
 )
 
-export const validateHospitalizations = data => (
-  validateModel(data, hospitalizationsModel)
+export const validateHospitalizations = (data, formType, options = {}) => (
+  validateModel(data, hospitalizationsModel, options)
 )
 
 export default class HospitalizationsValidator {

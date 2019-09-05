@@ -7,8 +7,8 @@ export const validateContactPhoneNumber = data => (
   validateModel(data, contactPhoneNumber)
 )
 
-export const validateIdentificationContactInformation = data => (
-  validateModel(data, identificationContactInfo)
+export const validateIdentificationContactInformation = (data, formType, options = {}) => (
+  validateModel(data, identificationContactInfo, options)
 )
 
 /** LEGACY */

@@ -5,7 +5,7 @@ export const validateTerrorist = data => (
   validateModel(data, terrorist)
 )
 
-export const validateLegalTerrorist = (data) => {
+export const validateLegalTerrorist = (data, formType, options = {}) => {
   const legalTerroristModel = {
     HasTerrorist: { presence: true, hasValue: { validator: hasYesOrNo } },
     List: (value, attributes) => {
@@ -19,7 +19,7 @@ export const validateLegalTerrorist = (data) => {
     },
   }
 
-  return validateModel(data, legalTerroristModel)
+  return validateModel(data, legalTerroristModel, options)
 }
 
 export default class LegalTerroristValidator {

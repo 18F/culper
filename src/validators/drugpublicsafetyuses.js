@@ -5,7 +5,7 @@ export const validateDrugSafetyUse = data => (
   validateModel(data, drugSafetyUse)
 )
 
-export const validateDrugSafetyUses = (data) => {
+export const validateDrugSafetyUses = (data, formType, options = {}) => {
   const drugSafetyUsesModel = {
     UsedDrugs: { presence: true, hasValue: { validator: hasYesOrNo } },
     List: (value, attributes) => {
@@ -19,7 +19,7 @@ export const validateDrugSafetyUses = (data) => {
     },
   }
 
-  return validateModel(data, drugSafetyUsesModel)
+  return validateModel(data, drugSafetyUsesModel, options)
 }
 
 export default class DrugPublicSafetyUsesValidator {

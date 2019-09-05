@@ -6,8 +6,8 @@ export const validateOtherName = data => (
   validateModel(data, identificationOtherName)
 )
 
-export const validateOtherNames = data => (
-  validateModel(data, identificationOtherNames)
+export const validateOtherNames = (data, formType, options = {}) => (
+  validateModel(data, identificationOtherNames, options)
 )
 
 /**

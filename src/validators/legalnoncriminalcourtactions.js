@@ -5,7 +5,7 @@ export const validateNonCriminalCourtAction = data => (
   validateModel(data, nonCriminalCourtAction)
 )
 
-export const validateLegalNonCriminalCourtActions = (data) => {
+export const validateLegalNonCriminalCourtActions = (data, formType, options = {}) => {
   const legalNonCriminalCourtActionsModel = {
     HasCourtActions: { presence: true, hasValue: { validator: hasYesOrNo } },
     List: (value, attributes) => {
@@ -19,7 +19,7 @@ export const validateLegalNonCriminalCourtActions = (data) => {
     },
   }
 
-  return validateModel(data, legalNonCriminalCourtActionsModel)
+  return validateModel(data, legalNonCriminalCourtActionsModel, options)
 }
 
 export default class NonCriminalCourtActionsValidator {

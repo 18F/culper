@@ -5,7 +5,7 @@ export const validateForeignBusinessEmploymentItem = data => (
   validateModel(data, foreignBusinessEmployment)
 )
 
-export const validateForeignBusinessEmployment = (data) => {
+export const validateForeignBusinessEmployment = (data, formType, options = {}) => {
   const foreignBusinessEmploymentModel = {
     HasForeignEmployment: { presence: true, hasValue: { validator: hasYesOrNo } },
     List: (value, attributes) => {
@@ -20,7 +20,7 @@ export const validateForeignBusinessEmployment = (data) => {
     },
   }
 
-  return validateModel(data, foreignBusinessEmploymentModel)
+  return validateModel(data, foreignBusinessEmploymentModel, options)
 }
 
 export default class ForeignBusinessEmploymentValidator {
