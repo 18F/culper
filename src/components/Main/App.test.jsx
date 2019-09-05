@@ -20,6 +20,7 @@ describe('App component', () => {
 
   describe('for the SF86', () => {
     const store = mockStore({
+      form: {},
       application: {
         Errors: {},
         Completed: {},
@@ -67,6 +68,7 @@ describe('App component', () => {
 
   describe('for the SF85', () => {
     const store = mockStore({
+      form: {},
       application: {
         Errors: {},
         Completed: {},
@@ -114,6 +116,7 @@ describe('App component', () => {
 
   describe('for the SF85P', () => {
     const store = mockStore({
+      form: {},
       application: {
         Errors: {},
         Completed: {},
