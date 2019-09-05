@@ -166,10 +166,7 @@
               },
               "Location": {
                 "type": "location",
-                "props": {
-                  "layout": "",
-                  "country": ""
-                }
+                "props": {}
               },
               "Name": {
                 "type": "name",
