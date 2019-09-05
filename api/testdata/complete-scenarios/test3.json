@@ -2638,7 +2638,7 @@
                                     "layout": "Address",
                                     "street": "Apple St",
                                     "city": "Berlin",
-                                    "zipcode": "12333",
+                                    "zipcode": "",
                                     "country": "Germany"
                                   }
                                 },
@@ -2767,9 +2767,9 @@
                   "Relinquished": {
                     "type": "datecontrol",
                     "props": {
-                      "month": "04",
-                      "day": "04",
-                      "year": "1998",
+                      "month": "",
+                      "day": "",
+                      "year": "",
                       "estimated": false
                     }
                   },
@@ -2905,7 +2905,7 @@
                     "props": {
                       "month": "01",
                       "day": "6",
-                      "year": "1995",
+                      "year": "2000",
                       "estimated": false
                     }
                   },
