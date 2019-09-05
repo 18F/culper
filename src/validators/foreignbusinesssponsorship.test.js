@@ -1,17 +1,17 @@
 import ForeignBusinessSponsorshipValidator, {
-  SponsorshipValidator
+  SponsorshipValidator,
 } from './foreignbusinesssponsorship'
 import { battery } from './helpers'
 import Location from '../components/Form/Location'
 
-describe('Foreign business sponsorship component validation', function() {
+describe('Foreign business sponsorship component validation', () => {
   it('validate foreign business sponsorship name', () => {
     const tests = [
       {
         state: {
-          Name: {}
+          Name: {},
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -22,11 +22,11 @@ describe('Foreign business sponsorship component validation', function() {
             middleInitialOnly: true,
             noMiddleName: false,
             last: 'Bar',
-            suffix: 'Jr'
-          }
+            suffix: 'Jr',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, SponsorshipValidator, 'validName')
@@ -36,23 +36,23 @@ describe('Foreign business sponsorship component validation', function() {
     const tests = [
       {
         state: {
-          Birthdate: {}
+          Birthdate: {},
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Birthdate: {
             day: '1',
             month: '1',
-            year: '2016'
+            year: '2016',
           },
           BirthdateNotApplicable: {
-            applicable: true
-          }
+            applicable: true,
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, SponsorshipValidator, 'validBirthdate')
@@ -62,20 +62,20 @@ describe('Foreign business sponsorship component validation', function() {
     const tests = [
       {
         state: {
-          Birthplace: {}
+          Birthplace: {},
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Birthplace: {
             city: 'Munich',
             country: { value: 'Germnay' },
-            layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
-          }
+            layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY,
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, SponsorshipValidator, 'validBirthplace')
@@ -85,9 +85,9 @@ describe('Foreign business sponsorship component validation', function() {
     const tests = [
       {
         state: {
-          Address: {}
+          Address: {},
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -97,11 +97,11 @@ describe('Foreign business sponsorship component validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
-          }
+            layout: Location.ADDRESS,
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, SponsorshipValidator, 'validAddress')
@@ -111,18 +111,18 @@ describe('Foreign business sponsorship component validation', function() {
     const tests = [
       {
         state: {
-          Citizenship: {}
+          Citizenship: {},
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Citizenship: {
-            value: ['Germany']
-          }
+            value: ['Germany'],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, SponsorshipValidator, 'validCitizenship')
@@ -132,9 +132,9 @@ describe('Foreign business sponsorship component validation', function() {
     const tests = [
       {
         state: {
-          Dates: {}
+          Dates: {},
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -142,18 +142,18 @@ describe('Foreign business sponsorship component validation', function() {
             from: {
               month: '1',
               day: '1',
-              year: '2010'
+              year: '2010',
             },
             to: {
               month: '1',
               day: '1',
-              year: '2012'
+              year: '2012',
             },
-            present: false
-          }
+            present: false,
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, SponsorshipValidator, 'validDates')
@@ -163,9 +163,9 @@ describe('Foreign business sponsorship component validation', function() {
     const tests = [
       {
         state: {
-          Residence: {}
+          Residence: {},
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -175,11 +175,11 @@ describe('Foreign business sponsorship component validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
-          }
+            layout: Location.ADDRESS,
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, SponsorshipValidator, 'validResidence')
@@ -189,21 +189,21 @@ describe('Foreign business sponsorship component validation', function() {
     const tests = [
       {
         state: {
-          Organization: {}
+          Organization: {},
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Organization: {
-            value: 'this is the organization'
+            value: 'this is the organization',
           },
           OrganizationNotApplicable: {
-            applicable: true
-          }
+            applicable: true,
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, SponsorshipValidator, 'validOrganization')
@@ -213,9 +213,9 @@ describe('Foreign business sponsorship component validation', function() {
     const tests = [
       {
         state: {
-          OrganizationAddress: {}
+          OrganizationAddress: {},
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
@@ -225,14 +225,14 @@ describe('Foreign business sponsorship component validation', function() {
             city: 'Arlington',
             state: 'VA',
             zipcode: '22202',
-            layout: Location.ADDRESS
+            layout: Location.ADDRESS,
           },
           OrganizationAddressNotApplicable: {
-            applicable: true
-          }
+            applicable: true,
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, SponsorshipValidator, 'validOrganizationAddress')
@@ -242,18 +242,18 @@ describe('Foreign business sponsorship component validation', function() {
     const tests = [
       {
         state: {
-          Stay: {}
+          Stay: {},
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Stay: {
-            value: 'this is the stay'
-          }
+            value: 'this is the stay',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, SponsorshipValidator, 'validStay')
@@ -263,18 +263,18 @@ describe('Foreign business sponsorship component validation', function() {
     const tests = [
       {
         state: {
-          Sponsorship: {}
+          Sponsorship: {},
         },
-        expected: false
+        expected: false,
       },
       {
         state: {
           Sponsorship: {
-            value: 'this is the sponsorship'
-          }
+            value: 'this is the sponsorship',
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, SponsorshipValidator, 'validSponsorship')
@@ -284,33 +284,33 @@ describe('Foreign business sponsorship component validation', function() {
     const tests = [
       {
         state: {},
-        expected: false
+        expected: false,
       },
       {
         state: {
-          HasForeignSponsorship: { value: 'No' }
+          HasForeignSponsorship: { value: 'No' },
         },
-        expected: true
-      },
-      {
-        state: {
-          HasForeignSponsorship: { value: 'Yes' },
-          List: {
-            branch: { value: 'No' },
-            items: []
-          }
-        },
-        expected: false
+        expected: true,
       },
       {
         state: {
           HasForeignSponsorship: { value: 'Yes' },
           List: {
             branch: { value: 'No' },
-            items: [{}]
-          }
+            items: [],
+          },
         },
-        expected: false
+        expected: false,
+      },
+      {
+        state: {
+          HasForeignSponsorship: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [{}],
+          },
+        },
+        expected: false,
       },
       {
         state: {
@@ -327,20 +327,20 @@ describe('Foreign business sponsorship component validation', function() {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    suffix: 'Jr'
+                    suffix: 'Jr',
                   },
                   Birthdate: {
                     day: '1',
                     month: '1',
-                    year: '2016'
+                    year: '2000',
                   },
                   BirthdateNotApplicable: {
-                    applicable: true
+                    applicable: true,
                   },
                   Birthplace: {
                     country: { value: 'Germnay' },
                     city: 'Munich',
-                    layout: Location.CITY_COUNTRY
+                    layout: Location.CITY_COUNTRY,
                   },
                   Address: {
                     country: { value: 'United States' },
@@ -348,23 +348,23 @@ describe('Foreign business sponsorship component validation', function() {
                     city: 'Arlington',
                     state: 'VA',
                     zipcode: '22202',
-                    layout: Location.ADDRESS
+                    layout: Location.ADDRESS,
                   },
                   Citizenship: {
-                    value: ['Germany']
+                    value: ['Germany'],
                   },
                   Dates: {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010'
+                      year: '2010',
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2012'
+                      year: '2012',
                     },
-                    present: false
+                    present: false,
                   },
                   Residence: {
                     country: { value: 'United States' },
@@ -372,13 +372,13 @@ describe('Foreign business sponsorship component validation', function() {
                     city: 'Arlington',
                     state: 'VA',
                     zipcode: '22202',
-                    layout: Location.ADDRESS
+                    layout: Location.ADDRESS,
                   },
                   Organization: {
-                    value: 'this is the organization'
+                    value: 'this is the organization',
                   },
                   OrganizationNotApplicable: {
-                    applicable: true
+                    applicable: true,
                   },
                   OrganizationAddress: {
                     country: { value: 'United States' },
@@ -386,24 +386,24 @@ describe('Foreign business sponsorship component validation', function() {
                     city: 'Arlington',
                     state: 'VA',
                     zipcode: '22202',
-                    layout: Location.ADDRESS
+                    layout: Location.ADDRESS,
                   },
                   OrganizationAddressNotApplicable: {
-                    applicable: true
+                    applicable: true,
                   },
                   Stay: {
-                    value: 'this is the stay'
+                    value: 'this is the stay',
                   },
                   Sponsorship: {
-                    value: 'this is the sponsorship'
-                  }
-                }
-              }
-            ]
-          }
+                    value: 'this is the sponsorship',
+                  },
+                },
+              },
+            ],
+          },
         },
-        expected: true
-      }
+        expected: true,
+      },
     ]
 
     battery(tests, ForeignBusinessSponsorshipValidator, 'isValid')
