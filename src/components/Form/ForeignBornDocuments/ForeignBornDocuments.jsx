@@ -55,6 +55,7 @@ export default class ForeignBornDocuments extends ValidationElement {
   }
 
   updateDocumentExpiration(values) {
+    values['noMaxDate'] = true
     this.update({
       DocumentExpiration: values,
     })
