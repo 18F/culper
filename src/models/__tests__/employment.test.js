@@ -2861,11 +2861,159 @@ describe('The employment model', () => {
           .toEqual(expect.arrayContaining(expectedErrors))
       })
 
-      it('passes a valid Employment item', () => {
+      it('additional DatesEmployed from date cannot be before applicant birthdate', () => {
+        const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+
         const testData = {
           EmploymentActivity: { value: 'NonGovernment' },
           Dates: {
             from: { year: 1990, month: 5, day: 12 },
+            present: true,
+          },
+          Title: 'Manager',
+          Employment: 'My Company',
+          Status: 'Full-time',
+          Address: {
+            street: '40 Office St',
+            city: 'New York',
+            state: 'NY',
+            zipcode: '10001',
+            country: 'United States',
+          },
+          PhysicalAddress: {
+            HasDifferentAddress: { value: 'No' },
+          },
+          Telephone: {
+            number: '1234567890',
+            type: 'Domestic',
+            timeOfDay: 'Day',
+          },
+          Supervisor: {
+            SupervisorName: { value: 'Person Supervisor' },
+            Title: { value: 'VP' },
+            EmailNotApplicable: { applicable: false },
+            Address: {
+              street: '40 Office St',
+              city: 'New York',
+              state: 'NY',
+              zipcode: '10001',
+              country: 'United States',
+            },
+            Telephone: {
+              number: '1234567890',
+              type: 'Domestic',
+              timeOfDay: 'Day',
+            },
+          },
+          Reprimand: {
+            items: [
+              { Item: { Has: { value: 'No' } } },
+            ],
+          },
+          Additional: {
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' },
+                  Position: { value: 'Something' },
+                  Supervisor: { value: 'Someone' },
+                  DatesEmployed: {
+                    from: { month: 1, year: 1970, day: 2 },
+                    to: { year: 2006, month: 5, day: 10 },
+                  },
+                },
+              },
+              { Item: { Has: { value: 'No' } } },
+            ],
+          },
+        }
+
+        const expectedErrors = [
+          'Additional.branchCollection.0.DatesEmployed.daterange.from.date.date.datetime.DATE_TOO_EARLY',
+        ]
+
+        expect(validateModel(testData, employment, { applicantBirthdate }))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      it('additional DatesEmployed To date cannot be after the Dates from date', () => {
+        const testData = {
+          EmploymentActivity: { value: 'NonGovernment' },
+          Dates: {
+            from: { year: 1990, month: 5, day: 12 },
+            present: true,
+          },
+          Title: 'Manager',
+          Employment: 'My Company',
+          Status: 'Full-time',
+          Address: {
+            street: '40 Office St',
+            city: 'New York',
+            state: 'NY',
+            zipcode: '10001',
+            country: 'United States',
+          },
+          PhysicalAddress: {
+            HasDifferentAddress: { value: 'No' },
+          },
+          Telephone: {
+            number: '1234567890',
+            type: 'Domestic',
+            timeOfDay: 'Day',
+          },
+          Supervisor: {
+            SupervisorName: { value: 'Person Supervisor' },
+            Title: { value: 'VP' },
+            EmailNotApplicable: { applicable: false },
+            Address: {
+              street: '40 Office St',
+              city: 'New York',
+              state: 'NY',
+              zipcode: '10001',
+              country: 'United States',
+            },
+            Telephone: {
+              number: '1234567890',
+              type: 'Domestic',
+              timeOfDay: 'Day',
+            },
+          },
+          Reprimand: {
+            items: [
+              { Item: { Has: { value: 'No' } } },
+            ],
+          },
+          Additional: {
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' },
+                  Position: { value: 'Something' },
+                  Supervisor: { value: 'Someone' },
+                  DatesEmployed: {
+                    from: { month: 1, year: 1970, day: 2 },
+                    to: { year: 2006, month: 5, day: 10 },
+                  },
+                },
+              },
+              { Item: { Has: { value: 'No' } } },
+            ],
+          },
+        }
+
+        const expectedErrors = [
+          'Additional.branchCollection.0.DatesEmployed.daterange.to.date.date.datetime.DATE_TOO_LATE',
+        ]
+
+        expect(validateModel(testData, employment))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      it('passes a valid Employment item', () => {
+        const testData = {
+          EmploymentActivity: { value: 'NonGovernment' },
+          Dates: {
+            from: { year: 2007, month: 5, day: 12 },
             present: true,
           },
           Title: 'Manager',

@@ -227,6 +227,53 @@ describe('The civilUnion model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('EnteredCivilUnion cannot be before applicant birthdate', () => {
+    const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+    const testData = {
+      Birthdate: { month: 1, year: 1985, day: 2 },
+      EnteredCivilUnion: { month: 1, year: 1970, day: 2 },
+    }
+
+    const expectedErrors = [
+      'EnteredCivilUnion.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, civilUnion, {
+      applicantBirthdate,
+    }))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('EnteredCivilUnion cannot be before person’s birthdate', () => {
+    const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+    const testData = {
+      Birthdate: { month: 1, year: 1985, day: 2 },
+      EnteredCivilUnion: { month: 1, year: 1983, day: 2 },
+    }
+
+    const expectedErrors = [
+      'EnteredCivilUnion.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, civilUnion, {
+      applicantBirthdate,
+    }))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('EnteredCivilUnion cannot be in the future', () => {
+    const testData = {
+      EnteredCivilUnion: { month: 1, year: 2050, day: 2 },
+    }
+
+    const expectedErrors = [
+      'EnteredCivilUnion.date.date.datetime.DATE_TOO_LATE',
+    ]
+
+    expect(validateModel(testData, civilUnion))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('Email is required', () => {
     const testData = {}
     const expectedErrors = ['Email.presence.REQUIRED']
