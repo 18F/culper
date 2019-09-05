@@ -3,10 +3,11 @@ import birthplace from 'models/shared/locations/birthplace'
 
 const identificationPlaceOfBirth = {
   Location: (value, attributes) => {
+
     return {
       presence: true,
-      model: {
-        validator: birthplace, requireCity: !attributes.Location.county, requireCounty: !attributes.Location.city
+      location: {
+        validator: birthplace, requireCity: value ? !value.county : true, requireCounty: value ? !value.city : true
       }
     }
   },
