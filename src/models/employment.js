@@ -51,7 +51,14 @@ const supervisor = {
 const additional = {
   Position: { presence: true, hasValue: true },
   Supervisor: { presence: true, hasValue: true },
-  DatesEmployed: { presence: true, daterange: true },
+  DatesEmployed: (value, attributes, attributeName, options = {}) => {
+    const { applicantBirthdate, latest } = options
+
+    return {
+      presence: true,
+      daterange: { earliest: applicantBirthdate, latest },
+    }
+  },
 }
 
 const reprimand = {
@@ -387,6 +394,7 @@ const employment = {
       return {
         branchCollection: {
           validator: additional,
+          latest: attributes.Dates && attributes.Dates.from,
         },
       }
     }
