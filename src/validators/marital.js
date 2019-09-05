@@ -1,5 +1,4 @@
 import store from 'services/store'
-import * as formTypes from 'constants/formTypes'
 import { validateModel } from 'models/validate'
 import civilUnion from 'models/civilUnion'
 import divorce from 'models/divorce'
@@ -51,14 +50,17 @@ const maritalModel = {
   },
 }
 
-export const validateMarital = (data, formType = formTypes.SF86) => {
-  const isForeignBornDocExpirationRequired = requireRelationshipMaritalForeignBornDocExpiration(formType)
+export const validateMarital = (data, formType, options = {}) => {
+  const isForeignBornDocExpirationRequired = requireRelationshipMaritalForeignBornDocExpiration(
+    formType
+  )
+
   const isDivorceePhoneNumberRequired = requireRelationshipMaritalDivorcePhoneNumber(formType)
-  const options = {
+  const modelOptions = {
     requireForeignBornDocExpiration: isForeignBornDocExpirationRequired,
     requireRelationshipMaritalDivorcePhoneNumber: isDivorceePhoneNumberRequired,
   }
-  return validateModel(data, maritalModel, options)
+  return validateModel(data, maritalModel, { ...options, ...modelOptions })
 }
 
 export default class MaritalValidator {

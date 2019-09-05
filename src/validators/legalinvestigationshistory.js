@@ -9,7 +9,7 @@ export const validateInvestigation = (data, formType) => (
   })
 )
 
-export const validateLegalInvestigationsHistory = (data, formType) => {
+export const validateLegalInvestigationsHistory = (data, formType, options = {}) => {
   const legalInvestigationsHistoryModel = {
     HasHistory: { presence: true, hasValue: { validator: hasYesOrNo } },
     List: (value, attributes) => {
@@ -22,11 +22,12 @@ export const validateLegalInvestigationsHistory = (data, formType) => {
       return {}
     },
   }
-  const options = {
+
+  const modelOptions = {
     requireLegalInvestigationClearanceGranted: requireLegalInvestigationClearanceGranted(formType),
   }
 
-  return validateModel(data, legalInvestigationsHistoryModel, options)
+  return validateModel(data, legalInvestigationsHistoryModel, { ...options, ...modelOptions })
 }
 
 export default class LegalInvestigationsHistoryValidator {
