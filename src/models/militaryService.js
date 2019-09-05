@@ -86,9 +86,9 @@ const militaryService = {
       ? { presence: true, hasValue: true }
       : {}
   ),
-  DischargeDate: (value, attributes) => (
+  DischargeDate: (value, attributes, attributeName, options = {}) => (
     checkValue(attributes.HasBeenDischarged, 'Yes')
-      ? { presence: true, date: true }
+      ? { presence: true, date: { earliest: options.applicantBirthdate, latest: DEFAULT_LATEST } }
       : {}
   ),
 }
