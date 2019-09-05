@@ -14,6 +14,7 @@ describe('Navigation component', () => {
 
   it('renders correctly', () => {
     const store = mockStore({
+      form: {},
       authentication: { authenticated: true },
       application: {
         Errors: {},
