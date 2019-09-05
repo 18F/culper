@@ -133,6 +133,55 @@ describe('The foreignBusinessSponsorship model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('Dates from cannot be before applicant birthdate', () => {
+    const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+    const testData = {
+      Dates: {
+        from: { month: 1, year: 1970, day: 2 },
+      },
+    }
+
+    const expectedErrors = [
+      'Dates.daterange.from.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, foreignBusinessSponsorship, {
+      applicantBirthdate,
+    }))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Dates from cannot be before person’s birthdate', () => {
+    const testData = {
+      Birthdate: { month: 1, year: 1985, day: 2 },
+      Dates: {
+        from: { month: 1, year: 1983, day: 2 },
+      },
+    }
+
+    const expectedErrors = [
+      'Dates.daterange.from.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, foreignBusinessSponsorship))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Dates to cannot be in the future', () => {
+    const testData = {
+      Dates: {
+        to: { month: 1, year: 2050, day: 2 },
+      },
+    }
+
+    const expectedErrors = [
+      'Dates.daterange.to.date.date.datetime.DATE_TOO_LATE',
+    ]
+
+    expect(validateModel(testData, foreignBusinessSponsorship))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('Residence must be a valid location', () => {
     const testData = {
       Residence: 'Place',

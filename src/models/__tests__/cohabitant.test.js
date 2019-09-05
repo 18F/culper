@@ -306,6 +306,53 @@ describe('The cohabitant model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('CohabitationBegan cannot be before applicant birthdate', () => {
+    const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+    const testData = {
+      Birthdate: { month: 1, year: 1985, day: 2 },
+      CohabitationBegan: { month: 1, year: 1970, day: 2 },
+    }
+
+    const expectedErrors = [
+      'CohabitationBegan.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, cohabitant, {
+      applicantBirthdate,
+    }))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('CohabitationBegan cannot be before person’s birthdate', () => {
+    const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+    const testData = {
+      Birthdate: { month: 1, year: 1985, day: 2 },
+      CohabitationBegan: { month: 1, year: 1983, day: 2 },
+    }
+
+    const expectedErrors = [
+      'CohabitationBegan.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, cohabitant, {
+      applicantBirthdate,
+    }))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('CohabitationBegan cannot be in the future', () => {
+    const testData = {
+      CohabitationBegan: { month: 1, year: 2050, day: 2 },
+    }
+
+    const expectedErrors = [
+      'CohabitationBegan.date.date.datetime.DATE_TOO_LATE',
+    ]
+
+    expect(validateModel(testData, cohabitant))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('passes a valid cohabitant', () => {
     const testData = {
       Name: { first: 'Person', noMiddleName: true, last: 'Name' },
