@@ -1,7 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { i18n } from 'config'
-import { Show } from 'components/Form'
+import classnames from 'classnames'
+
+import i18n from 'util/i18n'
 import { saveSection } from 'components/SavedIndicator/persistence-helpers'
 import { formIsLocked } from 'validators'
 
@@ -22,23 +24,23 @@ class SavedIndicator extends React.Component {
     this.mouseLeave = this.mouseLeave.bind(this)
   }
 
-  componentWillReceiveProps(next) {
-    this.setState({ elapsed: 0 })
+  componentDidMount() {
+    const { interval } = this.state
+    this.timer = window.setInterval(this.tick, interval)
   }
 
-  componentDidMount() {
-    this.timer = window.setInterval(this.tick, this.state.interval)
+  componentWillReceiveProps() {
+    this.setState({ elapsed: 0 })
   }
 
   componentWillUnmount() {
     window.clearInterval(this.timer)
   }
 
+  isRoute = route => (window.location.pathname || '').indexOf(route) !== -1
+
   save() {
-    const application = this.props.app
-    const section = this.props.section.section
-    const subsection = this.props.section.subsection
-    const self = this
+    const { app, section, dispatch } = this.props
 
     // So, this is fun, it was determined the save button is not required on
     // `form/package/print` but should still be available on any other section
@@ -49,49 +51,52 @@ class SavedIndicator extends React.Component {
     // So what we have here is a reset of the elapsed time when the save button
     // is clicked within the "Review and submit" section to provide comfort to
     // the end user.
-    if (this.isRoute('form/package')) {
-      self.setState({ elapsed: 0 })
+    if (this.isRoute('form/package') && !this.isRoute('form/package/comments')) {
+      this.setState({ elapsed: 0 })
       return
     }
 
-    self.setState({ animate: true })
+    this.setState({ animate: true })
 
-    saveSection(application, section, subsection, this.props.dispatch)
+    saveSection(app, section.section, section.subsection, dispatch)
       .then(() => {
-        self.setState({ animate: false })
+        this.setState({ animate: false })
       })
       .catch((error) => {
-        self.setState({ animate: false })
+        this.setState({ animate: false })
         alert(error)
       })
   }
 
-  mouseEnter(event) {
+  mouseEnter() {
     this.setState({ hover: true })
   }
 
-  mouseLeave(event) {
+  mouseLeave() {
     this.setState({ hover: false })
   }
 
   tick() {
+    const { saved } = this.props
     const currentTick = new Date().getTime()
     let s = currentTick
-    if (this.props && this.props.saved) {
-      s = this.props.saved.getTime()
+    if (this.props && saved) {
+      s = saved.getTime()
     }
 
     this.setState({ elapsed: currentTick - s })
   }
 
   calculateTime() {
+    const { elapsed } = this.state
+
     // If there has been no time elapsed...
-    if (!this.state.elapsed) {
+    if (!elapsed) {
       return i18n.t('saved.now')
     }
 
     // Get the time in seconds
-    let timespan = this.state.elapsed / 1000
+    let timespan = elapsed / 1000
 
     // Determine the unit of measurement and then adjust the timespan
     // rounding the value
@@ -120,11 +125,8 @@ class SavedIndicator extends React.Component {
   }
 
   allowed() {
-    return !formIsLocked(this.props.app) && !this.isRoute('form/package/print')
-  }
-
-  isRoute(route) {
-    return (window.location.pathname || '').indexOf(route) !== -1
+    const { app } = this.props
+    return !formIsLocked(app) && !this.isRoute('form/package/print')
   }
 
   render() {
@@ -133,22 +135,32 @@ class SavedIndicator extends React.Component {
     }
 
     const { saveError } = this.props
-    const klass = `saved-indicator ${this.state.animate ? 'active' : ''} ${
-      !this.state.animate && saveError ? 'error' : ''
-    }`.trim()
-    const klassCircle = `spinner-icon ${
-      this.state.animate ? 'spin' : ''
-    }`.trim()
-    const klassIcon = `fa fa-floppy-o ${
-      this.state.animate ? 'invert' : ''
-    }`.trim()
+    const { animate, hover } = this.state
+
+    const buttonClasses = classnames(
+      'saved-indicator',
+      {
+        active: animate,
+        error: !animate && saveError,
+      }
+    )
+
+    const circleClasses = classnames(
+      'spinner-icon',
+      { spin: animate }
+    )
+
+    const iconClasses = classnames(
+      'fa', 'fa-floppy-o',
+      { invert: animate }
+    )
 
     // Determine the appropriate response for screen readers.
     let talkback = null
-    if (!this.state.animate) {
+    if (!animate) {
       if (saveError) {
         talkback = i18n.t('saved.error.message')
-      } else if (this.state.hover) {
+      } else if (hover) {
         talkback = i18n.t('saved.action')
       } else {
         talkback = `${i18n.t('saved.saved')} ${this.calculateTime()}. ${i18n.t(
@@ -162,38 +174,64 @@ class SavedIndicator extends React.Component {
     return (
       <div className="saved-indicator-container">
         <button
-          className={klass}
+          className={buttonClasses}
           aria-label={talkback}
           title={talkback}
           onClick={this.save}
           onMouseEnter={this.mouseEnter}
           onMouseLeave={this.mouseLeave}
+          type="button"
         >
           <div className="spinner">
-            <div className={klassCircle} />
-            <i className={klassIcon} aria-hidden="true" />
+            <div className={circleClasses} />
+            <i className={iconClasses} aria-hidden="true" />
           </div>
 
           <span className="spinner-label">
-            <Show when={this.state.animate}>
-              <strong className="one-line">{i18n.t('saved.saving')}</strong>
-            </Show>
-            <Show when={!this.state.animate && this.state.hover && !saveError}>
-              <strong className="one-line">{i18n.t('saved.action')}</strong>
-            </Show>
-            <Show when={!this.state.animate && !this.state.hover && !saveError}>
-              <strong>{i18n.t('saved.saved')}</strong>
-              <span className="time">{this.calculateTime()}</span>
-            </Show>
-            <Show when={!this.state.animate && saveError}>
-              <strong>{i18n.t('saved.error.title')}</strong>
-              <span className="time">{i18n.t('saved.error.subtitle')}</span>
-            </Show>
+            {(animate || (hover && !saveError)) && (
+              <strong className="one-line">
+                {animate ? i18n.t('saved.saving') : i18n.t('saved.action')}
+              </strong>
+            )}
+
+            {!animate && !hover && !saveError && (
+              <span>
+                <strong>{i18n.t('saved.saved')}</strong>
+                <span className="time">{this.calculateTime()}</span>
+              </span>
+            )}
+
+            {!animate && saveError && (
+              <span>
+                <strong>{i18n.t('saved.error.title')}</strong>
+                <span className="time">{i18n.t('saved.error.subtitle')}</span>
+              </span>
+            )}
           </span>
         </button>
       </div>
     )
   }
+}
+
+SavedIndicator.propTypes = {
+  interval: PropTypes.number,
+  elapsed: PropTypes.number,
+  saveError: PropTypes.bool,
+  app: PropTypes.object,
+  saved: PropTypes.object,
+  section: PropTypes.object,
+  dispatch: PropTypes.func,
+}
+
+SavedIndicator.defaultProps = {
+  interval: 1000,
+  elapsed: 0,
+  saveError: false,
+  app: {},
+  saved: {},
+  section: {},
+  dispatch: () => {},
 }
 
 function mapStateToProps(state) {

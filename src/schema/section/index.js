@@ -77,6 +77,7 @@ import { historyEducation } from './history-education'
 import { historyEmployment } from './history-employment'
 import { historyFederal } from './history-federal'
 import { historyResidence } from './history-residence'
+import { comments } from './comments'
 import { submission } from './submission'
 
 export {
@@ -159,5 +160,6 @@ export {
   historyEmployment,
   historyFederal,
   historyResidence,
+  comments,
   submission,
 }

@@ -1,299 +1,298 @@
 {
-    "props": {
-        "HasForeignTravelOfficial": {
-            "props": {
-                "value": "No"
-            },
-            "type": "branch"
-        },
-        "HasForeignTravelOutside": {
-            "props": {
-                "value": "Yes"
-            },
-            "type": "branch"
-        },
-        "List": {
-            "props": {
-                "branch": {
-                    "props": {
-                        "value": "No"
-                    },
-                    "type": "branch"
-                },
-                "items": [
-                    {
-                        "Item": {
-                            "Contacted": {
-                                "props": {
-                                    "value": "Yes"
-                                },
-                                "type": "branch"
-                            },
-                            "ContactedExplanation": {
-                                "props": {
-                                    "value": "my explanation for contact"
-                                },
-                                "type": "textarea"
-                            },
-                            "Counter": {
-                                "props": {
-                                    "value": "Yes"
-                                },
-                                "type": "branch"
-                            },
-                            "CounterExplanation": {
-                                "props": {
-                                    "value": "explanation for counter"
-                                },
-                                "type": "textarea"
-                            },
-                            "Country": {
-                                "props": {
-                                    "value": [
-                                        "Germany"
-                                    ]
-                                },
-                                "type": "country"
-                            },
-                            "Dates": {
-                                "props": {
-                                    "from": {
-                                        "props": {
-                                            "date": "2017-07-01T00:00:00Z",
-                                            "day": "1",
-                                            "estimated": false,
-                                            "month": "7",
-                                            "year": "2017"
-                                        },
-                                        "type": "datecontrol"
-                                    },
-                                    "present": false,
-                                    "to": {
-                                        "props": {
-                                            "date": "2017-07-25T00:00:00Z",
-                                            "day": "25",
-                                            "estimated": false,
-                                            "month": "7",
-                                            "year": "2017"
-                                        },
-                                        "type": "datecontrol"
-                                    }
-                                },
-                                "type": "daterange"
-                            },
-                            "Days": {
-                                "props": {
-                                    "value": "1-5"
-                                },
-                                "type": "radio"
-                            },
-                            "Encounter": {
-                                "props": {
-                                    "value": "Yes"
-                                },
-                                "type": "branch"
-                            },
-                            "EncounterExplanation": {
-                                "props": {
-                                    "value": "my explanation for encounter"
-                                },
-                                "type": "textarea"
-                            },
-                            "Interest": {
-                                "props": {
-                                    "value": "Yes"
-                                },
-                                "type": "branch"
-                            },
-                            "InterestExplanation": {
-                                "props": {
-                                    "value": "my explanation for interest"
-                                },
-                                "type": "textarea"
-                            },
-                            "Purpose": {
-                                "props": {
-                                    "values": [
-                                        "Business"
-                                    ]
-                                },
-                                "type": "checkboxgroup"
-                            },
-                            "Questioned": {
-                                "props": {
-                                    "value": "Yes"
-                                },
-                                "type": "branch"
-                            },
-                            "QuestionedExplanation": {
-                                "props": {
-                                    "value": "my explanation for questioning"
-                                },
-                                "type": "textarea"
-                            },
-                            "Sensitive": {
-                                "props": {
-                                    "value": "Yes"
-                                },
-                                "type": "branch"
-                            },
-                            "SensitiveExplanation": {
-                                "props": {
-                                    "value": "my explanation for sensitive"
-                                },
-                                "type": "textarea"
-                            },
-                            "Threatened": {
-                                "props": {
-                                    "value": "Yes"
-                                },
-                                "type": "branch"
-                            },
-                            "ThreatenedExplanation": {
-                                "props": {
-                                    "value": "my explanation for threatening"
-                                },
-                                "type": "textarea"
-                            }
-                        }
-                    },
-                    {
-                        "Item": {
-                            "Contacted": {
-                                "props": {
-                                    "name": "has_foreign_travel_contacted",
-                                    "value": "No"
-                                },
-                                "type": "branch"
-                            },
-                            "ContactedExplanation": {
-                                "props": {},
-                                "type": "textarea"
-                            },
-                            "Counter": {
-                                "props": {
-                                    "name": "has_foreign_travel_counter",
-                                    "value": "No"
-                                },
-                                "type": "branch"
-                            },
-                            "CounterExplanation": {
-                                "props": {},
-                                "type": "textarea"
-                            },
-                            "Country": {
-                                "props": {
-                                    "name": "Country",
-                                    "showComments": false,
-                                    "value": [
-                                        "Italy"
-                                    ]
-                                },
-                                "type": "country"
-                            },
-                            "Dates": {
-                                "props": {
-                                    "from": {
-                                        "props": {
-                                            "day": "4",
-                                            "estimated": false,
-                                            "month": "4",
-                                            "name": "from",
-                                            "touched": true,
-                                            "year": "2011"
-                                        },
-                                        "type": "datecontrol"
-                                    },
-                                    "present": false,
-                                    "to": {
-                                        "props": {
-                                            "day": "7",
-                                            "estimated": false,
-                                            "month": "7",
-                                            "name": "to",
-                                            "touched": true,
-                                            "year": "2011"
-                                        },
-                                        "type": "datecontrol"
-                                    }
-                                },
-                                "type": "daterange"
-                            },
-                            "Days": {
-                                "props": {
-                                    "value": "6-10"
-                                },
-                                "type": "radio"
-                            },
-                            "Encounter": {
-                                "props": {
-                                    "name": "has_foreign_travel_encounter",
-                                    "value": "No"
-                                },
-                                "type": "branch"
-                            },
-                            "EncounterExplanation": {
-                                "props": {},
-                                "type": "textarea"
-                            },
-                            "Interest": {
-                                "props": {
-                                    "name": "has_foreign_travel_interest",
-                                    "value": "No"
-                                },
-                                "type": "branch"
-                            },
-                            "InterestExplanation": {
-                                "props": {},
-                                "type": "textarea"
-                            },
-                            "Purpose": {
-                                "props": {
-                                    "values": [
-                                        "Tourism"
-                                    ]
-                                },
-                                "type": "checkboxgroup"
-                            },
-                            "Questioned": {
-                                "props": {
-                                    "name": "has_foreign_travel_questioned",
-                                    "value": "No"
-                                },
-                                "type": "branch"
-                            },
-                            "QuestionedExplanation": {
-                                "props": {},
-                                "type": "textarea"
-                            },
-                            "Sensitive": {
-                                "props": {
-                                    "name": "has_foreign_travel_sensitive",
-                                    "value": "No"
-                                },
-                                "type": "branch"
-                            },
-                            "SensitiveExplanation": {
-                                "props": {},
-                                "type": "textarea"
-                            },
-                            "Threatened": {
-                                "props": {
-                                    "name": "has_foreign_travel_threatened",
-                                    "value": "No"
-                                },
-                                "type": "branch"
-                            },
-                            "ThreatenedExplanation": {
-                                "props": {},
-                                "type": "textarea"
-                            }
-                        }
-                    }
-                ]
-            },
-            "type": "collection"
-        }
+  "type": "foreign.travel",
+  "props": {
+    "HasForeignTravelOutside": {
+      "type": "branch",
+      "props": {
+        "value": "Yes"
+      }
     },
-    "type": "foreign.travel"
+    "HasForeignTravelOfficial": {
+      "type": "branch",
+      "props": {
+        "value": "No"
+      }
+    },
+    "List": {
+      "type": "collection",
+      "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
+        "items": [
+          {
+            "Item": {
+              "Contacted": {
+                "type": "branch",
+                "props": {
+                  "value": "Yes"
+                }
+              },
+              "ContactedExplanation": {
+                "type": "textarea",
+                "props": {
+                  "value": "my explanation for contact"
+                }
+              },
+              "Counter": {
+                "type": "branch",
+                "props": {
+                  "value": "Yes"
+                }
+              },
+              "CounterExplanation": {
+                "type": "textarea",
+                "props": {
+                  "value": "explanation for counter"
+                }
+              },
+              "Country": {
+                "type": "country",
+                "props": {
+                  "value": [
+                    "Germany"
+                  ]
+                }
+              },
+              "Dates": {
+                "type": "daterange",
+                "props": {
+                  "from": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "7",
+                      "day": "1",
+                      "year": "2017",
+                      "estimated": false
+                    }
+                  },
+                  "to": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "7",
+                      "day": "25",
+                      "year": "2017",
+                      "estimated": false
+                    }
+                  },
+                  "present": false
+                }
+              },
+              "Days": {
+                "type": "radio",
+                "props": {
+                  "value": "1-5"
+                }
+              },
+              "Encounter": {
+                "type": "branch",
+                "props": {
+                  "value": "Yes"
+                }
+              },
+              "EncounterExplanation": {
+                "type": "textarea",
+                "props": {
+                  "value": "my explanation for encounter"
+                }
+              },
+              "Interest": {
+                "type": "branch",
+                "props": {
+                  "value": "Yes"
+                }
+              },
+              "InterestExplanation": {
+                "type": "textarea",
+                "props": {
+                  "value": "my explanation for interest"
+                }
+              },
+              "Purpose": {
+                "type": "checkboxgroup",
+                "props": {
+                  "values": [
+                    "Business"
+                  ]
+                }
+              },
+              "Questioned": {
+                "type": "branch",
+                "props": {
+                  "value": "Yes"
+                }
+              },
+              "QuestionedExplanation": {
+                "type": "textarea",
+                "props": {
+                  "value": "my explanation for questioning"
+                }
+              },
+              "Sensitive": {
+                "type": "branch",
+                "props": {
+                  "value": "Yes"
+                }
+              },
+              "SensitiveExplanation": {
+                "type": "textarea",
+                "props": {
+                  "value": "my explanation for sensitive"
+                }
+              },
+              "Threatened": {
+                "type": "branch",
+                "props": {
+                  "value": "Yes"
+                }
+              },
+              "ThreatenedExplanation": {
+                "type": "textarea",
+                "props": {
+                  "value": "my explanation for threatening"
+                }
+              }
+            }
+          },
+          {
+            "Item": {
+              "Contacted": {
+                "type": "branch",
+                "props": {
+                  "value": "No"
+                }
+              },
+              "ContactedExplanation": {
+                "type": "textarea",
+                "props": {
+                  "value": ""
+                }
+              },
+              "Counter": {
+                "type": "branch",
+                "props": {
+                  "value": "No"
+                }
+              },
+              "CounterExplanation": {
+                "type": "textarea",
+                "props": {
+                  "value": ""
+                }
+              },
+              "Country": {
+                "type": "country",
+                "props": {
+                  "value": [
+                    "Italy"
+                  ]
+                }
+              },
+              "Dates": {
+                "type": "daterange",
+                "props": {
+                  "from": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "4",
+                      "day": "4",
+                      "year": "2011",
+                      "estimated": false
+                    }
+                  },
+                  "to": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "7",
+                      "day": "7",
+                      "year": "2011",
+                      "estimated": false
+                    }
+                  },
+                  "present": false
+                }
+              },
+              "Days": {
+                "type": "radio",
+                "props": {
+                  "value": "6-10"
+                }
+              },
+              "Encounter": {
+                "type": "branch",
+                "props": {
+                  "value": "No"
+                }
+              },
+              "EncounterExplanation": {
+                "type": "textarea",
+                "props": {
+                  "value": ""
+                }
+              },
+              "Interest": {
+                "type": "branch",
+                "props": {
+                  "value": "No"
+                }
+              },
+              "InterestExplanation": {
+                "type": "textarea",
+                "props": {
+                  "value": ""
+                }
+              },
+              "Purpose": {
+                "type": "checkboxgroup",
+                "props": {
+                  "values": [
+                    "Tourism"
+                  ]
+                }
+              },
+              "Questioned": {
+                "type": "branch",
+                "props": {
+                  "value": "No"
+                }
+              },
+              "QuestionedExplanation": {
+                "type": "textarea",
+                "props": {
+                  "value": ""
+                }
+              },
+              "Sensitive": {
+                "type": "branch",
+                "props": {
+                  "value": "No"
+                }
+              },
+              "SensitiveExplanation": {
+                "type": "textarea",
+                "props": {
+                  "value": ""
+                }
+              },
+              "Threatened": {
+                "type": "branch",
+                "props": {
+                  "value": "No"
+                }
+              },
+              "ThreatenedExplanation": {
+                "type": "textarea",
+                "props": {
+                  "value": ""
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
 }

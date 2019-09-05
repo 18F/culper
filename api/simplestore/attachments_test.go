@@ -11,7 +11,8 @@ import (
 func TestSingleAttachment(t *testing.T) {
 
 	store := getSimpleStore()
-	account := createAccount(t, store)
+	defer store.Close()
+	account := CreateTestAccount(t, store)
 
 	certificationPath := "../testdata/attachments/signature-form.pdf"
 	certificationBytes, readErr := ioutil.ReadFile(certificationPath)
@@ -86,7 +87,8 @@ func TestSingleAttachment(t *testing.T) {
 func TestListAttachments(t *testing.T) {
 
 	store := getSimpleStore()
-	account := createAccount(t, store)
+	defer store.Close()
+	account := CreateTestAccount(t, store)
 
 	testAttachments := []string{
 		"../testdata/attachments/signature-form.pdf",

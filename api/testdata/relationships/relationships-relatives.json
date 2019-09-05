@@ -4,76 +4,24 @@
     "List": {
       "type": "collection",
       "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
         "items": [
           {
             "Item": {
-              "Relation": {
-                "type": "radio",
-                "props": {
-                  "value": "Mother",
-                  "checked": true
-                }
-              },
-              "Name": {
-                "type": "name",
-                "props": {
-                  "first": "John",
-                  "firstInitialOnly": false,
-                  "last": "Smith",
-                  "middle": "H",
-                  "middleInitialOnly": true,
-                  "noMiddleName": false,
-                  "suffix": "Other",
-                  "suffixOther": "XX"
-                }
-              },
-              "Birthdate": {
-                "type": "datecontrol",
-                "props": {
-                  "month": "7",
-                  "day": "25",
-                  "year": "2017",
-                  "estimated": false,
-                  "date": "2017-07-25T00:00:00Z"
-                }
-              },
-              "Birthplace": {
+              "Address": {
                 "type": "location",
                 "props": {
-                  "layout": "Birthplace without County",
-                  "street": "",
-                  "street2": "",
+                  "layout": "Address",
+                  "street": "123 Some Rd",
                   "city": "Arlington",
                   "state": "VA",
-                  "zipcode": "",
-                  "county": "",
-                  "country": "United States",
-                  "validated": false
-                }
-              },
-              "Citizenship": {
-                "type": "country",
-                "props": {
-                  "value": ["Germany"]
-                }
-              },
-              "MaidenSameAsListed": {
-                "type": "branch",
-                "props": {
-                  "value": "Yes"
-                }
-              },
-              "MaidenName": {
-                "type": "name",
-                "props": {
-                  "first": "John",
-                  "firstInitialOnly": false,
-                  "last": "Smith",
-                  "middle": "H",
-                  "middleInitialOnly": true,
-                  "noMiddleName": false,
-                  "suffix": "Other",
-                  "suffixOther": "XX"
+                  "zipcode": "22202",
+                  "country": "United States"
                 }
               },
               "Aliases": {
@@ -88,31 +36,6 @@
                   "items": [
                     {
                       "Item": {
-                        "Has": {
-                          "type": "branch",
-                          "props": {
-                            "value": "Yes"
-                          }
-                        },
-                        "Name": {
-                          "type": "name",
-                          "props": {
-                            "first": "John",
-                            "firstInitialOnly": false,
-                            "last": "Smith",
-                            "middle": "H",
-                            "middleInitialOnly": true,
-                            "noMiddleName": false,
-                            "suffix": "Other",
-                            "suffixOther": "XX"
-                          }
-                        },
-                        "MaidenName": {
-                          "type": "branch",
-                          "props": {
-                            "value": "No"
-                          }
-                        },
                         "Dates": {
                           "type": "daterange",
                           "props": {
@@ -122,8 +45,7 @@
                                 "month": "7",
                                 "day": "1",
                                 "year": "2017",
-                                "estimated": false,
-                                "date": "2017-07-01T00:00:00Z"
+                                "estimated": false
                               }
                             },
                             "to": {
@@ -132,11 +54,35 @@
                                 "month": "7",
                                 "day": "25",
                                 "year": "2017",
-                                "estimated": false,
-                                "date": "2017-07-25T00:00:00Z"
+                                "estimated": false
                               }
                             },
                             "present": false
+                          }
+                        },
+                        "Has": {
+                          "type": "branch",
+                          "props": {
+                            "value": "Yes"
+                          }
+                        },
+                        "MaidenName": {
+                          "type": "branch",
+                          "props": {
+                            "value": "No"
+                          }
+                        },
+                        "Name": {
+                          "type": "name",
+                          "props": {
+                            "first": "John",
+                            "firstInitialOnly": false,
+                            "middle": "H",
+                            "middleInitialOnly": true,
+                            "noMiddleName": false,
+                            "last": "Smith",
+                            "suffix": "Other",
+                            "suffixOther": "XX"
                           }
                         },
                         "Reason": {
@@ -150,24 +96,30 @@
                   ]
                 }
               },
-              "IsDeceased": {
-                "type": "branch",
+              "Birthdate": {
+                "type": "datecontrol",
                 "props": {
-                  "value": "No"
+                  "month": "7",
+                  "day": "25",
+                  "year": "2017",
+                  "estimated": false
                 }
               },
-              "Address": {
+              "Birthplace": {
                 "type": "location",
                 "props": {
-                  "layout": "Address",
-                  "street": "123 Some Rd",
-                  "street2": "",
+                  "layout": "Birthplace without County",
                   "city": "Arlington",
                   "state": "VA",
-                  "zipcode": "22202",
-                  "county": "",
-                  "country": "United States",
-                  "validated": false
+                  "country": "United States"
+                }
+              },
+              "Citizenship": {
+                "type": "country",
+                "props": {
+                  "value": [
+                    "Germany"
+                  ]
                 }
               },
               "CitizenshipDocumentation": {
@@ -176,36 +128,21 @@
                   "value": "Other"
                 }
               },
-              "OtherCitizenshipDocumentation": {
-                "type": "textarea",
+              "CourtAddress": {
+                "type": "location",
                 "props": {
-                  "value": "other citizenship documentation"
-                }
-              },
-              "DocumentNumber": {
-                "type": "text",
-                "props": {
-                  "value": "document number"
+                  "layout": "US Address",
+                  "street": "123 Some Rd",
+                  "city": "Arlington",
+                  "state": "VA",
+                  "zipcode": "22202",
+                  "country": "United States"
                 }
               },
               "CourtName": {
                 "type": "text",
                 "props": {
                   "value": "court name"
-                }
-              },
-              "CourtAddress": {
-                "type": "location",
-                "props": {
-                  "layout": "US Address",
-                  "street": "123 Some Rd",
-                  "street2": "",
-                  "city": "Arlington",
-                  "state": "VA",
-                  "zipcode": "22202",
-                  "county": "",
-                  "country": "United States",
-                  "validated": false
                 }
               },
               "Document": {
@@ -221,10 +158,51 @@
                   "value": "other doc type"
                 }
               },
-              "ResidenceDocumentNumber": {
+              "DocumentNumber": {
                 "type": "text",
                 "props": {
-                  "value": "residence document number"
+                  "value": "document number"
+                }
+              },
+              "Employer": {
+                "type": "text",
+                "props": {
+                  "value": "employer"
+                }
+              },
+              "EmployerAddress": {
+                "type": "location",
+                "props": {
+                  "layout": "Address",
+                  "street": "123 Some Rd",
+                  "city": "Arlington",
+                  "state": "VA",
+                  "zipcode": "22202",
+                  "country": "United States"
+                }
+              },
+              "EmployerAddressNotApplicable": {
+                "type": "notapplicable",
+                "props": {
+                  "applicable": true
+                }
+              },
+              "EmployerNotApplicable": {
+                "type": "notapplicable",
+                "props": {
+                  "applicable": true
+                }
+              },
+              "EmployerRelationship": {
+                "type": "textarea",
+                "props": {
+                  "value": "employer relationship"
+                }
+              },
+              "EmployerRelationshipNotApplicable": {
+                "type": "notapplicable",
+                "props": {
+                  "applicable": true
                 }
               },
               "Expiration": {
@@ -233,8 +211,7 @@
                   "month": "7",
                   "day": "25",
                   "year": "2017",
-                  "estimated": false,
-                  "date": "2017-07-25T00:00:00Z"
+                  "estimated": false
                 }
               },
               "FirstContact": {
@@ -243,30 +220,7 @@
                   "month": "7",
                   "day": "25",
                   "year": "2017",
-                  "estimated": false,
-                  "date": "2017-07-25T00:00:00Z"
-                }
-              },
-              "LastContact": {
-                "type": "datecontrol",
-                "props": {
-                  "month": "7",
-                  "day": "25",
-                  "year": "2017",
-                  "estimated": false,
-                  "date": "2017-07-25T00:00:00Z"
-                }
-              },
-              "Methods": {
-                "type": "checkboxgroup",
-                "props": {
-                  "values": ["In person"]
-                }
-              },
-              "MethodsComments": {
-                "type": "textarea",
-                "props": {
-                  "value": "methods comments"
+                  "estimated": false
                 }
               },
               "Frequency": {
@@ -281,65 +235,95 @@
                   "value": "freq comment"
                 }
               },
-              "EmployerNotApplicable": {
-                "type": "notapplicable",
-                "props": {
-                  "applicable": true
-                }
-              },
-              "Employer": {
-                "type": "text",
-                "props": {
-                  "value": "employer"
-                }
-              },
-              "EmployerAddressNotApplicable": {
-                "type": "notapplicable",
-                "props": {
-                  "applicable": true
-                }
-              },
-              "EmployerAddress": {
-                "type": "location",
-                "props": {
-                  "layout": "Address",
-                  "street": "123 Some Rd",
-                  "street2": "",
-                  "city": "Arlington",
-                  "state": "VA",
-                  "zipcode": "22202",
-                  "county": "",
-                  "country": "United States",
-                  "validated": false
-                }
-              },
               "HasAffiliation": {
                 "type": "branch",
                 "props": {
                   "value": "Yes"
                 }
               },
-              "EmployerRelationshipNotApplicable": {
-                "type": "notapplicable",
+              "IsDeceased": {
+                "type": "branch",
                 "props": {
-                  "applicable": true
+                  "value": "No"
                 }
               },
-              "EmployerRelationship": {
+              "LastContact": {
+                "type": "datecontrol",
+                "props": {
+                  "month": "7",
+                  "day": "25",
+                  "year": "2017",
+                  "estimated": false
+                }
+              },
+              "MaidenName": {
+                "type": "name",
+                "props": {
+                  "first": "John",
+                  "firstInitialOnly": false,
+                  "middle": "H",
+                  "middleInitialOnly": true,
+                  "noMiddleName": false,
+                  "last": "Smith",
+                  "suffix": "Other",
+                  "suffixOther": "XX"
+                }
+              },
+              "MaidenSameAsListed": {
+                "type": "branch",
+                "props": {
+                  "value": "Yes"
+                }
+              },
+              "Methods": {
+                "type": "checkboxgroup",
+                "props": {
+                  "values": [
+                    "In person"
+                  ]
+                }
+              },
+              "MethodsComments": {
                 "type": "textarea",
                 "props": {
-                  "value": "employer relationship"
+                  "value": "methods comments"
+                }
+              },
+              "Name": {
+                "type": "name",
+                "props": {
+                  "first": "John",
+                  "firstInitialOnly": false,
+                  "middle": "H",
+                  "middleInitialOnly": true,
+                  "noMiddleName": false,
+                  "last": "Smith",
+                  "suffix": "Other",
+                  "suffixOther": "XX"
+                }
+              },
+              "OtherCitizenshipDocumentation": {
+                "type": "textarea",
+                "props": {
+                  "value": "other citizenship documentation"
+                }
+              },
+              "Relation": {
+                "type": "radio",
+                "props": {
+                  "value": "Mother",
+                  "checked": true
+                }
+              },
+              "ResidenceDocumentNumber": {
+                "type": "text",
+                "props": {
+                  "value": "residence document number"
                 }
               }
             }
           }
-        ],
-        "branch": {
-          "type": "branch",
-          "props": {
-            "value": "No"
-          }
-        }
+        ]
       }
     }
   }

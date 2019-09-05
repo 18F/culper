@@ -35,8 +35,8 @@ else
 		exit
 fi
 
-# Add the JWT_SECRET to the manifest
-echo "    JWT_SECRET: $(openssl rand -base64 32)" >> $API_MANIFEST
+# Add the CSRF_SECRET to the manifest
+echo "    CSRF_SECRET: $(openssl rand -base64 32)" >> $API_MANIFEST
 
 # This directory is used to persist the CF credentials
 mkdir -p $HOME/.cf

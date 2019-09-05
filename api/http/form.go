@@ -1,6 +1,7 @@
 package http
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -12,7 +13,6 @@ import (
 type FormHandler struct {
 	Env      api.Settings
 	Log      api.LogService
-	Token    api.TokenService
 	Database api.DatabaseService
 	Store    api.StorageService
 }
@@ -20,17 +20,8 @@ type FormHandler struct {
 // ServeHTTP will return a JSON object of all currently saved application
 // information specifict to the account.
 func (service FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-
 	// Get account ID
-	id := AccountIDFromRequestContext(r)
-
-	// Get the account information from the data store
-	account := &api.Account{ID: id}
-	if _, err := account.Get(service.Database, id); err != nil {
-		service.Log.WarnError(api.NoAccount, err, api.LogFields{})
-		RespondWithStructuredError(w, api.NoAccount, http.StatusUnauthorized)
-		return
-	}
+	account, _ := AccountAndSessionFromRequestContext(r)
 
 	// If the account is locked then we cannot proceed
 	if account.Status == api.StatusSubmitted {
@@ -57,6 +48,17 @@ func (service FormHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		service.Log.WarnError(api.FormDecodingError, jsonErr, api.LogFields{})
 		RespondWithStructuredError(w, api.FormDecodingError, http.StatusInternalServerError)
 		return
+	}
+
+	if service.Env.True(api.IndentJSON) {
+		prettyJSONBuff := bytes.Buffer{}
+		indentErr := json.Indent(&prettyJSONBuff, jsonBytes, "", "  ")
+		if indentErr != nil {
+			service.Log.WarnError(api.FormDecodingError, jsonErr, api.LogFields{})
+			RespondWithStructuredError(w, api.FormDecodingError, http.StatusInternalServerError)
+			return
+		}
+		jsonBytes = prettyJSONBuff.Bytes()
 	}
 
 	fmt.Fprint(w, string(jsonBytes))

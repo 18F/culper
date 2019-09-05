@@ -32,9 +32,3 @@ func (entity *Attachment) Unmarshal(raw []byte) error {
 func (entity *Attachment) Marshal() Payload {
 	return MarshalPayloadEntity("attachment", entity)
 }
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *Attachment) Valid() (bool, error) {
-	var stack ErrorStack
-	return !stack.HasErrors(), stack
-}

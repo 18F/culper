@@ -302,7 +302,6 @@ describe('the location validator', () => {
       },
     }
 
-    api.setToken('my-token')
     const mock = new MockAdapter(api.proxy)
     mock.onPost('/me/validate').reply(200, {
       Errors: [
@@ -337,7 +336,6 @@ describe('the location validator', () => {
       },
     }
 
-    api.setToken('my-token')
     const mock = new MockAdapter(api.proxy)
     mock.onPost('/me/validate').reply(200, {
       Errors: [
@@ -368,7 +366,6 @@ describe('the location validator', () => {
       },
     }
 
-    api.setToken('my-token')
     const mock = new MockAdapter(api.proxy)
     mock.onPost('/me/validate').reply(200, {
       Errors: [],

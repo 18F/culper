@@ -4,8 +4,10 @@ import (
 	"fmt"
 	"net/http"
 	"net/http/httptest"
+	"os"
 	"testing"
 
+	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/mock"
 )
 
@@ -14,6 +16,11 @@ func TestRoot(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+
+	// Set env var for SAML, Attachments, and Basic auth enabled to test that route as well
+	os.Setenv(api.SamlEnabled, "1")
+	os.Setenv(api.AttachmentsEnabled, "1")
+	os.Setenv(api.BasicEnabled, "1")
 
 	rec := httptest.NewRecorder()
 	handler := http.HandlerFunc(RootHandler{Env: mock.Native{}}.ServeHTTP)

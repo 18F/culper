@@ -5,6 +5,7 @@ import (
 	"encoding/base64"
 	"encoding/pem"
 	"encoding/xml"
+	"fmt"
 	"io/ioutil"
 	"os"
 	"os/exec"
@@ -25,6 +26,7 @@ type logoutRequest struct {
 	ID               string    `xml:"ID,attr"`
 	Version          string    `xml:"Version,attr"`
 	IssueInstant     time.Time `xml:"IssueInstant,attr"`
+	Destination      string    `xml:"Destination,attr"`
 
 	Issuer string `xml:"saml:Issuer"`
 
@@ -43,7 +45,7 @@ type logoutRequestName struct {
 }
 
 // newLogoutRequest creates a new logout request
-func newLogoutRequest(issuer string, username string, sessionIndex string) logoutRequest {
+func newLogoutRequest(issuer string, idpSsoURL string, username string, sessionIndex string) logoutRequest {
 	requestID := "_" + uuid.NewV4().String()
 	issueInstant := time.Now().UTC()
 
@@ -56,6 +58,7 @@ func newLogoutRequest(issuer string, username string, sessionIndex string) logou
 		ID:               requestID,
 		Version:          "2.0",
 		IssueInstant:     issueInstant,
+		Destination:      idpSsoURL,
 		SAMLPNamespace:   samlpNamespace,
 		SAMLNamespace:    samlNamespace,
 		SAMLSigNamespace: samlSigNamespace,
@@ -72,7 +75,7 @@ func extractCertBody(certFile string) (string, error) {
 
 	certBytes, err := ioutil.ReadFile(certFile)
 	if err != nil {
-		return "", errors.Wrap(err, "Failed to read cert file")
+		return "", errors.Wrap(err, fmt.Sprintf("Failed to read cert file: %s", certFile))
 	}
 
 	data, _ := pem.Decode(certBytes)

@@ -33,8 +33,8 @@ const Legal = ({ subsection, location, formType }) => {
     intro: Intro,
     'police/intro': PoliceIntro,
     'police/offenses': Offenses,
-    'police/additionalOffenses': OtherOffenses,
-    'police/domesticViolence': DomesticViolenceList,
+    'police/additionaloffenses': OtherOffenses,
+    'police/domesticviolence': DomesticViolenceList,
     'investigations/history': History,
     'investigations/revoked': Revoked,
     'investigations/debarred': Debarred,
@@ -91,7 +91,7 @@ const Legal = ({ subsection, location, formType }) => {
 }
 
 function mapStateToProps(state) {
-  const { section, application = {}, authentication = {} } = state
+  const { section, application = {} } = state
 
   const legal = application.Legal || {}
   const errors = application.Errors || {}

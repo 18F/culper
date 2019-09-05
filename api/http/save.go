@@ -11,7 +11,6 @@ import (
 type SaveHandler struct {
 	Env      api.Settings
 	Log      api.LogService
-	Token    api.TokenService
 	Database api.DatabaseService
 	Store    api.StorageService
 }
@@ -19,16 +18,8 @@ type SaveHandler struct {
 // ServeHTTP saves a payload of information for the provided account.
 func (service SaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
-	// Get account ID
-	id := AccountIDFromRequestContext(r)
-
-	// Get the account information from the data store
-	account := &api.Account{ID: id}
-	if _, err := account.Get(service.Database, id); err != nil {
-		service.Log.WarnError(api.NoAccount, err, api.LogFields{})
-		RespondWithStructuredError(w, api.NoAccount, http.StatusUnauthorized)
-		return
-	}
+	// Get account information
+	account, _ := AccountAndSessionFromRequestContext(r)
 
 	// If the account is locked then we cannot proceed
 	if account.Status == api.StatusSubmitted {
@@ -70,7 +61,7 @@ func (service SaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Save to storage and report any errors
-	saveErr := service.Store.SaveSection(section, id)
+	saveErr := service.Store.SaveSection(section, account.ID)
 	if saveErr != nil {
 		if saveErr == api.ErrApplicationDoesNotExist {
 			// if the application doesn't exist, we need to create it.
@@ -84,7 +75,7 @@ func (service SaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 				// but it's safe for them to just try again.
 				if createErr == api.ErrApplicationAlreadyExists {
 					service.Log.Debug("Having to double save due to /save race", api.LogFields{})
-					saveAgainErr := service.Store.SaveSection(section, id)
+					saveAgainErr := service.Store.SaveSection(section, account.ID)
 					if saveAgainErr != nil {
 						// this time, nothing will save you.
 						service.Log.WarnError(api.EntitySaveError, saveAgainErr, api.LogFields{})

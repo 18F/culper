@@ -23,7 +23,7 @@ const militaryDisciplinaryProceduresModel = {
 }
 
 export const validateMilitaryDisciplinaryProcedures = data => (
-  validateModel(data, militaryDisciplinaryProceduresModel) === true
+  validateModel(data, militaryDisciplinaryProceduresModel)
 )
 
 export class ProcedureValidator {
@@ -71,6 +71,6 @@ export default class MilitaryDisciplinaryValidator {
   }
 
   isValid() {
-    return validateMilitaryDisciplinaryProcedures(this.data)
+    return validateMilitaryDisciplinaryProcedures(this.data) === true
   }
 }

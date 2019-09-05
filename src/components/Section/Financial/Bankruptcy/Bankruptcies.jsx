@@ -1,19 +1,16 @@
 import React from 'react'
 
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { BankruptcyItemValidator } from 'validators'
 
 import { Branch, Show, Accordion } from 'components/Form'
 import { Summary, AddressSummary, DateSummary } from 'components/Summary'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import Subsection from 'components/Section/shared/Subsection'
-
 import {
   FINANCIAL,
   FINANCIAL_BANKRUPTCY,
 } from 'config/formSections/financial'
 
-import connectFinancialSection from '../FinancialConnector'
 import Bankruptcy from './Bankruptcy'
 
 const sectionConfig = {
@@ -77,6 +74,10 @@ export class Bankruptcies extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content bankruptcies"
@@ -105,7 +106,7 @@ export class Bankruptcies extends Subsection {
             onUpdate={this.updateList}
             onError={this.handleError}
             required={this.props.required}
-            validator={BankruptcyItemValidator}
+            errors={accordionErrors}
             scrollIntoView={this.props.scrollIntoView}
             summary={this.summary}
             description={i18n.t(
@@ -138,9 +139,9 @@ Bankruptcies.defaultProps = {
   onUpdate: () => {},
   onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => validate(schema('financial.bankruptcy', data)),
   defaultState: true,
   scrollToBottom: '.bottom-btns',
+  errors: [],
 }
 
-export default connectFinancialSection(Bankruptcies, sectionConfig)
+export default connectSubsection(Bankruptcies, sectionConfig)

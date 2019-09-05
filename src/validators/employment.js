@@ -1,35 +1,20 @@
 import { validateModel } from 'models/validate'
 import employment from 'models/employment'
+import historyEmployment from 'models/sections/historyEmployment'
+import * as formTypes from 'constants/formTypes'
+import * as formConfig from 'config/forms'
 
 export const validateEmployment = data => (
-  validateModel(data, employment) === true
+  validateModel(data, employment)
 )
 
-export const validateHistoryEmployment = (data) => {
-  const historyEmploymentModel = {
-    EmploymentRecord: {
-      presence: true,
-      hasValue: {
-        validator: { inclusion: ['No'] },
-      },
-    },
-    List: {
-      presence: true,
-      accordion: { validator: employment },
-    },
-  }
+export const validateHistoryEmployment = (data, formType = formTypes.SF86) => {
+  // TODO years requirement is not enforced by validator yet
+  const years = formType
+    && formConfig[formType]
+    && formConfig[formType].HISTORY_EMPLOYMENT_YEARS
 
-  return validateModel(data, historyEmploymentModel) === true
-}
-
-export default class HistoryEmploymentValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  isValid() {
-    return validateHistoryEmployment(this.data)
-  }
+  return validateModel(data, historyEmployment, { requireYears: years })
 }
 
 export class EmploymentValidator {
@@ -74,6 +59,6 @@ export class EmploymentValidator {
   }
 
   isValid() {
-    return validateEmployment(this.data)
+    return validateEmployment(this.data) === true
   }
 }

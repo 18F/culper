@@ -14,7 +14,7 @@ export const validateDrugInvolvement = (data = {}, formType = formTypes.SF86) =>
     requireInvolvementWhileEmployed: requireDrugWhileSafety(formType),
     requireInvolvementWithClearance: requireDrugWithClearance(formType),
     requireInvolvementInFuture: requireDrugInFuture(formType),
-  }) === true
+  })
 )
 
 export const validateDrugInvolvements = (data = {}, formType = formTypes.SF86) => {
@@ -36,7 +36,7 @@ export const validateDrugInvolvements = (data = {}, formType = formTypes.SF86) =
     },
   }
 
-  return validateModel(data, drugInvolvementsModel) === true
+  return validateModel(data, drugInvolvementsModel)
 }
 
 /** Object Validators (as classes) - legacy */
@@ -56,7 +56,7 @@ export class DrugInvolvementValidator {
   }
 
   isValid() {
-    return validateDrugInvolvement(this.data, this.formType)
+    return validateDrugInvolvement(this.data, this.formType) === true
   }
 }
 
@@ -69,6 +69,6 @@ export default class DrugInvolvementsValidator {
   }
 
   isValid() {
-    return validateDrugInvolvements(this.data, this.formType)
+    return validateDrugInvolvements(this.data, this.formType) === true
   }
 }

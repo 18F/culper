@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 
 import { CITIZENSHIP, CITIZENSHIP_REVIEW } from 'config/formSections/citizenship'
 
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
+
 import ConnectedUsPassport from '../UsPassport'
 import ConnectedStatus from '../Status'
 import ConnectedMultiple from '../Multiple'
 import ConnectedPassports from '../Multiple/Passports'
-
-import connectCitizenshipSection from '../CitizenshipConnector'
 
 const sectionConfig = {
   section: CITIZENSHIP.name,
@@ -47,4 +47,4 @@ Review.defaultProps = {
   requireCitizenshipForeignPassportsSection: true,
 }
 
-export default connectCitizenshipSection(Review, sectionConfig)
+export default connectSubsection(Review, sectionConfig)

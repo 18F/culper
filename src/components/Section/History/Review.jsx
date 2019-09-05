@@ -1,12 +1,19 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { i18n } from 'config'
-import { HISTORY, HISTORY_REVIEW } from 'config/formSections/history'
+import {
+  HISTORY,
+  HISTORY_RESIDENCE,
+  HISTORY_EMPLOYMENT,
+  HISTORY_EDUCATION,
+  HISTORY_REVIEW,
+} from 'config/formSections/history'
 import * as formConfig from 'config/forms'
 
 import { Show } from 'components/Form'
 
-import connectHistorySection from './HistoryConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 
 import ResidenceSummaryProgress from './Residence/ResidenceSummaryProgress'
 import EmploymentSummaryProgress from './Employment/EmploymentSummaryProgress'
@@ -17,6 +24,7 @@ import EducationWrapper from './Education/EducationWrapper'
 import FederalWrapper from './Federal/FederalWrapper'
 
 const sectionConfig = {
+  key: HISTORY_REVIEW.key,
   section: HISTORY.name,
   store: HISTORY.store,
   subsection: HISTORY_REVIEW.name,
@@ -25,6 +33,7 @@ const sectionConfig = {
 const Review = (props) => {
   const {
     Birthdate, Education, Residence, Employment, formType, requireHistoryFederalSection, forPrint,
+    errors,
   } = props
 
   const formTypeConfig = formType && formConfig[formType]
@@ -50,12 +59,14 @@ const Review = (props) => {
             Residence={Residence}
             Birthdate={Birthdate}
             years={residenceYears}
+            errors={errors && errors[HISTORY_RESIDENCE.key]}
           />
 
           <EmploymentSummaryProgress
             Employment={Employment}
             Birthdate={Birthdate}
             years={employmentYears}
+            errors={errors && errors[HISTORY_EMPLOYMENT.key]}
           />
 
           <Show when={hasAttendedSchool || hasDegree}>
@@ -63,6 +74,7 @@ const Review = (props) => {
               Education={Education}
               Birthdate={Birthdate}
               years={educationYears}
+              errors={errors && errors[HISTORY_EDUCATION.key]}
             />
           </Show>
         </span>
@@ -76,7 +88,7 @@ const Review = (props) => {
       <ConnectedResidence
         {...subsectionProps}
         totalYears={residenceYears}
-        realtime
+        realtime={true}
       />
 
       <hr className="section-divider" />
@@ -87,19 +99,41 @@ const Review = (props) => {
         {...subsectionProps}
         totalYears={employmentYears}
         recordYears={employmentRecordYears}
-        realtime
+        realtime={true}
       />
 
       <hr className="section-divider" />
       <h1 className="section-header">
         {i18n.t('history.education.collection.caption')}
       </h1>
-      <EducationWrapper inReview />
+      <EducationWrapper inReview={true} />
 
       {requireHistoryFederalSection && <hr className="section-divider" />}
-      {requireHistoryFederalSection && <FederalWrapper inReview />}
+      {requireHistoryFederalSection && <FederalWrapper inReview={true} />}
     </div>
   )
 }
 
-export default connectHistorySection(Review, sectionConfig)
+Review.propTypes = {
+  Birthdate: PropTypes.instanceOf(Date),
+  Education: PropTypes.object,
+  Residence: PropTypes.object,
+  Employment: PropTypes.object,
+  formType: PropTypes.string,
+  requireHistoryFederalSection: PropTypes.bool,
+  forPrint: PropTypes.bool,
+  errors: PropTypes.object,
+}
+
+Review.defaultProps = {
+  Birthdate: null,
+  Education: { HasAttended: '', HasDegree10: '', List: { items: [] } },
+  Residence: { List: { items: [] } },
+  Employment: { List: { items: [] } },
+  formType: null,
+  requireHistoryFederalSection: true,
+  forPrint: false,
+  errors: {},
+}
+
+export default connectSubsection(Review, sectionConfig)

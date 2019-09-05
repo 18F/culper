@@ -9,6 +9,5 @@ To mimic production in having the various services served from different hostnam
     ```
 
 1. If using [SAML](saml.md), modify the Service Provider to use a `Assertion Consumer URL` of `http://api.eapp.local.test:3000/auth/saml/callback`.
-1. Set [`COOKIE_DOMAIN=eapp.local.test`](CONFIGURATION.md#cookie_domain) in your `.env`.
 1. [Start the server.](../README.md#running-a-local-server)
 1. Visit the site at <http://web.eapp.local.test:8080>.

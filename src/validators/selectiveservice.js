@@ -11,7 +11,7 @@ export const hideSelectiveService = (store = {}) => {
 }
 
 export const validateSelectiveService = data => (
-  validateModel(data, selectiveService) === true
+  validateModel(data, selectiveService)
 )
 
 export default class SelectiveServiceValidator {
@@ -36,6 +36,6 @@ export default class SelectiveServiceValidator {
   }
 
   isValid() {
-    return validateSelectiveService(this.data)
+    return validateSelectiveService(this.data) === true
   }
 }

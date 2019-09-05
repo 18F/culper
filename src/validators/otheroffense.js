@@ -12,7 +12,7 @@ const options = formType => (
 )
 
 export const validateOtherOffense = (data, formType) => (
-  validateModel(data, otherOffense, options(formType)) === true
+  validateModel(data, otherOffense, options(formType))
 )
 
 export default class OtherOffenseValidator {
@@ -104,6 +104,6 @@ export default class OtherOffenseValidator {
   }
 
   isValid() {
-    return validateOtherOffense(this.data, this.formType)
+    return validateOtherOffense(this.data, this.formType) === true
   }
 }

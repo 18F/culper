@@ -8,25 +8,23 @@ import (
 
 // LogoutHandler is the handler for logging out of a session.
 type LogoutHandler struct {
-	Env      api.Settings
-	Log      api.LogService
-	Token    api.TokenService
-	Database api.DatabaseService
+	Log     api.LogService
+	Session api.SessionService
 }
 
 // ServeHTTP will end the user session.
 func (service LogoutHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
-	// Get account ID
-	id := AccountIDFromRequestContext(r)
+	_, session := AccountAndSessionFromRequestContext(r)
 
-	// Get the account information from the data store
-	account := &api.Account{ID: id}
-	if _, err := account.Get(service.Database, id); err != nil {
-		service.Log.WarnError(api.NoAccount, err, api.LogFields{})
-		RespondWithStructuredError(w, api.NoAccount, http.StatusUnauthorized)
+	logoutErr := service.Session.UserDidLogout(session.SessionKey)
+	if logoutErr != nil {
+		service.Log.WarnError(api.BasicLogoutFailed, logoutErr, api.LogFields{})
+		RespondWithStructuredError(w, api.BasicLogoutFailed, http.StatusInternalServerError)
 		return
 	}
+
+	DeleteSessionCookie(w)
 
 	service.Log.Info(api.LoggedOut, api.LogFields{})
 }

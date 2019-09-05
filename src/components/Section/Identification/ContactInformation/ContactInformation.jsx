@@ -3,22 +3,18 @@ import React from 'react'
 import { i18n } from 'config'
 
 import {
-  IdentificationContactInformationValidator,
-  ContactPhoneNumberValidator,
-} from 'validators'
-
-import {
   Field,
   Email,
   Accordion,
   AccordionItem,
   Telephone,
 } from 'components/Form'
+import ErrorMessageList from 'components/ErrorMessageList'
 import { Summary, TelephoneSummary } from 'components/Summary'
 import { IDENTIFICATION, IDENTIFICATION_CONTACTS } from 'config/formSections/identification'
 
-import connectIdentificationSection from '../IdentificationConnector'
-import Subsection from '../../shared/Subsection'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
+import Subsection from 'components/Section/shared/Subsection'
 
 
 const sectionConfig = {
@@ -92,16 +88,35 @@ export class ContactInformation extends Subsection {
     return callback()
   }
 
-  uniquePhoneTypes() {
-    return new IdentificationContactInformationValidator(
-      this.props
-    ).validPhoneTypes()
+  getSectionErrors = () => {
+    const { errors = [] } = this.props
+    const errorList = {
+      'PhoneNumbers.accordion.DUPLICATE_PHONE_NUMBER_TYPES': {
+        key: 'PhoneNumbers.accordion.DUPLICATE_PHONE_NUMBER_TYPES',
+        title: i18n.t('error.validPhoneTypes.title'),
+        message: i18n.t('error.validPhoneTypes.message'),
+        shouldDisplayError: true,
+      },
+    }
+    const sectionErrors = []
+    errors.forEach((error) => {
+      const errorItem = errorList[error]
+      if (errorItem && errorItem.shouldDisplayError) {
+        sectionErrors.push(errorItem)
+      }
+    })
+
+    return sectionErrors
   }
 
   render() {
-    const { HomeEmail = {}, WorkEmail = {}, isReview } = this.props
+    const {
+      HomeEmail = {}, WorkEmail = {}, isReview, errors,
+    } = this.props
     const klass = `${this.props.className || ''}`.trim()
     const phoneNumbers = this.props.PhoneNumbers
+
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
 
     if (this.props.shouldFilterEmptyItems) {
       let filtered = phoneNumbers.items.length
@@ -184,10 +199,7 @@ export class ContactInformation extends Subsection {
           {i18n.m('identification.contacts.para.phoneNumber')}
         </Field>
 
-        <Field
-          errors={[{ code: 'validPhoneTypes', valid: this.uniquePhoneTypes() }]}
-          className={this.uniquePhoneTypes() && 'hidden'}
-        />
+        <ErrorMessageList errors={this.getSectionErrors()} />
 
         <div className={`${klass} telephone-collection`}>
           <Accordion
@@ -198,7 +210,7 @@ export class ContactInformation extends Subsection {
             onError={this.handleError}
             required={this.props.required}
             customDetails={this.firstItemRequired}
-            validator={ContactPhoneNumberValidator}
+            errors={accordionErrors}
             summary={this.phoneNumberSummary}
             description={i18n.t('identification.contacts.collection.phoneNumbers.summary.title')}
             appendLabel={i18n.t('identification.contacts.collection.phoneNumbers.append')}
@@ -234,11 +246,9 @@ ContactInformation.defaultProps = {
   onUpdate: () => {},
   onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => (
-    new IdentificationContactInformationValidator(data).isValid()
-  ),
+  errors: [],
   defaultState: true,
   isReview: false,
 }
 
-export default connectIdentificationSection(ContactInformation, sectionConfig)
+export default connectSubsection(ContactInformation, sectionConfig)

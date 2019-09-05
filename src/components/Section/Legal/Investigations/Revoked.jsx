@@ -1,8 +1,6 @@
 import React from 'react'
 
 import i18n from 'util/i18n'
-import schema from 'schema'
-import validate, { RevokedItemValidator } from 'validators'
 import { Summary, DateSummary } from 'components/Summary'
 import { Accordion, Branch, Show } from 'components/Form'
 
@@ -14,7 +12,7 @@ import * as formConfig from 'config/forms'
 import { getNumberOfYearsString } from 'helpers/text'
 
 import Subsection from 'components/Section/shared/Subsection'
-import connectLegalSection from '../LegalConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import RevokedItem from './RevokedItem'
 
 const sectionConfig = {
@@ -75,10 +73,12 @@ export class Revoked extends Subsection {
   }
 
   render() {
-    const { formType } = this.props
+    const { formType, errors } = this.props
     const formTypeConfig = formType && formConfig[formType]
     const years = formTypeConfig && formTypeConfig.LEGAL_INVESTIGATED_DENIED_CLEARANCE_YEARS
     const numberOfYearsString = getNumberOfYearsString(years)
+
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
 
     const titleCopy = years === 'EVER'
       ? i18n.t('legal.investigations.revoked.heading.titleEver')
@@ -114,7 +114,7 @@ export class Revoked extends Subsection {
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={RevokedItemValidator}
+            errors={accordionErrors}
             description={i18n.t('legal.investigations.revoked.collection.description')}
             appendTitle={i18n.t('legal.investigations.revoked.collection.appendTitle')}
             appendLabel={i18n.t('legal.investigations.revoked.collection.appendLabel')}
@@ -144,8 +144,8 @@ Revoked.defaultProps = {
   section: 'legal',
   subsection: 'investigations/revoked',
   dispatch: () => {},
-  validator: data => validate(schema('legal.investigations.revoked', data)),
   scrollToBottom: '',
+  errors: [],
 }
 
-export default connectLegalSection(Revoked, sectionConfig)
+export default connectSubsection(Revoked, sectionConfig)

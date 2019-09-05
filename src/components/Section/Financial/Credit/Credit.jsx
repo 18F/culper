@@ -1,15 +1,13 @@
 import React from 'react'
 
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { CreditItemValidator } from 'validators'
 
 import { Branch, Show, Accordion } from 'components/Form'
 import { Summary } from 'components/Summary'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import Subsection from 'components/Section/shared/Subsection'
 
 import { FINANCIAL, FINANCIAL_CREDIT } from 'config/formSections/financial'
-import connectFinancialSection from '../FinancialConnector'
 
 import CreditItem from './CreditItem'
 
@@ -80,6 +78,9 @@ export class Credit extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content credit-counseling"
@@ -110,7 +111,7 @@ export class Credit extends Subsection {
             description={i18n.t('financial.credit.collection.summary.title')}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
-            validator={CreditItemValidator}
+            errors={accordionErrors}
             appendTitle={i18n.t('financial.credit.collection.appendTitle')}
             appendLabel={i18n.t('financial.credit.collection.append')}
           >
@@ -136,9 +137,9 @@ Credit.defaultProps = {
   onUpdate: () => {},
   onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => validate(schema('financial.credit', data)),
   defaultState: true,
   scrollToBottom: '.bottom-btns',
+  errors: [],
 }
 
-export default connectFinancialSection(Credit, sectionConfig)
+export default connectSubsection(Credit, sectionConfig)

@@ -9,10 +9,10 @@ import * as formConfig from 'config/forms'
 import { Field, Show } from 'components/Form'
 import { sectionHasGaps } from 'components/Section/History/helpers'
 
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
+
 import ConnectedEmployment from './Employment'
 import EmploymentSummaryProgress from './EmploymentSummaryProgress'
-
-import connectHistorySection from '../HistoryConnector'
 
 const sectionConfig = {
   section: HISTORY.name,
@@ -20,7 +20,9 @@ const sectionConfig = {
 }
 
 const EmploymentWrapper = (props) => {
-  const { Employment, Birthdate, formType } = props
+  const {
+    Employment, Birthdate, formType, errors,
+  } = props
 
   const formTypeConfig = formType && formConfig[formType]
 
@@ -45,7 +47,7 @@ const EmploymentWrapper = (props) => {
       <Field
         title={i18n.t('history.employment.heading.employment')}
         titleSize="h3"
-        optional
+        optional={true}
         className="no-margin-bottom"
       >
         {i18n.m('history.employment.para.employment', { years })}
@@ -58,6 +60,7 @@ const EmploymentWrapper = (props) => {
         Employment={Employment}
         Birthdate={Birthdate}
         years={years}
+        errors={errors}
       />
 
       <ConnectedEmployment
@@ -73,7 +76,7 @@ const EmploymentWrapper = (props) => {
           <Field
             title={i18n.t('history.employment.heading.exiting')}
             titleSize="h4"
-            optional
+            optional={true}
             className="no-margin-bottom"
           >
             {i18n.m('history.employment.para.exiting', { years, formName })}
@@ -89,11 +92,13 @@ EmploymentWrapper.propTypes = {
   Employment: PropTypes.object,
   Birthdate: PropTypes.any,
   formType: PropTypes.string.isRequired,
+  errors: PropTypes.array,
 }
 
 EmploymentWrapper.defaultProps = {
   Employment: undefined,
   Birthdate: undefined,
+  errors: [],
 }
 
-export default connectHistorySection(EmploymentWrapper, sectionConfig)
+export default connectSubsection(EmploymentWrapper, sectionConfig)

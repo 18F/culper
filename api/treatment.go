@@ -10,16 +10,9 @@ type Treatment struct {
 	PayloadPhone   Payload `json:"Phone" sql:"-"`
 	PayloadAddress Payload `json:"Address" sql:"-"`
 
-	// Validator specific fields
 	Name    *Text      `json:"-"`
 	Phone   *Telephone `json:"-"`
 	Address *Location  `json:"-"`
-
-	// Persister specific fields
-	ID        int `json:"-"`
-	NameID    int `json:"-" pg:", fk:Name"`
-	PhoneID   int `json:"-" pg:", fk:Phone"`
-	AddressID int `json:"-" pg:", fk:Address"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -62,23 +55,4 @@ func (entity *Treatment) Marshal() Payload {
 		entity.PayloadAddress = entity.Address.Marshal()
 	}
 	return MarshalPayloadEntity("psychological.treatment", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *Treatment) Valid() (bool, error) {
-	var stack ErrorStack
-
-	if ok, err := entity.Name.Valid(); !ok {
-		stack.Append("Treatment", err)
-	}
-
-	if ok, err := entity.Phone.Valid(); !ok {
-		stack.Append("Treatment", err)
-	}
-
-	if ok, err := entity.Address.Valid(); !ok {
-		stack.Append("Treatment", err)
-	}
-
-	return !stack.HasErrors(), stack
 }

@@ -1,12 +1,10 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { ForeignIndirectInterestValidator } from 'validators'
 import { Summary } from 'components/Summary'
 import { Accordion, Branch, Show } from 'components/Form'
 import { FOREIGN, FOREIGN_ACTIVITIES_INDIRECT } from 'config/formSections/foreign'
 import Subsection from 'components/Section/shared/Subsection'
-import connectForeignSection from '../../ForeignConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import IndirectInterest from './IndirectInterest'
 
 const sectionConfig = {
@@ -78,6 +76,9 @@ export class IndirectActivity extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content indirect"
@@ -106,7 +107,7 @@ export class IndirectActivity extends Subsection {
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={ForeignIndirectInterestValidator}
+            errors={accordionErrors}
             description={i18n.t('foreign.activities.indirect.collection.description')}
             appendTitle={i18n.t('foreign.activities.indirect.collection.appendTitle')}
             appendLabel={i18n.t('foreign.activities.indirect.collection.appendLabel')}
@@ -139,8 +140,8 @@ IndirectActivity.defaultProps = {
   subsection: 'activities/indirect',
   addressBooks: {},
   dispatch: () => {},
-  validator: data => validate(schema('foreign.activities.indirect', data)),
   scrollToBottom: '',
+  errors: [],
 }
 
-export default connectForeignSection(IndirectActivity, sectionConfig)
+export default connectSubsection(IndirectActivity, sectionConfig)

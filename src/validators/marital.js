@@ -58,7 +58,7 @@ export const validateMarital = (data, formType = formTypes.SF86) => {
     requireForeignBornDocExpiration: isForeignBornDocExpirationRequired,
     requireRelationshipMaritalDivorcePhoneNumber: isDivorceePhoneNumberRequired,
   }
-  return validateModel(data, maritalModel, options) === true
+  return validateModel(data, maritalModel, options)
 }
 
 export default class MaritalValidator {
@@ -81,6 +81,6 @@ export default class MaritalValidator {
   }
 
   isValid() {
-    return validateMarital(this.data, this.formType)
+    return validateMarital(this.data, this.formType) === true
   }
 }

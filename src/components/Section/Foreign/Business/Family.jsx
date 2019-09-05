@@ -1,12 +1,10 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { FamilyValidator } from 'validators'
 import { Summary, NameSummary } from 'components/Summary'
 import { Branch, Show, Accordion } from 'components/Form'
 import { FOREIGN, FOREIGN_BUSINESS_FAMILY } from 'config/formSections/foreign'
 import Subsection from 'components/Section/shared/Subsection'
-import connectForeignSection from '../ForeignConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import FamilyItem from './FamilyItem'
 
 const sectionConfig = {
@@ -68,6 +66,9 @@ export class Family extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content foreign-business-family"
@@ -97,7 +98,7 @@ export class Family extends Subsection {
             scrollToBottom={this.props.scrollToBottom}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={FamilyValidator}
+            errors={accordionErrors}
             summary={this.summary}
             description={i18n.t('foreign.business.family.collection.summary.title')}
             appendTitle={i18n.t('foreign.business.family.collection.appendTitle')}
@@ -129,9 +130,9 @@ Family.defaultProps = {
   section: 'foreign',
   subsection: 'business/family',
   dispatch: () => {},
-  validator: data => validate(schema('foreign.business.family', data)),
   defaultState: true,
   scrollToBottom: '',
+  errors: [],
 }
 
-export default connectForeignSection(Family, sectionConfig)
+export default connectSubsection(Family, sectionConfig)

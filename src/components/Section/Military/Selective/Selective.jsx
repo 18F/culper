@@ -1,9 +1,8 @@
 import React from 'react'
 import { MILITARY, MILITARY_SELECTIVE } from 'config/formSections/military'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate from 'validators'
 import Subsection from 'components/Section/shared/Subsection'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import {
   Branch,
   Show,
@@ -12,8 +11,6 @@ import {
   Field,
   NotApplicable,
 } from 'components/Form'
-
-import connectMilitarySection from 'components/Section/Military/MilitaryConnector'
 
 const sectionConfig = {
   key: MILITARY_SELECTIVE.key,
@@ -231,7 +228,7 @@ Selective.defaultProps = {
   section: 'military',
   subsection: 'selective',
   dispatch: () => {},
-  validator: data => validate(schema('military.selective', data)),
+  errors: [],
 }
 
-export default connectMilitarySection(Selective, sectionConfig)
+export default connectSubsection(Selective, sectionConfig)

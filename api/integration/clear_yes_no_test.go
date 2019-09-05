@@ -19,6 +19,7 @@ import (
 func TestClearEmptyAccount(t *testing.T) {
 	// get a setup environment.
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 
 	// Hacky, but seems OK for these tests. Technically you shouldn't be able to submit
@@ -110,7 +111,7 @@ func getBasicBranches(t *testing.T, section api.Section, branchName string) (*ap
 func rejectSection(t *testing.T, services serviceSet, json []byte, sectionName string) api.Section {
 	account := createTestAccount(t, services.db)
 
-	resp := saveJSON(services, json, account.ID)
+	resp := saveJSON(services, json, account)
 	if resp.StatusCode != 200 {
 		t.Fatal("Failed to save JSON", resp.StatusCode)
 	}
@@ -129,6 +130,12 @@ func rejectSection(t *testing.T, services serviceSet, json []byte, sectionName s
 		t.Fatal("Failed to reject account: ", err)
 	}
 
+	// reload the account now that it's been rejected
+	_, reloadErr := account.Get(services.db, account.ID)
+	if reloadErr != nil {
+		t.Fatal(reloadErr)
+	}
+
 	resetApp := getApplication(t, services, account)
 
 	section := resetApp.Section(sectionName)
@@ -141,6 +148,7 @@ func rejectSection(t *testing.T, services serviceSet, json []byte, sectionName s
 
 func TestClearBasicSectionNos(t *testing.T) {
 	services := cleanTestServices(t)
+	defer services.closeDB()
 
 	basicTests := []struct {
 		path       string
@@ -255,6 +263,7 @@ func TestClearBasicSectionNos(t *testing.T) {
 
 func TestClearComplexSectionNos(t *testing.T) {
 	services := cleanTestServices(t)
+	defer services.closeDB()
 
 	tests := []struct {
 		path string
@@ -967,6 +976,15 @@ func TestClearComplexSectionNos(t *testing.T) {
 			}
 		}},
 
+		{"../testdata/package/comments_no.json", "package.comments", func(t *testing.T, section api.Section) {
+			association := section.(*api.AdditionalComments)
+
+			if association.HasComments.Value != "" {
+				t.Log("Should have cleared the lone no")
+				t.Fail()
+			}
+		}},
+
 		{"../testdata/psychological/psychological-competence.json", "psychological.competence", func(t *testing.T, section api.Section) {
 			competence := section.(*api.PsychologicalCompetence)
 
@@ -1047,7 +1065,7 @@ func TestClearComplexSectionNos(t *testing.T) {
 
 			sectionJSON := readTestData(t, clearTest.path)
 
-			resp := saveJSON(services, sectionJSON, account.ID)
+			resp := saveJSON(services, sectionJSON, account)
 			if resp.StatusCode != 200 {
 				t.Fatal("Failed to save JSON", resp.StatusCode)
 			}
@@ -1064,6 +1082,12 @@ func TestClearComplexSectionNos(t *testing.T) {
 			err := rejector.Reject(&account)
 			if err != nil {
 				t.Fatal("Failed to reject account: ", err)
+			}
+
+			// reload the account now that it's been rejected
+			_, reloadErr := account.Get(services.db, account.ID)
+			if reloadErr != nil {
+				t.Fatal(reloadErr)
 			}
 
 			resetApp := getApplication(t, services, account)

@@ -4,9 +4,6 @@ import * as formTypes from 'constants/formTypes'
 
 import i18n from 'util/i18n'
 
-import schema from 'schema'
-import validate, { TerroristValidator } from 'validators'
-
 import { Summary, DateSummary } from 'components/Summary'
 import { Accordion, Branch, Show } from 'components/Form'
 
@@ -16,7 +13,7 @@ import {
 } from 'config/formSections/legal'
 
 import Subsection from 'components/Section/shared/Subsection'
-import connectLegalSection from '../LegalConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import TerroristOrganizationItem from './TerroristOrganizationItem'
 
 const sectionConfig = {
@@ -77,11 +74,13 @@ export class TerroristOrganization extends Subsection {
   }
 
   render() {
-    const { formType } = this.props
+    const { formType, errors } = this.props
 
     const introCopy = formType === formTypes.SF86
       ? i18n.m('legal.associations.terrorist.para.intro')
       : i18n.m('legal.associations.terrorist.para.introWithoutSecurity')
+
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
 
     return (
       <div
@@ -112,7 +111,7 @@ export class TerroristOrganization extends Subsection {
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={TerroristValidator}
+            errors={accordionErrors}
             description={i18n.t('legal.associations.terrorist.collection.description')}
             appendTitle={i18n.t('legal.associations.terrorist.collection.appendTitle')}
             appendLabel={i18n.t('legal.associations.terrorist.collection.appendLabel')}
@@ -145,8 +144,8 @@ TerroristOrganization.defaultProps = {
   subsection: 'associations/terrorist-organization',
   addressBooks: {},
   dispatch: () => {},
-  validator: data => validate(schema('legal.associations.terrorist-organization', data)),
   scrollToBottom: '',
+  errors: [],
 }
 
-export default connectLegalSection(TerroristOrganization, sectionConfig)
+export default connectSubsection(TerroristOrganization, sectionConfig)

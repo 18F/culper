@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	gohttp "net/http"
 	"os"
 	"os/exec"
 	"strconv"
@@ -87,6 +88,7 @@ func checkInfoRelease(t *testing.T, release api.Attachment) {
 
 func TestSubmitter(t *testing.T) {
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 
 	mockClock := clock.NewMock()
@@ -107,17 +109,17 @@ func TestSubmitter(t *testing.T) {
 
 	// Setup a test scenario
 	form := readTestData(t, "../testdata/complete-scenarios/test1.json")
-	saveFormJSON(t, services, form, account.ID)
+	saveFormJSON(t, services, form, account)
 	// in addition to the base form data, we need submission data to get the date signed
 	submissionJSON := readTestData(t, "../testdata/submission-test1.json")
-	resp := saveJSON(services, submissionJSON, account.ID)
+	resp := saveJSON(services, submissionJSON, account)
 	if resp.StatusCode != 200 {
 		t.Fatal("Didn't save the submission section")
 	}
 
 	// call the /form/submit handler. It's a dummy handler that just returns
 	// the XML on success.
-	w, req := standardResponseAndRequest("POST", "/me/form/submit", nil, account.ID)
+	w, req := standardResponseAndRequest("POST", "/me/form/submit", nil, account)
 	submitHandler.ServeHTTP(w, req)
 
 	submitResp := w.Result()
@@ -142,7 +144,9 @@ func TestSubmitter(t *testing.T) {
 		Store:    services.store,
 	}
 
-	w, indexReq := standardResponseAndRequest("GET", "/me/attachments/", nil, account.ID)
+	// Enable Attachments
+	os.Setenv(api.AttachmentsEnabled, "1")
+	w, indexReq := standardResponseAndRequest("GET", "/me/attachments/", nil, account)
 	listAttachmentHandler.ServeHTTP(w, indexReq)
 
 	indexResp := w.Result()
@@ -174,7 +178,7 @@ func TestSubmitter(t *testing.T) {
 	for _, attachment := range retrievedAttachments {
 		if attachment.DocType == pdf.DocumentTypeInformationRelease {
 
-			w, req := standardResponseAndRequest("GET", "/attachements/id", nil, account.ID)
+			w, req := standardResponseAndRequest("GET", "/attachements/id", nil, account)
 			req = mux.SetURLVars(req, map[string]string{
 				"id": strconv.Itoa(attachment.ID),
 			})
@@ -209,4 +213,49 @@ func TestSubmitter(t *testing.T) {
 			checkInfoRelease(t, attachment)
 		}
 	}
+}
+
+func TestLockedAccountSubmitter(t *testing.T) {
+	services := cleanTestServices(t)
+	defer services.closeDB()
+	account := createTestAccount(t, services.db)
+	account.Status = api.StatusSubmitted
+
+	mockClock := clock.NewMock()
+	const base = 1536570831 // Epoch seconds for September 10, 2018 PDT
+	mockClock.Add(base * time.Second)
+
+	xmlService := xml.NewXMLServiceWithMockClock("../templates/", mockClock)
+	pdfService := pdf.NewPDFService("../pdf/templates/")
+	submitter := admin.NewSubmitter(services.db, services.store, xmlService, pdfService)
+
+	submitHandler := http.SubmitHandler{
+		Env:       services.env,
+		Log:       services.log,
+		Database:  services.db,
+		Store:     services.store,
+		Submitter: submitter,
+	}
+
+	// call the /form/submit handler. It's a dummy handler that just returns
+	// the XML on success.
+	w, req := standardResponseAndRequest("POST", "/me/form/submit", nil, account)
+	submitHandler.ServeHTTP(w, req)
+
+	submitResp := w.Result()
+
+	if submitResp.StatusCode != gohttp.StatusForbidden {
+		t.Errorf("handler returned wrong status code: got %v want %v",
+			submitResp.StatusCode, gohttp.StatusForbidden)
+		t.Fail()
+	}
+
+	// Check the response body is what we expect.
+	responseJSON, err := ioutil.ReadAll(submitResp.Body)
+	if err != nil {
+		t.Log("Error reading the response: ", err)
+		t.Fail()
+	}
+	// Check the error message is what we expect
+	confirmErrorMsg(t, responseJSON, api.AccountLocked)
 }

@@ -19,7 +19,7 @@ const creditCounselingModel = {
 }
 
 export const validateFinancialCredit = data => (
-  validateModel(data, creditCounselingModel) === true
+  validateModel(data, creditCounselingModel)
 )
 
 export default class CreditValidator {
@@ -38,12 +38,12 @@ export default class CreditValidator {
   }
 
   isValid() {
-    return validateFinancialCredit(this.data)
+    return validateFinancialCredit(this.data) === true
   }
 }
 
 const validateCreditCounselingItem = data => (
-  validateModel(data, financialCreditCounseling) === true
+  validateModel(data, financialCreditCounseling)
 )
 
 export class CreditItemValidator {
@@ -72,6 +72,6 @@ export class CreditItemValidator {
   }
 
   isValid() {
-    return validateCreditCounselingItem(this.data)
+    return validateCreditCounselingItem(this.data) === true
   }
 }

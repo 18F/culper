@@ -1,17 +1,18 @@
 package main
 
 import (
-	"net/http"
+	"flag"
 
 	"github.com/18F/e-QIP-prototype/api/cmd"
 )
 
 func main() {
 	// Create a web client to interface with the RESTful API.
-	webclient := &cmd.WebClient{
-		Client: &http.Client{},
-	}
+	wccFlags := cmd.SetupWebClientFlags("transmit", "")
+	flag.Parse()
+	webclient := wccFlags.ConfiguredClient()
 
-	webclient.Submit()
-	webclient.Logout()
+	webclient.WithAuth(func() {
+		webclient.Submit()
+	})
 }

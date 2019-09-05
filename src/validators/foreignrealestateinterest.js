@@ -2,7 +2,8 @@ import { validateModel } from 'models/validate'
 import foreignRealEstateInterest from 'models/foreignRealEstateInterest'
 
 export const validateForeignRealEstateInterest = data => (
-  validateModel(data, foreignRealEstateInterest) === true)
+  validateModel(data, foreignRealEstateInterest)
+)
 
 export default class ForeignRealEstateInterestValidator {
   constructor(data = {}) {
@@ -16,6 +17,6 @@ export default class ForeignRealEstateInterestValidator {
   }
 
   isValid() {
-    return validateForeignRealEstateInterest(this.data)
+    return validateForeignRealEstateInterest(this.data) === true
   }
 }

@@ -1,19 +1,16 @@
 import React from 'react'
 
 import i18n from 'util/i18n'
-import schema from 'schema'
-import validate, { TaxValidator } from 'validators'
 
 import { Branch, Show, Accordion } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import Subsection from 'components/Section/shared/Subsection'
 
 import { FINANCIAL, FINANCIAL_TAXES } from 'config/formSections/financial'
 import * as formConfig from 'config/forms'
 
 import { getYearsString } from 'helpers/text'
-
-import connectFinancialSection from '../FinancialConnector'
 
 import TaxesItem from './TaxesItem'
 
@@ -87,10 +84,12 @@ export class Taxes extends Subsection {
   }
 
   render() {
-    const { formType } = this.props
+    const { formType, errors } = this.props
     const formTypeConfig = formType && formConfig[formType]
     const years = formTypeConfig && formTypeConfig.FINANCIAL_RECORD_TAXES_YEARS
     const yearsString = getYearsString(years)
+
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
 
     return (
       <div
@@ -121,7 +120,7 @@ export class Taxes extends Subsection {
             summary={this.summary}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
-            validator={TaxValidator}
+            errors={accordionErrors}
             description={i18n.t('financial.taxes.collection.summary.title')}
             appendTitle={i18n.t('financial.taxes.collection.appendTitle', { years, yearsString })}
             appendLabel={i18n.t('financial.taxes.collection.append')}
@@ -145,9 +144,9 @@ Taxes.defaultProps = {
   onUpdate: () => {},
   onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => validate(schema('financial.taxes', data)),
   defaultState: true,
   scrollToBottom: '.bottom-btns',
+  errors: [],
 }
 
-export default connectFinancialSection(Taxes, sectionConfig)
+export default connectSubsection(Taxes, sectionConfig)

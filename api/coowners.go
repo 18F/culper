@@ -8,13 +8,7 @@ import (
 type CoOwners struct {
 	PayloadList Payload `json:"List" sql:"-"`
 
-	// Validator specific fields
 	List *Collection `json:"-"`
-
-	// Persister specific fields
-	ID        int `json:"-"`
-	AccountID int `json:"-"`
-	ListID    int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -39,9 +33,4 @@ func (entity *CoOwners) Marshal() Payload {
 		entity.PayloadList = entity.List.Marshal()
 	}
 	return MarshalPayloadEntity("coowners", entity)
-}
-
-// Valid checks the value(s) against an battery of tests.
-func (entity *CoOwners) Valid() (bool, error) {
-	return entity.List.Valid()
 }

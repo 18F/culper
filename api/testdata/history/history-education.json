@@ -16,9 +16,32 @@
     "List": {
       "type": "collection",
       "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
         "items": [
           {
             "Item": {
+              "Address": {
+                "type": "location",
+                "props": {
+                  "layout": "Address",
+                  "street": "123 Some Rd",
+                  "city": "Arlington",
+                  "state": "VA",
+                  "zipcode": "22202",
+                  "country": "United States"
+                }
+              },
+              "Comments": {
+                "type": "textarea",
+                "props": {
+                  "value": "my comments"
+                }
+              },
               "Dates": {
                 "type": "daterange",
                 "props": {
@@ -28,8 +51,7 @@
                       "month": "7",
                       "day": "1",
                       "year": "2017",
-                      "estimated": false,
-                      "date": "2017-07-01T00:00:00Z"
+                      "estimated": false
                     }
                   },
                   "to": {
@@ -38,17 +60,33 @@
                       "month": "7",
                       "day": "25",
                       "year": "2017",
-                      "estimated": false,
-                      "date": "2017-07-25T00:00:00Z"
+                      "estimated": false
                     }
                   },
                   "present": false
                 }
               },
-              "Type": {
-                "type": "radio",
+              "Diplomas": {
+                "type": "collection",
                 "props": {
-                  "value": "College"
+                  "branch": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "items": [
+                    {
+                      "Item": {
+                        "Has": {
+                          "type": "branch",
+                          "props": {
+                            "value": "No"
+                          }
+                        }
+                      }
+                    }
+                  ]
                 }
               },
               "Name": {
@@ -57,24 +95,27 @@
                   "value": "my name"
                 }
               },
-              "Address": {
+              "ReferenceAddress": {
                 "type": "location",
                 "props": {
                   "layout": "Address",
                   "street": "123 Some Rd",
-                  "street2": "",
                   "city": "Arlington",
                   "state": "VA",
                   "zipcode": "22202",
-                  "county": "",
-                  "country": "United States",
-                  "validated": false
+                  "country": "United States"
                 }
               },
-              "Comments": {
-                "type": "textarea",
+              "ReferenceEmail": {
+                "type": "email",
                 "props": {
-                  "value": "my comments"
+                  "value": "test@abc.com"
+                }
+              },
+              "ReferenceEmailNotApplicable": {
+                "type": "notapplicable",
+                "props": {
+                  "applicable": true
                 }
               },
               "ReferenceName": {
@@ -82,10 +123,10 @@
                 "props": {
                   "first": "John",
                   "firstInitialOnly": false,
-                  "last": "Smith",
                   "middle": "H",
                   "middleInitialOnly": true,
                   "noMiddleName": false,
+                  "last": "Smith",
                   "suffix": "Other",
                   "suffixOther": "XX"
                 }
@@ -107,94 +148,15 @@
                   "noNumber": false
                 }
               },
-              "ReferenceEmail": {
-                "type": "email",
+              "Type": {
+                "type": "radio",
                 "props": {
-                  "value": "test@abc.com"
-                }
-              },
-              "ReferenceEmailNotApplicable": {
-                "type": "notapplicable",
-                "props": {
-                  "applicable": true
-                }
-              },
-              "ReferenceAddress": {
-                "type": "location",
-                "props": {
-                  "layout": "Address",
-                  "street": "123 Some Rd",
-                  "street2": "",
-                  "city": "Arlington",
-                  "state": "VA",
-                  "zipcode": "22202",
-                  "county": "",
-                  "country": "United States",
-                  "validated": false
-                }
-              },
-              "Diplomas": {
-                "type": "collection",
-                "props": {
-                  "branch": {
-                    "type": "branch",
-                    "props": {
-                      "value": ""
-                    }
-                  },
-                  "items": [
-                    {
-                      "Item": {
-                        "Has": {
-                          "type": "branch",
-                          "props": {
-                            "value": "Yes"
-                          }
-                        },
-                        "Diploma": {
-                          "type": "radio",
-                          "props": {
-                            "value": "Other"
-                          }
-                        },
-                        "DiplomaOther": {
-                          "type": "text",
-                          "props": {
-                            "value": "other type of degree"
-                          }
-                        },
-                        "Date": {
-                          "type": "datecontrol",
-                          "props": {
-                            "month": "7",
-                            "day": "25",
-                            "year": "2017",
-                            "estimated": false,
-                            "date": "2017-07-25T00:00:00Z"
-                          }
-                        }
-                      },
-                      "Item": {
-                        "Has": {
-                          "type": "branch",
-                          "props": {
-                            "value": "No"
-                          }
-                        }
-                      }
-                    }
-                  ]
+                  "value": "College"
                 }
               }
             }
           }
-        ],
-        "branch": {
-          "type": "branch",
-          "props": {
-            "value": "No"
-          }
-        }
+        ]
       }
     }
   }

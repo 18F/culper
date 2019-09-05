@@ -38,10 +38,6 @@
   version = "1.14.0"
 
 [[constraint]]
-  name = "github.com/dgrijalva/jwt-go"
-  version = "3.0.0"
-
-[[constraint]]
   name = "github.com/go-pg/pg"
   version = "6.4.9"
 

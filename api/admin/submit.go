@@ -36,13 +36,13 @@ func (s Submitter) FilesForSubmission(accountID int) ([]byte, []api.Attachment, 
 
 	application, appErr := s.store.LoadApplication(accountID)
 	if appErr != nil {
-		return []byte{}, []api.Attachment{}, errors.Wrap(appErr, "Can't load applicaiton")
+		return []byte{}, []api.Attachment{}, errors.Wrap(appErr, "Can't load application")
 	}
 
-	// get XML from applicaiton
+	// get XML from application
 	xml, xmlErr := s.xml.PackageXML(application)
 	if xmlErr != nil {
-		return []byte{}, []api.Attachment{}, errors.Wrap(xmlErr, "Couldn't get XML from applicaiton")
+		return []byte{}, []api.Attachment{}, errors.Wrap(xmlErr, "Couldn't get XML from application")
 	}
 
 	// generate releases

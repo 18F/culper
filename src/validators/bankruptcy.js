@@ -16,7 +16,7 @@ const financialBankruptcyModel = {
 }
 
 export const validateFinancialBankruptcy = data => (
-  validateModel(data, financialBankruptcyModel) === true
+  validateModel(data, financialBankruptcyModel)
 )
 
 /**
@@ -44,7 +44,7 @@ export default class BankruptcyValidator {
    * Validates all bankruptcy items
    */
   isValid() {
-    return validateFinancialBankruptcy(this.data)
+    return validateFinancialBankruptcy(this.data) === true
   }
 }
 

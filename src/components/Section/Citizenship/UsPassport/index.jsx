@@ -1,7 +1,5 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate from 'validators'
 import {
   Field,
   Show,
@@ -14,7 +12,7 @@ import {
 import { FOREIGN } from 'config/formSections/foreign'
 import { CITIZENSHIP, CITIZENSHIP_US_PASSPORT } from 'config/formSections/citizenship'
 import Subsection from 'components/Section/shared/Subsection'
-import connectCitizenshipSection from '../CitizenshipConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import { extractDate } from '../../History/dateranges'
 
 
@@ -41,6 +39,9 @@ export class UsPassport extends Subsection {
     this.storeKey = storeKey
 
     this.number = null
+    this.state = {
+      showSuggestionsModal: this.showSuggestions(),
+    }
   }
 
   update = (queue, fn) => {
@@ -123,14 +124,13 @@ export class UsPassport extends Subsection {
   onSuggestion = (suggestion) => {
     this.update({
       Name: suggestion,
-      suggestedNames: [],
     })
+
+    this.setState({ showSuggestionsModal: false })
   }
 
   onDismiss = () => {
-    this.update({
-      suggestedNames: [],
-    })
+    this.setState({ showSuggestionsModal: false })
   }
 
   showSuggestions = () => {
@@ -140,7 +140,7 @@ export class UsPassport extends Subsection {
     }
 
     // If we have suggestions, show them
-    return this.props.suggestedNames.length
+    return !!this.props.suggestedNames.length
   }
 
   passportBeforeCutoff = () => {
@@ -157,6 +157,7 @@ export class UsPassport extends Subsection {
   }
 
   render() {
+    const { showSuggestionsModal } = this.state
     const numberLength = this.passportBeforeCutoff() ? '255' : '9'
     const numberRegEx = this.passportBeforeCutoff()
       ? '^[a-zA-Z0-9]*$'
@@ -190,7 +191,7 @@ export class UsPassport extends Subsection {
               className="no-margin-bottom"
             />
             <Suggestions
-              show={this.showSuggestions()}
+              show={showSuggestionsModal}
               suggestions={this.props.suggestedNames}
               renderSuggestion={this.renderSuggestion}
               withSuggestions={true}
@@ -305,7 +306,7 @@ UsPassport.defaultProps = {
   section: 'foreign',
   subsection: 'passport',
   dispatch: () => {},
-  validator: data => validate(schema('foreign.passport', data)),
+  errors: [],
 }
 
-export default connectCitizenshipSection(UsPassport, sectionConfig)
+export default connectSubsection(UsPassport, sectionConfig)

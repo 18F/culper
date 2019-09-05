@@ -18,7 +18,7 @@ export const validatePeople = (data) => {
     },
   }
 
-  return validateModel(data, peopleModel) === true
+  return validateModel(data, peopleModel)
 }
 
 export default class PeopleValidator {
@@ -32,6 +32,6 @@ export default class PeopleValidator {
   }
 
   isValid() {
-    return validatePeople(this.data)
+    return validatePeople(this.data) === true
   }
 }

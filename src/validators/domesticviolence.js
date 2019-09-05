@@ -2,7 +2,7 @@ import { validateModel, hasYesOrNo } from 'models/validate'
 import domesticViolence from 'models/domesticViolence'
 
 export const validateDomesticViolenceItem = data => (
-  validateModel(data, domesticViolence) === true
+  validateModel(data, domesticViolence)
 )
 
 export const validateDomesticViolence = (data) => {
@@ -20,7 +20,7 @@ export const validateDomesticViolence = (data) => {
     },
   }
 
-  return validateModel(data, domesticViolenceModel) === true
+  return validateModel(data, domesticViolenceModel)
 }
 
 export default class DomesticViolence {
@@ -29,7 +29,7 @@ export default class DomesticViolence {
   }
 
   isValid() {
-    return validateDomesticViolence(this.data)
+    return validateDomesticViolence(this.data) === true
   }
 }
 
@@ -39,6 +39,6 @@ export class DomesticViolenceItem {
   }
 
   isValid() {
-    return validateDomesticViolenceItem(this.data)
+    return validateDomesticViolenceItem(this.data) === true
   }
 }

@@ -24,7 +24,10 @@ const drugUse = {
     return { presence: true, date: { requireDay: false, ...dateLimits } }
   },
   NatureOfUse: { presence: true, hasValue: true },
-  Explanation: { presence: true, hasValue: true },
+  Explanation: (value, attributes, attributeName, options) => {
+    if (options && options.requireUseInFuture === false) return {}
+    return { presence: true, hasValue: true }
+  },
   UseWhileEmployed: (value, attributes, attributeName, options) => {
     if (options && options.requireUseWhileEmployed === false) return {}
     return { presence: true, hasValue: { validator: hasYesOrNo } }

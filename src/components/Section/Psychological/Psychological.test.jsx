@@ -47,6 +47,9 @@ describe('The psych section', () => {
 
     const store = mockStore({
       application: appState,
+      form: {
+        PSYCHOLOGICAL_COMPETENCE: { data: { IsIncompetent: { value: 'Yes' } } },
+      },
     })
 
     const component = mount(
@@ -90,6 +93,24 @@ describe('The psych section', () => {
 
     const store = mockStore({
       application: appState,
+      form: {
+        PSYCHOLOGICAL_COMPETENCE: { data: { IsIncompetent: { value: 'No' } } },
+        PSYCHOLOGICAL_CONSULTATIONS: { data: { Consulted: { value: 'No' } } },
+        PSYCHOLOGICAL_DIAGNOSES: {
+          data: {
+            Diagnosed: { value: 'Yes' },
+            DidNotConsult: { value: 'No' },
+            InTreatment: { value: 'No' },
+          },
+        },
+        PSYCHOLOGICAL_HOSPITALIZATIONS: { data: { Hospitalized: { value: 'No' } } },
+        PSYCHOLOGICAL_CONDITIONS: {
+          data: {
+            HasCondition: { value: 'No' },
+            ReceivedTreatment: { value: 'Decline' },
+          },
+        },
+      },
     })
 
     const component = mount(
@@ -137,6 +158,17 @@ describe('The psych section', () => {
 
     const store = mockStore({
       application: appState,
+      form: {
+        PSYCHOLOGICAL_COMPETENCE: { data: { IsIncompetent: { value: 'No' } } },
+        PSYCHOLOGICAL_CONSULTATIONS: { data: { Consulted: { value: 'No' } } },
+        PSYCHOLOGICAL_DIAGNOSES: { data: { Diagnosed: { value: 'No' } } },
+        PSYCHOLOGICAL_HOSPITALIZATIONS: { data: { Hospitalized: { value: 'No' } } },
+        PSYCHOLOGICAL_CONDITIONS: {
+          data: {
+            HasCondition: { value: 'No' },
+          },
+        },
+      },
     })
 
     const component = mount(

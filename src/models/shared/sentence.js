@@ -2,13 +2,23 @@ import { hasYesOrNo } from 'models/validate'
 
 const sentence = {
   Description: { presence: true, hasValue: true },
-  ExceedsYear: {
-    presence: true,
-    hasValue: { validator: hasYesOrNo },
+  ExceedsYear: (value, attributes, attributeName, options) => {
+    if (options.requireLegalOffenseSentenced) {
+      return {
+        presence: true,
+        hasValue: { validator: hasYesOrNo },
+      }
+    }
+    return {}
   },
-  Incarcerated: {
-    presence: true,
-    hasValue: { validator: hasYesOrNo },
+  Incarcerated: (value, attributes, attributeName, options) => {
+    if (options.requireLegalOffenseIncarcerated) {
+      return {
+        presence: true,
+        hasValue: { validator: hasYesOrNo },
+      }
+    }
+    return {}
   },
   IncarcerationDates: (value, attributes) => {
     if (attributes.IncarcerationDatesNA
@@ -17,9 +27,9 @@ const sentence = {
     }
 
     const daterangeOptions = {}
-    if (attributes.ExceedsYear && attributes.ExceedsYear.value === 'Yes') {
+    if (attributes.Incarcerated && attributes.Incarcerated.value === 'Yes') {
       daterangeOptions.minDuration = { years: 1 }
-    } else if (attributes.ExceedsYear && attributes.ExceedsYear.value === 'No') {
+    } else if (attributes.Incarcerated && attributes.Incarcerated.value === 'No') {
       daterangeOptions.maxDuration = { years: 1 }
     }
 

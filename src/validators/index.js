@@ -1,29 +1,23 @@
+/* eslint-disable import/no-cycle */
 import validate from './validate'
 import DateControlValidator from './datecontrol'
 import DateRangeValidator from './daterange'
 import BankruptcyValidator, { BankruptcyItemValidator } from './bankruptcy'
 import BirthPlaceValidator from './birthplace'
+
 import IdentificationContactInformationValidator, {
   ContactPhoneNumberValidator,
 } from './identificationcontacts'
-import IdentificationValidator from './identification'
-import IdentificationNameValidator from './identificationname'
-import IdentificationBirthDateValidator from './identificationbirthdate'
-import IdentificationBirthPlaceValidator from './identificationbirthplace'
-import IdentificationSSNValidator from './identificationssn'
+
 import NameValidator from './name'
-import IdentificationOtherNamesValidator, {
-  OtherNameValidator,
-} from './identificationothernames'
+import { OtherNameValidator } from './identificationothernames'
+
 import PassportValidator from './passport'
-import IdentificationPhysicalValidator from './identificationphysical'
 import GamblingValidator, { GamblingItemValidator } from './gambling'
 import HistoryResidenceValidator, { ResidenceValidator } from './residence'
-import HistoryEmploymentValidator, { EmploymentValidator } from './employment'
-import HistoryEducationValidator, { EducationItemValidator } from './education'
-import FederalServiceValidator, {
-  FederalServiceItemValidator,
-} from './federalservice'
+import { EmploymentValidator } from './employment'
+import { EducationItemValidator } from './education'
+import { FederalServiceItemValidator } from './federalservice'
 import SelectiveServiceValidator, {
   hideSelectiveService,
 } from './selectiveservice'
@@ -214,28 +208,19 @@ export default validate
 export {
   DateControlValidator,
   DateRangeValidator,
-  IdentificationNameValidator,
-  IdentificationBirthDateValidator,
-  IdentificationBirthPlaceValidator,
-  IdentificationSSNValidator,
   BankruptcyValidator,
   BankruptcyItemValidator,
   BirthPlaceValidator,
   IdentificationContactInformationValidator,
   ContactPhoneNumberValidator,
-  IdentificationValidator,
   NameValidator,
-  IdentificationOtherNamesValidator,
   OtherNameValidator,
   PassportValidator,
-  IdentificationPhysicalValidator,
   GamblingValidator,
   GamblingItemValidator,
   HistoryResidenceValidator,
   ResidenceValidator,
-  HistoryEmploymentValidator,
   EmploymentValidator,
-  HistoryEducationValidator,
   EducationItemValidator,
   SelectiveServiceValidator,
   MilitaryHistoryValidator,
@@ -251,7 +236,6 @@ export {
   DomesticViolenceValidator,
   DomesticViolenceItem,
   OffenseValidator,
-  FederalServiceValidator,
   FederalServiceItemValidator,
   RelativesValidator,
   RelativeValidator,

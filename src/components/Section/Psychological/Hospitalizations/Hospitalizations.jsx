@@ -2,17 +2,13 @@ import React from 'react'
 
 import i18n from 'util/i18n'
 
-import schema from 'schema'
-
-import validate, { HospitalizationValidator } from 'validators'
-
 import { Summary, DateSummary } from 'components/Summary'
 import { Accordion, Branch, Show } from 'components/Form'
 
 import Subsection from 'components/Section/shared/Subsection'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 
 import { PSYCHOLOGICAL, PSYCHOLOGICAL_HOSPITALIZATIONS } from 'config/formSections/psychological'
-import connectPsychologicalSection from '../PsychologicalConnector'
 
 import Hospitalization from './Hospitalization'
 
@@ -75,6 +71,9 @@ export class Hospitalizations extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content hospitalizations"
@@ -102,7 +101,7 @@ export class Hospitalizations extends Subsection {
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={HospitalizationValidator}
+            errors={accordionErrors}
             description={i18n.t(
               'psychological.hospitalization.collection.description'
             )}
@@ -135,8 +134,8 @@ Hospitalizations.defaultProps = {
   onUpdate: () => {},
   onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => validate(schema('psychological.hospitalizations', data)),
   scrollToBottom: '.bottom-btns',
+  errors: [],
 }
 
-export default connectPsychologicalSection(Hospitalizations, sectionConfig)
+export default connectSubsection(Hospitalizations, sectionConfig)

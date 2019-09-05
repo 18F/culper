@@ -233,6 +233,10 @@ describe('The offense model', () => {
     })
 
     it('the Sentence field must be a valid Sentence', () => {
+      const options = {
+        requireLegalOffenseSentenced: true,
+        requireLegalOffenseIncarcerated: true,
+      }
       const testData = {
         WasSentenced: { value: 'Yes' },
         Sentence: {
@@ -251,7 +255,7 @@ describe('The offense model', () => {
         'Sentence.model.ProbationDates.presence.REQUIRED',
       ]
 
-      expect(validateModel(testData, offense))
+      expect(validateModel(testData, offense, options))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 

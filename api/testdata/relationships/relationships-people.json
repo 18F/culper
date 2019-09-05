@@ -4,20 +4,24 @@
     "List": {
       "type": "collection",
       "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
         "items": [
           {
             "Item": {
-              "Name": {
-                "type": "name",
+              "Address": {
+                "type": "location",
                 "props": {
-                  "first": "John",
-                  "firstInitialOnly": false,
-                  "last": "Smith",
-                  "middle": "H",
-                  "middleInitialOnly": true,
-                  "noMiddleName": false,
-                  "suffix": "Other",
-                  "suffixOther": "XX"
+                  "layout": "Address",
+                  "street": "123 Some Rd",
+                  "city": "Arlington",
+                  "state": "VA",
+                  "zipcode": "22202",
+                  "country": "United States"
                 }
               },
               "Dates": {
@@ -29,8 +33,7 @@
                       "month": "7",
                       "day": "1",
                       "year": "2017",
-                      "estimated": false,
-                      "date": "2017-07-01T00:00:00Z"
+                      "estimated": false
                     }
                   },
                   "to": {
@@ -39,11 +42,57 @@
                       "month": "7",
                       "day": "25",
                       "year": "2017",
-                      "estimated": false,
-                      "date": "2017-07-25T00:00:00Z"
+                      "estimated": false
                     }
                   },
                   "present": false
+                }
+              },
+              "Email": {
+                "type": "email",
+                "props": {
+                  "value": "test@abc.com"
+                }
+              },
+              "EmailNotApplicable": {
+                "type": "notapplicable",
+                "props": {
+                  "applicable": true
+                }
+              },
+              "MobileTelephone": {
+                "type": "telephone",
+                "props": {
+                  "timeOfDay": "Both",
+                  "type": "Domestic",
+                  "numberType": "",
+                  "number": "2128675309",
+                  "extension": "",
+                  "noNumber": false
+                }
+              },
+              "Name": {
+                "type": "name",
+                "props": {
+                  "first": "John",
+                  "firstInitialOnly": false,
+                  "middle": "H",
+                  "middleInitialOnly": true,
+                  "noMiddleName": false,
+                  "last": "Smith",
+                  "suffix": "Other",
+                  "suffixOther": "XX"
+                }
+              },
+              "OtherTelephone": {
+                "type": "telephone",
+                "props": {
+                  "timeOfDay": "Both",
+                  "type": "Domestic",
+                  "numberType": "",
+                  "number": "2128675309",
+                  "extension": "",
+                  "noNumber": false
                 }
               },
               "Rank": {
@@ -61,7 +110,9 @@
               "Relationship": {
                 "type": "checkboxgroup",
                 "props": {
-                  "values": ["Other"]
+                  "values": [
+                    "Other"
+                  ]
                 }
               },
               "RelationshipOther": {
@@ -69,64 +120,10 @@
                 "props": {
                   "value": "my relationship cannot be defined"
                 }
-              },
-              "MobileTelephone": {
-                "type": "telephone",
-                "props": {
-                  "timeOfDay": "Both",
-                  "type": "Domestic",
-                  "numberType": "",
-                  "number": "2128675309",
-                  "extension": "",
-                  "noNumber": false
-                }
-              },
-              "OtherTelephone": {
-                "type": "telephone",
-                "props": {
-                  "timeOfDay": "Both",
-                  "type": "Domestic",
-                  "numberType": "",
-                  "number": "2128675309",
-                  "extension": "",
-                  "noNumber": false
-                }
-              },
-              "Email": {
-                "type": "email",
-                "props": {
-                  "value": "test@abc.com"
-                }
-              },
-              "EmailNotApplicable": {
-                "type": "notapplicable",
-                "props": {
-                  "applicable": true
-                }
-              },
-              "Address": {
-                "type": "location",
-                "props": {
-                  "layout": "Address",
-                  "street": "123 Some Rd",
-                  "street2": "",
-                  "city": "Arlington",
-                  "state": "VA",
-                  "zipcode": "22202",
-                  "county": "",
-                  "country": "United States",
-                  "validated": false
-                }
               }
             }
           }
-        ],
-        "branch": {
-          "type": "branch",
-          "props": {
-            "value": "No"
-          }
-        }
+        ]
       }
     }
   }

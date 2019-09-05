@@ -2,7 +2,7 @@ import { validateModel, hasYesOrNo } from 'models/validate'
 import foreignSupport from 'models/foreignSupport'
 
 export const validateSupport = data => (
-  validateModel(data, foreignSupport) === true
+  validateModel(data, foreignSupport)
 )
 
 export const validateForeignActivitiesSupport = (data) => {
@@ -20,7 +20,7 @@ export const validateForeignActivitiesSupport = (data) => {
     },
   }
 
-  return validateModel(data, foreignActivitiesSupportModel) === true
+  return validateModel(data, foreignActivitiesSupportModel)
 }
 
 export default class ForeignActivitiesSupportValidator {
@@ -29,7 +29,7 @@ export default class ForeignActivitiesSupportValidator {
   }
 
   isValid() {
-    return validateForeignActivitiesSupport(this.data)
+    return validateForeignActivitiesSupport(this.data) === true
   }
 }
 
@@ -75,6 +75,6 @@ export class SupportValidator {
   }
 
   isValid() {
-    return validateSupport(this.data)
+    return validateSupport(this.data) === true
   }
 }

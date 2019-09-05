@@ -1,7 +1,5 @@
 import React from 'react'
 import i18n from 'util/i18n'
-import schema from 'schema'
-import validate, { DrugPublicSafetyUseValidator } from 'validators'
 import * as formConfig from 'config/forms'
 import { getNumberOfYearsString } from 'helpers/text'
 import { Accordion, Branch, Show } from 'components/Form'
@@ -11,7 +9,7 @@ import {
   SUBSTANCE_USE_DRUGS_PUBLIC_SAFETY,
 } from 'config/formSections/substanceUse'
 import Subsection from 'components/Section/shared/Subsection'
-import connectSubstanceUseSection from '../SubstanceUseConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import DrugPublicSafetyUse from './DrugPublicSafetyUse'
 
 const sectionConfig = {
@@ -72,7 +70,7 @@ export class DrugPublicSafetyUses extends Subsection {
   }
 
   render() {
-    const { formType } = this.props
+    const { formType, errors } = this.props
     const formTypeConfig = formType && formConfig[formType]
     const years = formTypeConfig && formTypeConfig.SUBSTANCE_DRUG_PUBLIC_SAFETY_YEARS
     let branchLabelCopy
@@ -82,6 +80,9 @@ export class DrugPublicSafetyUses extends Subsection {
       const numberOfYearsString = getNumberOfYearsString(years)
       branchLabelCopy = i18n.t('substance.drugs.heading.drugPublicSafetyUsesNum', { numberOfYearsString })
     }
+
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content drug-public-safety-uses"
@@ -110,7 +111,7 @@ export class DrugPublicSafetyUses extends Subsection {
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={DrugPublicSafetyUseValidator}
+            errors={accordionErrors}
             description={i18n.t('substance.drugs.publicSafety.collection.description')}
             appendTitle={i18n.t('substance.drugs.publicSafety.collection.appendTitle')}
             appendLabel={i18n.t('substance.drugs.publicSafety.collection.appendLabel')}
@@ -137,8 +138,8 @@ DrugPublicSafetyUses.defaultProps = {
   section: 'substance',
   subsection: 'drugs/publicsafety',
   dispatch: () => {},
-  validator: data => validate(schema('substance.drugs.publicsafety', data)),
   scrollToBottom: '',
+  errors: [],
 }
 
-export default connectSubstanceUseSection(DrugPublicSafetyUses, sectionConfig)
+export default connectSubsection(DrugPublicSafetyUses, sectionConfig)

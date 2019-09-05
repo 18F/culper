@@ -1,16 +1,14 @@
 import React from 'react'
 
 import { i18n } from 'config'
-import schema from 'schema'
-import validate from 'validators'
 import { Location, Field } from 'components/Form'
 
 import {
   IDENTIFICATION,
   IDENTIFICATION_BIRTH_PLACE,
 } from 'config/formSections/identification'
-import connectIdentificationSection from '../IdentificationConnector'
-import Subsection from '../../shared/Subsection'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
+import Subsection from 'components/Section/shared/Subsection'
 
 
 const sectionConfig = {
@@ -89,9 +87,8 @@ ApplicantBirthPlace.defaultProps = {
   onUpdate: () => {},
   onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => validate(schema('identification.birthplace', data)),
 }
 
 ApplicantBirthPlace.errors = []
 
-export default connectIdentificationSection(ApplicantBirthPlace, sectionConfig)
+export default connectSubsection(ApplicantBirthPlace, sectionConfig)

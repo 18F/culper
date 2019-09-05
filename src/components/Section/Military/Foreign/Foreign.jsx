@@ -3,13 +3,10 @@ import React from 'react'
 import { MILITARY, MILITARY_FOREIGN } from 'config/formSections/military'
 import { i18n } from 'config'
 
-import schema from 'schema'
-import validate from 'validators'
-
 import Subsection from 'components/Section/shared/Subsection'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import { BranchCollection } from 'components/Form'
 import ForeignService from 'components/Section/Military/Foreign/ForeignService'
-import connectMilitarySection from 'components/Section/Military/MilitaryConnector'
 
 const sectionConfig = {
   key: MILITARY_FOREIGN.key,
@@ -86,9 +83,9 @@ Foreign.defaultProps = {
   subsection: 'foreign',
   addressBooks: {},
   dispatch: () => {},
-  validator: data => validate(schema('military.foreign', data)),
   defaultState: true,
   requireForeignMilitaryMaintainsContact: true,
+  errors: [],
 }
 
-export default connectMilitarySection(Foreign, sectionConfig)
+export default connectSubsection(Foreign, sectionConfig)

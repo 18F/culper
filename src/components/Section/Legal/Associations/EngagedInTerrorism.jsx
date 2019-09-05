@@ -1,7 +1,5 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { EngagedValidator } from 'validators'
 import { Summary, DateSummary } from 'components/Summary'
 import { Accordion, Branch, Show } from 'components/Form'
 import {
@@ -9,7 +7,7 @@ import {
   LEGAL_ASSOCIATIONS_ENGAGED_IN_TERRORISM,
 } from 'config/formSections/legal'
 import Subsection from 'components/Section/shared/Subsection'
-import connectLegalSection from '../LegalConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import EngagedInTerrorismItem from './EngagedInTerrorismItem'
 
 const sectionConfig = {
@@ -70,6 +68,9 @@ export class EngagedInTerrorism extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content legal-associations-engaged"
@@ -98,7 +99,7 @@ export class EngagedInTerrorism extends Subsection {
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={EngagedValidator}
+            errors={accordionErrors}
             description={i18n.t('legal.associations.engaged.collection.description')}
             appendTitle={i18n.t('legal.associations.engaged.collection.appendTitle')}
             appendLabel={i18n.t('legal.associations.engaged.collection.appendLabel')}
@@ -128,8 +129,8 @@ EngagedInTerrorism.defaultProps = {
   section: 'legal',
   subsection: 'associations/engaged-in-terrorism',
   dispatch: () => {},
-  validator: data => validate(schema('legal.associations.engaged-in-terrorism', data)),
   scrollToBottom: '',
+  errors: [],
 }
 
-export default connectLegalSection(EngagedInTerrorism, sectionConfig)
+export default connectSubsection(EngagedInTerrorism, sectionConfig)

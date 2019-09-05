@@ -2,8 +2,6 @@
 import React from 'react'
 
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { OtherNameValidator } from 'validators'
 
 import {
   Field,
@@ -11,13 +9,14 @@ import {
   Branch,
   Show,
 } from 'components/Form'
+
+import Subsection from 'components/Section/shared/Subsection'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
+
 import { Summary, NameSummary, DateSummary } from 'components/Summary'
 import { IDENTIFICATION, IDENTIFICATION_OTHER_NAMES } from 'config/formSections/identification'
 
 import OtherNameItem from './OtherNameItem'
-
-import connectIdentificationSection from '../IdentificationConnector'
-import Subsection from '../../shared/Subsection'
 
 const sectionConfig = {
   key: IDENTIFICATION_OTHER_NAMES.key,
@@ -86,6 +85,9 @@ export class OtherNames extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content other-names"
@@ -122,7 +124,7 @@ export class OtherNames extends Subsection {
             onError={this.handleError}
             required={this.props.required}
             scrollIntoView={this.props.scrollIntoView}
-            validator={OtherNameValidator}
+            errors={accordionErrors}
             summary={this.summary}
             description={i18n.t(
               'identification.othernames.collection.summary.title'
@@ -152,9 +154,9 @@ OtherNames.defaultProps = {
   onUpdate: () => {},
   onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => validate(schema('identification.othernames', data)),
   defaultState: true,
   required: false,
+  errors: [],
 }
 
-export default connectIdentificationSection(OtherNames, sectionConfig)
+export default connectSubsection(OtherNames, sectionConfig)

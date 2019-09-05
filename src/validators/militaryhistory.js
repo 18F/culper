@@ -3,11 +3,11 @@ import militaryHistory from 'models/militaryHistory'
 import { validateModel } from 'models/validate'
 
 export const validateMilitaryHistory = data => (
-  validateModel(data, militaryHistory) === true
+  validateModel(data, militaryHistory)
 )
 
 export const validateMilitaryService = data => (
-  validateModel(data, militaryService) === true
+  validateModel(data, militaryService)
 )
 
 export default class MilitaryHistoryValidator {
@@ -26,7 +26,7 @@ export default class MilitaryHistoryValidator {
   }
 
   isValid() {
-    return validateMilitaryHistory(this.data)
+    return validateMilitaryHistory(this.data) === true
   }
 }
 
@@ -36,6 +36,6 @@ export class MilitaryServiceValidator {
   }
 
   isValid() {
-    return validateMilitaryService(this.data)
+    return validateMilitaryService(this.data) === true
   }
 }

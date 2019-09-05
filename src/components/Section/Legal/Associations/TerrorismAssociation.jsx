@@ -1,7 +1,5 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate from 'validators'
 import {
   Branch,
   Show,
@@ -13,7 +11,7 @@ import {
   LEGAL_ASSOCIATIONS_TERRORISM_ASSOCIATION,
 } from 'config/formSections/legal'
 import Subsection from 'components/Section/shared/Subsection'
-import connectLegalSection from '../LegalConnector'
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
 
 const sectionConfig = {
   key: LEGAL_ASSOCIATIONS_TERRORISM_ASSOCIATION.key,
@@ -109,7 +107,7 @@ TerrorismAssociation.defaultProps = {
   section: 'legal',
   subsection: 'associations/terrorism-association',
   dispatch: () => {},
-  validator: data => validate(schema('legal.associations.terrorism-association', data)),
+  errors: [],
 }
 
-export default connectLegalSection(TerrorismAssociation, sectionConfig)
+export default connectSubsection(TerrorismAssociation, sectionConfig)

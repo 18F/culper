@@ -44,6 +44,7 @@
             {{tmpl "substance.xml" .}}
             {{tmpl "legal.xml" .}}
             {{tmpl "psychological.xml" .}}
+            {{tmpl "additional-comments.xml" .Package.Comments}}
             <FormInstructions Type="Pooled" Version="1">
               <ReadAndUnderstoodStatementOfUnderstanding>
                 <Answer>Yes</Answer>

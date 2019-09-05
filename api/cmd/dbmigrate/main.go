@@ -58,7 +58,7 @@ type stackTracer interface {
 }
 
 func main() {
-	migrationsPath := flag.String("migrations_path", "", "path to the directory containing migrations. If left out it will be guessed.")
+	migrationsPath := flag.String("migrations_path", "", "path to the directory containing migrations. Required.")
 
 	flag.Parse()
 

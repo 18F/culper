@@ -8,7 +8,7 @@ export const validateOrderedCounseling = (data, formType = formTypes.SF86) => {
   const options = {
     requireAlcoholOrderedCounselingParty: requireAlcoholOrderedCounselingParty(formType),
   }
-  return validateModel(data, alcoholOrderedCounseling, options) === true
+  return validateModel(data, alcoholOrderedCounseling, options)
 }
 
 export const validateOrderedCounselings = (data, formType = formTypes.SF86) => {
@@ -26,7 +26,7 @@ export const validateOrderedCounselings = (data, formType = formTypes.SF86) => {
     },
   }
 
-  return validateModel(data, orderedCounselingsModel, options) === true
+  return validateModel(data, orderedCounselingsModel, options)
 }
 
 export default class OrderedCounselingsValidator {
@@ -38,7 +38,7 @@ export default class OrderedCounselingsValidator {
   }
 
   isValid() {
-    return validateOrderedCounselings(this.data, this.formType)
+    return validateOrderedCounselings(this.data, this.formType) === true
   }
 }
 
@@ -58,6 +58,6 @@ export class OrderedCounselingValidator {
   }
 
   isValid() {
-    return validateOrderedCounseling(this.data, this.formType)
+    return validateOrderedCounseling(this.data, this.formType) === true
   }
 }

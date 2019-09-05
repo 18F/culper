@@ -11,7 +11,7 @@ export const validateCivilUnion = (data, formType = formTypes.SF86) => {
     data,
     civilUnion,
     { requireForeignBornDocExpiration: isForeignBornDocExpirationRequired },
-  ) === true
+  )
 }
 
 export default class CivilUnionValidator {
@@ -56,6 +56,6 @@ export default class CivilUnionValidator {
   }
 
   isValid() {
-    return validateCivilUnion(this.data, this.formType)
+    return validateCivilUnion(this.data, this.formType) === true
   }
 }

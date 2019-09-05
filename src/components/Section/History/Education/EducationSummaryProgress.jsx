@@ -6,9 +6,7 @@ import { i18n } from 'config'
 import SummaryCounter from 'components/Section/History/SummaryCounter'
 import { totalYears } from 'components/Section/History/helpers'
 
-import { EducationItemValidator } from 'validators'
-
-const schoolRangesList = (items) => {
+const schoolRangesList = (items, errors) => {
   const dates = []
 
   items.forEach((i) => {
@@ -16,23 +14,23 @@ const schoolRangesList = (items) => {
       return
     }
 
-    if (new EducationItemValidator(i.Item).isValid()) {
-      dates.push(i.Item.Dates)
-    }
+    const itemErrors = errors && errors.filter(e => e.indexOf(i.uuid) > -1)
+    if (itemErrors && itemErrors.length > 0) return
+
+    dates.push(i.Item.Dates)
   })
 
   return dates
 }
 
-const diplomasRangesList = (items) => {
+const diplomasRangesList = (items, errors) => {
   const dates = []
 
   items.forEach((i) => {
-    if (!i.Item) { return }
+    if (!i.Item) return
 
-    if (!new EducationItemValidator(i.Item).isValid()) {
-      return
-    }
+    const itemErrors = errors && errors.filter(e => e.indexOf(i.uuid) > -1)
+    if (itemErrors && itemErrors.length > 0) return
 
     if (i.Item.Diplomas.items) {
       i.Item.Diplomas.items.forEach((d) => {
@@ -47,15 +45,17 @@ const diplomasRangesList = (items) => {
 }
 
 const EducationSummaryProgress = (props) => {
-  const { Education, Birthdate, years } = props
+  const {
+    Education, Birthdate, years, errors,
+  } = props
 
   let schoolDates = []
   if (Education && Education.List && Education.List.items) {
     schoolDates = Education.List.items
   }
 
-  const getSchoolDates = () => schoolRangesList(schoolDates)
-  const getDiplomaDates = () => diplomasRangesList(schoolDates)
+  const getSchoolDates = () => schoolRangesList(schoolDates, errors)
+  const getDiplomaDates = () => diplomasRangesList(schoolDates, errors)
 
   return (
     <SummaryCounter
@@ -75,12 +75,14 @@ EducationSummaryProgress.propTypes = {
   Education: PropTypes.object,
   Birthdate: PropTypes.any,
   years: PropTypes.number,
+  errors: PropTypes.array,
 }
 
 EducationSummaryProgress.defaultProps = {
   Education: null,
   Birthdate: null,
   years: 10,
+  errors: [],
 }
 
 export default EducationSummaryProgress

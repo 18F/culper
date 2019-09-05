@@ -1056,7 +1056,7 @@
                   <DateRelinquished>
                     <Month>01</Month>
                     <Day>06</Day>
-                    <Year>1995</Year>
+                    <Year>2000</Year>
                   </DateRelinquished>
                   <Explanation>dont know</Explanation>
                   <HowAcquired>gift</HowAcquired>
@@ -2247,6 +2247,9 @@
                 <Answer>No</Answer>
               </AdverselyAffected>
             </MedicalRecord2>
+            <AdditionalComments Version="1" Type="Pooled">
+              <Comment>This is a test.</Comment>
+            </AdditionalComments>
             <FormInstructions Type="Pooled" Version="1">
               <ReadAndUnderstoodStatementOfUnderstanding>
                 <Answer>Yes</Answer>

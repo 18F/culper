@@ -32,6 +32,7 @@ exports[`The timeout warning component matches the snapshot 1`] = `
           aria-label="Yes I'm still working"
           onClick={[Function]}
           title="Yes I'm still working"
+          type="button"
         >
           <div>
             <span>

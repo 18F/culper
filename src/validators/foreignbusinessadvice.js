@@ -1,7 +1,7 @@
 import { validateModel, hasYesOrNo } from 'models/validate'
 import foreignBusinessAdvice from 'models/foreignBusinessAdvice'
 
-export const validateAdvice = data => validateModel(data, foreignBusinessAdvice) === true
+export const validateAdvice = data => validateModel(data, foreignBusinessAdvice)
 
 export const validateForeignBusinessAdvice = (data) => {
   const foreignBusinessAdviceModel = {
@@ -18,7 +18,7 @@ export const validateForeignBusinessAdvice = (data) => {
     },
   }
 
-  return validateModel(data, foreignBusinessAdviceModel) === true
+  return validateModel(data, foreignBusinessAdviceModel)
 }
 
 export default class ForeignBusinessAdviceValidator {
@@ -27,7 +27,7 @@ export default class ForeignBusinessAdviceValidator {
   }
 
   isValid() {
-    return validateForeignBusinessAdvice(this.data)
+    return validateForeignBusinessAdvice(this.data) === true
   }
 }
 
@@ -67,6 +67,6 @@ export class AdviceValidator {
   }
 
   isValid() {
-    return validateAdvice(this.data)
+    return validateAdvice(this.data) === true
   }
 }

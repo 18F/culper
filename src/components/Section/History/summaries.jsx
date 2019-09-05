@@ -7,17 +7,16 @@ import {
   Summary,
   AddressSummary,
   DateSummary,
-  NameSummary
+  NameSummary,
 } from 'components/Summary'
-import {
-  ResidenceValidator,
-  EmploymentValidator,
-  EducationItemValidator
-} from 'validators'
+
 import { openState, chevron } from 'components/Form/Accordion/Accordion'
 
+/** This file should be refactored */
+/* eslint-disable */
+
 export const CustomSummary = (
-  validation,
+  isValid,
   summary,
   more,
   item,
@@ -34,7 +33,7 @@ export const CustomSummary = (
   }
 
   const target = item.Item || {}
-  const errors = item.Item && !validation(target)
+  const errors = item.Item && !isValid
   const text = openText() || ''
 
   return (
@@ -78,10 +77,9 @@ export const ResidenceSummary = (item, index, errors, open) => {
     item.Dates,
     i18n.t('history.employment.default.noDate.label')
   )
-  const svg =
-    errors && !open ? (
-      <Svg src="/img/exclamation-point.svg" className="incomplete" />
-    ) : null
+  const svg = errors && !open
+    ? <Svg src="/img/exclamation-point.svg" className="incomplete" />
+    : null
 
   return Summary({
     icon: svg,
@@ -89,11 +87,11 @@ export const ResidenceSummary = (item, index, errors, open) => {
     type: i18n.t('history.residence.collection.summary.item'),
     left: address,
     right: dates,
-    placeholder: i18n.t('history.residence.collection.summary.unknown')
+    placeholder: i18n.t('history.residence.collection.summary.unknown'),
   })
 }
 
-const PersonSummary = (item, errors) => {
+const PersonSummary = (item) => {
   if (!item.ReferenceName) {
     return null
   }
@@ -105,7 +103,7 @@ const PersonSummary = (item, errors) => {
 
   return Summary({
     type: i18n.t('history.residence.collection.summary.item2'),
-    left: name
+    left: name,
   })
 }
 
@@ -117,37 +115,32 @@ export const ResidenceCustomSummary = (
   toggle,
   openText,
   remove,
-  byline
-) => {
-  return CustomSummary(
-    x => {
-      return new ResidenceValidator(x, null).isValid()
-    },
-    (x, e) => {
-      return ResidenceSummary(x, index, e, item.open)
-    },
-    (x, e) => {
-      const ps = PersonSummary(x, e)
-      if (ps === null) {
-        return null
-      }
+  byline,
+  isValid
+) => CustomSummary(
+  isValid,
+  (x, e) => ResidenceSummary(x, index, e, item.open),
+  (x, e) => {
+    const ps = PersonSummary(x, e)
+    if (ps === null) {
+      return null
+    }
 
-      return (
-        <a href="javascript:;;;" onClick={toggle()}>
-          {ps}
-        </a>
-      )
-    },
-    item,
-    index,
-    initial,
-    callback,
-    toggle,
-    openText,
-    remove,
-    byline
-  )
-}
+    return (
+      <a href="javascript:;;;" onClick={toggle()}>
+        {ps}
+      </a>
+    )
+  },
+  item,
+  index,
+  initial,
+  callback,
+  toggle,
+  openText,
+  remove,
+  byline
+)
 
 const employmentTitle = (activity, item, unk) => {
   switch (activity) {
@@ -181,10 +174,9 @@ export const EmploymentSummary = (item, index, errors, open) => {
     item.Dates,
     i18n.t('history.employment.default.noDate.label')
   )
-  const svg =
-    errors && !open ? (
-      <Svg src="/img/exclamation-point.svg" className="incomplete" />
-    ) : null
+  const svg = errors && !open
+    ? <Svg src="/img/exclamation-point.svg" className="incomplete" />
+    : null
 
   return Summary({
     icon: svg,
@@ -196,16 +188,14 @@ export const EmploymentSummary = (item, index, errors, open) => {
   })
 }
 
-const ActivitySummary = (item, errors) => {
-  if (
-    !item.Additional ||
-    item.Additional.HasAdditionalActivity !== 'Yes' ||
-    (item.Additional.List || []).length === 0
-  ) {
+const ActivitySummary = (item) => {
+  if (!item.Additional
+    || item.Additional.HasAdditionalActivity !== 'Yes'
+    || (item.Additional.List || []).length === 0) {
     return []
   }
 
-  return item.Additional.List.map(activity => {
+  return item.Additional.List.map((activity) => {
     const dates = DateSummary(
       activity.DatesEmployed,
       i18n.t('history.employment.default.noDate.label')
@@ -215,7 +205,7 @@ const ActivitySummary = (item, errors) => {
       return Summary({
         type: i18n.t('history.employment.default.collection.summary.item2'),
         left: activity.Position.value,
-        right: dates
+        right: dates,
       })
     }
 
@@ -231,36 +221,27 @@ export const EmploymentCustomSummary = (
   toggle,
   openText,
   remove,
+  byline,
+  isValid
+) => CustomSummary(
+  isValid,
+  (x, e) => EmploymentSummary(x, index, e, item.open),
+  (x, e) => ActivitySummary(x, e)
+    .filter(activity => activity !== null)
+    .map(activity => (
+      <a href="javascript:;;;" key={newGuid()} onClick={toggle()}>
+        {activity}
+      </a>
+    )),
+  item,
+  index,
+  initial,
+  callback,
+  toggle,
+  openText,
+  remove,
   byline
-) => {
-  return CustomSummary(
-    x => {
-      return new EmploymentValidator(x).isValid()
-    },
-    (x, e) => {
-      return EmploymentSummary(x, index, e, item.open)
-    },
-    (x, e) => {
-      return ActivitySummary(x, e)
-        .filter(activity => activity !== null)
-        .map(activity => {
-          return (
-            <a href="javascript:;;;" key={newGuid()} onClick={toggle()}>
-              {activity}
-            </a>
-          )
-        })
-    },
-    item,
-    index,
-    initial,
-    callback,
-    toggle,
-    openText,
-    remove,
-    byline
-  )
-}
+)
 
 /**
  * Renders a formatted summary information for an education row
@@ -271,10 +252,9 @@ export const EducationSummary = (item, index, errors, open) => {
     item.Dates,
     i18n.t('history.employment.default.noDate.label')
   )
-  const svg =
-    errors && !open ? (
-      <Svg src="/img/exclamation-point.svg" className="incomplete" />
-    ) : null
+  const svg = errors && !open
+    ? <Svg src="/img/exclamation-point.svg" className="incomplete" />
+    : null
 
   return Summary({
     icon: svg,
@@ -286,7 +266,7 @@ export const EducationSummary = (item, index, errors, open) => {
   })
 }
 
-const DiplomaSummary = (item, errors) => {
+const DiplomaSummary = (item) => {
   if (((item.Diplomas || {}).items || []).length === 0) {
     return []
   }
@@ -295,13 +275,15 @@ const DiplomaSummary = (item, errors) => {
     const dd = degree.Item || {}
     const other = (dd.DiplomaOther || {}).value || ''
     const diploma = (dd.Diploma || {}).value || ''
-    const val = diploma ? (diploma === 'Other' ? other : diploma) : other
+    const val = diploma
+      ? (diploma === 'Other' ? other : diploma)
+      : other
 
     if (val) {
       return Summary({
         type: i18n.t('history.education.collection.school.summary.item2'),
-        index: index,
-        left: val
+        index,
+        left: val,
       })
     }
 
@@ -317,36 +299,27 @@ export const EducationCustomSummary = (
   toggle,
   openText,
   remove,
+  byline,
+  isValid
+) => CustomSummary(
+  isValid,
+  (x, e) => EducationSummary(x, index, e, item.open),
+  (x, e) => DiplomaSummary(x, e)
+    .filter(diploma => diploma !== null)
+    .map(diploma => (
+      <a href="javascript:;;;" key={newGuid()} onClick={toggle()}>
+        {diploma}
+      </a>
+    )),
+  item,
+  index,
+  initial,
+  callback,
+  toggle,
+  openText,
+  remove,
   byline
-) => {
-  return CustomSummary(
-    x => {
-      return new EducationItemValidator(x).isValid()
-    },
-    (x, e) => {
-      return EducationSummary(x, index, e, item.open)
-    },
-    (x, e) => {
-      return DiplomaSummary(x, e)
-        .filter(diploma => diploma !== null)
-        .map(diploma => {
-          return (
-            <a href="javascript:;;;" key={newGuid()} onClick={toggle()}>
-              {diploma}
-            </a>
-          )
-        })
-    },
-    item,
-    index,
-    initial,
-    callback,
-    toggle,
-    openText,
-    remove,
-    byline
-  )
-}
+)
 
 /**
  * Inject new list items as `Gaps`
@@ -355,49 +328,47 @@ export const InjectGaps = (list = [], start) => {
   // Let us just make sure we clear any previous gaps
   list = list.filter(item => !item.type || (item.type && item.type !== 'Gap'))
 
-  const hasDates = item => {
+  const hasDates = (item) => {
     const dates = ((item || {}).Item || {}).Dates || {}
     const from = extractDate(dates.from)
     const to = dates.present === true ? new Date() : extractDate(dates.to)
     return from && to
   }
 
-  const gapToItem = gap => {
-    return {
-      type: 'Gap',
-      uuid: newGuid(),
-      open: false,
-      Item: {
-        Dates: {
-          from: {
-            date: gap.from,
-            month: `${gap.from.getMonth() + 1}`,
-            day: `${gap.from.getDate()}`,
-            year: `${gap.from.getFullYear()}`
-          },
-          to: {
-            date: gap.to,
-            month: `${gap.to.getMonth() + 1}`,
-            day: `${gap.to.getDate()}`,
-            year: `${gap.to.getFullYear()}`
-          }
-        }
-      }
-    }
-  }
+  const gapToItem = gap => ({
+    type: 'Gap',
+    uuid: newGuid(),
+    open: false,
+    Item: {
+      Dates: {
+        from: {
+          date: gap.from,
+          month: `${gap.from.getMonth() + 1}`,
+          day: `${gap.from.getDate()}`,
+          year: `${gap.from.getFullYear()}`,
+        },
+        to: {
+          date: gap.to,
+          month: `${gap.to.getMonth() + 1}`,
+          day: `${gap.to.getDate()}`,
+          year: `${gap.to.getFullYear()}`,
+        },
+      },
+    },
+  })
 
   const sort = (a, b) => {
     // Helper to find the date value or default it to 0
-    const getOptionalDate = obj => {
-      return (((obj || {}).Item || {}).Dates || {}).to
-    }
+    const getOptionalDate = obj => (((obj || {}).Item || {}).Dates || {}).to
 
     const first = extractDate(getOptionalDate(a)) || 0
     const second = extractDate(getOptionalDate(b)) || 0
 
     if (first < second) {
       return 1
-    } else if (first > second) {
+    }
+
+    if (first > second) {
       return -1
     }
 
@@ -406,10 +377,8 @@ export const InjectGaps = (list = [], start) => {
 
   // Find all our "holes" for this type
   const ranges = list
-    .filter(item => {
-      return hasDates(item)
-    })
-    .map(item => {
+    .filter(item => hasDates(item))
+    .map((item) => {
       const dates = ((item || {}).Item || {}).Dates || {}
       const from = extractDate(dates.from)
       const to = dates.present === true ? new Date() : extractDate(dates.to)

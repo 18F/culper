@@ -20,7 +20,9 @@ import { NO } from 'constants/values'
 const accordionValidator = (value, options, key, attributes, globalOptions) => {
   if (validate.isEmpty(value)) return null // Don't validate if there is no value
 
-  const { validator, length, ignoreBranch } = options
+  const {
+    validator, length, ignoreBranch, itemsValidator,
+  } = options
   if (!validator) return INVALID_VALIDATOR
 
   const { items, branch } = value
@@ -41,13 +43,18 @@ const accordionValidator = (value, options, key, attributes, globalOptions) => {
   for (let i = 0; i < items.length; i += 1) {
     const { Item, uuid } = items[i]
     const itemId = uuid || i
-    if (!Item) return INVALID_ITEM
+    if (!Item) itemsErrors = itemsErrors.concat(`${itemId}.${INVALID_ITEM}`)
 
     const itemErrors = validateModel(Item, validator, { ...globalOptions, ...options })
     if (itemErrors !== true) itemsErrors = itemsErrors.concat(itemErrors.map(e => `${itemId}.${e}`))
   }
-
   if (itemsErrors.length) return itemsErrors
+
+  // Optional function to test against all of the items
+  if (itemsValidator) {
+    const itemsValidatorErrors = itemsValidator(items)
+    if (itemsValidatorErrors) return itemsValidatorErrors
+  }
 
   return null
 }

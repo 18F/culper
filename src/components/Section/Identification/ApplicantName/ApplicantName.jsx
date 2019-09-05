@@ -1,17 +1,15 @@
 import React from 'react'
 import { i18n } from 'config'
 
-import schema from 'schema'
-import validate from 'validators'
 import { Name, Field } from 'components/Form'
 
 import {
   IDENTIFICATION,
   IDENTIFICATION_NAME,
 } from 'config/formSections/identification'
-import connectIdentificationSection from '../IdentificationConnector'
-import Subsection from '../../shared/Subsection'
 
+import connectSubsection from 'components/Section/shared/SubsectionConnector'
+import Subsection from 'components/Section/shared/Subsection'
 
 const sectionConfig = {
   key: IDENTIFICATION_NAME.key,
@@ -91,9 +89,8 @@ ApplicantName.defaultProps = {
   onError: (value, arr) => arr,
   dispatch: () => {},
   required: false,
-  validator: data => validate(schema('identification.name', data)),
 }
 
 ApplicantName.errors = []
 
-export default connectIdentificationSection(ApplicantName, sectionConfig)
+export default connectSubsection(ApplicantName, sectionConfig)

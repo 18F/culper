@@ -5,33 +5,34 @@ import { i18n } from 'config'
 
 import SummaryProgress from 'components/Section/History/SummaryProgress'
 import { totalYears } from 'components/Section/History/helpers'
-
 import { Svg } from 'components/Form'
-import { ResidenceValidator } from 'validators'
 
-const dateRangeList = (items) => {
+const dateRangeList = (items, errors) => {
   const dates = []
 
   items.forEach((i) => {
-    if (!i.Item) { return }
+    if (!i.Item) return
 
-    if (new ResidenceValidator(i.Item).isValid()) {
-      dates.push(i.Item.Dates)
-    }
+    const itemErrors = errors && errors.filter(e => e.indexOf(i.uuid) > -1)
+    if (itemErrors && itemErrors.length > 0) return
+
+    dates.push(i.Item.Dates)
   })
 
   return dates
 }
 
 const ResidenceSummaryProgress = (props) => {
-  const { Residence, Birthdate, years } = props
+  const {
+    Residence, Birthdate, years, errors,
+  } = props
 
   let residenceDates = []
   if (Residence && Residence.List && Residence.List.items) {
     residenceDates = Residence.List.items
   }
 
-  const getResidenceDates = () => dateRangeList(residenceDates)
+  const getResidenceDates = () => dateRangeList(residenceDates, errors)
 
   return (
     <SummaryProgress
@@ -56,12 +57,14 @@ ResidenceSummaryProgress.propTypes = {
   Residence: PropTypes.object,
   Birthdate: PropTypes.any,
   years: PropTypes.number,
+  errors: PropTypes.array,
 }
 
 ResidenceSummaryProgress.defaultProps = {
   Residence: undefined,
   Birthdate: undefined,
   years: 10,
+  errors: [],
 }
 
 export default ResidenceSummaryProgress
