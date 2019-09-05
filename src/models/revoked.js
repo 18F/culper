@@ -1,5 +1,14 @@
+import { DEFAULT_LATEST } from 'constants/dateLimits'
+
 const revoked = {
-  Date: { presence: true, date: true },
+  Date: (value, attributes, attributeName, options = {}) => {
+    const { applicantBirthdate } = options
+
+    return {
+      presence: true,
+      date: { earliest: applicantBirthdate, latest: DEFAULT_LATEST },
+    }
+  },
   Agency: { presence: true, hasValue: true },
   Explanation: { presence: true, hasValue: true },
 }
