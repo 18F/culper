@@ -24,6 +24,35 @@ describe('The offense model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('Date cannot be before applicant birthdate', () => {
+    const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+    const testData = {
+      Date: { month: 1, year: 1970, day: 2 },
+    }
+
+    const expectedErrors = [
+      'Date.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, offense, {
+      applicantBirthdate,
+    }))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Date cannot be in the future', () => {
+    const testData = {
+      Date: { month: 1, year: 2050, day: 2 },
+    }
+
+    const expectedErrors = [
+      'Date.date.date.datetime.DATE_TOO_LATE',
+    ]
+
+    expect(validateModel(testData, offense))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('the Description field is required', () => {
     const testData = {}
     const expectedErrors = ['Description.presence.REQUIRED']
@@ -355,6 +384,37 @@ describe('The offense model', () => {
         CourtDate: { year: 3000, month: 13, day: 2 },
       }
       const expectedErrors = ['CourtDate.date.date.datetime.INVALID_DATE']
+
+      expect(validateModel(testData, offense))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('CourtDate cannot be before applicant birthdate', () => {
+      const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+      const testData = {
+        WasCharged: { value: 'Yes' },
+        CourtDate: { month: 1, year: 1970, day: 2 },
+      }
+
+      const expectedErrors = [
+        'CourtDate.date.date.datetime.DATE_TOO_EARLY',
+      ]
+
+      expect(validateModel(testData, offense, {
+        applicantBirthdate,
+      }))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('CourtDate cannot be in the future', () => {
+      const testData = {
+        WasCharged: { value: 'Yes' },
+        CourtDate: { month: 1, year: 2050, day: 2 },
+      }
+
+      const expectedErrors = [
+        'CourtDate.date.date.datetime.DATE_TOO_LATE',
+      ]
 
       expect(validateModel(testData, offense))
         .toEqual(expect.arrayContaining(expectedErrors))

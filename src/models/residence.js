@@ -85,11 +85,11 @@ const residence = {
       }
       : {}
   ),
-  ReferenceLastContact: (value, attributes = {}) => (
+  ReferenceLastContact: (value, attributes = {}, attributeName, options = {}) => (
     residenceRequiresReference(attributes.Dates)
       ? {
         presence: true,
-        date: true,
+        date: { earliest: options.applicantBirthdate, latest: DEFAULT_LATEST },
       } : {}
   ),
   ReferenceComments: {}, // not used?

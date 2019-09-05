@@ -48,6 +48,35 @@ describe('The financial taxes model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('Year cannot be before applicant birthdate', () => {
+    const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+    const testData = {
+      Year: { year: 1970 },
+    }
+
+    const expectedErrors = [
+      'Year.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, financialTaxes, {
+      applicantBirthdate,
+    }))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Year cannot be in the future', () => {
+    const testData = {
+      Year: { year: 2050 },
+    }
+
+    const expectedErrors = [
+      'Year.date.date.datetime.DATE_TOO_LATE',
+    ]
+
+    expect(validateModel(testData, financialTaxes))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('Date doesnt error if not applicable is selected', () => {
     const testData = {
       DateNotApplicable: {

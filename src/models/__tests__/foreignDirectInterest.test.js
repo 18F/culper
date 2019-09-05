@@ -114,6 +114,35 @@ describe('The foreignDirectInterest model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('Relinquished cannot be before applicant birthdate', () => {
+    const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+    const testData = {
+      Relinquished: { month: 1, year: 1970, day: 2 },
+    }
+
+    const expectedErrors = [
+      'Relinquished.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, foreignDirectInterest, {
+      applicantBirthdate,
+    }))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Relinquished cannot be in the future', () => {
+    const testData = {
+      Relinquished: { month: 1, year: 2050, day: 2 },
+    }
+
+    const expectedErrors = [
+      'Relinquished.date.date.datetime.DATE_TOO_LATE',
+    ]
+
+    expect(validateModel(testData, foreignDirectInterest))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('Explanation must have a value', () => {
     const testData = {
       Explanation: { value: false },

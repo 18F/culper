@@ -13,7 +13,6 @@ describe('The military service model', () => {
       'HasBeenDischarged.presence.REQUIRED',
     ]
 
-
     expect(validateModel(testData, militaryService))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
@@ -58,7 +57,6 @@ describe('The military service model', () => {
     expect(validateModel(testData, militaryService))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
-
 
   it('requires Status to have a valid value', () => {
     const testData = {
@@ -149,7 +147,6 @@ describe('The military service model', () => {
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
-
     it('requires a DischargeReason for discharge types other than Honorable', () => {
       const testData = {
         HasBeenDischarged: {
@@ -180,7 +177,6 @@ describe('The military service model', () => {
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
-
     it('requires a DischargeDate', () => {
       const testData = {
         HasBeenDischarged: {
@@ -188,6 +184,37 @@ describe('The military service model', () => {
         },
       }
       const expectedErrors = ['DischargeDate.presence.REQUIRED']
+
+      expect(validateModel(testData, militaryService))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('DischargeDate cannot be before applicant birthdate', () => {
+      const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+      const testData = {
+        HasBeenDischarged: { value: 'Yes' },
+        DischargeDate: { month: 1, year: 1970, day: 2 },
+      }
+
+      const expectedErrors = [
+        'DischargeDate.date.date.datetime.DATE_TOO_EARLY',
+      ]
+
+      expect(validateModel(testData, militaryService, {
+        applicantBirthdate,
+      }))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('DischargeDate cannot be in the future', () => {
+      const testData = {
+        HasBeenDischarged: { value: 'Yes' },
+        DischargeDate: { month: 1, year: 2050, day: 2 },
+      }
+
+      const expectedErrors = [
+        'DischargeDate.date.date.datetime.DATE_TOO_LATE',
+      ]
 
       expect(validateModel(testData, militaryService))
         .toEqual(expect.arrayContaining(expectedErrors))
