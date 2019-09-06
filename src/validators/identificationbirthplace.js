@@ -1,23 +1,8 @@
+/* eslint-disable import/prefer-default-export */
 import { validateModel } from 'models/validate'
-import birthplace from 'models/shared/locations/birthplace'
+import identificationPlaceOfBirth from 'models/sections/identificationPlaceOfBirth'
 
 export const validateIdentificationBirthPlace = (data) => {
-  const applicantBirthPlaceModel = {
-    Location: {
-      presence: true,
-      location: { validator: birthplace },
-    },
-  }
 
-  return validateModel(data, applicantBirthPlaceModel)
-}
-
-export default class IdentificationBirthPlaceValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  isValid() {
-    return validateIdentificationBirthPlace(this.data) === true
-  }
+  return validateModel(data, identificationPlaceOfBirth)
 }

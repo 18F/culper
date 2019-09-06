@@ -27,9 +27,9 @@ const sentence = {
     }
 
     const daterangeOptions = {}
-    if (attributes.ExceedsYear && attributes.ExceedsYear.value === 'Yes') {
+    if (attributes.Incarcerated && attributes.Incarcerated.value === 'Yes') {
       daterangeOptions.minDuration = { years: 1 }
-    } else if (attributes.ExceedsYear && attributes.ExceedsYear.value === 'No') {
+    } else if (attributes.Incarcerated && attributes.Incarcerated.value === 'No') {
       daterangeOptions.maxDuration = { years: 1 }
     }
 

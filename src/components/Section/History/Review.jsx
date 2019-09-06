@@ -2,7 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { i18n } from 'config'
-import { HISTORY, HISTORY_REVIEW } from 'config/formSections/history'
+import {
+  HISTORY,
+  HISTORY_RESIDENCE,
+  HISTORY_EMPLOYMENT,
+  HISTORY_EDUCATION,
+  HISTORY_REVIEW,
+} from 'config/formSections/history'
 import * as formConfig from 'config/forms'
 
 import { Show } from 'components/Form'
@@ -18,6 +24,7 @@ import EducationWrapper from './Education/EducationWrapper'
 import FederalWrapper from './Federal/FederalWrapper'
 
 const sectionConfig = {
+  key: HISTORY_REVIEW.key,
   section: HISTORY.name,
   store: HISTORY.store,
   subsection: HISTORY_REVIEW.name,
@@ -26,6 +33,7 @@ const sectionConfig = {
 const Review = (props) => {
   const {
     Birthdate, Education, Residence, Employment, formType, requireHistoryFederalSection, forPrint,
+    errors,
   } = props
 
   const formTypeConfig = formType && formConfig[formType]
@@ -51,12 +59,14 @@ const Review = (props) => {
             Residence={Residence}
             Birthdate={Birthdate}
             years={residenceYears}
+            errors={errors && errors[HISTORY_RESIDENCE.key]}
           />
 
           <EmploymentSummaryProgress
             Employment={Employment}
             Birthdate={Birthdate}
             years={employmentYears}
+            errors={errors && errors[HISTORY_EMPLOYMENT.key]}
           />
 
           <Show when={hasAttendedSchool || hasDegree}>
@@ -64,6 +74,7 @@ const Review = (props) => {
               Education={Education}
               Birthdate={Birthdate}
               years={educationYears}
+              errors={errors && errors[HISTORY_EDUCATION.key]}
             />
           </Show>
         </span>
@@ -111,6 +122,7 @@ Review.propTypes = {
   formType: PropTypes.string,
   requireHistoryFederalSection: PropTypes.bool,
   forPrint: PropTypes.bool,
+  errors: PropTypes.object,
 }
 
 Review.defaultProps = {
@@ -121,6 +133,7 @@ Review.defaultProps = {
   formType: null,
   requireHistoryFederalSection: true,
   forPrint: false,
+  errors: {},
 }
 
 export default connectSubsection(Review, sectionConfig)

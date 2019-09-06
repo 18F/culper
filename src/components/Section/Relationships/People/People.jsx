@@ -2,8 +2,6 @@ import React from 'react'
 
 import i18n from 'util/i18n'
 
-import { PersonValidator } from 'validators'
-
 import { RELATIONSHIPS, RELATIONSHIPS_PEOPLE } from 'config/formSections/relationships'
 
 import Subsection from 'components/Section/shared/Subsection'
@@ -120,11 +118,17 @@ export class People extends Subsection {
 
   peopleSummaryList = () => (
     this.excludeGaps(this.props.List.items).reduce((dates, item) => {
-      if (!item || new PersonValidator(item.Item).isValid() !== true) {
-        return dates
-      }
+      // Return if there is no item
+      if (!item) return dates
 
-      const knownDates = item.Item.Dates
+      // Return if the item is not valid
+      const { errors } = this.props
+      const itemHasErrors = errors && errors.filter(e => e.indexOf(item.uuid) > -1).length > 0
+      if (itemHasErrors) return dates
+
+      const knownDates = item.Item && item.Item.Dates
+      if (!knownDates) return dates
+
       const kfrom = extractDate(knownDates.from)
       const kto = extractDate(knownDates.to)
       const present = (knownDates || {}).present || false
@@ -138,8 +142,13 @@ export class People extends Subsection {
   inject = items => InjectGaps(items, daysAgo(today, 365 * this.props.totalYears))
 
   render() {
-    const { errors } = this.props
+    const { errors, List } = this.props
     const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
+    // Number of list items with no errors
+    const validCount = List.items
+      .filter(i => i && i.Item && errors.filter(e => e.indexOf(i.uuid) > -1).length <= 0)
+      .length
 
     return (
       <div
@@ -170,7 +179,7 @@ export class People extends Subsection {
             </SummaryProgress>
           </div>
           <div className="summaryprogress counter">
-            <PeopleCounter List={this.props.List} />
+            <PeopleCounter minimum={3} validCount={validCount} />
           </div>
         </div>
 

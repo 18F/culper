@@ -43,7 +43,7 @@ const phone = {
       case 'International':
         return {
           presence: true,
-          format: { pattern: /^\d{11,}$/ },
+          format: { pattern: /^\d{4,20}$/ },
         }
       default: {
         return { presence: true }

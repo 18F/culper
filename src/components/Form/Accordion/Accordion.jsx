@@ -439,6 +439,8 @@ export default class Accordion extends ValidationElement {
       // Bind for each item so we get a handle to it when we set the sticky status
       const onScroll = this.onStickyScroll.bind(this, item)
 
+      const isValid = this.hasNoErrors(item.uuid)
+
       const summary = this.props.customSummary(
         item,
         index,
@@ -457,7 +459,8 @@ export default class Accordion extends ValidationElement {
         },
         () => {
           return this.props.byline(item, index, initial)
-        }
+        },
+        isValid
       )
 
       const details = this.props.customDetails(item, index, initial, () => {
@@ -633,7 +636,8 @@ Accordion.defaultProps = {
     toggle,
     openText,
     remove,
-    byline
+    byline,
+    isValid
   ) => {
     return callback()
   },
