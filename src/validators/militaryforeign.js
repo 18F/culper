@@ -1,7 +1,6 @@
 import store from 'services/store'
 import { validateModel } from 'models/validate'
 import militaryForeign, { foreignMilitaryContact } from 'models/militaryForeign'
-import * as formTypes from 'constants/formTypes'
 import { requireForeignMilitaryMaintainsContact } from 'helpers/branches'
 
 const validateForeignContact = data => (
@@ -41,8 +40,9 @@ const militaryForeignModel = {
   },
 }
 
-export const validateMilitaryForeign = (data, formType = formTypes.SF86) => (
+export const validateMilitaryForeign = (data, formType, options = {}) => (
   validateModel(data, militaryForeignModel, {
+    ...options,
     requireForeignMilitaryMaintainsContact: requireForeignMilitaryMaintainsContact(formType),
   })
 )

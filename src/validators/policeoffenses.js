@@ -7,8 +7,8 @@ import {
   requireLegalOffenseIncarcerated,
 } from 'helpers/branches'
 
-export const validatePoliceOffenses = (data, formType) => {
-  const options = {
+export const validatePoliceOffenses = (data, formType, options = {}) => {
+  const modelOptions = {
     requireLegalOffenseInvolvements: requireLegalOffenseInvolvements(formType),
     requireLegalOffenseSentenced: requireLegalOffenseSentenced(formType),
     requireLegalOffenseIncarcerated: requireLegalOffenseIncarcerated(formType),
@@ -25,7 +25,7 @@ export const validatePoliceOffenses = (data, formType) => {
     ),
   }
 
-  return validateModel(data, policeOffensesModel, options) === true
+  return validateModel(data, policeOffensesModel, { ...options, ...modelOptions })
 }
 
 export default class PoliceOffensesValidator {
@@ -37,6 +37,6 @@ export default class PoliceOffensesValidator {
   }
 
   isValid() {
-    return validatePoliceOffenses(this.data, this.formType)
+    return validatePoliceOffenses(this.data, this.formType) === true
   }
 }

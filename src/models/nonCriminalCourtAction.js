@@ -1,7 +1,15 @@
 import address from 'models/shared/locations/address'
+import { DEFAULT_LATEST } from 'constants/dateLimits'
 
 const nonCriminalCourtAction = {
-  CivilActionDate: { presence: true, date: true },
+  CivilActionDate: (value, attributes, attributeName, options = {}) => {
+    const { applicantBirthdate } = options
+
+    return {
+      presence: true,
+      date: { earliest: applicantBirthdate, latest: DEFAULT_LATEST },
+    }
+  },
   CourtName: { presence: true, hasValue: true },
   CourtAddress: { presence: true, location: { validator: address } },
   NatureOfAction: { presence: true, hasValue: true },

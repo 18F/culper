@@ -77,6 +77,35 @@ describe('The alcoholNegativeImpact model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('Used from date cannot be before applicant birthdate', () => {
+    const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+    const testData = {
+      Used: {
+        from: { month: 1, year: 1970, day: 2 },
+      },
+    }
+    const expectedErrors = [
+      'Used.daterange.from.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, alcoholNegativeImpact, { applicantBirthdate }))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Used to date cannot be in the future', () => {
+    const testData = {
+      Used: {
+        to: { month: 1, year: 2050, day: 2 },
+      },
+    }
+    const expectedErrors = [
+      'Used.daterange.to.date.date.datetime.DATE_TOO_LATE',
+    ]
+
+    expect(validateModel(testData, alcoholNegativeImpact))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('passes a valid alcoholNegativeImpact', () => {
     const testData = {
       Occurred: { month: 5, year: 2011 },

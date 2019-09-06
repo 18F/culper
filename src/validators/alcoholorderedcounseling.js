@@ -11,10 +11,11 @@ export const validateOrderedCounseling = (data, formType = formTypes.SF86) => {
   return validateModel(data, alcoholOrderedCounseling, options)
 }
 
-export const validateOrderedCounselings = (data, formType = formTypes.SF86) => {
-  const options = {
+export const validateOrderedCounselings = (data, formType, options = {}) => {
+  const modelOptions = {
     requireAlcoholOrderedCounselingParty: requireAlcoholOrderedCounselingParty(formType),
   }
+
   const orderedCounselingsModel = {
     HasBeenOrdered: { presence: true, hasValue: { validator: hasYesOrNo } },
     List: (value, attributes) => {
@@ -26,7 +27,7 @@ export const validateOrderedCounselings = (data, formType = formTypes.SF86) => {
     },
   }
 
-  return validateModel(data, orderedCounselingsModel, options)
+  return validateModel(data, orderedCounselingsModel, { ...options, ...modelOptions })
 }
 
 export default class OrderedCounselingsValidator {

@@ -9,12 +9,15 @@ import { HANDLE_SUBSECTION_UPDATE } from 'constants/actionTypes'
 import {
   updateSubsection, handleSubsectionUpdate as handleSubsectionUpdateAction,
 } from 'actions/FormActions'
-import { updateApplication, validateFormData } from 'actions/ApplicationActions'
+import { updateApplication } from 'actions/ApplicationActions'
 
 import { validateSection } from 'helpers/validation'
 import sectionKeys from 'helpers/sectionKeys'
 import { unschema } from 'schema'
 import { env } from 'config'
+import { selectApplicantBirthdate, selectMaritalStatus } from 'selectors/data'
+import { selectValidUSPassport } from 'selectors/misc'
+
 import { selectSubsection, formTypeSelector } from './selectors'
 
 /** LEGACY ACTIONS - store.application */
@@ -50,8 +53,6 @@ export function* setFormData(data) {
 
     yield all(Object.keys(data)
       .map(section => call(updateSectionDataLegacy, section, data[section])))
-
-    yield put(validateFormData())
   } catch (e) {
     console.warn('failed to set form data', e)
     yield call(env.History().push, '/error')
@@ -70,12 +71,24 @@ export const updateSectionData = (prevData, field, data) => ({
 
 export function* handleSubsectionUpdate({ key, data }) {
   const formType = yield select(formTypeSelector)
+  const applicantBirthdate = yield select(selectApplicantBirthdate)
+  const maritalStatus = yield select(selectMaritalStatus)
+  const hasValidUSPassport = yield select(selectValidUSPassport)
+
   const formSection = yield select(selectSubsection, key)
 
   // This because currently, data is updated a whole subsection at a time
   // Consider changing to updateSectionData for field-level updates in the future
   const newData = { ...formSection.data, ...data }
-  const errors = yield call(validateSection, { key, data: newData }, formType)
+  const errors = yield call(validateSection, {
+    key,
+    data: newData,
+    options: { // pass any x-section form data required to validate here
+      applicantBirthdate,
+      maritalStatus,
+      ...hasValidUSPassport,
+    },
+  }, formType)
 
   const newFormSection = {
     data: newData,

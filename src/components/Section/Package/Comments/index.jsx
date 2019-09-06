@@ -3,8 +3,10 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import i18n from 'util/i18n'
-import { validateSection } from 'helpers/validation'
-import { updateApplication, reportCompletion } from 'actions/ApplicationActions'
+
+import { updateApplication } from 'actions/ApplicationActions'
+import { handleSubsectionUpdate } from 'actions/FormActions'
+
 import { REVIEW_AND_SUBMIT, REVIEW_AND_SUBMIT_COMMENTS } from 'config/formSections/review'
 import {
   Branch, Show, Field, Textarea,
@@ -21,42 +23,38 @@ const sectionConfig = {
 
 const PackageComments = (props) => {
   const {
-    HasComments, Comments, required, dispatch, location, formType,
+    HasComments, Comments, required, dispatch, location,
   } = props
 
   const updateBranch = (values) => {
     const updatedValues = { HasComments: values }
+
     dispatch(updateApplication(
       sectionConfig.store,
       sectionConfig.storeKey,
       updatedValues,
     ))
 
-    dispatch(reportCompletion(
-      sectionConfig.section,
-      sectionConfig.subsection,
-      validateSection({
-        data: { HasComments, Comments, ...updatedValues },
-        key: sectionConfig.key,
-      }, formType) === true
+    dispatch(handleSubsectionUpdate(
+      sectionConfig.key,
+      sectionConfig.storeKey,
+      updatedValues,
     ))
   }
 
   const updateComments = (values) => {
     const updatedValues = { Comments: values }
+
     dispatch(updateApplication(
       sectionConfig.store,
       sectionConfig.storeKey,
       { HasComments, ...updatedValues },
     ))
 
-    dispatch(reportCompletion(
-      sectionConfig.section,
-      sectionConfig.subsection,
-      validateSection({
-        data: { HasComments, Comments, ...updatedValues },
-        key: sectionConfig.key,
-      }, formType) === true
+    dispatch(handleSubsectionUpdate(
+      sectionConfig.key,
+      sectionConfig.storeKey,
+      { HasComments, ...updatedValues },
     ))
   }
 

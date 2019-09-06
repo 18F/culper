@@ -9,6 +9,7 @@ import { hasYesOrNo } from 'models/validate'
 import { DEFAULT_LATEST, OTHER } from 'constants/dateLimits'
 import { countryString } from 'validators/location'
 import { isInternational, isPO } from 'helpers/location'
+import { sortDateObjects } from 'helpers/date'
 
 export const otherName = {
   Name: {
@@ -94,8 +95,23 @@ const civilUnion = {
     presence: true,
     country: true,
   },
-  EnteredCivilUnion: {
-    presence: true, date: true,
+  EnteredCivilUnion: (value, attributes, attributeName, options) => {
+    const { Birthdate } = attributes
+    const { applicantBirthdate } = options
+
+    const sortedDates = sortDateObjects([Birthdate, applicantBirthdate])
+
+    const earliestDate = sortedDates.length
+      ? sortedDates[sortedDates.length - 1]
+      : null
+
+    return {
+      presence: true,
+      date: {
+        earliest: earliestDate,
+        latest: DEFAULT_LATEST,
+      },
+    }
   },
   Divorced: {
     presence: true,
