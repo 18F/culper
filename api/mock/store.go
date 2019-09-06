@@ -75,23 +75,28 @@ func (s *StorageService) ExtendAndFetchSessionAccount(sessionKey string, session
 	return api.Account{}, api.Session{}, nil
 }
 
+// CreateAccount creates a new account
 func (s *StorageService) CreateAccount(account *api.Account) error {
 	return nil
 }
 
+// FetchAccountByUsername gets an account with the given username
 func (s *StorageService) FetchAccountByUsername(username string) (api.Account, error) {
 	return api.Account{}, nil
 }
 
+// FetchAccountByExternalID gets an account with the given externalID
 func (s *StorageService) FetchAccountByExternalID(externalID string) (api.Account, error) {
 	return api.Account{}, nil
 }
 
+// FetchAccountWithPasswordHash returns an account with the PasswordHash field filled out
+// it raises an error if the given account has no password
 func (s *StorageService) FetchAccountWithPasswordHash(username string) (api.Account, error) {
 	return api.Account{}, nil
 }
 
-// UpdateAccountStatus updates an account
+// UpdateAccountStatus updates the given account
 func (s *StorageService) UpdateAccountStatus(account *api.Account) error {
 	return nil
 }

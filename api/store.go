@@ -61,14 +61,13 @@ type StorageService interface {
 	// Can fetch sessions, that's good.
 	// CreateAccount creates a new account
 	CreateAccount(account *Account) error
-	// FetchAccountByUsername updates the given account
+	// FetchAccountByUsername gets an account with the given username
 	FetchAccountByUsername(username string) (Account, error)
-	// FetchAccountByExternalID updates the given account
+	// FetchAccountByExternalID gets an account with the given externalID
 	FetchAccountByExternalID(externalID string) (Account, error)
 	// FetchAccountWithPasswordHash returns an account with the PasswordHash field filled out
 	// it raises an error if the given account has no password
 	FetchAccountWithPasswordHash(username string) (Account, error)
-
 	// UpdateAccountStatus updates the given account
 	UpdateAccountStatus(account *Account) error
 
