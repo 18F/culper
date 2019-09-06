@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
 import { i18n } from 'config'
-import { Field, Radio, RadioGroup } from 'components/Form'
+import Field from 'components/Form/Field'
+import Radio from 'components/Form/Radio'
+import RadioGroup from 'components/Form/RadioGroup'
 
 /**
  * Branch is a component that stores whether Yes/No options were selected. It contains a callback
@@ -56,7 +58,7 @@ export default class Branch extends React.Component {
         helpMessage={helpMessage}
         adjustFor={adjustFor}
         scrollIntoView={scrollIntoView}
-        shrink
+        shrink={true}
       >
         <div className="content">{children}</div>
         <RadioGroup

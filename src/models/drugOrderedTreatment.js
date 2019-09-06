@@ -4,7 +4,15 @@ import phone from 'models/shared/phone'
 // import { drugTypes } from 'constants/enums/substanceOptions'
 
 const drugOrderedTreatment = {
-  DrugType: { presence: true, hasValue: { validator: { exclusion: ['Other'] } } },
+  DrugType: (value, attributes) => {
+    if (checkValue(attributes.ActionTaken, 'Yes')) {
+      return {
+        presence: true,
+        hasValue: { validator: { exclusion: ['Other'] } },
+      }
+    }
+    return {}
+  },
   // TODO - add this back after fixing DrugType structure
   /*
   DrugType: { presence: true, hasValue: { validator: { inclusion: drugTypes } } },

@@ -1,8 +1,6 @@
 import React from 'react'
 import { i18n } from 'config'
 
-import schema from 'schema'
-import validate from 'validators'
 import { Name, Field } from 'components/Form'
 
 import {
@@ -91,7 +89,6 @@ ApplicantName.defaultProps = {
   onError: (value, arr) => arr,
   dispatch: () => {},
   required: false,
-  validator: data => validate(schema('identification.name', data)) === true,
 }
 
 ApplicantName.errors = []

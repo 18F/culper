@@ -1,8 +1,6 @@
 import React from 'react'
 
 import i18n from 'util/i18n'
-import schema from 'schema'
-import validate, { OffenseValidator } from 'validators'
 import { Branch, Show, Accordion } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
 
@@ -83,11 +81,14 @@ export class Offenses extends Subsection {
       requireLegalOffenseInvolvements,
       requireLegalOffenseSentenced,
       requireLegalOffenseIncarcerated,
+      errors,
     } = this.props
 
     const formTypeConfig = formType && formConfig[formType]
     const years = formTypeConfig && formTypeConfig.LEGAL_POLICE_RECORD_YEARS
     const numberOfYearsString = getNumberOfYearsString(years)
+
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
 
     return (
       <div
@@ -124,7 +125,7 @@ export class Offenses extends Subsection {
               scrollToBottom={this.props.scrollToBottom}
               onUpdate={this.updateList}
               onError={this.handleError}
-              validator={OffenseValidator}
+              errors={accordionErrors}
               summary={this.summary}
               description={i18n.t('legal.police.collection.summary.title')}
               appendTitle={i18n.t('legal.police.collection.appendTitle')}
@@ -161,9 +162,9 @@ Offenses.defaultProps = {
   subsection: 'police/offenses',
   addressBooks: {},
   dispatch: () => {},
-  validator: data => validate(schema('legal.police.offenses', data)),
   defaultState: true,
   scrollToBottom: '',
+  errors: [],
 }
 
 export default connectSubsection(Offenses, sectionConfig)

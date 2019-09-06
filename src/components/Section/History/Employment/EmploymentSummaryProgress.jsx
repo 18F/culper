@@ -5,33 +5,34 @@ import { i18n } from 'config'
 
 import SummaryProgress from 'components/Section/History/SummaryProgress'
 import { totalYears } from 'components/Section/History/helpers'
-
 import { Svg } from 'components/Form'
-import { EmploymentValidator } from 'validators'
 
-const dateRangeList = (items) => {
+const dateRangeList = (items, errors) => {
   const dates = []
 
   items.forEach((i) => {
-    if (!i.Item) { return }
+    if (!i.Item) return
 
-    if (new EmploymentValidator(i.Item).isValid() === true) {
-      dates.push(i.Item.Dates)
-    }
+    const itemErrors = errors && errors.filter(e => e.indexOf(i.uuid) > -1)
+    if (itemErrors && itemErrors.length > 0) return
+
+    dates.push(i.Item.Dates)
   })
 
   return dates
 }
 
 const EmploymentSummaryProgress = (props) => {
-  const { Employment, Birthdate, years } = props
+  const {
+    Employment, Birthdate, years, errors,
+  } = props
 
   let employmentDates = []
   if (Employment && Employment.List && Employment.List.items) {
     employmentDates = Employment.List.items
   }
 
-  const getEmploymentDates = () => dateRangeList(employmentDates)
+  const getEmploymentDates = () => dateRangeList(employmentDates, errors)
 
   return (
     <SummaryProgress
@@ -56,12 +57,14 @@ EmploymentSummaryProgress.propTypes = {
   Employment: PropTypes.object,
   Birthdate: PropTypes.any,
   years: PropTypes.number,
+  errors: PropTypes.array,
 }
 
 EmploymentSummaryProgress.defaultProps = {
   Employment: undefined,
   Birthdate: undefined,
   years: 10,
+  errors: [],
 }
 
 export default EmploymentSummaryProgress

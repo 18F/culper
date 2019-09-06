@@ -1,8 +1,6 @@
 import React from 'react'
 import { i18n } from 'config'
 
-import schema from 'schema'
-import validate from 'validators'
 import {
   Field, DateControl, Show, Checkbox,
 } from 'components/Form'
@@ -165,7 +163,6 @@ ApplicantBirthDate.defaultProps = {
   onUpdate: () => {},
   onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => validate(schema('identification.birthdate', data)),
 }
 
 export default connectSubsection(ApplicantBirthDate, sectionConfig)

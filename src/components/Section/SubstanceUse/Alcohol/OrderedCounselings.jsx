@@ -1,7 +1,5 @@
 import React from 'react'
 import i18n from 'util/i18n'
-import schema from 'schema'
-import validate, { OrderedCounselingValidator } from 'validators'
 import * as formConfig from 'config/forms'
 import { getNumberOfYearsString } from 'helpers/text'
 import { Accordion, Branch, Show } from 'components/Form'
@@ -89,7 +87,7 @@ export class OrderedCounselings extends Subsection {
   }
 
   render() {
-    const { formType, requireAlcoholOrderedCounselingParty } = this.props
+    const { formType, errors, requireAlcoholOrderedCounselingParty } = this.props
     const formTypeConfig = formType && formConfig[formType]
     const years = formTypeConfig && formTypeConfig.SUBSTANCE_ALCOHOL_TREATMENT_YEARS
     let branchLabelCopy
@@ -99,6 +97,8 @@ export class OrderedCounselings extends Subsection {
       const numberOfYearsString = getNumberOfYearsString(years)
       branchLabelCopy = i18n.t('substance.alcohol.heading.orderedCounselingNum', { numberOfYearsString })
     }
+
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
 
     return (
       <div
@@ -128,7 +128,7 @@ export class OrderedCounselings extends Subsection {
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={OrderedCounselingValidator}
+            errors={accordionErrors}
             description={i18n.t('substance.alcohol.orderedCounseling.collection.description')}
             appendTitle={i18n.t('substance.alcohol.orderedCounseling.collection.appendTitle')}
             appendLabel={i18n.t('substance.alcohol.orderedCounseling.collection.appendLabel')}
@@ -159,9 +159,9 @@ OrderedCounselings.defaultProps = {
   subsection: 'alcohol/ordered',
   addressBooks: {},
   dispatch: () => {},
-  validator: data => validate(schema('substance.alcohol.ordered', data)),
   scrollToBottom: '',
   requireAlcoholOrderedCounselingParty: true,
+  errors: [],
 }
 
 export default connectSubsection(OrderedCounselings, sectionConfig)

@@ -1,7 +1,5 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate from 'validators'
 import {
   Field,
   Show,
@@ -90,7 +88,7 @@ export class UsPassport extends Subsection {
       Name: values.value === 'Yes' ? this.props.Name : {},
       Number: values.value === 'Yes' ? this.props.Number : '',
       Issued: values.value === 'Yes' ? this.props.Issued : {},
-      Expired: values.value === 'Yes' ? this.props.Expired : {},
+      Expiration: values.value === 'Yes' ? this.props.Expiration : {},
     })
   }
 
@@ -308,7 +306,7 @@ UsPassport.defaultProps = {
   section: 'foreign',
   subsection: 'passport',
   dispatch: () => {},
-  validator: data => validate(schema('foreign.passport', data)),
+  errors: [],
 }
 
 export default connectSubsection(UsPassport, sectionConfig)

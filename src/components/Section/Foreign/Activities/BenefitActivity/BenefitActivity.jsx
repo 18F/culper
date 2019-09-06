@@ -1,7 +1,5 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { ForeignBenefitValidator } from 'validators'
 import { Summary, DateSummary } from 'components/Summary'
 import { Accordion, Branch, Show } from 'components/Form'
 import { FOREIGN, FOREIGN_ACTIVITIES_BENEFITS } from 'config/formSections/foreign'
@@ -99,6 +97,9 @@ export class BenefitActivity extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content benefit-activity"
@@ -127,7 +128,7 @@ export class BenefitActivity extends Subsection {
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={ForeignBenefitValidator}
+            errors={accordionErrors}
             description={i18n.t('foreign.activities.benefit.collection.description')}
             appendTitle={i18n.t('foreign.activities.benefit.collection.appendTitle')}
             appendLabel={i18n.t('foreign.activities.benefit.collection.appendLabel')}
@@ -157,8 +158,8 @@ BenefitActivity.defaultProps = {
   section: 'foreign',
   subsection: 'activities/benefits',
   dispatch: () => {},
-  validator: data => validate(schema('foreign.activities.benefits', data)),
   scrollToBottom: '',
+  errors: [],
 }
 
 export default connectSubsection(BenefitActivity, sectionConfig)

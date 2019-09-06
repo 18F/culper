@@ -167,7 +167,8 @@ export default class ToggleableLocation extends ValidationElement {
               onError={this.onError}
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
-              required={this.props.required}
+              required={this.props.layout === Layouts.IDENTIFICATION_BIRTH_PLACE ? this.props.required && !this.props.county : this.props.required}
+              requireCity={this.props.layout === Layouts.IDENTIFICATION_BIRTH_PLACE ? this.props.required && !this.props.county : this.props.required}
             />
           )
         case 'county':
@@ -184,7 +185,8 @@ export default class ToggleableLocation extends ValidationElement {
               onError={this.onError}
               onBlur={this.props.onBlur}
               onFocus={this.props.onFocus}
-              required={this.props.required}
+              required={this.props.layout === Layouts.IDENTIFICATION_BIRTH_PLACE ? this.props.required && !this.props.city : this.props.required}
+              requireCounty={this.props.layout === Layouts.IDENTIFICATION_BIRTH_PLACE ? this.props.required && !this.props.city : this.props.required}
             />
           )
         case 'state':
@@ -381,14 +383,14 @@ ToggleableLocation.errors = [
       if (!props.required) {
         return true
       }
-
+      
       // Organizing the validation tests in a structure
       const branchValidations = {
         Yes: {
           fields: props => props.domesticFields,
-          city: props => !!props.city,
+          city: props => props.layout === Layouts.IDENTIFICATION_BIRTH_PLACE ? !!props.city || !!props.county : !!props.city,
           state: props => !!props.state,
-          county: props => !!props.county,
+          county: props => props.layout === Layouts.IDENTIFICATION_BIRTH_PLACE ? !!props.city || !!props.county : !!props.county,
           stateZipcode: props => !!props.state && !!props.zipcode,
           country: props => !!countryString(props.country)
         },

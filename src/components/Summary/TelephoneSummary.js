@@ -11,7 +11,7 @@ export const TelephoneSummary = (props, unknown = '') => {
 
     switch (props.type) {
       case 'International':
-        number = `+${number.slice(0, 3).trim()} ${number.slice(3, 13).trim()}`
+        number = `+${number.trim()}`
         if (props.extension) {
           number += ` x${props.extension}`
         }

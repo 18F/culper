@@ -361,6 +361,7 @@ describe('The relative component', () => {
         country: { value: 'Germany' },
         layout: Location.ADDRESS,
       },
+      requireRelationshipRelativesForeignBornDoc: true,
       onUpdate: jest.fn(),
     }
     const component = createComponent(expected)
