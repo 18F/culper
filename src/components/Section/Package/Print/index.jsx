@@ -139,16 +139,16 @@ export class PackagePrint extends React.Component {
     const { printed, attachments } = this.state
 
     const sectionComponents = {
-      [`${sections.IDENTIFICATION}`]: IdentificationReview,
-      [`${sections.HISTORY}`]: HistoryReview,
-      [`${sections.RELATIONSHIPS}`]: RelationshipsReview,
-      [`${sections.CITIZENSHIP}`]: CitizenshipReview,
-      [`${sections.MILITARY}`]: MilitaryReview,
-      [`${sections.FOREIGN}`]: ForeignReview,
-      [`${sections.FINANCIAL}`]: FinancialReview,
-      [`${sections.SUBSTANCE_USE}`]: SubstanceUseReview,
-      [`${sections.LEGAL}`]: LegalReview,
-      [`${sections.PSYCHOLOGICAL}`]: PsychologicalReview,
+      [sections.IDENTIFICATION]: IdentificationReview,
+      [sections.HISTORY]: HistoryReview,
+      [sections.RELATIONSHIPS]: RelationshipsReview,
+      [sections.CITIZENSHIP]: CitizenshipReview,
+      [sections.MILITARY]: MilitaryReview,
+      [sections.FOREIGN]: ForeignReview,
+      [sections.FINANCIAL]: FinancialReview,
+      [sections.SUBSTANCE_USE]: SubstanceUseReview,
+      [sections.LEGAL]: LegalReview,
+      [sections.PSYCHOLOGICAL]: PsychologicalReview,
     }
 
     return (
@@ -232,13 +232,15 @@ export class PackagePrint extends React.Component {
 
           {formSections.map((section) => {
             const SectionComponent = sectionComponents[section.key]
-
-            return (
-              <div className="section-print-container" key={`print-section-${section.key}`}>
-                <h3 className="section-print-header">{section.label}</h3>
-                <SectionComponent forPrint={true} />
-              </div>
-            )
+            if (SectionComponent) {
+              return (
+                <div className="section-print-container" key={`print-section-${section.key}`}>
+                  <h3 className="section-print-header">{section.label}</h3>
+                  <SectionComponent forPrint={true} />
+                </div>
+              )
+            }
+            return null
           })}
         </div>
       </div>
