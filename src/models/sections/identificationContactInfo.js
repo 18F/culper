@@ -15,7 +15,6 @@ const identificationContactInfo = {
   HomeEmail: (value, attributes) => {
     if (attributes.WorkEmail && attributes.WorkEmail.value) {
       if (attributes.HomeEmail && attributes.HomeEmail.value) {
-        console.log("Home Email", value, 'attributes ', attributes.HomeEmail.value )
         return {
           model: { validator: email },
         }

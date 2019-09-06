@@ -26,7 +26,6 @@ export default class SubsectionElement extends React.Component {
   }
 
   handleError(value, arr) {
-    console.log("found error", value, arr)
     this.handleCompletion()
     arr = arr.map(err => {
       return {
