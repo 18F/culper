@@ -21,7 +21,7 @@ func (s SimpleStore) CreateAttachment(attachment *api.Attachment) error {
 
 	createErr := s.db.Get(&newID, createQuery, attachment.AccountID, metadata, body)
 	if createErr != nil {
-		return errors.Wrap(createErr, "Failed to create Application")
+		return errors.Wrap(createErr, "Failed to create Attachment")
 	}
 
 	attachment.ID = newID

@@ -18,9 +18,20 @@ type simpleConnection interface {
 	Get(dest interface{}, query string, args ...interface{}) error
 }
 
+// In order to be able to mock the db for coverage reasons, we here declare an interface of
+// everything we actually use in sqlx.
+type sqlxConnection interface {
+	simpleConnection
+
+	MustExec(query string, args ...interface{}) sql.Result
+	Beginx() (*sqlx.Tx, error)
+	Queryx(query string, args ...interface{}) (*sqlx.Rows, error)
+	Close() error
+}
+
 // SimpleStore saves JSON in the db for applications
 type SimpleStore struct {
-	db         *sqlx.DB
+	db         sqlxConnection
 	serializer api.Serializer
 	logger     api.LogService
 }

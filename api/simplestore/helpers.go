@@ -44,6 +44,26 @@ func getSimpleStore() SimpleStore {
 	return store
 }
 
+func getErrorStore() SimpleStore {
+	env := &env.Native{}
+	os.Setenv(api.LogLevel, "info")
+	env.Configure()
+
+	logger := &log.Service{Log: log.NewLogger()}
+
+	serializer := JSONSerializer{}
+
+	db := &errorDB{}
+
+	store := SimpleStore{
+		db,
+		serializer,
+		logger,
+	}
+
+	return store
+}
+
 // randomEmail an example.com email address with 10 random characters
 func randomEmail() string {
 
@@ -89,19 +109,23 @@ func areEqualJSON(t *testing.T, s1, s2 []byte) bool {
 func CreateTestAccount(t *testing.T, store SimpleStore) api.Account {
 	t.Helper()
 
-	createQuery := `INSERT INTO accounts (username, email, status, form_type, form_version, external_id) VALUES ($1, $1, $2, $3, $4, $5) RETURNING id, username, email, status, form_type, form_version, external_id`
-
 	email := randomEmail()
-
-	result := api.Account{}
-
 	externalID := uuid.New().String()
 
-	createErr := store.db.Get(&result, createQuery, email, api.StatusIncomplete, "SF86", "2017-07", externalID)
+	account := api.Account{
+		Username:    email,
+		Email:       NonNullString(email),
+		Status:      api.StatusIncomplete,
+		FormType:    "SF86",
+		FormVersion: "2017-07",
+		ExternalID:  externalID,
+	}
+
+	createErr := store.CreateAccount(&account)
 	if createErr != nil {
 		t.Log("Failed to create Account", createErr)
 		t.Fatal()
 	}
 
-	return result
+	return account
 }

@@ -14,6 +14,9 @@ var (
 	// ErrApplicationAlreadyExists is an error when a given application does not exist
 	ErrApplicationAlreadyExists = errors.New("Application already exists")
 
+	// ErrAccountDoesNotExist is an error when a given account cannot be
+	ErrAccountDoesNotExist = errors.New("Account does not exist")
+
 	// ErrAttachmentDoesNotExist is returned when the requested attchment does not exist.
 	// Note: this could mean that you requested a valid ID but for a different user.
 	ErrAttachmentDoesNotExist = errors.New("Attachment does not exist")
@@ -51,6 +54,17 @@ type StorageService interface {
 	DeleteSession(sessionKey string) error
 	// ExtendAndFetchSessionAccount fetches an account and session data from the db
 	ExtendAndFetchSessionAccount(sessionKey string, expirationDuration time.Duration) (Account, Session, error)
+
+	// Can fetch sessions, that's good.
+	// CreateAccount creates a new account
+	CreateAccount(account *Account) error
+	// FetchAccountByUsername updates the given account
+	FetchAccountByUsername(username string) (Account, error)
+	// FetchAccountByExternalID updates the given account
+	FetchAccountByExternalID(externalID string) (Account, error)
+
+	// UpdateAccountStatus updates the given account
+	UpdateAccountStatus(account *Account) error
 
 	// Close closes the db connection
 	Close() error

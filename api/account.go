@@ -11,9 +11,6 @@ var (
 	// ErrPasswordDoesNotMatch is an error when a user inputs an invalid password
 	ErrPasswordDoesNotMatch = errors.New("Password does not match")
 
-	// ErrAccountDoesNotExist is an error when a users account does not exist
-	ErrAccountDoesNotExist = errors.New("Account does not exist")
-
 	// ErrDatastoreConnection is an error when a database connection cannot be made
 	ErrDatastoreConnection = errors.New("Unable to connect to datastore")
 )
@@ -47,10 +44,6 @@ const (
 type Account struct {
 	ID          int
 	Username    string
-	Firstname   string
-	Lastname    string
-	Token       string
-	TokenUsed   bool
 	Email       sql.NullString
 	Status      string
 	FormType    string `db:"form_type"`
@@ -233,10 +226,6 @@ func (entity *Account) BasicAuthentication(context DatabaseService, password str
 	if basicMembership.Account != nil {
 		entity.ID = basicMembership.Account.ID
 		entity.Username = basicMembership.Account.Username
-		entity.Firstname = basicMembership.Account.Firstname
-		entity.Lastname = basicMembership.Account.Lastname
-		entity.Token = basicMembership.Account.Token
-		entity.TokenUsed = basicMembership.Account.TokenUsed
 		entity.Email = basicMembership.Account.Email
 		entity.Status = basicMembership.Account.Status
 		entity.FormType = basicMembership.Account.FormType
