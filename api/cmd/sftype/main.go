@@ -7,7 +7,7 @@ import (
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/env"
 	"github.com/18F/e-QIP-prototype/api/log"
-	"github.com/18F/e-QIP-prototype/api/postgresql"
+	"github.com/18F/e-QIP-prototype/api/simplestore"
 )
 
 const usage string = `Usage:
@@ -17,13 +17,13 @@ const usage string = `Usage:
 
 // sftype allows you to the SF type for an account.
 
-func configureDB() api.DatabaseService {
+func configureDB() simplestore.SimpleStore {
 	os.Setenv(api.LogLevel, "info")
 	logger := &log.Service{Log: log.NewLogger()}
 	settings := &env.Native{}
 	settings.Configure()
 
-	dbConf := postgresql.DBConfig{
+	dbConf := simplestore.DBConfig{
 		User:     os.Getenv(api.DatabaseUser),
 		Password: os.Getenv(api.DatabasePassword),
 		Address:  os.Getenv(api.DatabaseHost),
@@ -31,9 +31,14 @@ func configureDB() api.DatabaseService {
 		SSLMode:  os.Getenv(api.DatabaseSSLMode),
 	}
 
-	db := postgresql.NewPostgresService(dbConf, logger)
+	serializer := simplestore.NewJSONSerializer()
+	store, storeErr := simplestore.NewSimpleStore(simplestore.PostgresConnectURI(dbConf), logger, serializer)
+	if storeErr != nil {
+		fmt.Println(storeErr)
+		os.Exit(2)
+	}
 
-	return db
+	return store
 }
 
 func main() {
@@ -45,13 +50,11 @@ func main() {
 
 	username := os.Args[1]
 
-	db := configureDB()
+	store := configureDB()
 
-	account := api.Account{}
-	account.Username = username
-	err := account.Find(db)
-	if err != nil {
-		fmt.Println("Error: ", err)
+	account, fetchErr := store.FetchAccountByUsername(username)
+	if fetchErr != nil {
+		fmt.Println("Error: ", fetchErr)
 		os.Exit(1)
 	}
 
@@ -61,9 +64,10 @@ func main() {
 
 		account.FormType = sfType
 		account.FormVersion = sfVersion
-		_, err = account.Save(db, account.ID)
-		if err != nil {
-			fmt.Println("Error: ", err)
+
+		updateErr := store.UpdateAccountInfo(&account)
+		if updateErr != nil {
+			fmt.Println("Error: ", updateErr)
 			os.Exit(1)
 		}
 	}

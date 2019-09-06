@@ -12,14 +12,11 @@ import (
 
 func TestRefreshHandler(t *testing.T) {
 
-	var mockDB mock.DatabaseService
-
 	var mockLog mock.LogService
 
 	handler := RefreshHandler{
-		Env:      nil,
-		Log:      &mockLog,
-		Database: &mockDB,
+		Env: nil,
+		Log: &mockLog,
 	}
 
 	reqBody := strings.NewReader(validJSON)

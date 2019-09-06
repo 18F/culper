@@ -18,7 +18,7 @@ func TestStatus(t *testing.T) {
 
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 
 	sections := []struct {
 		path string
@@ -45,10 +45,9 @@ func TestStatus(t *testing.T) {
 	w, req := standardResponseAndRequest("GET", "/me/status", nil, account)
 
 	statusHandler := http.StatusHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	statusHandler.ServeHTTP(w, req)
@@ -139,15 +138,14 @@ func TestStatusFetchError(t *testing.T) {
 	var mockStore errorStatusStore
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createLockedTestAccount(t, services.db)
+	account := createLockedTestAccount(t, services.store)
 
 	w, req := standardResponseAndRequest("GET", "/me/status", nil, account)
 
 	statusHandler := http.StatusHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    &mockStore,
+		Env:   services.env,
+		Log:   services.log,
+		Store: &mockStore,
 	}
 
 	statusHandler.ServeHTTP(w, req)
@@ -175,15 +173,14 @@ func TestLockedStatus(t *testing.T) {
 
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createLockedTestAccount(t, services.db)
+	account := createLockedTestAccount(t, services.store)
 
 	w, req := standardResponseAndRequest("GET", "/me/status", nil, account)
 
 	statusHandler := http.StatusHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	statusHandler.ServeHTTP(w, req)

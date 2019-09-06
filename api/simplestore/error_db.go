@@ -31,6 +31,10 @@ func (db *errorDB) Queryx(query string, args ...interface{}) (*sqlx.Rows, error)
 	return nil, errors.New("MOCK ERR")
 }
 
+func (db *errorDB) Select(dest interface{}, query string, args ...interface{}) error {
+	return errors.New("MOCK ERR")
+}
+
 func (db *errorDB) Close() error {
 	return errors.New("MOCK ERR")
 }

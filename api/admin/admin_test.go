@@ -6,7 +6,6 @@ import (
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/mock"
 	"github.com/18F/e-QIP-prototype/api/pdf"
-	"github.com/18F/e-QIP-prototype/api/simplestore"
 	"github.com/18F/e-QIP-prototype/api/xml"
 	"github.com/google/uuid"
 	"github.com/pkg/errors"
@@ -41,21 +40,20 @@ func (s *errorAdminListAttachmentsMetadataStore) ListAttachmentsMetadata(account
 //
 
 func TestRejectAccountCanKickbackFailure(t *testing.T) {
-	var mockDB mock.DatabaseService
 	var mockStore mock.StorageService
 
 	email := "dogs@iloveyou.com"
 	// Make an account with Status that isn't StatusSubmitted
 	account := api.Account{
 		Username:    email,
-		Email:       simplestore.NonNullString(email),
+		Email:       api.NonNullString(email),
 		FormType:    "SF86",
 		FormVersion: "2017-07",
 		Status:      api.StatusIncomplete,
 		ExternalID:  uuid.New().String(),
 	}
 	// Reject this submission
-	rejector := NewRejecter(&mockDB, &mockStore)
+	rejector := NewRejecter(&mockStore)
 	err := rejector.Reject(&account)
 	if err == nil {
 		t.Log("Should have received an error from Kickback, instead got nil. ")
@@ -64,20 +62,19 @@ func TestRejectAccountCanKickbackFailure(t *testing.T) {
 }
 
 func TestRejectAccountLoadApplicationFailure(t *testing.T) {
-	var mockDB mock.DatabaseService
 	var mockStore errorAdminLoadStore
 
 	email := "dogs@iloveyou.com"
 	account := api.Account{
 		Username:    email,
-		Email:       simplestore.NonNullString(email),
+		Email:       api.NonNullString(email),
 		FormType:    "SF86",
 		FormVersion: "2017-07",
 		Status:      api.StatusSubmitted,
 		ExternalID:  uuid.New().String(),
 	}
 	// Reject this submission
-	rejector := NewRejecter(&mockDB, &mockStore)
+	rejector := NewRejecter(&mockStore)
 	err := rejector.Reject(&account)
 	if err == nil {
 		t.Log("Should have received an error from LoadApplication, instead got nil. ")
@@ -86,20 +83,19 @@ func TestRejectAccountLoadApplicationFailure(t *testing.T) {
 }
 
 func TestRejectAccountUpdateApplicationFailure(t *testing.T) {
-	var mockDB mock.DatabaseService
 	var mockStore errorAdminUpdateStore
 
 	email := "dogs@iloveyou.com"
 	account := api.Account{
 		Username:    email,
-		Email:       simplestore.NonNullString(email),
+		Email:       api.NonNullString(email),
 		FormType:    "SF86",
 		FormVersion: "2017-07",
 		Status:      api.StatusSubmitted,
 		ExternalID:  uuid.New().String(),
 	}
 	// Reject this submission
-	rejector := NewRejecter(&mockDB, &mockStore)
+	rejector := NewRejecter(&mockStore)
 	err := rejector.Reject(&account)
 	if err == nil {
 		t.Log("Should have received an error from UpdateApplication, instead got nil. ")
@@ -108,20 +104,19 @@ func TestRejectAccountUpdateApplicationFailure(t *testing.T) {
 }
 
 func TestRejectAccountListAttachmentsMetadataFailure(t *testing.T) {
-	var mockDB mock.DatabaseService
 	var mockStore errorAdminListAttachmentsMetadataStore
 
 	email := "dogs@iloveyou.com"
 	account := api.Account{
 		Username:    email,
-		Email:       simplestore.NonNullString(email),
+		Email:       api.NonNullString(email),
 		FormType:    "SF86",
 		FormVersion: "2017-07",
 		Status:      api.StatusSubmitted,
 		ExternalID:  uuid.New().String(),
 	}
 	// Reject this submission
-	rejector := NewRejecter(&mockDB, &mockStore)
+	rejector := NewRejecter(&mockStore)
 	err := rejector.Reject(&account)
 	if err == nil {
 		t.Log("Should have received an error from ListAttachmentsMetadata, instead got nil. ")
@@ -134,13 +129,12 @@ func TestRejectAccountListAttachmentsMetadataFailure(t *testing.T) {
 //
 
 func TestSubmitLoadApplicationFailure(t *testing.T) {
-	var mockDB mock.DatabaseService
 	var mockStore errorAdminLoadStore
 
 	email := "dogs@iloveyou.com"
 	account := api.Account{
 		Username:    email,
-		Email:       simplestore.NonNullString(email),
+		Email:       api.NonNullString(email),
 		FormType:    "SF86",
 		FormVersion: "2017-07",
 		Status:      api.StatusSubmitted,
@@ -150,8 +144,8 @@ func TestSubmitLoadApplicationFailure(t *testing.T) {
 	pdfService := pdf.NewPDFService("../pdf/templates/")
 
 	// Submit this submission
-	submitter := NewSubmitter(&mockDB, &mockStore, xmlService, pdfService)
-	_, _, err := submitter.FilesForSubmission(account.ID)
+	submitter := NewSubmitter(&mockStore, xmlService, pdfService)
+	_, _, err := submitter.FilesForSubmission(account)
 	if err == nil {
 		t.Log("Should have received an error from LoadApplication, instead got nil. ")
 		t.Fail()

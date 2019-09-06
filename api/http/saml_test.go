@@ -16,7 +16,6 @@ import (
 
 func TestSamlRequestHandlerSamlNotEnabled(t *testing.T) {
 	os.Setenv(api.SamlEnabled, "0")
-	var mockDB mock.DatabaseService
 	var mockLog mock.LogService
 
 	samlService := &saml.Service{
@@ -25,10 +24,9 @@ func TestSamlRequestHandlerSamlNotEnabled(t *testing.T) {
 	}
 
 	handler := SamlRequestHandler{
-		Env:      &env.Native{},
-		Log:      &mockLog,
-		Database: &mockDB,
-		SAML:     samlService,
+		Env:  &env.Native{},
+		Log:  &mockLog,
+		SAML: samlService,
 	}
 
 	reqBody := strings.NewReader(validJSON)
@@ -64,7 +62,6 @@ func TestSamlRequestHandlerSamlNotEnabled(t *testing.T) {
 
 func TestSamlRequestHandlerSamlSLONotEnabled(t *testing.T) {
 	os.Setenv(api.SamlSLONotEnabled, "0")
-	var mockDB mock.DatabaseService
 	var mockLog mock.LogService
 
 	samlService := &saml.Service{
@@ -73,10 +70,9 @@ func TestSamlRequestHandlerSamlSLONotEnabled(t *testing.T) {
 	}
 
 	handler := SamlSLORequestHandler{
-		Env:      &env.Native{},
-		Log:      &mockLog,
-		Database: &mockDB,
-		SAML:     samlService,
+		Env:  &env.Native{},
+		Log:  &mockLog,
+		SAML: samlService,
 	}
 
 	reqBody := strings.NewReader(validJSON)

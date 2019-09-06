@@ -9,8 +9,8 @@ import (
 
 func main() {
 	logger := &log.Service{Log: log.NewLogger()}
-	cmd.Command(logger, func(context api.DatabaseService, store api.StorageService, account *api.Account) {
-		rejector := admin.NewRejecter(context, store)
+	cmd.Command(logger, func(store api.StorageService, account *api.Account) {
+		rejector := admin.NewRejecter(store)
 
 		rejectErr := rejector.Reject(account)
 		if rejectErr != nil {

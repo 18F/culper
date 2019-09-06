@@ -75,6 +75,27 @@ func (s *StorageService) ExtendAndFetchSessionAccount(sessionKey string, session
 	return api.Account{}, api.Session{}, nil
 }
 
+func (s *StorageService) CreateAccount(account *api.Account) error {
+	return nil
+}
+
+func (s *StorageService) FetchAccountByUsername(username string) (api.Account, error) {
+	return api.Account{}, nil
+}
+
+func (s *StorageService) FetchAccountByExternalID(externalID string) (api.Account, error) {
+	return api.Account{}, nil
+}
+
+func (s *StorageService) FetchAccountWithPasswordHash(username string) (api.Account, error) {
+	return api.Account{}, nil
+}
+
+// UpdateAccountStatus updates an account
+func (s *StorageService) UpdateAccountStatus(account *api.Account) error {
+	return nil
+}
+
 // Close closes the db connection
 func (s *StorageService) Close() error {
 	return nil

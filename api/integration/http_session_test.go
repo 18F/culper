@@ -24,10 +24,9 @@ func makeAuthenticatedFormRequest(services serviceSet, sessionService *session.S
 	sessionMiddleware := http.NewSessionMiddleware(services.log, sessionService)
 
 	formHandler := http.FormHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	wrappedHandler := sessionMiddleware.Middleware(formHandler)
@@ -82,15 +81,14 @@ func TestFormIndent(t *testing.T) {
 	os.Setenv(api.IndentJSON, "1")
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 
 	w, r := standardResponseAndRequest("GET", "/me/form", nil, account)
 
 	formHandler := http.FormHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	formHandler.ServeHTTP(w, r)
@@ -125,11 +123,11 @@ func TestFullSessionHTTPFlow_SAMLAuthenticated(t *testing.T) {
 	}
 
 	loginRequestHandler := http.SamlResponseHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		SAML:     samlService,
-		Session:  sessionService,
+		Env:     services.env,
+		Log:     services.log,
+		SAML:    samlService,
+		Store:   services.store,
+		Session: sessionService,
 	}
 
 	conf := saml.TestResponseConfig{
@@ -205,11 +203,10 @@ func TestFullSessionHTTPFlow_SAMLAuthenticated(t *testing.T) {
 	// now, get a logout request, make sure it has a session index
 
 	logoutRequestHandler := http.SamlSLORequestHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		SAML:     samlService,
-		Session:  sessionService,
+		Env:     services.env,
+		Log:     services.log,
+		SAML:    samlService,
+		Session: sessionService,
 	}
 
 	sessionMiddleware := http.NewSessionMiddleware(services.log, sessionService)
@@ -265,11 +262,10 @@ func TestFullSessionHTTPFlow_SAMLFailure(t *testing.T) {
 	}
 
 	loginRequestHandler := http.SamlResponseHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		SAML:     samlService,
-		Session:  sessionService,
+		Env:     services.env,
+		Log:     services.log,
+		SAML:    samlService,
+		Session: sessionService,
 	}
 
 	conf := saml.TestResponseConfig{
@@ -315,27 +311,17 @@ func TestFullSessionHTTPFlow_BasicAuthenticated(t *testing.T) {
 	defer services.closeDB()
 	sessionService := session.NewSessionService(5*time.Minute, services.store, services.log)
 
-	account := createTestAccount(t, services.db)
-
-	authMembership := api.BasicAuthMembership{
-		AccountID: account.ID,
-	}
+	account := createTestAccount(t, services.store)
 
 	password := "so-basic"
-	authMembership.HashPassword(password)
-
-	_, saveErr := authMembership.Save(services.db, 0)
-	if saveErr != nil {
-		t.Fatal(saveErr)
-	}
+	setAccountPassword(t, services.store, account, password)
 
 	loginRequestHandler := http.BasicAuthHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
-		Session:  sessionService,
-		Cookie:   http.NewSessionCookieService(true),
+		Env:     services.env,
+		Log:     services.log,
+		Store:   services.store,
+		Session: sessionService,
+		Cookie:  http.NewSessionCookieService(true),
 	}
 
 	responseWriter := httptest.NewRecorder()

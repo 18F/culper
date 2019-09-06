@@ -24,15 +24,14 @@ func giveCookie(t *testing.T, response *gohttp.Response, request *gohttp.Request
 func TestCSRFToken(t *testing.T) {
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 
 	statusRespW, statusReq := standardResponseAndRequest("GET", "/me/status", nil, account)
 
 	statusHandler := http.StatusHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	authKey := []byte("123456789012345678901234567890")
@@ -69,10 +68,9 @@ func TestCSRFToken(t *testing.T) {
 	giveCookie(t, statusResp, badReq, "_gorilla_csrf")
 
 	saveHandler := http.SaveHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	wrappedSaveHandler := csrfMiddleware.Middleware(saveHandler)
@@ -112,15 +110,14 @@ func TestCSRFToken(t *testing.T) {
 func TestGoodCSRFToken(t *testing.T) {
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 
 	statusRespW, statusReq := standardResponseAndRequest("GET", "/me/status", nil, account)
 
 	statusHandler := http.StatusHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	authKey := []byte("123456789012345678901234567890")
@@ -153,10 +150,9 @@ func TestGoodCSRFToken(t *testing.T) {
 	idSection := readTestData(t, "../testdata/identification/identification-birthplace-full.json")
 
 	saveHandler := http.SaveHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	wrappedSaveHandler := csrfMiddleware.Middleware(saveHandler)
@@ -179,15 +175,14 @@ func TestGoodCSRFToken(t *testing.T) {
 func TestGarbageCSRFToken(t *testing.T) {
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 
 	statusRespW, statusReq := standardResponseAndRequest("GET", "/me/status", nil, account)
 
 	statusHandler := http.StatusHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	authKey := []byte("123456789012345678901234567890")
@@ -221,10 +216,9 @@ func TestGarbageCSRFToken(t *testing.T) {
 	idSection := readTestData(t, "../testdata/identification/identification-birthplace-full.json")
 
 	saveHandler := http.SaveHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	wrappedSaveHandler := csrfMiddleware.Middleware(saveHandler)

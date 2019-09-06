@@ -29,20 +29,18 @@ func TestListAttachments(t *testing.T) {
 	os.Setenv(api.AttachmentsEnabled, "1")
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 
 	listAttachmentHandler := http.AttachmentListHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	createAttachmentHandler := http.AttachmentSaveHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	createdAttachments := map[int]api.Attachment{}
@@ -141,13 +139,12 @@ func TestListAttachmentDisabled(t *testing.T) {
 	os.Setenv(api.AttachmentsEnabled, "0")
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 
 	listAttachmentHandler := http.AttachmentListHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	w, indexReq := standardResponseAndRequest("GET", "/me/attachments/", nil, account)
@@ -176,13 +173,12 @@ func TestListAttachmentError(t *testing.T) {
 	var mockStore errorListAttachmentStore
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 
 	listAttachmentHandler := http.AttachmentListHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    &mockStore,
+		Env:   services.env,
+		Log:   services.log,
+		Store: &mockStore,
 	}
 
 	w, indexReq := standardResponseAndRequest("GET", "/me/attachments/", nil, account)
@@ -214,13 +210,12 @@ func TestListNoAttachments(t *testing.T) {
 	os.Setenv(api.AttachmentsEnabled, "1")
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 
 	listAttachmentHandler := http.AttachmentListHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	w, indexReq := standardResponseAndRequest("GET", "/me/attachments/", nil, account)

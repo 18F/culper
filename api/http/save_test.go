@@ -88,17 +88,14 @@ func (s *saveStoreOtherCreateError) CreateApplication(app api.Application) error
 
 func TestSaveHandler(t *testing.T) {
 
-	var mockDB mock.DatabaseService
-
 	var mockStore saveStore
 
 	var mockLog mock.LogService
 
 	handler := SaveHandler{
-		Env:      nil,
-		Log:      &mockLog,
-		Database: &mockDB,
-		Store:    &mockStore,
+		Env:   nil,
+		Log:   &mockLog,
+		Store: &mockStore,
 	}
 
 	reqBody := strings.NewReader(validJSON)
@@ -136,17 +133,11 @@ func TestSaveHandler(t *testing.T) {
 
 func TestSaveHandlerBadEntity(t *testing.T) {
 
-	var mockDB mock.DatabaseService
-	mockDB.SelectFn = func(query interface{}) error {
-		return nil
-	}
-
 	var mockLog mock.LogService
 
 	handler := SaveHandler{
-		Env:      nil,
-		Log:      &mockLog,
-		Database: &mockDB,
+		Env: nil,
+		Log: &mockLog,
 	}
 
 	requestJSON := `
@@ -185,17 +176,14 @@ func TestSaveHandlerBadEntity(t *testing.T) {
 
 func TestSaveHandlerLockedAccount(t *testing.T) {
 
-	var mockDB mock.DatabaseService
-
 	var mockStore saveStore
 
 	var mockLog mock.LogService
 
 	handler := SaveHandler{
-		Env:      nil,
-		Log:      &mockLog,
-		Database: &mockDB,
-		Store:    &mockStore,
+		Env:   nil,
+		Log:   &mockLog,
+		Store: &mockStore,
 	}
 
 	reqBody := strings.NewReader(validJSON)
@@ -231,17 +219,14 @@ func TestSaveHandlerLockedAccount(t *testing.T) {
 
 func TestSaveHandlerBadPayloadDeserialization(t *testing.T) {
 
-	var mockDB mock.DatabaseService
-
 	var mockStore saveStore
 
 	var mockLog mock.LogService
 
 	handler := SaveHandler{
-		Env:      nil,
-		Log:      &mockLog,
-		Database: &mockDB,
-		Store:    &mockStore,
+		Env:   nil,
+		Log:   &mockLog,
+		Store: &mockStore,
 	}
 	// Pass in bad JSON--undeserializeable
 	requestJSON := `{[}`
@@ -277,17 +262,14 @@ func TestSaveHandlerBadPayloadDeserialization(t *testing.T) {
 
 func TestCreateApplicationExistsFailure(t *testing.T) {
 
-	var mockDB mock.DatabaseService
-
 	var mockStore saveStoreApplicationExistsError
 
 	var mockLog mock.LogService
 
 	handler := SaveHandler{
-		Env:      nil,
-		Log:      &mockLog,
-		Database: &mockDB,
-		Store:    &mockStore,
+		Env:   nil,
+		Log:   &mockLog,
+		Store: &mockStore,
 	}
 
 	reqBody := strings.NewReader(validJSON)
@@ -326,17 +308,14 @@ func TestCreateApplicationExistsFailure(t *testing.T) {
 
 func TestCreateApplicationAppDoesNotExistFailure(t *testing.T) {
 
-	var mockDB mock.DatabaseService
-
 	var mockStore saveStoreApplicationExistsError
 
 	var mockLog mock.LogService
 
 	handler := SaveHandler{
-		Env:      nil,
-		Log:      &mockLog,
-		Database: &mockDB,
-		Store:    &mockStore,
+		Env:   nil,
+		Log:   &mockLog,
+		Store: &mockStore,
 	}
 
 	reqBody := strings.NewReader(validJSON)
@@ -375,17 +354,14 @@ func TestCreateApplicationAppDoesNotExistFailure(t *testing.T) {
 
 func TestSaveApplicationErrorResolves(t *testing.T) {
 
-	var mockDB mock.DatabaseService
-
 	var mockStore saveStoreErrorResolves
 
 	var mockLog mock.LogService
 
 	handler := SaveHandler{
-		Env:      nil,
-		Log:      &mockLog,
-		Database: &mockDB,
-		Store:    &mockStore,
+		Env:   nil,
+		Log:   &mockLog,
+		Store: &mockStore,
 	}
 
 	reqBody := strings.NewReader(validJSON)
@@ -422,17 +398,14 @@ func TestSaveApplicationErrorResolves(t *testing.T) {
 
 func TestOtherSaveAppFailure(t *testing.T) {
 
-	var mockDB mock.DatabaseService
-
 	var mockStore saveStoreOtherSaveError
 
 	var mockLog mock.LogService
 
 	handler := SaveHandler{
-		Env:      nil,
-		Log:      &mockLog,
-		Database: &mockDB,
-		Store:    &mockStore,
+		Env:   nil,
+		Log:   &mockLog,
+		Store: &mockStore,
 	}
 
 	reqBody := strings.NewReader(validJSON)
@@ -471,17 +444,14 @@ func TestOtherSaveAppFailure(t *testing.T) {
 
 func TestOtherCreateApplicationFailure(t *testing.T) {
 
-	var mockDB mock.DatabaseService
-
 	var mockStore saveStoreOtherCreateError
 
 	var mockLog mock.LogService
 
 	handler := SaveHandler{
-		Env:      nil,
-		Log:      &mockLog,
-		Database: &mockDB,
-		Store:    &mockStore,
+		Env:   nil,
+		Log:   &mockLog,
+		Store: &mockStore,
 	}
 
 	reqBody := strings.NewReader(validJSON)

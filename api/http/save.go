@@ -9,10 +9,9 @@ import (
 
 // SaveHandler is the handler for saving the application.
 type SaveHandler struct {
-	Env      api.Settings
-	Log      api.LogService
-	Database api.DatabaseService
-	Store    api.StorageService
+	Env   api.Settings
+	Log   api.LogService
+	Store api.StorageService
 }
 
 // ServeHTTP saves a payload of information for the provided account.

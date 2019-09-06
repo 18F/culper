@@ -4,17 +4,15 @@ import (
 	"net/http"
 
 	"github.com/18F/e-QIP-prototype/api"
-	"github.com/18F/e-QIP-prototype/api/simplestore"
 )
 
 // BasicAuthHandler is the handler for basic authentication.
 type BasicAuthHandler struct {
-	Env      api.Settings
-	Log      api.LogService
-	Database api.DatabaseService
-	Store    api.StorageService
-	Session  api.SessionService
-	Cookie   SessionCookieService
+	Env     api.Settings
+	Log     api.LogService
+	Store   api.StorageService
+	Session api.SessionService
+	Cookie  SessionCookieService
 }
 
 // ServeHTTP processes a users request to login with a Username and Password
@@ -53,25 +51,21 @@ func (service BasicAuthHandler) ServeHTTP(w http.ResponseWriter, r *http.Request
 		return
 	}
 
-	account := &api.Account{
-		Username: respBody.Username,
-	}
-
-	// Associate with a database context.
-	if _, err := account.Get(service.Database, 0); err != nil {
-		service.Log.WarnError(api.AccountUpdateError, err, api.LogFields{"username": account.Username})
+	account, fetchErr := service.Store.FetchAccountWithPasswordHash(respBody.Username)
+	if fetchErr != nil {
+		service.Log.WarnError(api.AccountUpdateError, fetchErr, api.LogFields{"username": account.Username})
 		RespondWithStructuredError(w, api.AccountUpdateError, http.StatusInternalServerError)
 		return
 	}
 
 	// Validate the user name and password combination
-	if err := account.BasicAuthentication(service.Database, respBody.Password); err != nil {
+	if err := account.CheckPassword(respBody.Password); err != nil {
 		service.Log.WarnError(api.BasicAuthInvalid, err, api.LogFields{"account": account.ID})
 		RespondWithStructuredError(w, api.BasicAuthInvalid, http.StatusUnauthorized)
 		return
 	}
 
-	sessionKey, authErr := service.Session.UserDidAuthenticate(account.ID, simplestore.NullString())
+	sessionKey, authErr := service.Session.UserDidAuthenticate(account.ID, api.NullString())
 	if authErr != nil {
 		service.Log.WarnError("bad session get", authErr, api.LogFields{"account": account.ID})
 		RespondWithStructuredError(w, "bad session get", http.StatusInternalServerError)

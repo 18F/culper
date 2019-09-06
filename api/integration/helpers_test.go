@@ -23,7 +23,6 @@ import (
 	"github.com/18F/e-QIP-prototype/api/env"
 	"github.com/18F/e-QIP-prototype/api/http"
 	"github.com/18F/e-QIP-prototype/api/log"
-	"github.com/18F/e-QIP-prototype/api/postgresql"
 	"github.com/18F/e-QIP-prototype/api/simplestore"
 )
 
@@ -36,16 +35,14 @@ var serializerInitializer = func() api.Serializer {
 type serviceSet struct {
 	env   api.Settings
 	log   api.LogService
-	db    api.DatabaseService
-	store api.StorageService
+	store simplestore.SimpleStore
 }
 
 func (s serviceSet) closeDB() {
-	dbErr := s.db.Close()
 	storeErr := s.store.Close()
-	if dbErr != nil || storeErr != nil {
+	if storeErr != nil {
 		// Since this is always called in tests in defer, we just swallow the errors and log them.
-		fmt.Println("Got an error trying to close the db: ", dbErr, storeErr)
+		fmt.Println("Got an error trying to close the db: ", storeErr)
 	}
 }
 
@@ -58,7 +55,7 @@ func cleanTestServices(t *testing.T) serviceSet {
 
 	log := &log.Service{Log: log.NewLogger()}
 
-	dbConf := postgresql.DBConfig{
+	dbConf := simplestore.DBConfig{
 		User:     env.String(api.DatabaseUser),
 		Password: env.String(api.DatabasePassword),
 		Address:  env.String(api.DatabaseHost),
@@ -66,11 +63,9 @@ func cleanTestServices(t *testing.T) serviceSet {
 		SSLMode:  env.String(api.DatabaseSSLMode),
 	}
 
-	db := postgresql.NewPostgresService(dbConf, log)
-
 	serializer := serializerInitializer()
 
-	store, storeErr := simplestore.NewSimpleStore(postgresql.PostgresConnectURI(dbConf), log, serializer)
+	store, storeErr := simplestore.NewSimpleStore(simplestore.PostgresConnectURI(dbConf), log, serializer)
 	if storeErr != nil {
 		t.Fatal(storeErr)
 	}
@@ -78,7 +73,6 @@ func cleanTestServices(t *testing.T) serviceSet {
 	return serviceSet{
 		env,
 		log,
-		db,
 		store,
 	}
 }
@@ -103,45 +97,45 @@ func randomEmail() string {
 
 }
 
-func createLockedTestAccount(t *testing.T, db api.DatabaseService) api.Account {
+func createLockedTestAccount(t *testing.T, store api.StorageService) api.Account {
 	t.Helper()
 
 	email := randomEmail()
 
 	account := api.Account{
 		Username:    email,
-		Email:       simplestore.NonNullString(email),
+		Email:       api.NonNullString(email),
 		FormType:    "SF86",
 		FormVersion: "2017-07",
 		Status:      api.StatusSubmitted,
 		ExternalID:  uuid.New().String(),
 	}
 
-	_, err := account.Save(db, -1)
-	if err != nil {
-		t.Fatal(err)
+	createErr := store.CreateAccount(&account)
+	if createErr != nil {
+		t.Fatal(createErr)
 	}
 
 	return account
 }
 
-func createTestAccount(t *testing.T, db api.DatabaseService) api.Account {
+func createTestAccount(t *testing.T, store api.StorageService) api.Account {
 	t.Helper()
 
 	email := randomEmail()
 
 	account := api.Account{
 		Username:    email,
-		Email:       simplestore.NonNullString(email),
+		Email:       api.NonNullString(email),
 		FormType:    "SF86",
 		FormVersion: "2017-07",
 		Status:      api.StatusIncomplete,
 		ExternalID:  uuid.New().String(),
 	}
 
-	_, err := account.Save(db, -1)
-	if err != nil {
-		t.Fatal(err)
+	createErr := store.CreateAccount(&account)
+	if createErr != nil {
+		t.Fatal(createErr)
 	}
 
 	return account
@@ -175,10 +169,9 @@ func saveJSON(services serviceSet, json []byte, account api.Account) *gohttp.Res
 	w, r := standardResponseAndRequest("POST", "/me/save", strings.NewReader(string(json)), account)
 
 	saveHandler := http.SaveHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	saveHandler.ServeHTTP(w, r)
@@ -218,10 +211,9 @@ func getForm(services serviceSet, account api.Account) *gohttp.Response {
 	w, r := standardResponseAndRequest("GET", "/me/form", nil, account)
 
 	formHandler := http.FormHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	formHandler.ServeHTTP(w, r)

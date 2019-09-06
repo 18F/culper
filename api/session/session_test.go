@@ -2,19 +2,63 @@ package session
 
 import (
 	"fmt"
+	"math/rand"
 	"os"
 	"testing"
 	"time"
 
+	"github.com/google/uuid"
 	"github.com/pkg/errors"
 
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/env"
 	"github.com/18F/e-QIP-prototype/api/log"
 	"github.com/18F/e-QIP-prototype/api/mock"
-	"github.com/18F/e-QIP-prototype/api/postgresql"
 	"github.com/18F/e-QIP-prototype/api/simplestore"
 )
+
+// randomEmail an example.com email address with 10 random characters
+func randomEmail() string {
+
+	rand.Seed(time.Now().UTC().UnixNano())
+
+	len := 10
+	bytes := make([]byte, len)
+	for i := 0; i < len; i++ {
+		aint := int('a')
+		zint := int('z')
+		char := aint + rand.Intn(zint-aint)
+		bytes[i] = byte(char)
+	}
+
+	email := string(bytes) + "@example.com"
+
+	return email
+
+}
+
+func createTestAccount(t *testing.T, store api.StorageService) api.Account {
+	t.Helper()
+
+	email := randomEmail()
+
+	account := api.Account{
+		Username:    email,
+		Email:       api.NonNullString(email),
+		FormType:    "SF86",
+		FormVersion: "2017-07",
+		Status:      api.StatusIncomplete,
+		ExternalID:  uuid.New().String(),
+	}
+
+	createErr := store.CreateAccount(&account)
+	if createErr != nil {
+		t.Fatal(createErr)
+	}
+
+	return account
+
+}
 
 func getSimpleStore() api.StorageService {
 	env := &env.Native{}
@@ -23,14 +67,14 @@ func getSimpleStore() api.StorageService {
 
 	log := &log.Service{Log: log.NewLogger()}
 
-	dbConf := postgresql.DBConfig{
+	dbConf := simplestore.DBConfig{
 		User:     env.String(api.DatabaseUser),
 		Password: env.String(api.DatabasePassword),
 		Address:  env.String(api.DatabaseHost),
 		DBName:   env.String(api.TestDatabaseName),
 	}
 
-	connString := postgresql.PostgresConnectURI(dbConf)
+	connString := simplestore.PostgresConnectURI(dbConf)
 
 	serializer := simplestore.JSONSerializer{}
 
@@ -50,7 +94,7 @@ func TestAuthExists(t *testing.T) {
 	sessionLog := &mock.LogService{}
 	session := NewSessionService(timeout, store, sessionLog)
 
-	session.UserDidAuthenticate(0, simplestore.NullString())
+	session.UserDidAuthenticate(0, api.NullString())
 }
 
 func TestLogSessionCreatedDestroyed(t *testing.T) {
@@ -62,9 +106,9 @@ func TestLogSessionCreatedDestroyed(t *testing.T) {
 
 	session := NewSessionService(timeout, store, sessionLog)
 
-	account := simplestore.CreateTestAccount(t, store.(simplestore.SimpleStore))
+	account := createTestAccount(t, store.(simplestore.SimpleStore))
 
-	sessionKey, authErr := session.UserDidAuthenticate(account.ID, simplestore.NullString())
+	sessionKey, authErr := session.UserDidAuthenticate(account.ID, api.NullString())
 	if authErr != nil {
 		t.Fatal(authErr)
 	}
@@ -136,9 +180,9 @@ func TestLogSessionExpired(t *testing.T) {
 
 	session := NewSessionService(timeout, store, sessionLog)
 
-	account := simplestore.CreateTestAccount(t, store.(simplestore.SimpleStore))
+	account := createTestAccount(t, store.(simplestore.SimpleStore))
 
-	sessionKey, authErr := session.UserDidAuthenticate(account.ID, simplestore.NullString())
+	sessionKey, authErr := session.UserDidAuthenticate(account.ID, api.NullString())
 	if authErr != nil {
 		t.Fatal(authErr)
 	}
@@ -168,7 +212,7 @@ func TestLogSessionExpired(t *testing.T) {
 	}
 
 	// make sure you can re-auth after ending a session
-	_, newAuthErr := session.UserDidAuthenticate(account.ID, simplestore.NullString())
+	_, newAuthErr := session.UserDidAuthenticate(account.ID, api.NullString())
 	if newAuthErr != nil {
 		t.Fatal(newAuthErr)
 	}
@@ -185,9 +229,9 @@ func TestLogConcurrentSession(t *testing.T) {
 
 	session := NewSessionService(timeout, store, sessionLog)
 
-	account := simplestore.CreateTestAccount(t, store.(simplestore.SimpleStore))
+	account := createTestAccount(t, store.(simplestore.SimpleStore))
 
-	_, authErr := session.UserDidAuthenticate(account.ID, simplestore.NullString())
+	_, authErr := session.UserDidAuthenticate(account.ID, api.NullString())
 	if authErr != nil {
 		t.Fatal(authErr)
 	}
@@ -198,7 +242,7 @@ func TestLogConcurrentSession(t *testing.T) {
 	}
 
 	// Now login again:
-	_, authAgainErr := session.UserDidAuthenticate(account.ID, simplestore.NullString())
+	_, authAgainErr := session.UserDidAuthenticate(account.ID, api.NullString())
 	if authAgainErr != nil {
 		t.Fatal(authAgainErr)
 	}

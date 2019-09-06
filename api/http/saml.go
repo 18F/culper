@@ -6,7 +6,6 @@ import (
 	"os"
 
 	"github.com/18F/e-QIP-prototype/api"
-	"github.com/18F/e-QIP-prototype/api/simplestore"
 )
 
 var (
@@ -15,10 +14,9 @@ var (
 
 // SamlRequestHandler is the handler for creating a SAML request.
 type SamlRequestHandler struct {
-	Env      api.Settings
-	Log      api.LogService
-	Database api.DatabaseService
-	SAML     api.SamlService
+	Env  api.Settings
+	Log  api.LogService
+	SAML api.SamlService
 }
 
 // ServeHTTP is the initial entry point for authentication.
@@ -47,11 +45,10 @@ func (service SamlRequestHandler) ServeHTTP(w http.ResponseWriter, r *http.Reque
 
 // SamlSLORequestHandler is the handler for creating a SAML Logout request
 type SamlSLORequestHandler struct {
-	Env      api.Settings
-	Log      api.LogService
-	Database api.DatabaseService
-	SAML     api.SamlService
-	Session  api.SessionService
+	Env     api.Settings
+	Log     api.LogService
+	SAML    api.SamlService
+	Session api.SessionService
 }
 
 // ServeHTTP is the initial entry point for authentication.
@@ -90,12 +87,12 @@ func (service SamlSLORequestHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 
 // SamlResponseHandler is the callback handler for both login and logout SAML Responses.
 type SamlResponseHandler struct {
-	Env      api.Settings
-	Log      api.LogService
-	Database api.DatabaseService
-	SAML     api.SamlService
-	Session  api.SessionService
-	Cookie   SessionCookieService
+	Env     api.Settings
+	Log     api.LogService
+	SAML    api.SamlService
+	Session api.SessionService
+	Store   api.StorageService
+	Cookie  SessionCookieService
 }
 
 // ServeHTTP is the callback handler for both login and logout SAML Responses.
@@ -140,20 +137,16 @@ func (service SamlResponseHandler) serveAuthnResponse(encodedResponse string, w 
 		return
 	}
 
-	// Associate with a database context.
-	account := &api.Account{
-		Username: username,
-	}
-	if _, err := account.Get(service.Database, account.ID); err != nil {
-		service.Log.WarnError(api.NoAccount, err, api.LogFields{"username": username})
-
+	account, fetchErr := service.Store.FetchAccountByUsername(username)
+	if fetchErr != nil {
+		service.Log.WarnError(api.NoAccount, fetchErr, api.LogFields{"username": username})
 		redirectAccessDenied(w, r)
 	}
 
-	sessionKey, authErr := service.Session.UserDidAuthenticate(account.ID, simplestore.NonNullString(sessionIndex))
+	sessionKey, authErr := service.Session.UserDidAuthenticate(account.ID, api.NonNullString(sessionIndex))
 	if authErr != nil {
-		service.Log.WarnError("bad session get", authErr, api.LogFields{"account": account.ID})
-		RespondWithStructuredError(w, "bad session get", http.StatusInternalServerError)
+		service.Log.WarnError(api.SessionCreationFailed, authErr, api.LogFields{"account": account.ID})
+		RespondWithStructuredError(w, api.SessionCreationFailed, http.StatusInternalServerError)
 		return
 	}
 

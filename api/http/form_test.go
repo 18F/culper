@@ -14,17 +14,14 @@ import (
 
 func TestFormHandlerLockedAccount(t *testing.T) {
 
-	var mockDB mock.DatabaseService
-
 	var mockStore mock.StorageService
 
 	var mockLog mock.LogService
 
 	handler := FormHandler{
-		Env:      nil,
-		Log:      &mockLog,
-		Database: &mockDB,
-		Store:    &mockStore,
+		Env:   nil,
+		Log:   &mockLog,
+		Store: &mockStore,
 	}
 
 	reqBody := strings.NewReader(validJSON)
@@ -69,17 +66,14 @@ func (s errorFormStore) LoadApplication(accountID int) (api.Application, error) 
 
 func TestFormHandlerUnexpectedStoreErr(t *testing.T) {
 
-	var mockDB mock.DatabaseService
-
 	var mockStore errorFormStore
 
 	var mockLog mock.LogService
 
 	handler := FormHandler{
-		Env:      nil,
-		Log:      &mockLog,
-		Database: &mockDB,
-		Store:    &mockStore,
+		Env:   nil,
+		Log:   &mockLog,
+		Store: &mockStore,
 	}
 
 	reqBody := strings.NewReader(validJSON)

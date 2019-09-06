@@ -12,7 +12,7 @@ import (
 
 func getTestObjects(t *testing.T) (SimpleStore, api.Account, string) {
 	ss := getSimpleStore()
-	account := CreateTestAccount(t, ss)
+	account := createTestAccount(t, ss)
 	UUID := uuid.New().String()
 	return ss, account, UUID
 }
@@ -31,7 +31,7 @@ func TestFetchExistingSessionToOverwrite(t *testing.T) {
 	store, account, firstSessionKey := getTestObjects(t)
 	expirationDuration := 5 * time.Minute
 
-	firstCreateErr := store.CreateSession(account.ID, firstSessionKey, NullString(), expirationDuration)
+	firstCreateErr := store.CreateSession(account.ID, firstSessionKey, api.NullString(), expirationDuration)
 	if firstCreateErr != nil {
 		t.Fatal(firstCreateErr)
 	}
@@ -57,7 +57,7 @@ func TestFetchExistingSessionToOverwrite(t *testing.T) {
 	}
 
 	secondSessionKey := uuid.New().String()
-	secondCreateErr := store.CreateSession(account.ID, secondSessionKey, NullString(), expirationDuration)
+	secondCreateErr := store.CreateSession(account.ID, secondSessionKey, api.NullString(), expirationDuration)
 	if secondCreateErr != nil {
 		t.Fatal(secondCreateErr)
 	}
@@ -81,7 +81,7 @@ func TestFetchSessionReturnsAccountAndSessionOnValidSession(t *testing.T) {
 	store, account, sessionKey := getTestObjects(t)
 	expirationDuration := 5 * time.Minute
 
-	createErr := store.CreateSession(account.ID, sessionKey, NullString(), expirationDuration)
+	createErr := store.CreateSession(account.ID, sessionKey, api.NullString(), expirationDuration)
 	if createErr != nil {
 		t.Fatal(createErr)
 	}
@@ -95,7 +95,7 @@ func TestFetchSessionReturnsAccountAndSessionOnValidSession(t *testing.T) {
 		t.Fatal(fmt.Sprintf("actual returned account does not match expected returned account:\n%v\n%v", actualAccount, account))
 	}
 
-	if !(actualSession.AccountID == account.ID && actualSession.SessionKey == sessionKey && actualSession.SessionIndex == NullString()) {
+	if !(actualSession.AccountID == account.ID && actualSession.SessionKey == sessionKey && actualSession.SessionIndex == api.NullString()) {
 		t.Fatal("Didn't get the expected session values back", actualSession)
 	}
 
@@ -111,7 +111,7 @@ func TestFetchSessionExtendsValidSession(t *testing.T) {
 
 	shortInitialDuration := 5 * time.Minute
 
-	createErr := store.CreateSession(account.ID, sessionKey, NullString(), shortInitialDuration)
+	createErr := store.CreateSession(account.ID, sessionKey, api.NullString(), shortInitialDuration)
 	if createErr != nil {
 		t.Fatal(createErr)
 	}
@@ -143,7 +143,7 @@ func TestFetchSessionReturnsErrorOnExpiredSession(t *testing.T) {
 	store, account, sessionKey := getTestObjects(t)
 	expirationDuration := -10 * time.Minute
 
-	createErr := store.CreateSession(account.ID, sessionKey, NullString(), expirationDuration)
+	createErr := store.CreateSession(account.ID, sessionKey, api.NullString(), expirationDuration)
 	if createErr != nil {
 		t.Fatal(createErr)
 	}
@@ -157,7 +157,7 @@ func TestFetchSessionReturnsErrorOnExpiredSession(t *testing.T) {
 func TestDeleteSessionRemovesRecord(t *testing.T) {
 	store, account, sessionKey := getTestObjects(t)
 	expirationDuration := 5 * time.Minute
-	store.CreateSession(account.ID, sessionKey, NullString(), expirationDuration)
+	store.CreateSession(account.ID, sessionKey, api.NullString(), expirationDuration)
 
 	fetchQuery := `SELECT * FROM sessions WHERE session_key = $1`
 	row := api.Session{}
@@ -216,7 +216,7 @@ func TestSessionDBConstraints(t *testing.T) {
 	}
 
 	// nil sessionkey
-	_, createErr = s.db.Exec(justCreateQuery, NullString(), account.ID, sessionIndex, expirationDate)
+	_, createErr = s.db.Exec(justCreateQuery, api.NullString(), account.ID, sessionIndex, expirationDate)
 	if createErr == nil {
 		t.Log("Should not have created a bogus session: missing sessionkey")
 		t.Fail()
@@ -231,7 +231,7 @@ func TestSessionDBConstraints(t *testing.T) {
 	}
 
 	// nil sessionIndex, this creates a record we can check UNIQE against
-	_, createErr = s.db.Exec(justCreateQuery, sessionKey, account.ID, NullString(), expirationDate)
+	_, createErr = s.db.Exec(justCreateQuery, sessionKey, account.ID, api.NullString(), expirationDate)
 	if createErr != nil {
 		t.Log("Should have created a session without a sessionIndex")
 		t.Fail()
@@ -239,15 +239,15 @@ func TestSessionDBConstraints(t *testing.T) {
 
 	// duplicate accountid
 	differentSessionKey := uuid.New().String()
-	_, createErr = s.db.Exec(justCreateQuery, differentSessionKey, account.ID, NullString(), expirationDate)
+	_, createErr = s.db.Exec(justCreateQuery, differentSessionKey, account.ID, api.NullString(), expirationDate)
 	if createErr == nil {
 		t.Log("Should not have created a session with a duplicate account ID")
 		t.Fail()
 	}
 
 	// duplicate sessionkey
-	differentAccount := CreateTestAccount(t, s)
-	_, createErr = s.db.Exec(justCreateQuery, sessionKey, differentAccount.ID, NullString(), expirationDate)
+	differentAccount := createTestAccount(t, s)
+	_, createErr = s.db.Exec(justCreateQuery, sessionKey, differentAccount.ID, api.NullString(), expirationDate)
 	if createErr == nil {
 		t.Log("Should not have created a session with a duplicate SessionKey")
 		t.Fail()
@@ -259,7 +259,7 @@ func TestDeleteAccountDeletesSession(t *testing.T) {
 	store, account, sessionKey := getTestObjects(t)
 	expirationDuration := -5 * time.Minute
 
-	firstCreateErr := store.CreateSession(account.ID, sessionKey, NullString(), expirationDuration)
+	firstCreateErr := store.CreateSession(account.ID, sessionKey, api.NullString(), expirationDuration)
 	if firstCreateErr != nil {
 		t.Fatal(firstCreateErr)
 	}

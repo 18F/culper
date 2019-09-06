@@ -14,7 +14,6 @@ import (
 	"github.com/18F/e-QIP-prototype/api/http"
 	"github.com/18F/e-QIP-prototype/api/log"
 	"github.com/18F/e-QIP-prototype/api/pdf"
-	"github.com/18F/e-QIP-prototype/api/postgresql"
 	"github.com/18F/e-QIP-prototype/api/saml"
 	"github.com/18F/e-QIP-prototype/api/session"
 	"github.com/18F/e-QIP-prototype/api/simplestore"
@@ -33,17 +32,15 @@ func main() {
 	settings := env.Native{}
 	settings.Configure()
 
-	dbConf := postgresql.DBConfig{
+	dbConf := simplestore.DBConfig{
 		User:     settings.String(api.DatabaseUser),
 		Password: settings.String(api.DatabasePassword),
 		Address:  settings.String(api.DatabaseHost),
 		DBName:   settings.String(api.DatabaseName),
 	}
 
-	database := postgresql.NewPostgresService(dbConf, logger)
-
 	serializer := simplestore.NewJSONSerializer()
-	store, storeErr := simplestore.NewSimpleStore(postgresql.PostgresConnectURI(dbConf), logger, serializer)
+	store, storeErr := simplestore.NewSimpleStore(simplestore.PostgresConnectURI(dbConf), logger, serializer)
 	if storeErr != nil {
 		logger.WarnError("Error configuring Simple Store", storeErr, api.LogFields{})
 		return
@@ -53,7 +50,7 @@ func main() {
 	xmlsvc := xml.NewXMLService(xmlTemplatePath)
 	pdfTemplatePath := "./pdf/templates/"
 	pdfsvc := pdf.NewPDFService(pdfTemplatePath)
-	submitter := admin.NewSubmitter(database, store, xmlsvc, pdfsvc)
+	submitter := admin.NewSubmitter(store, xmlsvc, pdfsvc)
 
 	sessionTimeout := time.Duration(settings.Int(api.SessionTimeout)) * time.Minute
 	sessionService := session.NewSessionService(sessionTimeout, store, logger)
@@ -68,7 +65,7 @@ func main() {
 	if !*flagSkipMigration {
 		ex, _ := os.Executable()
 		migration := api.Migration{Env: settings}
-		connStr := postgresql.PostgresConnectURI(dbConf)
+		connStr := simplestore.PostgresConnectURI(dbConf)
 		if err := migration.Up(connStr, filepath.Dir(ex), settings.String(api.GolangEnv), ""); err != nil {
 			logger.WarnError(api.WarnFailedMigration, err, api.LogFields{})
 		}
@@ -94,30 +91,30 @@ func main() {
 
 	o := r.PathPrefix("/auth").Subrouter()
 	if settings.True(api.BasicEnabled) {
-		o.HandleFunc("/basic", http.BasicAuthHandler{Env: settings, Log: logger, Database: database, Store: store, Cookie: cookieService, Session: sessionService}.ServeHTTP).Methods("POST")
+		o.HandleFunc("/basic", http.BasicAuthHandler{Env: settings, Log: logger, Store: store, Cookie: cookieService, Session: sessionService}.ServeHTTP).Methods("POST")
 	}
 	if settings.True(api.SamlEnabled) {
-		o.HandleFunc("/saml", http.SamlRequestHandler{Env: settings, Log: logger, Database: database, SAML: samlsvc}.ServeHTTP).Methods("GET")
+		o.HandleFunc("/saml", http.SamlRequestHandler{Env: settings, Log: logger, SAML: samlsvc}.ServeHTTP).Methods("GET")
 		// SLO uses the logged in session
-		o.Handle("/saml_slo", sec(http.SamlSLORequestHandler{Env: settings, Log: logger, Database: database, SAML: samlsvc, Session: sessionService})).Methods("GET")
-		o.HandleFunc("/saml/callback", http.SamlResponseHandler{Env: settings, Log: logger, Database: database, SAML: samlsvc, Session: sessionService, Cookie: cookieService}.ServeHTTP).Methods("POST")
+		o.Handle("/saml_slo", sec(http.SamlSLORequestHandler{Env: settings, Log: logger, SAML: samlsvc, Session: sessionService})).Methods("GET")
+		o.HandleFunc("/saml/callback", http.SamlResponseHandler{Env: settings, Log: logger, SAML: samlsvc, Session: sessionService, Cookie: cookieService}.ServeHTTP).Methods("POST")
 	}
 
 	// Account specific actions
-	r.Handle("/refresh", sec(http.RefreshHandler{Env: settings, Log: logger, Database: database})).Methods("POST")
+	r.Handle("/refresh", sec(http.RefreshHandler{Env: settings, Log: logger})).Methods("POST")
 
 	a := r.PathPrefix("/me").Subrouter()
 	a.Handle("/logout", sec(http.LogoutHandler{Log: logger, Session: sessionService})).Methods("POST")
-	a.Handle("/save", sec(http.SaveHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("POST", "PUT")
-	a.Handle("/status", sec(http.StatusHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("GET")
+	a.Handle("/save", sec(http.SaveHandler{Env: settings, Log: logger, Store: store})).Methods("POST", "PUT")
+	a.Handle("/status", sec(http.StatusHandler{Env: settings, Log: logger, Store: store})).Methods("GET")
 	a.Handle("/validate", sec(http.ValidateHandler{Log: logger})).Methods("POST")
-	a.Handle("/form", sec(http.FormHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("GET")
-	a.Handle("/form/submit", sec(http.SubmitHandler{Env: settings, Log: logger, Database: database, Store: store, Submitter: submitter})).Methods("POST")
-	a.Handle("/attachment", sec(http.AttachmentListHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("GET")
-	a.Handle("/attachment/{id}", sec(http.AttachmentGetHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("GET")
+	a.Handle("/form", sec(http.FormHandler{Env: settings, Log: logger, Store: store})).Methods("GET")
+	a.Handle("/form/submit", sec(http.SubmitHandler{Env: settings, Log: logger, Store: store, Submitter: submitter})).Methods("POST")
+	a.Handle("/attachment", sec(http.AttachmentListHandler{Env: settings, Log: logger, Store: store})).Methods("GET")
+	a.Handle("/attachment/{id}", sec(http.AttachmentGetHandler{Env: settings, Log: logger, Store: store})).Methods("GET")
 	if settings.True(api.AttachmentsEnabled) {
-		a.Handle("/attachment", sec(http.AttachmentSaveHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("POST", "PUT")
-		a.Handle("/attachment/{id}/delete", sec(http.AttachmentDeleteHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("POST", "DELETE")
+		a.Handle("/attachment", sec(http.AttachmentSaveHandler{Env: settings, Log: logger, Store: store})).Methods("POST", "PUT")
+		a.Handle("/attachment/{id}/delete", sec(http.AttachmentDeleteHandler{Env: settings, Log: logger, Store: store})).Methods("POST", "DELETE")
 	}
 
 	// Inject middleware

@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"github.com/pkg/errors"
+	"golang.org/x/crypto/bcrypt"
 )
 
 var (
@@ -53,6 +54,18 @@ type Account struct {
 	// The only way for PasswordHash to be filled out is to call simplestore.FetchAccountWithPasswordHash
 }
 
+// Helper methods for sql.NullString
+
+// NonNullString returns a valid sql.NullString
+func NonNullString(value string) sql.NullString {
+	return sql.NullString{Valid: true, String: value}
+}
+
+// NullString returns an invalid sql.NullString
+func NullString() sql.NullString {
+	return sql.NullString{}
+}
+
 // validate returns nil if the account is valid or an error describing what's wrong otherwise.
 // This is intended to ensure data integrity by not saving invalid data to the database
 func (entity Account) validate() error {
@@ -77,73 +90,6 @@ func (entity Account) validate() error {
 
 	return nil
 
-}
-
-// Save the Account entity.
-func (entity *Account) Save(context DatabaseService, account int) (int, error) {
-
-	if err := entity.validate(); err != nil {
-		return entity.ID, err
-	}
-
-	if err := context.Save(entity); err != nil {
-		return entity.ID, err
-	}
-
-	return entity.ID, nil
-}
-
-// Delete the Account entity.
-func (entity *Account) Delete(context DatabaseService, account int) (int, error) {
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
-	}
-
-	return entity.ID, nil
-}
-
-// Get the Account entity.
-func (entity *Account) Get(context DatabaseService, account int) (int, error) {
-
-	if err := entity.Find(context); err != nil {
-		return entity.ID, err
-	}
-
-	return entity.ID, nil
-}
-
-// GetID returns the entity identifier.
-func (entity *Account) GetID() int {
-	return entity.ID
-}
-
-// SetID sets the entity identifier.
-func (entity *Account) SetID(id int) {
-	entity.ID = id
-}
-
-// Find will search for account by `username` if no identifier is present or by ID if it is.
-func (entity *Account) Find(context DatabaseService) error {
-	if entity.ExternalID != "" {
-		return entity.FindByExternalID(context)
-	}
-
-	if entity.ID == 0 {
-		return context.Where(entity, "Account.username = ?", entity.Username)
-	}
-	return context.Select(entity)
-}
-
-// FindByExternalID will search for account by `request id`
-func (entity *Account) FindByExternalID(context DatabaseService) error {
-	if entity.ExternalID == "" {
-		return fmt.Errorf("No request id was given")
-	}
-
-	return context.Where(entity, "Account.external_id = ?", entity.ExternalID)
 }
 
 // CanSubmit returns wether the account is in a valid state for submission
@@ -209,29 +155,25 @@ func DefaultFormVersion(formType string) (string, error) {
 	return versions[0], nil
 }
 
-// BasicAuthentication checks if the username and password are valid and returns the users account
-func (entity *Account) BasicAuthentication(context DatabaseService, password string) error {
-	var basicMembership BasicAuthMembership
-
-	// Find if basic auth record exists for given account username
-	err := context.ColumnsWhere(&basicMembership, []string{"basic_auth_membership.*", "Account"}, "Account.username = ?", entity.Username)
+// HashPassword converts a plaintext password and generates a hash
+func (entity *Account) HashPassword(password string) error {
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 	if err != nil {
-		fmt.Printf("Basic Authentication Error: [%v]\n", err)
-		return ErrAccountDoesNotExist
+		return err
+	}
+	entity.PasswordHash = NonNullString(string(hashedPassword))
+	return nil
+}
+
+// CheckPassword checks if the username and password are valid and returns the users account
+func (entity *Account) CheckPassword(password string) error {
+	if !entity.PasswordHash.Valid {
+		return ErrAccountHasNoPassword
 	}
 
-	// Check if plaintext password matches hashed password
-	if matches := basicMembership.PasswordMatch(password); !matches {
+	if bcrypt.CompareHashAndPassword([]byte(entity.PasswordHash.String), []byte(password)) != nil {
 		return ErrPasswordDoesNotMatch
 	}
 
-	if basicMembership.Account != nil {
-		entity.ID = basicMembership.Account.ID
-		entity.Username = basicMembership.Account.Username
-		entity.Email = basicMembership.Account.Email
-		entity.Status = basicMembership.Account.Status
-		entity.FormType = basicMembership.Account.FormType
-		entity.FormVersion = basicMembership.Account.FormVersion
-	}
 	return nil
 }

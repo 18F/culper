@@ -13,15 +13,14 @@ func TestFormVersionReturned(t *testing.T) {
 
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 
 	w, r := standardResponseAndRequest("GET", "/me/form", nil, account)
 
 	formHandler := http.FormHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	formHandler.ServeHTTP(w, r)
@@ -67,7 +66,7 @@ func TestFormVersionSave(t *testing.T) {
 
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 
 	fmt.Println("Account ID", account.ID)
 

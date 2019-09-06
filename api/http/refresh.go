@@ -8,9 +8,8 @@ import (
 
 // RefreshHandler is the handler for refreshing the session
 type RefreshHandler struct {
-	Env      api.Settings
-	Log      api.LogService
-	Database api.DatabaseService
+	Env api.Settings
+	Log api.LogService
 }
 
 // ServeHTTP refreshes a given token.

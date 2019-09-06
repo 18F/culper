@@ -13,7 +13,6 @@ import (
 type SubmitHandler struct {
 	Env       api.Settings
 	Log       api.LogService
-	Database  api.DatabaseService
 	Store     api.StorageService
 	Submitter admin.Submitter
 }
@@ -31,7 +30,7 @@ func (service SubmitHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	xml, _, submitErr := service.Submitter.FilesForSubmission(account.ID)
+	xml, _, submitErr := service.Submitter.FilesForSubmission(account)
 	if submitErr != nil {
 		service.Log.WarnError(api.PdfError, submitErr, api.LogFields{})
 		RespondWithStructuredError(w, api.PdfError, http.StatusInternalServerError)
@@ -46,8 +45,9 @@ func (service SubmitHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if _, err := account.Save(service.Database, account.ID); err != nil {
-		service.Log.WarnError(api.AccountUpdateError, err, api.LogFields{})
+	updateErr := service.Store.UpdateAccountStatus(&account)
+	if updateErr != nil {
+		service.Log.WarnError(api.AccountUpdateError, updateErr, api.LogFields{})
 		RespondWithStructuredError(w, api.AccountUpdateError, http.StatusInternalServerError)
 		return
 	}

@@ -13,25 +13,25 @@ func TestBasicAuthentication(t *testing.T) {
 
 	account := &Account{
 		Username:    username,
-		Firstname:   "Admin",
-		Lastname:    "Last",
 		FormType:    "SF86",
 		FormVersion: "2017-07",
 	}
 
-	membership := &BasicAuthMembership{
-		AccountID: account.ID,
-		Account:   account,
-	}
-	membership.HashPassword(password)
-
-	if matched := membership.PasswordMatch(password); !matched {
-		t.Fatal("Expected password to match")
+	setErr := account.HashPassword(password)
+	if setErr != nil {
+		t.Fatal(setErr)
 	}
 
-	if matched := membership.PasswordMatch("incorrect-password"); matched {
-		t.Fatal("Expected incorrect password")
+	checkErr := account.CheckPassword(password)
+	if checkErr != nil {
+		t.Fatal(checkErr)
 	}
+
+	badErr := account.CheckPassword("incorrect-password")
+	if badErr != ErrPasswordDoesNotMatch {
+		t.Fatal("Should have not matched!", badErr)
+	}
+
 }
 
 func TestValidFormType(t *testing.T) {
@@ -100,39 +100,6 @@ func TestAccountFormTypeValidation(t *testing.T) {
 	err := account.validate()
 	if err == nil {
 		t.Errorf("expected a Known Form error")
-		t.Fail()
-	}
-}
-
-func TestGetAccountID(t *testing.T) {
-
-	accountID := 148958398
-	account := &Account{
-		Username:    "glarbal@example.com",
-		Email:       sql.NullString{},
-		FormType:    "Dogs",
-		FormVersion: "2017-07",
-		ID:          accountID,
-	}
-	if account.GetID() != accountID {
-		t.Errorf("incorrect account ID")
-		t.Fail()
-	}
-}
-
-func TestSetAccountID(t *testing.T) {
-
-	accountID := 148958398
-	account := &Account{
-		Username:    "glarbal@example.com",
-		Email:       sql.NullString{},
-		FormType:    "Dogs",
-		FormVersion: "2017-07",
-		ID:          1835833,
-	}
-	account.SetID(accountID)
-	if account.ID != accountID {
-		t.Errorf("account ID set failure")
 		t.Fail()
 	}
 }

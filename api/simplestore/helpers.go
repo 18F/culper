@@ -14,7 +14,6 @@ import (
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/env"
 	"github.com/18F/e-QIP-prototype/api/log"
-	"github.com/18F/e-QIP-prototype/api/postgresql"
 )
 
 func getSimpleStore() SimpleStore {
@@ -24,7 +23,7 @@ func getSimpleStore() SimpleStore {
 
 	log := &log.Service{Log: log.NewLogger()}
 
-	dbConf := postgresql.DBConfig{
+	dbConf := DBConfig{
 		User:     env.String(api.DatabaseUser),
 		Password: env.String(api.DatabasePassword),
 		Address:  env.String(api.DatabaseHost),
@@ -32,7 +31,7 @@ func getSimpleStore() SimpleStore {
 		SSLMode:  "disable",
 	}
 
-	connString := postgresql.PostgresConnectURI(dbConf)
+	connString := PostgresConnectURI(dbConf)
 
 	serializer := JSONSerializer{}
 
@@ -104,9 +103,9 @@ func areEqualJSON(t *testing.T, s1, s2 []byte) bool {
 	return reflect.DeepEqual(o1, o2)
 }
 
-// CreateTestAccount is exported for now because there is no simplestore way
+// createTestAccount is exported for now because there is no simplestore way
 // of creating an account yet. Once the db stuff is ripped out I bet we can un-export this again
-func CreateTestAccount(t *testing.T, store SimpleStore) api.Account {
+func createTestAccount(t *testing.T, store SimpleStore) api.Account {
 	t.Helper()
 
 	email := randomEmail()
@@ -114,7 +113,7 @@ func CreateTestAccount(t *testing.T, store SimpleStore) api.Account {
 
 	account := api.Account{
 		Username:    email,
-		Email:       NonNullString(email),
+		Email:       api.NonNullString(email),
 		Status:      api.StatusIncomplete,
 		FormType:    "SF86",
 		FormVersion: "2017-07",

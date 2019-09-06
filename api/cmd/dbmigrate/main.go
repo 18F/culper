@@ -10,7 +10,7 @@ import (
 
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/env"
-	"github.com/18F/e-QIP-prototype/api/postgresql"
+	"github.com/18F/e-QIP-prototype/api/simplestore"
 )
 
 func pathToPattern(path, pattern string) string {
@@ -33,7 +33,7 @@ func runMigrations(dbName string, migrationsPath string) error {
 	settings := env.Native{}
 	settings.Configure()
 
-	dbConf := postgresql.DBConfig{
+	dbConf := simplestore.DBConfig{
 		User:     settings.String(api.DatabaseUser),
 		Password: settings.String(api.DatabasePassword),
 		Address:  settings.String(api.DatabaseHost),
@@ -41,7 +41,7 @@ func runMigrations(dbName string, migrationsPath string) error {
 		SSLMode:  settings.String(api.DatabaseSSLMode),
 	}
 
-	connStr := postgresql.PostgresConnectURI(dbConf)
+	connStr := simplestore.PostgresConnectURI(dbConf)
 
 	apiPath := filepath.Dir(filepath.Clean(migrationsPath))
 

@@ -17,16 +17,15 @@ func TestDeleteSignaturePDFs(t *testing.T) {
 
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 
 	xmlService := xml.NewXMLService("../templates/")
 	pdfService := pdf.NewPDFService("../pdf/templates/")
-	submitter := admin.NewSubmitter(services.db, services.store, xmlService, pdfService)
+	submitter := admin.NewSubmitter(services.store, xmlService, pdfService)
 
 	submitHandler := http.SubmitHandler{
 		Env:       services.env,
 		Log:       services.log,
-		Database:  services.db,
 		Store:     services.store,
 		Submitter: submitter,
 	}
@@ -41,10 +40,9 @@ func TestDeleteSignaturePDFs(t *testing.T) {
 	w := httptest.NewRecorder()
 
 	createAttachmentHandler := http.AttachmentSaveHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	createAttachmentHandler.ServeHTTP(w, req)
@@ -79,14 +77,13 @@ func TestDeleteSignaturePDFs(t *testing.T) {
 		t.Fatal("submit didn't succeed")
 	}
 
-	// reload account now that it's been submitted.
-	loadErr := account.Find(services.db)
-	if loadErr != nil {
-		t.Fatal(loadErr)
+	account, fetchErr := services.store.FetchAccountByUsername(account.Username)
+	if fetchErr != nil {
+		t.Fatal(fetchErr)
 	}
 
 	// Reject this submission
-	rejector := admin.NewRejecter(services.db, services.store)
+	rejector := admin.NewRejecter(services.store)
 	err := rejector.Reject(&account)
 	if err != nil {
 		t.Fatal("Failed to reject account: ", err)
@@ -94,10 +91,9 @@ func TestDeleteSignaturePDFs(t *testing.T) {
 
 	// Finally, check that only the orignally uploaded attachment remains
 	listAttachmentHandler := http.AttachmentListHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	w, indexReq := standardResponseAndRequest("GET", "/me/attachments/", nil, account)

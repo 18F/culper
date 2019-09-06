@@ -15,7 +15,7 @@ import (
 func TestCanValidateLocation(t *testing.T) {
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 	api.Geocode = mock.Geocoder{}
 
 	location := readTestData(t, "../testdata/location.json")
@@ -39,7 +39,7 @@ func TestCanValidateLocation(t *testing.T) {
 func TestCanNotValidateSomethingElse(t *testing.T) {
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 	api.Geocode = mock.Geocoder{}
 
 	location := readTestData(t, "../testdata/history/history-employment.json")
@@ -63,7 +63,7 @@ func TestCanNotValidateSomethingElse(t *testing.T) {
 func TestValidateHandlerInvalidAddress(t *testing.T) {
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 	api.Geocode = mock.Geocoder{}
 
 	// Pass a bad address
@@ -97,7 +97,7 @@ func TestValidateHandlerInvalidAddress(t *testing.T) {
 func TestValidateHandlerBadEntity(t *testing.T) {
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 	api.Geocode = mock.Geocoder{}
 
 	// Pass a non-JSON address
