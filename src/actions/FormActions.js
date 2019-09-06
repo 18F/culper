@@ -32,3 +32,7 @@ export const updateSubsectionComplete = (sectionKey, complete) => ({
   key: sectionKey,
   complete,
 })
+
+export const validateForm = () => ({
+  type: actionTypes.VALIDATE_FORM,
+})

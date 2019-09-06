@@ -13,7 +13,7 @@ import { updateApplication } from 'actions/ApplicationActions'
 import { env } from 'config'
 
 import { validateWatcher } from 'sagas/validate'
-import { setFormData, updateSubsectionWatcher } from 'sagas/form'
+import { setFormData, formWatcher } from 'sagas/form'
 import { handleLogout } from 'sagas/session'
 
 export function* loggedOutWatcher() {
@@ -34,7 +34,7 @@ export function* loggedInWatcher() {
   const { logout } = yield race({
     loggedIn: all([
       call(validateWatcher),
-      call(updateSubsectionWatcher),
+      call(formWatcher),
     ]),
     logout: take(actionTypes.LOGOUT),
   })
