@@ -2,6 +2,7 @@ package simplestore
 
 import (
 	"database/sql"
+	"fmt"
 	"testing"
 
 	"github.com/18F/e-QIP-prototype/api"
@@ -9,7 +10,6 @@ import (
 )
 
 func TestFetchAccountEmail(t *testing.T) {
-
 	store := getSimpleStore()
 	defer store.Close()
 
@@ -62,8 +62,24 @@ func TestFetchAccountEmail(t *testing.T) {
 
 }
 
-func TestFetchAccountExternalID(t *testing.T) {
+func TestFetchAccountWithPassword(t *testing.T) {
+	store := getSimpleStore()
+	defer store.Close()
 
+	// Can we fetch the same newAccount?
+	fetchedAccount, fetchErr := store.FetchAccountWithPasswordHash("test01")
+	if fetchErr != nil {
+		t.Fatal(fetchErr)
+	}
+
+	if !fetchedAccount.PasswordHash.Valid {
+		t.Fatal("Invalid password hash!")
+	}
+
+	fmt.Println(fetchedAccount.PasswordHash.String)
+}
+
+func TestFetchAccountExternalID(t *testing.T) {
 	store := getSimpleStore()
 	defer store.Close()
 
@@ -116,8 +132,24 @@ func TestFetchAccountExternalID(t *testing.T) {
 
 }
 
-func TestUpdateAccountStatus(t *testing.T) {
+func TestFetchNoPassword(t *testing.T) {
+	store := getSimpleStore()
+	defer store.Close()
 
+	newAccount := CreateTestAccount(t, store)
+
+	if newAccount.ID <= 0 {
+		t.Fatal("didn't get a valid ID")
+	}
+
+	// Can we fetch the same newAccount?
+	_, fetchErr := store.FetchAccountWithPasswordHash(newAccount.Username)
+	if fetchErr != api.ErrAccountHasNoPassword {
+		t.Fatal(fetchErr)
+	}
+}
+
+func TestUpdateAccountStatus(t *testing.T) {
 	store := getSimpleStore()
 	defer store.Close()
 
@@ -178,6 +210,11 @@ func TestFetchUnknownError(t *testing.T) {
 	if fetchErr == nil && fetchErr != api.ErrAccountDoesNotExist {
 		t.Fatal("Should have gotten an unknown error")
 	}
+
+	_, fetchErr = store.FetchAccountWithPasswordHash("foo")
+	if fetchErr == nil && fetchErr != api.ErrAccountDoesNotExist {
+		t.Fatal("Should have gotten an unknown error")
+	}
 }
 
 func TestDoesntExist(t *testing.T) {
@@ -191,6 +228,11 @@ func TestDoesntExist(t *testing.T) {
 	}
 
 	_, fetchErr = store.FetchAccountByExternalID("NONSENSE")
+	if fetchErr != api.ErrAccountDoesNotExist {
+		t.Fatal(fetchErr)
+	}
+
+	_, fetchErr = store.FetchAccountWithPasswordHash("NONSENSE")
 	if fetchErr != api.ErrAccountDoesNotExist {
 		t.Fatal(fetchErr)
 	}

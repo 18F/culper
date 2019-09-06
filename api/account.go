@@ -42,13 +42,15 @@ const (
 
 // Account represents a user account
 type Account struct {
-	ID          int
-	Username    string
-	Email       sql.NullString
-	Status      string
-	FormType    string `db:"form_type"`
-	FormVersion string `db:"form_version"`
-	ExternalID  string `db:"external_id"` // ExternalID is an identifier used by external systems to id applications
+	ID           int
+	Username     string
+	Email        sql.NullString
+	Status       string
+	FormType     string         `db:"form_type"`
+	FormVersion  string         `db:"form_version"`
+	ExternalID   string         `db:"external_id"`   // ExternalID is an identifier used by external systems to id applications
+	PasswordHash sql.NullString `db:"password_hash"` // PasswordHash is only used for basic auth, never in production.
+	// The only way for PasswordHash to be filled out is to call simplestore.FetchAccountWithPasswordHash
 }
 
 // validate returns nil if the account is valid or an error describing what's wrong otherwise.

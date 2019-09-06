@@ -2,6 +2,8 @@ package simplestore
 
 import (
 	"database/sql"
+	"fmt"
+	"strings"
 
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/pkg/errors"
@@ -26,12 +28,12 @@ func (s SimpleStore) CreateAccount(account *api.Account) error {
 	return nil
 }
 
-var selectProlouge = `SELECT id, username, email, status, form_type, form_version, external_id FROM accounts `
+var accountFields = []string{"id", "username", "email", "status", "form_type", "form_version", "external_id"}
 
 // FetchAccountByUsername returns an account with the given username
 func (s SimpleStore) FetchAccountByUsername(username string) (api.Account, error) {
 
-	selectQuery := selectProlouge + `WHERE username = $1`
+	selectQuery := fmt.Sprintf(`SELECT %s FROM accounts WHERE username = $1`, strings.Join(accountFields, ","))
 
 	var account api.Account
 
@@ -49,7 +51,7 @@ func (s SimpleStore) FetchAccountByUsername(username string) (api.Account, error
 //FetchAccountByExternalID fetches an account with the given external id
 func (s SimpleStore) FetchAccountByExternalID(externalID string) (api.Account, error) {
 
-	selectQuery := selectProlouge + `WHERE external_id = $1`
+	selectQuery := fmt.Sprintf(`SELECT %s FROM accounts WHERE external_id = $1`, strings.Join(accountFields, ","))
 
 	var account api.Account
 
@@ -59,6 +61,37 @@ func (s SimpleStore) FetchAccountByExternalID(externalID string) (api.Account, e
 			return api.Account{}, api.ErrAccountDoesNotExist
 		}
 		return api.Account{}, errors.Wrap(selectErr, "Couldn't find Account")
+	}
+
+	return account, nil
+}
+
+// FetchAccountWithPasswordHash returns an account with the PasswordHash field filled out
+// it raises an error if the given account has no password
+func (s SimpleStore) FetchAccountWithPasswordHash(username string) (api.Account, error) {
+
+	var prefixedFields []string
+	for _, field := range accountFields {
+		prefixedFields = append(prefixedFields, "accounts."+field)
+	}
+
+	selectQuery := fmt.Sprintf(`SELECT %s, basic_auth_memberships.password_hash 
+										FROM accounts LEFT JOIN basic_auth_memberships 
+										ON accounts.id = basic_auth_memberships.account_id
+										WHERE accounts.username = $1`, strings.Join(prefixedFields, ","))
+
+	var account api.Account
+
+	selectErr := s.db.Get(&account, selectQuery, username)
+	if selectErr != nil {
+		if selectErr == sql.ErrNoRows {
+			return api.Account{}, api.ErrAccountDoesNotExist
+		}
+		return api.Account{}, errors.Wrap(selectErr, "Couldn't find Account")
+	}
+
+	if !account.PasswordHash.Valid {
+		return api.Account{}, api.ErrAccountHasNoPassword
 	}
 
 	return account, nil
