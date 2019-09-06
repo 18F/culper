@@ -2,10 +2,6 @@ import React from 'react'
 
 import i18n from 'util/i18n'
 
-import schema from 'schema'
-
-import validate, { ConsultationOrderValidator } from 'validators'
-
 import { Summary, DateSummary } from 'components/Summary'
 import { Accordion, Branch, Show } from 'components/Form'
 
@@ -75,6 +71,9 @@ export class Consultation extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content consultation"
@@ -104,7 +103,7 @@ export class Consultation extends Subsection {
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={ConsultationOrderValidator}
+            errors={accordionErrors}
             description={i18n.t(
               'psychological.consultation.collection.description'
             )}
@@ -141,8 +140,8 @@ Consultation.defaultProps = {
   onError: (value, arr) => arr,
   addressBooks: {},
   dispatch: () => {},
-  validator: data => validate(schema('psychological.consultations', data)),
   scrollToBottom: '.bottom-btns',
+  errors: [],
 }
 
 export default connectSubsection(Consultation, sectionConfig)

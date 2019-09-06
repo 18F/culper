@@ -4,9 +4,6 @@ import i18n from 'util/i18n'
 
 import { HISTORY, HISTORY_EDUCATION } from 'config/formSections/history'
 
-import schema from 'schema'
-import validate, { EducationItemValidator } from 'validators'
-
 import { Accordion } from 'components/Form'
 import { openState } from 'components/Form/Accordion/Accordion'
 
@@ -24,11 +21,11 @@ const sectionConfig = {
   storeKey: HISTORY_EDUCATION.storeKey,
 }
 
-const byline = (item, index, initial, translation, required, validator) => {
+const byline = (item, index, initial, translation, required, isValid) => {
   switch (true) {
     // If item is required and not currently opened and is not valid, show message
-    case required && !item.open && !validator(item.Item):
-    case !item.open && !initial && item.Item && !validator(item.Item):
+    case required && !item.open && !isValid:
+    case !item.open && !initial && item.Item && !isValid:
       return (
         <div className={`byline ${openState(item, initial)} fade in`.trim()}>
           <div className="usa-alert usa-alert-error" role="alert">
@@ -59,20 +56,24 @@ export class Education extends Subsection {
   }
 
   customEducationByline = (item, index, initial) => {
-    const overrideInitial = this.props.overrideInitial ? false : initial
+    const { required, errors, overrideInitial } = this.props
+
+    const newInitial = overrideInitial ? false : initial
+    const itemHasErrors = errors && errors.filter(e => e.indexOf(item.uuid) > -1).length > 0
 
     return byline(
       item,
       index,
-      overrideInitial,
+      newInitial,
       'history.education.collection.school.summary.incomplete',
-      this.props.required,
-      i => new EducationItemValidator(i).isValid() === true,
+      required,
+      !itemHasErrors,
     )
   }
 
   render() {
-    const { totalYears } = this.props
+    const { totalYears, errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
 
     return (
       <div>
@@ -97,6 +98,7 @@ export class Education extends Subsection {
           appendLabel={i18n.t('history.education.collection.school.append')}
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}
+          errors={accordionErrors}
         >
           <EducationItem
             bind={true}
@@ -127,7 +129,7 @@ Education.defaultProps = {
   section: 'history',
   subsection: 'education',
   dispatch: () => {},
-  validator: data => validate(schema('history.education', data)),
+  errors: [],
 }
 
 export default connectSubsection(Education, sectionConfig)

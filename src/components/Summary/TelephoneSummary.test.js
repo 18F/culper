@@ -16,7 +16,7 @@ describe('The telephone summary', () => {
     }
     const summary = TelephoneSummary(phone, 'Unknown')
     expect(summary).toEqual(
-      <span className="title-case">+001 1234567890 x1234</span>
+      <span className="title-case">+0011234567890 x1234</span>
     )
   })
 

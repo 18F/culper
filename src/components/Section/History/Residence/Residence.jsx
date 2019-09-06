@@ -3,11 +3,6 @@ import i18n from 'util/i18n'
 
 import { HISTORY, HISTORY_RESIDENCE } from 'config/formSections/history'
 
-import {
-  HistoryResidenceValidator,
-  ResidenceValidator,
-} from 'validators'
-
 import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import { findTimelineGaps } from 'helpers/date'
 import { validateModel } from 'models/validate'
@@ -30,11 +25,11 @@ const sectionConfig = {
   storeKey: HISTORY_RESIDENCE.storeKey,
 }
 
-const byline = (item, index, initial, translation, required, validator) => {
+const byline = (item, index, initial, translation, required, isValid) => {
   switch (true) {
     // If item is required and not currently opened and is not valid, show message
-    case required && !item.open && !validator(item.Item):
-    case !item.open && !initial && item.Item && !validator(item.Item):
+    case required && !item.open && !isValid:
+    case !item.open && !initial && item.Item && !isValid:
       return (
         <div className={`byline ${openState(item, initial)} fade in`.trim()}>
           <div className="usa-alert usa-alert-error" role="alert">
@@ -69,15 +64,18 @@ export class Residence extends Subsection {
   }
 
   customResidenceByline = (item, index, initial) => {
-    const overrideInitial = this.props.overrideInitial ? false : initial
+    const { required, errors, overrideInitial } = this.props
+
+    const newInitial = overrideInitial ? false : initial
+    const itemHasErrors = errors && errors.filter(e => e.indexOf(item.uuid) > -1).length > 0
 
     return byline(
       item,
       index,
-      overrideInitial,
+      newInitial,
       'history.residence.collection.summary.incomplete',
-      this.props.required,
-      i => new ResidenceValidator(i, null).isValid() === true,
+      required,
+      !itemHasErrors,
     )
   }
 
@@ -124,7 +122,7 @@ export class Residence extends Subsection {
   }
 
   render() {
-    const { List } = this.props
+    const { List, errors } = this.props
     const { items, branch } = List
 
     const requiredDuration = { years: 10 }
@@ -143,6 +141,8 @@ export class Residence extends Subsection {
     console.log('FOUND GAPS', gaps)
 
     const showGapError = branch && branch.value === 'No' && gaps.length > 0
+
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
 
     return (
       <div
@@ -167,6 +167,7 @@ export class Residence extends Subsection {
           appendLabel={i18n.t('history.residence.collection.append')}
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}
+          errors={accordionErrors}
         >
           <ResidenceItem
             bind={true}
@@ -198,7 +199,7 @@ Residence.defaultProps = {
   onError: (value, arr) => arr,
   addressBooks: {},
   dispatch: () => {},
-  validator: data => new HistoryResidenceValidator(data).isValid() === true,
+  errors: [],
 }
 
 export default connectSubsection(Residence, sectionConfig)

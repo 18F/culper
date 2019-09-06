@@ -1,7 +1,5 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { PoliticalValidator } from 'validators'
 import { Summary, DateSummary } from 'components/Summary'
 import { Branch, Show, Accordion } from 'components/Form'
 import { FOREIGN, FOREIGN_BUSINESS_POLITICAL } from 'config/formSections/foreign'
@@ -71,6 +69,9 @@ export class Political extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content foreign-business-political"
@@ -97,7 +98,7 @@ export class Political extends Subsection {
             scrollToBottom={this.props.scrollToBottom}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={PoliticalValidator}
+            errors={accordionErrors}
             summary={this.summary}
             description={i18n.t('foreign.business.political.collection.summary.title')}
             appendTitle={i18n.t('foreign.business.political.collection.appendTitle')}
@@ -127,9 +128,9 @@ Political.defaultProps = {
   section: 'foreign',
   subsection: 'business/political',
   dispatch: () => {},
-  validator: data => validate(schema('foreign.business.political', data)),
   defaultState: true,
   scrollToBottom: '',
+  errors: [],
 }
 
 export default connectSubsection(Political, sectionConfig)

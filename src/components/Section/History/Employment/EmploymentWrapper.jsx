@@ -20,7 +20,9 @@ const sectionConfig = {
 }
 
 const EmploymentWrapper = (props) => {
-  const { Employment, Birthdate, formType } = props
+  const {
+    Employment, Birthdate, formType, errors,
+  } = props
 
   const formTypeConfig = formType && formConfig[formType]
 
@@ -58,6 +60,7 @@ const EmploymentWrapper = (props) => {
         Employment={Employment}
         Birthdate={Birthdate}
         years={years}
+        errors={errors}
       />
 
       <ConnectedEmployment
@@ -89,11 +92,13 @@ EmploymentWrapper.propTypes = {
   Employment: PropTypes.object,
   Birthdate: PropTypes.any,
   formType: PropTypes.string.isRequired,
+  errors: PropTypes.array,
 }
 
 EmploymentWrapper.defaultProps = {
   Employment: undefined,
   Birthdate: undefined,
+  errors: [],
 }
 
 export default connectSubsection(EmploymentWrapper, sectionConfig)

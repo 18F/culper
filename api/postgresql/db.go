@@ -198,3 +198,8 @@ func explicitNotFoundError(err error) error {
 	}
 	return err
 }
+
+// Close closes the DB connection
+func (service *Service) Close() error {
+	return service.database.Close()
+}

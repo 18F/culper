@@ -1,7 +1,5 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { ActivitiesValidator } from 'validators'
 import { Summary, DateSummary } from 'components/Summary'
 import { Accordion, Branch, Show } from 'components/Form'
 import {
@@ -70,6 +68,9 @@ export class ActivitiesToOverthrow extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content legal-associations-activities"
@@ -98,7 +99,7 @@ export class ActivitiesToOverthrow extends Subsection {
             summary={this.summary}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={ActivitiesValidator}
+            errors={accordionErrors}
             description={i18n.t('legal.associations.activities.collection.description')}
             appendTitle={i18n.t('legal.associations.activities.collection.appendTitle')}
             appendLabel={i18n.t('legal.associations.activities.collection.appendLabel')}
@@ -128,8 +129,8 @@ ActivitiesToOverthrow.defaultProps = {
   section: 'legal',
   subsection: 'associations/activities-to-overthrow',
   dispatch: () => {},
-  validator: data => validate(schema('legal.associations.activities-to-overthrow', data)),
   scrollToBottom: '',
+  errors: [],
 }
 
 export default connectSubsection(ActivitiesToOverthrow, sectionConfig)

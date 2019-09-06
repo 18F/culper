@@ -11,6 +11,7 @@ import (
 func TestSingleAttachment(t *testing.T) {
 
 	store := getSimpleStore()
+	defer store.Close()
 	account := CreateTestAccount(t, store)
 
 	certificationPath := "../testdata/attachments/signature-form.pdf"
@@ -86,6 +87,7 @@ func TestSingleAttachment(t *testing.T) {
 func TestListAttachments(t *testing.T) {
 
 	store := getSimpleStore()
+	defer store.Close()
 	account := CreateTestAccount(t, store)
 
 	testAttachments := []string{

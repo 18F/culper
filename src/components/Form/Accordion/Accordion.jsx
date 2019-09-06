@@ -1,11 +1,20 @@
 import React from 'react'
-import { i18n } from '../../../config'
-import ValidationElement from '../ValidationElement'
-import Branch from '../Branch'
-import Show from '../Show'
-import Svg from '../Svg'
-import StickyAccordionSummary from '../../Sticky/StickyAccordionSummary'
-import { findPosition } from '../../Navigation/navigation-helpers'
+
+import { i18n } from 'config'
+import ValidationElement from 'components/Form/ValidationElement'
+import Branch from 'components/Form/Branch'
+import Show from 'components/Form/Show'
+import Svg from 'components/Form/Svg'
+import StickyAccordionSummary from 'components/Sticky/StickyAccordionSummary'
+import { findPosition } from 'components/Navigation/navigation-helpers'
+
+/**
+ * This file has too many violations and is in fact relying on them in some cases to work as it
+ * does currently. Recommend rebuilding in a new component instead of trying to refactor or fix
+ * linting issues here.
+ */
+
+/* eslint-disable */
 
 export const openState = (item = {}, initial = false) => {
   return `${item.open ? 'open' : 'close'} ${
@@ -64,7 +73,6 @@ export default class Accordion extends ValidationElement {
     this.summary = this.summary.bind(this)
     this.details = this.details.bind(this)
     this.content = this.content.bind(this)
-    this.isValid = this.isValid.bind(this)
 
     // Instance variable. Not stored in state to prevent re-renders and it's not going to
     // be used in the UI.
@@ -353,7 +361,8 @@ export default class Accordion extends ValidationElement {
     }
 
     const closedAndIncomplete =
-      !item.open && !this.isValid(this.props.transformer(item), item.uuid)
+      !item.open && !this.isValid(item.uuid)
+
     const svg = closedAndIncomplete ? (
       <Svg
         src="/img/exclamation-point.svg"
@@ -430,6 +439,8 @@ export default class Accordion extends ValidationElement {
       // Bind for each item so we get a handle to it when we set the sticky status
       const onScroll = this.onStickyScroll.bind(this, item)
 
+      const isValid = this.hasNoErrors(item.uuid)
+
       const summary = this.props.customSummary(
         item,
         index,
@@ -448,7 +459,8 @@ export default class Accordion extends ValidationElement {
         },
         () => {
           return this.props.byline(item, index, initial)
-        }
+        },
+        isValid
       )
 
       const details = this.props.customDetails(item, index, initial, () => {
@@ -531,24 +543,19 @@ export default class Accordion extends ValidationElement {
   }
 
   /**
-   * Determines if current item is valid. By default, this
-   * utilizes the validator that is passed in.
+   * Determines if given item is valid.
    * */
-  isValid(item, uuid) {
-    if (this.props.required) {
-      return new this.props.validator(item).isValid() === true && this.hasNoErrors(uuid)
-    }
-    return true
+  isValid(uuid) {
+    const { required } = this.props
+
+    return required
+      ? this.hasNoErrors(uuid)
+      : true
   }
 
   hasNoErrors(uuid) {
-    const el = document.getElementById(uuid)
-    if (!el) {
-      return true
-    }
-    const errors = el.querySelectorAll('.field .messages .message.error')
-
-    return errors.length < 1
+    const { errors } = this.props
+    return errors && errors.filter(e => e.indexOf(uuid) > -1).length < 1
   }
 
   render() {
@@ -592,6 +599,7 @@ Accordion.defaultProps = {
   timeout: 500,
   sort: null,
   realtime: true,
+  errors: [],
   inject: items => {
     return items
   },
@@ -605,13 +613,6 @@ Accordion.defaultProps = {
         <strong>Warning:</strong> Item summary not implemented
       </span>
     )
-  },
-  validator: item => {
-    return class {
-      isValid() {
-        return true
-      }
-    }
   },
   transformer: item => {
     return item && item.Item ? item.Item : item
@@ -635,7 +636,8 @@ Accordion.defaultProps = {
     toggle,
     openText,
     remove,
-    byline
+    byline,
+    isValid
   ) => {
     return callback()
   },

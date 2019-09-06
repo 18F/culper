@@ -28,6 +28,7 @@ func TestListAttachments(t *testing.T) {
 	// Attachments enabled
 	os.Setenv(api.AttachmentsEnabled, "1")
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 
 	listAttachmentHandler := http.AttachmentListHandler{
@@ -139,6 +140,7 @@ func TestListAttachmentDisabled(t *testing.T) {
 	// Attachments not enabled
 	os.Setenv(api.AttachmentsEnabled, "0")
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 
 	listAttachmentHandler := http.AttachmentListHandler{
@@ -173,6 +175,7 @@ func TestListAttachmentDisabled(t *testing.T) {
 func TestListAttachmentError(t *testing.T) {
 	var mockStore errorListAttachmentStore
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 
 	listAttachmentHandler := http.AttachmentListHandler{
@@ -210,6 +213,7 @@ func TestListNoAttachments(t *testing.T) {
 	// Attachments enabled
 	os.Setenv(api.AttachmentsEnabled, "1")
 	services := cleanTestServices(t)
+	defer services.closeDB()
 	account := createTestAccount(t, services.db)
 
 	listAttachmentHandler := http.AttachmentListHandler{

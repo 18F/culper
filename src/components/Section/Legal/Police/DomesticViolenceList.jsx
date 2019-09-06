@@ -1,7 +1,5 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { DomesticViolenceItem } from 'validators'
 import { Accordion, Branch, Show } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
 import {
@@ -72,6 +70,9 @@ export class DomesticViolenceList extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content domestic-violence-list"
@@ -102,7 +103,7 @@ export class DomesticViolenceList extends Subsection {
             appendTitle={i18n.t('legal.police.label.domesticViolenceAppend')}
             onError={this.handleError}
             onUpdate={this.updateList}
-            validator={DomesticViolenceItem}
+            errors={accordionErrors}
             required={this.props.required}
             scrollToBottom={this.props.scrollToBottom}
             scrollIntoView={this.props.scrollIntoView}
@@ -132,8 +133,8 @@ DomesticViolenceList.defaultProps = {
   subsection: 'police/domesticviolence',
   addressBooks: {},
   dispatch: () => {},
-  validator: data => validate(schema('legal.police.domesticviolence', data)),
   scrollToBottom: '',
+  errors: [],
 }
 
 export default connectSubsection(DomesticViolenceList, sectionConfig)

@@ -1,9 +1,6 @@
 import React from 'react'
 import i18n from 'util/i18n'
 
-import schema from 'schema'
-import validate, { EmploymentValidator } from 'validators'
-
 import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import Subsection from 'components/Section/shared/Subsection'
 import { Accordion, Branch } from 'components/Form'
@@ -18,7 +15,6 @@ import { getYearsString } from 'helpers/text'
 
 import { HISTORY, HISTORY_EMPLOYMENT } from 'config/formSections/history'
 
-
 const sectionConfig = {
   key: HISTORY_EMPLOYMENT.key,
   section: HISTORY.name,
@@ -27,11 +23,11 @@ const sectionConfig = {
   storeKey: HISTORY_EMPLOYMENT.storeKey,
 }
 
-const byline = (item, index, initial, translation, required, validator) => {
+const byline = (item, index, initial, translation, required, isValid) => {
   // If item is required and not currently opened and is not valid, show message
   switch (true) {
-    case required && !item.open && !validator(item.Item):
-    case !item.open && !initial && item.Item && !validator(item.Item):
+    case required && !item.open && !isValid:
+    case !item.open && !initial && item.Item && !isValid:
       return (
         <div className={`byline ${openState(item, initial)} fade in`.trim()}>
           <div className="usa-alert usa-alert-error" role="alert">
@@ -63,15 +59,18 @@ export class Employment extends Subsection {
   }
 
   customEmploymentByline = (item, index, initial) => {
-    const overrideInitial = this.props.overrideInitial ? false : initial
+    const { required, errors, overrideInitial } = this.props
+
+    const newInitial = overrideInitial ? false : initial
+    const itemHasErrors = errors && errors.filter(e => e.indexOf(item.uuid) > -1).length > 0
 
     return byline(
       item,
       index,
-      overrideInitial,
+      newInitial,
       'history.employment.default.collection.summary.incomplete',
-      this.props.required,
-      i => new EmploymentValidator(i).isValid() === true,
+      required,
+      !itemHasErrors,
     )
   }
 
@@ -157,8 +156,9 @@ export class Employment extends Subsection {
   }
 
   render() {
-    const { recordYears } = this.props
+    const { recordYears, errors } = this.props
     const recordYearsString = getYearsString(recordYears)
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
 
     return (
       <div
@@ -191,6 +191,7 @@ export class Employment extends Subsection {
           appendClass="no-margin-bottom"
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}
+          errors={accordionErrors}
         >
           <EmploymentItem
             bind={true}
@@ -248,7 +249,7 @@ Employment.defaultProps = {
   subsection: 'employment',
   addressBooks: {},
   dispatch: () => {},
-  validator: data => validate(schema('history.employment', data)),
+  errors: [],
 }
 
 export default connectSubsection(Employment, sectionConfig)

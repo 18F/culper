@@ -2,10 +2,6 @@ import React from 'react'
 
 import i18n from 'util/i18n'
 
-import schema from 'schema'
-
-import validate, { ExistingConditionsDiagnosisValidator } from 'validators'
-
 import { Summary, DateSummary } from 'components/Summary'
 import {
   Accordion,
@@ -127,6 +123,9 @@ export class ExistingConditions extends Subsection {
   }
 
   render() {
+    const { errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('TreatmentList.accordion') === 0)
+
     return (
       <div
         className="section-content existingconditions"
@@ -230,7 +229,7 @@ export class ExistingConditions extends Subsection {
                 onUpdate={this.updateTreatmentList}
                 summary={this.summary}
                 onError={this.handleError}
-                validator={ExistingConditionsDiagnosisValidator}
+                errors={accordionErrors}
                 description={i18n.t(
                   'psychological.existingConditions.treatment.collection.description'
                 )}
@@ -301,7 +300,6 @@ ExistingConditions.defaultProps = {
   onUpdate: () => {},
   onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => validate(schema('psychological.conditions', data)),
   scrollToBottom: '.bottom-btns',
 }
 

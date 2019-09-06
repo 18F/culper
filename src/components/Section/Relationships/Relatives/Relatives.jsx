@@ -2,11 +2,9 @@ import React from 'react'
 
 import i18n from 'util/i18n'
 
-import schema from 'schema'
-import validate, { RelativesValidator, RelativeValidator } from 'validators'
-
 import { RELATIONSHIPS, RELATIONSHIPS_RELATIVES } from 'config/formSections/relationships'
-
+import { MARRIED, SEPARATED } from 'constants/enums/relationshipOptions'
+import ErrorMessageList from 'components/ErrorMessageList'
 import { Summary, NameSummary } from 'components/Summary'
 import { Field, Accordion } from 'components/Form'
 
@@ -35,6 +33,46 @@ export class Relatives extends Subsection {
     this.subsection = subsection
     this.store = store
     this.storeKey = storeKey
+  }
+
+  // These are warnings so create a work around for applicants
+  // that don't know their mother/father.
+  getSectionWarnings = () => {
+    const { errors = [], maritalStatus } = this.props
+    const errorList = {
+      'List.containsRequiredItems.REQUIREMENT_NOT_MET': {
+        errors: [
+          {
+            key: 'relatives-mother-father-required-error',
+            title: i18n.t('error.validRelationWarning.title'),
+            message: i18n.t('error.validRelationWarning.message'),
+            shouldDisplayError: true,
+          },
+          {
+            key: 'relatives-mil-fil-required-error',
+            title: i18n.t('error.validMaritalRelationWarning.title'),
+            message: i18n.t('error.validMaritalRelationWarning.message'),
+            shouldDisplayError: (
+              [MARRIED, SEPARATED].includes(maritalStatus)
+            ),
+          },
+        ],
+      },
+    }
+
+    const sectionErrors = []
+    errors.forEach((error) => {
+      const errorItem = errorList[error]
+      if (errorItem) {
+        errorItem.errors.forEach((err) => {
+          if (err.shouldDisplayError) {
+            sectionErrors.push(err)
+          }
+        })
+      }
+    })
+
+    return sectionErrors
   }
 
   update = (queue) => {
@@ -70,15 +108,16 @@ export class Relatives extends Subsection {
     })
   }
 
-  validMaritalRelations = () => new RelativesValidator(this.props).validMaritalRelations()
-
-  validRelations = () => new RelativesValidator(this.props).validMinimumRelations()
-
   render() {
     const {
+      List,
       requireRelationshipRelativesUSResidenceDoc,
       requireRelationshipRelativesForeignGovtAffExplanation,
+      errors,
     } = this.props
+
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content relatives"
@@ -96,20 +135,12 @@ export class Relatives extends Subsection {
           {i18n.m('relationships.relatives.para.opportunity')}
         </Field>
 
-        <Field
-          errors={[{ code: 'validRelation', valid: this.validRelations() }]}
-          className={this.validRelations() && 'hidden'}
-        />
-
-        <Field
-          errors={[
-            {
-              code: 'validMaritalRelation',
-              valid: this.validMaritalRelations(),
-            },
-          ]}
-          className={this.validMaritalRelations() && 'hidden'}
-        />
+        {List.branch && List.branch.value === 'No' && (
+          <ErrorMessageList
+            errors={this.getSectionWarnings()}
+            isWarning={true}
+          />
+        )}
 
         <Accordion
           {...this.props.List}
@@ -122,7 +153,7 @@ export class Relatives extends Subsection {
             'relationships.relatives.collection.summary.title'
           )}
           required={this.props.required}
-          validator={RelativeValidator}
+          errors={accordionErrors}
           scrollIntoView={this.props.scrollIntoView}
           appendTitle={i18n.t('relationships.relatives.collection.appendTitle')}
           appendLabel={i18n.t('relationships.relatives.collection.append')}
@@ -135,7 +166,8 @@ export class Relatives extends Subsection {
             bind={true}
             scrollIntoView={this.props.scrollIntoView}
             required={this.props.required}
-            requireRelationshipRelativesForeignGovtAffExplanation={requireRelationshipRelativesForeignGovtAffExplanation}
+            requireRelationshipRelativesForeignGovtAffExplanation={
+              requireRelationshipRelativesForeignGovtAffExplanation}
             requireRelationshipRelativesUSResidenceDoc={requireRelationshipRelativesUSResidenceDoc}
           />
         </Accordion>
@@ -152,10 +184,10 @@ Relatives.defaultProps = {
   subsection: 'relatives',
   addressBooks: {},
   dispatch: () => {},
-  validator: data => validate(schema('relationships.relatives', data)),
   defaultState: true,
   scrollToBottom: '.bottom-btns',
   scrollIntoView: false,
+  errors: [],
 }
 
 export default connectSubsection(Relatives, sectionConfig)
