@@ -37,4 +37,13 @@ describe('The error message component', () => {
     expect(component.find(select('note')).text())
       .toEqual(fixture)
   })
+
+  it('can be a warning', () => {
+    const component = shallow(
+      <ErrorMessage isWarning={true} />
+    )
+
+    expect(component.find('.usa-alert-error').length).toEqual(0)
+    expect(component.find('.usa-alert-warning').length).toEqual(1)
+  })
 })
