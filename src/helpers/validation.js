@@ -344,6 +344,9 @@ export const getValidatorForSection = (section) => {
 
 export const validateSection = ({ key = '', data = {} }, formType = SF86) => {
   const validator = getValidatorForSection(key)
+  if (key ===  'IDENTIFICATION_CONTACTS') {
+  console.log('helperkey', key, ' section' ,data)
+  }
 
   if (validator) {
     try {
