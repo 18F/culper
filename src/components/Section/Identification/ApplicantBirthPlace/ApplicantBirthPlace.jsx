@@ -67,7 +67,7 @@ export class ApplicantBirthPlace extends Subsection {
           <Location
             name="birthplace"
             {...this.props.Location}
-            layout={Location.BIRTHPLACE}
+            layout={Location.IDENTIFICATION_BIRTH_PLACE}
             stateLabel={i18n.t('identification.birthplace.label.state')}
             cityLabel={i18n.t('identification.birthplace.label.city')}
             countyLabel={i18n.t('identification.birthplace.label.county')}
