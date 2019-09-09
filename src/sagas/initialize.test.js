@@ -1,5 +1,5 @@
 import {
-  take, put, call, race, spawn, all,
+  take, put, call, race, spawn,
 } from 'redux-saga/effects'
 import { cloneableGenerator } from '@redux-saga/testing-utils'
 
@@ -9,7 +9,7 @@ import { fetchStatus, fetchForm } from 'actions/api'
 
 import { env } from 'config'
 
-import { setFormData, updateSubsectionWatcher } from 'sagas/form'
+import { setFormData, formWatcher } from 'sagas/form'
 import { handleLogout } from 'sagas/session'
 
 import {
@@ -329,9 +329,7 @@ describe('The loggedInWatcher', () => {
   it('starts form data watchers until the LOGOUT action', () => {
     expect(generator.next().value)
       .toEqual(race({
-        loggedIn: all([
-          call(updateSubsectionWatcher),
-        ]),
+        loggedIn: call(formWatcher),
         logout: take(actionTypes.LOGOUT),
       }))
   })

@@ -65,10 +65,7 @@
     },
     "PlaceIssued": {
       "type": "location",
-      "props": {
-        "country": "",
-        "layout": ""
-      }
+      "props": {}
     },
     "CertificateNumber": {
       "type": "text",
@@ -106,10 +103,7 @@
     },
     "CertificateCourtAddress": {
       "type": "location",
-      "props": {
-        "country": "",
-        "layout": ""
-      }
+      "props": {}
     },
     "BornOnMilitaryInstallation": {
       "type": "branch",
@@ -134,10 +128,7 @@
     },
     "EntryLocation": {
       "type": "location",
-      "props": {
-        "country": "",
-        "layout": ""
-      }
+      "props": {}
     },
     "PriorCitizenship": {
       "type": "country",

@@ -292,10 +292,7 @@
               },
               "CourtAddress": {
                 "type": "location",
-                "props": {
-                  "layout": "",
-                  "country": ""
-                }
+                "props": {}
               },
               "CourtCharge": {
                 "type": "text",
