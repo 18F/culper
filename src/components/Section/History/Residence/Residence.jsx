@@ -2,6 +2,7 @@ import React from 'react'
 import i18n from 'util/i18n'
 
 import { HISTORY, HISTORY_RESIDENCE } from 'config/formSections/history'
+import { INCOMPLETE_DURATION } from 'constants/errors'
 
 import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import { findTimelineGaps } from 'helpers/date'
@@ -122,10 +123,8 @@ export class Residence extends Subsection {
   }
 
   render() {
-    const { List, errors } = this.props
+    const { List, errors, totalYears } = this.props
     const { items, branch } = List
-
-    const requiredDuration = { years: 10 }
 
     const dateRanges = items
       .filter(i => i.Item && i.Item.Dates && validateModel(
@@ -134,13 +133,13 @@ export class Residence extends Subsection {
       ) === true)
       .map(i => i.Item.Dates)
 
-    console.log('find gaps in', dateRanges)
+    const gaps = findTimelineGaps({ years: totalYears }, dateRanges)
+    const lastGap = gaps[gaps.length - 1]
 
-    const gaps = findTimelineGaps(requiredDuration, dateRanges)
-
-    console.log('FOUND GAPS', gaps)
-
-    const showGapError = branch && branch.value === 'No' && gaps.length > 0
+    const showGapError = branch
+      && branch.value === 'No'
+      && gaps.length > 0
+      && errors.filter(e => e.indexOf(INCOMPLETE_DURATION) > -1).length > 0
 
     const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
 
@@ -179,7 +178,15 @@ export class Residence extends Subsection {
           />
         </Accordion>
 
-        {showGapError && (<p>Gap error!</p>)}
+        {showGapError && (
+          <Gap
+            title={i18n.t('history.residence.gap.title')}
+            para={i18n.t('history.residence.gap.para', { years: totalYears })}
+            btnText={i18n.t('history.residence.gap.btnText')}
+            dates={lastGap}
+            onClick={() => this.fillGap(lastGap)}
+          />
+        )}
       </div>
     )
   }

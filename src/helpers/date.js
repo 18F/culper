@@ -155,7 +155,7 @@ export const findTimelineGaps = (coverage, ranges) => {
 
       // don't include gaps that are less than 24 hours
       if (gapDuration.as('days') > minimumGap) {
-        const gap = { from: rightBoundary, to: from }
+        const gap = { from: rightBoundary.toObject(), to: from.toObject() }
         gaps.push(gap)
       }
 
@@ -166,13 +166,16 @@ export const findTimelineGaps = (coverage, ranges) => {
 
   if (rangesOverlap && rightBoundary < requiredRange.to) {
     gaps.push({
-      from: rightBoundary,
-      to: requiredRange.to,
+      from: rightBoundary.toObject(),
+      to: requiredRange.to.toObject(),
     })
   }
 
   if (!rangesOverlap) {
-    gaps.push(requiredRange)
+    gaps.push({
+      from: requiredRange.from.toObject(),
+      to: requiredRange.to.toObject(),
+    })
   }
 
   return gaps

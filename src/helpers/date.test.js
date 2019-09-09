@@ -86,12 +86,12 @@ describe('The findTimelineGaps function', () => {
 
     const expectedGaps = [
       {
-        from: today.minus({ years: 2, months: 10 }),
-        to: today.minus({ years: 2, months: 4 }),
+        from: today.minus({ years: 2, months: 10 }).toObject(),
+        to: today.minus({ years: 2, months: 4 }).toObject(),
       },
       {
-        from: today.minus({ years: 1, months: 11 }),
-        to: today.minus({ months: 6 }),
+        from: today.minus({ years: 1, months: 11 }).toObject(),
+        to: today.minus({ months: 6 }).toObject(),
       },
     ]
 
@@ -109,8 +109,8 @@ describe('The findTimelineGaps function', () => {
 
     const expectedGaps = [
       {
-        from: today.minus({ years: 5 }),
-        to: today,
+        from: today.minus({ years: 5 }).toObject(),
+        to: today.toObject(),
       },
     ]
 
@@ -167,8 +167,8 @@ describe('The findTimelineGaps function', () => {
     ]
 
     const expectedGaps = [{
-      from: today.minus({ years: 1 }),
-      to: today,
+      from: today.minus({ years: 1 }).toObject(),
+      to: today.toObject(),
     }]
 
     expect(findTimelineGaps(testDuration, testRanges)).toEqual(expectedGaps)
