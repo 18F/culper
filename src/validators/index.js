@@ -141,15 +141,9 @@ import ForeignBusinessVotingValidator, {
   VotingValidator,
 } from './foreignbusinessvoting'
 import ForeignTravelValidator, { TravelValidator } from './foreigntravel'
-import AlcoholOrderedCounselingsValidator, {
-  OrderedCounselingValidator,
-} from './alcoholorderedcounseling'
 import AlcoholVoluntaryCounselingsValidator, {
   VoluntaryCounselingValidator,
 } from './alcoholvoluntarycounseling'
-import AlcoholReceivedCounselingsValidator, {
-  ReceivedCounselingValidator,
-} from './alcoholreceivedcounseling'
 import DrugUsesValidator, { DrugUseValidator } from './druguses'
 import DrugInvolvementsValidator, {
   DrugInvolvementValidator,
@@ -303,12 +297,8 @@ export {
   VotingValidator,
   ForeignTravelValidator,
   TravelValidator,
-  AlcoholOrderedCounselingsValidator,
-  OrderedCounselingValidator,
   AlcoholVoluntaryCounselingsValidator,
   VoluntaryCounselingValidator,
-  AlcoholReceivedCounselingsValidator,
-  ReceivedCounselingValidator,
   DrugUsesValidator,
   DrugUseValidator,
   DrugInvolvementsValidator,

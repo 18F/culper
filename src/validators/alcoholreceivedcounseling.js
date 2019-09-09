@@ -45,16 +45,6 @@ export const validateReceivedCounselings = (data) => {
   return validateModel(modelData, receivedCounselingsModel)
 }
 
-export default class ReceivedCounselingsValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  isValid() {
-    return validateReceivedCounselings(this.data) === true
-  }
-}
-
 export class ReceivedCounselingValidator {
   constructor(data = {}) {
     this.data = data

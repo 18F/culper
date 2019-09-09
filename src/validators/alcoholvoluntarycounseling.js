@@ -20,16 +20,6 @@ export const validateVoluntaryCounselings = (data) => {
   return validateModel(data, voluntaryCounselingsModel)
 }
 
-export default class VoluntaryCounselingsValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  isValid() {
-    return validateVoluntaryCounselings(this.data) === true
-  }
-}
-
 export class VoluntaryCounselingValidator {
   constructor(data = {}) {
     this.data = data
