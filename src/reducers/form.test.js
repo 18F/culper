@@ -46,6 +46,22 @@ describe('The form reducer', () => {
     })
   })
 
+  it('adds new subsection data with no field set', () => {
+    expect(reducer(defaultState, {
+      type: UPDATE_SUBSECTION_DATA,
+      key: 'IDENTIFICATION_NAME',
+      data: { Name: { first: 'test data' } },
+    })).toEqual({
+      IDENTIFICATION_NAME: {
+        data: {
+          Name: {
+            first: 'test data',
+          },
+        },
+      },
+    })
+  })
+
   it('adds new subsection data', () => {
     expect(reducer(defaultState, {
       type: UPDATE_SUBSECTION_DATA,

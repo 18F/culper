@@ -63,10 +63,7 @@
                       "Item": {
                         "CourtAddress": {
                           "type": "location",
-                          "props": {
-                            "layout": "",
-                            "country": ""
-                          }
+                          "props": {}
                         },
                         "CourtName": {
                           "type": "text",
@@ -132,10 +129,7 @@
                       "Item": {
                         "CourtAddress": {
                           "type": "location",
-                          "props": {
-                            "layout": "",
-                            "country": ""
-                          }
+                          "props": {}
                         },
                         "CourtName": {
                           "type": "text",

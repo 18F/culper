@@ -101,8 +101,7 @@
                 "type": "location",
                 "props": {
                   "layout": "State",
-                  "state": "AZ",
-                  "country": ""
+                  "state": "AZ"
                 }
               },
               "Status": {

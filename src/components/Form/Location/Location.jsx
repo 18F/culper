@@ -15,6 +15,8 @@ import ZipCode from 'components/Form/ZipCode'
 import Spinner, { SpinnerAction } from 'components/Form/Spinner'
 import Suggestions from 'components/Form/Suggestions'
 
+import { countryValueResolver } from 'helpers/location'
+
 import Address from './Address'
 import ToggleableLocation from './ToggleableLocation'
 import { AddressSuggestion } from './AddressSuggestion'
@@ -26,18 +28,6 @@ export const timeout = (fn, milliseconds = 400, w = window) => {
   }
 
   w.setTimeout(fn, milliseconds)
-}
-
-export const countryValueResolver = (props) => {
-  if (typeof props.country === 'string') {
-    const valueArr = props.country ? [props.country] : []
-    const comments = props.countryComments || ''
-    return {
-      value: valueArr,
-      comments,
-    }
-  }
-  return props.country
 }
 
 export default class Location extends ValidationElement {
@@ -563,7 +553,7 @@ export default class Location extends ValidationElement {
               key={field}
               className="street2"
               label={this.props.street2Label}
-              optional
+              optional={true}
               value={this.props.street2}
               disabled={this.props.disabled}
               onUpdate={this.updateStreet2}

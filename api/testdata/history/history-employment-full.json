@@ -134,10 +134,7 @@
                   },
                   "Address": {
                     "type": "location",
-                    "props": {
-                      "layout": "",
-                      "country": ""
-                    }
+                    "props": {}
                   },
                   "Telephone": {
                     "type": "telephone",
@@ -212,10 +209,7 @@
               },
               "ReferenceAddress": {
                 "type": "location",
-                "props": {
-                  "layout": "",
-                  "country": ""
-                }
+                "props": {}
               },
               "ReferenceName": {
                 "type": "name",
