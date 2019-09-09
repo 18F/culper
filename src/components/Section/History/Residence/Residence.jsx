@@ -80,26 +80,6 @@ export class Residence extends Subsection {
     )
   }
 
-  customResidenceDetails = (item, index, initial, callback) => {
-    const { totalYears } = this.props
-
-    if (item.type === 'Gap') {
-      const dates = (item.Item || {}).Dates || {}
-      return (
-        <Gap
-          title={i18n.t('history.residence.gap.title')}
-          para={i18n.t('history.residence.gap.para', { years: totalYears })}
-          btnText={i18n.t('history.residence.gap.btnText')}
-          first={index === 0}
-          dates={dates}
-          onClick={() => this.fillGap(dates)}
-        />
-      )
-    }
-
-    return callback()
-  }
-
   fillGap = () => {
     const items = [...this.props.List.items]
 
@@ -160,7 +140,6 @@ export class Residence extends Subsection {
           caption={this.props.caption}
           byline={this.customResidenceByline}
           customSummary={ResidenceCustomSummary}
-          customDetails={this.customResidenceDetails}
           description={i18n.t('history.residence.collection.summary.title')}
           appendTitle={i18n.t('history.residence.collection.appendTitle')}
           appendLabel={i18n.t('history.residence.collection.append')}
