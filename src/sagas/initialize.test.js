@@ -10,7 +10,7 @@ import { fetchStatus, fetchForm } from 'actions/api'
 import { env } from 'config'
 
 import { validateWatcher } from 'sagas/validate'
-import { setFormData, updateSubsectionWatcher } from 'sagas/form'
+import { setFormData, formWatcher } from 'sagas/form'
 import { handleLogout } from 'sagas/session'
 
 import {
@@ -332,7 +332,7 @@ describe('The loggedInWatcher', () => {
       .toEqual(race({
         loggedIn: all([
           call(validateWatcher),
-          call(updateSubsectionWatcher),
+          call(formWatcher),
         ]),
         logout: take(actionTypes.LOGOUT),
       }))
