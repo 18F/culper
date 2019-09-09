@@ -152,28 +152,28 @@ const employment = {
     if (
       attributes.PhysicalAddress
       && attributes.PhysicalAddress.HasDifferentAddress
-      && attributes.PhysicalAddress.HasDifferentAddress.value === 'Yes'
-    ) return {}
-
-    if (attributes.Address && isInternational(attributes.Address)) {
-      return {
-        presence: true,
-        model: {
-          validator: physicalAddress,
-          militaryAddress: true,
-          hasTelephone: false,
-        },
+      && attributes.PhysicalAddress.HasDifferentAddress.value === 'No'
+    ) {
+      if (attributes.Address && isInternational(attributes.Address)) {
+        return {
+          presence: true,
+          model: {
+            validator: physicalAddress,
+            militaryAddress: true,
+            hasTelephone: false,
+          },
+        }
       }
-    }
 
-    if (attributes.Address && isPO(attributes.Address)) {
-      return {
-        presence: true,
-        model: {
-          validator: physicalAddress,
-          militaryAddress: false,
-          hasTelephone: false,
-        },
+      if (attributes.Address && isPO(attributes.Address)) {
+        return {
+          presence: true,
+          model: {
+            validator: physicalAddress,
+            militaryAddress: false,
+            hasTelephone: false,
+          },
+        }
       }
     }
 
