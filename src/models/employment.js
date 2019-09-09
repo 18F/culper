@@ -148,6 +148,13 @@ const employment = {
     }
   },
   AlternateAddress: (value, attributes) => {
+    if (matchEmploymentActivity(attributes, [UNEMPLOYMENT])) return {}
+    if (
+      attributes.PhysicalAddress
+      && attributes.PhysicalAddress.HasDifferentAddress
+      && attributes.PhysicalAddress.HasDifferentAddress.value === 'Yes'
+    ) return {}
+
     if (attributes.Address && isInternational(attributes.Address)) {
       return {
         presence: true,
