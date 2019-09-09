@@ -2,9 +2,17 @@ import { hasYesOrNo, checkValue } from 'models/validate'
 import offenseAddress from 'models/shared/locations/offense'
 import sentence from 'models/shared/sentence'
 import { offenseChargeTypes } from 'constants/enums/legalOptions'
+import { DEFAULT_LATEST } from 'constants/dateLimits'
 
 const offense = {
-  Date: { presence: true, date: true },
+  Date: (value, attributes, attributeName, options = {}) => {
+    const { applicantBirthdate } = options
+
+    return {
+      presence: true,
+      date: { earliest: applicantBirthdate, latest: DEFAULT_LATEST },
+    }
+  },
   Description: { presence: true, hasValue: true },
   InvolvedViolence: {
     presence: true,
@@ -39,7 +47,14 @@ const offense = {
   },
   CourtCharge: { presence: true, hasValue: true },
   CourtOutcome: { presence: true, hasValue: true },
-  CourtDate: { presence: true, date: { requireDay: false } },
+  CourtDate: (value, attributes, attributeName, options = {}) => {
+    const { applicantBirthdate } = options
+
+    return {
+      presence: true,
+      date: { requireDay: false, earliest: applicantBirthdate, latest: DEFAULT_LATEST },
+    }
+  },
   WasSentenced: { presence: true, hasValue: { validator: hasYesOrNo } },
   AwaitingTrial: (value, attributes) => (
     checkValue(attributes.WasSentenced, 'No')

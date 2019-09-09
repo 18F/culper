@@ -14,7 +14,14 @@ const drugUse = {
     return {}
   },
   */
-  FirstUse: { presence: true, date: { requireDay: false } },
+  FirstUse: (value, attributes, attributeName, options = {}) => {
+    const { applicantBirthdate } = options
+
+    return {
+      presence: true,
+      date: { requireDay: false, earliest: applicantBirthdate, latest: DEFAULT_LATEST },
+    }
+  },
   RecentUse: (value, attributes) => {
     const dateLimits = { latest: DEFAULT_LATEST }
     if (attributes.FirstUse) {

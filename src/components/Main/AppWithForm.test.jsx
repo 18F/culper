@@ -10,6 +10,7 @@ describe('AppWithForm', () => {
   const mockStore = configureMockStore()
 
   const store = mockStore({
+    form: {},
     authentication: {
       authenticated: true,
     },

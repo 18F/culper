@@ -12,12 +12,14 @@ import {
   updateSubsectionData,
   validateForm,
 } from 'actions/FormActions'
-import { updateApplication, validateFormData } from 'actions/ApplicationActions'
+import { updateApplication } from 'actions/ApplicationActions'
 
 import { env } from 'config'
 
 import { validateSection } from 'helpers/validation'
 import sectionKeys from 'helpers/sectionKeys'
+import { selectApplicantBirthdate, selectMaritalStatus } from 'selectors/data'
+import { selectValidUSPassport } from 'selectors/misc'
 
 import { selectForm, selectSubsection, formTypeSelector } from './selectors'
 
@@ -68,11 +70,6 @@ describe('setFormData saga', () => {
     it('puts the validateForm action', () => {
       expect(generator.next().value)
         .toEqual(put(validateForm()))
-    })
-
-    it('puts the validateFormData action', () => {
-      expect(generator.next().value)
-        .toEqual(put(validateFormData()))
     })
 
     it('is done', () => {
@@ -215,8 +212,23 @@ describe('The handleSubsectionUpdate saga', () => {
       .toEqual(select(formTypeSelector))
   })
 
-  it('selects the form section from state', () => {
+  it('selects the applicant birthdate from state', () => {
     expect(generator.next('SF-86').value)
+      .toEqual(select(selectApplicantBirthdate))
+  })
+
+  it('selects the applicant’s marital status from state', () => {
+    expect(generator.next({ month: 5, day: 16, year: 1988 }).value)
+      .toEqual(select(selectMaritalStatus))
+  })
+
+  it('selects the applicant’s US passport status from state', () => {
+    expect(generator.next('Married').value)
+      .toEqual(select(selectValidUSPassport))
+  })
+
+  it('selects the form section from state', () => {
+    expect(generator.next({ hasValidUSPassport: false }).value)
       .toEqual(select(selectSubsection, 'IDENTIFICATION_NAME'))
   })
 
@@ -228,6 +240,11 @@ describe('The handleSubsectionUpdate saga', () => {
       .toEqual(call(validateSection, {
         key: 'IDENTIFICATION_NAME',
         data: newState,
+        options: {
+          applicantBirthdate: { month: 5, day: 16, year: 1988 },
+          maritalStatus: 'Married',
+          hasValidUSPassport: false,
+        },
       }, 'SF-86'))
   })
 

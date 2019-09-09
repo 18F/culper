@@ -51,6 +51,35 @@ describe('The financial nonpayment model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('Date cannot be before applicant birthdate', () => {
+    const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+    const testData = {
+      Date: { month: 1, year: 1970, day: 2 },
+    }
+
+    const expectedErrors = [
+      'Date.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, financialNonpayment, {
+      applicantBirthdate,
+    }))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Date cannot be in the future', () => {
+    const testData = {
+      Date: { month: 1, year: 2050, day: 2 },
+    }
+
+    const expectedErrors = [
+      'Date.date.date.datetime.DATE_TOO_LATE',
+    ]
+
+    expect(validateModel(testData, financialNonpayment))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('Resolved must be after Date', () => {
     const testData = {
       Date: { month: 1, year: 2015 },

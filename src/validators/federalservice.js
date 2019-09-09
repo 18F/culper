@@ -6,8 +6,8 @@ export const validateFederalServiceItem = data => (
   validateModel(data, federal)
 )
 
-export const validateHistoryFederal = data => (
-  validateModel(data, historyFederal)
+export const validateHistoryFederal = (data, formType, options = {}) => (
+  validateModel(data, historyFederal, options)
 )
 
 export class FederalServiceItemValidator {

@@ -2,8 +2,6 @@
 import React from 'react'
 
 import { i18n } from 'config'
-import schema from 'schema'
-import validate from 'validators'
 import { validSSN } from 'validators/helpers'
 
 import { Field, SSN, Show } from 'components/Form'
@@ -196,9 +194,9 @@ ApplicantSSN.errors = [
       if (!value) {
         return null
       }
+
       return (
-        validate(schema('ssn', value))
-        && props.ssn.first === value.first
+        props.ssn.first === value.first
         && props.ssn.middle === value.middle
         && props.ssn.last === value.last
       )

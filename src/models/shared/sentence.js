@@ -1,4 +1,5 @@
 import { hasYesOrNo } from 'models/validate'
+import { DEFAULT_LATEST } from 'constants/dateLimits'
 
 const sentence = {
   Description: { presence: true, hasValue: true },
@@ -20,13 +21,19 @@ const sentence = {
     }
     return {}
   },
-  IncarcerationDates: (value, attributes) => {
+  IncarcerationDates: (value, attributes, attributeName, options = {}) => {
     if (attributes.IncarcerationDatesNA
       && attributes.IncarcerationDatesNA.applicable === false) {
       return {}
     }
 
-    const daterangeOptions = {}
+    const { applicantBirthdate } = options
+
+    const daterangeOptions = {
+      earliest: applicantBirthdate,
+      latest: DEFAULT_LATEST,
+    }
+
     if (attributes.Incarcerated && attributes.Incarcerated.value === 'Yes') {
       daterangeOptions.minDuration = { years: 1 }
     } else if (attributes.Incarcerated && attributes.Incarcerated.value === 'No') {
@@ -38,15 +45,17 @@ const sentence = {
       daterange: daterangeOptions,
     }
   },
-  ProbationDates: (value, attributes) => {
+  ProbationDates: (value, attributes, attributeName, options = {}) => {
     if (attributes.ProbationDatesNA
       && attributes.ProbationDatesNA.applicable === false) {
       return {}
     }
 
+    const { applicantBirthdate } = options
+
     return {
       presence: true,
-      daterange: true,
+      daterange: { earliest: applicantBirthdate, latest: DEFAULT_LATEST },
     }
   },
 }

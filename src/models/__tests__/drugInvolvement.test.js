@@ -61,6 +61,35 @@ describe('The drugInvolvement model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('FirstInvolvement cannot be before applicant birthdate', () => {
+    const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+    const testData = {
+      FirstInvolvement: { month: 1, year: 1970, day: 2 },
+    }
+
+    const expectedErrors = [
+      'FirstInvolvement.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, drugInvolvement, {
+      applicantBirthdate,
+    }))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('FirstInvolvement cannot be in the future', () => {
+    const testData = {
+      FirstInvolvement: { month: 1, year: 2050, day: 2 },
+    }
+
+    const expectedErrors = [
+      'FirstInvolvement.date.date.datetime.DATE_TOO_LATE',
+    ]
+
+    expect(validateModel(testData, drugInvolvement))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('RecentInvolvement must be a valid month/year', () => {
     const testData = {
       RecentInvolvement: { day: 5, month: 10 },

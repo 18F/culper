@@ -31,6 +31,35 @@ describe('The nonCriminalCourtAction model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('CivilActionDate cannot be before applicant birthdate', () => {
+    const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+    const testData = {
+      CivilActionDate: { month: 1, year: 1970, day: 2 },
+    }
+
+    const expectedErrors = [
+      'CivilActionDate.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, nonCriminalCourtAction, {
+      applicantBirthdate,
+    }))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('CivilActionDate cannot be in the future', () => {
+    const testData = {
+      CivilActionDate: { month: 1, year: 2050, day: 2 },
+    }
+
+    const expectedErrors = [
+      'CivilActionDate.date.date.datetime.DATE_TOO_LATE',
+    ]
+
+    expect(validateModel(testData, nonCriminalCourtAction))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('CourtName must have a value', () => {
     const testData = {
       CourtName: 'test court',

@@ -15,7 +15,14 @@ const alcoholNegativeImpact = {
   },
   Circumstances: { presence: true, hasValue: true },
   NegativeImpact: { presence: true, hasValue: true },
-  Used: { presence: true, daterange: true },
+  Used: (value, attributes, attributeName, options = {}) => {
+    const { applicantBirthdate } = options
+
+    return {
+      presence: true,
+      daterange: { earliest: applicantBirthdate, latest: DEFAULT_LATEST },
+    }
+  },
 }
 
 export default alcoholNegativeImpact

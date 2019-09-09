@@ -66,6 +66,18 @@ export const dateWithinRange = (date, range) => {
   return boundary <= createDateFromObject(cleanDateObject(date))
 }
 
+export const sortDateObjects = (dates = []) => {
+  const sortFn = (a, b) => {
+    if (a < b) return -1
+    if (a > b) return 1
+    return 0
+  }
+
+  return dates.filter(d => !!d)
+    .map(d => createDateFromObject(cleanDateObject(d)))
+    .sort(sortFn)
+}
+
 /** Convert date objects to luxon objects and sort by from date */
 export const sortDateRanges = (ranges) => {
   const sortFn = (a, b) => {

@@ -1,13 +1,14 @@
 import React from 'react'
-import SubsectionElement from '../SubsectionElement'
-import { SignatureValidator } from '../../../validators'
-import { hideHippa } from '../../../validators/releases'
+
+import Subsection from 'components/Section/shared/Subsection'
+import { SignatureValidator } from 'validators'
+import { hideHippa } from 'validators/releases'
 import { Show } from '../../Form'
 import Verify from './Verify'
 import General from './General'
 import Medical from './Medical'
 
-export default class ReleaseOfGeneralAndMedical extends SubsectionElement {
+export default class ReleaseOfGeneralAndMedical extends Subsection {
   constructor(props) {
     super(props)
     this.update = this.update.bind(this)
@@ -19,7 +20,7 @@ export default class ReleaseOfGeneralAndMedical extends SubsectionElement {
     this.props.onUpdate({
       General: this.props.General,
       Medical: this.props.Medical,
-      ...queue
+      ...queue,
     })
   }
 
@@ -71,7 +72,7 @@ ReleaseOfGeneralAndMedical.defaultProps = {
   section: 'releases',
   subsection: 'general',
   dispatch: () => {},
-  validator: data => {
+  validator: (data) => {
     const general = new SignatureValidator(data.General || {}).isValid()
     if (hideHippa(data.Application)) {
       return general
@@ -80,8 +81,6 @@ ReleaseOfGeneralAndMedical.defaultProps = {
     const medical = new SignatureValidator(data.Medical || {}).isValid()
     return general && medical
   },
-  onUpdate: queue => {},
-  onError: (value, arr) => {
-    return arr
-  }
+  onUpdate: () => {},
+  onError: (value, arr) => arr,
 }

@@ -1,9 +1,3 @@
-import * as actionTypes from 'constants/actionTypes'
-
-export const validateFormData = () => ({
-  type: actionTypes.VALIDATE_FORM_DATA,
-})
-
 export function updateApplication(section, property, values) {
   return {
     type: `${section}.${property}`,
@@ -39,17 +33,6 @@ export function reportErrors(section, subsection, codes) {
     subsection: err.subsection || subsection,
   }))
   return updateApplication('Errors', section, mappedCodes)
-}
-
-export function reportCompletion(section, subsection, status) {
-  return updateApplication('Completed', section, [
-    {
-      code: `${section}/${subsection}`.trim(),
-      section,
-      subsection,
-      valid: status,
-    },
-  ])
 }
 
 export function updateIdentificationApplicantName(values) {

@@ -82,6 +82,35 @@ describe('The investigation model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('Completed cannot be before applicant birthdate', () => {
+    const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+    const testData = {
+      Completed: { month: 1, year: 1970, day: 2 },
+    }
+
+    const expectedErrors = [
+      'Completed.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, investigation, {
+      applicantBirthdate,
+    }))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Completed cannot be in the future', () => {
+    const testData = {
+      Completed: { month: 1, year: 2050, day: 2 },
+    }
+
+    const expectedErrors = [
+      'Completed.date.date.datetime.DATE_TOO_LATE',
+    ]
+
+    expect(validateModel(testData, investigation))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('Granted must be a valid date', () => {
     const testData = { Granted: { day: 2, year: 1000 } }
     const expectedErrors = ['Granted.date.month.presence.REQUIRED']

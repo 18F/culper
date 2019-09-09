@@ -1,6 +1,6 @@
 /* eslint import/no-cycle: 0 */
 import {
-  take, put, call, race, spawn, all,
+  take, put, call, race, spawn,
 } from 'redux-saga/effects'
 
 import * as actionTypes from 'constants/actionTypes'
@@ -12,7 +12,6 @@ import { updateApplication } from 'actions/ApplicationActions'
 
 import { env } from 'config'
 
-import { validateWatcher } from 'sagas/validate'
 import { setFormData, formWatcher } from 'sagas/form'
 import { handleLogout } from 'sagas/session'
 
@@ -32,10 +31,7 @@ export function* loggedOutWatcher() {
 
 export function* loggedInWatcher() {
   const { logout } = yield race({
-    loggedIn: all([
-      call(validateWatcher),
-      call(formWatcher),
-    ]),
+    loggedIn: call(formWatcher),
     logout: take(actionTypes.LOGOUT),
   })
 

@@ -57,6 +57,35 @@ describe('The revoked model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('Date cannot be before applicant birthdate', () => {
+    const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+    const testData = {
+      Date: { month: 1, year: 1970, day: 2 },
+    }
+
+    const expectedErrors = [
+      'Date.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, revoked, {
+      applicantBirthdate,
+    }))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Date cannot be in the future', () => {
+    const testData = {
+      Date: { month: 1, year: 2050, day: 2 },
+    }
+
+    const expectedErrors = [
+      'Date.date.date.datetime.DATE_TOO_LATE',
+    ]
+
+    expect(validateModel(testData, revoked))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('the Date field must be a valid year', () => {
     const testData = {
       Date: { year: 12, month: 33, day: 12 },

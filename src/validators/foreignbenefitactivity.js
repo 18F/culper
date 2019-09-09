@@ -1,7 +1,7 @@
 import { validateModel, hasYesOrNo } from 'models/validate'
 import foreignBenefit from 'models/foreignBenefit'
 
-export const validateForeignBenefitActivity = (data) => {
+export const validateForeignBenefitActivity = (data, formType, options = {}) => {
   const foreignBenefitActivityModel = {
     HasBenefits: {
       presence: true,
@@ -19,7 +19,7 @@ export const validateForeignBenefitActivity = (data) => {
     },
   }
 
-  return validateModel(data, foreignBenefitActivityModel)
+  return validateModel(data, foreignBenefitActivityModel, options)
 }
 
 export default class ForeignBenefitActivityValidator {

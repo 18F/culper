@@ -28,7 +28,7 @@ const foreignBenefitType = {
     if (benefitType === ONE_TIME) {
       return {
         presence: true,
-        date: true,
+        date: { latest: DEFAULT_LATEST },
       }
     }
 

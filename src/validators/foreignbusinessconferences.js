@@ -3,7 +3,7 @@ import foreignBusinessConferences from 'models/foreignBusinessConferences'
 
 export const validateConferences = data => validateModel(data, foreignBusinessConferences)
 
-export const validateForeignBusinessConferences = (data) => {
+export const validateForeignBusinessConferences = (data, formType, options = {}) => {
   const foreignBusinessConferencesModel = {
     HasForeignConferences: { presence: true, hasValue: { validator: hasYesOrNo } },
     List: (value, attributes) => {
@@ -18,7 +18,7 @@ export const validateForeignBusinessConferences = (data) => {
     },
   }
 
-  return validateModel(data, foreignBusinessConferencesModel)
+  return validateModel(data, foreignBusinessConferencesModel, options)
 }
 
 export default class ForeignBusinessConferencesValidator {
