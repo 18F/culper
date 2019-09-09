@@ -18,15 +18,16 @@ describe('Schema for financial taxes', () => {
               Issued: {},
               Granted: {},
               GrantedNotApplicable: {},
+              ClearanceGranted: {},
               ClearanceLevel: {
                 Level: {},
-                Explanation: {}
+                Explanation: {},
               },
-              ClearanceLevelNotApplicable: {}
-            }
-          }
-        ]
-      }
+              ClearanceLevelNotApplicable: {},
+            },
+          },
+        ],
+      },
     }
 
     expect(unschema(legalInvestigationsHistory(data))).toEqual(data)
