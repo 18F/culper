@@ -1,5 +1,6 @@
 import {
   today, dateWithinRange, sortDateRanges, findTimelineGaps,
+  getApplicantRequiredDuration,
 } from './date'
 
 describe('The dateWithinRange helper function', () => {
@@ -150,5 +151,49 @@ describe('The findTimelineGaps function', () => {
     const expectedGaps = []
 
     expect(findTimelineGaps(testDuration, testRanges)).toEqual(expectedGaps)
+  })
+
+  it('returns gaps if the ranges don’t reach the present', () => {
+    const testDuration = { years: 5 }
+    const testRanges = [
+      {
+        from: today.minus({ years: 8 }).toObject(),
+        to: today.minus({ years: 4 }).toObject(),
+      },
+      {
+        from: today.minus({ years: 4 }).plus({ days: 1 }).toObject(),
+        to: today.minus({ years: 1 }).toObject(),
+      },
+    ]
+
+    const expectedGaps = [{
+      from: today.minus({ years: 1 }),
+      to: today,
+    }]
+
+    expect(findTimelineGaps(testDuration, testRanges)).toEqual(expectedGaps)
+  })
+})
+
+describe('The getApplicantRequiredDuration function', () => {
+  const requiredYears = { years: 10 }
+
+  it('returns requiredYears if birthdate is undefined', () => {
+    expect(getApplicantRequiredDuration(requiredYears, undefined)).toEqual(10)
+  })
+
+  describe('if the applicant is old enough to provide all required years', () => {
+    const birthdate = today.minus({ years: 35 }).toObject()
+    expect(getApplicantRequiredDuration(requiredYears, birthdate)).toEqual(10)
+  })
+
+  describe('if the applicant is old enough to provide some required years', () => {
+    const birthdate = today.minus({ years: 25 }).toObject()
+    expect(getApplicantRequiredDuration(requiredYears, birthdate)).toEqual(7)
+  })
+
+  describe('if the applicant is only old enough to provide 2 required years', () => {
+    const birthdate = today.minus({ years: 19 }).toObject()
+    expect(getApplicantRequiredDuration(requiredYears, birthdate)).toEqual(2)
   })
 })

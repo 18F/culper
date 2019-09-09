@@ -78,6 +78,30 @@ export const sortDateObjects = (dates = []) => {
     .sort(sortFn)
 }
 
+// get applicant age (today - birthdate) in years
+// if # of years - 18 >= required years, return required years
+// if # of years - 18 < required years, > 2, return difference
+// return 2
+export const getApplicantRequiredDuration = (requiredDuration = { years: 2 }, birthdate) => {
+  const duration = Duration.fromObject(requiredDuration)
+  if (!duration.isValid) return 2
+
+  const durationYears = duration.as('years')
+  if (!birthdate) return durationYears
+
+  const birthdateDate = createDateFromObject(cleanDateObject(birthdate))
+  if (!birthdateDate.isValid) return durationYears
+
+  const applicantAge = today.diff(birthdateDate).as('years')
+  const thresholdAge = 18
+  const minimumYears = 2
+
+  const applicableYears = applicantAge - thresholdAge
+  if (applicableYears >= durationYears) return durationYears
+  if (applicableYears >= minimumYears) return Math.floor(applicableYears)
+  return minimumYears
+}
+
 /** Convert date objects to luxon objects and sort by from date */
 export const sortDateRanges = (ranges) => {
   const sortFn = (a, b) => {
@@ -139,6 +163,13 @@ export const findTimelineGaps = (coverage, ranges) => {
       rangesOverlap = true
     }
   })
+
+  if (rangesOverlap && rightBoundary < requiredRange.to) {
+    gaps.push({
+      from: rightBoundary,
+      to: requiredRange.to,
+    })
+  }
 
   if (!rangesOverlap) {
     gaps.push(requiredRange)

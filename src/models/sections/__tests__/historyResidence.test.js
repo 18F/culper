@@ -1,6 +1,8 @@
 import { validateModel } from 'models/validate'
 import historyResidence from 'models/sections/historyResidence'
 
+import { today } from 'helpers/date'
+
 describe('The history residence section', () => {
   it('should fail an empty list', () => {
     const testData = {}
@@ -141,8 +143,7 @@ describe('The history residence section', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it.skip('residence list must cover the required duration', () => {
-    // TODO - add this once EN-3872 is completed
+  it('residence list must cover the required duration', () => {
     const testData = {
       List: {
         branch: { value: 'No' },
@@ -238,8 +239,103 @@ describe('The history residence section', () => {
     }
 
     const expectedErrors = ['List.durationCoverage.INCOMPLETE_DURATION']
-    expect(validateModel(testData, historyResidence))
+    expect(validateModel(testData, historyResidence, { requireYears: 3 }))
       .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('requires a minimum of 2 years if applicant is not old enough to meet the required years', () => {
+    const testData = {
+      List: {
+        branch: { value: 'No' },
+        items: [
+          {
+            Item: {
+              Dates: {
+                from: today.minus({ years: 2 }).toObject(),
+                to: {},
+                present: true,
+              },
+              Role: {
+                value: 'MilitaryHousing',
+              },
+              Address: {
+                country: { value: 'United States' },
+                street: '1234 Some Rd',
+                city: 'Arlington',
+                state: 'VA',
+                zipcode: '22202',
+                layout: Location.ADDRESS,
+              },
+              ReferenceName: {
+                first: 'Foo',
+                firstInitialOnly: false,
+                middle: 'J',
+                middleInitialOnly: true,
+                noMiddleName: false,
+                last: 'Bar',
+                suffix: 'Jr',
+              },
+              ReferenceLastContact: {
+                day: '1',
+                month: '1',
+                year: '2016',
+              },
+              ReferenceRelationshipComments: {
+                value: '',
+              },
+              ReferenceRelationship: {
+                values: ['Friend'],
+              },
+              ReferencePhoneEvening: {
+                noNumber: '',
+                number: '7031112222',
+                numberType: 'Home',
+                type: 'Domestic',
+                timeOfDay: 'Both',
+                extension: '',
+              },
+              ReferencePhoneDay: {
+                noNumber: '',
+                number: '7031112222',
+                numberType: 'Home',
+                type: 'Domestic',
+                timeOfDay: 'Both',
+                extension: '',
+              },
+              ReferencePhoneMobile: {
+                noNumber: '',
+                number: '7031112222',
+                numberType: 'Home',
+                type: 'Domestic',
+                timeOfDay: 'Both',
+                extension: '',
+              },
+              ReferenceEmailNotApplicable: {
+                applicable: true,
+              },
+              ReferenceEmail: {
+                value: 'user@local.dev',
+              },
+              ReferenceAddress: {
+                country: { value: 'United States' },
+                street: '1234 Some Rd',
+                city: 'Arlington',
+                state: 'VA',
+                zipcode: '22202',
+                layout: Location.ADDRESS,
+              },
+            },
+          },
+        ],
+      },
+    }
+
+    const applicantBirthdate = today.minus({
+      years: 19,
+    }).toObject()
+
+    expect(validateModel(testData, historyResidence, { requireYears: 10, applicantBirthdate }))
+      .toEqual(true)
   })
 
   it('should pass a valid list of residences', () => {
