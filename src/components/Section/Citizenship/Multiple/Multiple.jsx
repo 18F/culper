@@ -1,7 +1,5 @@
 import React from 'react'
 import { i18n } from 'config'
-import schema from 'schema'
-import validate, { CitizenshipItemValidator } from 'validators'
 import { countryString } from 'validators/location'
 import {
   Branch,
@@ -99,7 +97,9 @@ export class Multiple extends Subsection {
   }
 
   render() {
-    const { List } = this.props
+    const { List, errors } = this.props
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
     return (
       <div
         className="section-content multiple"
@@ -131,7 +131,7 @@ export class Multiple extends Subsection {
             scrollToBottom={this.props.scrollToBottom}
             onUpdate={this.updateList}
             onError={this.handleError}
-            validator={CitizenshipItemValidator}
+            errors={accordionErrors}
             summary={this.summaryList}
             description={i18n.t('citizenship.multiple.collection.citizenship.summary.title')}
             appendTitle={i18n.t('citizenship.multiple.collection.citizenship.appendTitle')}
@@ -159,11 +159,11 @@ Multiple.defaultProps = {
   onUpdate: () => {},
   onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => validate(schema('citizenship.multiple', data)),
   defaultState: true,
   required: false,
   scrollIntoView: false,
   requireMultipleCitizenshipRenounced: true,
+  errors: [],
 }
 
 export default connectSubsection(Multiple, sectionConfig)

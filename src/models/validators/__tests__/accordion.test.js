@@ -40,7 +40,7 @@ describe('The accordion validator', () => {
     }
 
     const validator = { value: { email: true } }
-    expect(accordion(testData, { validator })).toEqual('INVALID_ITEM')
+    expect(accordion(testData, { validator })).toEqual(['1.INVALID_ITEM'])
   })
 
   it('fails if any of the items fail the validator', () => {

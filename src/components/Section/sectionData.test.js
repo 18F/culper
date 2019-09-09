@@ -509,7 +509,9 @@ describe('Retrieving section data', () => {
         test.subsection,
         test.application
       )
-      for (const r of results) {
+
+      for (let i = 0; i < results.length; i += 1) {
+        const r = results[i]
         if (r.data !== true) {
           console.log(`Failure on ${test.section} and ${test.subsection}`)
         }

@@ -388,7 +388,7 @@ export const substance = {
         natureOfUse:
           'Provide nature of use, frequency, and number of times used',
         useWhileEmployed:
-          'Was your use while you were employed as a law enforcement officer, prosecutor, or courtroom official, or while in a position directly and immediately affecting the public?',
+          'Was your use while you were employed as a law enforcement officer, prosecutor, or courtroom official, or while in a position directly and immediately affecting the public safety?',
         useWithClearance: 'Was your use while possessing a security clearance?',
         useInFuture:
           'Do you intend to use this drug or controlled substance in the future?',
@@ -423,7 +423,7 @@ export const substance = {
         useWhileEmployed: {
           title: 'Need help with the use?',
           message:
-            'Was your use while you were employed as a law enforcement officer, prosecutor, or courtroom official, or while in a position directly and immediately affecting the public',
+            'Was your use while you were employed as a law enforcement officer, prosecutor, or courtroom official, or while in a position directly and immediately affecting the public safety?',
           note: '',
         },
         useWithClearance: {
@@ -497,7 +497,7 @@ export const substance = {
         involvementWhileEmployed: {
           title: 'Need help with the use?',
           message:
-            'Was your use while you were employed as a law enforcement officer, prosecutor, or courtroom official, or while in a position directly and immediately affecting the public',
+            'Was your use while you were employed as a law enforcement officer, prosecutor, or courtroom official, or while in a position directly and immediately affecting the public safety?',
           note: '',
         },
         involvementWithClearance: {

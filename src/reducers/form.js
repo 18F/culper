@@ -23,10 +23,15 @@ const form = (state = defaultState, action) => {
 
       let formSection = state[key] || { data: {} }
       let sectionData = formSection.data || {}
-      let fieldData = sectionData[field] || {}
 
-      fieldData = { ...fieldData, ...data }
-      sectionData = { ...sectionData, [field]: fieldData }
+      if (field) {
+        let fieldData = sectionData[field] || {}
+        fieldData = { ...fieldData, ...data }
+        sectionData = { ...sectionData, [field]: fieldData }
+      } else {
+        sectionData = { ...sectionData, ...data }
+      }
+
       formSection = { ...formSection, data: sectionData }
 
       return {

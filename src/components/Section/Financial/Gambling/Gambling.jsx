@@ -1,8 +1,6 @@
 import React from 'react'
 
 import i18n from 'util/i18n'
-import schema from 'schema'
-import validate, { GamblingItemValidator } from 'validators'
 import * as formConfig from 'config/forms'
 import { getNumberOfYearsString } from 'helpers/text'
 import { Branch, Show, Accordion } from 'components/Form'
@@ -92,7 +90,7 @@ export class Gambling extends Subsection {
   }
 
   render() {
-    const { formType } = this.props
+    const { formType, errors } = this.props
     const formTypeConfig = formType && formConfig[formType]
     const years = formTypeConfig && formTypeConfig.FINANCIAL_RECORD_GAMBLING_YEARS
     let branchLabelCopy
@@ -102,6 +100,8 @@ export class Gambling extends Subsection {
       const numberOfYearsString = getNumberOfYearsString(years)
       branchLabelCopy = i18n.t('financial.gambling.titleWithNum', { numberOfYearsString })
     }
+
+    const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
 
     return (
       <div
@@ -132,7 +132,7 @@ export class Gambling extends Subsection {
             summary={this.summary}
             description={i18n.t('financial.gambling.collection.summary.title')}
             required={this.props.required}
-            validator={GamblingItemValidator}
+            errors={accordionErrors}
             scrollIntoView={this.props.scrollIntoView}
             appendLabel={i18n.t('financial.gambling.collection.append')}
             appendTitle={i18n.t('financial.gambling.collection.appendTitle')}
@@ -156,9 +156,9 @@ Gambling.defaultProps = {
   onUpdate: () => {},
   onError: (value, arr) => arr,
   dispatch: () => {},
-  validator: data => validate(schema('financial.gambling', data)),
   defaultState: true,
   scrollToBottom: '.bottom-btns',
+  errors: [],
 }
 
 export default connectSubsection(Gambling, sectionConfig)

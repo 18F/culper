@@ -91,7 +91,7 @@ const Legal = ({ subsection, location, formType }) => {
 }
 
 function mapStateToProps(state) {
-  const { section, application = {}, authentication = {} } = state
+  const { section, application = {} } = state
 
   const legal = application.Legal || {}
   const errors = application.Errors || {}

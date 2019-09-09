@@ -8,6 +8,7 @@ import {
   NotApplicable,
   DateControl,
   Text,
+  Branch,
 } from 'components/Form'
 
 import InvestigatingAgency from './InvestigatingAgency'
@@ -28,6 +29,7 @@ export default class HistoryItem extends ValidationElement {
       GrantedComments: this.props.GrantedComments,
       ClearanceLevelNotApplicable: this.props.ClearanceLevelNotApplicable,
       ClearanceLevel: this.props.ClearanceLevel,
+      ClearanceGranted: this.props.ClearanceGranted,
       ...queue,
     })
   }
@@ -92,8 +94,17 @@ export default class HistoryItem extends ValidationElement {
     })
   }
 
+  updateClearanceGranted = (values) => {
+    this.update({
+      ClearanceGranted: values,
+      Issued: {},
+      Granted: {},
+      ClearanceLevel: {},
+    })
+  }
+
   render() {
-    const requireClearanceQuestions = true
+    const { requireLegalInvestigationClearanceGranted } = this.props
 
     return (
       <div>
@@ -150,19 +161,38 @@ export default class HistoryItem extends ValidationElement {
               {...this.props.Completed}
               onUpdate={this.updateCompleted}
               onError={this.props.onError}
-              minDateEqualTo
+              minDateEqualTo={true}
               className="legal-investigations-history-completed"
               required={this.props.required}
             />
           </NotApplicable>
         </Field>
 
-        {requireClearanceQuestions && (
+        {requireLegalInvestigationClearanceGranted && (
+          <Branch
+            label={i18n.t('legal.investigations.history.heading.wasClearanceGranted')}
+            labelSize="h4"
+            warning={true}
+            onError={this.props.onError}
+            required={this.props.required}
+            onUpdate={this.updateClearanceGranted}
+            scrollIntoView={this.props.scrollIntoView}
+            {...this.props.ClearanceGranted}
+          />
+        )}
+
+        {((
+          requireLegalInvestigationClearanceGranted
+          && this.props.ClearanceGranted
+          && this.props.ClearanceGranted.value === 'Yes'
+        ) || (
+          !requireLegalInvestigationClearanceGranted
+        )) && (
           <span>
             <Field
               title={i18n.t('legal.investigations.history.heading.issued')}
               adjustFor="text"
-              optional
+              optional={true}
               scrollIntoView={this.props.scrollIntoView}
             >
               <Text
@@ -195,7 +225,7 @@ export default class HistoryItem extends ValidationElement {
                   {...this.props.Granted}
                   onUpdate={this.updateGranted}
                   minDate={this.props.Completed}
-                  minDateEqualTo
+                  minDateEqualTo={true}
                   onError={this.props.onError}
                   className="legal-investigations-history-granted"
                   required={this.props.required}
@@ -244,4 +274,5 @@ HistoryItem.defaultProps = {
   CompletedNotApplicable: { applicable: true },
   GrantedNotApplicable: { applicable: true },
   ClearanceLevelNotApplicable: { applicable: true },
+  requireLegalInvestigationClearanceGranted: false,
 }
