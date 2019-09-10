@@ -186,19 +186,20 @@ export default class Accordion extends ValidationElement {
     const { items, realtime, sort } = this.props
     const { initial } = this.state
 
-    // If this has realtime enabled then we always perform sorting.
+    // If this has realtime enabled then we always perform sorting
     //
     // If it is not realtime but still the first entry in to the accordion
     // then we do the same.
     //
     // If we have been previously infected then assume we still are.
     const infected = realtime || initial
+    const innoculated = [...items]
 
     // If we are not in a dirty environment and have a sorting function then
     // apply order.
     return sort && infected
-      ? items.sort(sort)
-      : items
+      ? innoculated.sort(sort)
+      : innoculated
   }
 
   /**
@@ -349,7 +350,8 @@ export default class Accordion extends ValidationElement {
    * Render the item summary which can be overriden with `customSummary`
    */
   summary(item, index, initial = false) {
-    const closedAndIncomplete = !item.open && !this.isValid(item.uuid)
+    const closedAndIncomplete =
+      !item.open && !this.isValid(item.uuid)
 
     const svg = closedAndIncomplete ? (
       <Svg
