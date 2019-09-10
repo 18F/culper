@@ -29,23 +29,3 @@ export const validateOrderedCounselings = (data, formType = formTypes.SF86) => {
 
   return validateModel(data, orderedCounselingsModel, options)
 }
-
-export class OrderedCounselingValidator {
-  constructor(data = {}) {
-    const state = store.getState()
-    const { formType } = state.application.Settings
-    this.data = data
-    this.formType = formType
-  }
-
-  validCompletedTreatment() {
-    return validateModel(this.data, {
-      CompletedTreatment: alcoholOrderedCounseling.CompletedTreatment,
-      NoCompletedTreatmentExplanation: alcoholOrderedCounseling.NoCompletedTreatmentExplanation,
-    }) === true
-  }
-
-  isValid() {
-    return validateOrderedCounseling(this.data, this.formType) === true
-  }
-}
