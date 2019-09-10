@@ -20,7 +20,7 @@
 
     {{ if formType "SF85" }} 
     <ClearanceGranted>
-      <Answer>{{$Item.ClearanceGranted}}</Answer>
+      <Answer>{{branch $Item.ClearanceGranted}}</Answer>
     </ClearanceGranted>
     {{end}}
 

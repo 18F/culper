@@ -3,6 +3,7 @@ package xml
 import (
 	"bufio"
 	"bytes"
+	"encoding/json"
 	"io/ioutil"
 	"os"
 	"os/exec"
@@ -259,8 +260,8 @@ func TestDocumentExpiration(t *testing.T) {
 }
 
 // `test1` is a basic smoke test, a bare bones application
-func TestScenario1(t *testing.T) {
-	executeScenario(t, "test1")
+func Test86Scenario1(t *testing.T) {
+	executeScenario(t, "SF86", "test1")
 }
 
 // `test2` is a "blow out" of these SF-86 questions:
@@ -268,8 +269,8 @@ func TestScenario1(t *testing.T) {
 // #23 Illegal Use of Drugs/Activity
 // #24 Use of Alcohol
 // #26 Financial Record
-func TestScenario2(t *testing.T) {
-	executeScenario(t, "test2")
+func Test86Scenario2(t *testing.T) {
+	executeScenario(t, "SF86", "test2")
 }
 
 // `test3` is a "blow out" of these SF-86 questions:
@@ -285,8 +286,8 @@ func TestScenario2(t *testing.T) {
 //   within 3 years, that item needs a reference/verifier.
 //   However, that person does not need a name nor an email.
 // * At the end of the form in Review, this test case has additional comments.
-func TestScenario3(t *testing.T) {
-	executeScenario(t, "test3")
+func Test86Scenario3(t *testing.T) {
+	executeScenario(t, "SF86", "test3")
 }
 
 // `test4` is a "blow out" of these SF-86 questions:
@@ -294,13 +295,13 @@ func TestScenario3(t *testing.T) {
 // #15 Military history
 // #27 Use of information technology systems
 // #28 Involvement in non-criminal court actions
-func TestScenario4(t *testing.T) {
-	executeScenario(t, "test4")
+func Test86Scenario4(t *testing.T) {
+	executeScenario(t, "SF86", "test4")
 }
 
 // `test5` is a "blow out" of the whole form
-func TestScenario5(t *testing.T) {
-	executeScenario(t, "test5")
+func Test86Scenario5(t *testing.T) {
+	executeScenario(t, "SF86", "test5")
 }
 
 // `test6` is a basic smoke test, originally just created for NBIB to reject.
@@ -311,20 +312,20 @@ func TestScenario5(t *testing.T) {
 // * Divorced and not currently married
 // * Having an applicant that is a U.S. Citizen board abroad
 // * `I don't know` for Selective Service registration
-func TestScenario6(t *testing.T) {
-	executeScenario(t, "test6")
+func Test86Scenario6(t *testing.T) {
+	executeScenario(t, "SF86", "test6")
 }
 
 // `test7` is a "blow out" of the whole form from NBIB team
-func TestScenario7(t *testing.T) {
-	executeScenario(t, "test7")
+func Test86Scenario7(t *testing.T) {
+	executeScenario(t, "SF86", "test7")
 }
 
 // `test8` is for:
 // * 21E, explicitly answering "No" to 21A, 21B, 21C, and 21D
 // * Having an applicant that is not a U.S. Citizen
-func TestScenario8(t *testing.T) {
-	executeScenario(t, "test8")
+func Test86Scenario8(t *testing.T) {
+	executeScenario(t, "SF86", "test8")
 }
 
 // `test9` is for APO and foreign primary address/secondary (alternate) address
@@ -336,53 +337,95 @@ func TestScenario8(t *testing.T) {
 // * current spouse
 // * relative
 // * close foreign contact
-func TestScenario9(t *testing.T) {
-	executeScenario(t, "test9")
+func Test86Scenario9(t *testing.T) {
+	executeScenario(t, "SF86", "test9")
 }
 
 // `test10` is derived from test1 for:
 // * a current spouse with "I don't know" as email response
 // * secondary (alternate) address workflows for employment entries
 // * offense where applicant was not arrested, summoned, cited and also not charged
-func TestScenario10(t *testing.T) {
-	executeScenario(t, "test10")
+func Test86Scenario10(t *testing.T) {
+	executeScenario(t, "SF86", "test10")
 }
 
 // `test11` is a clone of `test8` with certain revisions.
 // `test11` is for:
 // * Having an applicant that has ForeignBorn (aka USByBirthOutsideUS) citizenship and has a U.S. Passport
-func TestScenario11(t *testing.T) {
-	executeScenario(t, "test11")
+func Test86Scenario11(t *testing.T) {
+	executeScenario(t, "SF86", "test11")
+}
+
+// `test1` is a basic smoke test, a bare bones application
+func Test85Scenario1(t *testing.T) {
+	executeScenario(t, "SF85", "test1")
+}
+
+func Test85Scenario2(t *testing.T) {
+	executeScenario(t, "SF85", "test2")
+}
+
+func Test85Scenario3(t *testing.T) {
+	executeScenario(t, "SF85", "test3")
+}
+
+func Test85PScenario2(t *testing.T) {
+	executeScenario(t, "SF85P", "test2")
 }
 
 // executeScenario generates XML from JSON test fixtures for a complete
 // applicant scenario and compares the result with XML reference files.
 // It is a coarse and unforgiving test; anything less than an exact match,
 // including formatting whitespace, will result in a test failure.
-func executeScenario(t *testing.T, name string) {
-	form := readSectionData(t, path.Join(scenarioDir, name+".json"))
+func executeScenario(t *testing.T, formType string, name string) {
 
-	metadataSection := map[string]string{
-		"type":         "metadata",
-		"form_type":    "SF86",
-		"form_version": "2017-07",
+	service := NewXMLServiceWithMockClock("../templates/", mockedClock())
+
+	subdirs := map[string]string{
+		"SF85":  "SF85",
+		"SF85P": "SF85P",
+		"SF86":  ".",
 	}
 
-	form["Metadata"] = metadataSection
+	basename := path.Join(dataDir, scenarioDir, subdirs[formType], name)
 
-	snippet := applyForm(t, "application.xml", form)
-	formatted := formatXML(t, snippet)
-	reference := readReference(t, name+".xml")
+	formBytes, readErr := ioutil.ReadFile(basename + ".json")
+	if readErr != nil {
+		t.Fatal(readErr)
+	}
+
+	formVersion, versionErr := api.DefaultFormVersion(formType)
+	if versionErr != nil {
+		t.Fatal(versionErr)
+	}
+
+	app := api.BlankApplication(-1, formType, formVersion)
+	loadErr := json.Unmarshal(formBytes, &app)
+	if loadErr != nil {
+		t.Fatal(loadErr)
+	}
+
+	xml, xmlErr := service.PackageXML(app)
+	if xmlErr != nil {
+		t.Fatal(xmlErr)
+	}
+
+	formatted := formatXML(t, string(xml))
+
+	reference, readErr := ioutil.ReadFile(basename + ".xml")
+	if readErr != nil {
+		t.Fatalf("Error reading reference XML `%s`: %s", name, readErr.Error())
+	}
 
 	if !bytes.Equal(formatted, reference) {
-		outfile := writeXML(t, name, formatted)
+		outfile := writeXML(t, subdirs[formType], name, formatted)
 		t.Fatalf("Generated XML `%s` does not match reference XML for `%s`",
 			outfile, name)
 	}
 }
 
-func writeXML(t *testing.T, name string, snippet []byte) string {
-	tmpfile, err := ioutil.TempFile(path.Join(dataDir, scenarioDir), name+".xml.")
+func writeXML(t *testing.T, subdir string, name string, snippet []byte) string {
+	tmpfile, err := ioutil.TempFile(path.Join(dataDir, scenarioDir, subdir), name+".xml.")
 	if err != nil {
 		t.Fatalf("Error saving generated XML: %s", err.Error())
 	}

@@ -15,13 +15,13 @@
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
     <Travel ID="{{inc $index}}">
-      {{ if formType "SF86" }}
       <ContactedByForeignMilitaryOrganization>
         <Answer>{{branch $Item.Contacted}}</Answer>
         {{ if branch $Item.Contacted | eq "Yes" }}
         <Explanation>{{text $Item.ContactedExplanation}}</Explanation>
         {{end}}
       </ContactedByForeignMilitaryOrganization>
+      {{ if formType "SF86" }}
       <ContactedByPersonAttemptingToObtainInformation>
         <Answer>{{branch $Item.Sensitive}}</Answer>
         {{ if branch $Item.Sensitive | eq "Yes" }}
