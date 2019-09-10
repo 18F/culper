@@ -33,9 +33,6 @@ import MilitaryForeignValidator, {
 import PoliceOffensesValidator from './policeoffenses'
 import PoliceOtherOffensesValidator from './policeotheroffenses'
 import OtherOffenseValidator from './otheroffense'
-import DomesticViolenceValidator, {
-  DomesticViolenceItem,
-} from './domesticviolence'
 import OffenseValidator from './offense'
 import RelativesValidator, {
   RelativeValidator,
@@ -121,21 +118,12 @@ import ForeignBusinessVotingValidator, {
 } from './foreignbusinessvoting'
 import ForeignTravelValidator, { TravelValidator } from './foreigntravel'
 import DrugUsesValidator, { DrugUseValidator } from './druguses'
-import DrugInvolvementsValidator, {
-  DrugInvolvementValidator,
-} from './druginvolvements'
-import DrugClearanceUsesValidator, {
-  DrugClearanceUseValidator,
-} from './drugclearanceuses'
 import DrugPublicSafetyUsesValidator, {
   DrugPublicSafetyUseValidator,
 } from './drugpublicsafetyuses'
 import DrugPrescriptionUsesValidator, {
   DrugPrescriptionUseValidator,
 } from './drugprescriptionuses'
-import DrugOrderedTreatmentsValidator, {
-  DrugOrderedTreatmentValidator,
-} from './drugorderedtreatments'
 import DrugVoluntaryTreatmentsValidator, {
   DrugVoluntaryTreatmentValidator,
 } from './drugvoluntarytreatments'
@@ -197,8 +185,6 @@ export {
   PoliceOffensesValidator,
   PoliceOtherOffensesValidator,
   OtherOffenseValidator,
-  DomesticViolenceValidator,
-  DomesticViolenceItem,
   OffenseValidator,
   FederalServiceItemValidator,
   RelativesValidator,
@@ -252,16 +238,10 @@ export {
   TravelValidator,
   DrugUsesValidator,
   DrugUseValidator,
-  DrugInvolvementsValidator,
-  DrugInvolvementValidator,
-  DrugClearanceUsesValidator,
-  DrugClearanceUseValidator,
   DrugPublicSafetyUsesValidator,
   DrugPublicSafetyUseValidator,
   DrugPrescriptionUsesValidator,
   DrugPrescriptionUseValidator,
-  DrugOrderedTreatmentsValidator,
-  DrugOrderedTreatmentValidator,
   DrugVoluntaryTreatmentsValidator,
   DrugVoluntaryTreatmentValidator,
   LegalNonCriminalCourtActionsValidator,
