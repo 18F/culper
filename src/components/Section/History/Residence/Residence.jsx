@@ -11,7 +11,6 @@ import { validateModel } from 'models/validate'
 import Subsection from 'components/Section/shared/Subsection'
 
 import { Accordion } from 'components/Form'
-import { newGuid } from 'components/Form/ValidationElement'
 import { openState } from 'components/Form/Accordion/Accordion'
 
 import { ResidenceCustomSummary } from '../summaries'
@@ -80,28 +79,6 @@ export class Residence extends Subsection {
     )
   }
 
-  fillGap = () => {
-    const items = [...this.props.List.items]
-
-    items.push({
-      uuid: newGuid(),
-      open: true,
-      Item: {
-        name: 'Item',
-        Dates: {
-          name: 'Dates',
-          present: false,
-          receiveProps: true,
-        },
-      },
-    })
-
-    this.handleUpdate({
-      items: items.sort(this.sort),
-      branch: {},
-    })
-  }
-
   render() {
     const { List, errors, totalYears } = this.props
     const { items, branch } = List
@@ -114,7 +91,6 @@ export class Residence extends Subsection {
       .map(i => i.Item.Dates)
 
     const gaps = findTimelineGaps({ years: totalYears }, dateRanges)
-    const lastGap = gaps[gaps.length - 1]
 
     const showGapError = branch
       && branch.value === 'No'
@@ -161,9 +137,7 @@ export class Residence extends Subsection {
           <Gap
             title={i18n.t('history.residence.gap.title')}
             para={i18n.t('history.residence.gap.para', { years: totalYears })}
-            btnText={i18n.t('history.residence.gap.btnText')}
-            dates={lastGap}
-            onClick={() => this.fillGap(lastGap)}
+            gaps={gaps}
           />
         )}
       </div>

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react'
 import PropTypes from 'prop-types'
 
@@ -7,33 +8,31 @@ import { DateSummary } from 'components/Summary'
  * Renders a formatted gap row
  */
 export const Gap = ({
-  dates,
   title,
   para,
-  onClick,
-  btnText,
+  gaps,
 }) => {
-  if (!dates.from || !dates.to) {
+  if (!gaps || !gaps.length) {
     return null
   }
-
-  const dateSummary = DateSummary(dates)
 
   return (
     <div className="gap details open">
       <div className="usa-alert usa-alert-error" role="alert">
         <div className="usa-alert-body">
           <h5 className="usa-alert-heading">
-            {`${title} - `}
-            <span className="dates">{dateSummary}</span>
+            {title}
           </h5>
 
           <p>{para}</p>
 
-          <button type="button" className="usa-button-outline" onClick={onClick}>
-            <span>{btnText}</span>
-            <i className="fa fa-plus-circle" />
-          </button>
+          <ul>
+            {gaps.map((g, i) => (
+              <li key={i}>
+                {DateSummary(g)}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
@@ -41,22 +40,15 @@ export const Gap = ({
 }
 
 Gap.propTypes = {
-  dates: PropTypes.object,
   title: PropTypes.node,
   para: PropTypes.node,
-  btnText: PropTypes.node,
-  onClick: PropTypes.func,
+  gaps: PropTypes.array,
 }
 
 Gap.defaultProps = {
   title: '',
-  btnText: '',
   para: '',
-  dates: {
-    from: null,
-    to: null,
-  },
-  onClick: () => {},
+  gaps: [],
 }
 
 export default Gap
