@@ -3,15 +3,17 @@ import React from 'react'
 import i18n from 'util/i18n'
 
 import { RELATIONSHIPS, RELATIONSHIPS_PEOPLE } from 'config/formSections/relationships'
+import { INCOMPLETE_DURATION } from 'constants/errors'
 
 import Subsection from 'components/Section/shared/Subsection'
 import connectSubsection from 'components/Section/shared/SubsectionConnector'
+import { findTimelineGaps } from 'helpers/date'
+import { validateModel } from 'models/validate'
+
 import { Accordion, Svg } from 'components/Form'
-import { newGuid } from 'components/Form/ValidationElement'
 import { Summary, DateSummary, NameSummary } from 'components/Summary'
 import SummaryProgress from 'components/Section/History/SummaryProgress'
-import { extractDate, today, daysAgo } from 'components/Section/History/dateranges'
-import { InjectGaps } from 'components/Section/History/summaries'
+import { extractDate } from 'components/Section/History/dateranges'
 import { Gap } from 'components/Section/History/Gap'
 import { sort } from 'components/Section/History/helpers'
 
@@ -54,33 +56,6 @@ export class People extends Subsection {
     })
   }
 
-  excludeGaps = items => (items || [])
-    .filter(item => !item.type || (item.type && item.type !== 'Gap'))
-
-  fillGap = () => {
-    const items = [...(this.props.List || {}).items]
-
-    items.push({
-      uuid: newGuid(),
-      open: true,
-      Item: {
-        name: 'Item',
-        Dates: {
-          Name: 'Dates',
-          present: false,
-          receiveProps: true,
-        },
-      },
-    })
-
-    this.update({
-      List: {
-        ...this.props.List,
-        items: this.excludeGaps(this.inject(items).sort(sort)),
-      },
-    })
-  }
-
   summary = (item, index) => {
     const o = (item || {}).Item || {}
     const date = DateSummary(o.Dates)
@@ -98,26 +73,8 @@ export class People extends Subsection {
     })
   }
 
-  customDetails = (item, index, initial, callback) => {
-    if (item.type === 'Gap') {
-      const dates = (item.Item || {}).Dates || {}
-      return (
-        <Gap
-          title={i18n.t('relationships.people.person.gap.title')}
-          para={i18n.t('relationships.people.person.gap.para')}
-          btnText={i18n.t('relationships.people.person.gap.button')}
-          first={index === 0}
-          dates={dates}
-          onClick={() => this.fillGap(dates)}
-        />
-      )
-    }
-
-    return callback()
-  }
-
   peopleSummaryList = () => (
-    this.excludeGaps(this.props.List.items).reduce((dates, item) => {
+    this.props.List.items.reduce((dates, item) => {
       // Return if there is no item
       if (!item) return dates
 
@@ -139,11 +96,26 @@ export class People extends Subsection {
     }, [])
   )
 
-  inject = items => InjectGaps(items, daysAgo(today, 365 * this.props.totalYears))
-
   render() {
+    const totalYears = 7 // 7 years is always required for this section, regardless of formType
     const { errors, List } = this.props
+    const { items, branch } = List
+
     const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
+    const dateRanges = items
+      .filter(i => i.Item && i.Item.Dates && validateModel(
+        { Dates: i.Item.Dates },
+        { Dates: { presence: true, daterange: true } }
+      ) === true)
+      .map(i => i.Item.Dates)
+
+    const gaps = findTimelineGaps({ years: totalYears }, dateRanges)
+
+    const showGapError = branch
+      && branch.value === 'No'
+      && gaps.length > 0
+      && errors.filter(e => e.indexOf(INCOMPLETE_DURATION) > -1).length > 0
 
     // Number of list items with no errors
     const validCount = List.items
@@ -190,9 +162,7 @@ export class People extends Subsection {
           scrollToBottom={this.props.scrollToBottom}
           realtime={true}
           sort={sort}
-          inject={this.inject}
           summary={this.summary}
-          customDetails={this.customDetails}
           errors={accordionErrors}
           onUpdate={this.updateList}
           onError={this.handleError}
@@ -211,6 +181,14 @@ export class People extends Subsection {
             scrollIntoView={this.props.scrollIntoView}
           />
         </Accordion>
+
+        {showGapError && (
+          <Gap
+            title={i18n.t('relationships.people.person.gap.title')}
+            para={i18n.t('relationships.people.person.gap.para')}
+            gaps={gaps}
+          />
+        )}
       </div>
     )
   }
@@ -223,7 +201,6 @@ People.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   defaultState: true,
-  totalYears: 7,
   scrollToBottom: '.bottom-btns',
   scrollIntoView: false,
   errors: [],
