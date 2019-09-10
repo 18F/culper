@@ -135,6 +135,14 @@ export class Employment extends Subsection {
       && gaps.length > 0
       && errors.filter(e => e.indexOf(INCOMPLETE_DURATION) > -1).length > 0
 
+    const gapError = (
+      <Gap
+        title={i18n.t('history.employment.gap.title')}
+        para={i18n.t('history.employment.gap.para', { years: totalYears })}
+        gaps={gaps}
+      />
+    )
+
     return (
       <div
         className="section-content employment"
@@ -166,6 +174,7 @@ export class Employment extends Subsection {
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}
           errors={accordionErrors}
+          gapError={showGapError && gapError}
         >
           <EmploymentItem
             bind={true}
@@ -177,14 +186,6 @@ export class Employment extends Subsection {
             recordYears={recordYears}
           />
         </Accordion>
-
-        {showGapError && (
-          <Gap
-            title={i18n.t('history.employment.gap.title')}
-            para={i18n.t('history.employment.gap.para', { years: totalYears })}
-            gaps={gaps}
-          />
-        )}
 
         <hr className="section-divider" />
 

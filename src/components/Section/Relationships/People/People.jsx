@@ -117,6 +117,14 @@ export class People extends Subsection {
       && gaps.length > 0
       && errors.filter(e => e.indexOf(INCOMPLETE_DURATION) > -1).length > 0
 
+    const gapError = (
+      <Gap
+        title={i18n.t('relationships.people.person.gap.title')}
+        para={i18n.t('relationships.people.person.gap.para')}
+        gaps={gaps}
+      />
+    )
+
     // Number of list items with no errors
     const validCount = List.items
       .filter(i => i && i.Item && errors.filter(e => e.indexOf(i.uuid) > -1).length <= 0)
@@ -171,6 +179,7 @@ export class People extends Subsection {
           description={i18n.t('relationships.people.person.collection.description')}
           appendTitle={i18n.t('relationships.people.person.collection.appendTitle')}
           appendLabel={i18n.t('relationships.people.person.collection.appendLabel')}
+          gapError={showGapError && gapError}
         >
           <Person
             name="Item"
@@ -181,14 +190,6 @@ export class People extends Subsection {
             scrollIntoView={this.props.scrollIntoView}
           />
         </Accordion>
-
-        {showGapError && (
-          <Gap
-            title={i18n.t('relationships.people.person.gap.title')}
-            para={i18n.t('relationships.people.person.gap.para')}
-            gaps={gaps}
-          />
-        )}
       </div>
     )
   }

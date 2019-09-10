@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { i18n } from 'config'
 import ValidationElement from 'components/Form/ValidationElement'
@@ -546,6 +547,7 @@ export default class Accordion extends ValidationElement {
   }
 
   render() {
+    const { gapError } = this.props
     const klass = `accordion ${this.props.className}`.trim()
 
     return (
@@ -556,10 +558,15 @@ export default class Accordion extends ValidationElement {
           <div className="items">{this.content()}</div>
           <div className="append-button">{this.appendButton()}</div>
         </div>
+        {gapError}
         {this.addendum()}
       </div>
     )
   }
+}
+
+Accordion.propTypes = {
+  gapError: PropTypes.node,
 }
 
 Accordion.defaultProps = {
@@ -587,6 +594,7 @@ Accordion.defaultProps = {
   sort: null,
   realtime: true,
   errors: [],
+  gapError: null,
   inject: items => {
     return items
   },

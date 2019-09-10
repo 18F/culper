@@ -99,6 +99,14 @@ export class Residence extends Subsection {
 
     const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
 
+    const gapError = (
+      <Gap
+        title={i18n.t('history.residence.gap.title')}
+        para={i18n.t('history.residence.gap.para', { years: totalYears })}
+        gaps={gaps}
+      />
+    )
+
     return (
       <div
         className="section-content residence"
@@ -122,6 +130,7 @@ export class Residence extends Subsection {
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}
           errors={accordionErrors}
+          gapError={showGapError && gapError}
         >
           <ResidenceItem
             bind={true}
@@ -132,14 +141,6 @@ export class Residence extends Subsection {
             scrollIntoView={this.props.scrollIntoView}
           />
         </Accordion>
-
-        {showGapError && (
-          <Gap
-            title={i18n.t('history.residence.gap.title')}
-            para={i18n.t('history.residence.gap.para', { years: totalYears })}
-            gaps={gaps}
-          />
-        )}
       </div>
     )
   }
