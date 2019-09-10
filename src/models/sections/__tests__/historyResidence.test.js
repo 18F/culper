@@ -351,6 +351,91 @@ describe('The history residence section', () => {
                   month: '1',
                   year: '2005',
                 },
+                to: {
+                  month: '1',
+                  day: '1',
+                  year: '2016',
+                },
+              },
+              Role: {
+                value: 'MilitaryHousing',
+              },
+              Address: {
+                country: { value: 'United States' },
+                street: '1234 Some Rd',
+                city: 'Arlington',
+                state: 'VA',
+                zipcode: '22202',
+                layout: Location.ADDRESS,
+              },
+              ReferenceName: {
+                first: 'Foo',
+                firstInitialOnly: false,
+                middle: 'J',
+                middleInitialOnly: true,
+                noMiddleName: false,
+                last: 'Bar',
+                suffix: 'Jr',
+              },
+              ReferenceLastContact: {
+                day: '1',
+                month: '1',
+                year: '2016',
+              },
+              ReferenceRelationshipComments: {
+                value: '',
+              },
+              ReferenceRelationship: {
+                values: ['Friend'],
+              },
+              ReferencePhoneEvening: {
+                noNumber: '',
+                number: '7031112222',
+                numberType: 'Home',
+                type: 'Domestic',
+                timeOfDay: 'Both',
+                extension: '',
+              },
+              ReferencePhoneDay: {
+                noNumber: '',
+                number: '7031112222',
+                numberType: 'Home',
+                type: 'Domestic',
+                timeOfDay: 'Both',
+                extension: '',
+              },
+              ReferencePhoneMobile: {
+                noNumber: '',
+                number: '7031112222',
+                numberType: 'Home',
+                type: 'Domestic',
+                timeOfDay: 'Both',
+                extension: '',
+              },
+              ReferenceEmailNotApplicable: {
+                applicable: true,
+              },
+              ReferenceEmail: {
+                value: 'user@local.dev',
+              },
+              ReferenceAddress: {
+                country: { value: 'United States' },
+                street: '1234 Some Rd',
+                city: 'Arlington',
+                state: 'VA',
+                zipcode: '22202',
+                layout: Location.ADDRESS,
+              },
+            },
+          },
+          {
+            Item: {
+              Dates: {
+                from: {
+                  month: '1',
+                  day: '28',
+                  year: '2016',
+                },
                 present: true,
               },
               Role: {
@@ -428,6 +513,6 @@ describe('The history residence section', () => {
       },
     }
 
-    expect(validateModel(testData, historyResidence)).toEqual(true)
+    expect(validateModel(testData, historyResidence, { requireYears: 10 })).toEqual(true)
   })
 })

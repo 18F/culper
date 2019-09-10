@@ -129,7 +129,7 @@ export const findTimelineGaps = (coverage, ranges) => {
     to: today,
   }
 
-  const minimumGap = 1 // in days
+  const minimumGap = 30 // in days
 
   // prepare & sort ranges
   const sortedRanges = sortDateRanges(ranges)
@@ -153,7 +153,7 @@ export const findTimelineGaps = (coverage, ranges) => {
       // range does not contain boundary, we have a gap
       const gapDuration = from.diff(rightBoundary, 'days')
 
-      // don't include gaps that are less than 24 hours
+      // don't include gaps that are less than the minimum # of days
       if (gapDuration.as('days') > minimumGap) {
         const gap = { from: rightBoundary.toObject(), to: from.toObject() }
         gaps.push(gap)
