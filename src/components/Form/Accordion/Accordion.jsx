@@ -179,32 +179,25 @@ export default class Accordion extends ValidationElement {
   }
 
   /**
-   * Perform any injections or sorting to the list as deemed necessary.
+   * Perform any sorting to the list as deemed necessary.
    */
-  getItems(skipInnoculation = false) {
-    // If this has realtime enabled then we always perform sorting and
-    // additional injections.
+  getItems() {
+    const { items, realtime, sort } = this.props
+    const { initial } = this.state
+
+    // If this has realtime enabled then we always perform sorting.
     //
     // If it is not realtime but still the first entry in to the accordion
     // then we do the same.
     //
     // If we have been previously infected then assume we still are.
-    const infected =
-      this.props.realtime ||
-      this.state.initial ||
-      this.props.items.some(item => item.type && item.type === 'Gap')
-
-    // If we are infected then inject the anecdote.
-    const innoculated =
-      infected && !skipInnoculation
-        ? this.props.inject([...this.props.items])
-        : [...this.props.items]
+    const infected = realtime || initial
 
     // If we are not in a dirty environment and have a sorting function then
     // apply order.
-    return this.props.sort && infected
-      ? innoculated.sort(this.props.sort)
-      : innoculated
+    return sort && infected
+      ? items.sort(sort)
+      : items
   }
 
   /**
@@ -355,13 +348,7 @@ export default class Accordion extends ValidationElement {
    * Render the item summary which can be overriden with `customSummary`
    */
   summary(item, index, initial = false) {
-    // If this is a `gap` then you cannot destroy what you did not create.
-    if (item.type && item.type === 'Gap') {
-      return null
-    }
-
-    const closedAndIncomplete =
-      !item.open && !this.isValid(item.uuid)
+    const closedAndIncomplete = !item.open && !this.isValid(item.uuid)
 
     const svg = closedAndIncomplete ? (
       <Svg
