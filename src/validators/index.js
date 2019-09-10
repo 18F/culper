@@ -41,26 +41,16 @@ import RelativesValidator, {
   RelativeValidator,
   AliasValidator,
 } from './relatives'
-import ConsultationValidator from './consultation'
 import TaxesValidator, { TaxValidator } from './taxes'
-import CreditValidator, { CreditItemValidator } from './credit'
 import HospitalizationsValidator, {
   HospitalizationValidator,
 } from './hospitalization'
 import NonpaymentValidator, { NonpaymentItemValidator } from './nonpayment'
-import DelinquentValidator, { DelinquentItemValidator } from './delinquent'
-import DiagnosesValidator from './diagnoses'
-import DiagnosisValidator, {
-  ExistingConditionsDiagnosisValidator,
-} from './diagnosis'
 import ExistingConditionsValidator from './existingconditions'
 import PsychologicalValidator, { hideExistingConditions } from './psychological'
-import CompetenceValidator from './competence'
 import TreatmentValidator from './treatment'
 import MaritalValidator from './marital'
-import CohabitantsValidator, { CohabitantValidator } from './cohabitant'
 import RelationshipsValidator from './relationships'
-import DivorceValidator from './divorce'
 import PeopleValidator from './people'
 import PersonValidator from './person'
 import ForeignContactsValidator, {
@@ -214,29 +204,17 @@ export {
   RelativesValidator,
   RelativeValidator,
   AliasValidator,
-  ConsultationValidator,
   TaxesValidator,
   TaxValidator,
-  CreditValidator,
-  CreditItemValidator,
   HospitalizationsValidator,
   NonpaymentValidator,
   NonpaymentItemValidator,
-  DelinquentValidator,
-  DelinquentItemValidator,
-  DiagnosesValidator,
-  ExistingConditionsDiagnosisValidator,
-  DiagnosisValidator,
   ExistingConditionsValidator,
   PsychologicalValidator,
-  CompetenceValidator,
   TreatmentValidator,
   HospitalizationValidator,
   MaritalValidator,
-  CohabitantsValidator,
-  CohabitantValidator,
   RelationshipsValidator,
-  DivorceValidator,
   PeopleValidator,
   PersonValidator,
   ForeignBornDocumentValidator,
