@@ -977,13 +977,13 @@
               <Investigations>
                 <Investigation ID="1">
                   <Agency>Unknown</Agency>
+                  <InvestigationDate>
+                    <Date DoNotKnow="True"/>
+                  </InvestigationDate>
                   <ClearanceLevel>Unknown</ClearanceLevel>
                   <GrantedDate>
                     <Date DoNotKnow="True"/>
                   </GrantedDate>
-                  <InvestigationDate>
-                    <Date DoNotKnow="True"/>
-                  </InvestigationDate>
                   <IssuingAgency>
       
     </IssuingAgency>

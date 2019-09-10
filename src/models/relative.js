@@ -8,13 +8,16 @@ import { hasYesOrNo } from 'models/validate'
 
 import {
   MOTHER,
+  FATHER,
+  CHILD,
   immedateFamilyOptions,
   relativeCitizenshipDocumentationOptions,
   relativeResidentDocumentationOptions,
 } from 'constants/enums/relationshipOptions'
-import { OTHER, DEFAULT_LATEST } from 'constants/dateLimits'
+import { OTHER, DEFAULT_EARLIEST, DEFAULT_LATEST } from 'constants/dateLimits'
 
 import { countryString } from 'validators/location'
+import { sortDateObjects } from 'helpers/date'
 
 /** Helper functions */
 export const isCitizen = attributes => !!(
@@ -85,9 +88,37 @@ const relative = {
     presence: true,
     hasValue: { validator: { length: { minimum: 1 } } },
   },
-  Birthdate: {
-    presence: true,
-    date: { ...OTHER },
+  Birthdate: (value, attributes, attributeName, options = {}) => {
+    if (attributes.Relation) {
+      switch (attributes.Relation.value) {
+        case CHILD: {
+          return {
+            presence: true,
+            date: { earliest: options.applicantBirthdate, latest: DEFAULT_LATEST },
+          }
+        }
+
+        case MOTHER:
+        case FATHER: {
+          return {
+            presence: true,
+            date: { earliest: DEFAULT_EARLIEST, latest: options.applicantBirthdate },
+          }
+        }
+
+        default: {
+          return {
+            presence: true,
+            date: { ...OTHER },
+          }
+        }
+      }
+    }
+
+    return {
+      presence: true,
+      date: { ...OTHER },
+    }
   },
   Birthplace: {
     presence: true,
@@ -250,9 +281,21 @@ const relative = {
   },
   FirstContact: (value, attributes, attributeName, options) => {
     if (requireRelativeContactDescription(attributes, options)) {
+      const { Birthdate } = attributes
+      const { applicantBirthdate } = options
+
+      const sortedDates = sortDateObjects([Birthdate, applicantBirthdate])
+
+      const earliestDate = sortedDates.length
+        ? sortedDates[sortedDates.length - 1]
+        : null
+
       return {
         presence: true,
-        date: true,
+        date: {
+          earliest: earliestDate,
+          latest: DEFAULT_LATEST,
+        },
       }
     }
 

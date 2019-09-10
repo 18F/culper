@@ -1,5 +1,4 @@
 import { validateModel } from 'models/validate'
-import * as formTypes from 'constants/formTypes'
 import relative, {
   isCitizen,
   requireCitizenshipDocumentation,
@@ -223,6 +222,55 @@ describe('The relative model', () => {
       }
 
       const expectedErrors = ['Birthdate.date.date.datetime.DATE_TOO_EARLY']
+      expect(validateModel(testData, relative))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('Birthdate cannot be after applicant birthdate', () => {
+      const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+      const testData = {
+        Relation: { value: 'Mother' },
+        Birthdate: { month: 1, year: 1990, day: 2 },
+      }
+
+      const expectedErrors = [
+        'Birthdate.date.date.datetime.DATE_TOO_LATE',
+      ]
+
+      expect(validateModel(testData, relative, {
+        applicantBirthdate,
+      }))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+  })
+
+  describe('if relation is child', () => {
+    it('Birthdate cannot be before applicant birthdate', () => {
+      const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+      const testData = {
+        Relation: { value: 'Child' },
+        Birthdate: { month: 1, year: 1970, day: 2 },
+      }
+
+      const expectedErrors = [
+        'Birthdate.date.date.datetime.DATE_TOO_EARLY',
+      ]
+
+      expect(validateModel(testData, relative, {
+        applicantBirthdate,
+      }))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('Birthdate cannot be in the future', () => {
+      const testData = {
+        Birthdate: { month: 1, year: 2050, day: 2 },
+      }
+
+      const expectedErrors = [
+        'Birthdate.date.date.datetime.DATE_TOO_LATE',
+      ]
+
       expect(validateModel(testData, relative))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
@@ -1096,6 +1144,61 @@ describe('The relative model', () => {
           'FirstContact.date.day.presence.REQUIRED',
           'FirstContact.date.month.presence.REQUIRED',
           'FirstContact.date.year.presence.REQUIRED',
+        ]
+
+        expect(validateModel(testData, relative, sf86Options))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      it('FirstContact cannot be before applicant birthdate', () => {
+        const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+        const testData = {
+          Birthdate: { month: 1, year: 1985, day: 2 },
+          Citizenship: { value: ['Canada'] },
+          IsDeceased: { value: 'No' },
+          FirstContact: { month: 1, year: 1970, day: 2 },
+        }
+
+        const expectedErrors = [
+          'FirstContact.date.date.datetime.DATE_TOO_EARLY',
+        ]
+
+        expect(validateModel(testData, relative, {
+          applicantBirthdate,
+          ...sf86Options,
+        }))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      it('FirstContact cannot be before relative birthdate', () => {
+        const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+        const testData = {
+          Birthdate: { month: 1, year: 1985, day: 2 },
+          Citizenship: { value: ['Canada'] },
+          IsDeceased: { value: 'No' },
+          FirstContact: { month: 1, year: 1983, day: 2 },
+        }
+
+        const expectedErrors = [
+          'FirstContact.date.date.datetime.DATE_TOO_EARLY',
+        ]
+
+        expect(validateModel(testData, relative, {
+          applicantBirthdate,
+          ...sf86Options,
+        }))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      it('FirstContact cannot be in the future', () => {
+        const testData = {
+          Citizenship: { value: ['Canada'] },
+          IsDeceased: { value: 'No' },
+          FirstContact: { month: 1, year: 2050, day: 2 },
+        }
+
+        const expectedErrors = [
+          'FirstContact.date.date.datetime.DATE_TOO_LATE',
         ]
 
         expect(validateModel(testData, relative, sf86Options))

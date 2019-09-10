@@ -1,4 +1,5 @@
 import offense from 'models/shared/locations/offense'
+import { DEFAULT_LATEST } from 'constants/dateLimits'
 
 const domesticViolence = {
   CourtAddress: {
@@ -7,7 +8,14 @@ const domesticViolence = {
   },
   CourtName: { presence: true, hasValue: true },
   Explanation: { presence: true, hasValue: true },
-  Issued: { presence: true, date: { requireDay: false } },
+  Issued: (value, attributes, attributeName, options = {}) => {
+    const { applicantBirthdate } = options
+
+    return {
+      presence: true,
+      date: { requireDay: false, earliest: applicantBirthdate, latest: DEFAULT_LATEST },
+    }
+  },
 }
 
 export default domesticViolence

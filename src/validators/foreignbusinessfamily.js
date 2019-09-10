@@ -3,7 +3,7 @@ import foreignBusinessFamily from 'models/foreignBusinessFamily'
 
 export const validateFamily = data => validateModel(data, foreignBusinessFamily)
 
-export const validateForeignBusinessFamily = (data) => {
+export const validateForeignBusinessFamily = (data, formType, options = {}) => {
   const foreignBusinessFamilyModel = {
     HasForeignFamily: { presence: true, hasValue: { validator: hasYesOrNo } },
     List: (value, attributes) => {
@@ -18,7 +18,7 @@ export const validateForeignBusinessFamily = (data) => {
     },
   }
 
-  return validateModel(data, foreignBusinessFamilyModel)
+  return validateModel(data, foreignBusinessFamilyModel, options)
 }
 
 export default class ForeignBusinessFamilyValidator {

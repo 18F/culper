@@ -4,6 +4,7 @@ import birthplaceWithoutCounty from 'models/shared/locations/birthplaceWithoutCo
 import usCityStateZipInternationalCity from 'models/shared/locations/usCityStateZipInternationalCity'
 import phone from 'models/shared/phone'
 import { DEFAULT_LATEST, OTHER } from 'constants/dateLimits'
+import { sortDateObjects } from 'helpers/date'
 
 import {
   previouslyMarriedOptions,
@@ -35,9 +36,23 @@ const divorce = {
     }
     return {}
   },
-  Recognized: {
-    presence: true,
-    date: true,
+  Recognized: (value, attributes, attributeName, options) => {
+    const { Birthdate } = attributes
+    const { applicantBirthdate } = options
+
+    const sortedDates = sortDateObjects([Birthdate, applicantBirthdate])
+
+    const earliestDate = sortedDates.length
+      ? sortedDates[sortedDates.length - 1]
+      : null
+
+    return {
+      presence: true,
+      date: {
+        earliest: earliestDate,
+        latest: DEFAULT_LATEST,
+      },
+    }
   },
   Address: {
     presence: true,

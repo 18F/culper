@@ -12,7 +12,9 @@
       </Agency>
       <Amount Estimated="{{checkboxTrueFalse $Item.AmountEstimated}}">{{number $Item.Amount}}</Amount>
       <Comment></Comment>
+      {{ if formType "SF86" }}
       <Date Type="{{dateEstimated $Item.Date}}">{{monthYear $Item.Date}}</Date>
+      {{end}}
       <Reason>{{textarea $Item.Reason}}</Reason>
     </Incident>
     {{end}}

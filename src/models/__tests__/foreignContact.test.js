@@ -72,6 +72,53 @@ describe('The foreignContact model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('FirstContact cannot be before applicant birthdate', () => {
+    const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+    const testData = {
+      Birthdate: { month: 1, year: 1985, day: 2 },
+      FirstContact: { month: 1, year: 1970, day: 2 },
+    }
+
+    const expectedErrors = [
+      'FirstContact.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, foreignContact, {
+      applicantBirthdate,
+    }))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('FirstContact cannot be before person’s birthdate', () => {
+    const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+    const testData = {
+      Birthdate: { month: 1, year: 1985, day: 2 },
+      FirstContact: { month: 1, year: 1983, day: 2 },
+    }
+
+    const expectedErrors = [
+      'FirstContact.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, foreignContact, {
+      applicantBirthdate,
+    }))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('FirstContact cannot be in the future', () => {
+    const testData = {
+      FirstContact: { month: 1, year: 2050, day: 2 },
+    }
+
+    const expectedErrors = [
+      'FirstContact.date.date.datetime.DATE_TOO_LATE',
+    ]
+
+    expect(validateModel(testData, foreignContact))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('LastContact is required', () => {
     const testData = {}
     const expectedErrors = ['LastContact.presence.REQUIRED']

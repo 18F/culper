@@ -1,7 +1,7 @@
 import { validateModel, hasYesOrNo } from 'models/validate'
 import foreignIndirectInterest from 'models/foreignIndirectInterest'
 
-export const validateForeignIndirectActivity = (data) => {
+export const validateForeignIndirectActivity = (data, formType, options = {}) => {
   const foreignIndirectActivityModel = {
     HasInterests: { presence: true, hasValue: { validator: hasYesOrNo } },
     List: (value, attributes) => {
@@ -16,7 +16,7 @@ export const validateForeignIndirectActivity = (data) => {
     },
   }
 
-  return validateModel(data, foreignIndirectActivityModel)
+  return validateModel(data, foreignIndirectActivityModel, options)
 }
 
 export default class ForeignIndirectActivityValidator {

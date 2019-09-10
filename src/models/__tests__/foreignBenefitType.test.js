@@ -111,6 +111,19 @@ describe('The foreignBenefitType model', () => {
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
+    it('Received cannot be in the future', () => {
+      const testData = {
+        Received: { month: 1, year: 2050, day: 2 },
+      }
+
+      const expectedErrors = [
+        'Received.date.date.datetime.DATE_TOO_LATE',
+      ]
+
+      expect(validateModel(testData, foreignBenefitType, { benefitType: 'OneTime' }))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
     it('passes a valid benefit', () => {
       const testData = {
         Country: { value: 'Germany' },

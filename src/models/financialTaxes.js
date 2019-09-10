@@ -15,12 +15,18 @@ const financialTaxes = {
       },
     },
   },
-  Year: {
-    presence: true,
-    date: {
-      requireMonth: false,
-      requireDay: false,
-    },
+  Year: (value, attributes, attributeName, options = {}) => {
+    const { applicantBirthdate } = options
+
+    return {
+      presence: true,
+      date: {
+        requireMonth: false,
+        requireDay: false,
+        earliest: applicantBirthdate,
+        latest: DEFAULT_LATEST,
+      },
+    }
   },
   Reason: { presence: true, hasValue: true },
   Agency: { presence: true, hasValue: true },

@@ -1,22 +1,26 @@
-{{tmpl "foreign-contacts.xml" .Foreign.Contacts}}
+{{ if formType "SF86" }}
+  {{tmpl "foreign-contacts.xml" .Foreign.Contacts}}
 <ForeignFinancialInterests Version="1" Type="Pooled">
   <DefaultComment></DefaultComment>
-  {{tmpl "foreign-direct-interests.xml" .Foreign.DirectActivity}}
-  {{tmpl "foreign-indirect-interests.xml" .Foreign.IndirectActivity}}
-  {{tmpl "foreign-realestate-holdings.xml" .Foreign.RealEstateActivity}}
-  {{tmpl "foreign-financial-benefits.xml" .Foreign.BenefitActivity}}
-  {{tmpl "foreign-national-support.xml" .Foreign.Support}}
+    {{tmpl "foreign-direct-interests.xml" .Foreign.DirectActivity}}
+    {{tmpl "foreign-indirect-interests.xml" .Foreign.IndirectActivity}}
+    {{tmpl "foreign-realestate-holdings.xml" .Foreign.RealEstateActivity}}
+    {{tmpl "foreign-financial-benefits.xml" .Foreign.BenefitActivity}}
+    {{tmpl "foreign-national-support.xml" .Foreign.Support}}
 </ForeignFinancialInterests>
 <ForeignBusinessActivities Version="1" Type="Pooled">
-  {{tmpl "foreign-passports.xml" .Citizenship.Passports}}
-  {{tmpl "foreign-business-support-activities.xml" .Foreign.Advice}}
-  {{tmpl "foreign-business-consultancies.xml" .Foreign.Family}}
-  {{tmpl "foreign-business-job-offers.xml" .Foreign.Employment}}
-  {{tmpl "foreign-business-other-employment.xml" .Foreign.Ventures}}
-  {{tmpl "foreign-business-meetings.xml" .Foreign.Conferences}}
-  {{tmpl "foreign-business-government-contacts.xml" .Foreign.Contact}}
-  {{tmpl "foreign-business-sponsored-visits.xml" .Foreign.Sponsorship}}
-  {{tmpl "foreign-business-political-office.xml" .Foreign.Political}}
-  {{tmpl "foreign-business-voted.xml" .Foreign.Voting}}
+    {{tmpl "foreign-passports.xml" .Citizenship.Passports}}
+    {{tmpl "foreign-business-support-activities.xml" .Foreign.Advice}}
+    {{tmpl "foreign-business-consultancies.xml" .Foreign.Family}}
+    {{tmpl "foreign-business-job-offers.xml" .Foreign.Employment}}
+    {{tmpl "foreign-business-other-employment.xml" .Foreign.Ventures}}
+    {{tmpl "foreign-business-meetings.xml" .Foreign.Conferences}}
+    {{tmpl "foreign-business-government-contacts.xml" .Foreign.Contact}}
+    {{tmpl "foreign-business-sponsored-visits.xml" .Foreign.Sponsorship}}
+    {{tmpl "foreign-business-political-office.xml" .Foreign.Political}}
+    {{tmpl "foreign-business-voted.xml" .Foreign.Voting}}
 </ForeignBusinessActivities>
+{{end}}
+{{ if formType "SF86,SF85P" }}
 {{tmpl "foreign-travel.xml" .Foreign.Travel}}
+{{end}}

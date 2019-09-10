@@ -2,6 +2,7 @@ import { hasYesOrNo, checkValue } from 'models/validate'
 import name from 'models/shared/name'
 import { passportPattern } from 'constants/patterns'
 import { createDateFromObject } from 'helpers/date'
+import { DEFAULT_LATEST } from 'constants/dateLimits'
 
 const usPassport = {
   HasPassports: {
@@ -34,12 +35,14 @@ const usPassport = {
 
     return validations
   },
-  Issued: (value, attributes) => {
+  Issued: (value, attributes, attributeName, options = {}) => {
     if (checkValue(attributes.HasPassports, 'No')) return {}
+
+    const { applicantBirthdate } = options
 
     return {
       presence: true,
-      date: true,
+      date: { earliest: applicantBirthdate, latest: DEFAULT_LATEST },
     }
   },
   Expiration: (value, attributes) => {

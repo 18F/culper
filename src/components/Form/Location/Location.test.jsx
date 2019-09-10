@@ -1,6 +1,8 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import Location, { timeout, countryValueResolver } from './Location'
+
+import { countryValueResolver } from 'helpers/location'
+import Location, { timeout } from './Location'
 
 describe('The Address component', () => {
   it('Renders without errors', () => {

@@ -10,7 +10,7 @@ export const validateForeignPassport = data => (
   validateModel(data, foreignPassport)
 )
 
-export const validateCitizenshipPassports = (data) => {
+export const validateCitizenshipPassports = (data, formType, options = {}) => {
   const citizenshipPassportsModel = {
     Passports: {
       presence: true,
@@ -20,7 +20,7 @@ export const validateCitizenshipPassports = (data) => {
     },
   }
 
-  return validateModel(data, citizenshipPassportsModel)
+  return validateModel(data, citizenshipPassportsModel, options)
 }
 
 export default class CitizenshipPassportsValidator {

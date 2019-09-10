@@ -5,7 +5,7 @@ export const validateDebarred = data => (
   validateModel(data, debarred)
 )
 
-export const validateLegalInvestigationsDebarred = (data) => {
+export const validateLegalInvestigationsDebarred = (data, formType, options = {}) => {
   const legalInvestigationsDebarredModel = {
     HasDebarment: { presence: true, hasValue: { validator: hasYesOrNo } },
     List: (value, attributes) => {
@@ -19,7 +19,7 @@ export const validateLegalInvestigationsDebarred = (data) => {
     },
   }
 
-  return validateModel(data, legalInvestigationsDebarredModel)
+  return validateModel(data, legalInvestigationsDebarredModel, options)
 }
 
 export default class LegalInvestigationsDebarredValidator {

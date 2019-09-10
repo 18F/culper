@@ -1,7 +1,15 @@
 import address from 'models/shared/locations/address'
+import { DEFAULT_LATEST } from 'constants/dateLimits'
 
 const hospitalization = {
-  TreatmentDate: { presence: true, daterange: true },
+  TreatmentDate: (value, attributes, attributeName, options = {}) => {
+    const { applicantBirthdate } = options
+
+    return {
+      presence: true,
+      daterange: { earliest: applicantBirthdate, latest: DEFAULT_LATEST },
+    }
+  },
   Admission: {
     presence: true,
     hasValue: { validator: { inclusion: ['Voluntary', 'Involuntary'] } },

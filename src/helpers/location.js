@@ -12,3 +12,15 @@ export const isUS = location => (
 export const isInternational = location => (
   location && location.country && (!isPO(location) && !isUS(location))
 )
+
+export const countryValueResolver = (props) => {
+  if (typeof props.country === 'string') {
+    const valueArr = props.country ? [props.country] : []
+    const comments = props.countryComments || ''
+    return {
+      value: valueArr,
+      comments,
+    }
+  }
+  return props.country
+}

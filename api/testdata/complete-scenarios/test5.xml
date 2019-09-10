@@ -5230,6 +5230,12 @@
               <Investigations>
                 <Investigation ID="1">
                   <Agency>Defense</Agency>
+                  <InvestigationDate>
+                    <Date>
+                      <Month>03</Month>
+                      <Year>2017</Year>
+                    </Date>
+                  </InvestigationDate>
                   <ClearanceLevel>TopSecret</ClearanceLevel>
                   <GrantedDate>
                     <Date>
@@ -5237,12 +5243,6 @@
                       <Year>2017</Year>
                     </Date>
                   </GrantedDate>
-                  <InvestigationDate>
-                    <Date>
-                      <Month>03</Month>
-                      <Year>2017</Year>
-                    </Date>
-                  </InvestigationDate>
                   <IssuingAgency>
                     <Name>Department of Navy</Name>
                   </IssuingAgency>
@@ -5250,6 +5250,12 @@
                 <Investigation ID="2">
                   <Agency>ForeignGovernment</Agency>
                   <OtherAgency>Ministry of Forests, Canada</OtherAgency>
+                  <InvestigationDate>
+                    <Date>
+                      <Month>01</Month>
+                      <Year>2018</Year>
+                    </Date>
+                  </InvestigationDate>
                   <ClearanceLevel>Foreign</ClearanceLevel>
                   <GrantedDate>
                     <Date>
@@ -5257,12 +5263,6 @@
                       <Year>2018</Year>
                     </Date>
                   </GrantedDate>
-                  <InvestigationDate>
-                    <Date>
-                      <Month>01</Month>
-                      <Year>2018</Year>
-                    </Date>
-                  </InvestigationDate>
                   <IssuingAgency>
                     <Name>Different Agency</Name>
                   </IssuingAgency>

@@ -1,0 +1,1154 @@
+<?xml version="1.0"?>
+<XMP version="3.00">
+  <SubmittedRequestInfo>
+    <RequestInfo>
+      <Request>
+        <Form>
+          <Name>SF85</Name>
+          <Version>2017-12-draft7</Version>
+        </Form>
+        <Applicant>
+          <SSN>555555555</SSN>
+        </Applicant>
+        <Responses>
+          <AgencyInstructionsForApplicant/>
+          <FormInstanceSpecific>
+            <AgencyInstructionsForApplicant/>
+            <ESigCertificationResponses Version="1" Type="Pooled" LastSummaryID="201" LastDynamicListID="201">
+              <UserFinalizedCert>
+                <Answer>Yes</Answer>
+              </UserFinalizedCert>
+              <UserOptedToESig>
+                <Answer>Yes</Answer>
+              </UserOptedToESig>
+            </ESigCertificationResponses>
+            <UserPreferences Version="1" Type="Pooled" LastSummaryID="201" LastDynamicListID="201">
+              <DisplayNavigation/>
+            </UserPreferences>
+            <ValidationResponses Version="1" Type="FormInstanceSpecific"/>
+          </FormInstanceSpecific>
+          <Pooled>
+            <IdentifyingInformation Type="Pooled" Version="1">
+              <Birth>
+                <Date>
+                  <Month>08</Month>
+                  <Day>16</Day>
+                  <Year>1987</Year>
+                </Date>
+                <Place>
+                  <City>Los Angeles</City>
+                  <State>CA</State>
+                  <County>Los Angeles</County>
+                  <Country>United States</Country>
+                </Place>
+              </Birth>
+              <EyeColor>Brown</EyeColor>
+              <FullName>
+                <LegalName>
+                  <Last>Doe</Last>
+                  <First>John</First>
+                  <Middle Type="NMN"/>
+                  <Suffix>I</Suffix>
+                </LegalName>
+              </FullName>
+              <HairColor>Brown</HairColor>
+              <Height>
+                <Feet>5</Feet>
+                <Inches>11</Inches>
+              </Height>
+              <OtherNamesUsed>
+                <Answer>Yes</Answer>
+                <OtherNames>
+                  <OtherName ID="1">
+                    <LegalName>
+                      <Last>Ross</Last>
+                      <First>John</First>
+                      <Middle>Bob</Middle>
+                    </LegalName>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>08</Month>
+                          <Year>1987</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>08</Month>
+                          <Year>2010</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Maiden>Yes</Maiden>
+                    <Reason>I thought it'd be funny.</Reason>
+                  </OtherName>
+                </OtherNames>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </OtherNamesUsed>
+              <SSN>
+                <FirstThree>555</FirstThree>
+                <NextTwo>55</NextTwo>
+                <LastFour>5555</LastFour>
+              </SSN>
+              <Sex>Male</Sex>
+              <Weight>
+                <Pounds>175</Pounds>
+              </Weight>
+            </IdentifyingInformation>
+            <ContactInformation Version="1" Type="Pooled">
+              <HomeEmail>
+                <Email>johndoe@gmail.com</Email>
+              </HomeEmail>
+              <MobileTelephone>
+                <Telephone>
+                  <Number>5555555555</Number>
+                  <Time>Both</Time>
+                </Telephone>
+              </MobileTelephone>
+              <HomeTelephone>
+                <Telephone>
+                  <Number>4444444444</Number>
+                  <Time>Both</Time>
+                </Telephone>
+              </HomeTelephone>
+            </ContactInformation>
+            <ResidenceHistory Version="1" Type="Pooled">
+              <Residencies>
+                <Residency ID="1">
+                  <Address>
+                    <Street>1124 RANDOM RD</Street>
+                    <City>EL CAJON</City>
+                    <State>CA</State>
+                    <ZipCode>92020</ZipCode>
+                  </Address>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>08</Month>
+                        <Year>2010</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <ResidenceType>Own</ResidenceType>
+                  <Verifier>
+                    <Address>
+                      <Street>4300 Ironwood Dr</Street>
+                      <City>Chino Hills</City>
+                      <State>CA</State>
+                      <ZipCode>91709</ZipCode>
+                    </Address>
+                    <Email>katiesmith@gmail.com</Email>
+                    <LastContact>
+                      <Date>
+                        <Month>05</Month>
+                        <Year>2019</Year>
+                      </Date>
+                    </LastContact>
+                    <LegalName>
+                      <Last>Smith</Last>
+                      <First>Katie</First>
+                      <Middle Type="IO">A</Middle>
+                    </LegalName>
+                    <RelationshipTypes Friend="True"/>
+                    <Telephone>
+                      <Day>
+                        <Number>7776665555</Number>
+                      </Day>
+                      <Evening>
+                        <Number>5556667777</Number>
+                      </Evening>
+                      <Mobile>
+                        <Number>7776665555</Number>
+                      </Mobile>
+                    </Telephone>
+                  </Verifier>
+                </Residency>
+                <Residency ID="2">
+                  <Address>
+                    <Street>1419 WESTWOOD BLVD</Street>
+                    <City>LOS ANGELES</City>
+                    <State>CA</State>
+                    <ZipCode>90024</ZipCode>
+                  </Address>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>08</Month>
+                        <Year>1987</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>08</Month>
+                        <Year>2010</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <ResidenceType>Rent</ResidenceType>
+                </Residency>
+              </Residencies>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+            </ResidenceHistory>
+            <EmploymentActivities Type="Pooled" Version="1">
+              <Employments>
+                <Employment ID="1">
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>01</Month>
+                        <Year>2010</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Type>NationalGuard</Type>
+                  <WorkHours>FullTime</WorkHours>
+                  <MilitaryService>
+                    <DutyStation>
+                      <DutyLocation>Fullerton</DutyLocation>
+                      <Address>
+                        <Street>400 S Brookhurst Rd</Street>
+                        <City>Fullerton</City>
+                        <State>CA</State>
+                        <ZipCode>92833</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>4444444444</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </DutyStation>
+                    <Rank>Senior Recruiter</Rank>
+                  </MilitaryService>
+                  <Incidents>
+                    <Answer>No</Answer>
+                  </Incidents>
+                  <Supervisor>
+                    <Name>Patricia Samuel</Name>
+                    <Title>Officer</Title>
+                    <Address>
+                      <Street>400 S Brookhurst Rd</Street>
+                      <City>Fullerton</City>
+                      <State>CA</State>
+                      <ZipCode>92833</ZipCode>
+                    </Address>
+                    <Email DoNotKnow="True"/>
+                    <Telephone>
+                      <Number>4444444444</Number>
+                      <Time>Both</Time>
+                    </Telephone>
+                  </Supervisor>
+                </Employment>
+                <Employment ID="2">
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>01</Month>
+                        <Year>2005</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>01</Month>
+                        <Year>2010</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Type>NationalGuard</Type>
+                  <WorkHours>FullTime</WorkHours>
+                  <MilitaryService>
+                    <DutyStation>
+                      <DutyLocation>Fullerton</DutyLocation>
+                      <Address>
+                        <Street>400 S Brookhurst Rd</Street>
+                        <City>Fullerton</City>
+                        <State>CA</State>
+                        <ZipCode>92833</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>1111111111</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </DutyStation>
+                    <Rank>Private</Rank>
+                  </MilitaryService>
+                  <LeftJob>
+                    <Reason>Growth opportunity presented itself</Reason>
+                  </LeftJob>
+                  <Supervisor>
+                    <Name>Josh Sitton</Name>
+                    <Title>Lieutenant</Title>
+                    <Address>
+                      <Street>400 S Brookhurst Rd</Street>
+                      <City>Fullerton</City>
+                      <State>CA</State>
+                      <ZipCode>92833</ZipCode>
+                    </Address>
+                    <Email DoNotKnow="True"/>
+                    <Telephone>
+                      <Number>4444444444</Number>
+                      <Time>Both</Time>
+                    </Telephone>
+                  </Supervisor>
+                </Employment>
+              </Employments>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+            </EmploymentActivities>
+            <EmploymentRecord Version="1" Type="Pooled">
+              <Fired>
+                <Answer>No</Answer>
+              </Fired>
+            </EmploymentRecord>
+            <Education Version="1" Type="Pooled">
+              <AttendedAnySchools>
+                <Answer>Yes</Answer>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </AttendedAnySchools>
+              <ReceivedDegreeOrDiploma>
+    
+    
+  </ReceivedDegreeOrDiploma>
+              <SchoolsAttended>
+                <SchoolAttended ID="1">
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>08</Month>
+                        <Year>2018</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Type>College</Type>
+                  <Name>University of California, Los Angeles</Name>
+                  <Address>
+                    <Street>405 HILGARD AVE</Street>
+                    <City>LOS ANGELES</City>
+                    <State>CA</State>
+                    <ZipCode>90095</ZipCode>
+                  </Address>
+                  <DegreeReceived>
+                    <Answer>No</Answer>
+                  </DegreeReceived>
+                  <Verifier>
+                    <LegalName>
+                      <Last>Fox</Last>
+                      <First>Josh</First>
+                    </LegalName>
+                    <Email>joshfox@gmail.com</Email>
+                    <Telephone>
+                      <Number>9999999999</Number>
+                      <Time>Both</Time>
+                    </Telephone>
+                    <Address>
+                      <Street>405 HILGARD AVE</Street>
+                      <City>LOS ANGELES</City>
+                      <State>CA</State>
+                      <ZipCode>90095</ZipCode>
+                    </Address>
+                  </Verifier>
+                </SchoolAttended>
+                <SchoolAttended ID="2">
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>09</Month>
+                        <Year>2002</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>06</Month>
+                        <Year>2006</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Type>HighSchool</Type>
+                  <Name>Crenshaw High School</Name>
+                  <Address>
+                    <Street>5010 11th Ave</Street>
+                    <City>Los Angeles</City>
+                    <State>CA</State>
+                    <ZipCode>90043</ZipCode>
+                  </Address>
+                  <DegreeReceived>
+                    <Answer>Yes</Answer>
+                  </DegreeReceived>
+                  <DegreesAwarded>
+                    <DegreeAwarded ID="1">
+                      <DateAwarded>
+                        <Date>
+                          <Month>06</Month>
+                          <Year>2006</Year>
+                        </Date>
+                      </DateAwarded>
+                      <Degree>HighSchool</Degree>
+                    </DegreeAwarded>
+                  </DegreesAwarded>
+                </SchoolAttended>
+              </SchoolsAttended>
+            </Education>
+            <Citizenship Version="1" Type="Pooled">
+              <Status>USByBirth</Status>
+              <USCitizen>
+                <ProofOfUSCitizenship>
+                  <USPassport>
+                    <DateExpired>
+                      <Date>
+                        <Month>08</Month>
+                        <Day>08</Day>
+                        <Year>2022</Year>
+                      </Date>
+                    </DateExpired>
+                    <DateIssued>
+                      <Date>
+                        <Month>08</Month>
+                        <Day>08</Day>
+                        <Year>2017</Year>
+                      </Date>
+                    </DateIssued>
+                    <IssuedLegalName>
+                      <Last>Ross</Last>
+                      <First>John</First>
+                      <Middle>Bob</Middle>
+                    </IssuedLegalName>
+                    <PassportNumber>123456789</PassportNumber>
+                  </USPassport>
+                </ProofOfUSCitizenship>
+              </USCitizen>
+            </Citizenship>
+            <DualCitizenship Version="1" Type="Pooled">
+              <DualCitizenships>
+    
+  </DualCitizenships>
+              <HeldDualCitizenship>
+                <Answer>No</Answer>
+              </HeldDualCitizenship>
+            </DualCitizenship>
+            <USPassport Type="Pooled" Version="1">
+              <DoPossessUSPassport>
+                <Answer>Yes</Answer>
+              </DoPossessUSPassport>
+            </USPassport>
+            <MilitaryHistory Version="1" Type="Pooled">
+              <Charges>
+                <Answer>Yes</Answer>
+                <Charge ID="1">
+                  <Authority>this is a description</Authority>
+                  <DateCharged>
+                    <Date>
+                      <Month>12</Month>
+                      <Year>2015</Year>
+                    </Date>
+                  </DateCharged>
+                  <Description>Overslept and missed assignment</Description>
+                  <Name>SomeThing</Name>
+                  <Outcome>this is a description</Outcome>
+                </Charge>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </Charges>
+              <ForeignService>
+                <Answer>No</Answer>
+              </ForeignService>
+              <ForeignMilitaryService>
+  
+  
+  
+</ForeignMilitaryService>
+              <Answer>Yes</Answer>
+              <MilitaryService>
+                <Service ID="1">
+                  <Branch>ArmyNationalGuard</Branch>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>01</Month>
+                        <Year>2006</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <GuardLocation>
+                    <State>CA</State>
+                  </GuardLocation>
+                  <Rank>Enlisted</Rank>
+                  <ServiceNumber>123456789</ServiceNumber>
+                  <Status>ActiveReserve</Status>
+                  <WasDischarged>
+                    <Answer>No</Answer>
+                  </WasDischarged>
+                </Service>
+              </MilitaryService>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+            </MilitaryHistory>
+            <SelectiveServiceRegistration Version="1" Type="Pooled">
+              <RegistrationRequired>
+                <Answer>Yes</Answer>
+              </RegistrationRequired>
+              <Registered>
+                <Answer>Yes</Answer>
+              </Registered>
+              <Registration>
+                <Number>123456789</Number>
+              </Registration>
+            </SelectiveServiceRegistration>
+            <FinancialRecord Type="Pooled" Version="1">
+              <DelinquencyInvolvingEnforcement>
+                <Answer>Yes</Answer>
+                <Incidents>
+                  <Incident ID="1">
+                    <AccountNumber>235475956</AccountNumber>
+                    <Amount>200000</Amount>
+                    <Court>
+                      <Address>
+                        <Street>350 W Mission Blvd</Street>
+                        <City>Pomona</City>
+                        <State>CA</State>
+                        <ZipCode>91766</ZipCode>
+                      </Address>
+                      <Name>Los Angeles Superior Court</Name>
+                    </Court>
+                    <DateBegan>
+                      <Month>01</Month>
+                      <Year>2013</Year>
+                    </DateBegan>
+                    <DateResolved NotResolved="True">
+        
+      </DateResolved>
+                    <Description>ger ergeae zsdf ew</Description>
+                    <PropertyType>Single Family Home</PropertyType>
+                    <Reason>Mortgage Loan</Reason>
+                    <Status>In Progress</Status>
+                  </Incident>
+                </Incidents>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </DelinquencyInvolvingEnforcement>
+              <UnpaidTaxes>
+                <Answer>Yes</Answer>
+                <Incidents>
+                  <Incident ID="1">
+                    <Actions>Working to make small payments</Actions>
+                    <Agency>CA</Agency>
+                    <Amount>3000</Amount>
+                    <DateFailedToPay>
+                      <Year>2017</Year>
+                    </DateFailedToPay>
+                    <DateSatisfied NotApplicable="True"/>
+                    <Reason>I was dealing with personal health issues so I was not able to file or pay</Reason>
+                    <TaxType>Income Tax</TaxType>
+                    <Type>Both</Type>
+                  </Incident>
+                </Incidents>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </UnpaidTaxes>
+            </FinancialRecord>
+            <IllegalDrugUse Version="1" Type="Pooled">
+              <MisuseOfPrescriptionDrugs>
+                <Answer>Yes</Answer>
+                <Instances>
+                  <Instance ID="1">
+                    <DrugsUsed>Upligftpanzia</DrugsUsed>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>03</Month>
+                          <Year>2018</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>07</Month>
+                          <Year>2019</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Circumstances>i needed it to feel better from an accident.</Circumstances>
+                  </Instance>
+                </Instances>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </MisuseOfPrescriptionDrugs>
+              <OrderedAdvisedOrAskedToSeekCounseling>
+                <Answer>Yes</Answer>
+                <Consultations>
+                  <Consultation ID="1">
+                    <ActionToSeekCounselingTaken>
+                      <Answer>Yes</Answer>
+                    </ActionToSeekCounselingTaken>
+                    <DidNotReceiveTreatment>
+        
+        
+      </DidNotReceiveTreatment>
+                    <CounselingOrderedBy>
+                      <Answer Court="True"/>
+                      <Explanation>a judge ordered me to rehab to avoid jail time.</Explanation>
+                    </CounselingOrderedBy>
+                    <Drug>
+                      <Type>THC</Type>
+                    </Drug>
+                    <Doctor>
+                      <Name>
+                        <Last>Johnson</Last>
+                        <First>Andrew</First>
+                      </Name>
+                      <Address>
+                        <Street>20677 Amar Rd</Street>
+                        <City>Walnut</City>
+                        <State>CA</State>
+                        <ZipCode>91789</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>4564564567</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </Doctor>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>08</Month>
+                          <Year>2015</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>08</Month>
+                          <Year>2016</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <SuccessfullyCompletedTreatmentProgram>
+                      <Answer>Yes</Answer>
+                    </SuccessfullyCompletedTreatmentProgram>
+                    <UnsuccessfulTreatment>
+        
+        
+      </UnsuccessfulTreatment>
+                  </Consultation>
+                </Consultations>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </OrderedAdvisedOrAskedToSeekCounseling>
+              <IllegalDrugActivity>
+                <Answer>Yes</Answer>
+                <Activities>
+                  <Activity ID="1">
+                    <Drug>
+                      <Type>THC</Type>
+                    </Drug>
+                    <FirstInvolvementDate>
+                      <Month>12</Month>
+                      <Year>2017</Year>
+                    </FirstInvolvementDate>
+                    <MostRecentInvolvementDate>
+                      <Month>07</Month>
+                      <Year>2018</Year>
+                    </MostRecentInvolvementDate>
+                    <Nature>manufacturing and distributing drugs</Nature>
+                    <Reason>to make money</Reason>
+                  </Activity>
+                </Activities>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </IllegalDrugActivity>
+              <IllegalUse>
+                <Answer>Yes</Answer>
+                <Instances>
+                  <Instance ID="1">
+                    <DrugUsed>
+                      <Type>THC</Type>
+                    </DrugUsed>
+                    <FirstUseDate>
+                      <Month>12</Month>
+                      <Year>2010</Year>
+                    </FirstUseDate>
+                    <MostRecentUseDate>
+                      <Month>12</Month>
+                      <Year>2018</Year>
+                    </MostRecentUseDate>
+                    <Nature>Recreational</Nature>
+                  </Instance>
+                  <Instance ID="2">
+                    <DrugUsed>
+                      <Type>Cocaine</Type>
+                    </DrugUsed>
+                    <FirstUseDate>
+                      <Month>12</Month>
+                      <Year>2009</Year>
+                    </FirstUseDate>
+                    <MostRecentUseDate>
+                      <Month>12</Month>
+                      <Year>2009</Year>
+                    </MostRecentUseDate>
+                    <Nature>one time use at party</Nature>
+                  </Instance>
+                </Instances>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </IllegalUse>
+              <VoluntaryTreatment>
+                <Answer>Yes</Answer>
+                <Consultations>
+                  <Consultation ID="1">
+                    <Drug>
+                      <Type>Cocaine</Type>
+                    </Drug>
+                    <Doctor>
+                      <Name>
+                        <Last>Johnson</Last>
+                        <First>Andrew</First>
+                      </Name>
+                      <Address>
+                        <Street>20677 Amar Rd</Street>
+                        <City>Walnut</City>
+                        <State>CA</State>
+                        <ZipCode>91789</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>4564564567</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </Doctor>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>10</Month>
+                          <Year>2009</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>10</Month>
+                          <Year>2013</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <SuccessfullyCompletedTreatmentProgram>
+                      <Answer>No</Answer>
+                    </SuccessfullyCompletedTreatmentProgram>
+                    <UnsuccessfulTreatment>
+                      <Explanation>did not feel useful</Explanation>
+                    </UnsuccessfulTreatment>
+                  </Consultation>
+                </Consultations>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </VoluntaryTreatment>
+            </IllegalDrugUse>
+            <PoliceRecord Version="1" Type="Pooled">
+              <Past7Years>
+                <Answer>Yes</Answer>
+                <Offenses>
+                  <Offense ID="1">
+                    <AppearedInCourt>
+                      <Answer>Yes</Answer>
+                      <Charges>
+                        <Charge ID="1">
+                          <Charge>Assault</Charge>
+                          <Date>
+                            <Month>01</Month>
+                            <Year>2018</Year>
+                          </Date>
+                          <Outcome>Guilty</Outcome>
+                          <Type>Felony</Type>
+                        </Charge>
+                      </Charges>
+                      <Court>
+                        <Location>
+                          <Place>
+                            <City>San Francisco</City>
+                            <State>CA</State>
+                            <ZipCode>94102</ZipCode>
+                            <County>San Francisco</County>
+                          </Place>
+                        </Location>
+                        <Name>Superior Court of California County of San Francisco</Name>
+                      </Court>
+                      <Sentenced>
+                        <Answer>Yes</Answer>
+                        <Description>3 months in jail with 1 year probation</Description>
+                        <Imprisonment>
+                          <YearOrMore>
+                            <DateRange>
+                              <From>
+                                <Date>
+                                  <Month>02</Month>
+                                  <Year>2019</Year>
+                                </Date>
+                              </From>
+                              <To>
+                                <Date>
+                                  <Month>05</Month>
+                                  <Year>2019</Year>
+                                </Date>
+                              </To>
+                            </DateRange>
+                          </YearOrMore>
+                        </Imprisonment>
+                        <Probation>
+                          <DateRange>
+                            <From>
+                              <Date>
+                                <Month>05</Month>
+                                <Year>2019</Year>
+                              </Date>
+                            </From>
+                            <To>
+                              <Date>
+                                <Month>07</Month>
+                                <Year>2019</Year>
+                              </Date>
+                            </To>
+                          </DateRange>
+                        </Probation>
+                      </Sentenced>
+                    </AppearedInCourt>
+                    <Arrested>
+                      <Answer>Yes</Answer>
+                    </Arrested>
+                    <ArrestingAgency>
+                      <Location>
+                        <Place>
+                          <City>San Francisco</City>
+                          <State>CA</State>
+                          <ZipCode>94158</ZipCode>
+                          <County>San Francisco</County>
+                        </Place>
+                      </Location>
+                      <Name>SF Police</Name>
+                    </ArrestingAgency>
+                    <Date>
+                      <Month>12</Month>
+                      <Year>2017</Year>
+                    </Date>
+                    <Location>
+                      <Place>
+                        <City>San Francisco</City>
+                        <State>CA</State>
+                        <ZipCode>94104</ZipCode>
+                        <County>San Francisco</County>
+                      </Place>
+                    </Location>
+                    <OffenseDescription>assault</OffenseDescription>
+                  </Offense>
+                </Offenses>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </Past7Years>
+              <RestrainingOrders>
+                <Answer>Yes</Answer>
+                <RestrainingOrder ID="1">
+                  <Court>
+                    <Location>
+                      <Place>
+                        <City>San Francisco</City>
+                        <State>CA</State>
+                        <ZipCode>94177</ZipCode>
+                        <County>San Francisco</County>
+                      </Place>
+                    </Location>
+                    <Name>SF Police</Name>
+                  </Court>
+                  <DateIssued>
+                    <Month>12</Month>
+                    <Year>2018</Year>
+                  </DateIssued>
+                  <Explanation>restraining over from client</Explanation>
+                </RestrainingOrder>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </RestrainingOrders>
+            </PoliceRecord>
+            <AssociationRecord Version="1" Type="Pooled">
+              <ActivitiesToOverthrowTheUSGovernment>
+                <Activities>
+                  <Activity ID="1">
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>12</Month>
+                          <Year>2015</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>12</Month>
+                          <Year>2017</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Reason>fdsa wer gre test test </Reason>
+                  </Activity>
+                </Activities>
+                <Answer>Yes</Answer>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </ActivitiesToOverthrowTheUSGovernment>
+              <AdvocatedTerrorism>
+                <Answer>Yes</Answer>
+                <Instances>
+                  <Instance ID="1">
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>12</Month>
+                          <Year>2010</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>12</Month>
+                          <Year>2017</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Reason>the quick brown fox jumps over the lazy dog</Reason>
+                  </Instance>
+                </Instances>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </AdvocatedTerrorism>
+              <BeenInOrganizationAdvocatingViolence>
+                <Answer>Yes</Answer>
+                <Organizations>
+                  <Organization ID="1">
+                    <Address>
+                      <Street>400 S Brookhurst Rd</Street>
+                      <City>Fullerton</City>
+                      <State>CA</State>
+                      <ZipCode>92833</ZipCode>
+                    </Address>
+                    <Contributions NoContributionsMade="True"/>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>12</Month>
+                          <Year>2014</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>12</Month>
+                          <Year>2016</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Description>asdf fdsa asdf fdsa</Description>
+                    <Name>Test Test</Name>
+                    <PositionsHeld NoPositionsHeld="True"/>
+                  </Organization>
+                </Organizations>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </BeenInOrganizationAdvocatingViolence>
+              <BeenInOrganizationDedicatedToTerrorism>
+                <Answer>Yes</Answer>
+                <Organizations>
+                  <Organization ID="1">
+                    <Address>
+                      <Street>555 California St.</Street>
+                      <City>San Francisco</City>
+                      <State>CA</State>
+                      <ZipCode>94104</ZipCode>
+                    </Address>
+                    <Contributions>10000000</Contributions>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>12</Month>
+                          <Year>2008</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>12</Month>
+                          <Year>2013</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Description>i agree with their vision</Description>
+                    <Name>Fuzzy Kittens Organization</Name>
+                    <PositionsHeld>
+        Advisor
+      </PositionsHeld>
+                  </Organization>
+                </Organizations>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </BeenInOrganizationDedicatedToTerrorism>
+              <EngagedInTerrorism>
+                <Answer>Yes</Answer>
+                <TerroristActs>
+                  <Act ID="1">
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>12</Month>
+                          <Year>2010</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>12</Month>
+                          <Year>2015</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Reason>plotted against army at the recruitment office</Reason>
+                  </Act>
+                </TerroristActs>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </EngagedInTerrorism>
+              <TerrorismAssociations>
+                <Answer>Yes</Answer>
+                <Explanation>aw yeah</Explanation>
+              </TerrorismAssociations>
+              <TerroristOrganizationMember>
+                <Answer>Yes</Answer>
+                <Organizations>
+                  <Organization ID="1">
+                    <Address>
+                      <Street>400 S Brookhurst Rd</Street>
+                      <City>Fullerton</City>
+                      <State>CA</State>
+                      <ZipCode>92833</ZipCode>
+                    </Address>
+                    <Contributions NoContributionsMade="True"/>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>12</Month>
+                          <Year>2013</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>12</Month>
+                          <Year>2018</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Description>woo hoo</Description>
+                    <Name>Army</Name>
+                    <PositionsHeld NoPositionHeld="True"/>
+                  </Organization>
+                </Organizations>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </TerroristOrganizationMember>
+            </AssociationRecord>
+            <InvestigationRecord Version="1" Type="Pooled">
+              <ClearanceDenials>
+                <ClearanceDenial ID="1">
+                  <Agency>FBI</Agency>
+                  <Circumstances>i did some bad things</Circumstances>
+                  <ClearanceDate>
+                    <Date>
+                      <Month>12</Month>
+                      <Year>2018</Year>
+                    </Date>
+                  </ClearanceDate>
+                </ClearanceDenial>
+              </ClearanceDenials>
+              <ClearanceDenied>
+                <Answer>Yes</Answer>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </ClearanceDenied>
+              <GovernmentDebarment>
+                <Answer>Yes</Answer>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </GovernmentDebarment>
+              <GovernmentDebarments>
+                <GovernmentDebarment ID="1">
+                  <Agency>FBI</Agency>
+                  <Date>
+                    <Month>12</Month>
+                    <Year>2018</Year>
+                  </Date>
+                  <Explanation>i did some bad things</Explanation>
+                </GovernmentDebarment>
+              </GovernmentDebarments>
+              <Investigations>
+                <Investigation ID="1">
+                  <Agency>FBI</Agency>
+                  <InvestigationDate>
+                    <Date>
+                      <Month>12</Month>
+                      <Year>2012</Year>
+                    </Date>
+                  </InvestigationDate>
+                  <ClearanceGranted>
+                    <Answer>Yes</Answer>
+                  </ClearanceGranted>
+                  <ClearanceLevel>Confidential</ClearanceLevel>
+                  <GrantedDate>
+                    <Date>
+                      <Month>12</Month>
+                      <Year>2015</Year>
+                    </Date>
+                  </GrantedDate>
+                  <IssuingAgency>
+                    <Name>Agency for Clearances</Name>
+                  </IssuingAgency>
+                </Investigation>
+              </Investigations>
+              <PriorInvestigation>
+                <Answer>Yes</Answer>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </PriorInvestigation>
+            </InvestigationRecord>
+            <AdditionalComments Version="1" Type="Pooled">
+              <Comment>This is a test additional comment.</Comment>
+            </AdditionalComments>
+            <FormInstructions Type="Pooled" Version="1">
+              <ReadAndUnderstoodStatementOfUnderstanding>
+                <Answer>Yes</Answer>
+              </ReadAndUnderstoodStatementOfUnderstanding>
+            </FormInstructions>
+          </Pooled>
+        </Responses>
+      </Request>
+    </RequestInfo>
+    <DateSubmitted>2018-09-10</DateSubmitted>
+  </SubmittedRequestInfo>
+  <AgencyUsageBlock>
+    <TypeOfInvestigation>
+      <Type>64</Type>
+      <Service>B</Service>
+    </TypeOfInvestigation>
+    <SensitivityLevel>
+      <Code>2</Code>
+    </SensitivityLevel>
+    <Access>
+      <Code>2</Code>
+    </Access>
+    <Action>
+      <Nature>MIL</Nature>
+    </Action>
+    <Position>
+      <Title>Military</Title>
+    </Position>
+    <SON>957B</SON>
+    <LocationOPF>
+      <Code>None</Code>
+    </LocationOPF>
+    <SOI>NV00</SOI>
+    <LocationSEC>
+      <Code>None</Code>
+    </LocationSEC>
+    <InvestigativeRequirement>I</InvestigativeRequirement>
+    <ApplicantAffiliation>MIL</ApplicantAffiliation>
+    <IPAC>DOD-NAVY</IPAC>
+    <RequestingOfficials>
+      <Requestor>
+        <Name>AARON Strohl Laney</Name>
+        <Email>eml152dummy@MailDomain.com</Email>
+        <Telephone>
+          <Number>1 (763) 323-2004</Number>
+        </Telephone>
+      </Requestor>
+      <SecondRequestor>
+        <Name>JAMES Strohl Laney</Name>
+        <Email>eml153dummy@MailDomain.com</Email>
+        <Telephone>
+          <Number>1 (298) 723-1913</Number>
+        </Telephone>
+      </SecondRequestor>
+    </RequestingOfficials>
+  </AgencyUsageBlock>
+</XMP>
