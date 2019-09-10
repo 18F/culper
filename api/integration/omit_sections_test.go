@@ -164,8 +164,7 @@ func Test85PSectionsOmitted(t *testing.T) {
 
 	scenarios := []string{
 		"../testdata/complete-scenarios/test1.json",
-		"../testdata/complete-scenarios/test2.json",
-		"../testdata/complete-scenarios/test3.json",
+		"../testdata/complete-scenarios/SF85P/test2.json",
 	}
 
 	for _, scenario := range scenarios {
@@ -201,7 +200,7 @@ func Test85PSectionsOmitted(t *testing.T) {
 		// to validate that the generated XML matches.
 		_, statErr := os.Stat("xsds")
 		if !os.IsNotExist(statErr) {
-			filePath := "/tmp/sf85_omitted.xml"
+			filePath := "/tmp/sf85P_omitted.xml"
 			f, createErr := os.Create(filePath)
 			if createErr != nil {
 				t.Fatal(createErr)
@@ -213,7 +212,7 @@ func Test85PSectionsOmitted(t *testing.T) {
 			f.Close()
 
 			linterArgs := []string{"--schema", "xsds/Incoming/SF85P_2017-10-draft3_ImportFormat.xsd",
-				"/tmp/sf85_omitted.xml", "--noout"}
+				"/tmp/sf85P_omitted.xml", "--noout"}
 			fmt.Println(linterArgs)
 			output, err := exec.Command("xmllint", linterArgs...).CombinedOutput()
 			if err != nil {
