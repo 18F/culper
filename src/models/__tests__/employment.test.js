@@ -885,6 +885,10 @@ describe('The employment model', () => {
       it('AlternateAddress is required', () => {
         const testData = {
           EmploymentActivity: { value: 'SelfEmployment' },
+          PhysicalAddress: {
+            HasDifferentAddress: { value: 'No' },
+            Address: {},
+          },
           Address: {
             street: '123 Test St',
             city: 'London',
@@ -906,6 +910,10 @@ describe('The employment model', () => {
               street: '123 Test St',
               city: 'London',
               country: { value: 'United Kingdom' },
+            },
+            PhysicalAddress: {
+              HasDifferentAddress: { value: 'No' },
+              Address: {},
             },
             AlternateAddress: {
               HasDifferentAddress: { value: 'Yes' },
@@ -1965,6 +1973,10 @@ describe('The employment model', () => {
       it('AlternateAddress is required', () => {
         const testData = {
           EmploymentActivity: { value: 'ActiveMilitary' },
+          PhysicalAddress: {
+            HasDifferentAddress: { value: 'No' },
+            Address: {},
+          },
           Address: {
             street: '123 Test St',
             city: 'London',
@@ -1986,6 +1998,10 @@ describe('The employment model', () => {
               street: '123 Test St',
               city: 'London',
               country: { value: 'United Kingdom' },
+            },
+            PhysicalAddress: {
+              HasDifferentAddress: { value: 'No' },
+              Address: {},
             },
             AlternateAddress: {
               HasDifferentAddress: { value: 'Yes' },
@@ -2126,6 +2142,10 @@ describe('The employment model', () => {
             zipcode: '34035',
             country: 'POSTOFFICE',
           },
+          PhysicalAddress: {
+            HasDifferentAddress: { value: 'No' },
+            Address: {},
+          },
         }
 
         const expectedErrors = ['AlternateAddress.presence.REQUIRED']
@@ -2142,6 +2162,10 @@ describe('The employment model', () => {
             state: 'AA',
             zipcode: '34035',
             country: 'POSTOFFICE',
+          },
+          PhysicalAddress: {
+            HasDifferentAddress: { value: 'No' },
+            Address: {},
           },
           AlternateAddress: {
             HasDifferentAddress: { value: 'Yes' },
@@ -2447,6 +2471,10 @@ describe('The employment model', () => {
       it('AlternateAddress is required', () => {
         const testData = {
           EmploymentActivity: { value: 'NonGovernment' },
+          PhysicalAddress: {
+            HasDifferentAddress: { value: 'No' },
+            Address: {},
+          },
           Address: {
             street: '123 Test St',
             city: 'London',
@@ -2468,6 +2496,10 @@ describe('The employment model', () => {
               street: '123 Test St',
               city: 'London',
               country: { value: 'United Kingdom' },
+            },
+            PhysicalAddress: {
+              HasDifferentAddress: { value: 'No' },
+              Address: {},
             },
             AlternateAddress: {
               HasDifferentAddress: { value: 'Yes' },
@@ -2615,6 +2647,10 @@ describe('The employment model', () => {
             zipcode: '34035',
             country: 'POSTOFFICE',
           },
+          PhysicalAddress: {
+            HasDifferentAddress: { value: 'No' },
+            Address: {},
+          },
         }
 
         const expectedErrors = ['AlternateAddress.presence.REQUIRED']
@@ -2632,6 +2668,10 @@ describe('The employment model', () => {
             state: 'AA',
             zipcode: '34035',
             country: 'POSTOFFICE',
+          },
+          PhysicalAddress: {
+            HasDifferentAddress: { value: 'No' },
+            Address: {},
           },
           AlternateAddress: {
             HasDifferentAddress: { value: 'Yes' },
