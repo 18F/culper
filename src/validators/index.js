@@ -2,7 +2,6 @@
 import validate from './validate'
 import DateControlValidator from './datecontrol'
 import DateRangeValidator from './daterange'
-import BirthPlaceValidator from './birthplace'
 
 import IdentificationContactInformationValidator, {
   ContactPhoneNumberValidator,
@@ -44,7 +43,6 @@ import RelativesValidator, {
 } from './relatives'
 import ConsultationValidator from './consultation'
 import TaxesValidator, { TaxValidator } from './taxes'
-import CardAbuseValidator, { CardAbuseItemValidator } from './cardabuse'
 import CreditValidator, { CreditItemValidator } from './credit'
 import HospitalizationsValidator, {
   HospitalizationValidator,
@@ -195,7 +193,6 @@ export default validate
 export {
   DateControlValidator,
   DateRangeValidator,
-  BirthPlaceValidator,
   IdentificationContactInformationValidator,
   ContactPhoneNumberValidator,
   NameValidator,
@@ -228,8 +225,6 @@ export {
   ConsultationValidator,
   TaxesValidator,
   TaxValidator,
-  CardAbuseValidator,
-  CardAbuseItemValidator,
   CreditValidator,
   CreditItemValidator,
   HospitalizationsValidator,
