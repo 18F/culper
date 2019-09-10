@@ -125,7 +125,8 @@ func TestUnmarshallEntities(t *testing.T) {
 	}
 }
 
-func TestClearancePayloadStrings(t *testing.T) {
+func TestUnrecognizedTypePayload(t *testing.T) {
+	// This test constructs JSON with altered type values so each field fails individually
 	tests := []struct {
 		path string
 	}{
@@ -250,15 +251,13 @@ func TestClearancePayloadStrings(t *testing.T) {
 			alteredLines[indexOfInterest] = strings.Replace(alteredLines[indexOfInterest], alteredLines[indexOfInterest], `"type": "unsinn",`, 1)
 			replacedSection := strings.Join(alteredLines, "\n")
 
-			// Try to unmarshall with the wrong type
-
 			// Deserialize the initial payload from the replaced JSON
 			payload := &Payload{}
 			if err := payload.Unmarshal([]byte(replacedSection)); err != nil {
 				t.Fatalf("Failed to deserialize JSON: %v\n:Error: %v\n", replacedSection, err)
 			}
 
-			// Extract the entity interface of the payload and validate it
+			// Extract the entity interface of the payload, kicking off entity.Unmarshal()
 			_, err := payload.Entity()
 			if err == nil {
 				t.Logf("Should have received an error from payload.Entity, instead got nil for type %v", payload.Type)
@@ -273,7 +272,8 @@ func selectLinesString(lines []string) []int {
 	leftBracket := 0
 	rightBracket := 0
 	for i, line := range lines {
-		// THIS IS AN ALPTRAUM but the JSON's unstructured
+		// THIS IS A NIGHTMARE but the JSON's unstructured
+		// so you'll avoid running anything in a collection type
 		if strings.Contains(line, "[") && strings.Contains(line, "]") {
 			continue
 		}
@@ -285,16 +285,13 @@ func selectLinesString(lines []string) []int {
 			rightBracket++
 			continue
 		}
-		// Don't change lines that use type as part of the prop structure
-		// (i.e. telephone type domestic)
 		if leftBracket == rightBracket {
+			// Don't change lines that use type as part of the prop structure
+			// (i.e. telephone type domestic)
 			if strings.Contains(line, `"type"`) && strings.Contains(lines[i+1], `"props"`) {
 				linesOfInterest = append(linesOfInterest, i)
 			}
-			leftBracket = 0
-			rightBracket = 0
 		}
-
 	}
 	return linesOfInterest
 }
