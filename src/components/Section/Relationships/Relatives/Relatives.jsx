@@ -35,21 +35,23 @@ export class Relatives extends Subsection {
     this.storeKey = storeKey
   }
 
-  getSectionErrors = () => {
+  // These are warnings so create a work around for applicants
+  // that don't know their mother/father.
+  getSectionWarnings = () => {
     const { errors = [], maritalStatus } = this.props
     const errorList = {
       'List.containsRequiredItems.REQUIREMENT_NOT_MET': {
         errors: [
           {
             key: 'relatives-mother-father-required-error',
-            title: i18n.t('error.validRelation.title'),
-            message: i18n.t('error.validRelation.message'),
+            title: i18n.t('error.validRelationWarning.title'),
+            message: i18n.t('error.validRelationWarning.message'),
             shouldDisplayError: true,
           },
           {
             key: 'relatives-mil-fil-required-error',
-            title: i18n.t('error.validMaritalRelation.title'),
-            message: i18n.t('error.validMaritalRelation.message'),
+            title: i18n.t('error.validMaritalRelationWarning.title'),
+            message: i18n.t('error.validMaritalRelationWarning.message'),
             shouldDisplayError: (
               [MARRIED, SEPARATED].includes(maritalStatus)
             ),
@@ -134,7 +136,10 @@ export class Relatives extends Subsection {
         </Field>
 
         {List.branch && List.branch.value === 'No' && (
-          <ErrorMessageList errors={this.getSectionErrors()} />
+          <ErrorMessageList
+            errors={this.getSectionWarnings()}
+            isWarning={true}
+          />
         )}
 
         <Accordion

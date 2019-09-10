@@ -20,8 +20,8 @@ export const validateTravel = (data, formType = formTypes.SF86) => {
   return validateModel(data, foreignTravel, options)
 }
 
-export const validateForeignTravel = (data, formType) => {
-  const options = {
+export const validateForeignTravel = (data, formType, options = {}) => {
+  const modelOptions = {
     requireForeignCounterIntelligence: requireForeignCounterIntelligence(formType),
     requireForeignExcessiveKnowledge: requireForeignExcessiveKnowledge(formType),
     requireForeignSensitiveInformation: requireForeignSensitiveInformation(formType),
@@ -51,7 +51,7 @@ export const validateForeignTravel = (data, formType) => {
     },
   }
 
-  return validateModel(data, foreignTravelModel, options)
+  return validateModel(data, foreignTravelModel, { ...options, ...modelOptions })
 }
 
 export default class ForeignTravelValidator {
@@ -134,7 +134,7 @@ export class TravelValidator {
       Interest: foreignTravel.Interest,
       InterestExplanation: foreignTravel.InterestExplanation,
     }, {
-      requireForeignExcessiveKnowledge: requireForeignExcessiveKnowledge(this.formType)
+      requireForeignExcessiveKnowledge: requireForeignExcessiveKnowledge(this.formType),
     }) === true
   }
 

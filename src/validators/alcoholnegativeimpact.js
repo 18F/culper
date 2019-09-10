@@ -5,7 +5,7 @@ export const validateNegativeImpact = data => (
   validateModel(data, alcoholNegativeImpact)
 )
 
-export const validateNegativeImpacts = (data) => {
+export const validateNegativeImpacts = (data, formType, options = {}) => {
   const negativeImpactsModel = {
     HasImpacts: { presence: true, hasValue: { validator: hasYesOrNo } },
     List: (value, attributes) => {
@@ -16,7 +16,7 @@ export const validateNegativeImpacts = (data) => {
     },
   }
 
-  return validateModel(data, negativeImpactsModel)
+  return validateModel(data, negativeImpactsModel, options)
 }
 
 export default class NegativeImpactsValidator {

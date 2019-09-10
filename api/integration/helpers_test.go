@@ -142,6 +142,52 @@ func createTestAccount(t *testing.T, store api.StorageService) api.Account {
 
 }
 
+func create85TestAccount(t *testing.T, store api.StorageService) api.Account {
+	t.Helper()
+
+	email := randomEmail()
+
+	account := api.Account{
+		Username:    email,
+		Email:       api.NonNullString(email),
+		FormType:    "SF85",
+		FormVersion: "2017-12-draft7",
+		Status:      api.StatusIncomplete,
+		ExternalID:  uuid.New().String(),
+	}
+
+	createErr := store.CreateAccount(&account)
+	if createErr != nil {
+		t.Fatal(createErr)
+	}
+
+	return account
+
+}
+
+func create85PTestAccount(t *testing.T, store api.StorageService) api.Account {
+	t.Helper()
+
+	email := randomEmail()
+
+	account := api.Account{
+		Username:    email,
+		Email:       api.NonNullString(email),
+		FormType:    "SF85P",
+		FormVersion: "2017-10-draft3",
+		Status:      api.StatusIncomplete,
+		ExternalID:  uuid.New().String(),
+	}
+
+	createErr := store.CreateAccount(&account)
+	if createErr != nil {
+		t.Fatal(createErr)
+	}
+
+	return account
+
+}
+
 // readTestData pulls in test data as a string
 func readTestData(t *testing.T, filepath string) []byte {
 	t.Helper()
@@ -193,6 +239,10 @@ func saveFormJSON(t *testing.T, services serviceSet, formJSON []byte, account ap
 	}
 
 	for sectionName := range form {
+		if sectionName == "Metadata" {
+			continue
+		}
+
 		for subSectionName := range form[sectionName] {
 			sectionJSON := form[sectionName][subSectionName]
 

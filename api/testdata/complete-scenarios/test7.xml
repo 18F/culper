@@ -6528,6 +6528,12 @@ is therefore not surprising that most of those who have written
 or spoken on that extraordinary man, even while conscientiously
 endeavoring to draw a lifelike portraiture of his being, and to
 form a just estimate of his public conduct, should!</OtherAgency>
+                  <InvestigationDate>
+                    <Date Type="Estimated">
+                      <Month>01</Month>
+                      <Year>2000</Year>
+                    </Date>
+                  </InvestigationDate>
                   <ClearanceLevel>Other</ClearanceLevel>
                   <GrantedDate>
                     <Date Type="Estimated">
@@ -6535,12 +6541,6 @@ form a just estimate of his public conduct, should!</OtherAgency>
                       <Year>2000</Year>
                     </Date>
                   </GrantedDate>
-                  <InvestigationDate>
-                    <Date Type="Estimated">
-                      <Month>01</Month>
-                      <Year>2000</Year>
-                    </Date>
-                  </InvestigationDate>
                   <IssuingAgency>
                     <Name>No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i</Name>
                   </IssuingAgency>
@@ -6555,6 +6555,12 @@ form a just estimate of his public conduct, should!</OtherClearanceLevel>
                 </Investigation>
                 <Investigation ID="2">
                   <Agency>Unknown</Agency>
+                  <InvestigationDate>
+                    <Date Type="Estimated">
+                      <Month>01</Month>
+                      <Year>2000</Year>
+                    </Date>
+                  </InvestigationDate>
                   <ClearanceLevel>Other</ClearanceLevel>
                   <GrantedDate>
                     <Date Type="Estimated">
@@ -6562,12 +6568,6 @@ form a just estimate of his public conduct, should!</OtherClearanceLevel>
                       <Year>2000</Year>
                     </Date>
                   </GrantedDate>
-                  <InvestigationDate>
-                    <Date Type="Estimated">
-                      <Month>01</Month>
-                      <Year>2000</Year>
-                    </Date>
-                  </InvestigationDate>
                   <IssuingAgency>
                     <Name>No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i</Name>
                   </IssuingAgency>

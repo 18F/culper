@@ -2,7 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
-import SectionLink from './SectionLink'
+import ConnectedSectionLink from './SectionLink'
+
+// eslint-disable-next-line import/no-cycle
 import ToggleItem from './ToggleItem'
 
 const SectionList = ({
@@ -28,7 +30,7 @@ const SectionList = ({
         }
 
         return (
-          <SectionLink
+          <ConnectedSectionLink
             key={s.key}
             section={s}
             basePath={basePath}

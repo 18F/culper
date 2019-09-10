@@ -2,9 +2,17 @@ import { hasYesOrNo, checkValue } from 'models/validate'
 import offenseAddress from 'models/shared/locations/offense'
 import sentence from 'models/shared/sentence'
 import { offenseChargeTypes } from 'constants/enums/legalOptions'
+import { DEFAULT_LATEST } from 'constants/dateLimits'
 
 const offense = {
-  Date: { presence: true, date: true },
+  Date: (value, attributes, attributeName, options = {}) => {
+    const { applicantBirthdate } = options
+
+    return {
+      presence: true,
+      date: { earliest: applicantBirthdate, latest: DEFAULT_LATEST },
+    }
+  },
   Description: { presence: true, hasValue: true },
   InvolvedViolence: (value, attributes, attributeName, options) => {
     if (options.requireLegalOffenseInvolvements) {
@@ -91,9 +99,12 @@ const offense = {
       ? { presence: true, hasValue: true }
       : {}
   ),
-  CourtDate: (value, attributes) => (
+  CourtDate: (value, attributes, attributeName, options = {}) => (
     checkValue(attributes.WasCharged, 'Yes')
-      ? { presence: true, date: { requireDay: false } }
+      ? {
+        presence: true,
+        date: { requireDay: false, earliest: options.applicantBirthdate, latest: DEFAULT_LATEST },
+      }
       : {}
   ),
   WasSentenced: (value, attributes) => (

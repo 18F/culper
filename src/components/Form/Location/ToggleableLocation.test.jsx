@@ -71,4 +71,20 @@ describe('The ToggleableLocation component', () => {
     const component = mount(<ToggleableLocation {...props} />)
     expect(component.find('.usa-input-error').length).toBe(2)
   })
+
+  it ('Render if layout is BirthPlace and US', () => {
+    const props = {
+      required: true,
+      country: { value: 'United States' },
+      domesticFields: [
+        'city',
+        'county',
+        'state',
+        'country',
+        'what',
+      ]
+    }
+    const component = mount(<ToggleableLocation {...props} />)
+    expect(component.find('.usa-input-error').length).toBe(3)
+  })
 })

@@ -1,10 +1,10 @@
 import name from 'models/shared/name'
 import birthplaceWithoutCounty from 'models/shared/locations/birthplaceWithoutCounty'
 import foreignBornDocument from 'models/foreignBornDocument'
-import { OTHER } from 'constants/dateLimits'
 
 import { countryString } from 'validators/location'
-import { DEFAULT_LATEST } from 'constants/dateLimits'
+import { DEFAULT_LATEST, OTHER } from 'constants/dateLimits'
+import { sortDateObjects } from 'helpers/date'
 
 export const otherName = {
   OtherName: {
@@ -48,8 +48,23 @@ const cohabitant = {
       },
     }
   },
-  CohabitationBegan: {
-    presence: true, date: true,
+  CohabitationBegan: (value, attributes, attributeName, options) => {
+    const { Birthdate } = attributes
+    const { applicantBirthdate } = options
+
+    const sortedDates = sortDateObjects([Birthdate, applicantBirthdate])
+
+    const earliestDate = sortedDates.length
+      ? sortedDates[sortedDates.length - 1]
+      : null
+
+    return {
+      presence: true,
+      date: {
+        earliest: earliestDate,
+        latest: DEFAULT_LATEST,
+      },
+    }
   },
   ForeignBornDocument: (value, attributes = {}) => {
     if (attributes.BirthPlace

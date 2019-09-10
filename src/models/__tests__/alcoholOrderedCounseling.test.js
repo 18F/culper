@@ -137,6 +137,37 @@ describe('The alcoholOrderedCounseling model', () => {
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
+    it('CounselingDates from date cannot be before applicant birthdate', () => {
+      const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+      const testData = {
+        ActionTaken: { value: 'Yes' },
+        CounselingDates: {
+          from: { month: 1, year: 1970, day: 2 },
+        },
+      }
+      const expectedErrors = [
+        'CounselingDates.daterange.from.date.date.datetime.DATE_TOO_EARLY',
+      ]
+
+      expect(validateModel(testData, alcoholOrderedCounseling, { applicantBirthdate }))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('CounselingDates to date cannot be in the future', () => {
+      const testData = {
+        ActionTaken: { value: 'Yes' },
+        CounselingDates: {
+          to: { month: 1, year: 2050, day: 2 },
+        },
+      }
+      const expectedErrors = [
+        'CounselingDates.daterange.to.date.date.datetime.DATE_TOO_LATE',
+      ]
+
+      expect(validateModel(testData, alcoholOrderedCounseling))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
     it('CompletedTreatment must have a valid value', () => {
       const testData = {
         ActionTaken: { value: 'Yes' },

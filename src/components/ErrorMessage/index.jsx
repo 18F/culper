@@ -1,11 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import classnames from 'classnames'
 
 const ErrorMessage = ({
-  id, title, message, note,
+  id, title, message, note, isWarning,
 }) => (
   <div
-    className="error-message error usa-alert usa-alert-error"
+    className={classnames(
+      'error-message',
+      'error',
+      'usa-alert',
+      { 'usa-alert-error': !isWarning },
+      { 'usa-alert-warning': isWarning },
+    )}
     role="alert"
     aria-live="polite"
   >
@@ -30,6 +37,7 @@ ErrorMessage.propTypes = {
   title: PropTypes.string,
   message: PropTypes.string,
   note: PropTypes.string,
+  isWarning: PropTypes.bool,
 }
 
 ErrorMessage.defaultProps = {
@@ -37,6 +45,7 @@ ErrorMessage.defaultProps = {
   title: '',
   message: '',
   note: '',
+  isWarning: false,
 }
 
 export default ErrorMessage

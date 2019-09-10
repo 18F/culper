@@ -1,6 +1,10 @@
 import React from 'react'
-import { env, i18n } from '../../../config'
-import Branch from '../Branch';
+
+import { env, i18n } from 'config'
+import { countryValueResolver } from 'helpers/location'
+import LocationValidator, { countryString } from 'validators/location'
+
+import Branch from '../Branch'
 import ValidationElement from '../ValidationElement'
 import Street from '../Street'
 import State from '../State'
@@ -9,17 +13,37 @@ import Country from '../Country'
 import County from '../County'
 import ZipCode from '../ZipCode'
 import Show from '../Show'
-import { country, countryValueResolver } from './Location'
-import LocationValidator, { countryString } from '../../../validators/location'
 import Layouts from './Layouts'
 
-const mappingWarning = property => {
+const mappingWarning = (property) => {
   if (!env.IsTest()) {
     console.warn(
       `Could not map location property '${property}' in ToggleableLocation `
     )
   }
 }
+
+const branchValue = (value) => {
+  let country = value
+
+  if (typeof country === 'object') {
+    country = countryString(value)
+    if (country === '') return 'No'
+    if (country === null) return ''
+  }
+
+  switch (country) {
+    case 'United States':
+      return 'Yes'
+    case '':
+      return ''
+    default:
+      // For all other cases, country is an empty string (user intends to select country) or
+      // user has selected a country
+      return 'No'
+  }
+}
+
 
 export default class ToggleableLocation extends ValidationElement {
   constructor(props) {
@@ -37,14 +61,14 @@ export default class ToggleableLocation extends ValidationElement {
     this.addressType = this.addressType.bind(this)
     this.state = {
       suggestions: [],
-      uid: `${this.props.name}-${super.guid()}`
+      uid: `${this.props.name}-${super.guid()}`,
     }
     this.errors = []
   }
 
   update(updateValues) {
     if (this.props.onUpdate) {
-      this.props.onUpdate({
+      const nextValues = {
         street: this.props.street,
         city: this.props.city,
         zipcode: this.props.zipcode,
@@ -55,8 +79,14 @@ export default class ToggleableLocation extends ValidationElement {
         domestic: this.props.domestic,
         domesticFields: this.props.domesticFields,
         internationalFields: this.props.internationalFields,
-        ...updateValues
-      })
+        ...updateValues,
+      }
+
+      if (!nextValues.country && this.addressType() === 'United States') {
+        nextValues.country = { value: 'United States' }
+      }
+
+      this.props.onUpdate(nextValues)
     }
   }
 
@@ -75,7 +105,7 @@ export default class ToggleableLocation extends ValidationElement {
   updateCountry(values) {
     this.update({
       country: values,
-      countryComments: values.comments
+      countryComments: values.comments,
     })
   }
 
@@ -91,13 +121,11 @@ export default class ToggleableLocation extends ValidationElement {
     // Set existing errors to null when toggling fields
     this.props.onError(
       option.value,
-      this.errors.map(err => {
-        return {
-          code: err.code,
-          valid: null,
-          uid: err.uid
-        }
-      })
+      this.errors.map(err => ({
+        code: err.code,
+        valid: null,
+        uid: err.uid,
+      }))
     )
 
     switch (option.value) {
@@ -107,6 +135,7 @@ export default class ToggleableLocation extends ValidationElement {
       case 'No':
         this.update({ country: { value: '' } })
         break
+      default:
     }
   }
 
@@ -117,26 +146,24 @@ export default class ToggleableLocation extends ValidationElement {
   }
 
   addressType() {
-    let country = this.props.country
+    let { country } = this.props
+
     if (typeof country === 'object') {
       country = countryString(country)
-      if (country === '') {
-        return 'International'
-      }
+      if (country === '') return 'International'
     }
 
-    if (country === '') {
-      return ''
-    } else if (country === 'United States') {
-      return country
-    } else if (country) {
-      return 'International'
-    }
+    if (country === '') return ''
+    if (country === 'United States') return country
+    if (country) return 'International'
+
+    return ''
   }
 
   render() {
     const instateZipcode = this.zipcodeInstate()
-    const domesticFields = this.props.domesticFields.map(field => {
+
+    const domesticFields = this.props.domesticFields.map((field) => {
       const key = `domestic-${field}`
       switch (field) {
         case 'street':
@@ -167,7 +194,10 @@ export default class ToggleableLocation extends ValidationElement {
               onError={this.onError}
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
-              required={this.props.required}
+              required={this.props.layout === Layouts.IDENTIFICATION_BIRTH_PLACE
+                ? this.props.required && !this.props.county : this.props.required}
+              requireCity={this.props.layout === Layouts.IDENTIFICATION_BIRTH_PLACE
+                ? this.props.required && !this.props.county : this.props.required}
             />
           )
         case 'county':
@@ -184,7 +214,10 @@ export default class ToggleableLocation extends ValidationElement {
               onError={this.onError}
               onBlur={this.props.onBlur}
               onFocus={this.props.onFocus}
-              required={this.props.required}
+              required={this.props.layout === Layouts.IDENTIFICATION_BIRTH_PLACE
+                ? this.props.required && !this.props.city : this.props.required}
+              requireCounty={this.props.layout === Layouts.IDENTIFICATION_BIRTH_PLACE
+                ? this.props.required && !this.props.city : this.props.required}
             />
           )
         case 'state':
@@ -236,10 +269,12 @@ export default class ToggleableLocation extends ValidationElement {
               />
             </div>
           )
+        default:
+          return null
       }
     })
 
-    const internationalFields = this.props.internationalFields.map(field => {
+    const internationalFields = this.props.internationalFields.map((field) => {
       const key = `domestic-${field}`
       switch (field) {
         case 'city':
@@ -275,10 +310,11 @@ export default class ToggleableLocation extends ValidationElement {
               required={this.props.required}
             />
           )
+        default:
+          return null
       }
     })
 
-    const countryName = countryString(this.props.country)
     return (
       <div className="toggleable-location">
         <Branch
@@ -302,22 +338,19 @@ export default class ToggleableLocation extends ValidationElement {
   }
 
   onError(value, arr) {
-    arr = arr.map(err => {
-      return {
-        code: `toggleablelocation.${err.code}`,
-        valid: err.valid,
-        uid: err.uid
-      }
-    })
+    // eslint-disable-next-line no-param-reassign
+    arr = arr.map(err => ({
+      code: `toggleablelocation.${err.code}`,
+      valid: err.valid,
+      uid: err.uid,
+    }))
 
     const requiredErr = arr.concat(
-      this.constructor.errors.map(err => {
-        return {
-          code: `toggleablelocation.${err.code}`,
-          valid: err.func(value, { ...this.props }),
-          uid: this.state.uid
-        }
-      })
+      this.constructor.errors.map(err => ({
+        code: `toggleablelocation.${err.code}`,
+        valid: err.func(value, { ...this.props }),
+        uid: this.state.uid,
+      }))
     )
 
     this.storeErrors(requiredErr)
@@ -326,11 +359,11 @@ export default class ToggleableLocation extends ValidationElement {
   }
 
   storeErrors(errors) {
-    let newErrors = [...errors]
-    for (const e of newErrors) {
-      const idx = this.errors.findIndex(
-        x => x.uid === e.uid && x.code === e.code
-      )
+    const newErrors = [...errors]
+
+    for (let i = 0; i < newErrors.length; i += 1) {
+      const e = newErrors[i]
+      const idx = this.errors.findIndex(x => x.uid === e.uid && x.code === e.code)
       if (idx !== -1) {
         this.errors[idx] = { ...e }
       } else {
@@ -340,38 +373,13 @@ export default class ToggleableLocation extends ValidationElement {
   }
 }
 
-const branchValue = value => {
-  let country = value
-  if (typeof country === 'object') {
-    country = countryString(value)
-    if (country === '') {
-      return 'No'
-    } else if (country === null) {
-      return ''
-    }
-  }
-
-  switch (country) {
-    case 'United States':
-      return 'Yes'
-    case '':
-      return ''
-    default:
-      // For all other cases, country is an empty string (user intends to select country) or
-      // user has selected a country
-      return 'No'
-  }
-}
-
 ToggleableLocation.defaultProps = {
   country: { value: null },
   domesticFields: [],
   internationalFields: [],
-  onError: (value, arr) => {
-    return arr
-  },
+  onError: (value, arr) => arr,
   required: false,
-  scrollIntoView: false
+  scrollIntoView: false,
 }
 
 ToggleableLocation.errors = [
@@ -385,18 +393,26 @@ ToggleableLocation.errors = [
       // Organizing the validation tests in a structure
       const branchValidations = {
         Yes: {
-          fields: props => props.domesticFields,
-          city: props => !!props.city,
-          state: props => !!props.state,
-          county: props => !!props.county,
-          stateZipcode: props => !!props.state && !!props.zipcode,
-          country: props => !!countryString(props.country)
+          fields: p => p.domesticFields,
+          city: p => (
+            p.layout === Layouts.IDENTIFICATION_BIRTH_PLACE
+              ? !!p.city || !!p.county
+              : !!p.city
+          ),
+          state: p => !!p.state,
+          county: p => (
+            p.layout === Layouts.IDENTIFICATION_BIRTH_PLACE
+              ? !!p.city || !!p.county
+              : !!p.county
+          ),
+          stateZipcode: p => !!p.state && !!p.zipcode,
+          country: p => !!countryString(p.country),
         },
         No: {
-          fields: props => props.internationalFields,
-          city: props => !!props.city,
-          country: props => !!countryString(props.country)
-        }
+          fields: p => p.internationalFields,
+          city: p => !!p.city,
+          country: p => !!countryString(p.country),
+        },
       }
 
       // Retrieve the branch value provided. If the value does match the
@@ -408,9 +424,10 @@ ToggleableLocation.errors = [
       }
 
       // Loop through all of the fields based on the branch and test for values.
-      for (let f of validations.fields(props)) {
+      for (let i = 0; i < validations.fields(props).length; i += 1) {
+        const f = validations.fields(props)[i]
         // Retrieve the test and if one is not found print a warning and continue
-        let test = validations[f]
+        const test = validations[f]
         if (!test) {
           mappingWarning(f)
           return false
@@ -422,6 +439,6 @@ ToggleableLocation.errors = [
       }
 
       return true
-    }
-  }
+    },
+  },
 ]

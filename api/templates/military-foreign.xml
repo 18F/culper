@@ -15,6 +15,7 @@
     <Name>{{text $Item.Name}}</Name>
     <Organization>{{radio $Item.Organization}}</Organization>
     <Position>{{text $Item.Rank}}</Position>
+    {{ if formType "SF86" }}
     <Contacts>
       <Answer>{{branch $Item.MaintainsContact}}</Answer>
       <AnswerComment></AnswerComment>
@@ -35,6 +36,7 @@
       {{end}}
       <SummaryComment></SummaryComment>
     </Contacts>
+    {{end}}
   </Service>
   {{end}}
   {{end}}

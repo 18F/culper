@@ -5,7 +5,7 @@ export const validateOverthrow = data => (
   validateModel(data, overthrow)
 )
 
-export const validateLegalOverthrow = (data) => {
+export const validateLegalOverthrow = (data, formType, options = {}) => {
   const legalOverthrowModel = {
     HasOverthrow: { presence: true, hasValue: { validator: hasYesOrNo } },
     List: (value, attributes) => {
@@ -19,7 +19,7 @@ export const validateLegalOverthrow = (data) => {
     },
   }
 
-  return validateModel(data, legalOverthrowModel)
+  return validateModel(data, legalOverthrowModel, options)
 }
 
 export default class LegalAssociationOverthrowValidator {

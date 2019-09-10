@@ -767,6 +767,11 @@ export const error = {
           message: 'City name should be between 2 and 100 characters.',
           note: '',
         },
+        required: {
+          title: 'There is a problem with the City',
+          message: 'City is required if County is not filled in',
+          note: '',
+        }
       },
       state: {
         notfound: {
@@ -785,6 +790,11 @@ export const error = {
           message: 'County name must be between 2 and 100 characters',
           note: '',
         },
+        required: {
+          title: 'There is a problem with the County',
+          message: 'County is required if City is not filled in',
+          note: '',
+        }
       },
       zipcode: {
         pattern: {
@@ -1045,33 +1055,15 @@ export const error = {
     international: {
       first: {
         pattern: {
-          title: 'There is a problem with this country code',
-          message:
-            'The country code of the international number should be 3 digits between 0 and 9.',
-          note: '',
-        },
-        length: {
-          title: 'There is a problem with this country code',
-          message:
-            'The country code of the international number should be 3 digits between 0 and 9.',
-          note: '',
-        },
-        required: {
-          title: 'Your response is required',
-          message: '',
-        },
-      },
-      second: {
-        pattern: {
           title: 'There is a problem with this number',
           message:
-            'The international number should be 10 digits between 0 and 9.',
+            'The international number should be 4-20 digits between 0 and 9.',
           note: '',
         },
         length: {
           title: 'There is a problem with this number',
           message:
-            'The international number should be 10 digits between 0 and 9.',
+            'The international number should be 4-20 digits between 0 and 9.',
           note: '',
         },
         required: {
@@ -1198,10 +1190,18 @@ export const error = {
     message:
       'You indicated that you are married or separated, please provide entries for mother-in-law and father-in-law.',
   },
+  validMaritalRelationWarning: {
+    title: 'Information for mother-in-law and father-in-law must be provided',
+    message: 'If you do not know your mother and/or father in-law, please enter as much information as possible for the required fields.',
+  },
   validRelation: {
     title: 'Mother and father must be provided',
     message:
       'If you do not know your mother or father, please enter "I don\'t know" and provide a comment explaining your relationship.',
+  },
+  validRelationWarning: {
+    title: 'Information for mother and father must be provided',
+    message: 'If you do not know your mother and/or father, please enter as much information as possible for the required fields.',
   },
   validPhoneTypes: {
     title: 'There is a problem with your phone numbers',

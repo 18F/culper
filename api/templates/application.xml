@@ -5,8 +5,8 @@
     <RequestInfo>
       <Request>
         <Form>
-          <Name>SF86</Name>
-          <Version>2017-07</Version>
+          <Name>{{ .Metadata.form_type }}</Name>
+          <Version>{{ .Metadata.form_version }}</Version>
         </Form>
         <Applicant>
           {{if $ssn.notApplicable}}

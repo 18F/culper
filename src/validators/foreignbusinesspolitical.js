@@ -3,7 +3,7 @@ import foreignBusinessPolitical from 'models/foreignBusinessPolitical'
 
 export const validatePolitical = data => validateModel(data, foreignBusinessPolitical)
 
-export const validateForeignBusinessPolitical = (data) => {
+export const validateForeignBusinessPolitical = (data, formType, options = {}) => {
   const foreignBusinessPoliticalModel = {
     HasForeignPolitical: { presence: true, hasValue: { validator: hasYesOrNo } },
     List: (value, attributes) => {
@@ -18,7 +18,7 @@ export const validateForeignBusinessPolitical = (data) => {
     },
   }
 
-  return validateModel(data, foreignBusinessPoliticalModel)
+  return validateModel(data, foreignBusinessPoliticalModel, options)
 }
 
 export default class ForeignBusinessPoliticalValidator {

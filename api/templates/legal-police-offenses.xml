@@ -56,6 +56,7 @@
               {{end}}
             </YearOrMore>
           </Imprisonment>
+          {{ if formType "SF86,SF85P" }}
           <Incarcerated>
             <YearOrMore>
               <Answer>{{branch $sentence.Incarcerated}}</Answer>
@@ -64,6 +65,7 @@
           <MoreThanYear>
             <Answer>{{branch $sentence.ExceedsYear}}</Answer>
           </MoreThanYear>
+          {{end}}
           <Probation>
             {{if notApplicable $sentence.ProbationDatesNA | eq "True"}}
             <DateRange NotApplicable="True" />
@@ -113,9 +115,11 @@
       <Date Type="{{dateEstimated $Item.Date}}">
         {{monthYear $Item.Date}}
       </Date>
+      {{ if formType "SF86,SF85P" }}
       <InvolveFollowingOffenses>
         <Answer>{{branchAny $Item.InvolvedViolence $Item.InvolvedFirearms $Item.InvoledSubstances}}</Answer>
       </InvolveFollowingOffenses>
+      {{end}}
       <Location>
         <Place>
           {{location $Item.Address }}
@@ -129,23 +133,22 @@
       {{end}}
       <OffenseComment></OffenseComment>
       <OffenseDescription>{{text $Item.Description}}</OffenseDescription>
+      {{ if formType "SF86,SF85P" }}
       <OffenseType
-          {{if branchToBool $Item.InvolvedViolence | eq "True"}}
-          Domestic="True"
+          {{if branchToBool $Item.InvolvedViolence | eq "True"}} Domestic="True"
           {{end}}
-          {{if branchToBool $Item.InvolvedFirearms | eq "True"}}
-          Firearms="True"
+          {{if branchToBool $Item.InvolvedFirearms | eq "True"}} Firearms="True"
           {{end}}
-          {{if branchToBool $Item.InvolvedSubstances | eq "True"}}
-          Alcohol="True"
+          {{if branchToBool $Item.InvolvedSubstances | eq "True"}} Alcohol="True"
           {{end}}
           />
-    </Offense>
+      {{end}}
+</Offense>
     {{end}}
     {{end}}
   </Offenses>
   {{- if branch .props.HasOffenses | eq "Yes"}}
   <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
-  <SummaryComment></SummaryComment>
+<SummaryComment></SummaryComment>
   {{end}}
 </Past7Years>

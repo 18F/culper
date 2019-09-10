@@ -5,6 +5,7 @@ import {
   SELF_EMPLOYMENT,
   UNEMPLOYMENT,
 } from 'constants/enums/employmentOptions'
+import { DEFAULT_LATEST } from 'constants/dateLimits'
 
 import physicalAddress from 'models/shared/physicalAddress'
 import name from 'models/shared/name'
@@ -50,17 +51,38 @@ const supervisor = {
 const additional = {
   Position: { presence: true, hasValue: true },
   Supervisor: { presence: true, hasValue: true },
-  DatesEmployed: { presence: true, daterange: true },
+  DatesEmployed: (value, attributes, attributeName, options = {}) => {
+    const { applicantBirthdate, latest } = options
+
+    return {
+      presence: true,
+      daterange: { earliest: applicantBirthdate, latest },
+    }
+  },
 }
 
 const reprimand = {
   Text: { presence: true, hasValue: true },
-  Date: { presence: true, date: { requireDay: false } },
+  Date: (value, attributes, attributeName, options = {}) => {
+    const { applicantBirthdate } = options
+
+    return {
+      presence: true,
+      date: { requireDay: false, earliest: applicantBirthdate, latest: DEFAULT_LATEST },
+    }
+  },
 }
 
 const reasonLeftReason = {
   Reason: { presence: true, hasValue: true },
-  Date: { presence: true, date: true },
+  Date: (value, attributes, attributeName, options = {}) => {
+    const { applicantBirthdate } = options
+
+    return {
+      presence: true,
+      date: { earliest: applicantBirthdate, latest: DEFAULT_LATEST },
+    }
+  },
   Text: { presence: true, hasValue: true },
 }
 
@@ -100,9 +122,13 @@ const employment = {
       },
     },
   },
-  Dates: {
-    presence: true,
-    daterange: true,
+  Dates: (value, attributes, attributeName, options = {}) => {
+    const { applicantBirthdate } = options
+
+    return {
+      presence: true,
+      daterange: { earliest: applicantBirthdate, latest: DEFAULT_LATEST },
+    }
   },
 
   // Required by all but Unemployment
@@ -368,6 +394,7 @@ const employment = {
       return {
         branchCollection: {
           validator: additional,
+          latest: attributes.Dates && attributes.Dates.from,
         },
       }
     }

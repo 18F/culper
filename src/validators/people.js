@@ -4,7 +4,7 @@ import person from 'models/person'
 const minimumYears = 7
 const minimumPeople = 3
 
-export const validatePeople = (data) => {
+export const validatePeople = (data, formType, options = {}) => {
   const peopleModel = {
     List: {
       presence: true,
@@ -18,7 +18,7 @@ export const validatePeople = (data) => {
     },
   }
 
-  return validateModel(data, peopleModel)
+  return validateModel(data, peopleModel, options)
 }
 
 export default class PeopleValidator {

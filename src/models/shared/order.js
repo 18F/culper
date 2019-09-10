@@ -1,4 +1,5 @@
 import address from 'models/shared/locations/address'
+import { DEFAULT_LATEST } from 'constants/dateLimits'
 
 export const appeal = {
   CourtName: { presence: true, hasValue: true },
@@ -25,7 +26,14 @@ const order = {
     if (options && options.requireDisposition === false) return {}
     return { presence: true, hasValue: true }
   },
-  Occurred: { presence: true, date: { requireDay: false } },
+  Occurred: (value, attributes, attributeName, options = {}) => {
+    const { applicantBirthdate } = options
+
+    return {
+      presence: true,
+      date: { requireDay: false, earliest: applicantBirthdate, latest: DEFAULT_LATEST },
+    }
+  },
   Appeals: {
     presence: true,
     branchCollection: { validator: appeal },
