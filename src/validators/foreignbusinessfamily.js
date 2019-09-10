@@ -1,8 +1,6 @@
 import { validateModel, hasYesOrNo } from 'models/validate'
 import foreignBusinessFamily from 'models/foreignBusinessFamily'
 
-export const validateFamily = data => validateModel(data, foreignBusinessFamily)
-
 export const validateForeignBusinessFamily = (data) => {
   const foreignBusinessFamilyModel = {
     HasForeignFamily: { presence: true, hasValue: { validator: hasYesOrNo } },
@@ -19,54 +17,4 @@ export const validateForeignBusinessFamily = (data) => {
   }
 
   return validateModel(data, foreignBusinessFamilyModel)
-}
-
-export default class ForeignBusinessFamilyValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  isValid() {
-    return validateForeignBusinessFamily(this.data) === true
-  }
-}
-
-export class FamilyValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  validName() {
-    return validateModel(this.data, {
-      Name: foreignBusinessFamily.Name,
-    }) === true
-  }
-
-  validAgency() {
-    return validateModel(this.data, {
-      Agency: foreignBusinessFamily.Agency,
-    }) === true
-  }
-
-  validCountry() {
-    return validateModel(this.data, {
-      Country: foreignBusinessFamily.Country,
-    }) === true
-  }
-
-  validDate() {
-    return validateModel(this.data, {
-      Date: foreignBusinessFamily.Date,
-    }) === true
-  }
-
-  validCircumstances() {
-    return validateModel(this.data, {
-      Circumstances: foreignBusinessFamily.Circumstances,
-    }) === true
-  }
-
-  isValid() {
-    return validateFamily(this.data) === true
-  }
 }

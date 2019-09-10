@@ -1,10 +1,6 @@
 import { validateModel, hasYesOrNo } from 'models/validate'
 import drugSafetyUse from 'models/drugSafetyUse'
 
-export const validateDrugSafetyUse = data => (
-  validateModel(data, drugSafetyUse)
-)
-
 export const validateDrugSafetyUses = (data) => {
   const drugSafetyUsesModel = {
     UsedDrugs: { presence: true, hasValue: { validator: hasYesOrNo } },
@@ -20,24 +16,4 @@ export const validateDrugSafetyUses = (data) => {
   }
 
   return validateModel(data, drugSafetyUsesModel)
-}
-
-export default class DrugPublicSafetyUsesValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  isValid() {
-    return validateDrugSafetyUses(this.data) === true
-  }
-}
-
-export class DrugPublicSafetyUseValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  isValid() {
-    return validateDrugSafetyUse(this.data) === true
-  }
 }

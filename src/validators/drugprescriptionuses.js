@@ -9,13 +9,6 @@ import {
 import { validateModel, hasYesOrNo } from 'models/validate'
 import drugPrescriptionUse from 'models/drugPrescriptionUse'
 
-export const validateDrugPrescriptionUse = (data = {}, formType = formTypes.SF86) => (
-  validateModel(data, drugPrescriptionUse, {
-    requireUseWhileEmployed: requireDrugWhileSafety(formType),
-    requireUseWithClearance: requireDrugWithClearance(formType),
-  })
-)
-
 export const validateDrugPrescriptionUses = (data = {}, formType = formTypes.SF86) => {
   const drugUsesModel = {
     MisusedDrugs: { presence: true, hasValue: { validator: hasYesOrNo } },
@@ -35,31 +28,4 @@ export const validateDrugPrescriptionUses = (data = {}, formType = formTypes.SF8
   }
 
   return validateModel(data, drugUsesModel)
-}
-
-/** Object Validators (as classes) - legacy */
-export default class DrugPrescriptionUsesValidator {
-  constructor(data = {}) {
-    const state = store.getState()
-    const { formType } = state.application.Settings
-    this.data = data
-    this.formType = formType
-  }
-
-  isValid() {
-    return validateDrugPrescriptionUses(this.data, this.formType) === true
-  }
-}
-
-export class DrugPrescriptionUseValidator {
-  constructor(data = {}) {
-    const state = store.getState()
-    const { formType } = state.application.Settings
-    this.data = data
-    this.formType = formType
-  }
-
-  isValid() {
-    return validateDrugPrescriptionUse(this.data, this.formType) === true
-  }
 }
