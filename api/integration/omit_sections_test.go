@@ -3,6 +3,7 @@ package integration
 import (
 	"bytes"
 	"fmt"
+	"net/http"
 	"os"
 	"os/exec"
 	"testing"
@@ -83,6 +84,73 @@ func Test85SectionsOmitted(t *testing.T) {
 		t.Log("Scenario: ", scenario, "validated sucessfully.")
 
 	}
+}
+
+func Test85CleranceGranted(t *testing.T) {
+	services := cleanTestServices(t)
+
+	xmlTemplatePath := "../templates/"
+	xmlsvc := xml.NewXMLService(xmlTemplatePath)
+	pdfTemplatePath := "../pdf/templates/"
+	pdfsvc := pdf.NewPDFService(pdfTemplatePath)
+	submitter := admin.NewSubmitter(services.db, services.store, xmlsvc, pdfsvc)
+
+	scenario := "../testdata/complete-scenarios/SF85/test3.json"
+
+	// provision an 85
+	account := create85TestAccount(t, services.db)
+	fmt.Println(account)
+
+	// load a complete scenario
+	form := readTestData(t, scenario)
+	saveFormJSON(t, services, form, account)
+
+	// First try with a clearance granted:
+	grantedJSON := readTestData(t, "../testdata/legal/legal-investigations-85-clerance-granted.json")
+	grantedResp := saveJSON(services, grantedJSON, account)
+	if grantedResp.StatusCode != http.StatusOK {
+		t.Fatal("Didn't even save the granted clerance")
+	}
+
+	// convert to XML
+	xml, _, xmlErr := submitter.FilesForSubmission(account.ID)
+	if xmlErr != nil {
+		t.Fatal(xmlErr)
+	}
+
+	if !bytes.Contains(xml, []byte("<ClearanceGranted")) {
+		t.Log("Didn't put in CleranceGranted")
+		t.Fail()
+	}
+
+	if !bytes.Contains(xml, []byte("<ClearanceLevel")) {
+		t.Log("Didn't include ClearanceLevel")
+		t.Fail()
+	}
+
+	// Next, try with clearance not granted
+	notGrantedJSON := readTestData(t, "../testdata/legal/legal-investigations-85-clerance-not-granted.json")
+	notGrantedResp := saveJSON(services, notGrantedJSON, account)
+	if notGrantedResp.StatusCode != http.StatusOK {
+		t.Fatal("Didn't even save the granted clerance")
+	}
+
+	// convert to XML
+	notGrantedXML, _, xmlErr := submitter.FilesForSubmission(account.ID)
+	if xmlErr != nil {
+		t.Fatal(xmlErr)
+	}
+
+	if !bytes.Contains(notGrantedXML, []byte("<ClearanceGranted")) {
+		t.Log("Didn't put in CleranceGranted")
+		t.Fail()
+	}
+
+	if bytes.Contains(notGrantedXML, []byte("<ClearanceLevel")) {
+		t.Log("Should have omitted CleranceLevel ClearanceLevel")
+		t.Fail()
+	}
+
 }
 
 func Test85PSectionsOmitted(t *testing.T) {

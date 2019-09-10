@@ -1,0 +1,102 @@
+{
+    "type": "legal.investigations.history",
+    "props": {
+        "HasHistory": {
+            "type": "branch",
+            "props": {
+                "value": "Yes"
+            }
+        },
+        "List": {
+            "type": "collection",
+            "props": {
+                "items": [
+                    {
+                        "Item": {
+                            "Agency": {
+                                "type": "radio",
+                                "props": {
+                                    "value": "U.S. Department of Homeland Security"
+                                }
+                            },
+                            "AgencyExplanation": {
+                                "type": "textarea",
+                                "props": {
+                                    "value": ""
+                                }
+                            },
+                            "AgencyNotApplicable": {
+                                "type": "notapplicable",
+                                "props": {
+                                    "applicable": true
+                                }
+                            },
+                            "Completed": {
+                                "type": "datecontrol",
+                                "props": {
+                                    "name": "Completed",
+                                    "month": "3",
+                                    "day": "3",
+                                    "year": "1993",
+                                    "estimated": false,
+                                    "touched": true
+                                }
+                            },
+                            "CompletedNotApplicable": {
+                                "type": "notapplicable",
+                                "props": {
+                                    "applicable": true
+                                }
+                            },
+                            "Issued": {
+                                "type": "text",
+                                "props": {}
+                            },
+                            "Granted": {
+                                "type": "datecontrol",
+                                "props": {}
+                            },
+                            "GrantedNotApplicable": {
+                                "type": "notapplicable",
+                                "props": {
+                                    "applicable": true
+                                }
+                            },
+                            "ClearanceGranted": {
+                                "type": "branch",
+                                "props": {
+                                    "value": "No"
+                                }
+                            },
+                            "ClearanceLevel": {
+                                "type": "clearancelevel",
+                                "props": {
+                                    "Level": {
+                                        "type": "radio",
+                                        "props": {}
+                                    },
+                                    "Explanation": {
+                                        "type": "textarea",
+                                        "props": {}
+                                    }
+                                }
+                            },
+                            "ClearanceLevelNotApplicable": {
+                                "type": "notapplicable",
+                                "props": {
+                                    "applicable": true
+                                }
+                            }
+                        }
+                    }
+                ],
+                "branch": {
+                    "type": "branch",
+                    "props": {
+                        "value": "No"
+                    }
+                }
+            }
+        }
+    }
+}
