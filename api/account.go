@@ -66,9 +66,9 @@ func NullString() sql.NullString {
 	return sql.NullString{}
 }
 
-// validate returns nil if the account is valid or an error describing what's wrong otherwise.
+// CheckIsValid returns nil if the account is valid or an error describing what's wrong otherwise.
 // This is intended to ensure data integrity by not saving invalid data to the database
-func (entity Account) validate() error {
+func (entity Account) CheckIsValid() error {
 
 	// the required fields are Username, FormType, and FormVersion
 	errorString := "Account is invalid. "

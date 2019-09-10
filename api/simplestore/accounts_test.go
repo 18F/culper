@@ -268,7 +268,9 @@ func TestCreateErr(t *testing.T) {
 	defer store.Close()
 
 	newAccount := api.Account{
-		Username: "joe",
+		Username:    "joe",
+		FormType:    "SF86",
+		FormVersion: "2017-07",
 	}
 
 	// There is a unique constraint on username, so we can trigger an error there.
@@ -279,6 +281,16 @@ func TestCreateErr(t *testing.T) {
 		if createErr == nil {
 			t.Fatal("Should have errored creating an incomplete account.")
 		}
+	}
+
+	invalidAccount := api.Account{
+		Username:    "invalid",
+		FormType:    "SF86",
+		FormVersion: "nonsense",
+	}
+	invalidErr := store.CreateAccount(&invalidAccount)
+	if invalidErr == nil {
+		t.Fatal("Shouldn't have created an invalid account")
 	}
 
 }

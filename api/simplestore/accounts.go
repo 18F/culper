@@ -13,6 +13,11 @@ import (
 // CreateAccount creates a new account
 func (s SimpleStore) CreateAccount(account *api.Account) error {
 
+	validErr := account.CheckIsValid()
+	if validErr != nil {
+		return errors.Wrap(validErr, "failed to create invalid Account")
+	}
+
 	createQuery := `INSERT INTO accounts (username, email, status, form_type, form_version, external_id) 
 							VALUES ($1, $2, $3, $4, $5, $6) 
 							RETURNING id`
