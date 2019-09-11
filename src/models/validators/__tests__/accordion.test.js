@@ -4,13 +4,13 @@ describe('The accordion validator', () => {
   it('fails if items is undefined', () => {
     const testData = { items: undefined, branch: { value: 'No' } }
     const validator = { value: { email: true } }
-    expect(accordion(testData, { validator })).toEqual('MISSING_ITEMS')
+    expect(accordion(testData, { validator })).toEqual(['MISSING_ITEMS'])
   })
 
   it('fails if there are no items', () => {
     const testData = { items: [], branch: { value: 'No' } }
     const validator = { value: { email: true } }
-    expect(accordion(testData, { validator })).toEqual('MISSING_ITEMS')
+    expect(accordion(testData, { validator })).toEqual(['MISSING_ITEMS'])
   })
 
   it('fails if there is no validator', () => {
