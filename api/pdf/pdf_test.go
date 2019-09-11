@@ -27,19 +27,68 @@ func TestPackage(t *testing.T) {
 			continue
 		}
 
-		created, err := service.CreatePdf(application, p, hex.EncodeToString(fauxHash[:]))
+		created, err := service.CreatePdf(application, p, hex.EncodeToString(fauxHash[:]), "SF86")
 		if err != nil {
-			t.Fatalf("Error creating PDF from %s: %s", p.Template, err.Error())
+			t.Fatalf("Error creating PDF from %s: %s", p.Name, err.Error())
 		}
 
-		rpath := path.Join(testdataDir, "attachments", p.Name+fileExtension)
+		referenceName := p.Name + "-SF86" + fileExtension
+
+		rpath := path.Join(testdataDir, "attachments", referenceName)
 		reference, err := ioutil.ReadFile(rpath)
 		if err != nil {
 			t.Fatalf("Error reading reference PDF: %s", err.Error())
 		}
 
 		if !bytes.Equal(created, reference) {
-			tmpfile, err := ioutil.TempFile(testdataDir, p.Name+fileExtension)
+			tmpfile, err := ioutil.TempFile(path.Join(testdataDir, "attachments"), referenceName)
+			if err != nil {
+				t.Fatalf("Error creating generated PDF: %s", err.Error())
+			}
+			defer tmpfile.Close()
+
+			_, err = tmpfile.Write(created)
+			if err != nil {
+				t.Fatalf("Error writing generated PDF: %s", err.Error())
+			}
+
+			t.Errorf("Generated PDF (%s) does not match reference PDF (%s)",
+				tmpfile.Name(), rpath)
+		}
+	}
+}
+
+func Test85Package(t *testing.T) {
+
+	application := applicationData(t)
+	service := NewPDFService("./templates/")
+	var fauxHash [sha256.Size]byte
+
+	for _, p := range ReleasePDFs {
+		if p.DocType == DocumentTypeMedicalRelease {
+			continue
+		}
+
+		_, ok := service.SignatureAvailable(application, p)
+		if !ok {
+			continue
+		}
+
+		created, err := service.CreatePdf(application, p, hex.EncodeToString(fauxHash[:]), "SF85")
+		if err != nil {
+			t.Fatalf("Error creating PDF from %s: %s", p.Name, err.Error())
+		}
+
+		referenceName := p.Name + "-SF85" + fileExtension
+
+		rpath := path.Join(testdataDir, "attachments", referenceName)
+		reference, err := ioutil.ReadFile(rpath)
+		if err != nil {
+			t.Fatalf("Error reading reference PDF: %s", err.Error())
+		}
+
+		if !bytes.Equal(created, reference) {
+			tmpfile, err := ioutil.TempFile(path.Join(testdataDir, "attachments"), referenceName)
 			if err != nil {
 				t.Fatalf("Error creating generated PDF: %s", err.Error())
 			}
