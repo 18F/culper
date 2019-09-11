@@ -19,15 +19,15 @@ describe('The accordion validator', () => {
   })
 
   it('fails if there is no branch value', () => {
-    const testData = { items: [] }
+    const testData = { items: [{ Item: 'Thing' }] }
     const validator = { value: { email: true } }
-    expect(accordion(testData, { validator })).toEqual('INVALID_BRANCH')
+    expect(accordion(testData, { validator })).toEqual(['INVALID_BRANCH'])
   })
 
   it('fails if the branch value is not "No"', () => {
-    const testData = { items: [], branch: { value: 'Yes' } }
+    const testData = { items: [{ Item: 'Thing' }], branch: { value: 'Yes' } }
     const validator = { value: { email: true } }
-    expect(accordion(testData, { validator })).toEqual('INVALID_BRANCH')
+    expect(accordion(testData, { validator })).toEqual(['INVALID_BRANCH'])
   })
 
   it('fails if any of the items are missing an Item', () => {
@@ -50,11 +50,11 @@ describe('The accordion validator', () => {
         { Item: { value: 'email@gmail.com' } },
         { Item: { value: '' } },
       ],
-      branch: { value: 'No' },
     }
 
     const validator = { value: { email: true } }
     expect(accordion(testData, { validator })).toEqual([
+      'INVALID_BRANCH',
       'abc123.value.email.INVALID_EMAIL',
       '2.value.email.INVALID_EMAIL',
     ])
