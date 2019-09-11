@@ -35,8 +35,8 @@ const ResidenceWrapper = (props) => {
 
   const validResidenceDates = data.List && data.List.items
     ? data.List.items.filter((i) => {
-      if (!errors || !errors.length) return true
       if (!i.Item) return false
+      if (!errors || !errors.length) return true
       if (errors.filter(e => e.indexOf(i.uuid) > -1).length > 0) return false
       return true
     }).map(i => i.Item.Dates)
