@@ -274,16 +274,11 @@ func selectLinesString(lines []string) []int {
 	for i, line := range lines {
 		// THIS IS A NIGHTMARE but the JSON's unstructured
 		// so you'll avoid running anything in a collection type
-		if strings.Contains(line, "[") && strings.Contains(line, "]") {
-			continue
-		}
 		if strings.Contains(line, "[") {
 			leftBracket++
-			continue
 		}
 		if strings.Contains(line, "]") {
 			rightBracket++
-			continue
 		}
 		if leftBracket == rightBracket {
 			// Don't change lines that use type as part of the prop structure
