@@ -82,7 +82,7 @@ func TestAccountUsernameValidation(t *testing.T) {
 		FormType:    "SF86",
 		FormVersion: "2017-07",
 	}
-	err := account.validate()
+	err := account.CheckIsValid()
 	if err == nil {
 		t.Errorf("expected a Missing Username error")
 		t.Fail()
@@ -97,7 +97,7 @@ func TestAccountFormTypeValidation(t *testing.T) {
 		FormType:    "Dogs",
 		FormVersion: "2017-07",
 	}
-	err := account.validate()
+	err := account.CheckIsValid()
 	if err == nil {
 		t.Errorf("expected a Known Form error")
 		t.Fail()
