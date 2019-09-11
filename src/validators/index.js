@@ -46,15 +46,6 @@ import MaritalValidator from './marital'
 import RelationshipsValidator from './relationships'
 import PeopleValidator from './people'
 import PersonValidator from './person'
-import ForeignContactsValidator, {
-  ForeignNationalValidator,
-} from './foreigncontacts'
-import ForeignDirectActivityValidator from './foreigndirectactivity'
-import ForeignDirectInterestValidator from './foreigndirectinterest'
-import ForeignIndirectActivityValidator from './foreignindirectactivity'
-import ForeignIndirectInterestValidator from './foreignindirectinterest'
-import ForeignRealEstateActivityValidator from './foreignrealestateactivity'
-import ForeignRealEstateInterestValidator from './foreignrealestateinterest'
 import LegalNonCriminalCourtActionsValidator, {
   NonCriminalCourtActionValidator,
 } from './legalnoncriminalcourtactions'
@@ -79,21 +70,6 @@ import LegalTechnologyUnlawfulValidator, {
 import LegalAssociationsTerroristValidator, {
   TerroristValidator,
 } from './legalassociationsterrorist'
-import ForeignActivitiesSupportValidator, {
-  SupportValidator,
-} from './foreignsupport'
-import ForeignBusinessVenturesValidator, {
-  VenturesValidator,
-} from './foreignbusinessventures'
-import ForeignBusinessSponsorshipValidator, {
-  SponsorshipValidator,
-} from './foreignbusinesssponsorship'
-import ForeignBusinessPoliticalValidator, {
-  PoliticalValidator,
-} from './foreignbusinesspolitical'
-import ForeignBusinessVotingValidator, {
-  VotingValidator,
-} from './foreignbusinessvoting'
 import ForeignTravelValidator, { TravelValidator } from './foreigntravel'
 import LegalAssociationsOverthrowValidator, {
   OverthrowValidator,
@@ -167,24 +143,6 @@ export {
   RelationshipsValidator,
   PeopleValidator,
   PersonValidator,
-  ForeignContactsValidator,
-  ForeignNationalValidator,
-  ForeignDirectActivityValidator,
-  ForeignDirectInterestValidator,
-  ForeignIndirectActivityValidator,
-  ForeignIndirectInterestValidator,
-  ForeignRealEstateActivityValidator,
-  ForeignRealEstateInterestValidator,
-  ForeignActivitiesSupportValidator,
-  SupportValidator,
-  ForeignBusinessVenturesValidator,
-  VenturesValidator,
-  ForeignBusinessSponsorshipValidator,
-  SponsorshipValidator,
-  ForeignBusinessPoliticalValidator,
-  PoliticalValidator,
-  ForeignBusinessVotingValidator,
-  VotingValidator,
   ForeignTravelValidator,
   TravelValidator,
   LegalNonCriminalCourtActionsValidator,

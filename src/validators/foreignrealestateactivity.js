@@ -18,13 +18,3 @@ export const validateForeignRealEstateActivity = (data) => {
 
   return validateModel(data, foreignRealEstateActivityModel)
 }
-
-export default class ForeignRealEstateActivityValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  isValid() {
-    return validateForeignRealEstateActivity(this.data) === true
-  }
-}

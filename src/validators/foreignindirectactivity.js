@@ -18,13 +18,3 @@ export const validateForeignIndirectActivity = (data) => {
 
   return validateModel(data, foreignIndirectActivityModel)
 }
-
-export default class ForeignIndirectActivityValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  isValid() {
-    return validateForeignIndirectActivity(this.data) === true
-  }
-}
