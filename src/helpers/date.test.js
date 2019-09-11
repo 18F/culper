@@ -1,6 +1,6 @@
 import {
   today, dateWithinRange, sortDateRanges, findTimelineGaps,
-  getApplicantRequiredDuration,
+  getApplicantRequiredDuration, validateDateRanges,
 } from './date'
 
 describe('The dateWithinRange helper function', () => {
@@ -30,16 +30,16 @@ describe('The sortDateRanges function', () => {
   it('sorts a list of date ranges', () => {
     const testData = [
       {
-        from: today.minus({ years: 5 }).toObject(),
-        to: today.minus({ years: 1 }).toObject(),
+        from: today.minus({ years: 5 }),
+        to: today.minus({ years: 1 }),
       },
       {
-        from: today.minus({ years: 4, months: 11 }).toObject(),
-        present: true,
+        from: today.minus({ years: 4, months: 11 }),
+        to: today,
       },
       {
-        from: today.minus({ years: 10 }).toObject(),
-        to: today.minus({ years: 3 }).toObject(),
+        from: today.minus({ years: 10 }),
+        to: today.minus({ years: 3 }),
       },
     ]
 
@@ -62,7 +62,93 @@ describe('The sortDateRanges function', () => {
   })
 })
 
+describe('The validateDateRanges function', () => {
+  it('converts date objects to luxon dates', () => {
+    const testData = [
+      {
+        from: today.minus({ years: 5 }).toObject(),
+        to: today.minus({ years: 1 }).toObject(),
+      },
+      {
+        from: today.minus({ years: 4, months: 11 }).toObject(),
+        present: true,
+      },
+      {
+        from: today.minus({ years: 10 }).toObject(),
+        to: today.minus({ years: 3 }).toObject(),
+      },
+    ]
+
+    const expected = [
+      {
+        from: today.minus({ years: 5 }),
+        to: today.minus({ years: 1 }),
+      },
+      {
+        from: today.minus({ years: 4, months: 11 }),
+        to: today,
+      },
+      {
+        from: today.minus({ years: 10 }),
+        to: today.minus({ years: 3 }),
+      },
+    ]
+
+    expect(validateDateRanges(testData)).toEqual(expected)
+  })
+
+  it('filters out invalid date objects', () => {
+    const testData = [
+      {
+        from: today.minus({ years: 5 }).toObject(),
+        to: today.minus({ years: 1 }).toObject(),
+      },
+      {
+        from: today.minus({ years: 4, months: 11 }).toObject(),
+        present: true,
+      },
+      {
+        from: { month: '', year: '', day: '' },
+        present: false,
+      },
+    ]
+
+    const expected = [
+      {
+        from: today.minus({ years: 5 }),
+        to: today.minus({ years: 1 }),
+      },
+      {
+        from: today.minus({ years: 4, months: 11 }),
+        to: today,
+      },
+    ]
+
+    expect(validateDateRanges(testData)).toEqual(expected)
+  })
+})
+
 describe('The findTimelineGaps function', () => {
+  it('doesn’t error if ranges contains an empty date range', () => {
+    const testDuration = { years: 5 }
+    const testRanges = [
+      {
+        from: { month: '', day: '', year: '' },
+        to: { month: '', day: '', year: '' },
+        present: false,
+      },
+    ]
+
+    const expectedGaps = [
+      {
+        from: today.minus({ years: 5 }).toObject(),
+        to: today.toObject(),
+      },
+    ]
+
+    expect(findTimelineGaps(testDuration, testRanges)).toEqual(expectedGaps)
+  })
+
   it('returns gaps for ranges that overlap', () => {
     const testDuration = { years: 3 }
     const testRanges = [
@@ -144,7 +230,7 @@ describe('The findTimelineGaps function', () => {
       },
       {
         from: today.minus({ years: 4 }).plus({ days: 25 }).toObject(),
-        to: today,
+        to: today.toObject(),
       },
     ]
 
