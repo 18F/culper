@@ -15,32 +15,7 @@ describe('The SummaryCounter component', () => {
   it('can display count of schools attended', () => {
     const expected = {
       name: 'summary',
-      schools: () => [
-        {
-          to: {
-            month: '6',
-            day: '1',
-            year: '1982',
-          },
-          from: {
-            month: '6',
-            day: '1',
-            year: '1980',
-          },
-        },
-        {
-          to: {
-            month: '6',
-            day: '1',
-            year: '1984',
-          },
-          from: {
-            month: '6',
-            day: '1',
-            year: '1982',
-          },
-        },
-      ],
+      schoolCount: 2,
     }
     const component = mount(<SummaryCounter {...expected} />)
     expect(component.find('.schools.total').text()).toEqual('2')
@@ -50,13 +25,7 @@ describe('The SummaryCounter component', () => {
   it('can display count of diplomas received', () => {
     const expected = {
       name: 'summary',
-      diplomas: () => [
-        {
-          month: '6',
-          day: '1',
-          year: '1982',
-        },
-      ],
+      diplomaCount: 1,
     }
     const component = mount(<SummaryCounter {...expected} />)
     expect(component.find('.schools.total').text()).toEqual('0')
