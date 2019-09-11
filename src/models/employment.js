@@ -148,25 +148,32 @@ const employment = {
     }
   },
   AlternateAddress: (value, attributes) => {
-    if (attributes.Address && isInternational(attributes.Address)) {
-      return {
-        presence: true,
-        model: {
-          validator: physicalAddress,
-          militaryAddress: true,
-          hasTelephone: false,
-        },
+    if (matchEmploymentActivity(attributes, [UNEMPLOYMENT])) return {}
+    if (
+      attributes.PhysicalAddress
+      && attributes.PhysicalAddress.HasDifferentAddress
+      && attributes.PhysicalAddress.HasDifferentAddress.value === 'No'
+    ) {
+      if (attributes.Address && isInternational(attributes.Address)) {
+        return {
+          presence: true,
+          model: {
+            validator: physicalAddress,
+            militaryAddress: true,
+            hasTelephone: false,
+          },
+        }
       }
-    }
 
-    if (attributes.Address && isPO(attributes.Address)) {
-      return {
-        presence: true,
-        model: {
-          validator: physicalAddress,
-          militaryAddress: false,
-          hasTelephone: false,
-        },
+      if (attributes.Address && isPO(attributes.Address)) {
+        return {
+          presence: true,
+          model: {
+            validator: physicalAddress,
+            militaryAddress: false,
+            hasTelephone: false,
+          },
+        }
       }
     }
 
