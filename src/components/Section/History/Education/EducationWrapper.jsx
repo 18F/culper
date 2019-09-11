@@ -137,10 +137,8 @@ class EducationWrapper extends React.Component {
   }
 }
 
-/* eslint react/forbid-prop-types: 0 */
 EducationWrapper.propTypes = {
   Education: PropTypes.object,
-  Birthdate: PropTypes.any,
   data: PropTypes.object,
   formType: PropTypes.string.isRequired,
   inReview: PropTypes.bool,
@@ -155,7 +153,6 @@ EducationWrapper.defaultProps = {
     HasDegree10: '',
     List: { items: [] },
   },
-  Birthdate: {},
   data: {},
   inReview: false,
   onUpdate: () => {},

@@ -219,8 +219,6 @@ Employment.defaultProps = {
   caption: null,
   onUpdate: () => {},
   onError: (value, arr) => arr,
-  section: 'history',
-  subsection: 'employment',
   addressBooks: {},
   dispatch: () => {},
   gaps: [],
