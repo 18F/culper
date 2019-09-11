@@ -22,7 +22,7 @@ const sectionConfig = {
 
 const EmploymentWrapper = (props) => {
   const {
-    Employment, Birthdate, formType, errors, applicantBirthdate, data,
+    formType, errors, applicantBirthdate, data,
   } = props
 
   const formTypeConfig = formType && formConfig[formType]
@@ -64,11 +64,8 @@ const EmploymentWrapper = (props) => {
       <span id="scrollToHistory" />
 
       <EmploymentSummaryProgress
-        Employment={Employment}
-        Birthdate={Birthdate}
-        years={years}
+        years={requiredYears}
         dates={validEmploymentDates}
-        errors={errors}
       />
 
       <ConnectedEmployment
@@ -100,8 +97,6 @@ const EmploymentWrapper = (props) => {
 EmploymentWrapper.propTypes = {
   applicantBirthdate: PropTypes.object,
   data: PropTypes.object,
-  Employment: PropTypes.object,
-  Birthdate: PropTypes.any,
   formType: PropTypes.string.isRequired,
   errors: PropTypes.array,
 }
@@ -109,8 +104,6 @@ EmploymentWrapper.propTypes = {
 EmploymentWrapper.defaultProps = {
   applicantBirthdate: null,
   data: {},
-  Employment: undefined,
-  Birthdate: undefined,
   errors: [],
 }
 
