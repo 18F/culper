@@ -13,8 +13,6 @@ import EmploymentItem from 'components/Section/History/Employment/EmploymentItem
 import { Gap } from 'components/Section/History/Gap'
 
 import { getYearsString } from 'helpers/text'
-import { findTimelineGaps } from 'helpers/date'
-import { validateModel } from 'models/validate'
 
 import { HISTORY, HISTORY_EMPLOYMENT } from 'config/formSections/history'
 
@@ -114,21 +112,12 @@ export class Employment extends Subsection {
 
   render() {
     const {
-      List, totalYears, recordYears, errors,
+      List, totalYears, recordYears, errors, gaps,
     } = this.props
-    const { items, branch } = List
+    const { branch } = List
 
     const recordYearsString = getYearsString(recordYears)
     const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
-
-    const dateRanges = items
-      .filter(i => i.Item && i.Item.Dates && validateModel(
-        { Dates: i.Item.Dates },
-        { Dates: { presence: true, daterange: true } }
-      ) === true)
-      .map(i => i.Item.Dates)
-
-    const gaps = findTimelineGaps({ years: totalYears }, dateRanges)
 
     const showGapError = branch
       && branch.value === 'No'
@@ -234,6 +223,7 @@ Employment.defaultProps = {
   subsection: 'employment',
   addressBooks: {},
   dispatch: () => {},
+  gaps: [],
   errors: [],
 }
 

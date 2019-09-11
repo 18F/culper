@@ -151,6 +151,7 @@ Residence.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   errors: [],
+  gaps: [],
 }
 
 export default connectSubsection(Residence, sectionConfig)

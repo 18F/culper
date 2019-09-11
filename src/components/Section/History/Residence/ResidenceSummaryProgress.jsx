@@ -16,7 +16,6 @@ const ResidenceSummaryProgress = (props) => {
       title={i18n.t('history.residence.summary.title')}
       unit={i18n.t('history.residence.summary.unit')}
       total={years}
-      dates={dates}
     >
       <div className="summary-icon">
         <Svg
@@ -28,7 +27,6 @@ const ResidenceSummaryProgress = (props) => {
   )
 }
 
-/* eslint react/forbid-prop-types: 0 */
 ResidenceSummaryProgress.propTypes = {
   years: PropTypes.number,
   dates: PropTypes.array,
