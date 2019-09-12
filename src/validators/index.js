@@ -70,7 +70,6 @@ import LegalTechnologyUnlawfulValidator, {
 import LegalAssociationsTerroristValidator, {
   TerroristValidator,
 } from './legalassociationsterrorist'
-import ForeignTravelValidator, { TravelValidator } from './foreigntravel'
 import LegalAssociationsOverthrowValidator, {
   OverthrowValidator,
 } from './legalassociationsoverthrow'
@@ -143,8 +142,6 @@ export {
   RelationshipsValidator,
   PeopleValidator,
   PersonValidator,
-  ForeignTravelValidator,
-  TravelValidator,
   LegalNonCriminalCourtActionsValidator,
   NonCriminalCourtActionValidator,
   LegalInvestigationsHistoryValidator,
