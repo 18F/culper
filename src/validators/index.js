@@ -5,6 +5,8 @@ import DateRangeValidator from './daterange'
 
 import NameValidator from './name'
 
+import ForeignBornDocumentValidator from './foreignborndocument'
+
 import PassportValidator from './passport'
 import HistoryResidenceValidator, { ResidenceValidator } from './residence'
 import SelectiveServiceValidator, {
@@ -70,9 +72,6 @@ import LegalAssociationsViolenceValidator, {
 import LegalAssociationsEngagedValidator, {
   EngagedValidator,
 } from './legalassociationsengaged'
-import LegalAssociationsAdvocatingValidator, {
-  AdvocatingValidator,
-} from './legalassociationsadvocating'
 import LegalAssociationsTerrorismValidator from './legalassociationsterrorism'
 import LocationValidator from './location'
 import SignatureValidator from './signature'
@@ -94,6 +93,7 @@ export default validate
 export {
   DateControlValidator,
   DateRangeValidator,
+  ForeignBornDocumentValidator,
   NameValidator,
   PassportValidator,
   HistoryResidenceValidator,
@@ -145,8 +145,6 @@ export {
   ViolenceValidator,
   LegalAssociationsEngagedValidator,
   EngagedValidator,
-  LegalAssociationsAdvocatingValidator,
-  AdvocatingValidator,
   LegalAssociationsTerrorismValidator,
   LocationValidator,
   SignatureValidator,
