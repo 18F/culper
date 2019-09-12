@@ -11,7 +11,6 @@ import NameValidator from './name'
 import { OtherNameValidator } from './identificationothernames'
 
 import PassportValidator from './passport'
-import GamblingValidator, { GamblingItemValidator } from './gambling'
 import HistoryResidenceValidator, { ResidenceValidator } from './residence'
 import SelectiveServiceValidator, {
   hideSelectiveService,
@@ -111,8 +110,6 @@ export {
   NameValidator,
   OtherNameValidator,
   PassportValidator,
-  GamblingValidator,
-  GamblingItemValidator,
   HistoryResidenceValidator,
   ResidenceValidator,
   SelectiveServiceValidator,
