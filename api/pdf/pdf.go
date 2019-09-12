@@ -31,10 +31,28 @@ const DocumentTypeInformationRelease = "REL"
 var (
 	// ReleasePDFs lists the supported archival PDFs.
 	ReleasePDFs = []api.ArchivalPdf{
-		{"signature-form", "certification-SF86-July2017.template.pdf", "AdditionalComments", DocumentTypeCertification},
-		{"release-credit", "credit-SF86-July2017.template.pdf", "Credit", DocumentTypeCreditRelease},
-		{"release-medical", "medical-SF86-July2017.template.pdf", "Medical", DocumentTypeMedicalRelease},
-		{"release-information", "general-SF86-July2017.template.pdf", "General", DocumentTypeInformationRelease},
+		{"signature-form", "AdditionalComments", DocumentTypeCertification},
+		{"release-credit", "Credit", DocumentTypeCreditRelease},
+		{"release-medical", "Medical", DocumentTypeMedicalRelease},
+		{"release-information", "General", DocumentTypeInformationRelease},
+	}
+
+	release86Filenames = map[string]string{
+		"signature-form":      "certification-SF86-July2017.template.pdf",
+		"release-credit":      "credit-SF86-July2017.template.pdf",
+		"release-medical":     "medical-SF86-July2017.template.pdf",
+		"release-information": "general-SF86-July2017.template.pdf",
+	}
+
+	release85Filenames = map[string]string{
+		"signature-form":      "certification-SF85-December2017.pdf",
+		"release-credit":      "credit-SF85-December2017.pdf",
+		"release-information": "general-SF85-December2017.pdf",
+	}
+
+	releaseFilenames = map[string]map[string]string{
+		"SF85": release85Filenames,
+		"SF86": release86Filenames,
 	}
 )
 
@@ -61,6 +79,10 @@ func NewPDFService(templatePath string) Service {
 
 // GenerateReleases generates the four signed pdfs for a given Application
 func (service Service) GenerateReleases(account api.Account, app api.Application) ([]api.Attachment, error) {
+	// TODO: Add the releases for the SF85P
+	if app.FormType() == "SF85P" {
+		return []api.Attachment{}, errors.New("releases for the SF85P have not been implmented yet. Unable to generate releases")
+	}
 
 	// Same as for XML, we convert the applicaiton to a raw JSON form for templating
 	// This can be cleaned up in the future, these functions should all work on the model objects instead of JSON
@@ -84,7 +106,7 @@ func (service Service) GenerateReleases(account api.Account, app api.Application
 
 	for _, docInfo := range ReleasePDFs {
 
-		docBytes, createErr := service.CreatePdf(appData, docInfo, hash)
+		docBytes, createErr := service.CreatePdf(appData, docInfo, hash, app.FormType())
 		if createErr != nil {
 			if createErr == errSignatureNotAvailable {
 				continue
@@ -112,7 +134,7 @@ func (service Service) GenerateReleases(account api.Account, app api.Application
 // updated. Assumes field values are ASCII.
 // The type of PDF controls the template used. The SHA256 hash of the application, in hexadecimal,
 // may also be populated in the resulting PDF.
-func (service Service) CreatePdf(application map[string]interface{}, pdfType api.ArchivalPdf, hash string) ([]byte, error) {
+func (service Service) CreatePdf(application map[string]interface{}, pdfType api.ArchivalPdf, hash string, formType string) ([]byte, error) {
 	// Get application data into easily queryable form
 	json, _ := gabs.Consume(application)
 
@@ -144,7 +166,9 @@ func (service Service) CreatePdf(application map[string]interface{}, pdfType api
 		{"APPLICATION_SHA256_HASH", 64, hexHash},
 	}
 
-	dat, err := ioutil.ReadFile(path.Join(service.templatePath, pdfType.Template))
+	templatePath := releaseFilenames[formType][pdfType.Name]
+
+	dat, err := ioutil.ReadFile(path.Join(service.templatePath, templatePath))
 	if err != nil {
 		return nil, err
 	}

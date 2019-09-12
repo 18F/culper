@@ -4003,7 +4003,7 @@
                           "touched": true
                         }
                       },
-                      "present": true
+                      "present": false
                     }
                   },
                   "Name": {
@@ -7985,8 +7985,7 @@
                   "Officer": {
                     "type": "radio",
                     "props": {
-                      "name": "officer-na",
-                      "value": "NotApplicable",
+                      "value": "Enlisted",
                       "checked": false
                     }
                   },

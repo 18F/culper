@@ -1,0 +1,456 @@
+<?xml version="1.0"?>
+<XMP version="3.00">
+  <SubmittedRequestInfo>
+    <RequestInfo>
+      <Request>
+        <Form>
+          <Name>SF85</Name>
+          <Version>2017-12-draft7</Version>
+        </Form>
+        <Applicant>
+          <SSN>555555555</SSN>
+        </Applicant>
+        <Responses>
+          <AgencyInstructionsForApplicant/>
+          <FormInstanceSpecific>
+            <AgencyInstructionsForApplicant/>
+            <ESigCertificationResponses Version="1" Type="Pooled" LastSummaryID="201" LastDynamicListID="201">
+              <UserFinalizedCert>
+                <Answer>Yes</Answer>
+              </UserFinalizedCert>
+              <UserOptedToESig>
+                <Answer>Yes</Answer>
+              </UserOptedToESig>
+            </ESigCertificationResponses>
+            <UserPreferences Version="1" Type="Pooled" LastSummaryID="201" LastDynamicListID="201">
+              <DisplayNavigation/>
+            </UserPreferences>
+            <ValidationResponses Version="1" Type="FormInstanceSpecific"/>
+          </FormInstanceSpecific>
+          <Pooled>
+            <IdentifyingInformation Type="Pooled" Version="1">
+              <Birth>
+                <Date>
+                  <Month>05</Month>
+                  <Day>15</Day>
+                  <Year>1995</Year>
+                </Date>
+                <Place>
+                  <City>Brooklyn</City>
+                  <State>NY</State>
+                  <County>Kings</County>
+                  <Country>United States</Country>
+                </Place>
+              </Birth>
+              <EyeColor>Brown</EyeColor>
+              <FullName>
+                <LegalName>
+                  <Last>Dolan</Last>
+                  <First>James</First>
+                  <Middle>Ronald</Middle>
+                </LegalName>
+              </FullName>
+              <HairColor>Brown</HairColor>
+              <Height>
+                <Feet>5</Feet>
+                <Inches>10</Inches>
+              </Height>
+              <OtherNamesUsed>
+                <Answer>No</Answer>
+              </OtherNamesUsed>
+              <SSN>
+                <FirstThree>555</FirstThree>
+                <NextTwo>55</NextTwo>
+                <LastFour>5555</LastFour>
+              </SSN>
+              <Sex>Male</Sex>
+              <Weight>
+                <Pounds>170</Pounds>
+              </Weight>
+            </IdentifyingInformation>
+            <ContactInformation Version="1" Type="Pooled">
+              <HomeEmail>
+                <Email>james@email.com</Email>
+              </HomeEmail>
+              <WorkEmail>
+                <Email>james@workemail.com</Email>
+              </WorkEmail>
+              <MobileTelephone>
+                <Telephone>
+                  <Number>5555555555</Number>
+                  <Time>Both</Time>
+                </Telephone>
+              </MobileTelephone>
+            </ContactInformation>
+            <ResidenceHistory Version="1" Type="Pooled">
+              <Residencies>
+                <Residency ID="1">
+                  <Address>
+                    <Street>100 UNION ST</Street>
+                    <City>BROOKLYN</City>
+                    <State>NY</State>
+                    <ZipCode>11231</ZipCode>
+                  </Address>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>05</Month>
+                        <Year>2011</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <ResidenceType>Other</ResidenceType>
+                  <StatusOtherExplanation>This is my childhood home</StatusOtherExplanation>
+                  <Verifier>
+                    <Address>
+                      <Street>101 Union St</Street>
+                      <City>Brooklyn</City>
+                      <State>NY</State>
+                      <ZipCode>11231</ZipCode>
+                    </Address>
+                    <Email>jane@email.com</Email>
+                    <LastContact>
+                      <Date>
+                        <Month>10</Month>
+                        <Year>2018</Year>
+                      </Date>
+                    </LastContact>
+                    <LegalName>
+                      <Last>Dorman</Last>
+                      <First>Jane</First>
+                      <Middle>Donna</Middle>
+                    </LegalName>
+                    <RelationshipTypes Neighbor="True"/>
+                    <Telephone>
+                      <Day DoNotKnow="True"/>
+                      <Evening DoNotKnow="True"/>
+                      <Mobile>
+                        <Number>5555555555</Number>
+                      </Mobile>
+                    </Telephone>
+                  </Verifier>
+                </Residency>
+              </Residencies>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+            </ResidenceHistory>
+            <EmploymentActivities Type="Pooled" Version="1">
+              <Employments>
+                <Employment ID="1">
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>06</Month>
+                        <Year>2015</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Type>NonGovernment</Type>
+                  <WorkHours>PartTime</WorkHours>
+                  <CivilEmployment>
+                    <Employer>Wawa</Employer>
+                    <PositionTitle>Cashier</PositionTitle>
+                    <EmployersLocation>
+                      <Address>
+                        <Street>1212 wawa street</Street>
+                        <City>brooklyn</City>
+                        <State>NY</State>
+                        <ZipCode>11215</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>5555555555</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </EmployersLocation>
+                    <PreviousEmployments NotApplicable="True"/>
+                  </CivilEmployment>
+                  <Incidents>
+                    <Answer>No</Answer>
+                  </Incidents>
+                  <JobLocation>
+                    <Answer>No</Answer>
+                  </JobLocation>
+                  <Supervisor>
+                    <Name>Brian Henderson</Name>
+                    <Title>Store manager</Title>
+                    <Address>
+                      <Street>1212 wawa street</Street>
+                      <City>brooklyn</City>
+                      <State>NY</State>
+                      <ZipCode>11215</ZipCode>
+                    </Address>
+                    <Email DoNotKnow="True"/>
+                    <Telephone>
+                      <Number>5555555555</Number>
+                      <Time>Both</Time>
+                    </Telephone>
+                  </Supervisor>
+                </Employment>
+                <Employment ID="2">
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>05</Month>
+                        <Year>1995</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>06</Month>
+                        <Year>2015</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Type>Unemployed</Type>
+                  <Verifier>
+                    <LegalName>
+                      <Last>Donaldson</Last>
+                      <First>Cindy</First>
+                    </LegalName>
+                    <Address>
+                      <Street>100 Main street</Street>
+                      <City>brooklyn</City>
+                      <State>NY</State>
+                      <ZipCode>11215</ZipCode>
+                    </Address>
+                    <Telephone>
+                      <Number>5555555555</Number>
+                      <Time>Both</Time>
+                    </Telephone>
+                  </Verifier>
+                </Employment>
+              </Employments>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+            </EmploymentActivities>
+            <EmploymentRecord Version="1" Type="Pooled">
+              <Fired>
+                <Answer>No</Answer>
+              </Fired>
+            </EmploymentRecord>
+            <Education Version="1" Type="Pooled">
+              <AttendedAnySchools>
+                <Answer>No</Answer>
+              </AttendedAnySchools>
+              <ReceivedDegreeOrDiploma>
+                <Answer>No</Answer>
+              </ReceivedDegreeOrDiploma>
+              <SchoolsAttended>
+    
+  </SchoolsAttended>
+            </Education>
+            <Citizenship Version="1" Type="Pooled">
+              <Status>USByBirth</Status>
+              <USCitizen>
+                <ProofOfUSCitizenship>
+      
+      
+      
+    </ProofOfUSCitizenship>
+              </USCitizen>
+            </Citizenship>
+            <DualCitizenship Version="1" Type="Pooled">
+              <DualCitizenships>
+    
+  </DualCitizenships>
+              <HeldDualCitizenship>
+                <Answer>No</Answer>
+              </HeldDualCitizenship>
+            </DualCitizenship>
+            <USPassport Type="Pooled" Version="1">
+              <DoPossessUSPassport>
+                <Answer>No</Answer>
+              </DoPossessUSPassport>
+            </USPassport>
+            <MilitaryHistory Version="1" Type="Pooled">
+              <ForeignService>
+                <Answer>No</Answer>
+              </ForeignService>
+              <ForeignMilitaryService>
+  
+  
+  
+</ForeignMilitaryService>
+              <Answer>No</Answer>
+            </MilitaryHistory>
+            <SelectiveServiceRegistration Version="1" Type="Pooled">
+              <RegistrationRequired>
+                <Answer>Yes</Answer>
+              </RegistrationRequired>
+              <Registered>
+                <Answer>Yes</Answer>
+              </Registered>
+              <Registration>
+                <Number>12345</Number>
+              </Registration>
+            </SelectiveServiceRegistration>
+            <FinancialRecord Type="Pooled" Version="1">
+              <DelinquencyInvolvingEnforcement>
+                <Answer>No</Answer>
+                <Incidents>
+    
+  </Incidents>
+              </DelinquencyInvolvingEnforcement>
+              <UnpaidTaxes>
+                <Answer>No</Answer>
+                <Incidents>
+    
+  </Incidents>
+              </UnpaidTaxes>
+            </FinancialRecord>
+            <IllegalDrugUse Version="1" Type="Pooled">
+              <MisuseOfPrescriptionDrugs>
+                <Answer>No</Answer>
+                <Instances>
+    
+  </Instances>
+              </MisuseOfPrescriptionDrugs>
+              <OrderedAdvisedOrAskedToSeekCounseling>
+                <Answer>No</Answer>
+                <Consultations>
+    
+  </Consultations>
+              </OrderedAdvisedOrAskedToSeekCounseling>
+              <IllegalDrugActivity>
+                <Answer>No</Answer>
+                <Activities>
+    
+  </Activities>
+              </IllegalDrugActivity>
+              <IllegalUse>
+                <Answer>No</Answer>
+                <Instances>
+    
+  </Instances>
+              </IllegalUse>
+              <VoluntaryTreatment>
+                <Answer>No</Answer>
+                <Consultations>
+    
+  </Consultations>
+              </VoluntaryTreatment>
+            </IllegalDrugUse>
+            <PoliceRecord Version="1" Type="Pooled">
+              <Past7Years>
+                <Answer>No</Answer>
+                <Offenses>
+    
+  </Offenses>
+              </Past7Years>
+              <RestrainingOrders>
+                <Answer>No</Answer>
+              </RestrainingOrders>
+            </PoliceRecord>
+            <AssociationRecord Version="1" Type="Pooled">
+              <ActivitiesToOverthrowTheUSGovernment>
+                <Activities>
+    
+  </Activities>
+                <Answer>No</Answer>
+              </ActivitiesToOverthrowTheUSGovernment>
+              <AdvocatedTerrorism>
+                <Answer>No</Answer>
+                <Instances>
+    
+  </Instances>
+              </AdvocatedTerrorism>
+              <BeenInOrganizationAdvocatingViolence>
+                <Answer>No</Answer>
+                <Organizations>
+    
+  </Organizations>
+              </BeenInOrganizationAdvocatingViolence>
+              <BeenInOrganizationDedicatedToTerrorism>
+                <Answer>No</Answer>
+                <Organizations>
+    
+  </Organizations>
+              </BeenInOrganizationDedicatedToTerrorism>
+              <EngagedInTerrorism>
+                <Answer>No</Answer>
+                <TerroristActs>
+    
+  </TerroristActs>
+              </EngagedInTerrorism>
+              <TerrorismAssociations>
+                <Answer>No</Answer>
+              </TerrorismAssociations>
+              <TerroristOrganizationMember>
+                <Answer>No</Answer>
+                <Organizations>
+    
+  </Organizations>
+              </TerroristOrganizationMember>
+            </AssociationRecord>
+            <InvestigationRecord Version="1" Type="Pooled">
+              <ClearanceDenied>
+                <Answer>No</Answer>
+              </ClearanceDenied>
+              <GovernmentDebarment>
+                <Answer>No</Answer>
+              </GovernmentDebarment>
+              <PriorInvestigation>
+                <Answer>No</Answer>
+              </PriorInvestigation>
+            </InvestigationRecord>
+            <FormInstructions Type="Pooled" Version="1">
+              <ReadAndUnderstoodStatementOfUnderstanding>
+                <Answer>Yes</Answer>
+              </ReadAndUnderstoodStatementOfUnderstanding>
+            </FormInstructions>
+          </Pooled>
+        </Responses>
+      </Request>
+    </RequestInfo>
+    <DateSubmitted>2018-09-10</DateSubmitted>
+  </SubmittedRequestInfo>
+  <AgencyUsageBlock>
+    <TypeOfInvestigation>
+      <Type>64</Type>
+      <Service>B</Service>
+    </TypeOfInvestigation>
+    <SensitivityLevel>
+      <Code>2</Code>
+    </SensitivityLevel>
+    <Access>
+      <Code>2</Code>
+    </Access>
+    <Action>
+      <Nature>MIL</Nature>
+    </Action>
+    <Position>
+      <Title>Military</Title>
+    </Position>
+    <SON>957B</SON>
+    <LocationOPF>
+      <Code>None</Code>
+    </LocationOPF>
+    <SOI>NV00</SOI>
+    <LocationSEC>
+      <Code>None</Code>
+    </LocationSEC>
+    <InvestigativeRequirement>I</InvestigativeRequirement>
+    <ApplicantAffiliation>MIL</ApplicantAffiliation>
+    <IPAC>DOD-NAVY</IPAC>
+    <RequestingOfficials>
+      <Requestor>
+        <Name>AARON Strohl Laney</Name>
+        <Email>eml152dummy@MailDomain.com</Email>
+        <Telephone>
+          <Number>1 (763) 323-2004</Number>
+        </Telephone>
+      </Requestor>
+      <SecondRequestor>
+        <Name>JAMES Strohl Laney</Name>
+        <Email>eml153dummy@MailDomain.com</Email>
+        <Telephone>
+          <Number>1 (298) 723-1913</Number>
+        </Telephone>
+      </SecondRequestor>
+    </RequestingOfficials>
+  </AgencyUsageBlock>
+</XMP>

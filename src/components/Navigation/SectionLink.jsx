@@ -8,7 +8,7 @@ import {
   sectionIsLockedSelector,
   sectionHasErrorsSelector,
   sectionIsValidSelector,
-} from 'selectors/navigation'
+} from 'selectors/validation'
 
 export const SectionLink = ({
   section, basePath, errors, completed, locked,

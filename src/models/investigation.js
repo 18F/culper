@@ -1,4 +1,4 @@
-import { checkValueIncluded } from 'models/validate'
+import { checkValueIncluded, hasYesOrNo } from 'models/validate'
 import { US_DEPT_OF_TREASURY, FOREIGN_GOVT, OTHER } from 'constants/enums/legalOptions'
 import { DEFAULT_LATEST } from 'constants/dateLimits'
 
@@ -28,27 +28,58 @@ const investigation = {
 
     return {}
   },
-  Completed: (value, attributes) => {
+  Completed: (value, attributes, attributeName, options = {}) => {
     if (attributes.CompletedNotApplicable
       && attributes.CompletedNotApplicable.applicable === false) {
       return {}
     }
 
-    return { presence: true, date: true }
+    const { applicantBirthdate } = options
+
+    return {
+      presence: true,
+      date: { earliest: applicantBirthdate, latest: DEFAULT_LATEST },
+    }
   },
   Issued: {},
-  Granted: (value, attributes) => {
+  Granted: (value, attributes, attributeName, options) => {
     if (attributes.GrantedNotApplicable
       && attributes.GrantedNotApplicable.applicable === false) {
       return {}
     }
+
+    if (
+      options.requireLegalInvestigationClearanceGranted
+      && attributes.ClearanceGranted
+      && attributes.ClearanceGranted.value === 'No'
+    ) {
+      return {}
+    }
+
     const dateLimits = { latest: DEFAULT_LATEST }
     if (attributes.Completed) dateLimits.earliest = attributes.Completed
     return { presence: true, date: dateLimits }
   },
-  ClearanceLevel: (value, attributes) => {
+  ClearanceGranted: (value, attributes, attributeName, options) => {
+    if (options.requireLegalInvestigationClearanceGranted) {
+      return {
+        presence: true,
+        hasValue: { validator: hasYesOrNo },
+      }
+    }
+    return {}
+  },
+  ClearanceLevel: (value, attributes, attributeName, options) => {
     if (attributes.ClearanceLevelNotApplicable
       && attributes.ClearanceLevelNotApplicable.applicable === false) {
+      return {}
+    }
+
+    if (
+      options.requireLegalInvestigationClearanceGranted
+      && attributes.ClearanceGranted
+      && attributes.ClearanceGranted.value === 'No'
+    ) {
       return {}
     }
 

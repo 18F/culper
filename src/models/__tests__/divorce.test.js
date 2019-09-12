@@ -152,6 +152,53 @@ describe('The divorce model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('Recognized cannot be before applicant birthdate', () => {
+    const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+    const testData = {
+      Birthdate: { month: 1, year: 1985, day: 2 },
+      Recognized: { month: 1, year: 1970, day: 2 },
+    }
+
+    const expectedErrors = [
+      'Recognized.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, divorce, {
+      applicantBirthdate,
+    }))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Recognized cannot be before person’s birthdate', () => {
+    const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+    const testData = {
+      Birthdate: { month: 1, year: 1985, day: 2 },
+      Recognized: { month: 1, year: 1983, day: 2 },
+    }
+
+    const expectedErrors = [
+      'Recognized.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, divorce, {
+      applicantBirthdate,
+    }))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Recognized cannot be in the future', () => {
+    const testData = {
+      Recognized: { month: 1, year: 2050, day: 2 },
+    }
+
+    const expectedErrors = [
+      'Recognized.date.date.datetime.DATE_TOO_LATE',
+    ]
+
+    expect(validateModel(testData, divorce))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('the address field is required', () => {
     const testData = {}
     const expectedErrors = ['Address.presence.REQUIRED']

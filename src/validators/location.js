@@ -278,7 +278,10 @@ export default class LocationValidator {
           valid = valid && this.validStreet()
           break
         case 'city':
-          valid = valid && this.validCity()
+          if (this.layout === Layouts.IDENTIFICATION_BIRTH_PLACE)
+            valid = valid && (this.validCity() || this.validCounty())
+          else
+            valid = valid && this.validCity()
           break
         case 'state':
           valid = valid && this.validState()
@@ -290,7 +293,10 @@ export default class LocationValidator {
           valid = valid && this.validZipcodeState()
           break
         case 'county':
-          valid = valid && this.validCounty()
+          if (this.layout === Layouts.IDENTIFICATION_BIRTH_PLACE)
+            valid = valid && (this.validCity() || this.validCounty())
+          else
+            valid = valid && this.validCounty()
           break
         case 'country':
           valid = valid && this.validCountry()

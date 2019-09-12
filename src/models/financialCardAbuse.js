@@ -1,4 +1,5 @@
 import address from 'models/shared/locations/address'
+import { DEFAULT_LATEST } from 'constants/dateLimits'
 
 const financialCardAbuse = {
   Agency: { presence: true, hasValue: true },
@@ -6,11 +7,13 @@ const financialCardAbuse = {
     presence: true,
     location: { validator: address },
   },
-  Date: (value, attributes, attributeName, options) => {
+  Date: (value, attributes, attributeName, options = {}) => {
     if (options.requireFinancialCardDisciplinaryDate) {
+      const { applicantBirthdate } = options
+
       return {
         presence: true,
-        date: { requireDay: false },
+        date: { requireDay: false, earliest: applicantBirthdate, latest: DEFAULT_LATEST },
       }
     }
     return {}

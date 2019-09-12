@@ -1,0 +1,3107 @@
+<?xml version="1.0"?>
+<XMP version="3.00">
+  <SubmittedRequestInfo>
+    <RequestInfo>
+      <Request>
+        <Form>
+          <Name>SF85P</Name>
+          <Version>2017-10-draft3</Version>
+        </Form>
+        <Applicant>
+          <SSN>002251754</SSN>
+        </Applicant>
+        <Responses>
+          <AgencyInstructionsForApplicant/>
+          <FormInstanceSpecific>
+            <AgencyInstructionsForApplicant/>
+            <ESigCertificationResponses Version="1" Type="Pooled" LastSummaryID="201" LastDynamicListID="201">
+              <UserFinalizedCert>
+                <Answer>Yes</Answer>
+              </UserFinalizedCert>
+              <UserOptedToESig>
+                <Answer>Yes</Answer>
+              </UserOptedToESig>
+            </ESigCertificationResponses>
+            <UserPreferences Version="1" Type="Pooled" LastSummaryID="201" LastDynamicListID="201">
+              <DisplayNavigation/>
+            </UserPreferences>
+            <ValidationResponses Version="1" Type="FormInstanceSpecific"/>
+          </FormInstanceSpecific>
+          <Pooled>
+            <IdentifyingInformation Type="Pooled" Version="1">
+              <Birth>
+                <Date>
+                  <Month>02</Month>
+                  <Day>25</Day>
+                  <Year>1954</Year>
+                </Date>
+                <Place>
+                  <City>Setauket</City>
+                  <State>NY</State>
+                  <County>Suffolk County</County>
+                  <Country>United States</Country>
+                </Place>
+              </Birth>
+              <EyeColor>Gray</EyeColor>
+              <FullName>
+                <LegalName>
+                  <Last>Tallmadge</Last>
+                  <First>Benjamin</First>
+                  <Middle Type="NMN"/>
+                </LegalName>
+              </FullName>
+              <HairColor>Bald</HairColor>
+              <Height>
+                <Feet>8</Feet>
+                <Inches>1</Inches>
+              </Height>
+              <OtherNamesUsed>
+                <Answer>Yes</Answer>
+                <OtherNames>
+                  <OtherName ID="1">
+                    <LegalName>
+                      <Last>Tallymadgy</Last>
+                      <First>Benjy</First>
+                      <Middle>Wenjy</Middle>
+                      <Suffix>Jr</Suffix>
+                    </LegalName>
+                    <DateRange>
+                      <From>
+                        <Date Type="Estimated">
+                          <Month>06</Month>
+                          <Year>1999</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date Type="Estimated">
+                          <Month>12</Month>
+                          <Year>2012</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Maiden>No</Maiden>
+                    <Reason>I went through a phase of adding an "ee" sound to the end of everything after living in Australia for some time. I grew out of it eventually.</Reason>
+                  </OtherName>
+                  <OtherName ID="2">
+                    <LegalName>
+                      <Last>Hobbes</Last>
+                      <First>Calvin</First>
+                      <Middle Type="IO">T</Middle>
+                      <Suffix>Sr</Suffix>
+                    </LegalName>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>03</Month>
+                          <Year>1976</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>04</Month>
+                          <Year>1976</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Maiden>Yes</Maiden>
+                    <Reason>I was in Vegas. I thought I was in love. Turns out I was wrong.</Reason>
+                  </OtherName>
+                  <OtherName ID="3">
+                    <LegalName>
+                      <Last>Prince</Last>
+                      <First>Petit</First>
+                      <Middle>Principito</Middle>
+                      <Suffix>I</Suffix>
+                    </LegalName>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>05</Month>
+                          <Year>1979</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date Type="Estimated">
+                          <Month>08</Month>
+                          <Year>1982</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Maiden>No</Maiden>
+                    <Reason>I also had a literary phase that coincided/resulted in the creation and execution of some performance art. I was marvelous, darling, you should have seen me.</Reason>
+                  </OtherName>
+                  <OtherName ID="4">
+                    <LegalName>
+                      <Last>Donuts</Last>
+                      <First>Entemanns</First>
+                      <Middle Type="NMN"/>
+                      <Suffix>X</Suffix>
+                    </LegalName>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>04</Month>
+                          <Year>1990</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>04</Month>
+                          <Year>1995</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Maiden>No</Maiden>
+                    <Reason>I sold the rights to my name to an advertising firm in Schenectady before I got a job singing in a barbershop quartet in Skokie, Illinois; and I would totally eat ten doughnuts right now.</Reason>
+                  </OtherName>
+                  <OtherName ID="5">
+                    <LegalName>
+                      <Last>Denzellington</Last>
+                      <First>John</First>
+                      <Middle Type="IO">W</Middle>
+                      <Suffix>__Other__</Suffix>
+                      <Suffix_Other>Esq.</Suffix_Other>
+                    </LegalName>
+                    <DateRange>
+                      <From>
+                        <Date Type="Estimated">
+                          <Month>01</Month>
+                          <Year>1955</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date Type="Estimated">
+                          <Month>07</Month>
+                          <Year>1955</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Maiden>No</Maiden>
+                    <Reason>I'm actually unsure, though it shows up in my dreams sometimes. It may or may not have happened.</Reason>
+                  </OtherName>
+                </OtherNames>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </OtherNamesUsed>
+              <SSN>
+                <FirstThree>002</FirstThree>
+                <NextTwo>25</NextTwo>
+                <LastFour>1754</LastFour>
+              </SSN>
+              <Sex>Male</Sex>
+              <Weight>
+                <Pounds>545</Pounds>
+              </Weight>
+            </IdentifyingInformation>
+            <ContactInformation Version="1" Type="Pooled">
+              <HomeEmail>
+                <Email>cheese@cheese.whiz</Email>
+              </HomeEmail>
+              <WorkEmail>
+                <Email>thebigcheese@cheezits.gov</Email>
+              </WorkEmail>
+              <MobileTelephone>
+                <Telephone>
+                  <International>International</International>
+                  <Number>524159373829</Number>
+                  <Extension>88888</Extension>
+                  <Time>Day</Time>
+                </Telephone>
+              </MobileTelephone>
+              <HomeTelephone>
+                <Telephone>
+                  <Number>0129370000</Number>
+                  <Extension>875</Extension>
+                  <Time>Night</Time>
+                </Telephone>
+              </HomeTelephone>
+              <WorkTelephone>
+                <Telephone>
+                  <Number>7168757479</Number>
+                  <Extension>0</Extension>
+                  <Time>Both</Time>
+                </Telephone>
+              </WorkTelephone>
+            </ContactInformation>
+            <PersonalReferences Version="1" Type="Pooled">
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              <References>
+                <Reference ID="1">
+                  <Address>
+                    <Street>783 South Van Ness</Street>
+                    <City>San Francisco</City>
+                    <State>CA</State>
+                    <ZipCode>94103</ZipCode>
+                  </Address>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>08</Month>
+                        <Year>2016</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Email>jimbob@gmail.com</Email>
+                  <LegalName>
+                    <Last>Jones</Last>
+                    <First>Jim</First>
+                    <Middle>Bob</Middle>
+                    <Suffix>Jr</Suffix>
+                  </LegalName>
+                  <RelationshipType Friend="True" Schoolmate="True"/>
+                  <Telephone>
+                    <Home DoNotKnow="True"/>
+                    <Mobile>
+                      <Number>4152834623</Number>
+                      <Time>Both</Time>
+                    </Mobile>
+                  </Telephone>
+                  <Title NotApplicable="True"/>
+                </Reference>
+                <Reference ID="2">
+                  <Address>
+                    <Street>Kleiner Schlo&#xDF;platz 15</Street>
+                    <City>Stuttgart</City>
+                    <Country>Germany</Country>
+                  </Address>
+                  <DateRange>
+                    <From>
+                      <Date Type="Estimated">
+                        <Month>01</Month>
+                        <Year>2001</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Email>hugh@cheesewhiz.com</Email>
+                  <LegalName>
+                    <Last>Grant</Last>
+                    <First>Hugh</First>
+                    <Middle Type="IO">G</Middle>
+                  </LegalName>
+                  <RelationshipType WorkAssociate="True"/>
+                  <Telephone>
+                    <Home>
+                      <Number>5522562366</Number>
+                      <Time>Night</Time>
+                    </Home>
+                    <Mobile>
+                      <Number>1511111534</Number>
+                      <Extension>732</Extension>
+                      <Time>Day</Time>
+                    </Mobile>
+                  </Telephone>
+                  <Title>Senior Food Inspector</Title>
+                </Reference>
+                <Reference ID="3">
+                  <Address>
+                    <Street>11 Great George St Apt 2</Street>
+                    <City>London</City>
+                    <Country>United Kingdom</Country>
+                  </Address>
+                  <DateRange>
+                    <From>
+                      <Date Type="Estimated">
+                        <Month>12</Month>
+                        <Year>1995</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Estimated">
+                        <Month>05</Month>
+                        <Year>2017</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Email>hamishthemayor@mayor.gov</Email>
+                  <LegalName>
+                    <Last>Umbridge</Last>
+                    <First>Hamish</First>
+                    <Middle Type="NMN"/>
+                  </LegalName>
+                  <RelationshipType Friend="True"/>
+                  <Telephone>
+                    <Home DoNotKnow="True"/>
+                    <Mobile>
+                      <Number>3037393358</Number>
+                      <Time>Both</Time>
+                    </Mobile>
+                  </Telephone>
+                  <Title>Mayor</Title>
+                </Reference>
+              </References>
+            </PersonalReferences>
+            <RelativesAndAssociates Version="1" Type="Pooled">
+              <ApplicableRelativeTypes Mother01="True" Father02="True" FatherInLaw14="True" MotherInLaw15="True"/>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              <Relatives>
+                <Relative ID="1">
+                  <Birth>
+                    <Date>
+                      <Month>07</Month>
+                      <Day>14</Day>
+                      <Year>1930</Year>
+                    </Date>
+                    <Place>
+                      <City>Amsterdam</City>
+                      <State>NY</State>
+                      <Country>United States</Country>
+                    </Place>
+                  </Birth>
+                  <CountriesOfCitizenship>
+                    <Citizenship ID="1">
+                      <Country>United States</Country>
+                    </Citizenship>
+                  </CountriesOfCitizenship>
+                  <Deceased>
+                    <Answer>Yes</Answer>
+                  </Deceased>
+                  <LegalName>
+                    <Last>LeFauvre</Last>
+                    <First>Holly</First>
+                    <Middle>DeMartina</Middle>
+                  </LegalName>
+                  <MothersMaidenName>
+                    <FullName>
+                      <LegalName>
+                        <Last>DeMartina</Last>
+                        <First>Holly</First>
+                        <Middle>Roiland</Middle>
+                      </LegalName>
+                    </FullName>
+                  </MothersMaidenName>
+                  <OtherNamesUsed>
+                    <Answer>No</Answer>
+                  </OtherNamesUsed>
+                  <Type>01Mother</Type>
+                </Relative>
+                <Relative ID="2">
+                  <Address>
+                    <Street>221 E Kellogg St</Street>
+                    <City>Wichita</City>
+                    <State>KS</State>
+                    <ZipCode>67202</ZipCode>
+                  </Address>
+                  <Birth>
+                    <Date Type="Estimated">
+                      <Month>08</Month>
+                      <Day>12</Day>
+                      <Year>1935</Year>
+                    </Date>
+                    <Place>
+                      <City>Wichita</City>
+                      <State>KS</State>
+                      <Country>United States</Country>
+                    </Place>
+                  </Birth>
+                  <CountriesOfCitizenship>
+                    <Citizenship ID="1">
+                      <Country>United States</Country>
+                    </Citizenship>
+                  </CountriesOfCitizenship>
+                  <Deceased>
+                    <Answer>No</Answer>
+                  </Deceased>
+                  <LegalName>
+                    <Last>Tuskington</Last>
+                    <First>Gerald</First>
+                    <Middle Type="NMN"/>
+                    <Suffix>III</Suffix>
+                  </LegalName>
+                  <OtherNamesUsed>
+                    <Answer>Yes</Answer>
+                    <OtherName ID="1">
+                      <DateRange>
+                        <From>
+                          <Date>
+                            <Month>02</Month>
+                            <Year>1988</Year>
+                          </Date>
+                        </From>
+                        <To>
+                          <Date Type="Present"/>
+                        </To>
+                      </DateRange>
+                      <LegalName>
+                        <Last>Turner</Last>
+                        <First Type="IO">G</First>
+                        <Middle Type="IO">G</Middle>
+                      </LegalName>
+                      <Maiden>
+                        <Answer>No</Answer>
+                      </Maiden>
+                      <ReasonForChange>This is a pseudonym under which he writes fictional novels. </ReasonForChange>
+                    </OtherName>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+                  </OtherNamesUsed>
+                  <Type>02Father</Type>
+                </Relative>
+                <Relative ID="3">
+                  <Address>
+                    <Street>545 Main St</Street>
+                    <City>Marin</City>
+                    <State>CA</State>
+                    <ZipCode>94106</ZipCode>
+                  </Address>
+                  <Birth>
+                    <Date>
+                      <Month>09</Month>
+                      <Day>09</Day>
+                      <Year>1955</Year>
+                    </Date>
+                    <Place>
+                      <City>Moscow</City>
+                      <Country>Russia</Country>
+                    </Place>
+                  </Birth>
+                  <CountriesOfCitizenship>
+                    <Citizenship ID="1">
+                      <Country>United States</Country>
+                    </Citizenship>
+                  </CountriesOfCitizenship>
+                  <Deceased>
+                    <Answer>No</Answer>
+                  </Deceased>
+                  <LegalName>
+                    <Last>Gulia</Last>
+                    <First>Julia</First>
+                    <Middle>Danielle</Middle>
+                  </LegalName>
+                  <Type>15MotherInLaw</Type>
+                </Relative>
+                <Relative ID="4">
+                  <Birth>
+                    <Date>
+                      <Month>05</Month>
+                      <Day>06</Day>
+                      <Year>1954</Year>
+                    </Date>
+                    <Place>
+                      <City>Buffalo</City>
+                      <State>NC</State>
+                      <Country>United States</Country>
+                    </Place>
+                  </Birth>
+                  <CountriesOfCitizenship>
+                    <Citizenship ID="1">
+                      <Country>United States</Country>
+                    </Citizenship>
+                  </CountriesOfCitizenship>
+                  <Deceased>
+                    <Answer>Yes</Answer>
+                  </Deceased>
+                  <LegalName>
+                    <Last>DeGravalax</Last>
+                    <First>Benjamin</First>
+                    <Middle Type="IO">D</Middle>
+                  </LegalName>
+                  <Type>14FatherInLaw</Type>
+                </Relative>
+              </Relatives>
+            </RelativesAndAssociates>
+            <Spouse Version="1" Type="Pooled">
+              <MaritalStatus>Married</MaritalStatus>
+              <Cohabitants>
+                <Answer>Yes</Answer>
+                <Cohabitant ID="1">
+                  <Birth>
+                    <Date>
+                      <Month>08</Month>
+                      <Day>01</Day>
+                      <Year>1990</Year>
+                    </Date>
+                    <Place>
+                      <City>Mexico City</City>
+                      <Country>Mexico</Country>
+                    </Place>
+                  </Birth>
+                  <Citizenship>
+                    <ProofOfStatus>
+                      <DocumentNumber>456789234</DocumentNumber>
+                      <Type>FS240or545</Type>
+                    </ProofOfStatus>
+                  </Citizenship>
+                  <CohabitationDate>
+                    <Date>
+                      <Month>02</Month>
+                      <Day>01</Day>
+                      <Year>2019</Year>
+                    </Date>
+                  </CohabitationDate>
+                  <CountriesOfCitizenship>
+                    <Citizenship ID="1">
+                      <Country>United States</Country>
+                    </Citizenship>
+                  </CountriesOfCitizenship>
+                  <LegalName>
+                    <Last>Maxwell</Last>
+                    <First>Alexandria</First>
+                    <Middle Type="IO">D</Middle>
+                  </LegalName>
+                  <OtherNamesUsed>
+                    <OtherName ID="1">
+                      <DateRange>
+                        <From>
+                          <Date>
+                            <Month>01</Month>
+                            <Year>2017</Year>
+                          </Date>
+                        </From>
+                        <To>
+                          <Date Type="Present"/>
+                        </To>
+                      </DateRange>
+                      <LegalName>
+                        <Last>Mellencamp</Last>
+                        <First>Alexandria</First>
+                        <Middle Type="NMN"/>
+                      </LegalName>
+                    </OtherName>
+                  </OtherNamesUsed>
+                  <SSN>
+                    <FirstThree>357</FirstThree>
+                    <NextTwo>22</NextTwo>
+                    <LastFour>3562</LastFour>
+                  </SSN>
+                </Cohabitant>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </Cohabitants>
+              <FormerSpouses>
+                <FormerSpouse ID="1">
+                  <Birth>
+                    <Date>
+                      <Month>12</Month>
+                      <Day>14</Day>
+                      <Year>1945</Year>
+                    </Date>
+                    <Place>
+                      <City>Burmingham</City>
+                      <State>AL</State>
+                      <Country>United States</Country>
+                    </Place>
+                  </Birth>
+                  <CountriesOfCitizenship>
+                    <Citizenship ID="1">
+                      <Country>United States</Country>
+                    </Citizenship>
+                  </CountriesOfCitizenship>
+                  <Deceased>
+      
+    </Deceased>
+                  <LegalName>
+                    <Last>Smithingson</Last>
+                    <First>Jane</First>
+                    <Middle Type="NMN"/>
+                  </LegalName>
+                  <Marriage>
+                    <Date>
+                      <Month>03</Month>
+                      <Day>03</Day>
+                      <Year>1990</Year>
+                    </Date>
+                    <Place>
+                      <City>Burmingham</City>
+                      <State>AL</State>
+                    </Place>
+                  </Marriage>
+                  <Separation Type="Widowed">
+                    <Date Type="Estimated">
+                      <Month>06</Month>
+                      <Day>12</Day>
+                      <Year>1992</Year>
+                    </Date>
+                  </Separation>
+                </FormerSpouse>
+                <FormerSpouse ID="2">
+                  <Birth>
+                    <Date>
+                      <Month>08</Month>
+                      <Day>01</Day>
+                      <Year>1978</Year>
+                    </Date>
+                    <Place>
+                      <City>Brasilia</City>
+                      <Country>Brazil</Country>
+                    </Place>
+                  </Birth>
+                  <CountriesOfCitizenship>
+                    <Citizenship ID="1">
+                      <Country>Brazil</Country>
+                    </Citizenship>
+                    <Citizenship ID="2">
+                      <Country>United States</Country>
+                    </Citizenship>
+                  </CountriesOfCitizenship>
+                  <Deceased>
+      
+    </Deceased>
+                  <LegalName>
+                    <Last>Sampson</Last>
+                    <First>Brock</First>
+                    <Middle Type="NMN"/>
+                  </LegalName>
+                  <Marriage>
+                    <Date>
+                      <Month>07</Month>
+                      <Day>23</Day>
+                      <Year>1998</Year>
+                    </Date>
+                    <Place>
+                      <City>Philadelphia</City>
+                      <State>PA</State>
+                    </Place>
+                  </Marriage>
+                  <Separation Type="Widowed">
+                    <Date>
+                      <Month>05</Month>
+                      <Day>09</Day>
+                      <Year>1999</Year>
+                    </Date>
+                  </Separation>
+                </FormerSpouse>
+                <FormerSpouse ID="3">
+                  <Address>
+                    <Street>4 Rue du G&#xE9;n&#xE9;ral Leclerc</Street>
+                    <City>Ostwald</City>
+                    <Country>France</Country>
+                  </Address>
+                  <Birth>
+                    <Date>
+                      <Month>05</Month>
+                      <Day>29</Day>
+                      <Year>1983</Year>
+                    </Date>
+                    <Place>
+                      <City>Paris</City>
+                      <Country>France</Country>
+                    </Place>
+                  </Birth>
+                  <CountriesOfCitizenship>
+                    <Citizenship ID="1">
+                      <Country>France</Country>
+                    </Citizenship>
+                    <Citizenship ID="2">
+                      <Country>Germany</Country>
+                    </Citizenship>
+                    <Citizenship ID="3">
+                      <Country>United States</Country>
+                    </Citizenship>
+                  </CountriesOfCitizenship>
+                  <Deceased>
+                    <Answer>No</Answer>
+                  </Deceased>
+                  <LegalName>
+                    <Last>Frennamine</Last>
+                    <First>Jenny</First>
+                    <Middle>Wurz</Middle>
+                  </LegalName>
+                  <Marriage>
+                    <Date>
+                      <Month>01</Month>
+                      <Day>01</Day>
+                      <Year>2001</Year>
+                    </Date>
+                    <Place>
+                      <City>Nice</City>
+                      <Country>France</Country>
+                    </Place>
+                  </Marriage>
+                  <Separation Type="Divorced">
+                    <Date>
+                      <Month>02</Month>
+                      <Day>26</Day>
+                      <Year>2012</Year>
+                    </Date>
+                    <DivorceRecordLocation>
+                      <Place>
+                        <City>Strasbourg</City>
+                        <Country>France</Country>
+                      </Place>
+                    </DivorceRecordLocation>
+                  </Separation>
+                </FormerSpouse>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </FormerSpouses>
+              <HaveFormerSpouse>
+                <Answer>Yes</Answer>
+              </HaveFormerSpouse>
+              <PresentMarriage>
+                <CurrentSpouse ID="1">
+                  <Address UseMyCurrentAddress="True"/>
+                  <Birth>
+                    <Date>
+                      <Month>02</Month>
+                      <Day>02</Day>
+                      <Year>1964</Year>
+                    </Date>
+                    <Place>
+                      <City>Birmingham</City>
+                      <State>AL</State>
+                      <County>Jefferson County</County>
+                      <Country>United States</Country>
+                    </Place>
+                  </Birth>
+                  <CountriesOfCitizenship>
+                    <Citizenship ID="1">
+                      <Country>United States</Country>
+                    </Citizenship>
+                  </CountriesOfCitizenship>
+                  <LegalName>
+                    <Last>Smithingson</Last>
+                    <First>Jane</First>
+                    <Middle Type="NMN"/>
+                    <Suffix>X</Suffix>
+                  </LegalName>
+                  <Marriage>
+                    <Date>
+                      <Month>03</Month>
+                      <Day>03</Day>
+                      <Year>1990</Year>
+                    </Date>
+                    <Place>
+                      <City>Birmingham</City>
+                      <State>AL</State>
+                      <County>Jefferson County</County>
+                    </Place>
+                  </Marriage>
+                  <OtherNamesUsed>
+                    <OtherName ID="1">
+                      <DateRange>
+                        <From>
+                          <Date>
+                            <Month>02</Month>
+                            <Year>1964</Year>
+                          </Date>
+                        </From>
+                        <To>
+                          <Date Type="Estimated">
+                            <Month>12</Month>
+                            <Year>1990</Year>
+                          </Date>
+                        </To>
+                      </DateRange>
+                      <LegalName>
+                        <Last>Darcy</Last>
+                        <First>Janet</First>
+                        <Middle Type="IO">G</Middle>
+                      </LegalName>
+                      <Maiden>True</Maiden>
+                    </OtherName>
+                  </OtherNamesUsed>
+                  <SSN>
+                    <FirstThree>140</FirstThree>
+                    <NextTwo>24</NextTwo>
+                    <LastFour>1948</LastFour>
+                  </SSN>
+                  <Separated>
+                    <Answer>Yes</Answer>
+                  </Separated>
+                  <Separation>
+                    <Date>
+                      <Month>04</Month>
+                      <Day>01</Day>
+                      <Year>1995</Year>
+                    </Date>
+                    <LocationOfRecord>
+                      <Place>
+                        <City>Berkeley</City>
+                        <State>CA</State>
+                        <ZipCode>94703</ZipCode>
+                      </Place>
+                    </LocationOfRecord>
+                  </Separation>
+                  <Telephone>
+                    <Number>5131356333</Number>
+                    <Time>Both</Time>
+                  </Telephone>
+                </CurrentSpouse>
+              </PresentMarriage>
+            </Spouse>
+            <ResidenceHistory Version="1" Type="Pooled">
+              <Residencies>
+                <Residency ID="1">
+                  <Address>
+                    <Street>66 Northish Dr. Apt 9</Street>
+                    <City>Berkeley</City>
+                    <State>WA</State>
+                    <ZipCode>98387</ZipCode>
+                  </Address>
+                  <DateRange>
+                    <From>
+                      <Date Type="Estimated">
+                        <Month>01</Month>
+                        <Year>2019</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <ResidenceType>Own</ResidenceType>
+                  <Verifier>
+                    <Address>
+                      <Street>188 Windermearly Blvd</Street>
+                      <City>Ithaca</City>
+                      <State>NY</State>
+                      <ZipCode>14226</ZipCode>
+                    </Address>
+                    <Email>eeeeeemailme@iamatree.realtree</Email>
+                    <LastContact>
+                      <Date Type="Estimated">
+                        <Month>08</Month>
+                        <Year>2019</Year>
+                      </Date>
+                    </LastContact>
+                    <LegalName>
+                      <Last>Arecaceae</Last>
+                      <First>Johnny</First>
+                      <Middle Type="IO">B</Middle>
+                      <Suffix>IV</Suffix>
+                    </LegalName>
+                    <RelationshipOtherExplanation>My mother's cousin's gardener</RelationshipOtherExplanation>
+                    <RelationshipTypes Neighbor="True" Friend="True" WorkAssociate="True" Other="True"/>
+                    <Telephone>
+                      <Day DoNotKnow="True"/>
+                      <Evening>
+                        <Number>4848038452</Number>
+                        <Extension>01</Extension>
+                      </Evening>
+                      <Mobile>
+                        <Number>6456660000</Number>
+                        <Extension>666</Extension>
+                      </Mobile>
+                    </Telephone>
+                  </Verifier>
+                </Residency>
+                <Residency ID="2">
+                  <Address>
+                    <Street>144 Mar Mediterr&#xE1;neo Apt 2</Street>
+                    <City>Boca Del R&#xED;o</City>
+                    <Country>Mexico</Country>
+                  </Address>
+                  <APOFPO>
+                    <Answer>Yes</Answer>
+                    <Address>
+                      <Address>1400 John F Kennedy Blvd</Address>
+                      <ApoFpo>APO</ApoFpo>
+                      <State>AA</State>
+                      <ZipCode>34087</ZipCode>
+                    </Address>
+                  </APOFPO>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>10</Month>
+                        <Year>2017</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>01</Month>
+                        <Year>2019</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <ResidenceType>Rent</ResidenceType>
+                  <Verifier>
+                    <Address>
+                      <Street>145 Mar Mediterr&#xE1;neo</Street>
+                      <City>Boca del R&#xED;o</City>
+                      <Country>Mexico</Country>
+                    </Address>
+                    <APOFPO>
+                      <Answer>No</Answer>
+                    </APOFPO>
+                    <Email>wherewolf@therewolf.com</Email>
+                    <LastContact>
+                      <Date>
+                        <Month>12</Month>
+                        <Year>2018</Year>
+                      </Date>
+                    </LastContact>
+                    <LegalName>
+                      <Last>Lobito</Last>
+                      <First>Senior</First>
+                      <Middle Type="NMN"/>
+                      <Suffix>Sr</Suffix>
+                    </LegalName>
+                    <RelationshipOtherExplanation>Werewolf</RelationshipOtherExplanation>
+                    <RelationshipTypes Landlord="True" Other="True"/>
+                    <Telephone>
+                      <Day DoNotKnow="True"/>
+                      <Evening DoNotKnow="True"/>
+                      <Mobile DoNotKnow="True"/>
+                    </Telephone>
+                  </Verifier>
+                </Residency>
+                <Residency ID="3">
+                  <Address>
+                    <Street>16 60th St 5th Floor</Street>
+                    <City>Brooklyn</City>
+                    <State>NY</State>
+                    <ZipCode>11220</ZipCode>
+                  </Address>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>09</Month>
+                        <Year>2015</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Estimated">
+                        <Month>10</Month>
+                        <Year>2017</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <ResidenceType>MilitaryHousing</ResidenceType>
+                  <Verifier>
+                    <Address>
+                      <Street>612 66th St Apt 12</Street>
+                      <City>Brooklyn</City>
+                      <State>NY</State>
+                      <ZipCode>11220</ZipCode>
+                    </Address>
+                    <Email>cat@imakittycat.com</Email>
+                    <LastContact>
+                      <Date>
+                        <Month>08</Month>
+                        <Year>2019</Year>
+                      </Date>
+                    </LastContact>
+                    <LegalName>
+                      <Last>Vandemar</Last>
+                      <First Type="IO">M</First>
+                      <Middle Type="IO">R</Middle>
+                      <Suffix>III</Suffix>
+                    </LegalName>
+                    <RelationshipOtherExplanation>He's my cat</RelationshipOtherExplanation>
+                    <RelationshipTypes Friend="True" Other="True"/>
+                    <Telephone>
+                      <Day>
+                        <Number>3454566789</Number>
+                      </Day>
+                      <Evening>
+                        <Number>2342345678</Number>
+                        <Extension>121</Extension>
+                      </Evening>
+                      <Mobile>
+                        <Number>4158910828</Number>
+                        <Extension>888</Extension>
+                      </Mobile>
+                    </Telephone>
+                  </Verifier>
+                </Residency>
+                <Residency ID="4">
+                  <Address>
+                    <Street>19 S 22nd St</Street>
+                    <City>DPO</City>
+                    <State>AA</State>
+                    <ZipCode>34003</ZipCode>
+                  </Address>
+                  <APOFPO>
+                    <PhysicalLocation>
+                      <Address>
+                        <StreetUnitDutyLocation>19 S 22nd St Suite Z</StreetUnitDutyLocation>
+                        <CityPostName>Philadelphia</CityPostName>
+                        <State>PA</State>
+                        <ZipCode>19103</ZipCode>
+                      </Address>
+                    </PhysicalLocation>
+                  </APOFPO>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>02</Month>
+                        <Year>2014</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>09</Month>
+                        <Year>2015</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <ResidenceType>Other</ResidenceType>
+                  <StatusOtherExplanation>My grandma's safehouse</StatusOtherExplanation>
+                </Residency>
+                <Residency ID="5">
+                  <Address>
+                    <Street>2869 Broadway Floor 10</Street>
+                    <City>Oakland</City>
+                    <State>CA</State>
+                    <ZipCode>94612</ZipCode>
+                  </Address>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>06</Month>
+                        <Year>2013</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Estimated">
+                        <Month>02</Month>
+                        <Year>2014</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <ResidenceType>Own</ResidenceType>
+                </Residency>
+                <Residency ID="6">
+                  <Address>
+                    <Street>3010 Maingate Ln Building X</Street>
+                    <City>Kissimmee</City>
+                    <State>FL</State>
+                    <ZipCode>34747</ZipCode>
+                  </Address>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>01</Month>
+                        <Year>2012</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>06</Month>
+                        <Year>2013</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <ResidenceType>Rent</ResidenceType>
+                </Residency>
+              </Residencies>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+            </ResidenceHistory>
+            <EmploymentActivities Type="Pooled" Version="1">
+              <Employments>
+                <Employment ID="1">
+                  <DateRange>
+                    <From>
+                      <Date Type="Estimated">
+                        <Month>03</Month>
+                        <Year>2018</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Type>NonGovernment</Type>
+                  <WorkHours>FullTime</WorkHours>
+                  <CivilEmployment>
+                    <Employer>US Department of State</Employer>
+                    <PositionTitle>Major General</PositionTitle>
+                    <EmployersLocation>
+                      <Address>
+                        <Street>Fort Hamilton Suite P</Street>
+                        <City>Brooklyn</City>
+                        <State>NY</State>
+                        <ZipCode>11252</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>5133066188</Number>
+                        <Extension>001</Extension>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </EmployersLocation>
+                    <PreviousEmployments NotApplicable="True"/>
+                  </CivilEmployment>
+                  <Incidents>
+                    <Answer>Yes</Answer>
+                    <Incident ID="1">
+                      <Date>
+                        <Month>06</Month>
+                        <Year>2019</Year>
+                      </Date>
+                      <Reason>I was simply too awesome at the battle of Fort George, and I was making the others look bad.</Reason>
+                    </Incident>
+                    <Incident ID="2">
+                      <Date>
+                        <Month>02</Month>
+                        <Year>2019</Year>
+                      </Date>
+                      <Reason>Too handsome, had to tone it down.</Reason>
+                    </Incident>
+                    <Incident ID="3">
+                      <Date>
+                        <Month>12</Month>
+                        <Year>2018</Year>
+                      </Date>
+                      <Reason>Gross desertion. </Reason>
+                    </Incident>
+                    <Incident ID="4">
+                      <Date>
+                        <Month>09</Month>
+                        <Year>2018</Year>
+                      </Date>
+                      <Reason>I stole another cookie from the cookie jar.</Reason>
+                    </Incident>
+                    <Incident ID="5">
+                      <Date>
+                        <Month>08</Month>
+                        <Year>2018</Year>
+                      </Date>
+                      <Reason>I stole a cookie from the cookie jar.</Reason>
+                    </Incident>
+                    <Incident ID="6">
+                      <Date>
+                        <Month>06</Month>
+                        <Year>2018</Year>
+                      </Date>
+                      <Reason>I was chewing gum during basketball practice.</Reason>
+                    </Incident>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+                  </Incidents>
+                  <JobLocation>
+                    <Answer>No</Answer>
+                  </JobLocation>
+                  <Supervisor>
+                    <Name>George Washington</Name>
+                    <Title>President of the United States of America</Title>
+                    <Address>
+                      <Street>1600 Pennsylvania Ave NW Oval Office</Street>
+                      <City>Washington</City>
+                      <State>DC</State>
+                      <ZipCode>20500</ZipCode>
+                    </Address>
+                    <Email>georgie@usprezzie.gov</Email>
+                    <Telephone>
+                      <Number>8004844000</Number>
+                      <Extension>001</Extension>
+                      <Time>Both</Time>
+                    </Telephone>
+                  </Supervisor>
+                </Employment>
+                <Employment ID="2">
+                  <DateRange>
+                    <From>
+                      <Date Type="Estimated">
+                        <Month>05</Month>
+                        <Year>2017</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Estimated">
+                        <Month>03</Month>
+                        <Year>2018</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Type>FederalContractor</Type>
+                  <WorkHours>FullTime</WorkHours>
+                  <CivilEmployment>
+                    <Employer>GCDC Grilled Cheese Bar</Employer>
+                    <PositionTitle>Senior Cheese Griller</PositionTitle>
+                    <EmployersLocation>
+                      <Address>
+                        <Street>1730 Pennsylvania Ave NW 2nd Floor</Street>
+                        <City>Washington</City>
+                        <State>DC</State>
+                        <ZipCode>20006</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>2023934232</Number>
+                        <Extension>123</Extension>
+                        <Time>Night</Time>
+                      </Telephone>
+                    </EmployersLocation>
+                    <PreviousEmployments NotApplicable="True"/>
+                  </CivilEmployment>
+                  <Dismissals>
+                    <Answer>Yes</Answer>
+                    <Dismissal ID="1">
+                      <Date Type="Estimated">
+                        <Month>03</Month>
+                        <Year>2018</Year>
+                      </Date>
+                      <Reason>I could no longer taste the cheese sauce to make sure I had prepared it properly</Reason>
+                      <SeveranceType>UnsatisfactoryPerformance</SeveranceType>
+                    </Dismissal>
+                    <Dismissal ID="2">
+                      <Date Type="Estimated">
+                        <Month>03</Month>
+                        <Year>2018</Year>
+                      </Date>
+                      <Reason>I was ashamed of my cheese sauce.</Reason>
+                      <SeveranceType>QuitKnowingWouldBeFired</SeveranceType>
+                    </Dismissal>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+                  </Dismissals>
+                  <Incidents>
+                    <Answer>Yes</Answer>
+                    <Incident ID="1">
+                      <Date>
+                        <Month>02</Month>
+                        <Year>2018</Year>
+                      </Date>
+                      <Reason>My cheese sauce was dissatisfactory.</Reason>
+                    </Incident>
+                    <Incident ID="2">
+                      <Date>
+                        <Month>12</Month>
+                        <Year>2017</Year>
+                      </Date>
+                      <Reason>I made too much cheese sauce and we had to throw a bunch of it out.</Reason>
+                    </Incident>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+                  </Incidents>
+                  <JobLocation>
+                    <Answer>Yes</Answer>
+                    <Address>
+                      <Street>1730 Pennsylvania Ave NW 3rd Floor</Street>
+                      <City>Washington</City>
+                      <State>DC</State>
+                      <ZipCode>20006</ZipCode>
+                    </Address>
+                    <Telephone>
+                      <Number>2023934232</Number>
+                      <Extension>234</Extension>
+                      <Time>Both</Time>
+                    </Telephone>
+                  </JobLocation>
+                  <LeftJob>
+                    <Reason>I developed an intolerance for lactose.</Reason>
+                  </LeftJob>
+                  <Supervisor>
+                    <Name>Ryan August</Name>
+                    <Title>The Big Cheese</Title>
+                    <Address>
+                      <Street>The Louvre, Rue de Rivoli 1st Floor</Street>
+                      <City>Paris</City>
+                      <Country>France</Country>
+                    </Address>
+                    <APOFPO>
+                      <Answer>No</Answer>
+                    </APOFPO>
+                    <Email>biggestcheese@gcdc.com</Email>
+                    <Telephone>
+                      <Number>4155553234</Number>
+                      <Time>Both</Time>
+                    </Telephone>
+                  </Supervisor>
+                </Employment>
+                <Employment ID="3">
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>08</Month>
+                        <Year>2012</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>05</Month>
+                        <Year>2017</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Type>SelfEmployed</Type>
+                  <WorkHours>FullTime</WorkHours>
+                  <SelfEmployment>
+                    <Occupation>Principle Software Engineer</Occupation>
+                    <Business>
+                      <Name>Photographical Memory</Name>
+                      <Address>
+                        <Street>1066 E 16th St</Street>
+                        <City>Kansas City</City>
+                        <State>MO</State>
+                        <ZipCode>64108</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>8162210000</Number>
+                        <Time>Day</Time>
+                      </Telephone>
+                    </Business>
+                  </SelfEmployment>
+                  <Dismissals>
+                    <Answer>No</Answer>
+                  </Dismissals>
+                  <Incidents>
+                    <Answer>No</Answer>
+                  </Incidents>
+                  <JobLocation>
+                    <Answer>Yes</Answer>
+                    <Address>
+                      <Street>1514 Campbell St Apt 5</Street>
+                      <City>Kansas City</City>
+                      <State>MO</State>
+                      <ZipCode>64108</ZipCode>
+                    </Address>
+                    <Telephone>
+                      <Number>4183092927</Number>
+                      <Time>Night</Time>
+                    </Telephone>
+                  </JobLocation>
+                  <LeftJob>
+                    <Reason>I wasn't making enough money</Reason>
+                  </LeftJob>
+                  <Verifier>
+                    <LegalName>
+                      <Last>Bond</Last>
+                      <First Type="IO">J</First>
+                    </LegalName>
+                    <Address>
+                      <Street>78 Broad St</Street>
+                      <City>Oakland</City>
+                      <State>CA</State>
+                      <ZipCode>94704</ZipCode>
+                    </Address>
+                    <Telephone>
+                      <Number>5134422472</Number>
+                      <Time>Both</Time>
+                    </Telephone>
+                  </Verifier>
+                </Employment>
+              </Employments>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+            </EmploymentActivities>
+            <EmploymentRecord Version="1" Type="Pooled">
+              <Fired>
+                <Answer>No</Answer>
+              </Fired>
+            </EmploymentRecord>
+            <Education Version="1" Type="Pooled">
+              <AttendedAnySchools>
+                <Answer>Yes</Answer>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </AttendedAnySchools>
+              <ReceivedDegreeOrDiploma>
+    
+    
+  </ReceivedDegreeOrDiploma>
+              <SchoolsAttended>
+                <SchoolAttended ID="1">
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>01</Month>
+                        <Year>2019</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Type>College</Type>
+                  <Name>Harvard Law School</Name>
+                  <Address>
+                    <Street>Harvard University</Street>
+                    <City>Cambridge</City>
+                    <State>MA</State>
+                    <ZipCode>02138</ZipCode>
+                  </Address>
+                  <DegreeReceived>
+                    <Answer>No</Answer>
+                  </DegreeReceived>
+                  <Verifier>
+                    <LegalName>
+                      <Last>Alford</Last>
+                      <First>William</First>
+                    </LegalName>
+                    <Email>william@harvard.edu</Email>
+                    <Telephone>
+                      <Number>6174951000</Number>
+                      <Time>Day</Time>
+                    </Telephone>
+                    <Address>
+                      <Street>110 Mt Auburn St Room 301</Street>
+                      <City>Cambridge</City>
+                      <State>MA</State>
+                      <ZipCode>02138</ZipCode>
+                    </Address>
+                  </Verifier>
+                </SchoolAttended>
+                <SchoolAttended ID="2">
+                  <DateRange>
+                    <From>
+                      <Date Type="Estimated">
+                        <Month>08</Month>
+                        <Year>2016</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Estimated">
+                        <Month>05</Month>
+                        <Year>2018</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Type>College</Type>
+                  <Name>Stanford University</Name>
+                  <Address>
+                    <Street>450 Serra Mall</Street>
+                    <City>Stanford</City>
+                    <State>CA</State>
+                    <ZipCode>94305</ZipCode>
+                  </Address>
+                  <DegreeReceived>
+                    <Answer>Yes</Answer>
+                  </DegreeReceived>
+                  <DegreesAwarded>
+                    <DegreeAwarded ID="1">
+                      <DateAwarded>
+                        <Date>
+                          <Month>05</Month>
+                          <Year>2018</Year>
+                        </Date>
+                      </DateAwarded>
+                      <Degree>Bachelor</Degree>
+                    </DegreeAwarded>
+                    <DegreeAwarded ID="2">
+                      <DateAwarded>
+                        <Date Type="Estimated">
+                          <Month>06</Month>
+                          <Year>2018</Year>
+                        </Date>
+                      </DateAwarded>
+                      <Degree>Master</Degree>
+                    </DegreeAwarded>
+                    <DegreeAwarded ID="3">
+                      <DateAwarded>
+                        <Date Type="Estimated">
+                          <Month>07</Month>
+                          <Year>2018</Year>
+                        </Date>
+                      </DateAwarded>
+                      <Degree>Doctorate</Degree>
+                    </DegreeAwarded>
+                  </DegreesAwarded>
+                  <Verifier>
+                    <LegalName>
+                      <Last>Charles</Last>
+                      <First>Maria</First>
+                    </LegalName>
+                    <Email>maria@stanfordystandaland.edu</Email>
+                    <Telephone>
+                      <Number>6507331779</Number>
+                      <Time>Day</Time>
+                    </Telephone>
+                    <Address>
+                      <Street>123 Stanford St</Street>
+                      <City>Standford</City>
+                      <State>CA</State>
+                      <ZipCode>94305</ZipCode>
+                    </Address>
+                  </Verifier>
+                </SchoolAttended>
+                <SchoolAttended ID="3">
+                  <DateRange>
+                    <From>
+                      <Date Type="Estimated">
+                        <Month>01</Month>
+                        <Year>2012</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>03</Month>
+                        <Year>2015</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Type>Vocational</Type>
+                  <Name>&#xC9;cole Nationale de Cirque</Name>
+                  <Address>
+                    <Street>8181 2e Avenue</Street>
+                    <City>Montreal</City>
+                    <Country>Canada</Country>
+                  </Address>
+                  <DegreeReceived>
+                    <Answer>Yes</Answer>
+                  </DegreeReceived>
+                  <DegreesAwarded>
+                    <DegreeAwarded ID="1">
+                      <DateAwarded>
+                        <Date>
+                          <Month>03</Month>
+                          <Year>2015</Year>
+                        </Date>
+                      </DateAwarded>
+                      <Degree>Other</Degree>
+                      <OtherDegree>Diploma of Collegial Studies in Circus Arts</OtherDegree>
+                    </DegreeAwarded>
+                  </DegreesAwarded>
+                </SchoolAttended>
+              </SchoolsAttended>
+            </Education>
+            <FormerFederalServiceActivities Version="1" Type="Pooled">
+              <HadFormerFederalCivilianEmployment>
+                <Answer>Yes</Answer>
+              </HadFormerFederalCivilianEmployment>
+              <FederalServices>
+                <FederalService ID="1">
+                  <Agency>
+                    <Location>
+                      <Place>
+                        <Street>1430 Mountain Ave Suite 101</Street>
+                        <City>Duarte</City>
+                        <State>CA</State>
+                        <ZipCode>91010</ZipCode>
+                      </Place>
+                    </Location>
+                    <Name>United States Courthouse</Name>
+                  </Agency>
+                  <DateRange>
+                    <From>
+                      <Date Type="Estimated">
+                        <Month>12</Month>
+                        <Year>2015</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>04</Month>
+                        <Year>2017</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <PositionTitle>Lion Tamer</PositionTitle>
+                </FederalService>
+                <FederalService ID="2">
+                  <Agency>
+                    <Location>
+                      <Place>
+                        <Street>537 Cooking Lane</Street>
+                        <City>Chicago</City>
+                        <State>IL</State>
+                        <ZipCode>60616</ZipCode>
+                      </Place>
+                    </Location>
+                    <Name>Catering to the Government</Name>
+                  </Agency>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>08</Month>
+                        <Year>2019</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>08</Month>
+                        <Year>2019</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <PositionTitle>Sous Chef</PositionTitle>
+                </FederalService>
+              </FederalServices>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+            </FormerFederalServiceActivities>
+            <Citizenship Version="1" Type="Pooled">
+              <Status>USByBirthOutsideUS</Status>
+              <USCitizen>
+                <ProofOfUSCitizenship>
+                  <BornOnBase>
+                    <Answer>Yes</Answer>
+                  </BornOnBase>
+                  <MilitaryBase>
+                    <Name>Bosnia-Herzegovina</Name>
+                  </MilitaryBase>
+                  <USPassport>
+                    <DateExpired>
+                      <Date>
+                        <Month>05</Month>
+                        <Day>04</Day>
+                        <Year>2026</Year>
+                      </Date>
+                    </DateExpired>
+                    <DateIssued>
+                      <Date>
+                        <Month>05</Month>
+                        <Day>05</Day>
+                        <Year>2016</Year>
+                      </Date>
+                    </DateIssued>
+                    <IssuedLegalName>
+                      <Last>Tallmadge</Last>
+                      <First>Benjamin</First>
+                      <Middle Type="NMN"/>
+                    </IssuedLegalName>
+                    <PassportNumber>739562355</PassportNumber>
+                  </USPassport>
+                </ProofOfUSCitizenship>
+              </USCitizen>
+            </Citizenship>
+            <DualCitizenship Version="1" Type="Pooled">
+              <DualCitizenships>
+                <Citizenship ID="1">
+                  <Country>Bosnia and Herzegovina</Country>
+                  <CurrentlyHoldCitizenship>
+        
+        
+        
+      </CurrentlyHoldCitizenship>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>05</Month>
+                        <Year>1987</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <HowAcquired>I won it in a dart throwing contest in Prague.</HowAcquired>
+                </Citizenship>
+                <Citizenship ID="2">
+                  <Country>United States</Country>
+                  <CurrentlyHoldCitizenship>
+        
+        
+        
+      </CurrentlyHoldCitizenship>
+                  <DateRange>
+                    <From>
+                      <Date Type="Estimated">
+                        <Month>09</Month>
+                        <Year>1975</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                </Citizenship>
+              </DualCitizenships>
+              <HeldDualCitizenship>
+                <Answer>Yes</Answer>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </HeldDualCitizenship>
+            </DualCitizenship>
+            <USPassport Type="Pooled" Version="1">
+              <DoPossessUSPassport>
+                <Answer>Yes</Answer>
+              </DoPossessUSPassport>
+            </USPassport>
+            <MilitaryHistory Version="1" Type="Pooled">
+              <Charges>
+                <Answer>Yes</Answer>
+                <Charge ID="1">
+                  <Authority>General Court-Martial</Authority>
+                  <DateCharged>
+                    <Date Type="Estimated">
+                      <Month>05</Month>
+                      <Year>2009</Year>
+                    </Date>
+                  </DateCharged>
+                  <Description>Gross negligence. </Description>
+                  <Name>Article 16</Name>
+                  <Outcome>reduction in rank</Outcome>
+                </Charge>
+                <Charge ID="2">
+                  <Authority>Military commander</Authority>
+                  <DateCharged>
+                    <Date>
+                      <Month>08</Month>
+                      <Year>2012</Year>
+                    </Date>
+                  </DateCharged>
+                  <Description>Conspiracy</Description>
+                  <Name>Article 81</Name>
+                  <Outcome>found not guilty</Outcome>
+                </Charge>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </Charges>
+              <ForeignService>
+                <Answer>Yes</Answer>
+              </ForeignService>
+              <ForeignMilitaryService>
+                <Service ID="1">
+                  <AssociationDescription>I got a job as a function of nepotism (hired by a distant uncle).</AssociationDescription>
+                  <Branch>Intelligence</Branch>
+                  <Country>Bosnia and Herzegovina</Country>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>08</Month>
+                        <Year>2018</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <LeavingDescription>I didn't like working for my uncle.</LeavingDescription>
+                  <Name>Intelligence-Security Agency of Bosnia and Herzegovina</Name>
+                  <Organization>Intelligence</Organization>
+                  <Position>Intelligence Officer</Position>
+                </Service>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </ForeignMilitaryService>
+              <Answer>Yes</Answer>
+              <MilitaryService>
+                <Service ID="1">
+                  <Branch>AirForce</Branch>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>06</Month>
+                        <Year>2017</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Estimated">
+                        <Month>05</Month>
+                        <Year>2018</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Rank>Officer</Rank>
+                  <ServiceNumber>134654444</ServiceNumber>
+                  <Status>ActiveReserve</Status>
+                  <WasDischarged>
+                    <Answer>Yes</Answer>
+                  </WasDischarged>
+                  <Discharge>
+                    <Date Type="Estimated">
+                      <Month>05</Month>
+                      <Year>2018</Year>
+                    </Date>
+                    <Type>Honorable</Type>
+                  </Discharge>
+                </Service>
+                <Service ID="2">
+                  <Branch>Army</Branch>
+                  <DateRange>
+                    <From>
+                      <Date Type="Estimated">
+                        <Month>02</Month>
+                        <Year>1990</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Estimated">
+                        <Month>05</Month>
+                        <Year>1999</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Rank>Enlisted</Rank>
+                  <ServiceNumber>1525224442</ServiceNumber>
+                  <Status>Active</Status>
+                  <WasDischarged>
+                    <Answer>Yes</Answer>
+                  </WasDischarged>
+                  <Discharge>
+                    <Date Type="Estimated">
+                      <Month>05</Month>
+                      <Year>1999</Year>
+                    </Date>
+                    <Type>OtherThanHonorable</Type>
+                  </Discharge>
+                  <OtherThanHonorable>
+                    <Reason>I fell down too often, so they told me to leave.</Reason>
+                  </OtherThanHonorable>
+                </Service>
+                <Service ID="3">
+                  <Branch>CoastGuard</Branch>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>08</Month>
+                        <Year>1999</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Estimated">
+                        <Month>01</Month>
+                        <Year>2001</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Rank>Enlisted</Rank>
+                  <ServiceNumber>142315235</ServiceNumber>
+                  <Status>InactiveReserve</Status>
+                  <WasDischarged>
+                    <Answer>Yes</Answer>
+                  </WasDischarged>
+                  <Discharge>
+                    <Date Type="Estimated">
+                      <Month>01</Month>
+                      <Year>2001</Year>
+                    </Date>
+                    <Type>BadConduct</Type>
+                  </Discharge>
+                  <OtherThanHonorable>
+                    <Reason>I lost my uniform.</Reason>
+                  </OtherThanHonorable>
+                </Service>
+              </MilitaryService>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+            </MilitaryHistory>
+            <SelectiveServiceRegistration Version="1" Type="Pooled">
+              <RegistrationRequired>
+    
+  </RegistrationRequired>
+            </SelectiveServiceRegistration>
+            <FinancialRecord Type="Pooled" Version="1">
+              <Bankruptcy>
+                <Activities>
+                  <Activity ID="1">
+                    <AccountNumber>23622</AccountNumber>
+                    <Amount>613455</Amount>
+                    <Authority>
+                      <Address>
+                        <Street>1234 Main St</Street>
+                        <City>Alameda</City>
+                        <State>CA</State>
+                        <ZipCode>94706</ZipCode>
+                      </Address>
+                      <Court>US District Court of Alameda</Court>
+                    </Authority>
+                    <DischargeDate Type="Estimated">
+                      <Month>08</Month>
+                      <Year>1984</Year>
+                    </DischargeDate>
+                    <DischargedOfAllDebts>
+                      <Answer>Yes</Answer>
+                    </DischargedOfAllDebts>
+                    <Explanation>I'm very convincing.</Explanation>
+                    <FiledDate Type="Estimated">
+                      <Month>06</Month>
+                      <Year>1982</Year>
+                    </FiledDate>
+                    <Record>
+                      <Name>
+                        <Last>Sinchell</Last>
+                        <First>Hamilton</First>
+                        <Middle Type="IO">L</Middle>
+                      </Name>
+                    </Record>
+                    <Type>Chapter7</Type>
+                  </Activity>
+                </Activities>
+                <Answer>Yes</Answer>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </Bankruptcy>
+              <ViolatedCorporateCardAgreement>
+                <Answer>Yes</Answer>
+                <Incidents>
+                  <Incident ID="1">
+                    <Actions>The money was taken out of my paycheck. </Actions>
+                    <Agency>
+                      <Address>
+                        <Street>361 Kings Highway</Street>
+                        <City>Yakima</City>
+                        <State>WA</State>
+                        <ZipCode>98901</ZipCode>
+                      </Address>
+                      <Name>Travel R Us!</Name>
+                    </Agency>
+                    <Amount Estimated="true">2500</Amount>
+                    <Reason>I drunkenly made traveling arrangements on a company card.</Reason>
+                  </Incident>
+                </Incidents>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </ViolatedCorporateCardAgreement>
+              <UtilizingOrSeekingCreditCounseling>
+                <Answer>Yes</Answer>
+                <Incidents>
+                  <Incident ID="1">
+                    <Actions>I'm paying down my credit cards using the "snowball method" - I have successfully paid off 3 of my 15 credit cards since seeking counseling.</Actions>
+                    <Explanation>I have too many credit cards.</Explanation>
+                    <Organization>
+                      <Location>
+                        <City>Washington</City>
+                        <State>DC</State>
+                      </Location>
+                      <Name>National Foundation for Credit Counseling</Name>
+                      <Telephone>
+                        <Number>8003882227</Number>
+                        <Time>Day</Time>
+                      </Telephone>
+                    </Organization>
+                  </Incident>
+                </Incidents>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </UtilizingOrSeekingCreditCounseling>
+              <DelinquencyInvolvingEnforcement>
+                <Answer>Yes</Answer>
+                <Incidents>
+                  <Incident ID="1">
+                    <AccountNumber>23462111</AccountNumber>
+                    <Agency>
+                      <Name>Capital One</Name>
+                    </Agency>
+                    <Amount Estimated="true">98000</Amount>
+                    <Court>
+                      <Address>
+                        <Street>1903 Western Michigan Avenue</Street>
+                        <City>Kalamazoo</City>
+                        <State>MI</State>
+                        <ZipCode>49008</ZipCode>
+                      </Address>
+                      <Name>US District Court of Kalamazoo</Name>
+                    </Court>
+                    <DateBegan>
+                      <Month>11</Month>
+                      <Year>2014</Year>
+                    </DateBegan>
+                    <DateResolved Type="Estimated">
+                      <Month>10</Month>
+                      <Year>2016</Year>
+                    </DateResolved>
+                    <Description>I tracked my friend down and made them pay me back.</Description>
+                    <IssueType>
+                      <Answer>Yes</Answer>
+                      <Options Judgment="True"/>
+                    </IssueType>
+                    <PropertyType>N/A</PropertyType>
+                    <Reason>I cosigned on a loan for a friend, turns out they weren't my friend.</Reason>
+                    <Status>Resolved</Status>
+                  </Incident>
+                </Incidents>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </DelinquencyInvolvingEnforcement>
+              <ProblemsDueToGambling>
+                <Answer>Yes</Answer>
+                <Incidents>
+                  <Incident ID="1">
+                    <Actions>I attended a voluntary counseling series aimed at curing gambling addiction.</Actions>
+                    <Amount>8700</Amount>
+                    <DateRange>
+                      <From>
+                        <Date Type="Estimated">
+                          <Month>02</Month>
+                          <Year>1985</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date Type="Estimated">
+                          <Month>01</Month>
+                          <Year>1989</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Description>I went into a depression after my bankruptcy and turned to gambling to ease my pain.Io </Description>
+                  </Incident>
+                </Incidents>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </ProblemsDueToGambling>
+              <DelinquencyInvolvingRoutineAccounts>
+                <Answer>Yes</Answer>
+                <Incidents>
+                  <Incident ID="1">
+                    <AccountNumber>936388</AccountNumber>
+                    <Agency>
+                      <Name>Sallie Mae</Name>
+                    </Agency>
+                    <Amount>6700</Amount>
+                    <DateBegan>
+                      <Month>02</Month>
+                      <Year>2019</Year>
+                    </DateBegan>
+                    <DateResolved NotResolved="True">
+        
+      </DateResolved>
+                    <Description>I'm trying to sell the carpark. </Description>
+                    <IssueType>
+                      <Answer>Yes</Answer>
+                      <Option CurrentDeliquency="True"/>
+                    </IssueType>
+                    <PropertyType>Large Carpark</PropertyType>
+                    <Reason>I invested in a carpark, it turns out it wasn't zoned for that - hence the cheap price. I couldn't make any money on it, and so lost money.</Reason>
+                    <Status>Resolved</Status>
+                  </Incident>
+                </Incidents>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </DelinquencyInvolvingRoutineAccounts>
+              <UnpaidTaxes>
+                <Answer>Yes</Answer>
+                <Incidents>
+                  <Incident ID="1">
+                    <Actions>I called up the IRS and made a payment as soon as I realized what I had done.</Actions>
+                    <Agency>IRS</Agency>
+                    <Amount Estimated="true">20300</Amount>
+                    <DateFailedToPay Type="Estimated">
+                      <Year>2001</Year>
+                    </DateFailedToPay>
+                    <DateSatisfied Type="Estimated">
+                      <Month>01</Month>
+                      <Year>2002</Year>
+                    </DateSatisfied>
+                    <Reason>I came into a large inheritance and was out of the country during tax season, so I forgot.</Reason>
+                    <TaxType>Income</TaxType>
+                    <Type>Both</Type>
+                  </Incident>
+                </Incidents>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </UnpaidTaxes>
+            </FinancialRecord>
+            <ForeignTravels Version="1" Type="Pooled">
+              <CountriesVisited>
+                <Answer>Yes</Answer>
+              </CountriesVisited>
+              <SolelyForUSGovernment>
+                <Answer>No</Answer>
+              </SolelyForUSGovernment>
+              <Travels>
+                <Travel ID="1">
+                  <ContactedByForeignMilitaryOrganization>
+                    <Answer>Yes</Answer>
+                    <Explanation>I was approached to smuggle some goods, but I ran away.</Explanation>
+                  </ContactedByForeignMilitaryOrganization>
+                  <Country>India</Country>
+                  <DateRange>
+                    <From>
+                      <Date Type="Estimated">
+                        <Month>12</Month>
+                        <Year>2008</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Estimated">
+                        <Month>01</Month>
+                        <Year>2009</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Detained>
+                    <Answer>Yes</Answer>
+                    <Explanation>I was falsely accused of possessing a controlled substance.</Explanation>
+                  </Detained>
+                  <Duration>
+                    <NumberOfDaysRange>MoreThanThirty</NumberOfDaysRange>
+                  </Duration>
+                  <PoliceEncounter>
+                    <Answer>Yes</Answer>
+                    <Explanation>I said a bad word in front of a person and they reported me.</Explanation>
+                  </PoliceEncounter>
+                  <PurposeOfVisit VolunteerActivities="True" Education="True" Tourism="True"/>
+                </Travel>
+                <Travel ID="2">
+                  <ContactedByForeignMilitaryOrganization>
+                    <Answer>No</Answer>
+                  </ContactedByForeignMilitaryOrganization>
+                  <Country>Japan</Country>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>03</Month>
+                        <Year>2019</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>03</Month>
+                        <Year>2019</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Detained>
+                    <Answer>Yes</Answer>
+                    <Explanation>There was a protest outside of the office I was visiting and I was wrongly mistaken for a protestor.</Explanation>
+                  </Detained>
+                  <Duration>
+                    <NumberOfDaysRange>ElevenToTwenty</NumberOfDaysRange>
+                  </Duration>
+                  <PoliceEncounter>
+                    <Answer>No</Answer>
+                  </PoliceEncounter>
+                  <PurposeOfVisit Business="True" TradeShow="True"/>
+                </Travel>
+              </Travels>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+            </ForeignTravels>
+            <UseOfAlcohol Version="1" Type="Pooled">
+              <NegativeImpact>
+                <Answer>Yes</Answer>
+                <Incidents>
+                  <Incident ID="1">
+                    <Date Type="Estimated">
+                      <Month>01</Month>
+                      <Year>2014</Year>
+                    </Date>
+                    <Circumstances>I drank heavily on a Sunday night.</Circumstances>
+                    <Impact>I was still drunk when I woke up Monday morning for work.</Impact>
+                    <DateRange>
+                      <From>
+                        <Date Type="Estimated">
+                          <Month>01</Month>
+                          <Year>2014</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date Type="Estimated">
+                          <Month>12</Month>
+                          <Year>2014</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                  </Incident>
+                </Incidents>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </NegativeImpact>
+              <OrderedAdvisedOrAskedToSeekCounseling>
+                <Answer>Yes</Answer>
+                <Consultations>
+                  <Consultation ID="1">
+                    <ActionToSeekCounselingTaken>
+                      <Answer>No</Answer>
+                    </ActionToSeekCounselingTaken>
+                    <Explanation>I decided against taking action to seek counseling because of the expense and the current state of my finances.</Explanation>
+                  </Consultation>
+                </Consultations>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </OrderedAdvisedOrAskedToSeekCounseling>
+              <SoughtCounseling>
+                <Answer>Yes</Answer>
+                <Consultations>
+                  <Consultation ID="1">
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>12</Month>
+                          <Year>2009</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date Type="Estimated">
+                          <Month>12</Month>
+                          <Year>2009</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Doctor>
+                      <Name>Hunter Gatherer Treatment Facility</Name>
+                      <Address>
+                        <Street>190 Jay St</Street>
+                        <City>Rochester</City>
+                        <State>NY</State>
+                        <ZipCode>14608</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>5852329771</Number>
+                        <Time>Day</Time>
+                      </Telephone>
+                    </Doctor>
+                    <CompletedTreatmentProgram>
+                      <Answer>Yes</Answer>
+                    </CompletedTreatmentProgram>
+                  </Consultation>
+                </Consultations>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </SoughtCounseling>
+            </UseOfAlcohol>
+            <IllegalDrugUse Version="1" Type="Pooled">
+              <MisuseOfPrescriptionDrugs>
+                <Answer>Yes</Answer>
+                <Instances>
+                  <Instance ID="1">
+                    <DrugsUsed>Provigil</DrugsUsed>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>12</Month>
+                          <Year>2018</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date Type="Present"/>
+                      </To>
+                    </DateRange>
+                    <Circumstances>I need it to stay awake.</Circumstances>
+                    <InvolvementWhileEmployedAsLawEnforcement>
+                      <Answer>Yes</Answer>
+                    </InvolvementWhileEmployedAsLawEnforcement>
+                    <InvolvementWhilePossessingASecurityClearance>
+                      <Answer>Yes</Answer>
+                    </InvolvementWhilePossessingASecurityClearance>
+                  </Instance>
+                </Instances>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </MisuseOfPrescriptionDrugs>
+              <OrderedAdvisedOrAskedToSeekCounseling>
+                <Answer>Yes</Answer>
+                <Consultations>
+                  <Consultation ID="1">
+                    <ActionToSeekCounselingTaken>
+                      <Answer>Yes</Answer>
+                    </ActionToSeekCounselingTaken>
+                    <DidNotReceiveTreatment>
+        
+        
+      </DidNotReceiveTreatment>
+                    <CounselingOrderedBy>
+                      <Answer Employer="True" MedicalProfessional="True" MentalHealthProfessional="True"/>
+                      <Explanation>I was ordered to seek counseling for my use of Provigil.</Explanation>
+                    </CounselingOrderedBy>
+                    <Drug>
+                      <Type>Stimulants</Type>
+                    </Drug>
+                    <Doctor>
+                      <Name>
+                        <Last>Kemp</Last>
+                        <First>Heather</First>
+                      </Name>
+                      <Address>
+                        <Street>101 4th Ave SE</Street>
+                        <City>Carmel</City>
+                        <State>IN</State>
+                        <ZipCode>46032</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>3178440176</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </Doctor>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>08</Month>
+                          <Year>2019</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>08</Month>
+                          <Year>2019</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <SuccessfullyCompletedTreatmentProgram>
+                      <Answer>Yes</Answer>
+                    </SuccessfullyCompletedTreatmentProgram>
+                    <UnsuccessfulTreatment>
+        
+        
+      </UnsuccessfulTreatment>
+                  </Consultation>
+                </Consultations>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </OrderedAdvisedOrAskedToSeekCounseling>
+              <InvolvementWhileEmployedAsLawEnforcement>
+                <Answer>Yes</Answer>
+                <Involvements>
+                  <Involvement ID="1">
+                    <Description>I used cocaine.</Description>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>05</Month>
+                          <Year>2018</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date Type="Estimated">
+                          <Month>09</Month>
+                          <Year>2018</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <NumberOfTimes>25 times</NumberOfTimes>
+                  </Involvement>
+                </Involvements>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </InvolvementWhileEmployedAsLawEnforcement>
+              <IllegalDrugActivity>
+                <Answer>Yes</Answer>
+                <Activities>
+                  <Activity ID="1">
+                    <Drug>
+                      <Type>Ketamine</Type>
+                    </Drug>
+                    <FirstInvolvementDate>
+                      <Month>05</Month>
+                      <Year>1999</Year>
+                    </FirstInvolvementDate>
+                    <MostRecentInvolvementDate>
+                      <Month>01</Month>
+                      <Year>2001</Year>
+                    </MostRecentInvolvementDate>
+                    <Nature>I was unwittingly used as a mule, in what I thought was innocent transportation of clothing for donation to underprivileged youth.</Nature>
+                    <InvolvedWhileEmployedAsLawEnforcementOfficerProsecutorOrCourtOfficial>
+                      <Answer>Yes</Answer>
+                    </InvolvedWhileEmployedAsLawEnforcementOfficerProsecutorOrCourtOfficial>
+                    <InvolvedWhilePossessingASecurityClearance>
+                      <Answer>Yes</Answer>
+                    </InvolvedWhilePossessingASecurityClearance>
+                    <IntendToEngageInFutureActivities>
+                      <Answer>No</Answer>
+                    </IntendToEngageInFutureActivities>
+                    <Reason>I was tricked into this activity.</Reason>
+                  </Activity>
+                  <Activity ID="2">
+                    <Drug>
+                      <Type>Cocaine</Type>
+                    </Drug>
+                    <FirstInvolvementDate>
+                      <Month>08</Month>
+                      <Year>2009</Year>
+                    </FirstInvolvementDate>
+                    <MostRecentInvolvementDate>
+                      <Month>09</Month>
+                      <Year>2010</Year>
+                    </MostRecentInvolvementDate>
+                    <Nature>I transferred this item over the boarder from Canada by snowmobile.</Nature>
+                    <InvolvedWhileEmployedAsLawEnforcementOfficerProsecutorOrCourtOfficial>
+                      <Answer>Yes</Answer>
+                    </InvolvedWhileEmployedAsLawEnforcementOfficerProsecutorOrCourtOfficial>
+                    <InvolvedWhilePossessingASecurityClearance>
+                      <Answer>Yes</Answer>
+                    </InvolvedWhilePossessingASecurityClearance>
+                    <IntendToEngageInFutureActivities>
+                      <Answer>No</Answer>
+                    </IntendToEngageInFutureActivities>
+                    <Reason>I needed the money.</Reason>
+                  </Activity>
+                </Activities>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </IllegalDrugActivity>
+              <IllegalUse>
+                <Answer>Yes</Answer>
+                <Instances>
+                  <Instance ID="1">
+                    <DrugUsed>
+                      <Type>Cocaine</Type>
+                    </DrugUsed>
+                    <FirstUseDate Type="Estimated">
+                      <Month>08</Month>
+                      <Year>1988</Year>
+                    </FirstUseDate>
+                    <MostRecentUseDate Type="Estimated">
+                      <Month>12</Month>
+                      <Year>1995</Year>
+                    </MostRecentUseDate>
+                    <Nature>I typically used 3-5 times per week for the duration of my use.</Nature>
+                    <UseWhileEmployedAsLawEnforcementOfficerProsecutorOrCourtOfficial>
+                      <Answer>Yes</Answer>
+                    </UseWhileEmployedAsLawEnforcementOfficerProsecutorOrCourtOfficial>
+                    <UseWhilePossessingASecurityClearance>
+                      <Answer>Yes</Answer>
+                    </UseWhilePossessingASecurityClearance>
+                    <IntendToUseInFuture>
+                      <Answer>No</Answer>
+                      <Explanation>I don't like it anymore.</Explanation>
+                    </IntendToUseInFuture>
+                  </Instance>
+                  <Instance ID="2">
+                    <DrugUsed>
+                      <Type>Stimulants</Type>
+                    </DrugUsed>
+                    <FirstUseDate>
+                      <Month>01</Month>
+                      <Year>2019</Year>
+                    </FirstUseDate>
+                    <MostRecentUseDate Type="Estimated">
+                      <Month>07</Month>
+                      <Year>2019</Year>
+                    </MostRecentUseDate>
+                    <Nature>I tried this twice, most recently by accident when my friend slipped something into my drink.</Nature>
+                    <UseWhileEmployedAsLawEnforcementOfficerProsecutorOrCourtOfficial>
+                      <Answer>Yes</Answer>
+                    </UseWhileEmployedAsLawEnforcementOfficerProsecutorOrCourtOfficial>
+                    <UseWhilePossessingASecurityClearance>
+                      <Answer>Yes</Answer>
+                    </UseWhilePossessingASecurityClearance>
+                    <IntendToUseInFuture>
+                      <Answer>No</Answer>
+                      <Explanation>I don't like it.</Explanation>
+                    </IntendToUseInFuture>
+                  </Instance>
+                </Instances>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </IllegalUse>
+              <VoluntaryTreatment>
+                <Answer>Yes</Answer>
+                <Consultations>
+                  <Consultation ID="1">
+                    <Drug>
+                      <Type>THC</Type>
+                    </Drug>
+                    <Doctor>
+                      <Name>
+                        <Last>Mendes</Last>
+                        <First>Shawn</First>
+                      </Name>
+                      <Address>
+                        <Street>1001 S Main St</Street>
+                        <City>Lamar</City>
+                        <State>CO</State>
+                        <ZipCode>81052</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>7197772221</Number>
+                        <Time>Night</Time>
+                      </Telephone>
+                    </Doctor>
+                    <DateRange>
+                      <From>
+                        <Date Type="Estimated">
+                          <Month>05</Month>
+                          <Year>2009</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date Type="Estimated">
+                          <Month>01</Month>
+                          <Year>2010</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <SuccessfullyCompletedTreatmentProgram>
+                      <Answer>No</Answer>
+                    </SuccessfullyCompletedTreatmentProgram>
+                    <UnsuccessfulTreatment>
+                      <Explanation>I realized that I didn't actually have a problem.</Explanation>
+                    </UnsuccessfulTreatment>
+                  </Consultation>
+                </Consultations>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </VoluntaryTreatment>
+            </IllegalDrugUse>
+            <PoliceRecord Version="1" Type="Pooled">
+              <Past7Years>
+                <Answer>Yes</Answer>
+                <Offenses>
+                  <Offense ID="1">
+                    <AppearedInCourt>
+                      <Answer>Yes</Answer>
+                      <Charges>
+                        <Charge ID="1">
+                          <Charge>Unlawful possession of fireworks</Charge>
+                          <Date Type="Estimated">
+                            <Month>08</Month>
+                            <Year>2003</Year>
+                          </Date>
+                          <Outcome>Community Service</Outcome>
+                          <Type>Misdemeanor</Type>
+                        </Charge>
+                      </Charges>
+                      <Court>
+                        <Location>
+                          <Place>
+                            <City>Rochester</City>
+                            <State>NY</State>
+                            <ZipCode>14624</ZipCode>
+                            <County>Monroe County</County>
+                          </Place>
+                        </Location>
+                        <Name>District Court of Rochester</Name>
+                      </Court>
+                      <Sentenced>
+                        <Answer>Yes</Answer>
+                        <Description>I was sentenced to 2 years of imprisonment and 500 hours of community service</Description>
+                        <Imprisonment>
+                          <YearOrMore>
+                            <DateRange>
+                              <From>
+                                <Date Type="Estimated">
+                                  <Month>09</Month>
+                                  <Year>2003</Year>
+                                </Date>
+                              </From>
+                              <To>
+                                <Date Type="Estimated">
+                                  <Month>10</Month>
+                                  <Year>2004</Year>
+                                </Date>
+                              </To>
+                            </DateRange>
+                          </YearOrMore>
+                        </Imprisonment>
+                        <Incarcerated>
+                          <YearOrMore>
+                            <Answer>Yes</Answer>
+                          </YearOrMore>
+                        </Incarcerated>
+                        <MoreThanYear>
+                          <Answer>Yes</Answer>
+                        </MoreThanYear>
+                        <Probation>
+                          <DateRange NotApplicable="True"/>
+                        </Probation>
+                      </Sentenced>
+                    </AppearedInCourt>
+                    <Arrested>
+                      <Answer>Yes</Answer>
+                    </Arrested>
+                    <ArrestingAgency>
+                      <Location>
+                        <Place>
+                          <City>Rochester</City>
+                          <State>NY</State>
+                          <ZipCode>14624</ZipCode>
+                          <County>Monroe County</County>
+                        </Place>
+                      </Location>
+                      <Name>Rochester PD</Name>
+                    </ArrestingAgency>
+                    <Date>
+                      <Month>07</Month>
+                      <Year>2003</Year>
+                    </Date>
+                    <InvolveFollowingOffenses>
+                      <Answer>Yes</Answer>
+                    </InvolveFollowingOffenses>
+                    <Location>
+                      <Place>
+                        <City>Rochester</City>
+                        <State>NY</State>
+                        <ZipCode>14624</ZipCode>
+                        <County>Monroe County</County>
+                      </Place>
+                    </Location>
+                    <OffenseDescription>I set off fireworks in New York State, where they are illegal.</OffenseDescription>
+                    <OffenseType Firearms="True" Alcohol="True"/>
+                  </Offense>
+                  <Offense ID="2">
+                    <AppearedInCourt>
+                      <Answer>Yes</Answer>
+                      <Charges>
+                        <Charge ID="1">
+                          <Charge>Deep frying with intent to throw</Charge>
+                          <Date>
+                            <Month>08</Month>
+                            <Year>1990</Year>
+                          </Date>
+                          <Outcome>Jury was thrown out, awaiting retrial</Outcome>
+                          <Type>Felony</Type>
+                        </Charge>
+                      </Charges>
+                      <Court>
+                        <Location>
+                          <Place>
+                            <City>East Chicago</City>
+                            <State>IN</State>
+                            <ZipCode>46312</ZipCode>
+                            <County>Lake County</County>
+                          </Place>
+                        </Location>
+                        <Name>East Chicago City Court</Name>
+                      </Court>
+                      <Sentenced>
+                        <Answer>Yes</Answer>
+                        <Description>I was sentenced to 2 years imprisonment and 500 hours community service, but the verdict was eventually thrown out and I am awaiting a retrial.</Description>
+                        <Imprisonment>
+                          <YearOrMore>
+                            <DateRange>
+                              <From>
+                                <Date>
+                                  <Month>08</Month>
+                                  <Year>1990</Year>
+                                </Date>
+                              </From>
+                              <To>
+                                <Date Type="Estimated">
+                                  <Month>09</Month>
+                                  <Year>1991</Year>
+                                </Date>
+                              </To>
+                            </DateRange>
+                          </YearOrMore>
+                        </Imprisonment>
+                        <Incarcerated>
+                          <YearOrMore>
+                            <Answer>Yes</Answer>
+                          </YearOrMore>
+                        </Incarcerated>
+                        <MoreThanYear>
+                          <Answer>Yes</Answer>
+                        </MoreThanYear>
+                        <Probation>
+                          <DateRange>
+                            <From>
+                              <Date Type="Estimated">
+                                <Month>09</Month>
+                                <Year>1990</Year>
+                              </Date>
+                            </From>
+                            <To>
+                              <Date>
+                                <Month>08</Month>
+                                <Year>2019</Year>
+                              </Date>
+                            </To>
+                          </DateRange>
+                        </Probation>
+                      </Sentenced>
+                    </AppearedInCourt>
+                    <Arrested>
+                      <Answer>Yes</Answer>
+                    </Arrested>
+                    <ArrestingAgency>
+                      <Location>
+                        <Place>
+                          <City>East Chicago</City>
+                          <State>IN</State>
+                          <ZipCode>46312</ZipCode>
+                          <County>Lake County</County>
+                        </Place>
+                      </Location>
+                      <Name>Chicago PD</Name>
+                    </ArrestingAgency>
+                    <Date>
+                      <Month>04</Month>
+                      <Year>1990</Year>
+                    </Date>
+                    <InvolveFollowingOffenses>
+                      <Answer>Yes</Answer>
+                    </InvolveFollowingOffenses>
+                    <Location>
+                      <Place>
+                        <City>Chicago</City>
+                        <State>IL</State>
+                        <ZipCode>60605</ZipCode>
+                        <County>Cook County</County>
+                      </Place>
+                    </Location>
+                    <OffenseDescription>I threw freshly fried donuts at a politician which resulted in severe facial scarring. I'm being taken to court for the full cost of the 138 reconstructive surgeries that they have had in the last 19 years since the incident.</OffenseDescription>
+                    <OffenseType Domestic="True" Firearms="True" Alcohol="True"/>
+                  </Offense>
+                </Offenses>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </Past7Years>
+              <Ever>
+                <Offenses>
+                  <Answer>Yes</Answer>
+                  <Offense ID="1">
+                    <AwaitingTrial>
+                      <Answer>No</Answer>
+                      <Explanation>Released</Explanation>
+                    </AwaitingTrial>
+                    <Charges>
+                      <Charge ID="1">
+                        <Charge>Test charge</Charge>
+                        <Date>
+                          <Month>10</Month>
+                          <Year>2014</Year>
+                        </Date>
+                        <Outcome>Test outcome</Outcome>
+                        <Type>Felony</Type>
+                      </Charge>
+                    </Charges>
+                    <Court>
+                      <Location>
+                        <Place>
+                          <City>Broken Bow</City>
+                          <State>NE</State>
+                          <ZipCode>68822</ZipCode>
+                          <County>Custer County</County>
+                        </Place>
+                      </Location>
+                      <Name>Custer County Judicial Center</Name>
+                    </Court>
+                    <Date>
+                      <Month>07</Month>
+                      <Year>2014</Year>
+                    </Date>
+                    <InvolveFollowingOffenses>
+                      <Answer>No</Answer>
+                    </InvolveFollowingOffenses>
+                    <OffenseDescription>Civil disobedience</OffenseDescription>
+                    <OffenseType Domestic="True"/>
+                    <Sentenced>
+                      <Answer>No</Answer>
+                    </Sentenced>
+                  </Offense>
+                  <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+                </Offenses>
+              </Ever>
+              <RestrainingOrders>
+                <Answer>Yes</Answer>
+                <RestrainingOrder ID="1">
+                  <Court>
+                    <Location>
+                      <Place>
+                        <City>Alameda</City>
+                        <State>CA</State>
+                        <ZipCode>94706</ZipCode>
+                        <County>Alameda County</County>
+                      </Place>
+                    </Location>
+                    <Name>US District Court of Alameda</Name>
+                  </Court>
+                  <DateIssued>
+                    <Month>02</Month>
+                    <Year>2019</Year>
+                  </DateIssued>
+                  <Explanation>There is a restraining order against me.</Explanation>
+                </RestrainingOrder>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </RestrainingOrders>
+            </PoliceRecord>
+            <CivilCourtRecord Version="1" Type="Pooled">
+              <CivilCourtAction>
+                <Answer>Yes</Answer>
+              </CivilCourtAction>
+              <CourtActions>
+                <CourtAction ID="1">
+                  <Court>
+                    <Address>
+                      <Street>1500 Maybrook Dr</Street>
+                      <City>Maywood</City>
+                      <State>IL</State>
+                      <ZipCode>60153</ZipCode>
+                    </Address>
+                    <Name>US District Court of Skokie</Name>
+                  </Court>
+                  <Date>
+                    <Month>09</Month>
+                    <Year>2018</Year>
+                  </Date>
+                  <Nature>My financial records were required to be submitted as proof of fraud.</Nature>
+                  <Parties>Myself, the IRS</Parties>
+                  <Result>I submitted my financial records and I was proven innocent.</Result>
+                </CourtAction>
+              </CourtActions>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+            </CivilCourtRecord>
+            <InformationSystemUse Version="1" Type="Pooled">
+              <IllegalEntry>
+                <Answer>Yes</Answer>
+                <Incidents>
+                  <Incident ID="1">
+                    <Action>I was never caught, therefore no action was taken.</Action>
+                    <Address>
+                      <Street>1572 20th St</Street>
+                      <City>Severy</City>
+                      <State>KS</State>
+                      <ZipCode>67137</ZipCode>
+                    </Address>
+                    <Date>
+                      <Month>11</Month>
+                      <Year>1999</Year>
+                    </Date>
+                    <Nature>I watched Hackers and got a little too excited.</Nature>
+                  </Incident>
+                </Incidents>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </IllegalEntry>
+              <IllegalUse>
+                <Answer>Yes</Answer>
+                <Incidents>
+                  <Incident ID="1">
+                    <Action>I was brought in for questioning but ultimately nothing was ever proven. </Action>
+                    <Address>
+                      <Street>555 Main St</Street>
+                      <City>Salt Lake City</City>
+                      <State>UT</State>
+                      <ZipCode>84111</ZipCode>
+                    </Address>
+                    <Date Type="Estimated">
+                      <Month>12</Month>
+                      <Year>2001</Year>
+                    </Date>
+                    <Nature>I sent a gift to a politician as congratulations for their recent election win, including a stuffed bear fitted with a virtually undetectable camera that would take a photograph and 10 seconds of audio recording any time anyone said the word "cheese".  I then used that information to gain access to the office, where I installed a ceiling fan over a weekend, for no reason. </Nature>
+                  </Incident>
+                </Incidents>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </IllegalUse>
+              <IllegallyAlteredInformation>
+                <Answer>Yes</Answer>
+                <Incidents>
+                  <Incident ID="1">
+                    <Action>The doctor banned me from ever receiving treatment at their office, but did not report to the police.</Action>
+                    <Address>
+                      <Street>1821 S Bascom Ave</Street>
+                      <City>Campbell</City>
+                      <State>CA</State>
+                      <ZipCode>95008</ZipCode>
+                    </Address>
+                    <Date Type="Estimated">
+                      <Month>02</Month>
+                      <Year>2001</Year>
+                    </Date>
+                    <Nature>At the request of a friend, I modified some records and destroyed some others in the system of a doctor's office, regarding their ongoing problems with hiccuping.</Nature>
+                  </Incident>
+                </Incidents>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </IllegallyAlteredInformation>
+            </InformationSystemUse>
+            <AssociationRecord Version="1" Type="Pooled">
+              <ActivitiesToOverthrowTheUSGovernment>
+                <Activities>
+                  <Activity ID="1">
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>08</Month>
+                          <Year>2019</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date Type="Present"/>
+                      </To>
+                    </DateRange>
+                    <Reason>I stockpiled the ingredients to make about 100,000 donuts, and made arrangements to purchase 500 fryers in preparation for a siege against the capital with the intent of overthrowing the US government.</Reason>
+                  </Activity>
+                </Activities>
+                <Answer>Yes</Answer>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </ActivitiesToOverthrowTheUSGovernment>
+              <AdvocatedTerrorism>
+                <Answer>Yes</Answer>
+                <Instances>
+                  <Instance ID="1">
+                    <DateRange>
+                      <From>
+                        <Date Type="Estimated">
+                          <Month>01</Month>
+                          <Year>2003</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date Type="Estimated">
+                          <Month>02</Month>
+                          <Year>2003</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Reason>I didn't like the way the president said the word "nuclear" and believed that every time he said it out loud it brought us closer to the end of the world.</Reason>
+                  </Instance>
+                </Instances>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </AdvocatedTerrorism>
+              <BeenInOrganizationAdvocatingViolence>
+                <Answer>Yes</Answer>
+                <Organizations>
+                  <Organization ID="1">
+                    <Address>
+                      <Street>1012 Haven Rd</Street>
+                      <City>Little Falls</City>
+                      <State>MN</State>
+                      <ZipCode>56345</ZipCode>
+                    </Address>
+                    <Contributions>55000</Contributions>
+                    <DateRange>
+                      <From>
+                        <Date Type="Estimated">
+                          <Month>05</Month>
+                          <Year>2015</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date Type="Estimated">
+                          <Month>05</Month>
+                          <Year>2015</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Description>DND is an organization that fights against the rise of the pharmaceutical companies in the US by pelting their executive teams with piping hot, freshly fried donuts. </Description>
+                    <Name>Donuts Not Drugs (DND)</Name>
+                    <PositionsHeld>Assistant to the head donut fryer</PositionsHeld>
+                  </Organization>
+                </Organizations>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </BeenInOrganizationAdvocatingViolence>
+              <BeenInOrganizationDedicatedToTerrorism>
+                <Answer>Yes</Answer>
+                <Organizations>
+                  <Organization ID="1">
+                    <Address>
+                      <Street>9000 Southside Dr</Street>
+                      <City>Yosemite Valley</City>
+                      <State>CA</State>
+                      <ZipCode>95389</ZipCode>
+                    </Address>
+                    <Contributions>$10,000 USD</Contributions>
+                    <DateRange>
+                      <From>
+                        <Date Type="Estimated">
+                          <Month>08</Month>
+                          <Year>1992</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date Type="Estimated">
+                          <Month>10</Month>
+                          <Year>1992</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Description>I watched Ferngully and it made me realize that we needed to do something about deforestation.</Description>
+                    <Name>Earth First!</Name>
+                    <PositionsHeld>
+        Chief Mischief Maker
+      </PositionsHeld>
+                  </Organization>
+                </Organizations>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </BeenInOrganizationDedicatedToTerrorism>
+              <EngagedInTerrorism>
+                <Answer>Yes</Answer>
+                <TerroristActs>
+                  <Act ID="1">
+                    <DateRange>
+                      <From>
+                        <Date Type="Estimated">
+                          <Month>09</Month>
+                          <Year>1992</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date Type="Estimated">
+                          <Month>09</Month>
+                          <Year>1992</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Reason>I aided members of Earth First! in a raid on a federal building where we stole a truckload of chimpanzees who were going to be used for chemical testing.</Reason>
+                  </Act>
+                </TerroristActs>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </EngagedInTerrorism>
+              <TerrorismAssociations>
+                <Answer>Yes</Answer>
+                <Explanation>I have regularly engaged in online activities associating with ecoterrorists, and also rogue donut makers with designs against the current government.</Explanation>
+              </TerrorismAssociations>
+              <TerroristOrganizationMember>
+                <Answer>Yes</Answer>
+                <Organizations>
+                  <Organization ID="1">
+                    <Address>
+                      <Street>2740 State St</Street>
+                      <City>Salt Lake City</City>
+                      <State>UT</State>
+                      <ZipCode>84115</ZipCode>
+                    </Address>
+                    <Contributions>1500</Contributions>
+                    <DateRange>
+                      <From>
+                        <Date Type="Estimated">
+                          <Month>06</Month>
+                          <Year>1985</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date Type="Estimated">
+                          <Month>09</Month>
+                          <Year>1985</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Description>I was young and inexperience in the ways of the world, and I liked someone else in the organization and I wanted their attention and validation.</Description>
+                    <Name>Anarchy and thA modern family (ATAMF)</Name>
+                    <PositionsHeld>
+        Senior Marketing Manager
+      </PositionsHeld>
+                  </Organization>
+                </Organizations>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </TerroristOrganizationMember>
+            </AssociationRecord>
+            <InvestigationRecord Version="1" Type="Pooled">
+              <ClearanceDenials>
+                <ClearanceDenial ID="1">
+                  <Agency>DDS</Agency>
+                  <Circumstances>My paperwork was filed incorrectly</Circumstances>
+                  <ClearanceDate>
+                    <Date>
+                      <Month>07</Month>
+                      <Year>2019</Year>
+                    </Date>
+                  </ClearanceDate>
+                </ClearanceDenial>
+              </ClearanceDenials>
+              <ClearanceDenied>
+                <Answer>Yes</Answer>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </ClearanceDenied>
+              <GovernmentDebarment>
+                <Answer>Yes</Answer>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </GovernmentDebarment>
+              <GovernmentDebarments>
+                <GovernmentDebarment ID="1">
+                  <Agency>IRS</Agency>
+                  <Date>
+                    <Month>08</Month>
+                    <Year>2010</Year>
+                  </Date>
+                  <Explanation>I brought a peanut butter sandwich to a picnic and a colleague went into anaphylactic shock and had to be transported to the hospital.</Explanation>
+                </GovernmentDebarment>
+              </GovernmentDebarments>
+              <Investigations>
+                <Investigation ID="1">
+                  <Agency>Defense</Agency>
+                  <InvestigationDate>
+                    <Date Type="Estimated">
+                      <Month>08</Month>
+                      <Year>2019</Year>
+                    </Date>
+                  </InvestigationDate>
+                  <ClearanceLevel>TopSecret</ClearanceLevel>
+                  <GrantedDate>
+                    <Date>
+                      <Month>08</Month>
+                      <Year>2019</Year>
+                    </Date>
+                  </GrantedDate>
+                  <IssuingAgency>
+                    <Name>DDS</Name>
+                  </IssuingAgency>
+                </Investigation>
+              </Investigations>
+              <PriorInvestigation>
+                <Answer>Yes</Answer>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </PriorInvestigation>
+            </InvestigationRecord>
+            <FormInstructions Type="Pooled" Version="1">
+              <ReadAndUnderstoodStatementOfUnderstanding>
+                <Answer>Yes</Answer>
+              </ReadAndUnderstoodStatementOfUnderstanding>
+            </FormInstructions>
+          </Pooled>
+        </Responses>
+      </Request>
+    </RequestInfo>
+    <DateSubmitted>2018-09-10</DateSubmitted>
+  </SubmittedRequestInfo>
+  <AgencyUsageBlock>
+    <TypeOfInvestigation>
+      <Type>64</Type>
+      <Service>B</Service>
+    </TypeOfInvestigation>
+    <SensitivityLevel>
+      <Code>2</Code>
+    </SensitivityLevel>
+    <Access>
+      <Code>2</Code>
+    </Access>
+    <Action>
+      <Nature>MIL</Nature>
+    </Action>
+    <Position>
+      <Title>Military</Title>
+    </Position>
+    <SON>957B</SON>
+    <LocationOPF>
+      <Code>None</Code>
+    </LocationOPF>
+    <SOI>NV00</SOI>
+    <LocationSEC>
+      <Code>None</Code>
+    </LocationSEC>
+    <InvestigativeRequirement>I</InvestigativeRequirement>
+    <ApplicantAffiliation>MIL</ApplicantAffiliation>
+    <IPAC>DOD-NAVY</IPAC>
+    <RequestingOfficials>
+      <Requestor>
+        <Name>AARON Strohl Laney</Name>
+        <Email>eml152dummy@MailDomain.com</Email>
+        <Telephone>
+          <Number>1 (763) 323-2004</Number>
+        </Telephone>
+      </Requestor>
+      <SecondRequestor>
+        <Name>JAMES Strohl Laney</Name>
+        <Email>eml153dummy@MailDomain.com</Email>
+        <Telephone>
+          <Number>1 (298) 723-1913</Number>
+        </Telephone>
+      </SecondRequestor>
+    </RequestingOfficials>
+  </AgencyUsageBlock>
+</XMP>

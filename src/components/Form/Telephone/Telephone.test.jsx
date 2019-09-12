@@ -7,7 +7,6 @@ describe('The Telephone component', () => {
     const component = mount(<Telephone name="phone" type="International" />)
     expect(component.find('.domestic-number').length).toEqual(1)
     expect(component.find('input[name="int_first"]').length).toEqual(1)
-    expect(component.find('input[name="int_second"]').length).toEqual(1)
   })
 
   it('populates domestic fields using number', () => {
@@ -137,15 +136,12 @@ describe('The Telephone component', () => {
       .find({ type: 'text', name: 'int_first' })
       .simulate('change', { target: { value: '111' } })
     component
-      .find({ type: 'text', name: 'int_second' })
-      .simulate('change', { target: { value: '222' } })
-    component
       .find({ type: 'text', name: 'int_extension' })
       .simulate('change', { target: { value: '4444' } })
     component.find('.nonumber input').simulate('change')
     component.find('.time.day input').simulate('change')
     component.find('.phonetype-option.work input').simulate('change')
-    expect(updated).toBe(6)
+    expect(updated).toBe(5)
   })
 
   it('can autotab forward', () => {
@@ -184,13 +180,7 @@ describe('The Telephone component', () => {
     tabbed = false
     componentInternational
       .find({ type: 'text', name: 'int_first' })
-      .simulate('keydown', { keyCode: 48, target: { value: '123' } })
-    expect(tabbed).toBe(true)
-
-    tabbed = false
-    componentInternational
-      .find({ type: 'text', name: 'int_second' })
-      .simulate('keydown', { keyCode: 48, target: { value: '1234567890' } })
+      .simulate('keydown', { keyCode: 48, target: { value: '12345678901234567890' } })
     expect(tabbed).toBe(true)
   })
 
@@ -230,12 +220,6 @@ describe('The Telephone component', () => {
     tabbed = false
     componentInternational
       .find({ type: 'text', name: 'int_extension' })
-      .simulate('keydown', { keyCode: 8, target: { value: '' } })
-    expect(tabbed).toBe(true)
-
-    tabbed = false
-    componentInternational
-      .find({ type: 'text', name: 'int_second' })
       .simulate('keydown', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(true)
   })

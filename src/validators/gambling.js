@@ -18,8 +18,8 @@ const financialGamblingModel = {
   },
 }
 
-export const validateFinancialGambling = data => (
-  validateModel(data, financialGamblingModel)
+export const validateFinancialGambling = (data, formType, options = {}) => (
+  validateModel(data, financialGamblingModel, options)
 )
 
 export default class GamblingValidator {

@@ -5,7 +5,7 @@ export const validateViolence = data => (
   validateModel(data, violence)
 )
 
-export const validateLegalViolence = (data) => {
+export const validateLegalViolence = (data, formType, options = {}) => {
   const legalViolenceModel = {
     HasViolence: { presence: true, hasValue: { validator: hasYesOrNo } },
     List: (value, attributes) => {
@@ -19,7 +19,7 @@ export const validateLegalViolence = (data) => {
     },
   }
 
-  return validateModel(data, legalViolenceModel)
+  return validateModel(data, legalViolenceModel, options)
 }
 
 export default class LegalAssociationViolenceValidator {

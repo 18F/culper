@@ -2,6 +2,7 @@ import address from 'models/shared/locations/address'
 import name from 'models/shared/name'
 import phone from 'models/shared/phone'
 import email from 'models/shared/email'
+import { DEFAULT_LATEST } from 'constants/dateLimits'
 
 import { today, dateWithinRange } from 'helpers/date'
 
@@ -27,16 +28,24 @@ const diploma = {
 
     return {}
   },
-  Date: {
-    presence: true,
-    date: { requireDay: false },
+  Date: (value, attributes, attributeName, options = {}) => {
+    const { applicantBirthdate } = options
+
+    return {
+      presence: true,
+      date: { requireDay: false, earliest: applicantBirthdate, latest: DEFAULT_LATEST },
+    }
   },
 }
 
 const education = {
-  Dates: {
-    presence: true,
-    daterange: true,
+  Dates: (value, attributes, attributeName, options = {}) => {
+    const { applicantBirthdate } = options
+
+    return {
+      presence: true,
+      daterange: { earliest: applicantBirthdate, latest: DEFAULT_LATEST },
+    }
   },
   Address: {
     presence: true,

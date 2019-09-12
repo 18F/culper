@@ -25,14 +25,14 @@ describe('The identification date of birth section', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('requires a birthdate less than 130 years and 1 day', () => {
+  it('requires a birthdate less than 100 years and 1 day', () => {
     const currentYear = new Date().getFullYear()
 
     const testData = {
       Date: {
         month: '1',
         day: '1',
-        year: currentYear - 130,
+        year: currentYear - 100,
         estimated: false,
       },
     }

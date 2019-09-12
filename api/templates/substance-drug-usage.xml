@@ -9,6 +9,7 @@
       <FirstUseDate Type="{{dateEstimated $Item.FirstUse}}">{{monthYear $Item.FirstUse}}</FirstUseDate>
       <MostRecentUseDate Type="{{dateEstimated $Item.RecentUse}}">{{monthYear $Item.RecentUse}}</MostRecentUseDate>
       <Nature>{{textarea $Item.NatureOfUse}}</Nature>
+      {{ if formType "SF86,SF85P" }}
       <UseWhileEmployedAsLawEnforcementOfficerProsecutorOrCourtOfficial>
         <Answer>{{branch $Item.UseWhileEmployed}}</Answer>
       </UseWhileEmployedAsLawEnforcementOfficerProsecutorOrCourtOfficial>
@@ -19,6 +20,7 @@
         <Answer>{{branch $Item.UseInFuture}}</Answer>
         <Explanation>{{textarea $Item.Explanation}}</Explanation>
       </IntendToUseInFuture>
+      {{ end }}
       <Comment></Comment>
     </Instance>
     {{end}}

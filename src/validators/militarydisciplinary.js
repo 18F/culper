@@ -1,4 +1,4 @@
-import {validateModel, hasYesOrNo } from 'models/validate'
+import { validateModel, hasYesOrNo } from 'models/validate'
 import militaryDiscipline from 'models/militaryDiscipline'
 
 export const hideDisciplinaryProcedures = (store = {}) => !(store.Military
@@ -22,8 +22,8 @@ const militaryDisciplinaryProceduresModel = {
   },
 }
 
-export const validateMilitaryDisciplinaryProcedures = data => (
-  validateModel(data, militaryDisciplinaryProceduresModel)
+export const validateMilitaryDisciplinaryProcedures = (data, formType, options = {}) => (
+  validateModel(data, militaryDisciplinaryProceduresModel, options)
 )
 
 export class ProcedureValidator {

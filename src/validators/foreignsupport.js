@@ -5,7 +5,7 @@ export const validateSupport = data => (
   validateModel(data, foreignSupport)
 )
 
-export const validateForeignActivitiesSupport = (data) => {
+export const validateForeignActivitiesSupport = (data, formType, options = {}) => {
   const foreignActivitiesSupportModel = {
     HasForeignSupport: { presence: true, hasValue: { validator: hasYesOrNo } },
     List: (value, attributes) => {
@@ -20,7 +20,7 @@ export const validateForeignActivitiesSupport = (data) => {
     },
   }
 
-  return validateModel(data, foreignActivitiesSupportModel)
+  return validateModel(data, foreignActivitiesSupportModel, options)
 }
 
 export default class ForeignActivitiesSupportValidator {

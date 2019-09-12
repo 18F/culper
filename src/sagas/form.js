@@ -1,21 +1,28 @@
 /* eslint import/no-cycle: 0 */
 
 import {
-  select, call, put, all, takeEvery,
+  select, call, put, all, takeEvery, takeLatest,
 } from 'redux-saga/effects'
 
-import { HANDLE_SUBSECTION_UPDATE } from 'constants/actionTypes'
+import {
+  HANDLE_SUBSECTION_UPDATE,
+  VALIDATE_FORM,
+} from 'constants/actionTypes'
 
 import {
-  updateSubsection, handleSubsectionUpdate as handleSubsectionUpdateAction,
+  updateSubsection,
+  updateSubsectionData,
+  validateForm,
 } from 'actions/FormActions'
-import { updateApplication, validateFormData } from 'actions/ApplicationActions'
+import { updateApplication } from 'actions/ApplicationActions'
 
 import { validateSection } from 'helpers/validation'
 import sectionKeys from 'helpers/sectionKeys'
 import { unschema } from 'schema'
 import { env } from 'config'
-import { selectSubsection, formTypeSelector } from './selectors'
+import { selectApplicantBirthdate, selectMaritalStatus } from 'selectors/data'
+import { selectValidUSPassport } from 'selectors/misc'
+import { selectForm, selectSubsection, formTypeSelector } from './selectors'
 
 /** LEGACY ACTIONS - store.application */
 /** Setting form data on login (this might be replaced) */
@@ -28,7 +35,8 @@ export function* updateSectionDataLegacy(name, data) {
       const updateActions = [put(updateApplication(name, subsection, sectionData))]
 
       if (sectionKey) {
-        updateActions.push(put(handleSubsectionUpdateAction(sectionKey, undefined, sectionData)))
+        // This sets form data but does not validate
+        updateActions.push(put(updateSubsectionData(sectionKey, undefined, sectionData)))
       }
 
       return all(updateActions)
@@ -51,7 +59,7 @@ export function* setFormData(data) {
     yield all(Object.keys(data)
       .map(section => call(updateSectionDataLegacy, section, data[section])))
 
-    yield put(validateFormData())
+    yield put(validateForm())
   } catch (e) {
     console.warn('failed to set form data', e)
     yield call(env.History().push, '/error')
@@ -68,14 +76,44 @@ export const updateSectionData = (prevData, field, data) => ({
   },
 })
 
+// Loop through all form sections and re-validate with the existing data
+export function* handleValidateForm() {
+  const formType = yield select(formTypeSelector)
+  const formData = yield select(selectForm)
+  yield all(Object.keys(formData)
+    .map((key) => {
+      const sectionData = formData[key].data
+      const errors = validateSection({ key, data: sectionData }, formType)
+      const newFormSection = {
+        data: sectionData,
+        errors: errors === true ? [] : errors,
+        complete: errors.length === 0 || errors === true,
+      }
+
+      return put(updateSubsection(key, newFormSection))
+    }))
+}
+
 export function* handleSubsectionUpdate({ key, data }) {
   const formType = yield select(formTypeSelector)
+  const applicantBirthdate = yield select(selectApplicantBirthdate)
+  const maritalStatus = yield select(selectMaritalStatus)
+  const hasValidUSPassport = yield select(selectValidUSPassport)
+
   const formSection = yield select(selectSubsection, key)
 
   // This because currently, data is updated a whole subsection at a time
   // Consider changing to updateSectionData for field-level updates in the future
   const newData = { ...formSection.data, ...data }
-  const errors = yield call(validateSection, { key, data: newData }, formType)
+  const errors = yield call(validateSection, {
+    key,
+    data: newData,
+    options: { // pass any x-section form data required to validate here
+      applicantBirthdate,
+      maritalStatus,
+      ...hasValidUSPassport,
+    },
+  }, formType)
 
   const newFormSection = {
     data: newData,
@@ -86,6 +124,9 @@ export function* handleSubsectionUpdate({ key, data }) {
   yield put(updateSubsection(key, newFormSection))
 }
 
-export function* updateSubsectionWatcher() {
-  yield takeEvery(HANDLE_SUBSECTION_UPDATE, handleSubsectionUpdate)
+export function* formWatcher() {
+  yield all([
+    takeEvery(HANDLE_SUBSECTION_UPDATE, handleSubsectionUpdate),
+    takeLatest(VALIDATE_FORM, handleValidateForm),
+  ])
 }

@@ -1,0 +1,1220 @@
+<?xml version="1.0"?>
+<XMP version="3.00">
+  <SubmittedRequestInfo>
+    <RequestInfo>
+      <Request>
+        <Form>
+          <Name>SF85</Name>
+          <Version>2017-12-draft7</Version>
+        </Form>
+        <Applicant>
+          <SSN>555555555</SSN>
+        </Applicant>
+        <Responses>
+          <AgencyInstructionsForApplicant/>
+          <FormInstanceSpecific>
+            <AgencyInstructionsForApplicant/>
+            <ESigCertificationResponses Version="1" Type="Pooled" LastSummaryID="201" LastDynamicListID="201">
+              <UserFinalizedCert>
+                <Answer>Yes</Answer>
+              </UserFinalizedCert>
+              <UserOptedToESig>
+                <Answer>Yes</Answer>
+              </UserOptedToESig>
+            </ESigCertificationResponses>
+            <UserPreferences Version="1" Type="Pooled" LastSummaryID="201" LastDynamicListID="201">
+              <DisplayNavigation/>
+            </UserPreferences>
+            <ValidationResponses Version="1" Type="FormInstanceSpecific"/>
+          </FormInstanceSpecific>
+          <Pooled>
+            <IdentifyingInformation Type="Pooled" Version="1">
+              <Birth>
+                <Date>
+                  <Month>08</Month>
+                  <Day>08</Day>
+                  <Year>1988</Year>
+                </Date>
+                <Place>
+                  <City>Chicago</City>
+                  <State>IL</State>
+                  <County>Cook</County>
+                  <Country>United States</Country>
+                </Place>
+              </Birth>
+              <EyeColor>Hazel</EyeColor>
+              <FullName>
+                <LegalName>
+                  <Last>Jordan</Last>
+                  <First>Michael</First>
+                  <Middle>Richard</Middle>
+                </LegalName>
+              </FullName>
+              <HairColor>Bald</HairColor>
+              <Height>
+                <Feet>6</Feet>
+                <Inches>10</Inches>
+              </Height>
+              <OtherNamesUsed>
+                <Answer>Yes</Answer>
+                <OtherNames>
+                  <OtherName ID="1">
+                    <LegalName>
+                      <Last>Harvey</Last>
+                      <First>Michael</First>
+                      <Middle>Richard</Middle>
+                    </LegalName>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>08</Month>
+                          <Year>1988</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>08</Month>
+                          <Year>2001</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Maiden>No</Maiden>
+                    <Reason>Didn't like my last name so I chose a new one. </Reason>
+                  </OtherName>
+                </OtherNames>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </OtherNamesUsed>
+              <SSN>
+                <FirstThree>555</FirstThree>
+                <NextTwo>55</NextTwo>
+                <LastFour>5555</LastFour>
+              </SSN>
+              <Sex>Male</Sex>
+              <Weight>
+                <Pounds>210</Pounds>
+              </Weight>
+            </IdentifyingInformation>
+            <ContactInformation Version="1" Type="Pooled">
+              <HomeEmail>
+                <Email>michaeljordan@email.com</Email>
+              </HomeEmail>
+              <WorkEmail>
+                <Email>michaeljordan@workemail.com</Email>
+              </WorkEmail>
+              <MobileTelephone>
+                <Telephone>
+                  <Number>5555555555</Number>
+                  <Time>Both</Time>
+                </Telephone>
+              </MobileTelephone>
+              <HomeTelephone>
+                <Telephone>
+                  <Number>5555555556</Number>
+                  <Time>Both</Time>
+                </Telephone>
+              </HomeTelephone>
+            </ContactInformation>
+            <ResidenceHistory Version="1" Type="Pooled">
+              <Residencies>
+                <Residency ID="1">
+                  <Address>
+                    <Street>100 Main Street</Street>
+                    <City>Brooklyn</City>
+                    <State>NY</State>
+                    <ZipCode>11215</ZipCode>
+                  </Address>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>01</Month>
+                        <Year>2014</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>01</Month>
+                        <Year>2016</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <ResidenceType>Own</ResidenceType>
+                </Residency>
+                <Residency ID="2">
+                  <Address>
+                    <Street>800 Union Street</Street>
+                    <City>Brookyn</City>
+                    <State>NY</State>
+                    <ZipCode>11215</ZipCode>
+                  </Address>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>02</Month>
+                        <Year>2016</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <ResidenceType>Rent</ResidenceType>
+                  <Verifier>
+                    <Address>
+                      <Street>800 Union St</Street>
+                      <City>Brooklyn</City>
+                      <State>NY</State>
+                      <ZipCode>11215</ZipCode>
+                    </Address>
+                    <Email>marsha@email.com</Email>
+                    <LastContact>
+                      <Date>
+                        <Month>10</Month>
+                        <Year>2018</Year>
+                      </Date>
+                    </LastContact>
+                    <LegalName>
+                      <Last>Jacobson</Last>
+                      <First>Marsha</First>
+                      <Middle Type="IO">P</Middle>
+                    </LegalName>
+                    <RelationshipTypes Neighbor="True" Friend="True"/>
+                    <Telephone>
+                      <Day DoNotKnow="True"/>
+                      <Evening DoNotKnow="True"/>
+                      <Mobile>
+                        <Number>5555555555</Number>
+                      </Mobile>
+                    </Telephone>
+                  </Verifier>
+                </Residency>
+              </Residencies>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+            </ResidenceHistory>
+            <EmploymentActivities Type="Pooled" Version="1">
+              <Employments>
+                <Employment ID="1">
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>06</Month>
+                        <Year>2017</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <Type>SelfEmployed</Type>
+                  <WorkHours>FullTime</WorkHours>
+                  <SelfEmployment>
+                    <Occupation>Designer</Occupation>
+                    <Business>
+                      <Name>MJ Design</Name>
+                      <Address>
+                        <Street>100 Main Street</Street>
+                        <City>Brooklyn</City>
+                        <State>NY</State>
+                        <ZipCode>11215</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>5555555555</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </Business>
+                  </SelfEmployment>
+                  <Incidents>
+                    <Answer>No</Answer>
+                  </Incidents>
+                  <JobLocation>
+                    <Answer>No</Answer>
+                  </JobLocation>
+                  <Verifier>
+                    <LegalName>
+                      <Last>Kimell</Last>
+                      <First>Laura</First>
+                    </LegalName>
+                    <Address>
+                      <Street>800 Union St</Street>
+                      <City>Brooklyn</City>
+                      <State>NY</State>
+                      <ZipCode>11215</ZipCode>
+                    </Address>
+                    <Telephone>
+                      <Number>5555555555</Number>
+                      <Time>Both</Time>
+                    </Telephone>
+                  </Verifier>
+                </Employment>
+                <Employment ID="2">
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>02</Month>
+                        <Year>2014</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>06</Month>
+                        <Year>2017</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Type>NonGovernment</Type>
+                  <WorkHours>FullTime</WorkHours>
+                  <CivilEmployment>
+                    <Employer>Brooklyn Design Company</Employer>
+                    <PositionTitle>Designer</PositionTitle>
+                    <EmployersLocation>
+                      <Address>
+                        <Street>1440 ATLANTIC AVE</Street>
+                        <City>BROOKLYN</City>
+                        <State>NY</State>
+                        <ZipCode>11216</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>5555555555</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </EmployersLocation>
+                    <PreviousEmployments NotApplicable="True"/>
+                  </CivilEmployment>
+                  <Dismissals>
+                    <Answer>Yes</Answer>
+                    <Dismissal ID="1">
+                      <Date>
+                        <Month>06</Month>
+                        <Year>2017</Year>
+                      </Date>
+                      <Reason>Just wasn't the right fit</Reason>
+                      <SeveranceType>QuitKnowingWouldBeFired</SeveranceType>
+                    </Dismissal>
+                    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+                  </Dismissals>
+                  <Incidents>
+                    <Answer>No</Answer>
+                  </Incidents>
+                  <JobLocation>
+                    <Answer>No</Answer>
+                  </JobLocation>
+                  <LeftJob>
+                    <Reason>Got a better job</Reason>
+                  </LeftJob>
+                  <Supervisor>
+                    <Name>Daryl Martin</Name>
+                    <Title>Creative Director</Title>
+                    <Address>
+                      <Street>1440 ATLANTIC AVE</Street>
+                      <City>BROOKLYN</City>
+                      <State>NY</State>
+                      <ZipCode>11216</ZipCode>
+                    </Address>
+                    <Email>daryl@bkdesign.com</Email>
+                    <Telephone>
+                      <Number>5555555555</Number>
+                      <Time>Both</Time>
+                    </Telephone>
+                  </Supervisor>
+                </Employment>
+              </Employments>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+            </EmploymentActivities>
+            <EmploymentRecord Version="1" Type="Pooled">
+              <Fired>
+                <Answer>No</Answer>
+              </Fired>
+            </EmploymentRecord>
+            <Education Version="1" Type="Pooled">
+              <AttendedAnySchools>
+                <Answer>Yes</Answer>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </AttendedAnySchools>
+              <ReceivedDegreeOrDiploma>
+    
+    
+  </ReceivedDegreeOrDiploma>
+              <SchoolsAttended>
+                <SchoolAttended ID="1">
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>07</Month>
+                        <Year>2008</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>05</Month>
+                        <Year>2011</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Type>College</Type>
+                  <Name>Champlain College</Name>
+                  <Address>
+                    <Street>40 S WILLARD ST</Street>
+                    <City>BURLINGTON</City>
+                    <State>VT</State>
+                    <ZipCode>05401</ZipCode>
+                  </Address>
+                  <DegreeReceived>
+                    <Answer>Yes</Answer>
+                  </DegreeReceived>
+                  <DegreesAwarded>
+                    <DegreeAwarded ID="1">
+                      <DateAwarded>
+                        <Date>
+                          <Month>05</Month>
+                          <Year>2011</Year>
+                        </Date>
+                      </DateAwarded>
+                      <Degree>Bachelor</Degree>
+                    </DegreeAwarded>
+                  </DegreesAwarded>
+                </SchoolAttended>
+              </SchoolsAttended>
+            </Education>
+            <Citizenship Version="1" Type="Pooled">
+              <Status>USNotByBirth</Status>
+              <Alien>
+                <AlienRegistration>
+                  <DateEnteredUS>
+                    <Date>
+                      <Month>06</Month>
+                      <Day>12</Day>
+                      <Year>2002</Year>
+                    </Date>
+                  </DateEnteredUS>
+                  <Place>
+                    <City>New york</City>
+                    <State>NY</State>
+                  </Place>
+                </AlienRegistration>
+                <Citizenships>
+                  <Citizenship ID="1">
+                    <Country>France</Country>
+                  </Citizenship>
+                </Citizenships>
+                <HaveAlienRegistrationNumber>
+                  <Answer>No</Answer>
+                </HaveAlienRegistrationNumber>
+              </Alien>
+              <USCitizen>
+                <ProofOfUSCitizenship>
+                  <NaturalizationCertificate>
+                    <Authority>
+                      <Court>New York Citizenship Court</Court>
+                      <Place>
+                        <Street>609 COURT ST</Street>
+                        <City>BROOKLYN</City>
+                        <State>NY</State>
+                        <ZipCode>11231</ZipCode>
+                      </Place>
+                    </Authority>
+                    <Basis>Other</Basis>
+                    <BasisExplanation>Other explanation</BasisExplanation>
+                    <CertificateNumber>13245</CertificateNumber>
+                    <DateIssued>
+                      <Date>
+                        <Month>07</Month>
+                        <Day>12</Day>
+                        <Year>2002</Year>
+                      </Date>
+                    </DateIssued>
+                    <IssuedLegalName>
+                      <Last>Jordan</Last>
+                      <First>harvey</First>
+                      <Middle>James</Middle>
+                    </IssuedLegalName>
+                  </NaturalizationCertificate>
+                  <USPassport>
+                    <DateExpired>
+                      <Date>
+                        <Month>12</Month>
+                        <Day>12</Day>
+                        <Year>2021</Year>
+                      </Date>
+                    </DateExpired>
+                    <DateIssued>
+                      <Date>
+                        <Month>12</Month>
+                        <Day>12</Day>
+                        <Year>2011</Year>
+                      </Date>
+                    </DateIssued>
+                    <IssuedLegalName>
+                      <Last>Harvey</Last>
+                      <First>Michael</First>
+                      <Middle>Richard</Middle>
+                    </IssuedLegalName>
+                    <PassportNumber>12345a556</PassportNumber>
+                  </USPassport>
+                </ProofOfUSCitizenship>
+              </USCitizen>
+            </Citizenship>
+            <DualCitizenship Version="1" Type="Pooled">
+              <DualCitizenships>
+                <Citizenship ID="1">
+                  <Country>France</Country>
+                  <CurrentlyHoldCitizenship>
+        
+        
+        
+      </CurrentlyHoldCitizenship>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>12</Month>
+                        <Year>1988</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                  <HowAcquired>I was born in France.</HowAcquired>
+                </Citizenship>
+                <Citizenship ID="2">
+                  <Country>United States</Country>
+                  <CurrentlyHoldCitizenship>
+        
+        
+        
+      </CurrentlyHoldCitizenship>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>06</Month>
+                        <Year>2002</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date Type="Present"/>
+                    </To>
+                  </DateRange>
+                </Citizenship>
+              </DualCitizenships>
+              <HeldDualCitizenship>
+                <Answer>Yes</Answer>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </HeldDualCitizenship>
+            </DualCitizenship>
+            <USPassport Type="Pooled" Version="1">
+              <DoPossessUSPassport>
+                <Answer>Yes</Answer>
+              </DoPossessUSPassport>
+            </USPassport>
+            <MilitaryHistory Version="1" Type="Pooled">
+              <Charges>
+                <Answer>Yes</Answer>
+                <Charge ID="1">
+                  <Authority>I was tried in Navy court</Authority>
+                  <DateCharged>
+                    <Date>
+                      <Month>12</Month>
+                      <Year>2013</Year>
+                    </Date>
+                  </DateCharged>
+                  <Description>I was caught sneaking off base.</Description>
+                  <Name>Court Martial</Name>
+                  <Outcome>Found not guilty</Outcome>
+                </Charge>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </Charges>
+              <ForeignService>
+                <Answer>Yes</Answer>
+              </ForeignService>
+              <ForeignMilitaryService>
+                <Service ID="1">
+                  <AssociationDescription>I was automatically enlisted</AssociationDescription>
+                  <Branch>Army</Branch>
+                  <Country>France</Country>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>06</Month>
+                        <Year>2010</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>05</Month>
+                        <Year>2011</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <LeavingDescription>I moved to the U.S.</LeavingDescription>
+                  <Name>France Army</Name>
+                  <Organization>Military</Organization>
+                  <Position>Private</Position>
+                </Service>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </ForeignMilitaryService>
+              <Answer>Yes</Answer>
+              <MilitaryService>
+                <Service ID="1">
+                  <Branch>AirForce</Branch>
+                  <DateRange>
+                    <From>
+                      <Date>
+                        <Month>07</Month>
+                        <Year>2010</Year>
+                      </Date>
+                    </From>
+                    <To>
+                      <Date>
+                        <Month>08</Month>
+                        <Year>2015</Year>
+                      </Date>
+                    </To>
+                  </DateRange>
+                  <Rank>Enlisted</Rank>
+                  <ServiceNumber>12345</ServiceNumber>
+                  <Status>Active</Status>
+                  <WasDischarged>
+                    <Answer>No</Answer>
+                  </WasDischarged>
+                </Service>
+              </MilitaryService>
+              <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+            </MilitaryHistory>
+            <SelectiveServiceRegistration Version="1" Type="Pooled">
+              <RegistrationRequired>
+                <Answer>Yes</Answer>
+              </RegistrationRequired>
+              <Registered>
+                <Answer>Yes</Answer>
+              </Registered>
+              <Registration>
+                <Number>12345</Number>
+              </Registration>
+            </SelectiveServiceRegistration>
+            <FinancialRecord Type="Pooled" Version="1">
+              <DelinquencyInvolvingEnforcement>
+                <Answer>Yes</Answer>
+                <Incidents>
+                  <Incident ID="1">
+                    <AccountNumber>123456</AccountNumber>
+                    <Amount>12000</Amount>
+                    <Court>
+                      <Address>
+                        <Street>10 COURT ST</Street>
+                        <City>BROOKLYN</City>
+                        <State>NY</State>
+                        <ZipCode>11201</ZipCode>
+                      </Address>
+                      <Name>Brooklyn housing court</Name>
+                    </Court>
+                    <DateBegan>
+                      <Month>06</Month>
+                      <Year>2016</Year>
+                    </DateBegan>
+                    <DateResolved NotResolved="True">
+        
+      </DateResolved>
+                    <Description>I haven't taken any action as of yet. </Description>
+                    <PropertyType>cosigner of a house mortgage</PropertyType>
+                    <Reason>I was unable to come up with the money.</Reason>
+                    <Status>Still unpaid</Status>
+                  </Incident>
+                </Incidents>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </DelinquencyInvolvingEnforcement>
+              <UnpaidTaxes>
+                <Answer>Yes</Answer>
+                <Incidents>
+                  <Incident ID="1">
+                    <Actions>I eventually was able to pay.</Actions>
+                    <Agency>Federal</Agency>
+                    <Amount>1300</Amount>
+                    <DateFailedToPay>
+                      <Year>2016</Year>
+                    </DateFailedToPay>
+                    <DateSatisfied>
+                      <Month>05</Month>
+                      <Year>2017</Year>
+                    </DateSatisfied>
+                    <Reason>I just missed the deadline</Reason>
+                    <TaxType>income tax</TaxType>
+                    <Type>File</Type>
+                  </Incident>
+                </Incidents>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </UnpaidTaxes>
+            </FinancialRecord>
+            <IllegalDrugUse Version="1" Type="Pooled">
+              <MisuseOfPrescriptionDrugs>
+                <Answer>Yes</Answer>
+                <Instances>
+                  <Instance ID="1">
+                    <DrugsUsed>Adderall</DrugsUsed>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>05</Month>
+                          <Year>2009</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>06</Month>
+                          <Year>2011</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Circumstances>I used adderall to help me study in college.</Circumstances>
+                  </Instance>
+                </Instances>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </MisuseOfPrescriptionDrugs>
+              <OrderedAdvisedOrAskedToSeekCounseling>
+                <Answer>Yes</Answer>
+                <Consultations>
+                  <Consultation ID="1">
+                    <ActionToSeekCounselingTaken>
+                      <Answer>Yes</Answer>
+                    </ActionToSeekCounselingTaken>
+                    <DidNotReceiveTreatment>
+        
+        
+      </DidNotReceiveTreatment>
+                    <CounselingOrderedBy>
+                      <Answer MedicalProfessional="True" MentalHealthProfessional="True"/>
+                      <Explanation>I was ordered to go to counseling from my college health professional. </Explanation>
+                    </CounselingOrderedBy>
+                    <Drug>
+                      <Type>THC</Type>
+                    </Drug>
+                    <Doctor>
+                      <Name>
+                        <Last>Dave</Last>
+                        <First>Marvin</First>
+                      </Name>
+                      <Address>
+                        <Street>100 Main Street</Street>
+                        <City>Brooklyn</City>
+                        <State>NY</State>
+                        <ZipCode>11215</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>5555555555</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </Doctor>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>08</Month>
+                          <Year>2016</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>08</Month>
+                          <Year>2016</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <SuccessfullyCompletedTreatmentProgram>
+                      <Answer>Yes</Answer>
+                    </SuccessfullyCompletedTreatmentProgram>
+                    <UnsuccessfulTreatment>
+        
+        
+      </UnsuccessfulTreatment>
+                  </Consultation>
+                </Consultations>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </OrderedAdvisedOrAskedToSeekCounseling>
+              <IllegalDrugActivity>
+                <Answer>Yes</Answer>
+                <Activities>
+                  <Activity ID="1">
+                    <Drug>
+                      <Type>THC</Type>
+                    </Drug>
+                    <FirstInvolvementDate>
+                      <Month>06</Month>
+                      <Year>2017</Year>
+                    </FirstInvolvementDate>
+                    <MostRecentInvolvementDate>
+                      <Month>06</Month>
+                      <Year>2019</Year>
+                    </MostRecentInvolvementDate>
+                    <Nature>I purchase marijuana monthly.</Nature>
+                    <Reason>I smoke for medicinal purposes.</Reason>
+                  </Activity>
+                </Activities>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </IllegalDrugActivity>
+              <IllegalUse>
+                <Answer>Yes</Answer>
+                <Instances>
+                  <Instance ID="1">
+                    <DrugUsed>
+                      <Type>THC</Type>
+                    </DrugUsed>
+                    <FirstUseDate>
+                      <Month>06</Month>
+                      <Year>2014</Year>
+                    </FirstUseDate>
+                    <MostRecentUseDate>
+                      <Month>06</Month>
+                      <Year>2019</Year>
+                    </MostRecentUseDate>
+                    <Nature>I smoke marijuana weekly.</Nature>
+                  </Instance>
+                </Instances>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </IllegalUse>
+              <VoluntaryTreatment>
+                <Answer>Yes</Answer>
+                <Consultations>
+                  <Consultation ID="1">
+                    <Drug>
+                      <Type>THC</Type>
+                    </Drug>
+                    <Doctor>
+                      <Name>
+                        <Last>Dave</Last>
+                        <First>Marvin</First>
+                      </Name>
+                      <Address>
+                        <Street>100 Main Street</Street>
+                        <City>Brooklyn</City>
+                        <State>NY</State>
+                        <ZipCode>11215</ZipCode>
+                      </Address>
+                      <Telephone>
+                        <Number>5555555555</Number>
+                        <Time>Both</Time>
+                      </Telephone>
+                    </Doctor>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>09</Month>
+                          <Year>2017</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>09</Month>
+                          <Year>2017</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <SuccessfullyCompletedTreatmentProgram>
+                      <Answer>Yes</Answer>
+                    </SuccessfullyCompletedTreatmentProgram>
+                    <UnsuccessfulTreatment>
+        
+        
+      </UnsuccessfulTreatment>
+                  </Consultation>
+                </Consultations>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </VoluntaryTreatment>
+            </IllegalDrugUse>
+            <PoliceRecord Version="1" Type="Pooled">
+              <Past7Years>
+                <Answer>Yes</Answer>
+                <Offenses>
+                  <Offense ID="1">
+                    <AppearedInCourt>
+                      <Answer>Yes</Answer>
+                      <Charges>
+                        <Charge ID="1">
+                          <Charge>Driving recklessly</Charge>
+                          <Date>
+                            <Month>08</Month>
+                            <Year>2016</Year>
+                          </Date>
+                          <Outcome>Guilty</Outcome>
+                          <Type>Felony</Type>
+                        </Charge>
+                      </Charges>
+                      <Court>
+                        <Location>
+                          <Place>
+                            <City>Brooklyn</City>
+                            <State>NY</State>
+                            <ZipCode>11215</ZipCode>
+                            <County>Kings</County>
+                          </Place>
+                        </Location>
+                        <Name>Brooklyn City Court</Name>
+                      </Court>
+                      <Sentenced>
+                        <Answer>Yes</Answer>
+                        <Description>I was sentenced to 6 months in prison.</Description>
+                        <Imprisonment>
+                          <YearOrMore>
+                            <DateRange>
+                              <From>
+                                <Date>
+                                  <Month>08</Month>
+                                  <Year>2016</Year>
+                                </Date>
+                              </From>
+                              <To>
+                                <Date>
+                                  <Month>02</Month>
+                                  <Year>2017</Year>
+                                </Date>
+                              </To>
+                            </DateRange>
+                          </YearOrMore>
+                        </Imprisonment>
+                        <Probation>
+                          <DateRange NotApplicable="True"/>
+                        </Probation>
+                      </Sentenced>
+                    </AppearedInCourt>
+                    <Arrested>
+                      <Answer>Yes</Answer>
+                    </Arrested>
+                    <ArrestingAgency>
+                      <Location>
+                        <Place>
+                          <City>Brooklyn</City>
+                          <State>NY</State>
+                          <ZipCode>11215</ZipCode>
+                          <County>kings</County>
+                        </Place>
+                      </Location>
+                      <Name>Brooklyn PD</Name>
+                    </ArrestingAgency>
+                    <Date>
+                      <Month>06</Month>
+                      <Year>2016</Year>
+                    </Date>
+                    <Location>
+                      <Place>
+                        <City>Brooklyn</City>
+                        <State>NY</State>
+                        <ZipCode>11215</ZipCode>
+                        <County>Kings</County>
+                      </Place>
+                    </Location>
+                    <OffenseDescription>I was arrested for driving recklessly</OffenseDescription>
+                  </Offense>
+                </Offenses>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </Past7Years>
+              <RestrainingOrders>
+                <Answer>Yes</Answer>
+                <RestrainingOrder ID="1">
+                  <Court>
+                    <Location>
+                      <Place>
+                        <City>Brooklyn</City>
+                        <State>NY</State>
+                        <ZipCode>11215</ZipCode>
+                        <County>Kings</County>
+                      </Place>
+                    </Location>
+                    <Name>Brooklyn City Court</Name>
+                  </Court>
+                  <DateIssued>
+                    <Month>10</Month>
+                    <Year>2017</Year>
+                  </DateIssued>
+                  <Explanation>I have a restraining order against me by my uncle</Explanation>
+                </RestrainingOrder>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </RestrainingOrders>
+            </PoliceRecord>
+            <AssociationRecord Version="1" Type="Pooled">
+              <ActivitiesToOverthrowTheUSGovernment>
+                <Activities>
+                  <Activity ID="1">
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>12</Month>
+                          <Year>2016</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>12</Month>
+                          <Year>2016</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Reason>I drove one group of bad guys to a job to overthrow the government.</Reason>
+                  </Activity>
+                </Activities>
+                <Answer>Yes</Answer>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </ActivitiesToOverthrowTheUSGovernment>
+              <AdvocatedTerrorism>
+                <Answer>Yes</Answer>
+                <Instances>
+                  <Instance ID="1">
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>03</Month>
+                          <Year>2015</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>03</Month>
+                          <Year>2016</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Reason>I thought that they were doing the right things so I told other people how to be part of the bad guy organization.</Reason>
+                  </Instance>
+                </Instances>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </AdvocatedTerrorism>
+              <BeenInOrganizationAdvocatingViolence>
+                <Answer>Yes</Answer>
+                <Organizations>
+                  <Organization ID="1">
+                    <Address>
+                      <Street>17 Bad lane</Street>
+                      <City>brooklyn</City>
+                      <State>NY</State>
+                      <ZipCode>11215</ZipCode>
+                    </Address>
+                    <Contributions NoContributionsMade="True"/>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>03</Month>
+                          <Year>2015</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>03</Month>
+                          <Year>2016</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Description>I drove the bad guys around to their jobs.</Description>
+                    <Name>Bad guys organization</Name>
+                    <PositionsHeld>Driver</PositionsHeld>
+                  </Organization>
+                </Organizations>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </BeenInOrganizationAdvocatingViolence>
+              <BeenInOrganizationDedicatedToTerrorism>
+                <Answer>Yes</Answer>
+                <Organizations>
+                  <Organization ID="1">
+                    <Address>
+                      <Street>17 Bad lane</Street>
+                      <City>brooklyn</City>
+                      <State>NY</State>
+                      <ZipCode>11215</ZipCode>
+                    </Address>
+                    <Contributions>I gave them my car to use.</Contributions>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>03</Month>
+                          <Year>2015</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>03</Month>
+                          <Year>2016</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Description>I was recruited to be a driver for them.</Description>
+                    <Name>Bad guy organization</Name>
+                    <PositionsHeld NoPositionsHeld="True"/>
+                  </Organization>
+                </Organizations>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </BeenInOrganizationDedicatedToTerrorism>
+              <EngagedInTerrorism>
+                <Answer>Yes</Answer>
+                <TerroristActs>
+                  <Act ID="1">
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>03</Month>
+                          <Year>2015</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>03</Month>
+                          <Year>2016</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Reason>I drove bad guys around to jobs they were doing.</Reason>
+                  </Act>
+                </TerroristActs>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </EngagedInTerrorism>
+              <TerrorismAssociations>
+                <Answer>Yes</Answer>
+                <Explanation>I continued to work for the bad guys organization.</Explanation>
+              </TerrorismAssociations>
+              <TerroristOrganizationMember>
+                <Answer>Yes</Answer>
+                <Organizations>
+                  <Organization ID="1">
+                    <Address>
+                      <Street>17 Bad lane</Street>
+                      <City>brooklyn</City>
+                      <State>NY</State>
+                      <ZipCode>11215</ZipCode>
+                    </Address>
+                    <Contributions NoContributionsMade="True"/>
+                    <DateRange>
+                      <From>
+                        <Date>
+                          <Month>03</Month>
+                          <Year>2015</Year>
+                        </Date>
+                      </From>
+                      <To>
+                        <Date>
+                          <Month>03</Month>
+                          <Year>2016</Year>
+                        </Date>
+                      </To>
+                    </DateRange>
+                    <Description>I drove the bad guys around.</Description>
+                    <Name>Bad guys organization</Name>
+                    <PositionsHeld>
+        Driver
+      </PositionsHeld>
+                  </Organization>
+                </Organizations>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </TerroristOrganizationMember>
+            </AssociationRecord>
+            <InvestigationRecord Version="1" Type="Pooled">
+              <ClearanceDenials>
+                <ClearanceDenial ID="1">
+                  <Agency>NBIS</Agency>
+                  <Circumstances>I was not careful about who I shared information with.</Circumstances>
+                  <ClearanceDate>
+                    <Date>
+                      <Month>10</Month>
+                      <Year>2016</Year>
+                    </Date>
+                  </ClearanceDate>
+                </ClearanceDenial>
+              </ClearanceDenials>
+              <ClearanceDenied>
+                <Answer>Yes</Answer>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </ClearanceDenied>
+              <GovernmentDebarment>
+                <Answer>Yes</Answer>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </GovernmentDebarment>
+              <GovernmentDebarments>
+                <GovernmentDebarment ID="1">
+                  <Agency>CIA</Agency>
+                  <Date>
+                    <Month>05</Month>
+                    <Year>2017</Year>
+                  </Date>
+                  <Explanation>the CIA debarred me.</Explanation>
+                </GovernmentDebarment>
+              </GovernmentDebarments>
+              <Investigations>
+                <Investigation ID="1">
+                  <Agency>Defense</Agency>
+                  <InvestigationDate>
+                    <Date>
+                      <Month>12</Month>
+                      <Year>2018</Year>
+                    </Date>
+                  </InvestigationDate>
+                  <ClearanceGranted>
+                    <Answer>Yes</Answer>
+                  </ClearanceGranted>
+                  <ClearanceLevel>Confidential</ClearanceLevel>
+                  <GrantedDate>
+                    <Date>
+                      <Month>12</Month>
+                      <Year>2018</Year>
+                    </Date>
+                  </GrantedDate>
+                  <IssuingAgency>
+                    <Name>NBIS</Name>
+                  </IssuingAgency>
+                </Investigation>
+              </Investigations>
+              <PriorInvestigation>
+                <Answer>Yes</Answer>
+                <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+              </PriorInvestigation>
+            </InvestigationRecord>
+            <AdditionalComments Version="1" Type="Pooled">
+              <Comment>This is a test additional comment.</Comment>
+            </AdditionalComments>
+            <FormInstructions Type="Pooled" Version="1">
+              <ReadAndUnderstoodStatementOfUnderstanding>
+                <Answer>Yes</Answer>
+              </ReadAndUnderstoodStatementOfUnderstanding>
+            </FormInstructions>
+          </Pooled>
+        </Responses>
+      </Request>
+    </RequestInfo>
+    <DateSubmitted>2018-09-10</DateSubmitted>
+  </SubmittedRequestInfo>
+  <AgencyUsageBlock>
+    <TypeOfInvestigation>
+      <Type>64</Type>
+      <Service>B</Service>
+    </TypeOfInvestigation>
+    <SensitivityLevel>
+      <Code>2</Code>
+    </SensitivityLevel>
+    <Access>
+      <Code>2</Code>
+    </Access>
+    <Action>
+      <Nature>MIL</Nature>
+    </Action>
+    <Position>
+      <Title>Military</Title>
+    </Position>
+    <SON>957B</SON>
+    <LocationOPF>
+      <Code>None</Code>
+    </LocationOPF>
+    <SOI>NV00</SOI>
+    <LocationSEC>
+      <Code>None</Code>
+    </LocationSEC>
+    <InvestigativeRequirement>I</InvestigativeRequirement>
+    <ApplicantAffiliation>MIL</ApplicantAffiliation>
+    <IPAC>DOD-NAVY</IPAC>
+    <RequestingOfficials>
+      <Requestor>
+        <Name>AARON Strohl Laney</Name>
+        <Email>eml152dummy@MailDomain.com</Email>
+        <Telephone>
+          <Number>1 (763) 323-2004</Number>
+        </Telephone>
+      </Requestor>
+      <SecondRequestor>
+        <Name>JAMES Strohl Laney</Name>
+        <Email>eml153dummy@MailDomain.com</Email>
+        <Telephone>
+          <Number>1 (298) 723-1913</Number>
+        </Telephone>
+      </SecondRequestor>
+    </RequestingOfficials>
+  </AgencyUsageBlock>
+</XMP>

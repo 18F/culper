@@ -36,6 +36,35 @@ describe('The foreignBusinessPolitical model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('From date cannot be before applicant birthdate', () => {
+    const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+    const testData = {
+      Dates: {
+        from: { month: 1, year: 1970, day: 2 },
+      },
+    }
+    const expectedErrors = [
+      'Dates.daterange.from.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, foreignBusinessPolitical, { applicantBirthdate }))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('To date cannot be in the future', () => {
+    const testData = {
+      Dates: {
+        to: { month: 1, year: 2050, day: 2 },
+      },
+    }
+    const expectedErrors = [
+      'Dates.daterange.to.date.date.datetime.DATE_TOO_LATE',
+    ]
+
+    expect(validateModel(testData, foreignBusinessPolitical))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('Country must have a valid value', () => {
     const testData = {
       Country: { value: 'test' },

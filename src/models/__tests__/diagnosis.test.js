@@ -41,6 +41,35 @@ describe('The diagnosis model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('Diagnosed from date cannot be before applicant birthdate', () => {
+    const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+    const testData = {
+      Diagnosed: {
+        from: { month: 1, year: 1970, day: 2 },
+      },
+    }
+    const expectedErrors = [
+      'Diagnosed.daterange.from.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, diagnosis, { applicantBirthdate }))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Diagnosed to date cannot be in the future', () => {
+    const testData = {
+      Diagnosed: {
+        to: { month: 1, year: 2050, day: 2 },
+      },
+    }
+    const expectedErrors = [
+      'Diagnosed.daterange.to.date.date.datetime.DATE_TOO_LATE',
+    ]
+
+    expect(validateModel(testData, diagnosis))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('Treatment must be a valid treatment', () => {
     const testData = {
       Treatment: { value: 'Test' },

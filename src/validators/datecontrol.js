@@ -117,7 +117,7 @@ export const dateLimits = (relationship, birthdate) => {
   switch (relationship) {
     case 'Self':
       max = daysAgo(today, 365 * 16)
-      min = daysAgo(today, 365 * 130 + 1)
+      min = daysAgo(today, 365 * 100 + 1)
       break
     case 'Mother':
     case 'Father':

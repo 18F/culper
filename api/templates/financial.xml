@@ -1,9 +1,13 @@
 <FinancialRecord Type="Pooled" Version="1">
-  {{tmpl "financial-bankruptcy.xml" .Financial.Bankruptcy}}
-  {{tmpl "financial-card.xml" .Financial.Card}}
-  {{tmpl "financial-credit.xml" .Financial.Credit}}
+  {{ if formType "SF86,SF85P" }}
+    {{tmpl "financial-bankruptcy.xml" .Financial.Bankruptcy}}
+    {{tmpl "financial-card.xml" .Financial.Card}}
+    {{tmpl "financial-credit.xml" .Financial.Credit}}
+  {{ end }}
   {{tmpl "financial-delinquent.xml" .Financial.Delinquent}}
-  {{tmpl "financial-gambling.xml" .Financial.Gambling}}
-  {{tmpl "financial-nonpayment.xml" .Financial.Nonpayment}}
+  {{ if formType "SF86,SF85P" }}
+    {{tmpl "financial-gambling.xml" .Financial.Gambling}}
+    {{tmpl "financial-nonpayment.xml" .Financial.Nonpayment}}
+  {{end}}
   {{tmpl "financial-taxes.xml" .Financial.Taxes}}
 </FinancialRecord>

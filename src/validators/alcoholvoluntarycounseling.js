@@ -5,7 +5,7 @@ export const validateVoluntaryCounseling = data => (
   validateModel(data, alcoholVoluntaryCounseling)
 )
 
-export const validateVoluntaryCounselings = (data) => {
+export const validateVoluntaryCounselings = (data, formType, options = {}) => {
   const voluntaryCounselingsModel = {
     SoughtTreatment: { presence: true, hasValue: { validator: hasYesOrNo } },
     List: (value, attributes) => {
@@ -17,7 +17,7 @@ export const validateVoluntaryCounselings = (data) => {
     },
   }
 
-  return validateModel(data, voluntaryCounselingsModel)
+  return validateModel(data, voluntaryCounselingsModel, options)
 }
 
 export default class VoluntaryCounselingsValidator {

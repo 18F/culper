@@ -54,6 +54,35 @@ describe('The employment model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('From date cannot be before applicant birthdate', () => {
+    const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+    const testData = {
+      Dates: {
+        from: { month: 1, year: 1970, day: 2 },
+      },
+    }
+    const expectedErrors = [
+      'Dates.daterange.from.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, employment, { applicantBirthdate }))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('To date cannot be in the future', () => {
+    const testData = {
+      Dates: {
+        to: { month: 1, year: 2050, day: 2 },
+      },
+    }
+    const expectedErrors = [
+      'Dates.daterange.to.date.date.datetime.DATE_TOO_LATE',
+    ]
+
+    expect(validateModel(testData, employment))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   describe('if EmploymentActivity is Unemployment', () => {
     it('the Reference fields are required', () => {
       const testData = {
@@ -481,6 +510,65 @@ describe('The employment model', () => {
             .toEqual(expect.arrayContaining(expectedErrors))
         })
 
+        it('Reprimand Date cannot be before applicant birthdate', () => {
+          const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+          const testData = {
+            EmploymentActivity: { value: 'Other' },
+            Dates: {
+              from: { year: 2010, month: 1, day: 1 },
+              present: true,
+            },
+            Reprimand: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'Yes' },
+                    Date: { month: 1, year: 1970, day: 2 },
+                  },
+                },
+                { Item: { Has: { value: 'No' } } },
+              ],
+            },
+          }
+
+          const expectedErrors = [
+            'Reprimand.branchCollection.0.Date.date.date.datetime.DATE_TOO_EARLY',
+          ]
+
+          expect(validateModel(testData, employment, {
+            applicantBirthdate,
+          }))
+            .toEqual(expect.arrayContaining(expectedErrors))
+        })
+
+        it('Reprimand Date cannot be in the future', () => {
+          const testData = {
+            EmploymentActivity: { value: 'Other' },
+            Dates: {
+              from: { year: 2010, month: 1, day: 1 },
+              present: true,
+            },
+            Reprimand: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'Yes' },
+                    Date: { month: 1, year: 2050, day: 2 },
+                  },
+                },
+                { Item: { Has: { value: 'No' } } },
+              ],
+            },
+          }
+
+          const expectedErrors = [
+            'Reprimand.branchCollection.0.Date.date.date.datetime.DATE_TOO_LATE',
+          ]
+
+          expect(validateModel(testData, employment))
+            .toEqual(expect.arrayContaining(expectedErrors))
+        })
+
         it('passes if valid reprimands', () => {
           const testData = {
             EmploymentActivity: { value: 'Other' },
@@ -633,6 +721,73 @@ describe('The employment model', () => {
             .toEqual(expect.arrayContaining(expectedErrors))
         })
 
+        it('ReasonLeft reason Date cannot be before applicant birthdate', () => {
+          const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+          const testData = {
+            EmploymentActivity: { value: 'Other' },
+            Dates: {
+              from: { year: 2017, month: 2, day: 5 },
+              to: { year: 2018, month: 10, day: 20 },
+              present: false,
+            },
+            ReasonLeft: {
+              ReasonDescription: { value: 'My reason' },
+              Reasons: {
+                items: [
+                  {
+                    Item: {
+                      Has: { value: 'Yes' },
+                      Date: { month: 1, year: 1970, day: 2 },
+                    },
+                  },
+                  { Item: { Has: { value: 'No' } } },
+                ],
+              },
+            },
+          }
+
+          const expectedErrors = [
+            'ReasonLeft.model.Reasons.branchCollection.0.Date.date.date.datetime.DATE_TOO_EARLY',
+          ]
+
+          expect(validateModel(testData, employment, {
+            applicantBirthdate,
+          }))
+            .toEqual(expect.arrayContaining(expectedErrors))
+        })
+
+        it('ReasonLeft reason Date cannot be in the future', () => {
+          const testData = {
+            EmploymentActivity: { value: 'Other' },
+            Dates: {
+              from: { year: 2017, month: 2, day: 5 },
+              to: { year: 2018, month: 10, day: 20 },
+              present: false,
+            },
+            ReasonLeft: {
+              ReasonDescription: { value: 'My reason' },
+              Reasons: {
+                items: [
+                  {
+                    Item: {
+                      Has: { value: 'Yes' },
+                      Date: { month: 1, year: 2050, day: 2 },
+                    },
+                  },
+                  { Item: { Has: { value: 'No' } } },
+                ],
+              },
+            },
+          }
+
+          const expectedErrors = [
+            'ReasonLeft.model.Reasons.branchCollection.0.Date.date.date.datetime.DATE_TOO_LATE',
+          ]
+
+          expect(validateModel(testData, employment))
+            .toEqual(expect.arrayContaining(expectedErrors))
+        })
+
         it('passes valid ReasonLeft Reasons', () => {
           const testData = {
             EmploymentActivity: { value: 'Other' },
@@ -730,6 +885,10 @@ describe('The employment model', () => {
       it('AlternateAddress is required', () => {
         const testData = {
           EmploymentActivity: { value: 'SelfEmployment' },
+          PhysicalAddress: {
+            HasDifferentAddress: { value: 'No' },
+            Address: {},
+          },
           Address: {
             street: '123 Test St',
             city: 'London',
@@ -751,6 +910,10 @@ describe('The employment model', () => {
               street: '123 Test St',
               city: 'London',
               country: { value: 'United Kingdom' },
+            },
+            PhysicalAddress: {
+              HasDifferentAddress: { value: 'No' },
+              Address: {},
             },
             AlternateAddress: {
               HasDifferentAddress: { value: 'Yes' },
@@ -1810,6 +1973,10 @@ describe('The employment model', () => {
       it('AlternateAddress is required', () => {
         const testData = {
           EmploymentActivity: { value: 'ActiveMilitary' },
+          PhysicalAddress: {
+            HasDifferentAddress: { value: 'No' },
+            Address: {},
+          },
           Address: {
             street: '123 Test St',
             city: 'London',
@@ -1831,6 +1998,10 @@ describe('The employment model', () => {
               street: '123 Test St',
               city: 'London',
               country: { value: 'United Kingdom' },
+            },
+            PhysicalAddress: {
+              HasDifferentAddress: { value: 'No' },
+              Address: {},
             },
             AlternateAddress: {
               HasDifferentAddress: { value: 'Yes' },
@@ -1971,6 +2142,10 @@ describe('The employment model', () => {
             zipcode: '34035',
             country: 'POSTOFFICE',
           },
+          PhysicalAddress: {
+            HasDifferentAddress: { value: 'No' },
+            Address: {},
+          },
         }
 
         const expectedErrors = ['AlternateAddress.presence.REQUIRED']
@@ -1987,6 +2162,10 @@ describe('The employment model', () => {
             state: 'AA',
             zipcode: '34035',
             country: 'POSTOFFICE',
+          },
+          PhysicalAddress: {
+            HasDifferentAddress: { value: 'No' },
+            Address: {},
           },
           AlternateAddress: {
             HasDifferentAddress: { value: 'Yes' },
@@ -2292,6 +2471,10 @@ describe('The employment model', () => {
       it('AlternateAddress is required', () => {
         const testData = {
           EmploymentActivity: { value: 'NonGovernment' },
+          PhysicalAddress: {
+            HasDifferentAddress: { value: 'No' },
+            Address: {},
+          },
           Address: {
             street: '123 Test St',
             city: 'London',
@@ -2313,6 +2496,10 @@ describe('The employment model', () => {
               street: '123 Test St',
               city: 'London',
               country: { value: 'United Kingdom' },
+            },
+            PhysicalAddress: {
+              HasDifferentAddress: { value: 'No' },
+              Address: {},
             },
             AlternateAddress: {
               HasDifferentAddress: { value: 'Yes' },
@@ -2460,6 +2647,10 @@ describe('The employment model', () => {
             zipcode: '34035',
             country: 'POSTOFFICE',
           },
+          PhysicalAddress: {
+            HasDifferentAddress: { value: 'No' },
+            Address: {},
+          },
         }
 
         const expectedErrors = ['AlternateAddress.presence.REQUIRED']
@@ -2477,6 +2668,10 @@ describe('The employment model', () => {
             state: 'AA',
             zipcode: '34035',
             country: 'POSTOFFICE',
+          },
+          PhysicalAddress: {
+            HasDifferentAddress: { value: 'No' },
+            Address: {},
           },
           AlternateAddress: {
             HasDifferentAddress: { value: 'Yes' },
@@ -2706,11 +2901,159 @@ describe('The employment model', () => {
           .toEqual(expect.arrayContaining(expectedErrors))
       })
 
-      it('passes a valid Employment item', () => {
+      it('additional DatesEmployed from date cannot be before applicant birthdate', () => {
+        const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+
         const testData = {
           EmploymentActivity: { value: 'NonGovernment' },
           Dates: {
             from: { year: 1990, month: 5, day: 12 },
+            present: true,
+          },
+          Title: 'Manager',
+          Employment: 'My Company',
+          Status: 'Full-time',
+          Address: {
+            street: '40 Office St',
+            city: 'New York',
+            state: 'NY',
+            zipcode: '10001',
+            country: 'United States',
+          },
+          PhysicalAddress: {
+            HasDifferentAddress: { value: 'No' },
+          },
+          Telephone: {
+            number: '1234567890',
+            type: 'Domestic',
+            timeOfDay: 'Day',
+          },
+          Supervisor: {
+            SupervisorName: { value: 'Person Supervisor' },
+            Title: { value: 'VP' },
+            EmailNotApplicable: { applicable: false },
+            Address: {
+              street: '40 Office St',
+              city: 'New York',
+              state: 'NY',
+              zipcode: '10001',
+              country: 'United States',
+            },
+            Telephone: {
+              number: '1234567890',
+              type: 'Domestic',
+              timeOfDay: 'Day',
+            },
+          },
+          Reprimand: {
+            items: [
+              { Item: { Has: { value: 'No' } } },
+            ],
+          },
+          Additional: {
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' },
+                  Position: { value: 'Something' },
+                  Supervisor: { value: 'Someone' },
+                  DatesEmployed: {
+                    from: { month: 1, year: 1970, day: 2 },
+                    to: { year: 2006, month: 5, day: 10 },
+                  },
+                },
+              },
+              { Item: { Has: { value: 'No' } } },
+            ],
+          },
+        }
+
+        const expectedErrors = [
+          'Additional.branchCollection.0.DatesEmployed.daterange.from.date.date.datetime.DATE_TOO_EARLY',
+        ]
+
+        expect(validateModel(testData, employment, { applicantBirthdate }))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      it('additional DatesEmployed To date cannot be after the Dates from date', () => {
+        const testData = {
+          EmploymentActivity: { value: 'NonGovernment' },
+          Dates: {
+            from: { year: 1990, month: 5, day: 12 },
+            present: true,
+          },
+          Title: 'Manager',
+          Employment: 'My Company',
+          Status: 'Full-time',
+          Address: {
+            street: '40 Office St',
+            city: 'New York',
+            state: 'NY',
+            zipcode: '10001',
+            country: 'United States',
+          },
+          PhysicalAddress: {
+            HasDifferentAddress: { value: 'No' },
+          },
+          Telephone: {
+            number: '1234567890',
+            type: 'Domestic',
+            timeOfDay: 'Day',
+          },
+          Supervisor: {
+            SupervisorName: { value: 'Person Supervisor' },
+            Title: { value: 'VP' },
+            EmailNotApplicable: { applicable: false },
+            Address: {
+              street: '40 Office St',
+              city: 'New York',
+              state: 'NY',
+              zipcode: '10001',
+              country: 'United States',
+            },
+            Telephone: {
+              number: '1234567890',
+              type: 'Domestic',
+              timeOfDay: 'Day',
+            },
+          },
+          Reprimand: {
+            items: [
+              { Item: { Has: { value: 'No' } } },
+            ],
+          },
+          Additional: {
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' },
+                  Position: { value: 'Something' },
+                  Supervisor: { value: 'Someone' },
+                  DatesEmployed: {
+                    from: { month: 1, year: 1970, day: 2 },
+                    to: { year: 2006, month: 5, day: 10 },
+                  },
+                },
+              },
+              { Item: { Has: { value: 'No' } } },
+            ],
+          },
+        }
+
+        const expectedErrors = [
+          'Additional.branchCollection.0.DatesEmployed.daterange.to.date.date.datetime.DATE_TOO_LATE',
+        ]
+
+        expect(validateModel(testData, employment))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      it('passes a valid Employment item', () => {
+        const testData = {
+          EmploymentActivity: { value: 'NonGovernment' },
+          Dates: {
+            from: { year: 2007, month: 5, day: 12 },
             present: true,
           },
           Title: 'Manager',

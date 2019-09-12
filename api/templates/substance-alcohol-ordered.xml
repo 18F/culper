@@ -10,6 +10,7 @@
       </ActionToSeekCounselingTaken>
       <Explanation>{{textarea $Item.NoActionTakenExplanation}}</Explanation>
       <ExplanationComment></ExplanationComment>
+      {{ if formType "SF86" }}
       <CounselingOrderedBy>
         <Answer
           {{if (checkboxHas $Item.Seekers "Employer") | eq "True"}}
@@ -34,6 +35,7 @@
         <Comment></Comment>
         <Explanation>{{text $Item.OtherSeeker}}</Explanation>
       </CounselingOrderedBy>
+      {{end}}
       {{ if branch $Item.ActionTaken | eq "Yes" }}
       <CompletedTreatmentProgram>
         <Answer>{{branch $Item.CompletedTreatment}}</Answer>

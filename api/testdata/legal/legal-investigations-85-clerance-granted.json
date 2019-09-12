@@ -1,0 +1,117 @@
+{
+    "type": "legal.investigations.history",
+    "props": {
+        "HasHistory": {
+            "type": "branch",
+            "props": {
+                "value": "Yes"
+            }
+        },
+        "List": {
+            "type": "collection",
+            "props": {
+                "items": [
+                    {
+                        "Item": {
+                            "Agency": {
+                                "type": "radio",
+                                "props": {
+                                    "value": "U.S. Department of Defense"
+                                }
+                            },
+                            "AgencyExplanation": {
+                                "type": "textarea",
+                                "props": {
+                                    "value": ""
+                                }
+                            },
+                            "AgencyNotApplicable": {
+                                "type": "notapplicable",
+                                "props": {
+                                    "applicable": true
+                                }
+                            },
+                            "Completed": {
+                                "type": "datecontrol",
+                                "props": {
+                                    "name": "Completed",
+                                    "month": "12",
+                                    "day": "12",
+                                    "year": "2012",
+                                    "estimated": false,
+                                    "touched": true
+                                }
+                            },
+                            "CompletedNotApplicable": {
+                                "type": "notapplicable",
+                                "props": {
+                                    "name": "CompletedNotApplicable",
+                                    "applicable": true
+                                }
+                            },
+                            "Issued": {
+                                "type": "text",
+                                "props": {
+                                    "value": "Test Different Agency",
+                                    "name": "Issued"
+                                }
+                            },
+                            "Granted": {
+                                "type": "datecontrol",
+                                "props": {
+                                    "name": "Granted",
+                                    "month": "12",
+                                    "day": "12",
+                                    "year": "2013",
+                                    "estimated": false,
+                                    "touched": true
+                                }
+                            },
+                            "GrantedNotApplicable": {
+                                "type": "notapplicable",
+                                "props": {
+                                    "applicable": true
+                                }
+                            },
+                            "ClearanceGranted": {
+                                "type": "branch",
+                                "props": {
+                                    "value": "Yes"
+                                }
+                            },
+                            "ClearanceLevel": {
+                                "type": "clearancelevel",
+                                "props": {
+                                    "Level": {
+                                        "type": "radio",
+                                        "props": {
+                                            "value": "Confidential"
+                                        }
+                                    },
+                                    "Explanation": {
+                                        "type": "textarea",
+                                        "props": {
+                                            "value": ""
+                                        }
+                                    }
+                                }
+                            },
+                            "ClearanceLevelNotApplicable": {
+                                "type": "notapplicable",
+                                "props": {
+                                    "applicable": true
+                                }
+                            }
+                        }
+                    }
+                ],
+                "branch": {
+                    "type": "branch",
+                    "props": {
+                        "value": "No"
+                    }
+                }
+            }
+        }
+    }
+}

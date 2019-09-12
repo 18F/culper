@@ -46,9 +46,13 @@ const financialDelinquentPayments = {
   },
   Reason: { presence: true, hasValue: true },
   Status: { presence: true, hasValue: true },
-  Date: {
-    presence: true,
-    date: { requireDay: false },
+  Date: (value, attributes, attributeName, options = {}) => {
+    const { applicantBirthdate } = options
+
+    return {
+      presence: true,
+      date: { requireDay: false, earliest: applicantBirthdate, latest: DEFAULT_LATEST },
+    }
   },
   Resolved: (value, attributes) => {
     const { ResolvedNotApplicable } = attributes

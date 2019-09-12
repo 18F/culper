@@ -2590,6 +2590,12 @@
                       "applicable":true
                     }
                   },
+                  "ClearanceGranted": {
+                    "type": "branch",
+                    "props": {
+                      "value": "Yes"
+                    }
+                  },
                   "Granted":{
                     "type":"datecontrol",
                     "props":{
