@@ -3,10 +3,6 @@ import validate from './validate'
 import DateControlValidator from './datecontrol'
 import DateRangeValidator from './daterange'
 
-import IdentificationContactInformationValidator, {
-  ContactPhoneNumberValidator,
-} from './identificationcontacts'
-
 import NameValidator from './name'
 import { OtherNameValidator } from './identificationothernames'
 
@@ -102,8 +98,6 @@ export default validate
 export {
   DateControlValidator,
   DateRangeValidator,
-  IdentificationContactInformationValidator,
-  ContactPhoneNumberValidator,
   NameValidator,
   OtherNameValidator,
   PassportValidator,
