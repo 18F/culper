@@ -69,9 +69,6 @@ import LegalAssociationsOverthrowValidator, {
 import LegalAssociationsViolenceValidator, {
   ViolenceValidator,
 } from './legalassociationsviolence'
-import LegalAssociationsEngagedValidator, {
-  EngagedValidator,
-} from './legalassociationsengaged'
 import LegalAssociationsTerrorismValidator from './legalassociationsterrorism'
 import LocationValidator from './location'
 import SignatureValidator from './signature'
@@ -143,8 +140,6 @@ export {
   OverthrowValidator,
   LegalAssociationsViolenceValidator,
   ViolenceValidator,
-  LegalAssociationsEngagedValidator,
-  EngagedValidator,
   LegalAssociationsTerrorismValidator,
   LocationValidator,
   SignatureValidator,
