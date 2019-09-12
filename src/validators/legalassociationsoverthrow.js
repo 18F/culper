@@ -1,10 +1,6 @@
 import { validateModel, hasYesOrNo } from 'models/validate'
 import overthrow from 'models/overthrow'
 
-export const validateOverthrow = data => (
-  validateModel(data, overthrow)
-)
-
 export const validateLegalOverthrow = (data, formType, options = {}) => {
   const legalOverthrowModel = {
     HasOverthrow: { presence: true, hasValue: { validator: hasYesOrNo } },
@@ -20,60 +16,4 @@ export const validateLegalOverthrow = (data, formType, options = {}) => {
   }
 
   return validateModel(data, legalOverthrowModel, options)
-}
-
-export default class LegalAssociationOverthrowValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  isValid() {
-    return validateLegalOverthrow(this.data) === true
-  }
-}
-
-export class OverthrowValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  validOrganization() {
-    return validateModel(this.data, {
-      Organization: overthrow.Organization,
-    }) === true
-  }
-
-  validAddress() {
-    return validateModel(this.data, {
-      Address: overthrow.Address,
-    }) === true
-  }
-
-  validDates() {
-    return validateModel(this.data, {
-      Dates: overthrow.Dates,
-    }) === true
-  }
-
-  validPositions() {
-    return validateModel(this.data, {
-      Positions: overthrow.Positions,
-    }) === true
-  }
-
-  validContributions() {
-    return validateModel(this.data, {
-      Contributions: overthrow.Contributions,
-    }) === true
-  }
-
-  validReasons() {
-    return validateModel(this.data, {
-      Reasons: overthrow.Reasons,
-    }) === true
-  }
-
-  isValid() {
-    return validateOverthrow(this.data) === true
-  }
 }

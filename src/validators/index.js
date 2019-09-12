@@ -63,9 +63,6 @@ import LegalTechnologyUnlawfulValidator, {
 import LegalAssociationsTerroristValidator, {
   TerroristValidator,
 } from './legalassociationsterrorist'
-import LegalAssociationsOverthrowValidator, {
-  OverthrowValidator,
-} from './legalassociationsoverthrow'
 import LegalAssociationsViolenceValidator, {
   ViolenceValidator,
 } from './legalassociationsviolence'
@@ -136,8 +133,6 @@ export {
   UnlawfulValidator,
   LegalAssociationsTerroristValidator,
   TerroristValidator,
-  LegalAssociationsOverthrowValidator,
-  OverthrowValidator,
   LegalAssociationsViolenceValidator,
   ViolenceValidator,
   LegalAssociationsTerrorismValidator,
