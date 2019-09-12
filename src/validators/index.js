@@ -4,7 +4,6 @@ import DateControlValidator from './datecontrol'
 import DateRangeValidator from './daterange'
 
 import NameValidator from './name'
-import { OtherNameValidator } from './identificationothernames'
 
 import PassportValidator from './passport'
 import HistoryResidenceValidator, { ResidenceValidator } from './residence'
@@ -99,7 +98,6 @@ export {
   DateControlValidator,
   DateRangeValidator,
   NameValidator,
-  OtherNameValidator,
   PassportValidator,
   HistoryResidenceValidator,
   ResidenceValidator,
