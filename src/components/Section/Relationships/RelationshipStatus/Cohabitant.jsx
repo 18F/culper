@@ -58,7 +58,7 @@ export default class Cohabitant extends ValidationElement {
     const state = {
       Name: {},
       Birthdate: null,
-      BirthPlace: null,
+      BirthPlace: {country: undefined},
       ForeignBornDocument: null,
       SSN: null,
       OtherNames: null,
@@ -74,9 +74,6 @@ export default class Cohabitant extends ValidationElement {
   }
 
   updateName(values) {
-    if (this.props.SameSpouseConfirmed) {
-      return
-    }
 
     const similarSpouse = this.hasSimilarSpouse(values)
 
