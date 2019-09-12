@@ -5,9 +5,6 @@ import { HISTORY, HISTORY_RESIDENCE } from 'config/formSections/history'
 import { INCOMPLETE_DURATION } from 'constants/errors'
 
 import connectSubsection from 'components/Section/shared/SubsectionConnector'
-import { findTimelineGaps } from 'helpers/date'
-import { validateModel } from 'models/validate'
-
 import Subsection from 'components/Section/shared/Subsection'
 
 import { Accordion } from 'components/Form'
@@ -80,17 +77,10 @@ export class Residence extends Subsection {
   }
 
   render() {
-    const { List, errors, totalYears } = this.props
-    const { items, branch } = List
-
-    const dateRanges = items
-      .filter(i => i.Item && i.Item.Dates && validateModel(
-        { Dates: i.Item.Dates },
-        { Dates: { presence: true, daterange: true } }
-      ) === true)
-      .map(i => i.Item.Dates)
-
-    const gaps = findTimelineGaps({ years: totalYears }, dateRanges)
+    const {
+      List, errors, totalYears, gaps,
+    } = this.props
+    const { branch } = List
 
     const showGapError = branch
       && branch.value === 'No'
@@ -161,6 +151,7 @@ Residence.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   errors: [],
+  gaps: [],
 }
 
 export default connectSubsection(Residence, sectionConfig)

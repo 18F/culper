@@ -110,12 +110,15 @@ export const sortDateRanges = (ranges) => {
     return 0
   }
 
-  return [...ranges].map(r => ({
+  return ranges.sort(sortFn)
+}
+
+export const validateDateRanges = ranges => (
+  [...ranges].map(r => ({
     from: createDateFromObject(cleanDateObject(r.from)),
     to: r.present ? today : createDateFromObject(cleanDateObject(r.to)),
-  }))
-    .sort(sortFn)
-}
+  })).filter(r => r.from.isValid && r.to.isValid)
+)
 
 /**
  * All dates being operated on are luxon date objects
@@ -132,7 +135,7 @@ export const findTimelineGaps = (coverage, ranges) => {
   const minimumGap = 30 // in days
 
   // prepare & sort ranges
-  const sortedRanges = sortDateRanges(ranges)
+  const sortedRanges = sortDateRanges(validateDateRanges(ranges))
 
   // the return value
   const gaps = []
