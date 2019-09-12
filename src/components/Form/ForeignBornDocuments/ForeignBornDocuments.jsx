@@ -55,7 +55,7 @@ export default class ForeignBornDocuments extends ValidationElement {
   }
 
   updateDocumentExpiration(values) {
-    values['noMaxDate'] = true
+    // console.log("Here", values)
     this.update({
       DocumentExpiration: values,
     })
@@ -329,6 +329,7 @@ export default class ForeignBornDocuments extends ValidationElement {
             >
               <DateControl
                 name="documentExpiration"
+                noMaxDate="true" 
                 {...this.props.DocumentExpiration}
                 onUpdate={this.updateDocumentExpiration}
                 onError={this.props.onError}
@@ -346,7 +347,7 @@ ForeignBornDocuments.defaultProps = {
   DocumentType: {},
   OtherExplanation: {},
   DocumentNumber: {},
-  DocumentExpiration: {},
+  DocumentExpiration: { noMaxDate = true},
   DocumentExpirationNotApplicable: { applicable: true },
   onUpdate: () => {},
   onError: (value, arr) => arr,
