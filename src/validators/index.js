@@ -35,9 +35,6 @@ import RelativesValidator, {
   AliasValidator,
 } from './relatives'
 import TaxesValidator, { TaxValidator } from './taxes'
-import HospitalizationsValidator, {
-  HospitalizationValidator,
-} from './hospitalization'
 import NonpaymentValidator, { NonpaymentItemValidator } from './nonpayment'
 import PsychologicalValidator, { hideExistingConditions } from './psychological'
 import TreatmentValidator from './treatment'
@@ -129,12 +126,10 @@ export {
   AliasValidator,
   TaxesValidator,
   TaxValidator,
-  HospitalizationsValidator,
   NonpaymentValidator,
   NonpaymentItemValidator,
   PsychologicalValidator,
   TreatmentValidator,
-  HospitalizationValidator,
   MaritalValidator,
   RelationshipsValidator,
   PeopleValidator,

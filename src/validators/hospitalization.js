@@ -21,36 +21,3 @@ export const validateHospitalization = data => (
 export const validateHospitalizations = (data, formType, options = {}) => (
   validateModel(data, hospitalizationsModel, options)
 )
-
-export default class HospitalizationsValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  validHospitalization() {
-    return validateModel(this.data, {
-      Hospitalized: hospitalizationsModel.Hospitalized,
-    }) === true
-  }
-
-  isValid() {
-    return validateHospitalizations(this.data) === true
-  }
-}
-
-export class HospitalizationValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  validAdmission() {
-    return validateModel(this.data, {
-      Admission: hospitalization.Admission,
-      Explanation: hospitalization.Explanation,
-    }) === true
-  }
-
-  isValid() {
-    return validateHospitalization(this.data) === true
-  }
-}
