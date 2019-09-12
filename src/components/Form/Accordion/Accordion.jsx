@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { i18n } from 'config'
 import ValidationElement from 'components/Form/ValidationElement'
@@ -179,31 +180,25 @@ export default class Accordion extends ValidationElement {
   }
 
   /**
-   * Perform any injections or sorting to the list as deemed necessary.
+   * Perform any sorting to the list as deemed necessary.
    */
-  getItems(skipInnoculation = false) {
-    // If this has realtime enabled then we always perform sorting and
-    // additional injections.
+  getItems() {
+    const { items, realtime, sort } = this.props
+    const { initial } = this.state
+
+    // If this has realtime enabled then we always perform sorting
     //
     // If it is not realtime but still the first entry in to the accordion
     // then we do the same.
     //
     // If we have been previously infected then assume we still are.
-    const infected =
-      this.props.realtime ||
-      this.state.initial ||
-      this.props.items.some(item => item.type && item.type === 'Gap')
-
-    // If we are infected then inject the anecdote.
-    const innoculated =
-      infected && !skipInnoculation
-        ? this.props.inject([...this.props.items])
-        : [...this.props.items]
+    const infected = realtime || initial
+    const innoculated = [...items]
 
     // If we are not in a dirty environment and have a sorting function then
     // apply order.
-    return this.props.sort && infected
-      ? innoculated.sort(this.props.sort)
+    return sort && infected
+      ? innoculated.sort(sort)
       : innoculated
   }
 
@@ -355,11 +350,6 @@ export default class Accordion extends ValidationElement {
    * Render the item summary which can be overriden with `customSummary`
    */
   summary(item, index, initial = false) {
-    // If this is a `gap` then you cannot destroy what you did not create.
-    if (item.type && item.type === 'Gap') {
-      return null
-    }
-
     const closedAndIncomplete =
       !item.open && !this.isValid(item.uuid)
 
@@ -559,6 +549,7 @@ export default class Accordion extends ValidationElement {
   }
 
   render() {
+    const { gapError } = this.props
     const klass = `accordion ${this.props.className}`.trim()
 
     return (
@@ -569,10 +560,15 @@ export default class Accordion extends ValidationElement {
           <div className="items">{this.content()}</div>
           <div className="append-button">{this.appendButton()}</div>
         </div>
+        {gapError}
         {this.addendum()}
       </div>
     )
   }
+}
+
+Accordion.propTypes = {
+  gapError: PropTypes.node,
 }
 
 Accordion.defaultProps = {
@@ -600,6 +596,7 @@ Accordion.defaultProps = {
   sort: null,
   realtime: true,
   errors: [],
+  gapError: null,
   inject: items => {
     return items
   },

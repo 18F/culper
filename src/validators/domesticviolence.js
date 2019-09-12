@@ -1,7 +1,7 @@
 import { validateModel, hasYesOrNo } from 'models/validate'
 import domesticViolence from 'models/domesticViolence'
 
-export const validateDomesticViolence = (data) => {
+export const validateDomesticViolence = (data, formType, options = {}) => {
   const domesticViolenceModel = {
     HasDomesticViolence: { presence: true, hasValue: { validator: hasYesOrNo } },
     List: (value, attributes) => {
@@ -16,5 +16,5 @@ export const validateDomesticViolence = (data) => {
     },
   }
 
-  return validateModel(data, domesticViolenceModel)
+  return validateModel(data, domesticViolenceModel, options)
 }

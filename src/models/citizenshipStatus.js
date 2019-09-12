@@ -16,6 +16,7 @@ import {
   foreignBornDocumentTypes,
   notCitizenDocumentTypes,
 } from 'constants/enums/citizenshipOptions'
+import { DEFAULT_LATEST } from 'constants/dateLimits'
 
 /** Helper functions */
 export const certificateIsEmpty = (attributes) => {
@@ -93,13 +94,13 @@ const citizenshipStatus = {
         hasValue: true,
       } : {}
   ),
-  DocumentIssued: (value, attributes, attributeName, options) => (
+  DocumentIssued: (value, attributes, attributeName, options = {}) => (
     (requireDocumentationFields(attributes, options)
       && !checkValue(attributes.AbroadDocumentation, 'Other'))
       || checkValue(attributes.CitizenshipStatus, NOT_CITIZEN)
       ? {
         presence: true,
-        date: true,
+        date: { earliest: options.applicantBirthdate, latest: DEFAULT_LATEST },
       } : {}
   ),
   PlaceIssued: (value, attributes, attributeName, options) => (
@@ -130,10 +131,10 @@ const citizenshipStatus = {
       ? { presence: true, hasValue: true }
       : {}
   ),
-  CertificateIssued: (value, attributes, attributeName, options) => (
+  CertificateIssued: (value, attributes, attributeName, options = {}) => (
     (requireCertificateFields(attributes, options)
       || checkValueIncluded(attributes.CitizenshipStatus, [NATURALIZED, DERIVED]))
-      ? { presence: true, date: true }
+      ? { presence: true, date: { earliest: options.applicantBirthdate, latest: DEFAULT_LATEST } }
       : {}
   ),
   CertificateName: (value, attributes, attributeName, options) => (
@@ -142,9 +143,9 @@ const citizenshipStatus = {
       ? { presence: true, model: { validator: name } }
       : {}
   ),
-  EntryDate: (value, attributes) => (
+  EntryDate: (value, attributes, attributeName, options = {}) => (
     checkValueIncluded(attributes.CitizenshipStatus, [NATURALIZED, NOT_CITIZEN])
-      ? { presence: true, date: true }
+      ? { presence: true, date: { earliest: options.applicantBirthdate, latest: DEFAULT_LATEST } }
       : {}
   ),
   EntryLocation: (value, attributes) => (

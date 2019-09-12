@@ -1,6 +1,7 @@
 import { hasYesOrNo, checkValue } from 'models/validate'
 import address from 'models/shared/locations/address'
 import phone from 'models/shared/phone'
+import { DEFAULT_LATEST } from 'constants/dateLimits'
 
 const alcoholOrderedCounseling = {
   Seekers: {},
@@ -31,9 +32,13 @@ const alcoholOrderedCounseling = {
     }
     return {}
   },
-  CounselingDates: (value, attributes) => {
+  CounselingDates: (value, attributes, attributeName, options = {}) => {
     if (checkValue(attributes.ActionTaken, 'Yes')) {
-      return { presence: true, daterange: true }
+      const { applicantBirthdate } = options
+      return {
+        presence: true,
+        daterange: { earliest: applicantBirthdate, latest: DEFAULT_LATEST },
+      }
     }
     return {}
   },

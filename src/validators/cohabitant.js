@@ -3,7 +3,7 @@ import cohabitant from 'models/cohabitant'
 
 export const validateCohabitant = data => validateModel(data, cohabitant)
 
-export const validateCohabitants = (data) => {
+export const validateCohabitants = (data, formType, options = {}) => {
   const cohabitantsModel = {
     HasCohabitant: {
       presence: true,
@@ -21,5 +21,5 @@ export const validateCohabitants = (data) => {
     },
   }
 
-  return validateModel(data, cohabitantsModel)
+  return validateModel(data, cohabitantsModel, options)
 }

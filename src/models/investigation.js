@@ -28,13 +28,18 @@ const investigation = {
 
     return {}
   },
-  Completed: (value, attributes) => {
+  Completed: (value, attributes, attributeName, options = {}) => {
     if (attributes.CompletedNotApplicable
       && attributes.CompletedNotApplicable.applicable === false) {
       return {}
     }
 
-    return { presence: true, date: true }
+    const { applicantBirthdate } = options
+
+    return {
+      presence: true,
+      date: { earliest: applicantBirthdate, latest: DEFAULT_LATEST },
+    }
   },
   Issued: {},
   Granted: (value, attributes, attributeName, options) => {

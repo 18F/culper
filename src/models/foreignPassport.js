@@ -2,10 +2,18 @@ import { checkValue, hasYesOrNo } from 'models/validate'
 import cityCountry from 'models/shared/locations/cityCountry'
 import name from 'models/shared/name'
 import foreignPassportTravel from 'models/foreignPassportTravel'
+import { DEFAULT_LATEST } from 'constants/dateLimits'
 
 const foreignPassport = {
   Country: { presence: true, country: true },
-  Issued: { presence: true, date: true },
+  Issued: (value, attributes, attributeName, options = {}) => {
+    const { applicantBirthdate } = options
+
+    return {
+      presence: true,
+      date: { earliest: applicantBirthdate, latest: DEFAULT_LATEST },
+    }
+  },
   Location: {
     presence: true,
     location: { validator: cityCountry },

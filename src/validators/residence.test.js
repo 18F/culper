@@ -137,12 +137,7 @@ describe('The HistoryResidenceValidator', () => {
               month: '1',
               year: '2009',
             },
-            to: {
-              day: '1',
-              month: '1',
-              year: '2019',
-            },
-            present: false,
+            present: true,
           },
           Role: {
             value: 'MilitaryHousing',

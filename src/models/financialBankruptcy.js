@@ -31,9 +31,13 @@ const financialBankruptcy = {
       validator: { numericality: true },
     },
   },
-  DateFiled: {
-    presence: true,
-    date: { requireDay: false },
+  DateFiled: (value, attributes, attributeName, options = {}) => {
+    const { applicantBirthdate } = options
+
+    return {
+      presence: true,
+      date: { requireDay: false, earliest: applicantBirthdate, latest: DEFAULT_LATEST },
+    }
   },
   DateDischarged: (value, attributes) => {
     const { DateDischargedNotApplicable, DateFiled } = attributes

@@ -58,6 +58,35 @@ describe('The foreignBusinessContact model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('Date cannot be before applicant birthdate', () => {
+    const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+    const testData = {
+      Date: { month: 1, year: 1970, day: 2 },
+    }
+
+    const expectedErrors = [
+      'Date.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, foreignBusinessContact, {
+      applicantBirthdate,
+    }))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Date cannot be in the future', () => {
+    const testData = {
+      Date: { month: 1, year: 2050, day: 2 },
+    }
+
+    const expectedErrors = [
+      'Date.date.date.datetime.DATE_TOO_LATE',
+    ]
+
+    expect(validateModel(testData, foreignBusinessContact))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('Governments must have at least one value', () => {
     const testData = {
       Governments: { value: [] },
@@ -118,6 +147,61 @@ describe('The foreignBusinessContact model', () => {
     }
     const expectedErrors = [
       'SubsequentContacts.branchCollection.0.Subsequent.presence.REQUIRED',
+    ]
+
+    expect(validateModel(testData, foreignBusinessContact))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('SubsequentContact Recent cannot be before applicant birthdate', () => {
+    const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+    const testData = {
+      SubsequentContacts: {
+        items: [
+          {
+            Item: {
+              Has: { value: 'Yes' },
+              Subsequent: '',
+              Recent: { month: 1, year: 1970, day: 2 },
+            },
+          },
+          {
+            Item: { Has: { value: 'No' } },
+          },
+        ],
+      },
+    }
+
+    const expectedErrors = [
+      'SubsequentContacts.branchCollection.0.Recent.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, foreignBusinessContact, {
+      applicantBirthdate,
+    }))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('SubsequentContact Recent cannot be in the future', () => {
+    const testData = {
+      SubsequentContacts: {
+        items: [
+          {
+            Item: {
+              Has: { value: 'Yes' },
+              Subsequent: '',
+              Recent: { month: 1, year: 2050, day: 2 },
+            },
+          },
+          {
+            Item: { Has: { value: 'No' } },
+          },
+        ],
+      },
+    }
+
+    const expectedErrors = [
+      'SubsequentContacts.branchCollection.0.Recent.date.date.datetime.DATE_TOO_LATE',
     ]
 
     expect(validateModel(testData, foreignBusinessContact))

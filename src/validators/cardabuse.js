@@ -19,10 +19,13 @@ const cardAbuseModel = {
   },
 }
 
-export const validateFinancialCardAbuse = (data, formType) => (
+export const validateFinancialCardAbuse = (data, formType, options = {}) => (
   validateModel(
     data,
     cardAbuseModel,
-    { requireFinancialCardDisciplinaryDate: requireFinancialCardDisciplinaryDate(formType) },
+    {
+      ...options,
+      requireFinancialCardDisciplinaryDate: requireFinancialCardDisciplinaryDate(formType),
+    },
   )
 )

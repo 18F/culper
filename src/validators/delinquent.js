@@ -24,10 +24,11 @@ const delinquentItemsModel = {
   },
 }
 
-export const validateFinancialDelinquent = (data, formType = formTypes.SF86) => {
+export const validateFinancialDelinquent = (data, formType, options = {}) => {
   const requiredFinancialDelinquentName = requireFinancialDelinquentName(formType)
   const requiredFinancialDelinquentInfraction = requireFinancialDelinquentInfraction(formType)
   return validateModel(data, delinquentItemsModel, {
+    ...options,
     requiredFinancialDelinquentName,
     requiredFinancialDelinquentInfraction,
   })

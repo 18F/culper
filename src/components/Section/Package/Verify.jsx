@@ -1,17 +1,20 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { i18n } from '../../../config'
-import { SSN } from './helpers'
-import { Field } from '../../Form'
-import { sort } from '../History/helpers'
+
+import { i18n } from 'config'
+import { Field } from 'components/Form'
 import {
   NameSummary,
   DateSummary,
   AddressSummary,
-  TelephoneSummary
-} from '../../Summary'
+  TelephoneSummary,
+} from 'components/Summary'
 
-const wrapSpans = text => {
+import { SSN } from './helpers'
+import { sort } from '../History/helpers'
+
+const wrapSpans = (text) => {
   if (text === '') {
     return <span />
   }
@@ -19,7 +22,9 @@ const wrapSpans = text => {
   const typeOf = Object.prototype.toString.call(text)
   if (typeOf === '[object String]') {
     return <span>{text}</span>
-  } else if (typeOf === '[object Array]') {
+  }
+
+  if (typeOf === '[object Array]') {
     return text.map(t => wrapSpans(t))
   }
 
@@ -28,27 +33,24 @@ const wrapSpans = text => {
 
 export default class Verify extends React.Component {
   primaryName() {
-    const identification = this.props.Identification || {}
+    const { Identification } = this.props
     return NameSummary(
-      (identification.ApplicantName || {}).Name,
+      (Identification.ApplicantName || {}).Name,
       i18n.t('releases.verify.label.none')
     )
   }
 
   secondaryNames() {
-    const identification = this.props.Identification || {}
-    const items =
-      ((identification.OtherNames || {}).List || { items: [] }).items || []
+    const { Identification } = this.props
+    const items = ((Identification.OtherNames || {}).List || { items: [] }).items || []
     return items.length
-      ? items.map(n => {
-          return NameSummary(n.Item.Name, i18n.t('releases.verify.label.none'))
-        })
+      ? items.map(n => NameSummary(n.Item.Name, i18n.t('releases.verify.label.none')))
       : i18n.t('releases.verify.label.none')
   }
 
   dateOfBirth() {
-    const identification = this.props.Identification || {}
-    const date = (identification.ApplicantBirthDate || {}).Date
+    const { Identification } = this.props
+    const date = (Identification.ApplicantBirthDate || {}).Date
     return (
       DateSummary(date, i18n.t('releases.verify.label.none'), true) || (
         <span>{i18n.t('releases.verify.label.none')}</span>
@@ -57,48 +59,46 @@ export default class Verify extends React.Component {
   }
 
   social() {
-    const identification = this.props.Identification || {}
-    const ssn = identification.ApplicantSSN || {}
+    const { Identification } = this.props
+    const ssn = Identification.ApplicantSSN || {}
     return SSN(ssn, i18n.t('releases.verify.label.none'))
   }
 
   telephone() {
-    const identification = this.props.Identification || {}
-    const items =
-      ((identification.Contacts || {}).PhoneNumbers || {}).items || []
-    const filtered = items.filter(x => {
+    const { Identification } = this.props
+    const items = ((Identification.Contacts || {}).PhoneNumbers || {}).items || []
+
+    const filtered = items.filter((x) => {
       const item = x.Item || {}
       return (
-        (item.Telephone && (item.Telephone.number || '').trim()) ||
-        item.noNumber
+        (item.Telephone && (item.Telephone.number || '').trim())
+        || item.noNumber
       )
     })
+
     return filtered.length
-      ? filtered.map((n, i) => {
-          return (
-            <div key={i}>
-              {TelephoneSummary(
-                n.Item.Telephone,
-                i18n.t('releases.verify.label.none')
-              )}
-            </div>
-          )
-        })
+      ? filtered.map((n, i) => (
+        // eslint-disable-next-line react/no-array-index-key
+        <div key={i}>
+          {TelephoneSummary(
+            n.Item.Telephone,
+            i18n.t('releases.verify.label.none')
+          )}
+        </div>
+      ))
       : i18n.t('releases.verify.label.none')
   }
 
   residence() {
-    const history = this.props.History || {}
-    const items = ((history.Residence || {}).List || {}).items || []
+    const { History } = this.props
+    const items = ((History.Residence || {}).List || {}).items || []
     const residences = items
-      .filter(n => !n.Item.type || (n.Item.type && n.Item.type !== 'Gap'))
       .sort(sort)
-      .map(n => {
-        return AddressSummary(
-          n.Item.Address,
-          i18n.t('releases.verify.label.none')
-        )
-      })
+      .map(n => AddressSummary(
+        n.Item.Address,
+        i18n.t('releases.verify.label.none')
+      ))
+
     return residences.length === 0 ? (
       <span>{i18n.t('releases.verify.label.none')}</span>
     ) : (
@@ -107,7 +107,6 @@ export default class Verify extends React.Component {
   }
 
   render() {
-    const identification = this.props.Identification || {}
     const name = this.primaryName()
     const othernames = this.secondaryNames()
     const dob = this.dateOfBirth()
@@ -128,7 +127,8 @@ export default class Verify extends React.Component {
           title={i18n.t('releases.verify.heading.name')}
           titleSize="h5"
           optional={true}
-          className="release-name verify-data no-margin-bottom">
+          className="release-name verify-data no-margin-bottom"
+        >
           {wrapSpans(name)}
         </Field>
 
@@ -136,7 +136,8 @@ export default class Verify extends React.Component {
           title={i18n.t('releases.verify.heading.otherNamesUsed')}
           titleSize="h5"
           optional={true}
-          className="release-aliases verify-data no-margin-bottom">
+          className="release-aliases verify-data no-margin-bottom"
+        >
           {wrapSpans(othernames)}
         </Field>
 
@@ -144,7 +145,8 @@ export default class Verify extends React.Component {
           title={i18n.t('releases.verify.heading.dateOfBirth')}
           titleSize="h5"
           optional={true}
-          className="release-dob verify-data no-margin-bottom">
+          className="release-dob verify-data no-margin-bottom"
+        >
           {wrapSpans(dob)}
         </Field>
 
@@ -152,7 +154,8 @@ export default class Verify extends React.Component {
           title={i18n.t('releases.verify.heading.ssn')}
           titleSize="h5"
           optional={true}
-          className="release-ssn verify-data no-margin-bottom">
+          className="release-ssn verify-data no-margin-bottom"
+        >
           {wrapSpans(ssn)}
         </Field>
 
@@ -160,7 +163,8 @@ export default class Verify extends React.Component {
           title={i18n.t('releases.verify.heading.telephoneNumber')}
           titleSize="h5"
           optional={true}
-          className="release-telephone verify-data no-margin-bottom">
+          className="release-telephone verify-data no-margin-bottom"
+        >
           {wrapSpans(phoneNumbers)}
         </Field>
 
@@ -174,7 +178,8 @@ export default class Verify extends React.Component {
         <Field
           title={i18n.t('releases.verify.heading.currentAddress')}
           optional={true}
-          className="release-current-address verify-data no-margin-bottom">
+          className="release-current-address verify-data no-margin-bottom"
+        >
           {wrapSpans(currentResidence)}
         </Field>
 
@@ -189,8 +194,12 @@ export default class Verify extends React.Component {
   }
 }
 
+Verify.propTypes = {
+  Identification: PropTypes.object,
+  History: PropTypes.object,
+}
+
 Verify.defaultProps = {
-  identification: {},
-  history: {},
-  dispatch: action => {}
+  Identification: {},
+  History: {},
 }

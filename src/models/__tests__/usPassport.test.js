@@ -90,6 +90,35 @@ describe('The US Passport model', () => {
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
+    it('Issued cannot be before applicant birthdate', () => {
+      const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+      const testData = {
+        Issued: { month: 1, year: 1970, day: 2 },
+      }
+
+      const expectedErrors = [
+        'Issued.date.date.datetime.DATE_TOO_EARLY',
+      ]
+
+      expect(validateModel(testData, usPassport, {
+        applicantBirthdate,
+      }))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('Issued cannot be in the future', () => {
+      const testData = {
+        Issued: { month: 1, year: 2050, day: 2 },
+      }
+
+      const expectedErrors = [
+        'Issued.date.date.datetime.DATE_TOO_LATE',
+      ]
+
+      expect(validateModel(testData, usPassport))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
     it('Expiration must be after Issued', () => {
       const testData = {
         HasPassports: { value: 'Yes' },

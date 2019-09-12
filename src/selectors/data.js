@@ -7,3 +7,10 @@ export const selectMaritalStatus = state => (
   && state.application.Relationships.Marital.Status
   && state.application.Relationships.Marital.Status.value
 )
+
+export const selectApplicantBirthdate = state => (
+  state.application
+  && state.application.Identification
+  && state.application.Identification.ApplicantBirthDate
+  && state.application.Identification.ApplicantBirthDate.Date
+)

@@ -5,7 +5,7 @@ export const validateUnauthorizedTech = data => (
   validateModel(data, unauthorizedTech)
 )
 
-export const validateLegalTechnologyUnauthorized = (data) => {
+export const validateLegalTechnologyUnauthorized = (data, formType, options = {}) => {
   const legalTechnologyUnauthorizedModel = {
     HasUnauthorized: { presence: true, hasValue: { validator: hasYesOrNo } },
     List: (value, attributes) => {
@@ -19,7 +19,7 @@ export const validateLegalTechnologyUnauthorized = (data) => {
     },
   }
 
-  return validateModel(data, legalTechnologyUnauthorizedModel)
+  return validateModel(data, legalTechnologyUnauthorizedModel, options)
 }
 
 export default class LegalTechnologyUnauthorizedValidator {

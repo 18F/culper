@@ -40,12 +40,11 @@ func main() {
 	jsonBytes, err := ioutil.ReadFile(os.Args[1])
 	fatal(err)
 
-	// Do what api.Package() does to generate the SF-86 XML
-	var js map[string]interface{}
-	err = json.Unmarshal(jsonBytes, &js)
-	fatal(err)
+	application := api.BlankApplication(-1, "SF86", "2017-07")
+	unmarshalErr := json.Unmarshal(jsonBytes, &application)
+	fatal(unmarshalErr)
 
-	result, err := xmlsvc.DefaultTemplate("application.xml", js)
+	result, err := xmlsvc.PackageXML(application)
 	fatal(err)
 	xml := string(result)
 
@@ -54,7 +53,7 @@ func main() {
 	client, err := api.EqipClient(settings)
 	fatal(err)
 
-	request, err := api.EqipRequest(settings, js, xml)
+	request, err := application.EqipRequest(settings, xml)
 	fatal(err)
 
 	response, err := client.ImportRequest(request)

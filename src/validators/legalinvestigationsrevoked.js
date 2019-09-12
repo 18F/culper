@@ -6,7 +6,7 @@ export const validateLegalInvestigationsRevokedItem = data => (
   validateModel(data, revoked)
 )
 
-export const validateLegalInvestigationsRevoked = (data) => {
+export const validateLegalInvestigationsRevoked = (data, formType, options = {}) => {
   const revokedModel = {
     HasRevocations: {
       presence: true,
@@ -25,7 +25,7 @@ export const validateLegalInvestigationsRevoked = (data) => {
     },
   }
 
-  return validateModel(data, revokedModel)
+  return validateModel(data, revokedModel, options)
 }
 
 export default class LegalInvestigationsRevokedValidator {

@@ -1,3 +1,5 @@
-{{tmpl "personal-references.xml" .Relationships.People}}
-{{tmpl "relatives-and-associates.xml" .Relationships.Relatives}}
-{{tmpl "spouse.xml" .}}
+{{ if formType "SF86,SF85P"}}
+    {{tmpl "personal-references.xml" .Relationships.People}}
+    {{tmpl "relatives-and-associates.xml" .Relationships.Relatives}}
+    {{tmpl "spouse.xml" .}}
+{{ end }}

@@ -14,10 +14,12 @@
       {{range $cindex, $country := $Item.Country.props.value}}
       {{if $country | ne "United States"}}
       <HowAcquired>{{textarea $Item.How}}</HowAcquired>
+      {{ if formType "SF86" }}
       <TakenActionToRenounceCitizenship>
         <Answer>{{branch $Item.Renounced}}</Answer>
         <Explanation>{{textarea $Item.RenouncedExplanation}}</Explanation>
       </TakenActionToRenounceCitizenship>
+      {{end}}
       {{end}}
       {{end}}
     </Citizenship>

@@ -10,8 +10,8 @@ export const hideSelectiveService = (store = {}) => {
   return extractDate(birthdate) <= selectiveServiceDate
 }
 
-export const validateSelectiveService = data => (
-  validateModel(data, selectiveService)
+export const validateSelectiveService = (data, formType, options = {}) => (
+  validateModel(data, selectiveService, options)
 )
 
 export default class SelectiveServiceValidator {
@@ -28,7 +28,9 @@ export default class SelectiveServiceValidator {
   }
 
   validRegistrationNumber() {
-    return validateModel(this.data, { RegistrationNumber: selectiveService.RegistrationNumber }) === true
+    return validateModel(this.data, {
+      RegistrationNumber: selectiveService.RegistrationNumber,
+    }) === true
   }
 
   validExplanation() {

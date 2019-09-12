@@ -1,7 +1,7 @@
 import { validateModel, hasYesOrNo } from 'models/validate'
 import foreignContact from 'models/foreignContact'
 
-export const validateForeignContacts = (data) => {
+export const validateForeignContacts = (data, formType, options = {}) => {
   const foreignContactsModel = {
     HasForeignContacts: { presence: true, hasValue: { validator: hasYesOrNo } },
     List: (value, attributes) => {
@@ -16,5 +16,5 @@ export const validateForeignContacts = (data) => {
     },
   }
 
-  return validateModel(data, foreignContactsModel)
+  return validateModel(data, foreignContactsModel, options)
 }

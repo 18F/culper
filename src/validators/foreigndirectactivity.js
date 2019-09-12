@@ -1,7 +1,7 @@
 import { validateModel, hasYesOrNo } from 'models/validate'
 import foreignDirectInterest from 'models/foreignDirectInterest'
 
-export const validateForeignDirectActivity = (data) => {
+export const validateForeignDirectActivity = (data, formType, options = {}) => {
   const foreignDirectActivityModel = {
     HasInterests: { presence: true, hasValue: { validator: hasYesOrNo } },
     List: (value, attributes) => {
@@ -16,5 +16,5 @@ export const validateForeignDirectActivity = (data) => {
     },
   }
 
-  return validateModel(data, foreignDirectActivityModel)
+  return validateModel(data, foreignDirectActivityModel, options)
 }

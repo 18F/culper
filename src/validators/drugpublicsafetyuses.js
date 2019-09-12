@@ -1,7 +1,7 @@
 import { validateModel, hasYesOrNo } from 'models/validate'
 import drugSafetyUse from 'models/drugSafetyUse'
 
-export const validateDrugSafetyUses = (data) => {
+export const validateDrugSafetyUses = (data, formType, options = {}) => {
   const drugSafetyUsesModel = {
     UsedDrugs: { presence: true, hasValue: { validator: hasYesOrNo } },
     List: (value, attributes) => {
@@ -15,5 +15,5 @@ export const validateDrugSafetyUses = (data) => {
     },
   }
 
-  return validateModel(data, drugSafetyUsesModel)
+  return validateModel(data, drugSafetyUsesModel, options)
 }

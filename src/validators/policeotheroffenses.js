@@ -4,8 +4,8 @@ import { validateModel, hasYesOrNo, checkValue } from 'models/validate'
 import otherOffense from 'models/otherOffense'
 import { requireLegalPoliceFirearms, requireLegalPoliceDrugs } from 'helpers/branches'
 
-export const validatePoliceOtherOffenses = (data, formType) => {
-  const options = {
+export const validatePoliceOtherOffenses = (data, formType, options = {}) => {
+  const modelOptions = {
     requireLegalPoliceFirearms: requireLegalPoliceFirearms(formType),
     requireLegalPoliceDrugs: requireLegalPoliceDrugs(formType),
   }
@@ -21,7 +21,7 @@ export const validatePoliceOtherOffenses = (data, formType) => {
     ),
   }
 
-  return validateModel(data, policeOtherOffensesModel, options)
+  return validateModel(data, policeOtherOffensesModel, { ...options, ...modelOptions })
 }
 
 export default class PoliceOtherOffensesValidator {

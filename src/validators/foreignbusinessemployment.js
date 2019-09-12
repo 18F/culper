@@ -1,7 +1,7 @@
 import { validateModel, hasYesOrNo } from 'models/validate'
 import foreignBusinessEmployment from 'models/foreignBusinessEmployment'
 
-export const validateForeignBusinessEmployment = (data) => {
+export const validateForeignBusinessEmployment = (data, formType, options = {}) => {
   const foreignBusinessEmploymentModel = {
     HasForeignEmployment: { presence: true, hasValue: { validator: hasYesOrNo } },
     List: (value, attributes) => {
@@ -16,5 +16,5 @@ export const validateForeignBusinessEmployment = (data) => {
     },
   }
 
-  return validateModel(data, foreignBusinessEmploymentModel)
+  return validateModel(data, foreignBusinessEmploymentModel, options)
 }

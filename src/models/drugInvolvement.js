@@ -14,7 +14,14 @@ const drugInvolvement = {
     return {}
   },
   */
-  FirstInvolvement: { presence: true, date: { requireDay: false } },
+  FirstInvolvement: (value, attributes, attributeName, options = {}) => {
+    const { applicantBirthdate } = options
+
+    return {
+      presence: true,
+      date: { requireDay: false, earliest: applicantBirthdate, latest: DEFAULT_LATEST },
+    }
+  },
   RecentInvolvement: (value, attributes) => {
     const dateLimits = { latest: DEFAULT_LATEST }
     if (attributes.FirstInvolvement) {

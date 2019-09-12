@@ -15,6 +15,6 @@ const financialBankruptcyModel = {
   },
 }
 
-export const validateFinancialBankruptcy = data => (
-  validateModel(data, financialBankruptcyModel)
+export const validateFinancialBankruptcy = (data, formType, options = {}) => (
+  validateModel(data, financialBankruptcyModel, options)
 )

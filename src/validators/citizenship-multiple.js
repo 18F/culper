@@ -24,7 +24,7 @@ const citizenshipMultipleModel = {
   ),
 }
 
-export const validateCitizenshipMultiple = (data = {}, formType = formTypes.SF86) => {
+export const validateCitizenshipMultiple = (data = {}, formType, options = {}) => {
   const requireCitizenshipRenounced = requireMultipleCitizenshipRenounced(formType)
-  return validateModel(data, citizenshipMultipleModel, { requireCitizenshipRenounced })
+  return validateModel(data, citizenshipMultipleModel, { ...options, requireCitizenshipRenounced })
 }

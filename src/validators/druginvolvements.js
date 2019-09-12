@@ -9,7 +9,7 @@ import {
 import { validateModel, hasYesOrNo } from 'models/validate'
 import drugInvolvement from 'models/drugInvolvement'
 
-export const validateDrugInvolvements = (data = {}, formType = formTypes.SF86) => {
+export const validateDrugInvolvements = (data = {}, formType, options = {}) => {
   const drugInvolvementsModel = {
     Involved: { presence: true, hasValue: { validator: hasYesOrNo } },
     List: (value, attributes) => {
@@ -28,5 +28,5 @@ export const validateDrugInvolvements = (data = {}, formType = formTypes.SF86) =
     },
   }
 
-  return validateModel(data, drugInvolvementsModel)
+  return validateModel(data, drugInvolvementsModel, options)
 }

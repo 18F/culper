@@ -16,9 +16,7 @@ describe('The sticky accordion component', () => {
     const component = mount(
       <StickyAccordionSummary
         offset={0}
-        window={() => {
-          return window
-        }}>
+      >
         <div className="summary">Hello</div>
       </StickyAccordionSummary>
     )
@@ -27,14 +25,12 @@ describe('The sticky accordion component', () => {
   })
 
   it('Does not stick when below mobile breakpoint', () => {
-    const win = { ...window }
-    win.innerWidth = 10
+    window.innerWidth = 10
+
     const component = mount(
       <StickyAccordionSummary
         offset={0}
-        window={() => {
-          return win
-        }}>
+      >
         <div className="summary">Hello</div>
       </StickyAccordionSummary>
     )
