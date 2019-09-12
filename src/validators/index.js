@@ -48,9 +48,6 @@ import LegalInvestigationsHistoryValidator, {
 import LegalInvestigationsRevokedValidator, {
   RevokedItemValidator,
 } from './legalinvestigationsrevoked'
-import LegalInvestigationsDebarredValidator, {
-  DebarredValidator,
-} from './legalinvestigationsdebarred'
 import LegalTechnologyUnauthorizedValidator, {
   UnauthorizedValidator,
 } from './legaltechnologyunauthorized'
@@ -60,12 +57,6 @@ import LegalTechnologyManipulatingValidator, {
 import LegalTechnologyUnlawfulValidator, {
   UnlawfulValidator,
 } from './legaltechnologyunlawful'
-import LegalAssociationsTerroristValidator, {
-  TerroristValidator,
-} from './legalassociationsterrorist'
-import LegalAssociationsViolenceValidator, {
-  ViolenceValidator,
-} from './legalassociationsviolence'
 import LegalAssociationsTerrorismValidator from './legalassociationsterrorism'
 import LocationValidator from './location'
 import SignatureValidator from './signature'
@@ -123,18 +114,12 @@ export {
   HistoryValidator,
   LegalInvestigationsRevokedValidator,
   RevokedItemValidator,
-  LegalInvestigationsDebarredValidator,
-  DebarredValidator,
   LegalTechnologyUnauthorizedValidator,
   UnauthorizedValidator,
   LegalTechnologyManipulatingValidator,
   ManipulatingValidator,
   LegalTechnologyUnlawfulValidator,
   UnlawfulValidator,
-  LegalAssociationsTerroristValidator,
-  TerroristValidator,
-  LegalAssociationsViolenceValidator,
-  ViolenceValidator,
   LegalAssociationsTerrorismValidator,
   LocationValidator,
   SignatureValidator,

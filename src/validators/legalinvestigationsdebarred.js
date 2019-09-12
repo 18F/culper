@@ -1,10 +1,6 @@
 import { validateModel, hasYesOrNo } from 'models/validate'
 import debarred from 'models/debarred'
 
-export const validateDebarred = data => (
-  validateModel(data, debarred)
-)
-
 export const validateLegalInvestigationsDebarred = (data, formType, options = {}) => {
   const legalInvestigationsDebarredModel = {
     HasDebarment: { presence: true, hasValue: { validator: hasYesOrNo } },
@@ -20,42 +16,4 @@ export const validateLegalInvestigationsDebarred = (data, formType, options = {}
   }
 
   return validateModel(data, legalInvestigationsDebarredModel, options)
-}
-
-export default class LegalInvestigationsDebarredValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  isValid() {
-    return validateLegalInvestigationsDebarred(this.data) === true
-  }
-}
-
-export class DebarredValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  validAgency() {
-    return validateModel(this.data, {
-      Agency: debarred.Agency,
-    }) === true
-  }
-
-  validDate() {
-    return validateModel(this.data, {
-      Date: debarred.Date,
-    }) === true
-  }
-
-  validExplanation() {
-    return validateModel(this.data, {
-      Explanation: debarred.Explanation,
-    }) === true
-  }
-
-  isValid() {
-    return validateDebarred(this.data) === true
-  }
 }
