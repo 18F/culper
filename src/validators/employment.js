@@ -8,7 +8,6 @@ export const validateEmployment = data => (
 )
 
 export const validateHistoryEmployment = (data, formType, options = {}) => {
-  // TODO years requirement is not enforced by validator yet
   const years = formType
     && formConfig[formType]
     && formConfig[formType].HISTORY_EMPLOYMENT_YEARS
