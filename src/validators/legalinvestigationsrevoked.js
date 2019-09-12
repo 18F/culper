@@ -1,11 +1,6 @@
 import { validateModel, hasYesOrNo } from 'models/validate'
 import revoked from 'models/revoked'
 
-
-export const validateLegalInvestigationsRevokedItem = data => (
-  validateModel(data, revoked)
-)
-
 export const validateLegalInvestigationsRevoked = (data, formType, options = {}) => {
   const revokedModel = {
     HasRevocations: {
@@ -26,24 +21,4 @@ export const validateLegalInvestigationsRevoked = (data, formType, options = {})
   }
 
   return validateModel(data, revokedModel, options)
-}
-
-export default class LegalInvestigationsRevokedValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  isValid() {
-    return validateLegalInvestigationsRevoked(this.data) === true
-  }
-}
-
-export class RevokedItemValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  isValid() {
-    return validateLegalInvestigationsRevokedItem(this.data) === true
-  }
 }

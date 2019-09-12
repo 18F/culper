@@ -39,15 +39,6 @@ import MaritalValidator from './marital'
 import RelationshipsValidator from './relationships'
 import PeopleValidator from './people'
 import PersonValidator from './person'
-import LegalNonCriminalCourtActionsValidator, {
-  NonCriminalCourtActionValidator,
-} from './legalnoncriminalcourtactions'
-import LegalInvestigationsHistoryValidator, {
-  HistoryValidator,
-} from './legalinvestigationshistory'
-import LegalInvestigationsRevokedValidator, {
-  RevokedItemValidator,
-} from './legalinvestigationsrevoked'
 import LegalTechnologyUnauthorizedValidator, {
   UnauthorizedValidator,
 } from './legaltechnologyunauthorized'
@@ -108,12 +99,6 @@ export {
   RelationshipsValidator,
   PeopleValidator,
   PersonValidator,
-  LegalNonCriminalCourtActionsValidator,
-  NonCriminalCourtActionValidator,
-  LegalInvestigationsHistoryValidator,
-  HistoryValidator,
-  LegalInvestigationsRevokedValidator,
-  RevokedItemValidator,
   LegalTechnologyUnauthorizedValidator,
   UnauthorizedValidator,
   LegalTechnologyManipulatingValidator,
