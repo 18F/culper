@@ -9,6 +9,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
+  watch: true,
+  watchOptions: {
+    aggregateTimeout: 300,
+    poll: 1000,
+    ignored: './src/node_modules/'
+  },
   mode: production ? 'production' : 'development',
   entry: {
     polyfills: './src/polyfills.js',
