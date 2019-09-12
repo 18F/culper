@@ -1,10 +1,6 @@
 import { validateModel, hasYesOrNo } from 'models/validate'
 import unlawfulTech from 'models/unlawfulTech'
 
-export const validateUnlawfulTech = data => (
-  validateModel(data, unlawfulTech)
-)
-
 export const validateLegalTechnologyUnlawful = (data, formType, options = {}) => {
   const legalTechnologyUnlawfulModel = {
     HasUnlawful: { presence: true, hasValue: { validator: hasYesOrNo } },
@@ -20,48 +16,4 @@ export const validateLegalTechnologyUnlawful = (data, formType, options = {}) =>
   }
 
   return validateModel(data, legalTechnologyUnlawfulModel, options)
-}
-
-export default class LegalTechnologyUnlawfulValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  isValid() {
-    return validateLegalTechnologyUnlawful(this.data) === true
-  }
-}
-
-export class UnlawfulValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  validDate() {
-    return validateModel(this.data, {
-      Date: unlawfulTech.Date,
-    }) === true
-  }
-
-  validIncident() {
-    return validateModel(this.data, {
-      Incident: unlawfulTech.Incident,
-    }) === true
-  }
-
-  validLocation() {
-    return validateModel(this.data, {
-      Location: unlawfulTech.Location,
-    }) === true
-  }
-
-  validAction() {
-    return validateModel(this.data, {
-      Action: unlawfulTech.Action,
-    }) === true
-  }
-
-  isValid() {
-    return validateUnlawfulTech(this.data) === true
-  }
 }

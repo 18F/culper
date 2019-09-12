@@ -39,15 +39,6 @@ import MaritalValidator from './marital'
 import RelationshipsValidator from './relationships'
 import PeopleValidator from './people'
 import PersonValidator from './person'
-import LegalTechnologyUnauthorizedValidator, {
-  UnauthorizedValidator,
-} from './legaltechnologyunauthorized'
-import LegalTechnologyManipulatingValidator, {
-  ManipulatingValidator,
-} from './legaltechnologymanipulating'
-import LegalTechnologyUnlawfulValidator, {
-  UnlawfulValidator,
-} from './legaltechnologyunlawful'
 import LegalAssociationsTerrorismValidator from './legalassociationsterrorism'
 import LocationValidator from './location'
 import SignatureValidator from './signature'
@@ -99,12 +90,6 @@ export {
   RelationshipsValidator,
   PeopleValidator,
   PersonValidator,
-  LegalTechnologyUnauthorizedValidator,
-  UnauthorizedValidator,
-  LegalTechnologyManipulatingValidator,
-  ManipulatingValidator,
-  LegalTechnologyUnlawfulValidator,
-  UnlawfulValidator,
   LegalAssociationsTerrorismValidator,
   LocationValidator,
   SignatureValidator,
