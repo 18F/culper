@@ -12,17 +12,6 @@ import HistoryResidenceValidator, { ResidenceValidator } from './residence'
 import SelectiveServiceValidator, {
   hideSelectiveService,
 } from './selectiveservice'
-import MilitaryHistoryValidator, {
-  MilitaryServiceValidator,
-} from './militaryhistory'
-import MilitaryDisciplinaryValidator, {
-  ProcedureValidator,
-  hideDisciplinaryProcedures,
-} from './militarydisciplinary'
-import MilitaryForeignValidator, {
-  ForeignServiceValidator,
-  ForeignContactValidator,
-} from './militaryforeign'
 import PoliceOffensesValidator from './policeoffenses'
 import PoliceOtherOffensesValidator from './policeotheroffenses'
 import OtherOffenseValidator from './otheroffense'
@@ -35,7 +24,6 @@ import TaxesValidator, { TaxValidator } from './taxes'
 import NonpaymentValidator, { NonpaymentItemValidator } from './nonpayment'
 import PsychologicalValidator, { hideExistingConditions } from './psychological'
 import TreatmentValidator from './treatment'
-import MaritalValidator from './marital'
 import RelationshipsValidator from './relationships'
 import PeopleValidator from './people'
 import PersonValidator from './person'
@@ -66,13 +54,6 @@ export {
   HistoryResidenceValidator,
   ResidenceValidator,
   SelectiveServiceValidator,
-  MilitaryHistoryValidator,
-  MilitaryServiceValidator,
-  MilitaryDisciplinaryValidator,
-  ProcedureValidator,
-  MilitaryForeignValidator,
-  ForeignServiceValidator,
-  ForeignContactValidator,
   PoliceOffensesValidator,
   PoliceOtherOffensesValidator,
   OtherOffenseValidator,
@@ -86,7 +67,6 @@ export {
   NonpaymentItemValidator,
   PsychologicalValidator,
   TreatmentValidator,
-  MaritalValidator,
   RelationshipsValidator,
   PeopleValidator,
   PersonValidator,
@@ -102,7 +82,6 @@ export {
   OrderValidator,
   CompetenceOrderValidator,
   ConsultationOrderValidator,
-  hideDisciplinaryProcedures,
   hideExistingConditions,
   hideSelectiveService,
   hideHippa,
