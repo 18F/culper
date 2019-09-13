@@ -1138,8 +1138,8 @@ export const error = {
       message: '',
     },
     duplicate: {
-      title: 'Both Emails cannot be the same',
-      message: '',
+      title: 'There is a problem with your emails',
+      message: 'Please provide different emails.'
     }
   },
   treatment: {

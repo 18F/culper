@@ -1,6 +1,6 @@
 import phone from 'models/shared/phone'
 import email from 'models/shared/email'
-import { DUPLICATE_PHONE_NUMBER_TYPES, DUPLICATE_EMAIL } from 'constants/errors'
+import { DUPLICATE_PHONE_NUMBER_TYPES } from 'constants/errors'
 
 export const contactPhoneNumber = {
   Telephone: {
@@ -12,15 +12,19 @@ export const contactPhoneNumber = {
 }
 
 const identificationContactInfo = {
-  // DuplicateEmail: (value, attributes) => {
-  //   return (attributes.HomeEmail.value == attributes.WorkEmail.value) ? DUPLICATE_EMAIL : null;
-  // },
   HomeEmail: (value, attributes) => {
     if (attributes.WorkEmail && attributes.WorkEmail.value) {
       if (attributes.HomeEmail && attributes.HomeEmail.value) {
         return {
-          model: { validator: email },
-          exclusion: { within: [attributes.WorkEmail.value] }
+          model: { 
+            validator: {
+              value: {
+                presence: true,
+                email: true,
+                exclusion: [attributes.WorkEmail.value]
+              }
+            }
+          }
         }
       }
       return {}
@@ -35,8 +39,7 @@ const identificationContactInfo = {
     if (attributes.HomeEmail && attributes.HomeEmail.value) {
       if (attributes.WorkEmail && attributes.WorkEmail.value) {
         return {
-          model: { validator: email },
-          exclusion: { within: [attributes.HomeEmail.value] }
+          model: { validator: email }
         }
       }
       return {}

@@ -110,7 +110,6 @@ export class ContactInformation extends Subsection {
       },
     }
     const sectionErrors = []
-    console.log(this, i18n, errors);
     errors.forEach((error) => {
       const errorItem = errorList[error]
       if (errorItem && errorItem.shouldDisplayError) {
@@ -121,31 +120,30 @@ export class ContactInformation extends Subsection {
     return sectionErrors
   }
 
-  // getDuplicateEmailError = () => {
-  //   const { errors = [] } = this.props
-  //   console.log(errors);
-  //   const errorList = {
-  //     'DuplicateEmail.DUPLICATE_EMAIL': {
-  //       key: 'DuplicateEmail.DUPLICATE_EMAIL',
-  //       title: i18n.t('error.Email.duplicate.title'),
-  //       message: i18n.t('error.Email.duplicate.message'),
-  //       shouldDisplayError: true
-  //     }
-  //   }
-  //   console.log(this, i18n, errors);
-  //   const sectionErrors = []
-  //   errors.forEach((error) => {
-  //     const errorItem = errorList[error]
-  //     if (errorItem && errorItem.shouldDisplayError) {
-  //       sectionErrors.push(errorItem)
-  //     }
-  //   })
-  //   return sectionErrors
-  // }
+  getDuplicateEmailError = () => {
+    const { errors = [] } = this.props
+    const errorList = {
+      'HomeEmail.model.value.exclusion.EXCLUSION': {
+        key: 'HomeEmail.model.value.exclusion.EXCLUSION',
+        title: i18n.t('error.email.duplicate.title'),
+        message: i18n.t('error.email.duplicate.message'),
+        shouldDisplayError: true
+      }
+    }
+    const sectionErrors = []
+    errors.forEach((error) => {
+      const errorItem = errorList[error]
+      if (errorItem && errorItem.shouldDisplayError) {
+        sectionErrors.push(errorItem)
+      }
+    })
+
+    return sectionErrors
+  }
 
   render() {
     const {
-      HomeEmail = {}, WorkEmail = {}, isReview, errors, errorsEmail
+      HomeEmail = {}, WorkEmail = {}, isReview, errors,
     } = this.props
     const klass = `${this.props.className || ''}`.trim()
     const phoneNumbers = this.props.PhoneNumbers
@@ -190,7 +188,7 @@ export class ContactInformation extends Subsection {
         >
           {i18n.m('identification.contacts.para.email')}
         </Field>
-        {/* <ErrorMessageList errors={this.getDuplicateEmailError()} /> */}
+        <ErrorMessageList errors={this.getDuplicateEmailError()} />
         <Field
           title={i18n.t('identification.contacts.heading.emailHome')}
           titleSize="h4"
