@@ -73,11 +73,12 @@ export class ApplicantBirthDate extends Subsection {
 
   handleError(value, arr) {
     let local = [...arr]
-    console.log(local)
+
     //too old
     const hasMinError = local.some(
-      x => (x.valid === false) && (x.code === 'date.min')
+      x => (!x.valid || x.valid === false) && (x.code === 'date.min')
     )
+    
     //too young
     const hasMaxError = local.some(
       x => (x.valid === false) && (x.code === 'date.max')
