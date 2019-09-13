@@ -7,21 +7,17 @@ import NameValidator from './name'
 
 import ForeignBornDocumentValidator from './foreignborndocument'
 
-import PassportValidator from './passport'
 import HistoryResidenceValidator, { ResidenceValidator } from './residence'
 import SelectiveServiceValidator, {
   hideSelectiveService,
 } from './selectiveservice'
 import PoliceOffensesValidator from './policeoffenses'
 import PoliceOtherOffensesValidator from './policeotheroffenses'
-import OtherOffenseValidator from './otheroffense'
-import OffenseValidator from './offense'
 import RelativesValidator, {
   RelativeValidator,
   AliasValidator,
 } from './relatives'
 import TaxesValidator, { TaxValidator } from './taxes'
-import NonpaymentValidator, { NonpaymentItemValidator } from './nonpayment'
 import PsychologicalValidator, { hideExistingConditions } from './psychological'
 import TreatmentValidator from './treatment'
 import RelationshipsValidator from './relationships'
@@ -38,10 +34,6 @@ import {
   validPhoneNumber,
   validSSN,
 } from './helpers'
-import OrderValidator, {
-  CompetenceOrderValidator,
-  ConsultationOrderValidator,
-} from './order'
 import { hideHippa, formIsSigned, formIsLocked } from './releases'
 
 export default validate
@@ -50,21 +42,16 @@ export {
   DateRangeValidator,
   ForeignBornDocumentValidator,
   NameValidator,
-  PassportValidator,
   HistoryResidenceValidator,
   ResidenceValidator,
   SelectiveServiceValidator,
   PoliceOffensesValidator,
   PoliceOtherOffensesValidator,
-  OtherOffenseValidator,
-  OffenseValidator,
   RelativesValidator,
   RelativeValidator,
   AliasValidator,
   TaxesValidator,
   TaxValidator,
-  NonpaymentValidator,
-  NonpaymentItemValidator,
   PsychologicalValidator,
   TreatmentValidator,
   RelationshipsValidator,
@@ -79,9 +66,6 @@ export {
   validGenericTextfield,
   validPhoneNumber,
   validSSN,
-  OrderValidator,
-  CompetenceOrderValidator,
-  ConsultationOrderValidator,
   hideExistingConditions,
   hideSelectiveService,
   hideHippa,
