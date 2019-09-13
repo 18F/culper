@@ -26,16 +26,6 @@ const sectionConfig = {
   storeKey: IDENTIFICATION_CONTACTS.storeKey,
 }
 
-// Generic.errors.push({
-//   code: 'duplicate',
-//   func: (value, props) => {
-//     console.log("DUPLICATE_CHECK", value, props, this);
-//     console.log(Node.parentNode);
-//     return
-//   }
-// });
-
-
 export class ContactInformation extends Subsection {
   constructor(props) {
     super(props)
