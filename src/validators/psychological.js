@@ -7,11 +7,11 @@ export default class PsychologicalValidator {
   }
 
   completionStatus(status) {
-    let toCheck = [
+    const toCheck = [
       'Competence',
       'Consultations',
       'Hospitalizations',
-      'Diagnoses'
+      'Diagnoses',
     ]
 
     if (showQuestion21E(this.psychological)) {
@@ -31,11 +31,12 @@ const defaultPsychologicalState = {
   Competence: null,
   Consultation: null,
   Diagnoses: null,
-  Hospitalization: null
+  Hospitalization: null,
 }
 
 /**
- * Determines if Question 21 E should be rendered. The following subsections must have branch values of No.
+ * Determines if Question 21 E should be rendered.
+ * The following subsections must have branch values of No.
  *   - Competence
  *   - Consultations
  *   - Hospitalizations
@@ -46,7 +47,7 @@ export const showQuestion21E = (psychological = defaultPsychologicalState) => {
     Competence,
     Consultations,
     Diagnoses,
-    Hospitalizations
+    Hospitalizations,
   } = psychological
 
   // We need values for everything before we can do anything

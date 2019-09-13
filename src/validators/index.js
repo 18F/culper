@@ -11,18 +11,9 @@ import HistoryResidenceValidator, { ResidenceValidator } from './residence'
 import SelectiveServiceValidator, {
   hideSelectiveService,
 } from './selectiveservice'
-import PoliceOffensesValidator from './policeoffenses'
-import PoliceOtherOffensesValidator from './policeotheroffenses'
-import RelativesValidator, {
-  RelativeValidator,
-  AliasValidator,
-} from './relatives'
+import RelativesValidator from './relatives'
 import TaxesValidator, { TaxValidator } from './taxes'
-import PsychologicalValidator, { hideExistingConditions } from './psychological'
 import TreatmentValidator from './treatment'
-import RelationshipsValidator from './relationships'
-import PeopleValidator from './people'
-import PersonValidator from './person'
 import LegalAssociationsTerrorismValidator from './legalassociationsterrorism'
 import LocationValidator from './location'
 import SignatureValidator from './signature'
@@ -45,18 +36,10 @@ export {
   HistoryResidenceValidator,
   ResidenceValidator,
   SelectiveServiceValidator,
-  PoliceOffensesValidator,
-  PoliceOtherOffensesValidator,
   RelativesValidator,
-  RelativeValidator,
-  AliasValidator,
   TaxesValidator,
   TaxValidator,
-  PsychologicalValidator,
   TreatmentValidator,
-  RelationshipsValidator,
-  PeopleValidator,
-  PersonValidator,
   LegalAssociationsTerrorismValidator,
   LocationValidator,
   SignatureValidator,
@@ -66,7 +49,6 @@ export {
   validGenericTextfield,
   validPhoneNumber,
   validSSN,
-  hideExistingConditions,
   hideSelectiveService,
   hideHippa,
   formIsSigned,
