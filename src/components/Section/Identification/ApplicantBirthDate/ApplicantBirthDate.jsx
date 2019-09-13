@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from 'config'
-
+import { DateTime } from 'luxon'
 import {
   Field, DateControl, Show, Checkbox,
 } from 'components/Form'
@@ -133,6 +133,8 @@ export class ApplicantBirthDate extends Subsection {
             name="birthdate"
             {...this.props.Date}
             relationship="Self"
+            minDate={TODAY.minus({ years: 100, days: 1 })}
+            maxDate={TODAY.minus({ years: 16 })}
             overrideError={(this.props.Confirmed || {}).checked}
             onUpdate={this.updateDate}
             onError={this.handleError}
@@ -156,7 +158,7 @@ export class ApplicantBirthDate extends Subsection {
     )
   }
 }
-
+const TODAY = DateTime.local()
 ApplicantBirthDate.defaultProps = {
   Date: {},
   Confirmed: {},

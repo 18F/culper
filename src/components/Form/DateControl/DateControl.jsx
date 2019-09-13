@@ -314,8 +314,8 @@ class DateControl extends ValidationElement {
               ref="year"
               label="Year"
               disabled={this.state.disabled}
-              min="1000"
-              max={this.props.maxDate && this.props.maxDate.year}
+              min={this.props.minDate ? this.props.minDate.year : null}
+              max={this.props.maxDate ? this.props.maxDate.year : null}
               maxlength="4"
               pattern={this.props.pattern}
               readonly={this.props.readonly}
