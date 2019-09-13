@@ -140,7 +140,7 @@ describe('The relationship status component', () => {
             Recognized: {
               estimated: false,
               day: '1',
-              month: '1',
+              month: '2',
               name: 'Recognized',
               year: '1990',
             },
@@ -212,7 +212,42 @@ describe('The relationship status component', () => {
           .children().length
       ).toEqual(0)
     })
+    
     it('with bad data - where the date divorced is before date entered into civil union', () => {
+      const props = {
+        ...divorcedDatesSetup,
+        DivorcedList: {
+          items: [
+            {
+              Item: {
+                ...divorcedDatesSetup.DivorcedList.items[0].Item,
+                DateDivorced: {
+                  estimated: false,
+                  day: '1',
+                  month: '1',
+                  name: 'DateDivorced',
+                  year: '1990',
+                },
+              },
+            },
+          ],
+        },
+        valid: false,
+      }
+
+      const component = createComponent(props)
+      expect(
+        component
+          .find('.error-messages [data-i18n="error.divorceDate.min"]')
+          .text()
+      ).toEqual(
+        `${i18n.t('error.divorceDate.min.title')}${i18n.t(
+          'error.divorceDate.min.message'
+        )}`
+      )
+    })
+
+    it('with bad data - where the year divorced is before the year entered into civil union', () => {
       const props = {
         ...divorcedDatesSetup,
         DivorcedList: {
@@ -237,11 +272,11 @@ describe('The relationship status component', () => {
       const component = createComponent(props)
       expect(
         component
-          .find('.error-messages [data-i18n="error.divorceDate.min"]')
+          .find('.error-messages [data-i18n="error.date.year.min"]')
           .text()
       ).toEqual(
-        `${i18n.t('error.divorceDate.min.title')}${i18n.t(
-          'error.divorceDate.min.message'
+        `${i18n.t('error.date.year.min.title')}${i18n.t(
+          'error.date.year.min.message'
         )}`
       )
     })

@@ -136,11 +136,11 @@ describe('The taxes component', () => {
       const component = createComponent(props)
       expect(
         component
-          .find('.error-messages [data-i18n="error.taxesSatisfied.min"]')
+          .find('.error-messages [data-i18n="error.date.year.min"]')
           .text()
       ).toEqual(
-        `${i18n.t('error.taxesSatisfied.min.title')}${i18n.t(
-          'error.taxesSatisfied.min.message'
+        `${i18n.t('error.date.year.min.title')}${i18n.t(
+          'error.date.year.min.message'
         )}`
       )
     })
