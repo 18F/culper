@@ -75,7 +75,7 @@ export class ApplicantBirthDate extends Subsection {
     let local = [...arr]
 
     const hasMinMaxError = local.some(
-      x => x.valid === false && (x.code === 'date.min' || x.code === 'date.max')
+      x => !x.valid || (x.valid === false && (x.code === 'date.min' || x.code === 'date.max'))
     )
 
     let birthdateValid = null
