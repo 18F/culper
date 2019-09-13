@@ -17,6 +17,10 @@ const date = {
   date: {
     presence: true,
     datetime: (value, attributes, attributeName, options) => {
+      // return true if confirmed
+      if (options.confirmed)
+        return true
+
       if (options && (options.earliest || options.latest)) {
         const { earliest, latest } = options
         const constraints = {}
