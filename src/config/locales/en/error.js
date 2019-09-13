@@ -1137,6 +1137,10 @@ export const error = {
       title: 'Your response is required',
       message: '',
     },
+    duplicate: {
+      title: 'Both Emails cannot be the same',
+      message: '',
+    }
   },
   treatment: {
     began: {

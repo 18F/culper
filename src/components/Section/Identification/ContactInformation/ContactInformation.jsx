@@ -15,6 +15,7 @@ import { IDENTIFICATION, IDENTIFICATION_CONTACTS } from 'config/formSections/ide
 
 import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import Subsection from 'components/Section/shared/Subsection'
+import Generic from '../../../Form/Generic'
 
 
 const sectionConfig = {
@@ -24,6 +25,16 @@ const sectionConfig = {
   subsection: IDENTIFICATION_CONTACTS.name,
   storeKey: IDENTIFICATION_CONTACTS.storeKey,
 }
+
+// Generic.errors.push({
+//   code: 'duplicate',
+//   func: (value, props) => {
+//     console.log("DUPLICATE_CHECK", value, props, this);
+//     console.log(Node.parentNode);
+//     return
+//   }
+// });
+
 
 export class ContactInformation extends Subsection {
   constructor(props) {
@@ -99,6 +110,7 @@ export class ContactInformation extends Subsection {
       },
     }
     const sectionErrors = []
+    console.log(this, i18n, errors);
     errors.forEach((error) => {
       const errorItem = errorList[error]
       if (errorItem && errorItem.shouldDisplayError) {
@@ -109,9 +121,31 @@ export class ContactInformation extends Subsection {
     return sectionErrors
   }
 
+  // getDuplicateEmailError = () => {
+  //   const { errors = [] } = this.props
+  //   console.log(errors);
+  //   const errorList = {
+  //     'DuplicateEmail.DUPLICATE_EMAIL': {
+  //       key: 'DuplicateEmail.DUPLICATE_EMAIL',
+  //       title: i18n.t('error.Email.duplicate.title'),
+  //       message: i18n.t('error.Email.duplicate.message'),
+  //       shouldDisplayError: true
+  //     }
+  //   }
+  //   console.log(this, i18n, errors);
+  //   const sectionErrors = []
+  //   errors.forEach((error) => {
+  //     const errorItem = errorList[error]
+  //     if (errorItem && errorItem.shouldDisplayError) {
+  //       sectionErrors.push(errorItem)
+  //     }
+  //   })
+  //   return sectionErrors
+  // }
+
   render() {
     const {
-      HomeEmail = {}, WorkEmail = {}, isReview, errors,
+      HomeEmail = {}, WorkEmail = {}, isReview, errors, errorsEmail
     } = this.props
     const klass = `${this.props.className || ''}`.trim()
     const phoneNumbers = this.props.PhoneNumbers
@@ -156,7 +190,7 @@ export class ContactInformation extends Subsection {
         >
           {i18n.m('identification.contacts.para.email')}
         </Field>
-
+        {/* <ErrorMessageList errors={this.getDuplicateEmailError()} /> */}
         <Field
           title={i18n.t('identification.contacts.heading.emailHome')}
           titleSize="h4"
