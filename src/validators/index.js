@@ -7,13 +7,10 @@ import NameValidator from './name'
 
 import ForeignBornDocumentValidator from './foreignborndocument'
 
-import HistoryResidenceValidator, { ResidenceValidator } from './residence'
 import SelectiveServiceValidator, {
   hideSelectiveService,
 } from './selectiveservice'
 import RelativesValidator from './relatives'
-import TaxesValidator, { TaxValidator } from './taxes'
-import TreatmentValidator from './treatment'
 import LegalAssociationsTerrorismValidator from './legalassociationsterrorism'
 import LocationValidator from './location'
 import SignatureValidator from './signature'
@@ -33,13 +30,8 @@ export {
   DateRangeValidator,
   ForeignBornDocumentValidator,
   NameValidator,
-  HistoryResidenceValidator,
-  ResidenceValidator,
   SelectiveServiceValidator,
   RelativesValidator,
-  TaxesValidator,
-  TaxValidator,
-  TreatmentValidator,
   LegalAssociationsTerrorismValidator,
   LocationValidator,
   SignatureValidator,
