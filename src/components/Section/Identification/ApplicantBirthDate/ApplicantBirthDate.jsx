@@ -134,7 +134,7 @@ export class ApplicantBirthDate extends Subsection {
             {...this.props.Date}
             relationship="Self"
             minDate={TODAY.minus({ years: 100, days: 1 })}
-            maxDate={TODAY.minus({ years: 16 })}
+            maxDate={TODAY}
             overrideError={(this.props.Confirmed || {}).checked}
             onUpdate={this.updateDate}
             onError={this.handleError}
