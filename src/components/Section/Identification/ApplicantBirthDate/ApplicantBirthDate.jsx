@@ -73,25 +73,36 @@ export class ApplicantBirthDate extends Subsection {
 
   handleError(value, arr) {
     let local = [...arr]
-
-    const hasMinMaxError = local.some(
-      x => !x.valid || (x.valid === false && (x.code === 'date.min' || x.code === 'date.max'))
+    console.log(local)
+    //too old
+    const hasMinError = local.some(
+      x => (x.valid === false) && (x.code === 'date.min')
+    )
+    //too young
+    const hasMaxError = local.some(
+      x => (x.valid === false) && (x.code === 'date.max')
     )
 
     let birthdateValid = null
     if (this.props.Confirmed && this.props.Confirmed.checked === true) birthdateValid = true
-    else if (hasMinMaxError) birthdateValid = false
+    else if (hasMinError || hasMaxError) birthdateValid = false
 
     local.push({
-      code: 'birthdate.age',
-      valid: birthdateValid,
+      code: 'birthdate.age.max',
+      valid: !hasMaxError,
+      uid: this.state.uid,
+    })
+
+    local.push({
+      code: 'birthdate.age.min',
+      valid: !hasMinError,
       uid: this.state.uid,
     })
 
     local = local.filter(x => x.code !== 'date.min' && x.code !== 'date.max')
 
     // Store the errors
-    this.setState({ errors: local, needsConfirmation: hasMinMaxError })
+    this.setState({ errors: local, needsConfirmation: hasMaxError })
 
     // Take the original and concatenate our new error values to it
     return super.handleError(value, local)
@@ -99,9 +110,9 @@ export class ApplicantBirthDate extends Subsection {
 
   confirmationError(value) {
     let local = [...this.state.errors] // eslint-disable-line
-    local = local.filter(x => x.code !== 'birthdate.age')
+    local = local.filter(x => x.code !== 'birthdate.age.max')
     local.push({
-      code: 'birthdate.age',
+      code: 'birthdate.age.max',
       valid: value,
       uid: this.state.uid,
     })
@@ -133,7 +144,7 @@ export class ApplicantBirthDate extends Subsection {
             name="birthdate"
             {...this.props.Date}
             relationship="Self"
-            minDate={TODAY.minus({ years: 100, days: 1 })}
+            
             maxDate={TODAY}
             overrideError={(this.props.Confirmed || {}).checked}
             onUpdate={this.updateDate}
@@ -162,9 +173,9 @@ const TODAY = DateTime.local()
 ApplicantBirthDate.defaultProps = {
   Date: {},
   Confirmed: {},
-  onUpdate: () => {},
+  onUpdate: () => { },
   onError: (value, arr) => arr,
-  dispatch: () => {},
+  dispatch: () => { },
 }
 
 export default connectSubsection(ApplicantBirthDate, sectionConfig)
