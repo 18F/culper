@@ -76,7 +76,7 @@ export class ApplicantBirthDate extends Subsection {
 
     //too old
     const hasMinError = local.some(
-      x => (!x.valid || x.valid === false) && (x.code === 'date.min')
+      x => (x.valid === false) && (x.code === 'date.min')
     )
     
     //too young
