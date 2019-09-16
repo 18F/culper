@@ -63,7 +63,7 @@ describe('Thie history employment subsection', () => {
                   from: {
                     month: '1',
                     day: '1',
-                    year: '2010',
+                    year: '2009',
                   },
                   to: {
                     month: '1',
@@ -185,12 +185,7 @@ describe('Thie history employment subsection', () => {
                     day: '1',
                     year: '2010',
                   },
-                  to: {
-                    month: '1',
-                    day: '1',
-                    year: '2016',
-                  },
-                  present: false,
+                  present: true,
                 },
                 Status: {
                   value: 'FullTime',
@@ -305,14 +300,9 @@ describe('Thie history employment subsection', () => {
                   from: {
                     month: '1',
                     day: '1',
-                    year: '2010',
+                    year: '2009',
                   },
-                  to: {
-                    month: '1',
-                    day: '1',
-                    year: '2016',
-                  },
-                  present: false,
+                  present: true,
                 },
                 Status: {
                   value: 'FullTime',

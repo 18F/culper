@@ -1,3 +1,5 @@
+/* eslint import/no-cycle: 0 */
+
 import { SF86 } from 'constants/formTypes'
 import * as sections from 'constants/sections'
 
@@ -342,12 +344,12 @@ export const getValidatorForSection = (section) => {
   }
 }
 
-export const validateSection = ({ key = '', data = {} }, formType = SF86) => {
+export const validateSection = ({ key = '', data = {}, options = {} }, formType = SF86) => {
   const validator = getValidatorForSection(key)
 
   if (validator) {
     try {
-      return validator(data, formType)
+      return validator(data, formType, options)
     } catch (e) {
       console.warn(`Invalid validator for section ${key}`, e)
     }

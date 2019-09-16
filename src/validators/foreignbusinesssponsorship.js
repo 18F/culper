@@ -3,7 +3,7 @@ import foreignBusinessSponsorship from 'models/foreignBusinessSponsorship'
 
 export const validateSponsorship = data => validateModel(data, foreignBusinessSponsorship)
 
-export const validateForeignBusinessSponsorship = (data) => {
+export const validateForeignBusinessSponsorship = (data, formType, options = {}) => {
   const foreignBusinessSponsorshipModel = {
     HasForeignSponsorship: { presence: true, hasValue: { validator: hasYesOrNo } },
     List: (value, attributes) => {
@@ -18,7 +18,7 @@ export const validateForeignBusinessSponsorship = (data) => {
     },
   }
 
-  return validateModel(data, foreignBusinessSponsorshipModel)
+  return validateModel(data, foreignBusinessSponsorshipModel, options)
 }
 
 export default class ForeignBusinessSponsorshipValidator {

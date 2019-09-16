@@ -1,25 +1,34 @@
 import {
-  select, call, put, all, takeEvery,
+  select, call, put, all, takeEvery, takeLatest,
 } from 'redux-saga/effects'
 
-import { HANDLE_SUBSECTION_UPDATE } from 'constants/actionTypes'
 import {
-  updateSubsection, handleSubsectionUpdate as handleSubsectionUpdateAction,
+  HANDLE_SUBSECTION_UPDATE,
+  VALIDATE_FORM,
+} from 'constants/actionTypes'
+
+import {
+  updateSubsection,
+  updateSubsectionData,
+  validateForm,
 } from 'actions/FormActions'
-import { updateApplication, validateFormData } from 'actions/ApplicationActions'
+import { updateApplication } from 'actions/ApplicationActions'
 
 import { env } from 'config'
 
 import { validateSection } from 'helpers/validation'
 import sectionKeys from 'helpers/sectionKeys'
+import { selectApplicantBirthdate, selectMaritalStatus } from 'selectors/data'
+import { selectValidUSPassport } from 'selectors/misc'
 
-import { selectSubsection, formTypeSelector } from './selectors'
+import { selectForm, selectSubsection, formTypeSelector } from './selectors'
 
 import {
   // new
-  updateSubsectionWatcher,
+  formWatcher,
   handleSubsectionUpdate,
   updateSectionData,
+  handleValidateForm,
 
   // legacy
   setFormData,
@@ -58,9 +67,9 @@ describe('setFormData saga', () => {
       )
     })
 
-    it('puts the validateFormData action', () => {
+    it('puts the validateForm action', () => {
       expect(generator.next().value)
-        .toEqual(put(validateFormData()))
+        .toEqual(put(validateForm()))
     })
 
     it('is done', () => {
@@ -88,7 +97,7 @@ describe('updateSectionDataLegacy saga', () => {
 
     const generator = updateSectionDataLegacy('Citizenship', testSectionData)
 
-    it('puts the updateApplication action for each subsection', () => {
+    it('puts the updateApplication and updateSubsectionData actions for each subsection', () => {
       expect(generator.next().value).toEqual(
         all(['Multiple', 'Passports', 'Status'].map((s) => {
           const sectionKey = sectionKeys[`Citizenship.${s}`]
@@ -96,7 +105,7 @@ describe('updateSectionDataLegacy saga', () => {
 
           return all([
             put(updateApplication('Citizenship', s, sectionData)),
-            put(handleSubsectionUpdateAction(sectionKey, undefined, sectionData)),
+            put(updateSubsectionData(sectionKey, undefined, sectionData)),
           ])
         }))
       )
@@ -119,12 +128,71 @@ describe('updateSectionDataLegacy saga', () => {
 
 
 /** NEW ACTIONS */
-describe('The updateSubsection watcher', () => {
-  const generator = updateSubsectionWatcher()
+describe('The formWatcher', () => {
+  const generator = formWatcher()
 
-  it('takes all HANDLE_SUBSECTION_UPDATE actions', () => {
+  it('starts all form data watchers', () => {
     expect(generator.next().value)
-      .toEqual(takeEvery(HANDLE_SUBSECTION_UPDATE, handleSubsectionUpdate))
+      .toEqual(all([
+        takeEvery(HANDLE_SUBSECTION_UPDATE, handleSubsectionUpdate),
+        takeLatest(VALIDATE_FORM, handleValidateForm),
+      ]))
+  })
+
+  it('is done', () => {
+    expect(generator.next().done).toEqual(true)
+  })
+})
+
+describe('The handleValidateForm saga', () => {
+  const generator = handleValidateForm()
+
+  const formState = {
+    IDENTIFICATION_NAME: {
+      data: {
+        Name: {
+          first: 'test',
+          firstInitialOnly: false,
+          middle: '',
+          middleInitialOnly: false,
+          noMiddleName: false,
+          last: 'data',
+          suffix: '',
+          suffixOther: '',
+        },
+      },
+    },
+    IDENTIFICATION_BIRTH_DATE: { data: {}, errors: [], complete: false },
+    IDENTIFICATION_BIRTH_PLACE: {},
+  }
+
+  const formErrors = {
+    IDENTIFICATION_NAME: [
+      'Name.model.middle.presence.REQUIRED',
+      'Name.model.middle.length.LENGTH_TOO_SHORT',
+    ],
+    IDENTIFICATION_BIRTH_DATE: ['Date.presence.REQUIRED'],
+    IDENTIFICATION_BIRTH_PLACE: ['Location.presence.REQUIRED'],
+  }
+
+  it('selects the form type from state', () => {
+    expect(generator.next().value)
+      .toEqual(select(formTypeSelector))
+  })
+
+  it('selects all form data from state', () => {
+    expect(generator.next('SF86').value)
+      .toEqual(select(selectForm))
+  })
+
+  it('updates valid status for each section', () => {
+    expect(generator.next(formState).value).toEqual(
+      all(Object.keys(formState).map(s => put(updateSubsection(s, {
+        data: formState[s].data,
+        errors: formErrors[s],
+        complete: false,
+      }))))
+    )
   })
 
   it('is done', () => {
@@ -144,8 +212,23 @@ describe('The handleSubsectionUpdate saga', () => {
       .toEqual(select(formTypeSelector))
   })
 
-  it('selects the form section from state', () => {
+  it('selects the applicant birthdate from state', () => {
     expect(generator.next('SF-86').value)
+      .toEqual(select(selectApplicantBirthdate))
+  })
+
+  it('selects the applicant’s marital status from state', () => {
+    expect(generator.next({ month: 5, day: 16, year: 1988 }).value)
+      .toEqual(select(selectMaritalStatus))
+  })
+
+  it('selects the applicant’s US passport status from state', () => {
+    expect(generator.next('Married').value)
+      .toEqual(select(selectValidUSPassport))
+  })
+
+  it('selects the form section from state', () => {
+    expect(generator.next({ hasValidUSPassport: false }).value)
       .toEqual(select(selectSubsection, 'IDENTIFICATION_NAME'))
   })
 
@@ -157,6 +240,11 @@ describe('The handleSubsectionUpdate saga', () => {
       .toEqual(call(validateSection, {
         key: 'IDENTIFICATION_NAME',
         data: newState,
+        options: {
+          applicantBirthdate: { month: 5, day: 16, year: 1988 },
+          maritalStatus: 'Married',
+          hasValidUSPassport: false,
+        },
       }, 'SF-86'))
   })
 

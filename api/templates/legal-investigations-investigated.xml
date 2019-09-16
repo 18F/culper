@@ -13,6 +13,20 @@
     <OtherAgency>{{text $Item.AgencyExplanation}}</OtherAgency>
     {{end}}
     {{end}}
+
+    <InvestigationDate>
+      {{monthYearOptional $Item.Completed $Item.CompletedNotApplicable}}
+    </InvestigationDate>
+
+    {{ if formType "SF85" }} 
+    <ClearanceGranted>
+      <Answer>{{branch $Item.ClearanceGranted}}</Answer>
+    </ClearanceGranted>
+    {{end}}
+
+    <!-- The only time we omit these sections are when it's an SF85 and ClearanceGranted is No -->
+    {{if not (and (formType "SF85") (branch $Item.ClearanceGranted | eq "No"))}}
+
     {{if notApplicable $Item.ClearanceLevelNotApplicable | eq "True"}}
     <ClearanceLevel>Unknown</ClearanceLevel>
     {{else}}
@@ -22,15 +36,15 @@
     <GrantedDate>
       {{monthYearOptional $Item.Granted $Item.GrantedNotApplicable}}
     </GrantedDate>
-    <InvestigationDate>
-      {{monthYearOptional $Item.Completed $Item.CompletedNotApplicable}}
-    </InvestigationDate>
     <IssuingAgency>
       <Name>{{text $Item.Issued}}</Name>
     </IssuingAgency>
     {{if radio $Item.ClearanceLevel.props.Level | eq "Other"}}
     <OtherClearanceLevel>{{text $Item.ClearanceLevel.props.Explanation}}</OtherClearanceLevel>
     {{end}}
+
+    {{end}}
+
   </Investigation>
   {{end}}
   {{end}}

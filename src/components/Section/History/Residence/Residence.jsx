@@ -2,16 +2,15 @@ import React from 'react'
 import i18n from 'util/i18n'
 
 import { HISTORY, HISTORY_RESIDENCE } from 'config/formSections/history'
+import { INCOMPLETE_DURATION } from 'constants/errors'
 
 import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import Subsection from 'components/Section/shared/Subsection'
 
 import { Accordion } from 'components/Form'
-import { newGuid } from 'components/Form/ValidationElement'
 import { openState } from 'components/Form/Accordion/Accordion'
-import { today, daysAgo } from 'components/Section/History/dateranges'
 
-import { InjectGaps, ResidenceCustomSummary } from '../summaries'
+import { ResidenceCustomSummary } from '../summaries'
 import ResidenceItem from './ResidenceItem'
 import { Gap } from '../Gap'
 
@@ -77,55 +76,26 @@ export class Residence extends Subsection {
     )
   }
 
-  customResidenceDetails = (item, index, initial, callback) => {
-    const { totalYears } = this.props
-
-    if (item.type === 'Gap') {
-      const dates = (item.Item || {}).Dates || {}
-      return (
-        <Gap
-          title={i18n.t('history.residence.gap.title')}
-          para={i18n.t('history.residence.gap.para', { years: totalYears })}
-          btnText={i18n.t('history.residence.gap.btnText')}
-          first={index === 0}
-          dates={dates}
-          onClick={() => this.fillGap(dates)}
-        />
-      )
-    }
-
-    return callback()
-  }
-
-  fillGap = () => {
-    const items = [...this.props.List.items]
-
-    items.push({
-      uuid: newGuid(),
-      open: true,
-      Item: {
-        name: 'Item',
-        Dates: {
-          name: 'Dates',
-          present: false,
-          receiveProps: true,
-        },
-      },
-    })
-
-    this.handleUpdate({
-      items: InjectGaps(items, daysAgo(365 * this.props.totalYears))
-        .sort(this.sort)
-        .filter(item => !item.type || (item.type && item.type !== 'Gap')),
-      branch: {},
-    })
-  }
-
-  inject = items => InjectGaps(items, daysAgo(today, 365 * this.props.totalYears))
-
   render() {
-    const { errors } = this.props
+    const {
+      List, errors, totalYears, gaps,
+    } = this.props
+    const { branch } = List
+
+    const showGapError = branch
+      && branch.value === 'No'
+      && gaps.length > 0
+      && errors.filter(e => e.indexOf(INCOMPLETE_DURATION) > -1).length > 0
+
     const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
+    const gapError = (
+      <Gap
+        title={i18n.t('history.residence.gap.title')}
+        para={i18n.t('history.residence.gap.para', { years: totalYears })}
+        gaps={gaps}
+      />
+    )
 
     return (
       <div
@@ -138,20 +108,19 @@ export class Residence extends Subsection {
           defaultState={this.props.defaultState}
           {...this.props.List}
           sort={this.props.sort}
-          inject={this.inject}
           realtime={this.props.realtime}
           onUpdate={this.handleUpdate}
           onError={this.handleError}
           caption={this.props.caption}
           byline={this.customResidenceByline}
           customSummary={ResidenceCustomSummary}
-          customDetails={this.customResidenceDetails}
           description={i18n.t('history.residence.collection.summary.title')}
           appendTitle={i18n.t('history.residence.collection.appendTitle')}
           appendLabel={i18n.t('history.residence.collection.append')}
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}
           errors={accordionErrors}
+          gapError={showGapError && gapError}
         >
           <ResidenceItem
             bind={true}
@@ -182,6 +151,7 @@ Residence.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   errors: [],
+  gaps: [],
 }
 
 export default connectSubsection(Residence, sectionConfig)

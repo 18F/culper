@@ -385,6 +385,7 @@ export const legal = {
       heading: {
         title:
           'Has the U.S. Government (or a foreign government) EVER investigated your background and/or granted you a security clearance eligibility/access?',
+        wasClearanceGranted: 'Was a clearance eligibility/access granted?',
         agency: 'Provide the investigating agency',
         completed: 'Date the investigation was completed',
         issued:

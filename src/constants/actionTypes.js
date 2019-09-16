@@ -1,8 +1,6 @@
-/* eslint import/prefer-default-export: 0 */
-
-export const VALIDATE_FORM_DATA = 'VALIDATE_FORM_DATA'
-
 export const INIT_APP = 'INIT_APP'
+
+export const VALIDATE_FORM = 'VALIDATE_FORM'
 
 export const RENEW_SESSION = 'RENEW_SESSION'
 export const SHOW_SESSION_WARNING = 'SHOW_SESSION_WARNING'

@@ -6,8 +6,6 @@ import {
   formSectionsSelector,
 } from 'selectors/navigation'
 
-import { formStatusSelector } from 'selectors/validation'
-
 export const getBackAndNext = (state, { currentPath }) => {
   const formSections = formSectionsSelector(state, true)
 
@@ -81,10 +79,4 @@ export const completedSections = (state) => {
   })
 
   return completedCount
-}
-
-export const formHasErrors = (state) => {
-  const formStatus = formStatusSelector(state)
-  const { formIsValid } = formStatus
-  return !formIsValid
 }

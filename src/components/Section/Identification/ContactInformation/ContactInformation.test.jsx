@@ -81,13 +81,13 @@ describe('The ContactInformation component', () => {
         .find('.summary strong')
         .at(2)
         .text()
-    ).toEqual('+001 1234567890 x1234')
+    ).toEqual('+0011234567890 x1234')
     expect(
       component
         .find('.summary strong')
         .at(3)
         .text()
-    ).toEqual('+001 1234567890')
+    ).toEqual('+0011234567890')
   })
 
   it('should filter empty items out leaving only the minimum visible', () => {
@@ -115,7 +115,7 @@ describe('The ContactInformation component', () => {
         .find('.summary strong')
         .at(0)
         .text()
-    ).toEqual('+001 1234567890')
+    ).toEqual('+0011234567890')
   })
 
   it('errors when two duplicate phone numbers are displayed', () => {

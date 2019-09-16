@@ -12,57 +12,58 @@ When running the application using the provided [docker-compose.yml](docker-comp
 
 ## Overview
 
-| Environment Variable                       | Required        | Front-end (web)        | Back-end (api)        |
-| --------------------------------           | :-------------: | :--------------------: | :-------------------: |
-| [`NODE_ENV`](#node_env)                            | X               | X                      |                       |
-| [`GOLANG_ENV`](#golang_env)                          | X               |                        | X                     |
-| [`LOG_LEVEL`](#log_level)                           |                 |                        | X                     |
-| [`LOG_FILE`](#log_file)                            |                 |                        | X                     |
-| [`LOG_SYSLOG`](#log_syslog)                          |                 |                        | X                     |
-| [`LOG_SYSLOG_CERT`](#log_syslog_cert)                     |                 |                        | X                     |
-| [`SESSION_TIMEOUT`](#session_timeout)                     |                 | X                      | X                     |
-| [`API_REDIRECT`](#api_redirect)                        |                 |                        | X                     |
-| [`API_BASE_URL`](#api_base_url)                        | X               | X                      | X                     |
-| [`PORT`](#port)                                |                 |                        | X                     |
-| [`HASH_ROUTING`](#hash_routing)                        |                 | X                      |                       |
-| [`DB_MIGRATION_TARGET`](#db_migration_target)                 |                 |                        | X                     |
-| [`DATABASE_URI`](#database_uri)                        |                 |                        | X                     |
-| [`DATABASE_USER`](#database_user)                       |                 |                        | X                     |
-| [`DATABASE_PASSWORD`](#database_password)                   |                 |                        | X                     |
-| [`DATABASE_NAME`](#database_name)                       |                 |                        | X                     |
-| [`TEST_DATABASE_NAME`](#test_database_name)                       |                 |                        | X                     |
-| [`DATABASE_HOST`](#database_host)                       |                 |                        | X                     |
-| [`DATABASE_SSLMODE`](#database_sslmode)                       |                 |                        | X                     |
-| [`CORS_ALLOWED`](#cors_allowed)                        | X               |                        | X                     |
-| [`CORS_MAX_AGE`](#cors_max_age)                    |                 |                        | X                     |
-| [`FLUSH_STORAGE`](#flush_storage)                       |                 |                        | X                     |
-| [`USPS_API_API_KEY`](#usps_api_api_key)                    |                 |                        | X                     |
-| [`CSRF_SECRET`](#csrf_secret)                          | X               |                        | X                     |
-| [`BASIC_ENABLED`](#basic_enabled)                       |                 | X                      | X                     |
-| [`SAML_ENABLED`](#saml_enabled)                        |                 | X                      | X                     |
-| [`SAML_SLO_ENABLED`](#saml_slo_enabled)                        |                 | X                      | X                     |
-| [`SAML_PUBLIC_CERT`](#saml_public_cert)                    |                 |                        | X                     |
-| [`SAML_PRIVATE_CERT`](#saml_private_cert)                   |                 |                        | X                     |
-| [`SAML_IDP_SSO_URL`](#saml_idp_sso_url)                    |                 |                        | X                     |
-| [`SAML_IDP_SSO_DESC_URL`](#saml_idp_sso_desc_url)               |                 |                        | X                     |
-| [`SAML_IDP_PUBLIC_CERT`](#saml_idp_public_cert)                |                 |                        | X                     |
-| [`SAML_SIGN_REQUEST`](#saml_sign_request)                   |                 |                        | X                     |
-| [`SAML_CONSUMER_SERVICE_URL`](#saml_consumer_service_url)           |                 |                        | X                     |
-| [`TLS_CERT`](#tls_cert)                            |                 |                        | X                     |
-| [`TLS_KEY`](#tls_key)                             |                 |                        | X                     |
-| [`WS_ENABLED`](#ws_enabled)                              | X               |                        | X                     |
-| [`WS_URL`](#ws_url)                              | X               |                        | X                     |
-| [`WS_KEY`](#ws_key)                              | X               |                        | X                     |
-| [`WS_CALLERINFO_AGENCY_ID`](#ws_callerinfo_agency_id)             | X               |                        | X                     |
-| [`WS_CALLERINFO_AGENCY_USER_SSN`](#ws_callerinfo_agency_user_ssn)       | X               |                        | X                     |
-| [`WS_CALLERINFO_AGENCY_USER_PSEUDOSSN`](#ws_callerinfo_agency_user_pseudossn) | X               |                        | X                     |
-| [`WS_AGENCY_ID`](#ws_agency_id)                        | X               |                        | X                     |
-| [`WS_AGENCY_GROUP_ID`](#ws_agency_group_id)                  | X               |                        | X                     |
-| [`ATTACHMENTS_ENABLED`](#attachments_enabled)                          |                 | X                      | X                     |
-| [`FILE_MAXIMUM_SIZE`](#file_maximum_size)                   |                 | X                      | X                     |
-| [`FILE_TYPES`](#file_types)                          |                 | X                      | X                     |
-| [`INDENT_JSON`](#indent_json)                    |                 |                        | X                     |
-| [`DEV_USE_INSECURE_COOKIE`](#dev_use_insecure_cookie)                    |                 |                        | X                     |
+| Environment Variable                                                          | Required | Front-end (web) | Back-end (api) |
+| ----------------------------------------------------------------------------- | :------: | :-------------: | :------------: |
+| [`NODE_ENV`](#node_env)                                                       | X        | X               |                |
+| [`GOLANG_ENV`](#golang_env)                                                   | X        |                 | X              |
+| [`LOG_LEVEL`](#log_level)                                                     |          |                 | X              |
+| [`LOG_FILE`](#log_file)                                                       |          |                 | X              |
+| [`LOG_SYSLOG`](#log_syslog)                                                   |          |                 | X              |
+| [`LOG_SYSLOG_CERT`](#log_syslog_cert)                                         |          |                 | X              |
+| [`SESSION_TIMEOUT`](#session_timeout)                                         |          | X               | X              |
+| [`API_REDIRECT`](#api_redirect)                                               |          |                 | X              |
+| [`API_BASE_URL`](#api_base_url)                                               | X        | X               | X              |
+| [`PORT`](#port)                                                               |          |                 | X              |
+| [`HASH_ROUTING`](#hash_routing)                                               |          | X               |                |
+| [`DB_MIGRATION_TARGET`](#db_migration_target)                                 |          |                 | X              |
+| [`DATABASE_URI`](#database_uri)                                               |          |                 | X              |
+| [`DATABASE_USER`](#database_user)                                             |          |                 | X              |
+| [`DATABASE_PASSWORD`](#database_password)                                     |          |                 | X              |
+| [`DATABASE_NAME`](#database_name)                                             |          |                 | X              |
+| [`TEST_DATABASE_NAME`](#test_database_name)                                   |          |                 | X              |
+| [`DATABASE_HOST`](#database_host)                                             |          |                 | X              |
+| [`DATABASE_SSLMODE`](#database_sslmode)                                       |          |                 | X              |
+| [`CORS_ALLOWED`](#cors_allowed)                                               | X        |                 | X              |
+| [`CORS_MAX_AGE`](#cors_max_age)                                               |          |                 | X              |
+| [`FLUSH_STORAGE`](#flush_storage)                                             |          |                 | X              |
+| [`USPS_API_API_KEY`](#usps_api_api_key)                                       |          |                 | X              |
+| [`CSRF_SECRET`](#csrf_secret)                                                 | X        |                 | X              |
+| [`BASIC_ENABLED`](#basic_enabled)                                             |          | X               | X              |
+| [`SAML_ENABLED`](#saml_enabled)                                               |          | X               | X              |
+| [`SAML_SLO_ENABLED`](#saml_slo_enabled)                                       |          | X               | X              |
+| [`SAML_PUBLIC_CERT`](#saml_public_cert)                                       |          |                 | X              |
+| [`SAML_PRIVATE_CERT`](#saml_private_cert)                                     |          |                 | X              |
+| [`SAML_IDP_SSO_URL`](#saml_idp_sso_url)                                       |          |                 | X              |
+| [`SAML_IDP_SSO_DESC_URL`](#saml_idp_sso_desc_url)                             |          |                 | X              |
+| [`SAML_IDP_PUBLIC_CERT`](#saml_idp_public_cert)                               |          |                 | X              |
+| [`SAML_SIGN_REQUEST`](#saml_sign_request)                                     |          |                 | X              |
+| [`SAML_CONSUMER_SERVICE_URL`](#saml_consumer_service_url)                     |          |                 | X              |
+| [`TLS_CERT`](#tls_cert)                                                       |          |                 | X              |
+| [`TLS_KEY`](#tls_key)                                                         |          |                 | X              |
+| [`WS_ENABLED`](#ws_enabled)                                                   | X        |                 | X              |
+| [`WS_URL`](#ws_url)                                                           | X        |                 | X              |
+| [`WS_KEY`](#ws_key)                                                           | X        |                 | X              |
+| [`WS_CALLERINFO_AGENCY_ID`](#ws_callerinfo_agency_id)                         | X        |                 | X              |
+| [`WS_CALLERINFO_AGENCY_USER_SSN`](#ws_callerinfo_agency_user_ssn)             | X        |                 | X              |
+| [`WS_CALLERINFO_AGENCY_USER_PSEUDOSSN`](#ws_callerinfo_agency_user_pseudossn) | X        |                 | X              |
+| [`WS_AGENCY_ID`](#ws_agency_id)                                               | X        |                 | X              |
+| [`WS_AGENCY_GROUP_ID`](#ws_agency_group_id)                                   | X        |                 | X              |
+| [`ATTACHMENTS_ENABLED`](#attachments_enabled)                                 |          | X               | X              |
+| [`FILE_MAXIMUM_SIZE`](#file_maximum_size)                                     |          | X               | X              |
+| [`FILE_TYPES`](#file_types)                                                   |          | X               | X              |
+| [`INDENT_JSON`](#indent_json)                                                 |          |                 | X              |
+| [`DEV_DISABLE_SSL`](#dev_disable_ssl)                                         |          |                 | X              |
+
 
 ## `NODE_ENV`
 
@@ -453,9 +454,9 @@ Set this to indent the JSON response to /form
 **Default** - False: *empty*<br>
 **Values** - True: `1`, False: *empty*<br>
 
-## `DEV_USE_INSECURE_COOKIE`
+## `DEV_DISABLE_SSL`
 
-For local development without SSL enabled, set the cookie to be Secure: false so it will be transmitted over http
+For local development without SSL enabled, set the cookie to be Secure: false so it will be transmitted over http. Also used to set the Strict-Transport-Security header to enforce https.
 
 **Target** - Back-end (api)<br>
 **Default** - False: *empty*<br>

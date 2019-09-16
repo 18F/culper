@@ -66,6 +66,42 @@ export const dateWithinRange = (date, range) => {
   return boundary <= createDateFromObject(cleanDateObject(date))
 }
 
+export const sortDateObjects = (dates = []) => {
+  const sortFn = (a, b) => {
+    if (a < b) return -1
+    if (a > b) return 1
+    return 0
+  }
+
+  return dates.filter(d => !!d)
+    .map(d => createDateFromObject(cleanDateObject(d)))
+    .sort(sortFn)
+}
+
+// get applicant age (today - birthdate) in years
+// if # of years - 18 >= required years, return required years
+// if # of years - 18 < required years, > 2, return difference
+// return 2
+export const getApplicantRequiredDuration = (requiredDuration = { years: 2 }, birthdate) => {
+  const duration = Duration.fromObject(requiredDuration)
+  if (!duration.isValid) return 2
+
+  const durationYears = duration.as('years')
+  if (!birthdate) return durationYears
+
+  const birthdateDate = createDateFromObject(cleanDateObject(birthdate))
+  if (!birthdateDate.isValid) return durationYears
+
+  const applicantAge = today.diff(birthdateDate).as('years')
+  const thresholdAge = 18
+  const minimumYears = 2
+
+  const applicableYears = applicantAge - thresholdAge
+  if (applicableYears >= durationYears) return durationYears
+  if (applicableYears >= minimumYears) return Math.floor(applicableYears)
+  return minimumYears
+}
+
 /** Convert date objects to luxon objects and sort by from date */
 export const sortDateRanges = (ranges) => {
   const sortFn = (a, b) => {
@@ -74,12 +110,15 @@ export const sortDateRanges = (ranges) => {
     return 0
   }
 
-  return [...ranges].map(r => ({
+  return ranges.sort(sortFn)
+}
+
+export const validateDateRanges = ranges => (
+  [...ranges].map(r => ({
     from: createDateFromObject(cleanDateObject(r.from)),
     to: r.present ? today : createDateFromObject(cleanDateObject(r.to)),
-  }))
-    .sort(sortFn)
-}
+  })).filter(r => r.from.isValid && r.to.isValid)
+)
 
 /**
  * All dates being operated on are luxon date objects
@@ -93,10 +132,10 @@ export const findTimelineGaps = (coverage, ranges) => {
     to: today,
   }
 
-  const minimumGap = 1 // in days
+  const minimumGap = 30 // in days
 
   // prepare & sort ranges
-  const sortedRanges = sortDateRanges(ranges)
+  const sortedRanges = sortDateRanges(validateDateRanges(ranges))
 
   // the return value
   const gaps = []
@@ -117,9 +156,9 @@ export const findTimelineGaps = (coverage, ranges) => {
       // range does not contain boundary, we have a gap
       const gapDuration = from.diff(rightBoundary, 'days')
 
-      // don't include gaps that are less than 24 hours
+      // don't include gaps that are less than the minimum # of days
       if (gapDuration.as('days') > minimumGap) {
-        const gap = { from: rightBoundary, to: from }
+        const gap = { from: rightBoundary.toObject(), to: from.toObject() }
         gaps.push(gap)
       }
 
@@ -128,8 +167,18 @@ export const findTimelineGaps = (coverage, ranges) => {
     }
   })
 
+  if (rangesOverlap && rightBoundary < requiredRange.to) {
+    gaps.push({
+      from: rightBoundary.toObject(),
+      to: requiredRange.to.toObject(),
+    })
+  }
+
   if (!rangesOverlap) {
-    gaps.push(requiredRange)
+    gaps.push({
+      from: requiredRange.from.toObject(),
+      to: requiredRange.to.toObject(),
+    })
   }
 
   return gaps

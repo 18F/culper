@@ -14,13 +14,18 @@ const foreignDirectInterest = {
   HowAcquired: { presence: true, hasValue: true },
   Cost: { presence: true, hasValue: true },
   Value: { presence: true, hasValue: true },
-  Relinquished: (value, attributes) => {
+  Relinquished: (value, attributes, attributeName, options = {}) => {
     const { RelinquishedNotApplicable } = attributes
     if (RelinquishedNotApplicable && RelinquishedNotApplicable.applicable === false) {
       return {}
     }
 
-    return { presence: true, date: true }
+    const { applicantBirthdate } = options
+
+    return {
+      presence: true,
+      date: { earliest: applicantBirthdate, latest: DEFAULT_LATEST },
+    }
   },
   Explanation: (value, attributes) => {
     const { RelinquishedNotApplicable } = attributes

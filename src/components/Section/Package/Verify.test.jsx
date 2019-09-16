@@ -1,7 +1,8 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import { MemoryRouter } from 'react-router'
-import Location from '../../../components/Form/Location'
+
+import Location from 'components/Form/Location'
 import Verify from './Verify'
 
 describe('The verify component', () => {
@@ -12,11 +13,11 @@ describe('The verify component', () => {
           Name: {
             first: 'Bob',
             middle: 'Joe',
-            last: 'Smith'
-          }
-        }
+            last: 'Smith',
+          },
+        },
       },
-      history: {}
+      history: {},
     }
     const component = mount(
       <MemoryRouter>
@@ -43,31 +44,31 @@ describe('The verify component', () => {
                     middleInitialOnly: true,
                     noMiddleName: false,
                     last: 'Bar',
-                    suffix: 'Jr'
+                    suffix: 'Jr',
                   },
                   MaidenName: {
-                    value: 'Foo'
+                    value: 'Foo',
                   },
                   DatesUsed: {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2015'
+                      year: '2015',
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2016'
+                      year: '2016',
                     },
-                    present: false
-                  }
-                }
-              }
-            ]
-          }
-        }
+                    present: false,
+                  },
+                },
+              },
+            ],
+          },
+        },
       },
-      history: {}
+      history: {},
     }
     const component = mount(
       <MemoryRouter>
@@ -86,11 +87,11 @@ describe('The verify component', () => {
           Date: {
             month: '1',
             day: '1',
-            year: '1982'
-          }
-        }
+            year: '1982',
+          },
+        },
       },
-      history: {}
+      history: {},
     }
     const component = mount(
       <MemoryRouter>
@@ -109,11 +110,11 @@ describe('The verify component', () => {
           ssn: {
             first: '123',
             middle: '45',
-            last: '6789'
-          }
-        }
+            last: '6789',
+          },
+        },
       },
-      history: {}
+      history: {},
     }
     const component = mount(
       <MemoryRouter>
@@ -136,24 +137,24 @@ describe('The verify component', () => {
                   Telephone: {
                     type: 'Domestic',
                     number: '2028675309',
-                    extension: '1234'
-                  }
-                }
+                    extension: '1234',
+                  },
+                },
               },
               {
                 Item: {
                   Telephone: {
                     type: 'Domestic',
                     number: '1231231234',
-                    extension: ''
-                  }
-                }
-              }
-            ]
-          }
-        }
+                    extension: '',
+                  },
+                },
+              },
+            ],
+          },
+        },
       },
-      history: {}
+      history: {},
     }
     const component = mount(
       <MemoryRouter>
@@ -187,14 +188,14 @@ describe('The verify component', () => {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2010'
+                      year: '2010',
                     },
                     to: {
                       month: '1',
                       day: '1',
-                      year: '2012'
+                      year: '2012',
                     },
-                    present: false
+                    present: false,
                   },
                   Address: {
                     country: { value: 'United States' },
@@ -202,27 +203,9 @@ describe('The verify component', () => {
                     city: 'Arlington',
                     state: 'VA',
                     zipcode: '22202',
-                    layout: Location.ADDRESS
-                  }
-                }
-              },
-              {
-                Item: {
-                  type: 'Gap',
-                  Dates: {
-                    from: {
-                      month: '1',
-                      day: '1',
-                      year: '2012'
-                    },
-                    to: {
-                      month: '1',
-                      day: '1',
-                      year: '2015'
-                    },
-                    present: false
-                  }
-                }
+                    layout: Location.ADDRESS,
+                  },
+                },
               },
               {
                 Item: {
@@ -230,14 +213,14 @@ describe('The verify component', () => {
                     from: {
                       month: '1',
                       day: '1',
-                      year: '2015'
+                      year: '2015',
                     },
                     to: {
                       month: `${new Date().getMonth() + 1}`,
                       day: `${new Date().getDate()}`,
-                      year: `${new Date().getFullYear()}`
+                      year: `${new Date().getFullYear()}`,
                     },
-                    present: false
+                    present: false,
                   },
                   Address: {
                     country: { value: 'United States' },
@@ -245,14 +228,14 @@ describe('The verify component', () => {
                     city: 'New Orleans',
                     state: 'LA',
                     zipcode: '22202',
-                    layout: Location.ADDRESS
-                  }
-                }
-              }
-            ]
-          }
-        }
-      }
+                    layout: Location.ADDRESS,
+                  },
+                },
+              },
+            ],
+          },
+        },
+      },
     }
     const component = mount(
       <MemoryRouter>
@@ -269,7 +252,7 @@ describe('The verify component', () => {
   it('displays text when nothing is found', () => {
     const props = {
       Identification: {},
-      History: {}
+      History: {},
     }
     const component = mount(
       <MemoryRouter>

@@ -3,7 +3,7 @@ import foreignBusinessAdvice from 'models/foreignBusinessAdvice'
 
 export const validateAdvice = data => validateModel(data, foreignBusinessAdvice)
 
-export const validateForeignBusinessAdvice = (data) => {
+export const validateForeignBusinessAdvice = (data, formType, options = {}) => {
   const foreignBusinessAdviceModel = {
     HasForeignAdvice: { presence: true, hasValue: { validator: hasYesOrNo } },
     List: (value, attributes) => {
@@ -18,7 +18,7 @@ export const validateForeignBusinessAdvice = (data) => {
     },
   }
 
-  return validateModel(data, foreignBusinessAdviceModel)
+  return validateModel(data, foreignBusinessAdviceModel, options)
 }
 
 export default class ForeignBusinessAdviceValidator {

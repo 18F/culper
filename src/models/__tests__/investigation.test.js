@@ -82,6 +82,35 @@ describe('The investigation model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('Completed cannot be before applicant birthdate', () => {
+    const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+    const testData = {
+      Completed: { month: 1, year: 1970, day: 2 },
+    }
+
+    const expectedErrors = [
+      'Completed.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, investigation, {
+      applicantBirthdate,
+    }))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Completed cannot be in the future', () => {
+    const testData = {
+      Completed: { month: 1, year: 2050, day: 2 },
+    }
+
+    const expectedErrors = [
+      'Completed.date.date.datetime.DATE_TOO_LATE',
+    ]
+
+    expect(validateModel(testData, investigation))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('Granted must be a valid date', () => {
     const testData = { Granted: { day: 2, year: 1000 } }
     const expectedErrors = ['Granted.date.month.presence.REQUIRED']
@@ -123,6 +152,7 @@ describe('The investigation model', () => {
     })
 
     it('passes a valid investigation', () => {
+      const options = { requireLegalInvestigationClearanceGranted: false }
       const testData = {
         AgencyNotApplicable: { applicable: false },
         Completed: { month: 4, day: 10, year: 2010 },
@@ -131,7 +161,7 @@ describe('The investigation model', () => {
           Level: { value: 'None' },
         },
       }
-      expect(validateModel(testData, investigation)).toEqual(true)
+      expect(validateModel(testData, investigation, options)).toEqual(true)
     })
   })
 
@@ -149,6 +179,7 @@ describe('The investigation model', () => {
     })
 
     it('passes a valid investigation', () => {
+      const options = { requireLegalInvestigationClearanceGranted: false }
       const testData = {
         Agency: { value: 'U.S. Department of Treasury' },
         AgencyExplanation: { value: 'Test agency' },
@@ -158,7 +189,7 @@ describe('The investigation model', () => {
           Level: { value: 'None' },
         },
       }
-      expect(validateModel(testData, investigation)).toEqual(true)
+      expect(validateModel(testData, investigation, options)).toEqual(true)
     })
   })
 
@@ -176,6 +207,7 @@ describe('The investigation model', () => {
     })
 
     it('passes a valid investigation', () => {
+      const options = { requireLegalInvestigationClearanceGranted: false }
       const testData = {
         Agency: { value: 'Foreign government' },
         AgencyExplanation: { value: 'Test agency' },
@@ -185,7 +217,7 @@ describe('The investigation model', () => {
           Level: { value: 'None' },
         },
       }
-      expect(validateModel(testData, investigation)).toEqual(true)
+      expect(validateModel(testData, investigation, options)).toEqual(true)
     })
   })
 
@@ -203,6 +235,7 @@ describe('The investigation model', () => {
     })
 
     it('passes a valid investigation', () => {
+      const options = { requireLegalInvestigationClearanceGranted: false }
       const testData = {
         Agency: { value: 'Other' },
         AgencyExplanation: { value: 'Test agency' },
@@ -212,7 +245,7 @@ describe('The investigation model', () => {
           Level: { value: 'None' },
         },
       }
-      expect(validateModel(testData, investigation)).toEqual(true)
+      expect(validateModel(testData, investigation, options)).toEqual(true)
     })
   })
 
@@ -227,6 +260,7 @@ describe('The investigation model', () => {
     })
 
     it('passes a valid investigation', () => {
+      const options = { requireLegalInvestigationClearanceGranted: false }
       const testData = {
         Agency: { value: 'FBI' },
         CompletedNotApplicable: { applicable: false },
@@ -235,7 +269,7 @@ describe('The investigation model', () => {
           Level: { value: 'None' },
         },
       }
-      expect(validateModel(testData, investigation)).toEqual(true)
+      expect(validateModel(testData, investigation, options)).toEqual(true)
     })
   })
 
@@ -250,6 +284,7 @@ describe('The investigation model', () => {
     })
 
     it('passes a valid investigation', () => {
+      const options = { requireLegalInvestigationClearanceGranted: false }
       const testData = {
         Agency: { value: 'FBI' },
         GrantedNotApplicable: { applicable: false },
@@ -258,7 +293,7 @@ describe('The investigation model', () => {
           Level: { value: 'None' },
         },
       }
-      expect(validateModel(testData, investigation)).toEqual(true)
+      expect(validateModel(testData, investigation, options)).toEqual(true)
     })
   })
 
@@ -273,17 +308,19 @@ describe('The investigation model', () => {
     })
 
     it('passes a valid investigation', () => {
+      const options = { requireLegalInvestigationClearanceGranted: false }
       const testData = {
         Agency: { value: 'FBI' },
         Completed: { month: 4, day: 10, year: 2010 },
         Granted: { month: 5, day: 10, year: 2011 },
         ClearanceLevelNotApplicable: { applicable: false },
       }
-      expect(validateModel(testData, investigation)).toEqual(true)
+      expect(validateModel(testData, investigation, options)).toEqual(true)
     })
   })
 
   it('passes a valid investigation', () => {
+    const options = { requireLegalInvestigationClearanceGranted: false }
     const testData = {
       Agency: { value: 'FBI' },
       Completed: { month: 4, day: 10, year: 2010 },
@@ -292,6 +329,84 @@ describe('The investigation model', () => {
         Level: { value: 'None' },
       },
     }
-    expect(validateModel(testData, investigation)).toEqual(true)
+    expect(validateModel(testData, investigation, options)).toEqual(true)
+  })
+
+  /**
+   * The SF85 has a branching question asking if an applicant
+   * has a clearance granted before asking for:
+   * - Name of agency (if different from investigating agency): OPTIONAL
+   * - Clearance date
+   * - Level of clearance
+   *
+   * This is different from other questions because the questions
+   * are displayed on the form without a branch.
+   */
+  describe('SF85', () => {
+    const options = { requireLegalInvestigationClearanceGranted: true }
+
+    it('requires ClearanceGranted to be answered', () => {
+      const testData = {}
+      const expectedErrors = [
+        'ClearanceGranted.presence.REQUIRED',
+        'ClearanceGranted.hasValue.MISSING_VALUE',
+      ]
+      expect(validateModel(testData, investigation, options))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    describe('was not granted clearance', () => {
+      it('does not require Granted or ClearanceLevel', () => {
+        const testData = {
+          ClearanceGranted: { value: 'No' },
+        }
+        const expectedErrors = [
+          'Granted.presence.REQUIRED',
+          'ClearanceLevel.presence.REQUIRED',
+        ]
+
+        expect(validateModel(testData, investigation, options))
+          .toEqual(expect.not.arrayContaining(expectedErrors))
+      })
+
+      it('passes a valid investigation', () => {
+        const testData = {
+          Agency: { value: 'FBI' },
+          Completed: { month: 4, day: 10, year: 2010 },
+          ClearanceGranted: { value: 'No' },
+        }
+
+        expect(validateModel(testData, investigation, options)).toEqual(true)
+      })
+    })
+
+    describe('was granted clearance', () => {
+      it('requires Granted or ClearanceLevel', () => {
+        const testData = {
+          ClearanceGranted: { value: 'Yes' },
+        }
+        const expectedErrors = [
+          'Granted.presence.REQUIRED',
+          'ClearanceLevel.presence.REQUIRED',
+        ]
+
+        expect(validateModel(testData, investigation, options))
+          .toEqual(expect.arrayContaining(expectedErrors))
+      })
+
+      it('passes a valid investigation', () => {
+        const testData = {
+          Agency: { value: 'FBI' },
+          Completed: { month: 4, day: 10, year: 2010 },
+          ClearanceGranted: { value: 'Yes' },
+          Granted: { month: 5, day: 10, year: 2011 },
+          ClearanceLevel: {
+            Level: { value: 'Confidential' },
+          },
+        }
+
+        expect(validateModel(testData, investigation, options)).toEqual(true)
+      })
+    })
   })
 })

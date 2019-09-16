@@ -88,7 +88,7 @@ export class UsPassport extends Subsection {
       Name: values.value === 'Yes' ? this.props.Name : {},
       Number: values.value === 'Yes' ? this.props.Number : '',
       Issued: values.value === 'Yes' ? this.props.Issued : {},
-      Expired: values.value === 'Yes' ? this.props.Expired : {},
+      Expiration: values.value === 'Yes' ? this.props.Expiration : {},
     })
   }
 

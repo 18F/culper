@@ -18,8 +18,8 @@ const creditCounselingModel = {
   },
 }
 
-export const validateFinancialCredit = data => (
-  validateModel(data, creditCounselingModel)
+export const validateFinancialCredit = (data, formType, options = {}) => (
+  validateModel(data, creditCounselingModel, options)
 )
 
 export default class CreditValidator {

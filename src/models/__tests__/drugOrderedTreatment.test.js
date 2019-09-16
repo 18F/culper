@@ -178,6 +178,37 @@ describe('The drugOrderedTreatment model', () => {
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
+    it('TreatmentDates from date cannot be before applicant birthdate', () => {
+      const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+      const testData = {
+        ActionTaken: { value: 'Yes' },
+        TreatmentDates: {
+          from: { month: 1, year: 1970, day: 2 },
+        },
+      }
+      const expectedErrors = [
+        'TreatmentDates.daterange.from.date.date.datetime.DATE_TOO_EARLY',
+      ]
+
+      expect(validateModel(testData, drugOrderedTreatment, { applicantBirthdate }))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('TreatmentDates to date cannot be in the future', () => {
+      const testData = {
+        ActionTaken: { value: 'Yes' },
+        TreatmentDates: {
+          to: { month: 1, year: 2050, day: 2 },
+        },
+      }
+      const expectedErrors = [
+        'TreatmentDates.daterange.to.date.date.datetime.DATE_TOO_LATE',
+      ]
+
+      expect(validateModel(testData, drugOrderedTreatment))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
     it('TreatmentCompleted must have a valid value', () => {
       const testData = {
         ActionTaken: { value: 'Yes' },

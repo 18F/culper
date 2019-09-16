@@ -3,15 +3,20 @@ import phone from 'models/shared/phone'
 import email from 'models/shared/email'
 import address from 'models/shared/locations/address'
 import { relationshipOptions } from 'constants/enums/relationshipOptions'
+import { DEFAULT_LATEST } from 'constants/dateLimits'
 
 const person = {
   Name: {
     presence: true,
     model: { validator: name },
   },
-  Dates: {
-    presence: true,
-    daterange: true,
+  Dates: (value, attributes, attributeName, options = {}) => {
+    const { applicantBirthdate } = options
+
+    return {
+      presence: true,
+      daterange: { earliest: applicantBirthdate, latest: DEFAULT_LATEST },
+    }
   },
   Rank: (value, attributes) => {
     if (attributes.RankNotApplicable

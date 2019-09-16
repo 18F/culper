@@ -101,10 +101,22 @@ describe('The phone model', () => {
   })
 
   describe('for International numbers', () => {
-    it('number must be more than 10 digits', () => {
+    it('number must be more than 3 digits', () => {
       const testData = {
         type: 'International',
-        number: '1234567890',
+        number: '123',
+      }
+
+      const expectedErrors = ['number.format.INVALID_FORMAT']
+
+      expect(validateModel(testData, phone))
+        .toEqual(expect.arrayContaining(expectedErrors))
+    })
+
+    it('number must be less than 21 digits', () => {
+      const testData = {
+        type: 'International',
+        number: '123456789012345678901',
       }
 
       const expectedErrors = ['number.format.INVALID_FORMAT']

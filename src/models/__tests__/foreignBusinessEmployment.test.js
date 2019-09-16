@@ -46,6 +46,35 @@ describe('The foreignBusinessEmployment model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('Date cannot be before applicant birthdate', () => {
+    const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+    const testData = {
+      Date: { month: 1, year: 1970, day: 2 },
+    }
+
+    const expectedErrors = [
+      'Date.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, foreignBusinessEmployment, {
+      applicantBirthdate,
+    }))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('Date cannot be in the future', () => {
+    const testData = {
+      Date: { month: 1, year: 2050, day: 2 },
+    }
+
+    const expectedErrors = [
+      'Date.date.date.datetime.DATE_TOO_LATE',
+    ]
+
+    expect(validateModel(testData, foreignBusinessEmployment))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('Address must be a valid address', () => {
     const testData = {
       Address: '15 Broadway Ave, New York NY 10002',

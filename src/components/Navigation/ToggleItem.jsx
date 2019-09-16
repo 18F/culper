@@ -7,8 +7,9 @@ import { connect } from 'react-redux'
 import {
   sectionHasErrorsSelector,
   sectionIsValidSelector,
-} from 'selectors/navigation'
+} from 'selectors/validation'
 
+// eslint-disable-next-line import/no-cycle
 import SectionList from './SectionList'
 import { isActive } from './navigation-helpers'
 

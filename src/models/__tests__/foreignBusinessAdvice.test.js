@@ -69,6 +69,35 @@ describe('The foreignBusinessAdvice model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
+  it('From date cannot be before applicant birthdate', () => {
+    const applicantBirthdate = { month: 1, day: 2, year: 1980 }
+    const testData = {
+      Dates: {
+        from: { month: 1, year: 1970, day: 2 },
+      },
+    }
+    const expectedErrors = [
+      'Dates.daterange.from.date.date.datetime.DATE_TOO_EARLY',
+    ]
+
+    expect(validateModel(testData, foreignBusinessAdvice, { applicantBirthdate }))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
+  it('To date cannot be in the future', () => {
+    const testData = {
+      Dates: {
+        to: { month: 1, year: 2050, day: 2 },
+      },
+    }
+    const expectedErrors = [
+      'Dates.daterange.to.date.date.datetime.DATE_TOO_LATE',
+    ]
+
+    expect(validateModel(testData, foreignBusinessAdvice))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
   it('passes a valid foreign business advice', () => {
     const testData = {
       Name: { first: 'Test', noMiddleName: true, last: 'Person' },

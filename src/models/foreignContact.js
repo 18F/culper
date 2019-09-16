@@ -4,6 +4,7 @@ import address from 'models/shared/locations/address'
 import physicalAddress from 'models/shared/physicalAddress'
 
 import { OTHER, DEFAULT_LATEST } from 'constants/dateLimits'
+import { sortDateObjects } from 'helpers/date'
 
 const contactMethodOptions = [
   'In person',
@@ -48,9 +49,23 @@ const foreignContact = {
       hasValue: true,
     }
   },
-  FirstContact: {
-    presence: true,
-    date: true,
+  FirstContact: (value, attributes, attributeName, options) => {
+    const { Birthdate } = attributes
+    const { applicantBirthdate } = options
+
+    const sortedDates = sortDateObjects([Birthdate, applicantBirthdate])
+
+    const earliestDate = sortedDates.length
+      ? sortedDates[sortedDates.length - 1]
+      : null
+
+    return {
+      presence: true,
+      date: {
+        earliest: earliestDate,
+        latest: DEFAULT_LATEST,
+      },
+    }
   },
   LastContact: (value, attributes) => {
     const dateLimits = { latest: DEFAULT_LATEST }

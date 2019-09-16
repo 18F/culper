@@ -1,4 +1,5 @@
 import employment from 'models/employment'
+import { getApplicantRequiredDuration } from 'helpers/date'
 
 const historyEmployment = {
   EmploymentRecord: {
@@ -10,16 +11,14 @@ const historyEmployment = {
   List: {
     presence: true,
     accordion: { validator: employment },
-    // TODO add the below when we have access to birthdate
-    /*
     durationCoverage: (value, attributes, attributeName, options) => {
-      const { requireYears } = options
+      const { requireYears, applicantBirthdate } = options
+      const years = getApplicantRequiredDuration({ years: requireYears }, applicantBirthdate)
 
       return {
-        requiredDuration: { years: requireYears },
+        requiredDuration: { years },
       }
     },
-    */
   },
 }
 

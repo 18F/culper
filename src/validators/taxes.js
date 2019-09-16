@@ -18,8 +18,8 @@ const financialTaxesModel = {
   },
 }
 
-export const validateFinancialTaxes = data => (
-  validateModel(data, financialTaxesModel)
+export const validateFinancialTaxes = (data, formType, options = {}) => (
+  validateModel(data, financialTaxesModel, options)
 )
 
 export default class TaxesValidator {
