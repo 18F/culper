@@ -260,7 +260,7 @@ describe('The relationship status component', () => {
                   day: '1',
                   month: '1',
                   name: 'DateDivorced',
-                  year: '1950',
+                  year: '1000',
                 },
               },
             },
