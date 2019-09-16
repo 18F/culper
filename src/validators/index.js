@@ -10,8 +10,6 @@ import ForeignBornDocumentValidator from './foreignborndocument'
 import SelectiveServiceValidator, {
   hideSelectiveService,
 } from './selectiveservice'
-import RelativesValidator from './relatives'
-import LegalAssociationsTerrorismValidator from './legalassociationsterrorism'
 import LocationValidator from './location'
 import SignatureValidator from './signature'
 import SentenceValidator from './sentence'
@@ -31,8 +29,6 @@ export {
   ForeignBornDocumentValidator,
   NameValidator,
   SelectiveServiceValidator,
-  RelativesValidator,
-  LegalAssociationsTerrorismValidator,
   LocationValidator,
   SignatureValidator,
   SentenceValidator,
