@@ -98,7 +98,7 @@ class Env {
     return '/me/logout'
   }
   EndpointRefresh() {
-    return '/refresh'
+    return '/me/refresh'
   }
   EndpointSaml() {
     return `${this.ApiBaseURL()}/auth/saml`

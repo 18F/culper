@@ -103,10 +103,8 @@ func main() {
 		o.HandleFunc("/saml/callback", http.SamlResponseHandler{Env: settings, Log: logger, Database: database, SAML: samlsvc, Session: sessionService, Cookie: cookieService}.ServeHTTP).Methods("POST")
 	}
 
-	// Account specific actions
-	r.Handle("/refresh", sec(http.RefreshHandler{Env: settings, Log: logger, Database: database})).Methods("POST")
-
 	a := r.PathPrefix("/me").Subrouter()
+	a.Handle("/refresh", sec(http.RefreshHandler{Env: settings, Log: logger, Database: database})).Methods("POST")
 	a.Handle("/logout", sec(http.LogoutHandler{Log: logger, Session: sessionService})).Methods("POST")
 	a.Handle("/save", sec(http.SaveHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("POST", "PUT")
 	a.Handle("/status", sec(http.StatusHandler{Env: settings, Log: logger, Database: database, Store: store})).Methods("GET")
