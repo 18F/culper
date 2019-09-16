@@ -82,7 +82,7 @@ export const error = {
       min: {
         title: 'The applicant age is not approved',
         message: [
-          'Your date of birth indicates you are over the age of 100.',
+          'Your date of birth indicates you are over the age of 100. Please contact your security office representative or the individual who initiated your investigation regarding further instruction.',
         ],
         note: '',
       },
