@@ -1,32 +1,5 @@
 import { allHaveStatus, anyHasStatus } from './helpers'
 
-export default class PsychologicalValidator {
-  constructor(data = {}) {
-    this.completed = data.Completed
-    this.psychological = data.Psychological
-  }
-
-  completionStatus(status) {
-    const toCheck = [
-      'Competence',
-      'Consultations',
-      'Hospitalizations',
-      'Diagnoses',
-    ]
-
-    if (showQuestion21E(this.psychological)) {
-      toCheck.push('ExistingConditions')
-    }
-
-    if (allHaveStatus(this.completed)(toCheck, status, true)) {
-      return 'complete'
-    } else if (anyHasStatus(this.completed)(toCheck, status, false)) {
-      return 'incomplete'
-    }
-    return 'neutral'
-  }
-}
-
 const defaultPsychologicalState = {
   Competence: null,
   Consultation: null,
