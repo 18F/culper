@@ -154,6 +154,7 @@ func Test85CleranceGranted(t *testing.T) {
 }
 
 func Test85PSectionsOmitted(t *testing.T) {
+  t.Skip("Skipping until 85P releases are added")
 	services := cleanTestServices(t)
 
 	xmlTemplatePath := "../templates/"

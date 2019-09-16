@@ -49,7 +49,7 @@ class EducationWrapper extends React.Component {
 
   render() {
     const {
-      Education, Birthdate, formType, inReview, errors,
+      Education, formType, inReview, errors, data,
     } = this.props
 
     const years = formType
@@ -120,9 +120,7 @@ class EducationWrapper extends React.Component {
 
             {!inReview && (
               <EducationSummaryProgress
-                Education={Education}
-                Birthdate={Birthdate}
-                years={years}
+                items={data && data.List && data.List.items}
                 errors={errors}
               />
             )}
@@ -139,10 +137,9 @@ class EducationWrapper extends React.Component {
   }
 }
 
-/* eslint react/forbid-prop-types: 0 */
 EducationWrapper.propTypes = {
   Education: PropTypes.object,
-  Birthdate: PropTypes.any,
+  data: PropTypes.object,
   formType: PropTypes.string.isRequired,
   inReview: PropTypes.bool,
   onUpdate: PropTypes.func,
@@ -156,7 +153,7 @@ EducationWrapper.defaultProps = {
     HasDegree10: '',
     List: { items: [] },
   },
-  Birthdate: {},
+  data: {},
   inReview: false,
   onUpdate: () => {},
   dispatch: () => {},

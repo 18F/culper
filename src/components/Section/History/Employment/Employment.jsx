@@ -1,15 +1,14 @@
 import React from 'react'
 import i18n from 'util/i18n'
 
+import { INCOMPLETE_DURATION } from 'constants/errors'
+
 import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import Subsection from 'components/Section/shared/Subsection'
 import { Accordion, Branch } from 'components/Form'
 import { openState } from 'components/Form/Accordion/Accordion'
-import { newGuid } from 'components/Form/ValidationElement'
-import {
-  today, daysAgo, extractDate, validDate,
-} from 'components/Section/History/dateranges'
-import { InjectGaps, EmploymentCustomSummary } from 'components/Section/History/summaries'
+import { extractDate, validDate } from 'components/Section/History/dateranges'
+import { EmploymentCustomSummary } from 'components/Section/History/summaries'
 import EmploymentItem from 'components/Section/History/Employment/EmploymentItem'
 import { Gap } from 'components/Section/History/Gap'
 
@@ -78,9 +77,6 @@ export class Employment extends Subsection {
 
   sortEmploymentItems = employmentItems => (
     employmentItems.sort((a, b) => {
-      if (a.type === 'Gap') { return 1 }
-      if (b.type === 'Gap') { return -1 }
-
       if (
         a.Item && a.Item.Dates && validDate(a.Item.Dates.to)
         && b.Item && b.Item.Dates && validDate(b.Item.Dates.to)
@@ -114,57 +110,27 @@ export class Employment extends Subsection {
     this.props.onUpdate('Employment', updatedValues)
   }
 
-  fillGap = () => {
-    const items = [...this.props.List.items]
-    items.push({
-      uuid: newGuid(),
-      open: true,
-      Item: {
-        name: 'Item',
-        Dates: {
-          name: 'Dates',
-          receiveProps: true,
-          present: false,
-        },
-      },
-    })
-
-    this.update({
-      List: {
-        items: InjectGaps(items, daysAgo(365 * this.props.totalYears))
-          .sort(this.sort)
-          .filter(item => !item.type || (item.type && item.type !== 'Gap')),
-        branch: {},
-      },
-    })
-  }
-
-  customEmploymentDetails = (item, index, initial, callback) => {
-    const { totalYears } = this.props
-
-    if (item.type === 'Gap') {
-      const dates = (item.Item || {}).Dates || {}
-      return (
-        <Gap
-          title={i18n.t('history.employment.gap.title')}
-          para={i18n.t('history.employment.gap.para', { years: totalYears })}
-          btnText={i18n.t('history.employment.gap.btnText')}
-          first={index === 0}
-          dates={dates}
-          onClick={() => { this.fillGap(dates) }}
-        />
-      )
-    }
-
-    return callback()
-  }
-
-  inject = items => InjectGaps(items, daysAgo(today, 365 * this.props.totalYears))
-
   render() {
-    const { recordYears, errors } = this.props
+    const {
+      List, totalYears, recordYears, errors, gaps,
+    } = this.props
+    const { branch } = List
+
     const recordYearsString = getYearsString(recordYears)
     const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+
+    const showGapError = branch
+      && branch.value === 'No'
+      && gaps.length > 0
+      && errors.filter(e => e.indexOf(INCOMPLETE_DURATION) > -1).length > 0
+
+    const gapError = (
+      <Gap
+        title={i18n.t('history.employment.gap.title')}
+        para={i18n.t('history.employment.gap.para', { years: totalYears })}
+        gaps={gaps}
+      />
+    )
 
     return (
       <div
@@ -178,7 +144,6 @@ export class Employment extends Subsection {
           {...this.props.List}
           ref={(el) => { this.employment = el }}
           sort={this.props.sort}
-          inject={this.inject}
           realtime={this.props.realtime}
           onUpdate={(values) => {
             this.update({ List: values })
@@ -187,7 +152,6 @@ export class Employment extends Subsection {
           caption={this.props.caption}
           byline={this.customEmploymentByline}
           customSummary={EmploymentCustomSummary}
-          customDetails={this.customEmploymentDetails}
           description={i18n.t(
             'history.employment.default.collection.summary.title',
           )}
@@ -199,6 +163,7 @@ export class Employment extends Subsection {
           required={this.props.required}
           scrollIntoView={this.props.scrollIntoView}
           errors={accordionErrors}
+          gapError={showGapError && gapError}
         >
           <EmploymentItem
             bind={true}
@@ -210,7 +175,9 @@ export class Employment extends Subsection {
             recordYears={recordYears}
           />
         </Accordion>
+
         <hr className="section-divider" />
+
         <Branch
           label={i18n.t('history.employment.default.employmentRecord.title', { years: recordYears, yearsString: recordYearsString })}
           className="employment-record"
@@ -252,10 +219,9 @@ Employment.defaultProps = {
   caption: null,
   onUpdate: () => {},
   onError: (value, arr) => arr,
-  section: 'history',
-  subsection: 'employment',
   addressBooks: {},
   dispatch: () => {},
+  gaps: [],
   errors: [],
 }
 

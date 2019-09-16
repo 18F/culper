@@ -32,7 +32,7 @@ func TestDeleteSignaturePDFs(t *testing.T) {
 	}
 
 	// First, upload an attachment.
-	certificationPath := "../testdata/attachments/signature-form.pdf"
+	certificationPath := "../testdata/attachments/signature-form-SF86.pdf"
 
 	certificationBytes := readTestData(t, certificationPath)
 

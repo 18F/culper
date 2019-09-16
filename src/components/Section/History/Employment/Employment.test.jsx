@@ -25,23 +25,6 @@ describe('The employment section', () => {
         branch: {},
         items: [
           {
-            type: 'Gap',
-            Item: {
-              Dates: {
-                from: {
-                  day: '1',
-                  month: '1',
-                  year: '2013',
-                },
-                to: {
-                  day: '12',
-                  month: '31',
-                  year: '2013',
-                },
-              },
-            },
-          },
-          {
             Item: {
               Dates: {
                 from: {

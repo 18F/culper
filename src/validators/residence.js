@@ -6,7 +6,6 @@ import * as formConfig from 'config/forms'
 export const validateResidence = data => validateModel(data, residence)
 
 export const validateHistoryResidence = (data, formType, options = {}) => {
-  // TODO years requirement is not enforced by validator yet
   const years = formType
     && formConfig[formType]
     && formConfig[formType].HISTORY_RESIDENCE_YEARS

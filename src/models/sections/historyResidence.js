@@ -1,19 +1,18 @@
 import residence from 'models/residence'
+import { getApplicantRequiredDuration } from 'helpers/date'
 
 const historyResidence = {
   List: {
     presence: true,
     accordion: { validator: residence },
-    // TODO add the below when we have access to birthdate
-    /*
-    durationCoverage: (value, attributes, attributeName, options) => {
-      const { requireYears } = options
+    durationCoverage: (value, attributes, attributeName, options = {}) => {
+      const { requireYears, applicantBirthdate } = options
+      const years = getApplicantRequiredDuration({ years: requireYears }, applicantBirthdate)
 
       return {
-        requiredDuration: { years: requireYears },
+        requiredDuration: { years },
       }
     },
-    */
   },
 }
 
