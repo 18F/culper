@@ -1,5 +1,5 @@
 import { SELF } from 'constants/dateLimits'
-import { date } from 'models/shared/date'
+import date from '../../models/shared/date'
 const identificationDateOfBirth = {
   Date: (value, attributes) => {
     return {
