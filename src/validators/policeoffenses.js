@@ -1,5 +1,4 @@
-import store from 'services/store'	
-import { validateModel, hasYesOrNo, checkValue } from 'models/validate'	
+import { validateModel, hasYesOrNo, checkValue } from 'models/validate'
 import offense from 'models/offense'
 import {
   requireLegalOffenseInvolvements,
@@ -15,15 +14,15 @@ export const validatePoliceOffenses = (data, formType, options = {}) => {
   }
 
   const policeOffensesModel = {	
-    HasOffenses: { presence: true, hasValue: { validator: hasYesOrNo } },	
-    List: (value, attributes) => (	
-      checkValue(attributes.HasOffenses, 'Yes')	
-        ? {	
-          presence: true,	
-          accordion: { validator: offense },	
-        } : {}	
-    ),	
-  }	
+    HasOffenses: { presence: true, hasValue: { validator: hasYesOrNo } },
+    List: (value, attributes) => (
+      checkValue(attributes.HasOffenses, 'Yes')
+        ? {
+          presence: true,
+          accordion: { validator: offense },
+        } : {}
+    ),
+  }
 
-  return validateModel(data, policeOffensesModel, { ...options, ...modelOptions })	
+  return validateModel(data, policeOffensesModel, { ...options, ...modelOptions })
 }

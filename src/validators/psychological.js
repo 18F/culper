@@ -1,5 +1,3 @@
-import { allHaveStatus, anyHasStatus } from './helpers'
-
 const defaultPsychologicalState = {
   Competence: null,
   Consultation: null,
