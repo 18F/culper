@@ -15,7 +15,6 @@ import { IDENTIFICATION, IDENTIFICATION_CONTACTS } from 'config/formSections/ide
 
 import connectSubsection from 'components/Section/shared/SubsectionConnector'
 import Subsection from 'components/Section/shared/Subsection'
-import Generic from '../../../Form/Generic'
 
 
 const sectionConfig = {
