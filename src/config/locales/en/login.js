@@ -51,7 +51,7 @@ export const login = {
   token: {
     heading: 'Questionnaire for National Background Investigation Services',
     title: 'For security reasons you have been logged out',
-    saved: 'Your data was saved 1 minute prior to logout at {time}.',
+    saved: 'Your data was saved 1 minute prior to logout at {{time}}.',
     para: [
       'This may be due to a slow connection speed and/or inactivity. Please log in again to continue.',
     ],
