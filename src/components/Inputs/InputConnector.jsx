@@ -26,10 +26,9 @@ const connectInput = (Component, renderFormField = true) => {
       this.setState({ showHelp: !showHelp })
     }
 
-    handleChange = (event) => {
+    handleChange = (value) => {
       const { name, onChange } = this.props
-      const { value } = event.target
-      onChange({ value, name })
+      onChange(name, value)
     }
 
     handleFocus = () => {

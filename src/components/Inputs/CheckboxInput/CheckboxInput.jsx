@@ -32,8 +32,13 @@ const CheckboxInput = (props) => {
   )
 
   const inputClass = classnames({
-    'usa-input-success': !disabled && valid,
+    'usa-input-success': valid,
   })
+
+  const handleChange = (e) => {
+    console.log('checkbox handle change', e)
+    onChange(e.target.checked)
+  }
 
   return (
     <div className={divClass}>
@@ -48,7 +53,7 @@ const CheckboxInput = (props) => {
         aria-label={ariaLabel || label}
         disabled={disabled}
         readOnly={readonly}
-        onChange={onChange}
+        onChange={handleChange}
         onFocus={onFocus}
         onBlur={onBlur}
       />

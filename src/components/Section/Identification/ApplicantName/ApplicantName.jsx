@@ -2,6 +2,7 @@ import React from 'react'
 import { i18n } from 'config'
 
 import { Name, Field } from 'components/Form'
+import NameFieldset from 'components/Fieldsets/NameFieldset/NameFieldset'
 
 import {
   IDENTIFICATION,
@@ -44,12 +45,15 @@ export class ApplicantName extends Subsection {
   }
 
   updateName(values) {
+    console.log('Update name', values)
     this.update({
       Name: values,
     })
   }
 
   render() {
+    const { errors } = this.props
+
     const klass = `section-content applicant-name ${this.props.className
       || ''}`.trim()
 
@@ -60,6 +64,15 @@ export class ApplicantName extends Subsection {
         data-subsection={IDENTIFICATION_NAME.key}
       >
         <h1 className="section-header">{i18n.t('identification.destination.name')}</h1>
+
+        <NameFieldset
+          title={i18n.t('identification.name.title')}
+          value={this.props.Name}
+          required={this.props.required}
+          onUpdate={this.updateName}
+          errors={errors}
+        />
+
         <Field
           title={i18n.t('identification.name.title')}
           titleSize="h4"

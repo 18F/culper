@@ -17,6 +17,10 @@ const SelectInput = (props) => {
     { 'usa-input-success': valid }
   )
 
+  const handleChange = (e) => {
+    onChange(e.target.value)
+  }
+
   return (
     <div className={wrapperClasses}>
       <label
@@ -32,7 +36,7 @@ const SelectInput = (props) => {
       <select
         id={uid}
         name={name}
-        onChange={onChange}
+        onChange={handleChange}
         value={value}
         disabled={disabled}
         className={selectClasses}

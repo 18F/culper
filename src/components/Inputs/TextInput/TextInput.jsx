@@ -43,6 +43,10 @@ const TextInput = (props) => {
     if (!clipboard) e.preventDefault()
   }
 
+  const handleChange = (e) => {
+    onChange(e.target.value)
+  }
+
   return (
     <div className={divClass}>
       {label && (
@@ -65,7 +69,7 @@ const TextInput = (props) => {
         autoCorrect={autocorrect}
         autoComplete={autocomplete}
         spellCheck={spellcheck}
-        onChange={onChange}
+        onChange={handleChange}
         onFocus={onFocus}
         onBlur={onBlur}
         onKeyDown={handleKeyDown}

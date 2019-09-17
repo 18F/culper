@@ -1,9 +1,6 @@
 import React from 'react'
 import { i18n } from 'config'
 
-import FormField from 'components/Inputs/FormField/FormField'
-import { ConnectedTextInput } from 'components/Inputs/connectedInputs'
-
 import ValidationElement from '../ValidationElement'
 import Field from '../Field'
 import Show from '../Show'
@@ -144,26 +141,6 @@ export default class Name extends ValidationElement {
     return (
       <div className={klass.join(' ')}>
         {this.props.title && <h2>{this.props.title}</h2>}
-
-        <ConnectedTextInput
-          name="first"
-          label={i18n.t(`${prefix}.label.first`)}
-          helptext={i18n.m('identification.name.first.help.message')}
-          pattern="^[a-zA-Z\-\.' ]*$"
-          minlength={this.props.firstInitialOnly ? 1 : 2}
-          maxlength={maxFirst}
-          className="first"
-          value={this.props.first}
-          onChange={(values) => {
-            this.update({
-              first: values.value,
-            })
-          }}
-          onFocus={this.props.onFocus}
-          onBlur={this.props.onBlur}
-          required={this.props.required}
-          disabled={this.props.disabled}
-        />
 
         <Field
           title={i18n.t(`${prefix}.label.first`)}
