@@ -145,25 +145,25 @@ export default class Name extends ValidationElement {
       <div className={klass.join(' ')}>
         {this.props.title && <h2>{this.props.title}</h2>}
 
-        <FormField className="usa-form-control">
-          <ConnectedTextInput
-            name="first"
-            pattern="^[a-zA-Z\-\.' ]*$"
-            minlength={this.props.firstInitialOnly ? 1 : 2}
-            maxlength={maxFirst}
-            className="first"
-            value={this.props.first}
-            onChange={(values) => {
-              this.update({
-                first: values.value,
-              })
-            }}
-            onFocus={this.props.onFocus}
-            onBlur={this.props.onBlur}
-            required={this.props.required}
-            disabled={this.props.disabled}
-          />
-        </FormField>
+        <ConnectedTextInput
+          name="first"
+          label={i18n.t(`${prefix}.label.first`)}
+          helptext={i18n.m('identification.name.first.help.message')}
+          pattern="^[a-zA-Z\-\.' ]*$"
+          minlength={this.props.firstInitialOnly ? 1 : 2}
+          maxlength={maxFirst}
+          className="first"
+          value={this.props.first}
+          onChange={(values) => {
+            this.update({
+              first: values.value,
+            })
+          }}
+          onFocus={this.props.onFocus}
+          onBlur={this.props.onBlur}
+          required={this.props.required}
+          disabled={this.props.disabled}
+        />
 
         <Field
           title={i18n.t(`${prefix}.label.first`)}

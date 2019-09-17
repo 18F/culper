@@ -1,8 +1,15 @@
+/**
+ * Input requirements
+ * Generic text input (text, email, number, password)
+*/
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
 import { autotab } from 'components/Form/Generic'
+
+// TODO
+// import { getValidationPropsFromModel } from './modelValidations'
 
 const TextInput = (props) => {
   const {
@@ -26,10 +33,14 @@ const TextInput = (props) => {
   const inputClass = classnames({
     'usa-input-focus': !disabled && focus,
     'usa-input-success': !disabled && valid,
-  })
+  }, className)
 
   const handleKeyDown = (e) => {
     autotab(e, maxlength, tabBack, tabNext)
+  }
+
+  const allowClipboard = (e) => {
+    if (!clipboard) e.preventDefault()
   }
 
   return (
@@ -58,14 +69,57 @@ const TextInput = (props) => {
         onFocus={onFocus}
         onBlur={onBlur}
         onKeyDown={handleKeyDown}
+        onCopy={allowClipboard}
+        onCut={allowClipboard}
+        onPaste={allowClipboard}
       />
+      {/* for print CSS */}
       <div className="text-print print-only">{value}</div>
     </div>
   )
 }
 
 TextInput.propTypes = {
+  name: PropTypes.string.isRequired,
+  uid: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  ariaLabel: PropTypes.string,
+  type: PropTypes.oneOf(['text', 'email', 'number', 'password']),
+  value: PropTypes.string,
+  placeholder: PropTypes.string,
+  error: PropTypes.bool,
+  valid: PropTypes.bool,
+  disabled: PropTypes.bool,
+  className: PropTypes.string,
+  clipboard: PropTypes.bool,
+  spellcheck: PropTypes.bool,
+  autocapitalize: PropTypes.bool,
+  autocorrect: PropTypes.bool,
+  autocomplete: PropTypes.bool,
+  readonly: PropTypes.bool,
+  onChange: PropTypes.func,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+}
 
+TextInput.defaultProps = {
+  ariaLabel: null,
+  type: 'text',
+  value: '',
+  placeholder: '',
+  error: false,
+  valid: false,
+  disabled: false,
+  className: '',
+  clipboard: true,
+  spellcheck: true,
+  autocapitalize: true,
+  autocorrect: true,
+  autocomplete: true,
+  readonly: false,
+  onChange: () => {},
+  onFocus: () => {},
+  onBlur: () => {},
 }
 
 export default TextInput
