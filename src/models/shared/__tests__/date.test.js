@@ -76,12 +76,6 @@ describe('The date model', () => {
       expect(validateModel(testData, date, { ...SELF, ...testRequirements }))
         .toEqual(true)
     })
-
-    it('passes an invalid birthdate if confirmed', () => {
-      const testData = { date: TODAY.minus({ years: 200 }) }
-      expect(validateModel(testData, date, { ...SELF, ...testRequirements, confirmed: true }))
-        .toEqual(true)
-    })
   })
 
   describe('with PARENT birthdate limits', () => {
