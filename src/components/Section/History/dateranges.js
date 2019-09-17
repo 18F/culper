@@ -189,7 +189,7 @@ export const validDate = date => {
   }
   const m = parseInt(month || 0)
   const d = parseInt(day || 0)
-  const y = parseInt(year || 0)
+  const y = parseInt(year || -1)
 
   return (
     y >= 0 &&
