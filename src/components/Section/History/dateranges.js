@@ -3,6 +3,7 @@
  * Date object or null.
  */
 export const extractDate = dateObj => {
+  
   if (dateObj instanceof Date) {
     return dateObj
   }
@@ -10,8 +11,10 @@ export const extractDate = dateObj => {
   if (!dateObj || !dateObj.month || !dateObj.day || !dateObj.year) {
     return null
   }
+  var d = new Date(`${dateObj.month}/${dateObj.day}/${dateObj.year}`)
+  d.setFullYear(dateObj.year) // addresses an issue where two digit years are assumed to be in 20th or 21st centry, ex: 99 -> 1999 01 -> 2001
 
-  return new Date(`${dateObj.month}/${dateObj.day}/${dateObj.year}`)
+  return d
 }
 
 /**
@@ -189,7 +192,7 @@ export const validDate = date => {
   const y = parseInt(year || 0)
 
   return (
-    y > 1000 &&
+    y >= 0 &&
     y < 10000 &&
     (m > 0 && m < 13) &&
     (d > 0 && d <= daysInMonth(m, y))
