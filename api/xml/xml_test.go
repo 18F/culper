@@ -369,6 +369,10 @@ func Test85Scenario3(t *testing.T) {
 	executeScenario(t, "SF85", "test3")
 }
 
+func Test85PScenario1(t *testing.T) {
+	executeScenario(t, "SF85P", "test1")
+}
+
 func Test85PScenario2(t *testing.T) {
 	executeScenario(t, "SF85P", "test2")
 }
