@@ -71,21 +71,40 @@ describe('The identification date of birth section', () => {
     expect(validateModel(testData, identifcationDateOfBirth)).toBe(true)
   })
 
-  it('allows an "invalid" birthdate if confirmed', () => {
-    const currentYear = new Date().getFullYear()
+  it('allows an age less than 16 birthdate if confirmed', () => {
     const testData = {
       Date: {
         month: '1',
         day: '1',
-        year: '1900',
+        year: '2018',
         estimated: false,
+        name: "birthdate",
       },
       Confirmed: {
         checked: true,
       }
     }
-    const expectedErrors = ['Date.date.date.datetime.DATE_TOO_LATE']
 
     expect(validateModel(testData, identifcationDateOfBirth)).toBe(true)
   })
+
+  it('requires a birthdate less than 100 years and 1 day even if confirmed', () => {
+    const testData = {
+      Date: {
+        month: '1',
+        day: '1',
+        year: '1905',
+        estimated: false,
+        name: "birthdate",
+      },
+      Confirmed: {
+        checked: true,
+      }
+    }
+    const expectedErrors = ['Date.date.date.datetime.DATE_TOO_EARLY']
+
+    expect(validateModel(testData, identifcationDateOfBirth))
+      .toEqual(expect.arrayContaining(expectedErrors))
+  })
+
 })

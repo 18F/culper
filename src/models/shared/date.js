@@ -1,3 +1,5 @@
+import { DateTime, Duration } from 'luxon'
+
 const date = {
   day: (value, attributes, attributeName, options) => (
     options && options.requireDay
@@ -17,18 +19,27 @@ const date = {
   date: {
     presence: true,
     datetime: (value, attributes, attributeName, options) => {
-      // return true if confirmed
-      if (options.confirmed)
-        return true
 
       if (options && (options.earliest || options.latest)) {
         const { earliest, latest } = options
         const constraints = {}
 
-        if (earliest) constraints.earliest = earliest
-        if (latest) constraints.latest = latest
+        if (options.confirmed) {
+          //special case for birthdates, only return the max age constraint
+          if (value.name === "birthdate") {
+            if (earliest) constraints.earliest = earliest
 
-        return constraints
+            return constraints
+          }
+
+          return true
+        }
+        else {
+          if (earliest) constraints.earliest = earliest
+          if (latest) constraints.latest = latest
+
+          return constraints
+        }
       }
 
       return true
