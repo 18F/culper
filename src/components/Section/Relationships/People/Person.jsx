@@ -76,12 +76,16 @@ export default class Person extends React.Component {
       // Add the new relationship
       selected.push(relations)
     }
-
-    this.update({
+    const updateObj = {
       Relationship: {
         values: selected,
       },
-    })
+    }
+
+    if (relations === 'Other') {
+      updateObj.RelationshipOther = {}
+    }
+    this.update(updateObj)
   }
 
   updateRelationshipOther = (values) => {
