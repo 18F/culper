@@ -9,7 +9,8 @@ import {
 } from 'components/Inputs/connectedInputs'
 
 import nameModel from 'models/shared/name'
-import { getEffectiveModel } from 'helpers/validation'
+import { getEffectiveModel, getValidationPropsFromModel } from 'helpers/validation'
+import { REQUIRED } from 'constants/errors'
 
 const NameFieldset = (props) => {
   const {
@@ -37,7 +38,6 @@ const NameFieldset = (props) => {
   ]
 
   const onChange = (name, newValue) => {
-    console.log('on change', name, newValue)
     onUpdate({
       ...value,
       [`${name}`]: newValue,
@@ -55,7 +55,28 @@ const NameFieldset = (props) => {
     onChange,
   }
 
+  const errorPrefix = 'Name.model'
   const effectiveNameModel = getEffectiveModel(nameModel, value)
+
+  const validationProps = {}
+
+  // Filter out "required" errors unless fieldset is required (on review page)
+  const filteredErrors = required
+    ? errors
+    : errors.filter(e => e.indexOf(`presence.${REQUIRED}`) < 0)
+
+  Object.keys(effectiveNameModel).forEach((field) => {
+    const fieldModel = getEffectiveModel(effectiveNameModel[field], value)
+    const fieldErrors = errors.filter(e => e.indexOf(`${errorPrefix}.${field}`) === 0)
+    const filteredFieldErrors = filteredErrors.filter(e => e.indexOf(`${errorPrefix}.${field}`) === 0)
+
+    validationProps[field] = {
+      ...getValidationPropsFromModel(fieldModel),
+      errors: filteredFieldErrors,
+      error: filteredFieldErrors && filteredFieldErrors.length > 0,
+      valid: !fieldErrors || fieldErrors.length < 1,
+    }
+  })
 
   const firstInitialOnlyCheckbox = (
     <div className="modifier">
@@ -65,6 +86,7 @@ const NameFieldset = (props) => {
         inputId="firstInitialOnly"
         name="firstInitialOnly"
         {...inputProps}
+        {...validationProps.firstInitialOnly}
       />
     </div>
   )
@@ -77,6 +99,7 @@ const NameFieldset = (props) => {
         inputId="middleInitialOnly"
         name="middleInitialOnly"
         {...inputProps}
+        {...validationProps.middleInitialOnly}
       />
     </div>
   )
@@ -89,6 +112,7 @@ const NameFieldset = (props) => {
         inputId="noMiddleName"
         name="noMiddleName"
         {...inputProps}
+        {...validationProps.noMiddleName}
       />
     </div>
   )
@@ -103,9 +127,8 @@ const NameFieldset = (props) => {
         helptext={i18n.m('identification.name.first.help.message')}
         value={first}
         {...inputProps}
+        {...validationProps.first}
         modifiers={firstInitialOnlyCheckbox}
-        model={getEffectiveModel(effectiveNameModel.first, value)}
-        errors={errors.filter(e => e.indexOf('first') > -1)}
       />
 
       {!hideMiddleName && (
@@ -114,8 +137,7 @@ const NameFieldset = (props) => {
           label={i18n.t(`${prefix}.label.middle`)}
           value={middle}
           {...inputProps}
-          model={getEffectiveModel(effectiveNameModel.middle, value)}
-          errors={errors.filter(e => e.indexOf('middle') > -1)}
+          {...validationProps.middle}
           disabled={noMiddleName}
           modifiers={(
             <span>
@@ -131,17 +153,17 @@ const NameFieldset = (props) => {
         label={i18n.t(`${prefix}.label.last`)}
         value={last}
         {...inputProps}
-        model={getEffectiveModel(effectiveNameModel.last, value)}
-        errors={errors.filter(e => e.indexOf('last') > -1)}
+        {...validationProps.last}
       />
 
       <ConnectedSelectFormField
         name="suffix"
         label={i18n.t(`${prefix}.label.suffix`)}
         value={suffix}
-        optional
+        optional={true}
         className="option-list suffix usa-small-input"
         {...inputProps}
+        {...validationProps.suffix}
         options={suffixOptions}
       />
 
@@ -151,6 +173,7 @@ const NameFieldset = (props) => {
           label={i18n.t(`${prefix}.label.other`)}
           value={suffixOther}
           {...inputProps}
+          {...validationProps.suffixOther}
         />
       )}
 

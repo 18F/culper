@@ -8,9 +8,6 @@ import classnames from 'classnames'
 
 import { autotab } from 'components/Form/Generic'
 
-// TODO
-// import { getValidationPropsFromModel } from './modelValidations'
-
 const TextInput = (props) => {
   const {
     label, uid, name, type, placeholder, ariaLabel, disabled, error, maxlength,

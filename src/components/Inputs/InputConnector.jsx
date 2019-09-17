@@ -5,6 +5,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { newGuid } from 'components/Form/ValidationElement/helpers'
+
 import FormField from './FormField/FormField'
 import styles from './FormField/FormField.module.scss'
 
@@ -13,7 +15,8 @@ const connectInput = (Component, renderFormField = true) => {
     constructor(props) {
       super(props)
 
-      this.uid = ''
+      // TODO - newGuid should be replaced with a library for generating uuids
+      this.uid = newGuid()
 
       this.state = {
         focus: false,
