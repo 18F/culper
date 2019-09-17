@@ -246,39 +246,5 @@ describe('The relationship status component', () => {
         )}`
       )
     })
-
-    it('with bad data - where the year divorced is before the year entered into civil union', () => {
-      const props = {
-        ...divorcedDatesSetup,
-        DivorcedList: {
-          items: [
-            {
-              Item: {
-                ...divorcedDatesSetup.DivorcedList.items[0].Item,
-                DateDivorced: {
-                  estimated: false,
-                  day: '1',
-                  month: '1',
-                  name: 'DateDivorced',
-                  year: '1000',
-                },
-              },
-            },
-          ],
-        },
-        valid: false,
-      }
-
-      const component = createComponent(props)
-      expect(
-        component
-          .find('.error-messages [data-i18n="error.date.year.min"]')
-          .text()
-      ).toEqual(
-        `${i18n.t('error.date.year.min.title')}${i18n.t(
-          'error.date.year.min.message'
-        )}`
-      )
-    })
   })
 })
