@@ -55,7 +55,6 @@ export default class ForeignBornDocuments extends ValidationElement {
   }
 
   updateDocumentExpiration(values) {
-    // console.log("Here", values)
     this.update({
       DocumentExpiration: values,
     })
@@ -347,7 +346,7 @@ ForeignBornDocuments.defaultProps = {
   DocumentType: {},
   OtherExplanation: {},
   DocumentNumber: {},
-  DocumentExpiration: { noMaxDate = true},
+  DocumentExpiration: { },
   DocumentExpirationNotApplicable: { applicable: true },
   onUpdate: () => {},
   onError: (value, arr) => arr,
