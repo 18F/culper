@@ -10,17 +10,18 @@ describe('The education component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <EducationItem {...expected} />
         </Provider>
       )
+    )
   })
 
   it('no error on empty', () => {
     const expected = {
-      name: 'education'
+      name: 'education',
     }
     const component = createComponent(expected)
     expect(component.find('.education').length).toEqual(1)
@@ -29,7 +30,7 @@ describe('The education component', () => {
 
   it('should ask if they attended school in last 10 years', () => {
     const expected = {
-      name: 'education'
+      name: 'education',
     }
     const component = createComponent(expected)
     expect(component.find('.education').length).toEqual(1)
@@ -43,14 +44,14 @@ describe('The education component', () => {
         from: {
           month: '1',
           day: '1',
-          year: '2015'
+          year: '2015',
         },
         to: {
           month: `${new Date().getMonth() + 1}`,
           day: `${new Date().getDate()}`,
-          year: `${new Date().getFullYear()}`
-        }
-      }
+          year: `${new Date().getFullYear()}`,
+        },
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.reference').length).toEqual(1)
@@ -69,20 +70,20 @@ describe('The education component', () => {
               Date: {
                 month: `${new Date().getMonth() + 1}`,
                 day: `${new Date().getDate()}`,
-                year: `${new Date().getFullYear()}`
-              }
-            }
+                year: `${new Date().getFullYear()}`,
+              },
+            },
           },
           {
             Item: {
               Has: { value: 'Yes' },
               Diploma: 'High School Diploma',
               DiplomaOther: '',
-              Date: {}
-            }
-          }
-        ]
-      }
+              Date: {},
+            },
+          },
+        ],
+      },
     }
     const component = createComponent(expected)
     expect(component.find('.diploma').length).toEqual(2)
@@ -92,7 +93,7 @@ describe('The education component', () => {
     const expected = {
       name: 'education',
       HasAttended: { value: 'Yes' },
-      HasDegree: { value: 'No' }
+      HasDegree: { value: 'No' },
     }
     const component = createComponent(expected)
     expect(component.find('.diploma').length).toEqual(0)
@@ -110,28 +111,28 @@ describe('The education component', () => {
           {
             Item: {
               Has: { value: 'Yes' },
-              Diploma: { value: 'Other' }
-            }
-          }
-        ]
+              Diploma: { value: 'Other' },
+            },
+          },
+        ],
       },
       Dates: {
         from: {
           month: '1',
           day: '1',
           year: '2010',
-          present: false
+          present: false,
         },
         to: {
           month: `${today.getMonth() + 1}`,
           day: `${today.getDate()}`,
           year: `${today.getFullYear()}`,
-          present: true
-        }
+          present: true,
+        },
       },
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     component
@@ -161,6 +162,15 @@ describe('The education component', () => {
       .find('.other input')
       .at(0)
       .simulate('change', { target: { name: 'DiplomaOther', value: 'Other' } })
-    expect(updates).toEqual(8)
+    component
+      .find('input[name="ReferenceNameNotApplicable"]')
+      .simulate('change', { target: { name: 'ReferenceNameNotApplicable', value: true } })
+    component
+      .find('input[name="ReferenceEmail"]')
+      .simulate('change', { target: { name: 'ReferenceNameNotApplicable', value: 'test@test.com' } })
+    component
+      .find('input[name="ReferenceEmailNotApplicable"]')
+      .simulate('change', { target: { name: 'ReferenceNameNotApplicable', value: true } })
+    expect(updates).toEqual(11)
   })
 })
