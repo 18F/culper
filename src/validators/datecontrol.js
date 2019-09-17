@@ -4,14 +4,14 @@ import {
   extractDate,
   today,
   daysAgo,
-  validDate
+  validDate,
 } from '../components/Section/History/dateranges'
 
 export const getContext = () => {
   const state = store.getState()
   const app = state.application || {}
   return {
-    applicantBirthdate: extractApplicantBirthdate(app)
+    applicantBirthdate: extractApplicantBirthdate(app),
   }
 }
 

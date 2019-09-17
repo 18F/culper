@@ -1,10 +1,6 @@
 import { validateModel, hasYesOrNo } from 'models/validate'
 import drugOrderedTreatment from 'models/drugOrderedTreatment'
 
-export const validateDrugOrderedTreatment = data => (
-  validateModel(data, drugOrderedTreatment)
-)
-
 export const validateDrugOrderedTreatments = (data, formType, options = {}) => {
   const drugOrderedTreatmentsModel = {
     TreatmentOrdered: { presence: true, hasValue: { validator: hasYesOrNo } },
@@ -18,31 +14,4 @@ export const validateDrugOrderedTreatments = (data, formType, options = {}) => {
   }
 
   return validateModel(data, drugOrderedTreatmentsModel, options)
-}
-
-export default class DrugOrderedTreatmentsValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  isValid() {
-    return validateDrugOrderedTreatments(this.data) === true
-  }
-}
-
-export class DrugOrderedTreatmentValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  validTreatmentCompleted() {
-    return validateModel(this.data, {
-      TreatmentCompleted: drugOrderedTreatment.TreatmentCompleted,
-      NoTreatmentExplanation: drugOrderedTreatment.NoTreatmentExplanation,
-    }) === true
-  }
-
-  isValid() {
-    return validateDrugOrderedTreatment(this.data) === true
-  }
 }

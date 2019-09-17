@@ -20,18 +20,3 @@ export const validatePeople = (data, formType, options = {}) => {
 
   return validateModel(data, peopleModel, options)
 }
-
-export default class PeopleValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  validCount() {
-    // Return number of items that pass the person validator
-    return this.data.List.items.filter(i => i && i.Item && validateModel(i.Item, person)).length
-  }
-
-  isValid() {
-    return validatePeople(this.data) === true
-  }
-}

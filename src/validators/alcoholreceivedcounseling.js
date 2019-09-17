@@ -44,38 +44,3 @@ export const validateReceivedCounselings = (data, formType, options = {}) => {
 
   return validateModel(modelData, receivedCounselingsModel, options)
 }
-
-export default class ReceivedCounselingsValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  isValid() {
-    return validateReceivedCounselings(this.data) === true
-  }
-}
-
-export class ReceivedCounselingValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  validCompletedTreatment() {
-    return validateModel(this.data, {
-      CompletedTreatment: alcoholReceivedCounseling.CompletedTreatment,
-      NoCompletedTreatmentExplanation: alcoholReceivedCounseling.NoCompletedTreatmentExplanation,
-    }) === true
-  }
-
-  validAddress() {
-    return validateModel(this.data, {
-      TreatmentProviderAddress: alcoholReceivedCounseling.TreatmentProviderAddress,
-      UseSameAddress: alcoholReceivedCounseling.UseSameAddress,
-      AgencyAddress: alcoholReceivedCounseling.AgencyAddress,
-    }) === true
-  }
-
-  isValid() {
-    return validateReceivedCounseling(this.data) === true
-  }
-}

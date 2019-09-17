@@ -62,27 +62,3 @@ export const validateMarital = (data, formType, options = {}) => {
   }
   return validateModel(data, maritalModel, { ...options, ...modelOptions })
 }
-
-export default class MaritalValidator {
-  constructor(data = {}) {
-    const state = store.getState()
-    const { formType } = state.application.Settings
-
-    this.data = data
-    this.formType = formType
-  }
-
-  validStatus() {
-    return validateModel(this.data, { Status: maritalModel.Status }) === true
-  }
-
-  validDivorce() {
-    return validateModel(this.data, {
-      DivorcedList: maritalModel.DivorcedList,
-    }) === true
-  }
-
-  isValid() {
-    return validateMarital(this.data, this.formType) === true
-  }
-}

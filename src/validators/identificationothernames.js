@@ -9,16 +9,3 @@ export const validateOtherName = data => (
 export const validateOtherNames = (data, formType, options = {}) => (
   validateModel(data, identificationOtherNames, options)
 )
-
-/**
- * Validates a single instance of an other name
- */
-export class OtherNameValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  isValid() {
-    return validateOtherName(this.data) === true
-  }
-}

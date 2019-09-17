@@ -21,13 +21,3 @@ export const validateForeignBenefitActivity = (data, formType, options = {}) => 
 
   return validateModel(data, foreignBenefitActivityModel, options)
 }
-
-export default class ForeignBenefitActivityValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  isValid() {
-    return validateForeignBenefitActivity(this.data) === true
-  }
-}

@@ -19,30 +19,3 @@ export const validateVoluntaryCounselings = (data, formType, options = {}) => {
 
   return validateModel(data, voluntaryCounselingsModel, options)
 }
-
-export default class VoluntaryCounselingsValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  isValid() {
-    return validateVoluntaryCounselings(this.data) === true
-  }
-}
-
-export class VoluntaryCounselingValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  validCompletedTreatment() {
-    return validateModel(this.data, {
-      CompletedTreatment: alcoholVoluntaryCounseling.CompletedTreatment,
-      NoCompletedTreatmentExplanation: alcoholVoluntaryCounseling.NoCompletedTreatmentExplanation,
-    }) === true
-  }
-
-  isValid() {
-    return validateVoluntaryCounseling(this.data) === true
-  }
-}

@@ -1,4 +1,3 @@
-import store from 'services/store'
 import { validateModel, hasYesOrNo, checkValue } from 'models/validate'
 import offense from 'models/offense'
 import {
@@ -14,7 +13,7 @@ export const validatePoliceOffenses = (data, formType, options = {}) => {
     requireLegalOffenseIncarcerated: requireLegalOffenseIncarcerated(formType),
   }
 
-  const policeOffensesModel = {
+  const policeOffensesModel = {	
     HasOffenses: { presence: true, hasValue: { validator: hasYesOrNo } },
     List: (value, attributes) => (
       checkValue(attributes.HasOffenses, 'Yes')
@@ -26,17 +25,4 @@ export const validatePoliceOffenses = (data, formType, options = {}) => {
   }
 
   return validateModel(data, policeOffensesModel, { ...options, ...modelOptions })
-}
-
-export default class PoliceOffensesValidator {
-  constructor(data = {}) {
-    const state = store.getState()
-    const { formType } = state.application.Settings
-    this.data = data
-    this.formType = formType
-  }
-
-  isValid() {
-    return validatePoliceOffenses(this.data, this.formType) === true
-  }
 }
