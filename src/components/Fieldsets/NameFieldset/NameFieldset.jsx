@@ -10,7 +10,6 @@ import {
 
 import nameModel from 'models/shared/name'
 import { getEffectiveModel, getValidationPropsFromModel } from 'helpers/validation'
-import { REQUIRED } from 'constants/errors'
 
 const NameFieldset = (props) => {
   const {
@@ -60,21 +59,13 @@ const NameFieldset = (props) => {
 
   const validationProps = {}
 
-  // Filter out "required" errors unless fieldset is required (on review page)
-  const filteredErrors = required
-    ? errors
-    : errors.filter(e => e.indexOf(`presence.${REQUIRED}`) < 0)
-
   Object.keys(effectiveNameModel).forEach((field) => {
     const fieldModel = getEffectiveModel(effectiveNameModel[field], value)
     const fieldErrors = errors.filter(e => e.indexOf(`${errorPrefix}.${field}`) === 0)
-    const filteredFieldErrors = filteredErrors.filter(e => e.indexOf(`${errorPrefix}.${field}`) === 0)
 
     validationProps[field] = {
-      ...getValidationPropsFromModel(fieldModel),
-      errors: filteredFieldErrors,
-      error: filteredFieldErrors && filteredFieldErrors.length > 0,
-      valid: !fieldErrors || fieldErrors.length < 1,
+      ...getValidationPropsFromModel(fieldModel, required),
+      errors: fieldErrors,
     }
   })
 

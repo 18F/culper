@@ -383,10 +383,8 @@ export const getEffectiveModel = (model, attributes, options = {}) => {
     const constraint = constraints[i] // attributeName
     const constraintValue = model[constraint] // validation function
     if (validate.isFunction(constraintValue)) {
-      console.log('constraint function', constraint)
       const value = attributes[constraint] // attribute value
       effectiveModel[constraint] = constraintValue(value, attributes, constraint, options)
-      console.log('result', effectiveModel[constraint])
       break
     }
 
@@ -398,7 +396,7 @@ export const getEffectiveModel = (model, attributes, options = {}) => {
 
 // Input is a validate.js constraints object
 // Return object representing props that handle native validation
-export const getValidationPropsFromModel = (model = {}) => {
+export const getValidationPropsFromModel = (model = {}, required = true) => {
   const props = {}
 
   const constraints = Object.keys(model)
@@ -406,7 +404,7 @@ export const getValidationPropsFromModel = (model = {}) => {
     const constraint = constraints[i]
     switch (constraint) {
       case 'presence':
-        props.required = model[constraint]
+        if (required) props.required = model[constraint]
         break
 
       case 'format':

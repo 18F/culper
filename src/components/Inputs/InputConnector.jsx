@@ -6,6 +6,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { newGuid } from 'components/Form/ValidationElement/helpers'
+import { REQUIRED } from 'constants/errors'
 
 import FormField from './FormField/FormField'
 import styles from './FormField/FormField.module.scss'
@@ -42,12 +43,40 @@ const connectInput = (Component, renderFormField = true) => {
       this.setState({ focus: false })
     }
 
+    showErrors = () => {
+      // Only show required error if required prop is true
+      // Otherwise only show other errors if there is no required error (invalid value)
+      const { errors, required } = this.props
+      if (required) return true
+      return errors.filter(e => e.indexOf(`presence.${REQUIRED}`) > -1).length < 1
+    }
+
+    filterErrors = () => {
+      // If there's a required error, show only that
+      // Otherwise show the rest of the errors
+      const { errors } = this.props
+      const requiredError = errors.filter(e => e.indexOf(`presence.${REQUIRED}`) > -1)
+      if (requiredError.length) return requiredError
+      return errors
+    }
+
     render() {
+      const { errors } = this.props
+
+      const showErrors = this.showErrors()
+
+      const errorProps = {
+        errors: showErrors && this.filterErrors(),
+        valid: !errors || errors.length < 1,
+        error: showErrors && errors.length > 0,
+      }
+
       const inputComponent = (
         <Component
           uid={this.uid}
           {...this.props}
           {...this.state}
+          {...errorProps}
           onChange={this.handleChange}
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
@@ -61,6 +90,7 @@ const connectInput = (Component, renderFormField = true) => {
           <FormField
             {...this.props}
             {...this.state}
+            {...errorProps}
             inputId={this.uid}
             showHelp={showHelp}
             toggleHelp={this.toggleHelp}
@@ -81,11 +111,15 @@ const connectInput = (Component, renderFormField = true) => {
     name: PropTypes.string.isRequired,
     onChange: PropTypes.func,
     modifiers: PropTypes.array,
+    errors: PropTypes.array,
+    required: PropTypes.bool,
   }
 
   ConnectedInput.defaultProps = {
     modifiers: [],
     onChange: () => {},
+    errors: [],
+    required: false,
   }
 
   return ConnectedInput
