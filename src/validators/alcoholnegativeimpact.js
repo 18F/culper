@@ -1,20 +1,7 @@
-import { validateModel, hasYesOrNo } from 'models/validate'
-import alcoholNegativeImpact from 'models/alcoholNegativeImpact'
+/* eslint-disable import/prefer-default-export */
+import { validateModel } from 'models/validate'
+import substanceAlcoholNegativeImpactsModel from 'models/sections/substanceAlcoholNegativeImpacts'
 
-export const validateNegativeImpact = data => (
-  validateModel(data, alcoholNegativeImpact)
+export const validateNegativeImpacts = (data, formType, options = {}) => (
+  validateModel(data, substanceAlcoholNegativeImpactsModel, options)
 )
-
-export const validateNegativeImpacts = (data, formType, options = {}) => {
-  const negativeImpactsModel = {
-    HasImpacts: { presence: true, hasValue: { validator: hasYesOrNo } },
-    List: (value, attributes) => {
-      if (attributes.HasImpacts && attributes.HasImpacts.value === 'Yes') {
-        return { presence: true, accordion: { validator: alcoholNegativeImpact } }
-      }
-      return {}
-    },
-  }
-
-  return validateModel(data, negativeImpactsModel, options)
-}
