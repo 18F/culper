@@ -161,104 +161,43 @@ describe('The offense model', () => {
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('the ChargeType field is required', () => {
+  it('the Charges field is required', () => {
     const testData = {}
-    const expectedErrors = ['ChargeType.presence.REQUIRED']
+    const expectedErrors = ['Charges.presence.REQUIRED']
 
     expect(validateModel(testData, offense))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('the ChargeType field must have a valid value', () => {
+  it('the Charges field must have at least one item', () => {
     const testData = {
-      ChargeType: { value: 'Test' },
+      Charges: { items: [] },
     }
-    const expectedErrors = ['ChargeType.hasValue.value.inclusion.INCLUSION']
+    const expectedErrors = ['Charges.accordion.MISSING_ITEMS']
 
     expect(validateModel(testData, offense))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('the CourtCharge field is required', () => {
-    const testData = {}
-    const expectedErrors = ['CourtCharge.presence.REQUIRED']
-
-    expect(validateModel(testData, offense))
-      .toEqual(expect.arrayContaining(expectedErrors))
-  })
-
-  it('the CourtCharge field must have a value', () => {
-    const testData = {
-      CourtCharge: 'invalid',
-    }
-    const expectedErrors = ['CourtCharge.hasValue.MISSING_VALUE']
-
-    expect(validateModel(testData, offense))
-      .toEqual(expect.arrayContaining(expectedErrors))
-  })
-
-  it('the CourtOutcome field is required', () => {
-    const testData = {}
-    const expectedErrors = ['CourtOutcome.presence.REQUIRED']
-
-    expect(validateModel(testData, offense))
-      .toEqual(expect.arrayContaining(expectedErrors))
-  })
-
-  it('the CourtOutcome field must have a value', () => {
-    const testData = {
-      CourtOutcome: [],
-    }
-    const expectedErrors = ['CourtOutcome.hasValue.MISSING_VALUE']
-
-    expect(validateModel(testData, offense))
-      .toEqual(expect.arrayContaining(expectedErrors))
-  })
-
-  it('the CourtDate field is required', () => {
-    const testData = {}
-    const expectedErrors = ['CourtDate.presence.REQUIRED']
-
-    expect(validateModel(testData, offense))
-      .toEqual(expect.arrayContaining(expectedErrors))
-  })
-
-  it('the CourtDate field must be a valid date', () => {
-    const testData = {
-      CourtDate: { year: 3000, month: 13, day: 2 },
-    }
-    const expectedErrors = ['CourtDate.date.date.datetime.INVALID_DATE']
-
-    expect(validateModel(testData, offense))
-      .toEqual(expect.arrayContaining(expectedErrors))
-  })
-
-  it('CourtDate cannot be before applicant birthdate', () => {
+  it('Charges items must be valid', () => {
     const applicantBirthdate = { month: 1, day: 2, year: 1980 }
     const testData = {
-      CourtDate: { month: 1, year: 1970, day: 2 },
+      Charges: {
+        items: [
+          {
+            Item: {
+              ChargeType: { value: 'Felony' },
+              CourtCharge: { value: 'My charges' },
+              CourtOutcome: { value: 'The outcome' },
+              CourtDate: { month: 1, year: 1970, day: 2 },
+            },
+          },
+        ],
+      },
     }
+    const expectedErrors = ['Charges.accordion.0.CourtDate.date.date.datetime.DATE_TOO_EARLY']
 
-    const expectedErrors = [
-      'CourtDate.date.date.datetime.DATE_TOO_EARLY',
-    ]
-
-    expect(validateModel(testData, offense, {
-      applicantBirthdate,
-    }))
-      .toEqual(expect.arrayContaining(expectedErrors))
-  })
-
-  it('CourtDate cannot be in the future', () => {
-    const testData = {
-      CourtDate: { month: 1, year: 2050, day: 2 },
-    }
-
-    const expectedErrors = [
-      'CourtDate.date.date.datetime.DATE_TOO_LATE',
-    ]
-
-    expect(validateModel(testData, offense))
+    expect(validateModel(testData, offense, { applicantBirthdate }))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
@@ -352,10 +291,18 @@ describe('The offense model', () => {
           zipcode: '10022',
           country: { value: 'United States' },
         },
-        ChargeType: { value: 'Felony' },
-        CourtCharge: { value: 'My charges' },
-        CourtOutcome: { value: 'The outcome' },
-        CourtDate: { year: 2017, day: 3, month: 12 },
+        Charges: {
+          items: [
+            {
+              Item: {
+                ChargeType: { value: 'Felony' },
+                CourtCharge: { value: 'My charges' },
+                CourtOutcome: { value: 'The outcome' },
+                CourtDate: { year: 2017, day: 3, month: 12 },
+              },
+            },
+          ],
+        },
         WasSentenced: { value: 'Yes' },
         Sentence: {
           Description: { value: 'Something' },
@@ -444,10 +391,18 @@ describe('The offense model', () => {
           zipcode: '10022',
           country: { value: 'United States' },
         },
-        ChargeType: { value: 'Felony' },
-        CourtCharge: { value: 'My charges' },
-        CourtOutcome: { value: 'The outcome' },
-        CourtDate: { year: 2017, day: 3, month: 12 },
+        Charges: {
+          items: [
+            {
+              Item: {
+                ChargeType: { value: 'Felony' },
+                CourtCharge: { value: 'My charges' },
+                CourtOutcome: { value: 'The outcome' },
+                CourtDate: { year: 2017, day: 3, month: 12 },
+              },
+            },
+          ],
+        },
         WasSentenced: { value: 'No' },
         AwaitingTrial: { value: 'Yes' },
         AwaitingTrialExplanation: { value: 'Something' },
