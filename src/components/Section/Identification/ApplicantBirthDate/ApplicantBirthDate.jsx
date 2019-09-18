@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from 'config'
-import { DateTime } from 'luxon'
+import { TODAY } from 'constants/dateLimit'
 import {
   Field, DateControl, Show, Checkbox,
 } from 'components/Form'
@@ -170,7 +170,7 @@ export class ApplicantBirthDate extends Subsection {
     )
   }
 }
-const TODAY = DateTime.local()
+
 ApplicantBirthDate.defaultProps = {
   Date: {},
   Confirmed: {},
