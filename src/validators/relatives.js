@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import { validateModel } from 'models/validate'
 import relative from 'models/relative'
 
@@ -9,19 +10,6 @@ import {
   requireRelationshipRelativesForeignBornDoc,
   requireRelationshipRelativesUSResidenceDoc,
 } from 'helpers/branches'
-
-export const validateRelative = (data, formType) => (
-  validateModel(
-    data,
-    relative,
-    {
-      requireRelationshipRelativesForeignBornDoc:
-        requireRelationshipRelativesForeignBornDoc(formType),
-      requireRelationshipRelativesUSResidenceDoc:
-        requireRelationshipRelativesUSResidenceDoc(formType),
-    },
-  )
-)
 
 export const validateRelatives = (data, formType, options = {}) => {
   const { maritalStatus } = options

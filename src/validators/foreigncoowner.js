@@ -1,4 +1,4 @@
-import { validateModel } from 'models/validate'
+/* eslint-disable import/prefer-default-export */
 import foreignCoOwner from 'models/shared/foreignCoOwner'
 
 export const foreignCoOwnersModel = {

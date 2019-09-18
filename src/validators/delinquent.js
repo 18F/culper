@@ -1,7 +1,7 @@
+/* eslint-disable import/prefer-default-export */
 import { validateModel, hasYesOrNo } from 'models/validate'
 import financialDelinquentPayments from 'models/financialDelinquentPayments'
 
-import * as formTypes from 'constants/formTypes'
 import { requireFinancialDelinquentName, requireFinancialDelinquentInfraction } from 'helpers/branches'
 
 const delinquentItemsModel = {

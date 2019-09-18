@@ -1,6 +1,6 @@
-import store from 'services/store'
+/* eslint-disable import/prefer-default-export */
 import { validateModel } from 'models/validate'
-import militaryForeign, { foreignMilitaryContact } from 'models/militaryForeign'
+import militaryForeign from 'models/militaryForeign'
 import { requireForeignMilitaryMaintainsContact } from 'helpers/branches'
 
 const militaryForeignModel = {

@@ -1,7 +1,6 @@
+/* eslint-disable import/prefer-default-export */
 import { validateModel, hasYesOrNo } from 'models/validate'
 import cohabitant from 'models/cohabitant'
-
-export const validateCohabitant = data => validateModel(data, cohabitant)
 
 export const validateCohabitants = (data, formType, options = {}) => {
   const cohabitantsModel = {

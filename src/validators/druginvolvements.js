@@ -1,5 +1,4 @@
-import store from 'services/store'
-import * as formTypes from 'constants/formTypes'
+/* eslint-disable import/prefer-default-export */
 import {
   requireDrugWhileSafety,
   requireDrugWithClearance,

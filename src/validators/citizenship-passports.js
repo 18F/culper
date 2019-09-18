@@ -1,14 +1,6 @@
+/* eslint-disable import/prefer-default-export */
 import { validateModel } from 'models/validate'
 import foreignPassport from 'models/foreignPassport'
-import foreignPassportTravel from 'models/foreignPassportTravel'
-
-export const validateForeignPassportTravel = data => (
-  validateModel(data, foreignPassportTravel)
-)
-
-export const validateForeignPassport = data => (
-  validateModel(data, foreignPassport)
-)
 
 export const validateCitizenshipPassports = (data, formType, options = {}) => {
   const citizenshipPassportsModel = {

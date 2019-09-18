@@ -1,5 +1,5 @@
+/* eslint-disable import/prefer-default-export */
 import { validateModel } from 'models/validate'
-import employment from 'models/employment'
 import historyEmployment from 'models/sections/historyEmployment'
 import * as formConfig from 'config/forms'
 

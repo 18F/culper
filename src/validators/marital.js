@@ -1,4 +1,4 @@
-import store from 'services/store'
+/* eslint-disable import/prefer-default-export */
 import { validateModel } from 'models/validate'
 import civilUnion from 'models/civilUnion'
 import divorce from 'models/divorce'

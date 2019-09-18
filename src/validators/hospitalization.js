@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import { validateModel, hasYesOrNo } from 'models/validate'
 import hospitalization from 'models/hospitalization'
 
@@ -13,10 +14,6 @@ const hospitalizationsModel = {
     return {}
   },
 }
-
-export const validateHospitalization = data => (
-  validateModel(data, hospitalization)
-)
 
 export const validateHospitalizations = (data, formType, options = {}) => (
   validateModel(data, hospitalizationsModel, options)

@@ -1,4 +1,4 @@
-import store from 'services/store'
+/* eslint-disable import/prefer-default-export */
 import { validateModel, hasYesOrNo } from 'models/validate'
 import investigation from 'models/investigation'
 import { requireLegalInvestigationClearanceGranted } from 'helpers/branches'

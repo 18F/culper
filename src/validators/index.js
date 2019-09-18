@@ -7,7 +7,7 @@ import NameValidator from './name'
 
 import ForeignBornDocumentValidator from './foreignborndocument'
 
-import SelectiveServiceValidator, {
+import {
   hideSelectiveService,
 } from './selectiveservice'
 import LocationValidator from './location'
@@ -28,7 +28,6 @@ export {
   DateRangeValidator,
   ForeignBornDocumentValidator,
   NameValidator,
-  SelectiveServiceValidator,
   LocationValidator,
   SignatureValidator,
   SentenceValidator,

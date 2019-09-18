@@ -1,7 +1,6 @@
-import * as formTypes from 'constants/formTypes'
+/* eslint-disable import/prefer-default-export */
 import { validateModel, hasYesOrNo } from 'models/validate'
 import foreignTravel from 'models/foreignTravel'
-import store from 'services/store'
 import {
   requireForeignCounterIntelligence,
   requireForeignExcessiveKnowledge,
