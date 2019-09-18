@@ -1,7 +1,6 @@
 import { SELF, TODAY } from 'constants/dateLimits'
 import date from '../../models/shared/date'
 import { DateTime } from 'luxon'
-import requireTrue from '../validators/requireTrue'
 
 const identificationDateOfBirth = {
   Date: (value, attributes) => {
@@ -23,10 +22,15 @@ const identificationDateOfBirth = {
       if (age < 16.0)
         return {
           presence: true,
-          /* TODO validate checked property to ensure it is set to true
-          checked: validator here
-          */
+          model: {
+            validator: {
+              checked: {
+                presence: true,
+                requireTrue: true,
+              }
+            }
           }
+        }
       else
         return {}
     }

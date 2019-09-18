@@ -86,7 +86,7 @@ describe('The identification date of birth section', () => {
 
     expect(validateModel(testData, identifcationDateOfBirth)).toBe(true)
   })
-/* TODO validate checked property to ensure it is set to true
+
   it('does not allow an age less than 16 birthdate if confirmed not checked', () => {
     const testData = {
       Date: {
@@ -100,12 +100,12 @@ describe('The identification date of birth section', () => {
       }
     }
 
-    const expectedErrors = ["Date.date.date.datetime.DATE_TOO_LATE"]
+    const expectedErrors = ["Confirmed.model.checked.requireTrue.VALUE_NOT_TRUE"]
 
     expect(validateModel(testData, identifcationDateOfBirth))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
-*/
+
   it('requires a birthdate less than 100 years and 1 day even if confirmed', () => {
     const testData = {
       Date: {
