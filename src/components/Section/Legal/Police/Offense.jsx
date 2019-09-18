@@ -172,9 +172,10 @@ export default class Offense extends ValidationElement {
       requireLegalOffenseInvolvements,
       requireLegalOffenseSentenced,
       requireLegalOffenseIncarcerated,
+      errors,
     } = this.props
 
-    // TODO charges errors
+    const chargesErrors = errors && errors.filter(e => e.indexOf('Charges.accordion') > -1)
 
     return (
       <div className="offense">
@@ -429,6 +430,7 @@ export default class Offense extends ValidationElement {
                 description={i18n.t('legal.police.collection.summary.title')}
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
+                errors={chargesErrors}
               >
                 <Charge
                   name="item"

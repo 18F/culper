@@ -104,7 +104,10 @@ export default class BranchCollection extends React.Component {
       let childProps = {}
       if (React.isValidElement(child)) {
         if (child.props.bind) {
-          const { items, onUpdate, onError } = this.props
+          const {
+            items, onUpdate, onError, errors,
+          } = this.props
+
           const field = item[child.props.name]
           childProps = { ...field }
           childProps.onUpdate = (value) => {
@@ -117,6 +120,10 @@ export default class BranchCollection extends React.Component {
             onUpdate({ items: newItems })
           }
           childProps.onError = onError
+
+          // Add errors to child component
+          const childErrors = errors && errors.filter(e => e.indexOf(item.index) > -1)
+          if (childErrors && childErrors.length) childProps.errors = childErrors
         }
       }
 
@@ -318,6 +325,7 @@ BranchCollection.propTypes = {
   onError: PropTypes.func,
   children: PropTypes.node,
   className: PropTypes.string,
+  errors: PropTypes.array,
 }
 
 BranchCollection.defaultProps = {
@@ -355,6 +363,7 @@ BranchCollection.defaultProps = {
   onError: () => {},
   children: null,
   className: undefined,
+  errors: [],
 }
 
 BranchCollection.errors = []

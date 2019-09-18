@@ -54,11 +54,10 @@ export class OtherOffenses extends Subsection {
     const {
       requireLegalPoliceFirearms,
       requireLegalPoliceDrugs,
-      // errors,
+      errors,
     } = this.props
 
-    // TODO
-    // const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+    const collectionErrors = errors && errors.filter(e => e.indexOf('List.branchCollection') === 0)
 
     return (
       <div
@@ -90,6 +89,7 @@ export class OtherOffenses extends Subsection {
               <li>{i18n.m('legal.police.para.otherOffense.fifth')}</li>
             </ul>
           )}
+          errors={collectionErrors}
         >
           <OtherOffense
             name="Item"

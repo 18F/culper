@@ -45,15 +45,14 @@ export class Offenses extends Subsection {
       requireLegalOffenseInvolvements,
       requireLegalOffenseSentenced,
       requireLegalOffenseIncarcerated,
-      // errors,
+      errors,
     } = this.props
 
     const formTypeConfig = formType && formConfig[formType]
     const years = formTypeConfig && formTypeConfig.LEGAL_POLICE_RECORD_YEARS
     const numberOfYearsString = getNumberOfYearsString(years)
 
-    // TODO
-    // const accordionErrors = errors && errors.filter(e => e.indexOf('List.accordion') === 0)
+    const collectionErrors = errors && errors.filter(e => e.indexOf('List.branchCollection') === 0)
 
     return (
       <div
@@ -87,6 +86,7 @@ export class Offenses extends Subsection {
               <li>{i18n.m('legal.police.label.trial')}</li>
             </ul>
           )}
+          errors={collectionErrors}
         >
           <Offense
             name="Item"
