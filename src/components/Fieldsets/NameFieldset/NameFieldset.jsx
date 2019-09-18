@@ -110,7 +110,7 @@ const NameFieldset = (props) => {
 
   return (
     <fieldset className={classes}>
-      {title && <legend>{title}</legend>}
+      {title && <h2>{title}</h2>}
 
       <ConnectedTextFormField
         name="first"

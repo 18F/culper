@@ -116,7 +116,7 @@ const connectInput = (Component, renderFormField = true) => {
   }
 
   ConnectedInput.defaultProps = {
-    modifiers: [],
+    modifiers: null,
     onChange: () => {},
     errors: [],
     required: false,

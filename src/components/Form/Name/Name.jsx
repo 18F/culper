@@ -1,6 +1,5 @@
 import React from 'react'
 import { i18n } from 'config'
-
 import ValidationElement from '../ValidationElement'
 import Field from '../Field'
 import Show from '../Show'
@@ -141,7 +140,6 @@ export default class Name extends ValidationElement {
     return (
       <div className={klass.join(' ')}>
         {this.props.title && <h2>{this.props.title}</h2>}
-
         <Field
           title={i18n.t(`${prefix}.label.first`)}
           titleSize="label"

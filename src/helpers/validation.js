@@ -395,7 +395,7 @@ export const getEffectiveModel = (model, attributes, options = {}) => {
 }
 
 // Input is a validate.js constraints object
-// Return object representing props that handle native validation
+// Return object representing input attributes that handle native HTML5 validation
 export const getValidationPropsFromModel = (model = {}, required = true) => {
   const props = {}
 
