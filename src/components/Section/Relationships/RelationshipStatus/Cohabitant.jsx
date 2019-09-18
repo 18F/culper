@@ -58,7 +58,7 @@ export default class Cohabitant extends ValidationElement {
     const state = {
       Name: {},
       Birthdate: null,
-      BirthPlace: {country: undefined},
+      BirthPlace: {},
       ForeignBornDocument: null,
       SSN: null,
       OtherNames: null,
