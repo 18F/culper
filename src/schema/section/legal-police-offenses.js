@@ -1,10 +1,12 @@
+/* eslint-disable import/prefer-default-export */
 import * as form from '../form'
 
 export const legalPoliceOffenses = (data = {}) => {
-  const items = ((data.List || {}).items || []).map(x => {
+  const items = ((data.List || {}).items || []).map((x) => {
     const xitem = x.Item || {}
     return {
       Item: {
+        Has: form.branch(xitem.Has),
         Date: form.datecontrol(xitem.Date),
         Description: form.textarea(xitem.Description),
         InvolvedViolence: form.branch(xitem.InvolvedViolence),
@@ -18,19 +20,27 @@ export const legalPoliceOffenses = (data = {}) => {
         Explanation: form.textarea(xitem.Explanation),
         CourtName: form.text(xitem.CourtName),
         CourtAddress: form.location(xitem.CourtAddress),
-        CourtCharge: form.text(xitem.CourtCharge),
-        CourtOutcome: form.text(xitem.CourtOutcome),
-        CourtDate: form.datecontrol(xitem.CourtDate),
-        ChargeType: form.radio(xitem.ChargeType),
+        Charges: form.collection(
+          ((xitem.Charges || {}).items || []).map((y) => {
+            const yItem = y.Item || {}
+            return {
+              Item: {
+                CourtCharge: form.text(yItem.CourtCharge),
+                CourtOutcome: form.text(yItem.CourtOutcome),
+                CourtDate: form.datecontrol(yItem.CourtDate),
+                ChargeType: form.radio(yItem.ChargeType),
+              },
+            }
+          })
+        ),
         WasSentenced: form.branch(xitem.WasSentenced),
         Sentence: form.sentence(xitem.Sentence),
         AwaitingTrial: form.branch(xitem.AwaitingTrial),
-        AwaitingTrialExplanation: form.textarea(xitem.AwaitingTrialExplanation)
-      }
+        AwaitingTrialExplanation: form.textarea(xitem.AwaitingTrialExplanation),
+      },
     }
   })
   return {
-    HasOffenses: form.branch(data.HasOffenses),
-    List: form.collection(items, (data.List || {}).branch)
+    List: form.collection(items, (data.List || {}).branch),
   }
 }
