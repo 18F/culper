@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from 'config'
-import { TODAY } from '../../../../constants/dateLimit'
+import { TODAY } from '../../../../constants/dateLimits'
 import {
   Field, DateControl, Show, Checkbox,
 } from 'components/Form'
