@@ -36,7 +36,6 @@ const CheckboxInput = (props) => {
   })
 
   const handleChange = (e) => {
-    console.log('checkbox handle change', e)
     onChange(e.target.checked)
   }
 

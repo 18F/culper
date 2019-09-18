@@ -115,7 +115,7 @@ const NameFieldset = (props) => {
       <ConnectedTextFormField
         name="first"
         label={i18n.t(`${prefix}.label.first`)}
-        helptext={i18n.m('identification.name.first.help.message')}
+        help="identification.name.first.help"
         value={first}
         {...inputProps}
         {...validationProps.first}
@@ -126,6 +126,7 @@ const NameFieldset = (props) => {
         <ConnectedTextFormField
           name="middle"
           label={i18n.t(`${prefix}.label.middle`)}
+          help="identification.name.middle.help"
           value={middle}
           {...inputProps}
           {...validationProps.middle}
@@ -150,6 +151,7 @@ const NameFieldset = (props) => {
       <ConnectedSelectFormField
         name="suffix"
         label={i18n.t(`${prefix}.label.suffix`)}
+        help="identification.name.suffix.help"
         value={suffix}
         optional={true}
         className="option-list suffix usa-small-input"
@@ -174,16 +176,26 @@ const NameFieldset = (props) => {
 
 NameFieldset.propTypes = {
   value: PropTypes.object,
+  title: PropTypes.node,
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
+  required: PropTypes.bool,
   prefix: PropTypes.string,
   onUpdate: PropTypes.func,
   errors: PropTypes.array,
+  hideMiddleName: PropTypes.bool,
 }
 
 NameFieldset.defaultProps = {
   value: {},
+  title: null,
+  className: null,
+  disabled: false,
+  required: false,
   prefix: 'name',
   onUpdate: () => {},
   errors: [],
+  hideMiddleName: false,
 }
 
 export default NameFieldset

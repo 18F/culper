@@ -1,26 +1,11 @@
-/**
- * Field component requirements:
- * - Wraps a form input
- * - Renders inside of .usa-form-control
- * - Renders an anchor ID so it can be linked to
- * - renders a label
- * - renders help text - displayed as internal state, icon toggle
- * - renders an error message
- * - renders the form input (children?)
- * - render modifiers
- *
- * TODO:
- * - data test ID
- */
-
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
-import i18n from 'util/i18n'
+import FormFieldHelp from './FormFieldHelp'
 
 const FormField = ({
-  title, required, inputId, children, errors, helptext, toggleHelp, showHelp,
+  title, required, inputId, children, errors, help, toggleHelp, showHelp,
   className,
 }) => {
   const classes = classnames(
@@ -48,7 +33,7 @@ const FormField = ({
         </h1>
       )}
 
-      {helptext && toggleHelp && (
+      {help && toggleHelp && (
         <button
           type="button"
           title="Show help"
@@ -60,23 +45,12 @@ const FormField = ({
         </button>
       )}
 
-      {helptext && showHelp && (
+      {help && showHelp && (
         <div className="messages help-messages">
-          <div className="usa-alert usa-alert-info" role="alert">
-            <div className="usa-alert-body">
-              {helptext}
-              {toggleHelp && (
-                <button
-                  type="button"
-                  className="close"
-                  onClick={toggleHelp}
-                  title={i18n.t('help.close')}
-                >
-                  {i18n.t('help.close')}
-                </button>
-              )}
-            </div>
-          </div>
+          <FormFieldHelp
+            id={help}
+            toggle={toggleHelp}
+          />
         </div>
       )}
 
@@ -103,15 +77,25 @@ const FormField = ({
 }
 
 FormField.propTypes = {
-  name: PropTypes.string.isRequired,
+  title: PropTypes.node,
+  required: PropTypes.bool,
+  inputId: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   errors: PropTypes.array,
-  helptext: PropTypes.node,
+  help: PropTypes.string,
+  toggleHelp: PropTypes.func,
+  showHelp: PropTypes.bool,
+  className: PropTypes.string,
 }
 
 FormField.defaultProps = {
+  title: null,
+  required: false,
   errors: [],
-  helptext: null,
+  help: null,
+  toggleHelp: null,
+  showHelp: false,
+  className: null,
 }
 
 export default FormField

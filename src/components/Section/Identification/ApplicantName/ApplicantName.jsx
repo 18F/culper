@@ -45,7 +45,6 @@ export class ApplicantName extends Subsection {
   }
 
   updateName(values) {
-    console.log('Update name', values)
     this.update({
       Name: values,
     })

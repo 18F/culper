@@ -45,14 +45,14 @@ const connectInput = (Component, renderFormField = true) => {
 
     showErrors = () => {
       // Only show required error if required prop is true
-      // Otherwise only show other errors if there is no required error (invalid value)
+      // Otherwise only show other errors if there is no required error (there's an invalid value)
       const { errors, required } = this.props
       if (required) return true
       return errors.filter(e => e.indexOf(`presence.${REQUIRED}`) > -1).length < 1
     }
 
     filterErrors = () => {
-      // If there's a required error, show only that
+      // If there's a required error, only only that
       // Otherwise show the rest of the errors
       const { errors } = this.props
       const requiredError = errors.filter(e => e.indexOf(`presence.${REQUIRED}`) > -1)
