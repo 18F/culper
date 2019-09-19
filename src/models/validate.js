@@ -7,8 +7,6 @@ export const validateModel = (data = {}, model, options) => {
     ? validate(data, model, options)
     : validate(data, model)
 
-  // console.log('validate model', data, model, errors)
-
   if (!errors) return true
 
   return errors
