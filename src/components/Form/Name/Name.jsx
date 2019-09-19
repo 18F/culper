@@ -157,6 +157,7 @@ export default class Name extends ValidationElement {
             minlength={this.props.firstInitialOnly ? 1 : 2}
             maxlength={maxFirst}
             className="first"
+            autocomplete="first-name" 
             value={this.props.first}
             onUpdate={(values) => {
               this.update({
@@ -202,6 +203,7 @@ export default class Name extends ValidationElement {
               minlength={this.props.middleInitialOnly ? 1 : 2}
               maxlength={maxMiddle}
               className="middle"
+              autocomplete="middle-name" 
               value={this.props.middle}
               disabled={this.props.noMiddleName || this.props.disabled}
               onUpdate={(values) => {
@@ -256,6 +258,7 @@ export default class Name extends ValidationElement {
             minlength={1}
             maxlength={maxLast}
             className="last"
+            autocomplete="last-name" 
             pattern="^[a-zA-Z\-\.' ]*$"
             value={this.props.last}
             onUpdate={(values) => {
@@ -315,6 +318,7 @@ export default class Name extends ValidationElement {
               label={i18n.t(`${prefix}.label.other`)}
               maxlength="100"
               className="suffix-other"
+              autocomplete="suffix-other" 
               value={this.props.suffixOther}
               onUpdate={(values) => {
                 this.update({

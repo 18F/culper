@@ -177,24 +177,26 @@ export class Login extends React.Component {
 
     return (
       <div id="basic" className="auth basic">
-        <form onSubmit={this.login}>
-          <div>
+        <form onSubmit={this.login} autocomplete="off">
+          <div aria-label="username">
             <label htmlFor="user">{i18n.t('login.basic.username.label')}</label>
             <input
               id="user"
               name="user"
               type="text"
+              autoComplete="off"
               value={username}
               onChange={this.onUsernameChange}
             />
           </div>
-          <div className={pwClass}>
+          <div className={pwClass} aria-label="password">
             <label htmlFor="password">
               {i18n.t('login.basic.password.label')}
             </label>
             <input
               id="password"
               name="password"
+              autoComplete="off"
               type={showPassword ? 'text' : 'password'}
               value={password}
               onChange={this.onPasswordChange}

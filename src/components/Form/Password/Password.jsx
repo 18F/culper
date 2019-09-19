@@ -33,6 +33,7 @@ export default class Password extends ValidationElement {
         label={this.props.label}
         placeholder={this.props.placeholder}
         type="password"
+        autocomplete="off"
         disabled={this.props.disabled}
         maxlength={this.props.maxlength}
         pattern={this.props.pattern}

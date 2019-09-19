@@ -58,6 +58,7 @@ export default class Text extends ValidationElement {
           placeholder={this.props.placeholder}
           type="text"
           className={this.props.className}
+          autocomplete={this.props.autocomplete}
           disabled={this.props.disabled}
           status={this.props.status}
           minlength={this.props.minlength}
