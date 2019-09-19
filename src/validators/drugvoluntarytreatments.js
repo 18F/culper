@@ -1,17 +1,7 @@
-import { validateModel, hasYesOrNo } from 'models/validate'
-import drugVoluntaryTreatment from 'models/drugVoluntaryTreatment'
+/* eslint-disable import/prefer-default-export */
+import { validateModel } from 'models/validate'
+import substanceDrugVoluntaryTreatmentsModel from 'models/sections/substanceDrugVoluntaryTreatments'
 
-export const validateDrugVoluntaryTreatments = (data, formType, options = {}) => {
-  const drugVoluntaryTreatmentsModel = {
-    TreatmentVoluntary: { presence: true, hasValue: { validator: hasYesOrNo } },
-    List: (value, attributes) => {
-      if (attributes.TreatmentVoluntary
-        && attributes.TreatmentVoluntary.value === 'Yes') {
-        return { presence: true, accordion: { validator: drugVoluntaryTreatment } }
-      }
-      return {}
-    },
-  }
-
-  return validateModel(data, drugVoluntaryTreatmentsModel, options)
-}
+export const validateDrugVoluntaryTreatments = (data, formType, options = {}) => (
+  validateModel(data, substanceDrugVoluntaryTreatmentsModel, options)
+)

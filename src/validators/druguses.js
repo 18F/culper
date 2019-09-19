@@ -5,27 +5,15 @@ import {
   requireDrugInFuture,
 } from 'helpers/branches'
 
-import { validateModel, hasYesOrNo } from 'models/validate'
-import drugUse from 'models/drugUse'
+import { validateModel } from 'models/validate'
+import substanceDrugUsesModel from 'models/sections/substanceDrugUses'
 
 export const validateDrugUses = (data = {}, formType, options = {}) => {
-  const drugUsesModel = {
-    UsedDrugs: { presence: true, hasValue: { validator: hasYesOrNo } },
-    List: (value, attributes) => {
-      if (attributes.UsedDrugs && attributes.UsedDrugs.value === 'Yes') {
-        return {
-          presence: true,
-          accordion: {
-            validator: drugUse,
-            requireUseWhileEmployed: requireDrugWhileSafety(formType),
-            requireUseWithClearance: requireDrugWithClearance(formType),
-            requireUseInFuture: requireDrugInFuture(formType),
-          },
-        }
-      }
-      return {}
-    },
+  const modelOptions = {
+    requireUseWhileEmployed: requireDrugWhileSafety(formType),
+    requireUseWithClearance: requireDrugWithClearance(formType),
+    requireUseInFuture: requireDrugInFuture(formType),
   }
 
-  return validateModel(data, drugUsesModel, options)
+  return validateModel(data, substanceDrugUsesModel, { ...modelOptions, ...options })
 }

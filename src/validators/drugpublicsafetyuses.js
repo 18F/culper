@@ -1,19 +1,7 @@
-import { validateModel, hasYesOrNo } from 'models/validate'
-import drugSafetyUse from 'models/drugSafetyUse'
+/* eslint-disable import/prefer-default-export */
+import { validateModel } from 'models/validate'
+import substanceDrugPublicSafetyUsesModel from 'models/sections/substanceDrugPublicSafetyUses'
 
-export const validateDrugSafetyUses = (data, formType, options = {}) => {
-  const drugSafetyUsesModel = {
-    UsedDrugs: { presence: true, hasValue: { validator: hasYesOrNo } },
-    List: (value, attributes) => {
-      if (attributes.UsedDrugs && attributes.UsedDrugs.value === 'Yes') {
-        return {
-          presence: true,
-          accordion: { validator: drugSafetyUse },
-        }
-      }
-      return {}
-    },
-  }
-
-  return validateModel(data, drugSafetyUsesModel, options)
-}
+export const validateDrugSafetyUses = (data, formType, options = {}) => (
+  validateModel(data, substanceDrugPublicSafetyUsesModel, options)
+)
