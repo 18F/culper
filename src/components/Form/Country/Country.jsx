@@ -195,9 +195,9 @@ export default class Country extends ValidationElement {
     const klass = `country usa-form-control ${this.props.className || ''}`.trim()
     const options = this.renderOptions()
     const value = this.appropriateValue(this.props.value, this.props.multiple)
-
+    const ariaLabel=this.props.ariaLabel || this.props.name;   
     return (
-      <div>
+      <div aria-label={ariaLabel}>
         <Show when={this.props.multiple}>
           <MultipleDropdown
             name={this.props.name}
@@ -205,7 +205,7 @@ export default class Country extends ValidationElement {
             label={this.props.label}
             placeholder={this.props.placeholder}
             className={klass}
-            ariaLabel={this.props.ariaLabel}
+            ariaLabel={ariaLabel}
             disabled={this.props.disabled}
             onUpdate={this.updateMultipleCountries}
             onError={this.handleError}
@@ -223,7 +223,7 @@ export default class Country extends ValidationElement {
             label={this.props.label}
             placeholder={this.props.placeholder}
             className={klass}
-            ariaLabel={this.props.ariaLabel}
+            ariaLabel={ariaLabel}
             disabled={this.props.disabled}
             onUpdate={this.updateSingleCountry}
             onError={this.handleError}

@@ -375,7 +375,7 @@ export default class Dropdown extends ValidationElement {
         this.props.ariaLabel ||
         this.props.label ||
         ariaLabel(this.refs.autosuggest),
-      'aria-describedby': this.errorName()
+      'aria-describedby': this.state.uid // this.errorName()
     }
 
     return (

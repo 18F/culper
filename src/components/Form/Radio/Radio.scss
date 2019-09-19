@@ -4,12 +4,12 @@ input[type='radio'] + label::before {
 }
 
 input[type='radio'].selected + label::before {
-  box-shadow: 0 0 0 2px $color-white, 0 0 0 4px $color-primary;
-  background-color: $color-primary;
+  box-shadow: 0 0 0 2px $color-white, 0 0 0 4px $color-gray-extra-lightest;
+  background-color: $color-gray-extra-lightest;
 }
-
+ 
 .block input[type='radio'].selected + label {
-  background: $color-green-light;
+  background: $color-green;
   border-color: $color-green;
   color: $color-white;
 }

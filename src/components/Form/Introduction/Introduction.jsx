@@ -85,7 +85,7 @@ export class Introduction extends React.Component {
             <Show when={!this.props.forceOpen}>
               <Branch
                 label={i18n.t('introduction.acceptance.title')}
-                labelSize="h4"
+                labelSize="h2"
                 name="acceptance_of_terms"
                 {...this.props.settings.acceptedTerms}
                 yesAriaLabel={i18n.t('introduction.acceptance.aria.yes')}

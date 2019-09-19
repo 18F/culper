@@ -290,6 +290,7 @@ export default class Name extends ValidationElement {
             className="option-list suffix usa-small-input"
             isDisabled={this.props.disabled}
             name="suffix"
+            ariaLabel="name suffix"
             onChange={(e) => {
               this.update({
                 suffix: e.target.value,

@@ -98,16 +98,18 @@ export default class SelectDropdown extends ValidationElement {
       name,
       onChange,
       value,
+      ariaLabel
     } = this.props
 
     return (
-      <div className={this.getWrapperClassName()}>
+      <div className={this.getWrapperClassName()} >
         <select
           className={this.getSelectClassName()}
           name={name}
           onChange={onChange}
           value={value}
           disabled={isDisabled}
+          aria-label={ariaLabel || ''}
         >
           {children}
         </select>
