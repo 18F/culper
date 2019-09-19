@@ -140,7 +140,7 @@ describe('The relationship status component', () => {
             Recognized: {
               estimated: false,
               day: '1',
-              month: '1',
+              month: '2',
               name: 'Recognized',
               year: '1990',
             },
@@ -212,6 +212,7 @@ describe('The relationship status component', () => {
           .children().length
       ).toEqual(0)
     })
+    
     it('with bad data - where the date divorced is before date entered into civil union', () => {
       const props = {
         ...divorcedDatesSetup,
@@ -225,7 +226,7 @@ describe('The relationship status component', () => {
                   day: '1',
                   month: '1',
                   name: 'DateDivorced',
-                  year: '1950',
+                  year: '1990',
                 },
               },
             },
