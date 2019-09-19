@@ -30,6 +30,7 @@ export default class County extends ValidationElement {
           label={this.props.label}
           ariaLabel={this.props.ariaLabel}
           placeholder={this.props.placeholder}
+          autocomplete={this.props.name}
           minlength="2"
           maxlength="100"
           required={this.props.required}

@@ -304,6 +304,7 @@ export default class ForeignBornDocuments extends ValidationElement {
             label="Document Number"
             {...this.props.DocumentNumber}
             className="foreign-born-document-number"
+            autocomplete="document-number"
             maxlength="30"
             pattern={alphaNumericRegEx}
             prefix="alphanumeric"
