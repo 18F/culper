@@ -43,7 +43,7 @@ describe('Contact Information validation', () => {
             value: 'foobar2@local.dev',
           },
           WorkEmail: {
-            value: 'foobar2@local.dev',
+            value: 'foobar1@local.dev',
           },
           PhoneNumbers: {
             items: [
@@ -75,6 +75,59 @@ describe('Contact Information validation', () => {
           },
         },
         expected: true,
+      },
+    ]
+
+    tests.forEach((test) => {
+      expect(
+        new IdentificationContactInformationValidator(
+          test.state,
+          null
+        ).isValid()
+      ).toBe(test.expected)
+    })
+  })
+
+  it('should validate unique emails', () => {
+    const tests = [
+      {
+        state: {
+          HomeEmail: {
+            value: 'foobar2@local.dev',
+          },
+          WorkEmail: {
+            value: 'foobar2@local.dev',
+          },
+          PhoneNumbers: {
+            items: [
+              {
+                Item: {
+                  Telephone: {
+                    noNumber: false,
+                    number: '7031112222',
+                    numberType: 'Home',
+                    type: 'Domestic',
+                    timeOfDay: 'Both',
+                    extension: '',
+                  },
+                },
+              },
+              {
+                Item: {
+                  Telephone: {
+                    noNumber: false,
+                    number: '7031112222',
+                    numberType: 'Work',
+                    type: 'Domestic',
+                    timeOfDay: 'Both',
+                    extension: '',
+                  },
+                },
+              },
+            ],
+          },
+        },
+        expected: false,
       },
     ]
 
