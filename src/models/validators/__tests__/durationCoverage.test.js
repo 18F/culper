@@ -7,6 +7,11 @@ describe('The duration coverage validator', () => {
       .toBeNull()
   })
 
+  it('fails if the value is invalid', () => {
+    expect(durationCoverage({ test: [] }, { requiredDuration: { years: 2 } }))
+      .toEqual('MISSING_ITEMS')
+  })
+
   it('fails if there is no required duration', () => {
     const testRanges = [
       {
