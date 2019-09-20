@@ -53,11 +53,9 @@ func (entity *LegalCourt) ClearNoBranches() error {
 
 // LegalPoliceOffenses represents the payload for the legal police offenses section.
 type LegalPoliceOffenses struct {
-	PayloadHasOffenses Payload `json:"HasOffenses" sql:"-"`
-	PayloadList        Payload `json:"List" sql:"-"`
+	PayloadList Payload `json:"List" sql:"-"`
 
-	HasOffenses *Branch     `json:"-"`
-	List        *Collection `json:"-"`
+	List *Collection `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -66,12 +64,6 @@ func (entity *LegalPoliceOffenses) Unmarshal(raw []byte) error {
 	if err != nil {
 		return err
 	}
-
-	hasOffenses, err := entity.PayloadHasOffenses.Entity()
-	if err != nil {
-		return err
-	}
-	entity.HasOffenses = hasOffenses.(*Branch)
 
 	list, err := entity.PayloadList.Entity()
 	if err != nil {
@@ -84,9 +76,6 @@ func (entity *LegalPoliceOffenses) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *LegalPoliceOffenses) Marshal() Payload {
-	if entity.HasOffenses != nil {
-		entity.PayloadHasOffenses = entity.HasOffenses.Marshal()
-	}
 	if entity.List != nil {
 		entity.PayloadList = entity.List.Marshal()
 	}
@@ -95,11 +84,14 @@ func (entity *LegalPoliceOffenses) Marshal() Payload {
 
 // ClearNoBranches clears the "no" answers on application rejection
 func (entity *LegalPoliceOffenses) ClearNoBranches() error {
-	entity.HasOffenses.ClearNo()
-
 	clearErr := entity.List.ClearBranchItemsNo("WasCharged")
 	if clearErr != nil {
 		return clearErr
+	}
+
+	hasErr := entity.List.ClearBranchItemsNo("Has")
+	if hasErr != nil {
+		return hasErr
 	}
 
 	entity.List.ClearBranchNo()
