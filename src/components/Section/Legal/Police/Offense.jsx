@@ -433,7 +433,7 @@ export default class Offense extends ValidationElement {
                 errors={chargesErrors}
               >
                 <Charge
-                  name="item"
+                  name="Item"
                   bind={true}
                   dispatch={this.props.dispatch}
                   required={this.props.required}
