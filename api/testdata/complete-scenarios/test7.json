@@ -11396,20 +11396,11 @@
     "PoliceOtherOffenses": {
       "type": "legal.police.additionaloffenses",
       "props": {
-        "HasOtherOffenses": {
-          "type": "branch",
-          "props": {
-            "value": "Yes"
-          }
-        },
         "List": {
           "type": "collection",
           "props": {
             "branch": {
-              "type": "branch",
-              "props": {
-                "value": "No"
-              }
+              "type": ""
             },
             "items": [
               {
@@ -11426,11 +11417,46 @@
                       "value": ""
                     }
                   },
-                  "ChargeType": {
-                    "type": "radio",
+                  "Charges": {
+                    "type": "collection",
                     "props": {
-                      "value": "Felony",
-                      "checked": true
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": [
+                        {
+                          "Item": {
+                            "ChargeType": {
+                              "type": "radio",
+                              "props": {
+                                "value": "Felony",
+                                "checked": true
+                              }
+                            },
+                            "CourtCharge": {
+                              "type": "text",
+                              "props": {
+                                "value": "No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i"
+                              }
+                            },
+                            "CourtDate": {
+                              "type": "datecontrol",
+                              "props": {
+                                "month": "01",
+                                "day": "1",
+                                "year": "2000",
+                                "estimated": true
+                              }
+                            },
+                            "CourtOutcome": {
+                              "type": "text",
+                              "props": {
+                                "value": "No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i"
+                              }
+                            }
+                          }
+                        }
+                      ]
                     }
                   },
                   "CourtAddress": {
@@ -11444,28 +11470,7 @@
                       "county": "Santa Clara"
                     }
                   },
-                  "CourtCharge": {
-                    "type": "text",
-                    "props": {
-                      "value": "No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i"
-                    }
-                  },
-                  "CourtDate": {
-                    "type": "datecontrol",
-                    "props": {
-                      "month": "01",
-                      "day": "1",
-                      "year": "2000",
-                      "estimated": true
-                    }
-                  },
                   "CourtName": {
-                    "type": "text",
-                    "props": {
-                      "value": "No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i"
-                    }
-                  },
-                  "CourtOutcome": {
                     "type": "text",
                     "props": {
                       "value": "No American can study the character and career of Abraham Lincoln without being carried away by sentimental emotions. We are always inclined to idealize that which we love,--a state of mind very unfavorable to the exercise of sober critical judgment. It i"
@@ -11484,6 +11489,12 @@
                     "type": "textarea",
                     "props": {
                       "value": "No American can study the character and career of Abraham Lincoln\nwithout being carried away by sentimental emotions. We are\nalways inclined to idealize that which we love,--a state of mind\nvery unfavorable to the exercise of sober critical judgment. It\nis therefore not surprising that most of those who have written\nor spoken on that extraordinary man, even while conscientiously\nendeavoring to draw a lifelike portraiture of his being, and to\nform a just estimate of his public conduct, should!"
+                    }
+                  },
+                  "Has": {
+                    "type": "branch",
+                    "props": {
+                      "value": "Yes"
                     }
                   },
                   "InvolvedFirearms": {
@@ -11591,6 +11602,169 @@
                     "type": "branch",
                     "props": {
                       "value": "Yes"
+                    }
+                  }
+                }
+              },
+              {
+                "Item": {
+                  "AwaitingTrial": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "AwaitingTrialExplanation": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Charges": {
+                    "type": "collection",
+                    "props": {
+                      "branch": {
+                        "type": ""
+                      },
+                      "items": []
+                    }
+                  },
+                  "CourtAddress": {
+                    "type": "location",
+                    "props": {}
+                  },
+                  "CourtName": {
+                    "type": "text",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Date": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "",
+                      "day": "",
+                      "year": "",
+                      "estimated": false
+                    }
+                  },
+                  "Description": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Has": {
+                    "type": "branch",
+                    "props": {
+                      "value": "No"
+                    }
+                  },
+                  "InvolvedFirearms": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "InvolvedSubstances": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "InvolvedViolence": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Sentence": {
+                    "type": "sentence",
+                    "props": {
+                      "Description": {
+                        "type": "textarea",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "ExceedsYear": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "Incarcerated": {
+                        "type": "branch",
+                        "props": {
+                          "value": ""
+                        }
+                      },
+                      "IncarcerationDates": {
+                        "type": "daterange",
+                        "props": {
+                          "from": {
+                            "type": "datecontrol",
+                            "props": {
+                              "month": "",
+                              "day": "",
+                              "year": "",
+                              "estimated": false
+                            }
+                          },
+                          "to": {
+                            "type": "datecontrol",
+                            "props": {
+                              "month": "",
+                              "day": "",
+                              "year": "",
+                              "estimated": false
+                            }
+                          },
+                          "present": false
+                        }
+                      },
+                      "IncarcerationDatesNA": {
+                        "type": "notapplicable",
+                        "props": {
+                          "applicable": false
+                        }
+                      },
+                      "ProbationDates": {
+                        "type": "daterange",
+                        "props": {
+                          "from": {
+                            "type": "datecontrol",
+                            "props": {
+                              "month": "",
+                              "day": "",
+                              "year": "",
+                              "estimated": false
+                            }
+                          },
+                          "to": {
+                            "type": "datecontrol",
+                            "props": {
+                              "month": "",
+                              "day": "",
+                              "year": "",
+                              "estimated": false
+                            }
+                          },
+                          "present": false
+                        }
+                      },
+                      "ProbationDatesNA": {
+                        "type": "notapplicable",
+                        "props": {
+                          "applicable": false
+                        }
+                      }
+                    }
+                  },
+                  "WasSentenced": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
                     }
                   }
                 }
