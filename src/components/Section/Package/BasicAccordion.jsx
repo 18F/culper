@@ -36,7 +36,7 @@ BasicAccordion.defaultProps = {
 
 export default BasicAccordion
 
-class BasicAccordionItem extends React.Component {
+export class BasicAccordionItem extends React.Component {
   componentWillReceiveProps(nextProps) {
     const { scrollIntoView } = this.props
 
