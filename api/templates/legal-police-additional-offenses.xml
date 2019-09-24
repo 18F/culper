@@ -12,7 +12,7 @@
       </AwaitingTrial>
       <Charges>
         <!-- XXX We don't collect more than one -->
-        <!-- See https://github.com/18F/e-QIP-prototype/issues/782 -->
+        <!-- See https://github.com/18F/culper/issues/782 -->
         <Charge ID="1">
           <Charge>{{text $Item.CourtCharge}}</Charge>
           <Date Type="{{dateEstimated $Item.CourtDate}}">
