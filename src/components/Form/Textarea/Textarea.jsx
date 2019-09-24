@@ -129,7 +129,7 @@ export default class Textarea extends ValidationElement {
           className={this.inputClass()}
           id={this.state.uid}
           name={this.props.name}
-          aria-describedby={this.state.uid /*this.errorName() */}
+          aria-describedby={this.state.uid }
           aria-label={this.props.label || ariaLabel(this.refs.textarea)}
           disabled={this.props.disabled}
           maxLength={this.props.maxlength}

@@ -303,7 +303,7 @@ export default class Generic extends ValidationElement {
           name={this.props.name}
           type={this.props.type}
           placeholder={this.props.placeholder}
-          aria-describedby={ this.state.uid  /*this.errorName() */}
+          aria-describedby={ this.state.uid }
           aria-label={
             this.props.ariaLabel ||
             this.props.label ||
