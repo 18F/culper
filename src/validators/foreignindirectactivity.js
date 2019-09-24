@@ -1,20 +1,7 @@
-import { validateModel, hasYesOrNo } from 'models/validate'
-import foreignIndirectInterest from 'models/foreignIndirectInterest'
+/* eslint-disable import/prefer-default-export */
+import { validateModel } from 'models/validate'
+import foreignIndirectActivity from 'models/sections/foreignIndirectActivity'
 
-export const validateForeignIndirectActivity = (data, formType, options = {}) => {
-  const foreignIndirectActivityModel = {
-    HasInterests: { presence: true, hasValue: { validator: hasYesOrNo } },
-    List: (value, attributes) => {
-      if (attributes.HasInterests && attributes.HasInterests.value === 'Yes') {
-        return {
-          presence: true,
-          accordion: { validator: foreignIndirectInterest },
-        }
-      }
-
-      return {}
-    },
-  }
-
-  return validateModel(data, foreignIndirectActivityModel, options)
-}
+export const validateForeignIndirectActivity = (data, formType, options = {}) => (
+  validateModel(data, foreignIndirectActivity, options)
+)

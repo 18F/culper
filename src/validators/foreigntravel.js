@@ -1,6 +1,7 @@
 /* eslint-disable import/prefer-default-export */
-import { validateModel, hasYesOrNo } from 'models/validate'
-import foreignTravel from 'models/foreignTravel'
+import { validateModel } from 'models/validate'
+import foreignTravel from 'models/sections/foreignTravel'
+
 import {
   requireForeignCounterIntelligence,
   requireForeignExcessiveKnowledge,
@@ -16,28 +17,5 @@ export const validateForeignTravel = (data, formType, options = {}) => {
     requireForeignThreatened: requireForeignThreatened(formType),
   }
 
-  const foreignTravelModel = {
-    HasForeignTravelOutside: { presence: true, hasValue: { validator: hasYesOrNo } },
-    HasForeignTravelOfficial: (value, attributes) => {
-      if (attributes.HasForeignTravelOutside
-        && attributes.HasForeignTravelOutside.value === 'Yes') {
-        return { presence: true, hasValue: { validator: hasYesOrNo } }
-      }
-      return {}
-    },
-    List: (value, attributes) => {
-      const { HasForeignTravelOutside, HasForeignTravelOfficial } = attributes
-      if ((HasForeignTravelOutside && HasForeignTravelOutside.value === 'Yes')
-        && (HasForeignTravelOfficial && HasForeignTravelOfficial.value === 'No')) {
-        return {
-          presence: true,
-          accordion: { validator: foreignTravel },
-        }
-      }
-
-      return {}
-    },
-  }
-
-  return validateModel(data, foreignTravelModel, { ...options, ...modelOptions })
+  return validateModel(data, foreignTravel, { ...options, ...modelOptions })
 }
