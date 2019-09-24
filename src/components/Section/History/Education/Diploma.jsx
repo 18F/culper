@@ -10,7 +10,7 @@ import {
   Show,
 } from '../../../Form'
 
-export class DiplomaItem extends ValidationElement {
+export default class DiplomaItem extends ValidationElement {
   constructor(props) {
     super(props)
 
@@ -55,7 +55,7 @@ export class DiplomaItem extends ValidationElement {
           titleSize="h4"
           help="history.education.help.diploma"
           adjustFor="big-buttons"
-          shrink
+          shrink={true}
           scrollIntoView={this.props.scrollIntoView}
         >
           <RadioGroup
@@ -146,15 +146,15 @@ export class DiplomaItem extends ValidationElement {
           titleSize="h4"
           help="history.education.help.date"
           adjustFor="label"
-          shrink
+          shrink={true}
           scrollIntoView={this.props.scrollIntoView}
         >
           <DateControl
             name="Date"
             {...this.props.Date}
             className="date-awarded"
-            minDateEqualTo
-            hideDay
+            minDateEqualTo={true}
+            hideDay={true}
             onUpdate={this.updateDate}
             onError={this.props.onError}
             required={this.props.required}
@@ -169,6 +169,6 @@ DiplomaItem.defaultProps = {
   Diploma: {},
   DiplomaOther: {},
   Date: {},
-  onUpdate: (queue) => {},
+  onUpdate: () => {},
   onError: (value, arr) => arr,
 }

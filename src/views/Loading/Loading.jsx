@@ -1,7 +1,6 @@
 import React from 'react'
 import i18n from 'util/i18n'
 import { Spinner, SpinnerAction } from 'components/Form'
-import { timeout } from 'components/Form/Location/Location'
 
 class Loading extends React.Component {
   constructor(props) {
@@ -15,25 +14,6 @@ class Loading extends React.Component {
 
   componentDidMount() {
     this.setState({ spinner: true })
-  }
-
-  // TODO - trigger this when load is done
-  animateCloseTimeout = () => {
-    timeout(() => {
-      this.setState({ spinner: true, spinnerAction: SpinnerAction.Shrink })
-
-      timeout(() => {
-        // Grow the green arrow
-        this.setState(
-          { spinner: true, spinnerAction: SpinnerAction.Grow },
-          () => {
-            timeout(() => {
-              // TODO - push to new route here
-            }, 1000)
-          }
-        )
-      })
-    }, 1000)
   }
 
   render() {
