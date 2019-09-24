@@ -1,23 +1,7 @@
-import { validateModel, hasYesOrNo } from 'models/validate'
-import financialCreditCounseling from 'models/financialCreditCounseling'
-
-const creditCounselingModel = {
-  HasCreditCounseling: {
-    presence: true,
-    hasValue: { validator: hasYesOrNo },
-  },
-  List: (value, attributes) => {
-    const { HasCreditCounseling } = attributes
-    if (HasCreditCounseling && HasCreditCounseling.value === 'Yes') {
-      return {
-        presence: true,
-        accordion: { validator: financialCreditCounseling },
-      }
-    }
-    return {}
-  },
-}
+/* eslint-disable import/prefer-default-export */
+import { validateModel } from 'models/validate'
+import financialCredit from 'models/sections/financialCredit'
 
 export const validateFinancialCredit = (data, formType, options = {}) => (
-  validateModel(data, creditCounselingModel, options)
+  validateModel(data, financialCredit, options)
 )

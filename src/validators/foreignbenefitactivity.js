@@ -1,23 +1,7 @@
-import { validateModel, hasYesOrNo } from 'models/validate'
-import foreignBenefit from 'models/foreignBenefit'
+/* eslint-disable import/prefer-default-export */
+import { validateModel } from 'models/validate'
+import foreignBenefitActivity from 'models/sections/foreignBenefitActivity'
 
-export const validateForeignBenefitActivity = (data, formType, options = {}) => {
-  const foreignBenefitActivityModel = {
-    HasBenefits: {
-      presence: true,
-      hasValue: { validator: hasYesOrNo },
-    },
-    List: (value, attributes) => {
-      if (attributes.HasBenefits && attributes.HasBenefits.value === 'Yes') {
-        return {
-          presence: true,
-          accordion: { validator: foreignBenefit },
-        }
-      }
-
-      return {}
-    },
-  }
-
-  return validateModel(data, foreignBenefitActivityModel, options)
-}
+export const validateForeignBenefitActivity = (data, formType, options = {}) => (
+  validateModel(data, foreignBenefitActivity, options)
+)

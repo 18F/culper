@@ -1,20 +1,7 @@
-import { validateModel, hasYesOrNo } from 'models/validate'
-import foreignBusinessConferences from 'models/foreignBusinessConferences'
+/* eslint-disable import/prefer-default-export */
+import { validateModel } from 'models/validate'
+import foreignBusinessConferences from 'models/sections/foreignBusinessConferences'
 
-export const validateForeignBusinessConferences = (data, formType, options = {}) => {
-  const foreignBusinessConferencesModel = {
-    HasForeignConferences: { presence: true, hasValue: { validator: hasYesOrNo } },
-    List: (value, attributes) => {
-      if (attributes.HasForeignConferences && attributes.HasForeignConferences.value === 'Yes') {
-        return {
-          presence: true,
-          accordion: { validator: foreignBusinessConferences },
-        }
-      }
-
-      return {}
-    },
-  }
-
-  return validateModel(data, foreignBusinessConferencesModel, options)
-}
+export const validateForeignBusinessConferences = (data, formType, options = {}) => (
+  validateModel(data, foreignBusinessConferences, options)
+)

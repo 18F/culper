@@ -1,20 +1,7 @@
-import { validateModel, hasYesOrNo } from 'models/validate'
-import financialBankruptcy from 'models/financialBankruptcy'
-
-const financialBankruptcyModel = {
-  HasBankruptcy: { presence: true, hasValue: { validator: hasYesOrNo } },
-  List: (value, attributes) => {
-    const { HasBankruptcy } = attributes
-    if (HasBankruptcy && HasBankruptcy.value === 'Yes') {
-      return {
-        presence: true,
-        accordion: { validator: financialBankruptcy },
-      }
-    }
-    return {}
-  },
-}
+/* eslint-disable import/prefer-default-export */
+import { validateModel } from 'models/validate'
+import financialBankruptcy from 'models/sections/financialBankruptcy'
 
 export const validateFinancialBankruptcy = (data, formType, options = {}) => (
-  validateModel(data, financialBankruptcyModel, options)
+  validateModel(data, financialBankruptcy, options)
 )

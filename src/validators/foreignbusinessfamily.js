@@ -1,20 +1,7 @@
-import { validateModel, hasYesOrNo } from 'models/validate'
-import foreignBusinessFamily from 'models/foreignBusinessFamily'
+/* eslint-disable import/prefer-default-export */
+import { validateModel } from 'models/validate'
+import foreignBusinessFamily from 'models/sections/foreignBusinessFamily'
 
-export const validateForeignBusinessFamily = (data, formType, options = {}) => {
-  const foreignBusinessFamilyModel = {
-    HasForeignFamily: { presence: true, hasValue: { validator: hasYesOrNo } },
-    List: (value, attributes) => {
-      if (attributes.HasForeignFamily && attributes.HasForeignFamily.value === 'Yes') {
-        return {
-          presence: true,
-          accordion: { validator: foreignBusinessFamily },
-        }
-      }
-
-      return {}
-    },
-  }
-
-  return validateModel(data, foreignBusinessFamilyModel, options)
-}
+export const validateForeignBusinessFamily = (data, formType, options = {}) => (
+  validateModel(data, foreignBusinessFamily, options)
+)
