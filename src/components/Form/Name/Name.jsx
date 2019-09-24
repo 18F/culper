@@ -157,7 +157,7 @@ export default class Name extends ValidationElement {
             minlength={this.props.firstInitialOnly ? 1 : 2}
             maxlength={maxFirst}
             className="first"
-            autocomplete="first-name" 
+            autocomplete="given-name" 
             value={this.props.first}
             onUpdate={(values) => {
               this.update({
@@ -258,7 +258,7 @@ export default class Name extends ValidationElement {
             minlength={1}
             maxlength={maxLast}
             className="last"
-            autocomplete="last-name" 
+            autocomplete="family-name" 
             pattern="^[a-zA-Z\-\.' ]*$"
             value={this.props.last}
             onUpdate={(values) => {
