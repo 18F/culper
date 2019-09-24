@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
 import Number from '../Number'
 import Checkbox from '../Checkbox'

@@ -1,5 +1,5 @@
 import React from 'react' // eslint-disable-line no-unused-vars
-import { i18n } from '../../config'
+import i18n from 'util/i18n'
 import { validDate } from '../Section/History/dateranges'
 
 export const DateSummary = (

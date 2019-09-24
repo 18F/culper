@@ -3,7 +3,7 @@ import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import { Sponsorship } from './Sponsorship'
-import { i18n } from '../../../../config'
+import i18n from 'util/i18n'
 
 describe('The foreign business sponsorship component', () => {
   const mockStore = configureMockStore()

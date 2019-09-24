@@ -1,7 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import i18n from 'util/i18n'
 import Error from './Error'
-import { i18n } from '../../config'
 
 describe('The Error view', () => {
   it('is visible with context', () => {

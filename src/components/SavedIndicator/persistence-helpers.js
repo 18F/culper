@@ -3,7 +3,7 @@ import { updateApplication } from '../../actions/ApplicationActions'
 import sectionData from '../Section/sectionData'
 import schema from '../../schema'
 import { api } from '../../services'
-import { i18n } from '../../config'
+import i18n from 'util/i18n'
 
 export const saveSection = (application, section, subsection, dispatch) => {
   const pending = sectionData(section, subsection, application) || []

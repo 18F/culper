@@ -1,5 +1,5 @@
 import * as sections from 'constants/sections'
-import { i18n } from 'config'
+import i18n from 'util/i18n'
 
 // TODO: The `name` includes the nested subsection.
 // We need to come up with a more permanent solution or confirm this config.

@@ -1,5 +1,5 @@
 import React from 'react'
-import { i18n } from 'config'
+import i18n from 'util/i18n'
 import { TODAY } from '../../../../constants/dateLimits'
 import {
   Field, DateControl, Show, Checkbox,
@@ -78,7 +78,7 @@ export class ApplicantBirthDate extends Subsection {
     const hasMinError = local.some(
       x => (x.valid === false) && (x.code === 'date.min')
     )
-    
+
     //too young
     const hasMaxError = local.some(
       x => (x.valid === false) && (x.code === 'date.max')
@@ -145,7 +145,7 @@ export class ApplicantBirthDate extends Subsection {
             name="birthdate"
             {...this.props.Date}
             relationship="Self"
-            
+
             maxDate={TODAY}
             overrideError={(this.props.Confirmed || {}).checked}
             onUpdate={this.updateDate}

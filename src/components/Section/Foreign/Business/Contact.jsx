@@ -1,5 +1,5 @@
 import React from 'react'
-import { i18n } from 'config'
+import i18n from 'util/i18n'
 import { Summary, NameText, DateSummary } from 'components/Summary'
 import { Branch, Show, Accordion } from 'components/Form'
 import { FOREIGN, FOREIGN_BUSINESS_CONTACT } from 'config/formSections/foreign'

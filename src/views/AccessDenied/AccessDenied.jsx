@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { i18n } from '../../config'
+import i18n from 'util/i18n'
 
 class AccessDenied extends React.Component {
   render() {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { i18n } from 'config'
+import i18n from 'util/i18n'
 
 const KickbackBanner = () => (
   <div className="usa-alert usa-alert-warning kickback-banner">

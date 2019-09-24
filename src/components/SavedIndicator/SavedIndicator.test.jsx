@@ -4,7 +4,7 @@ import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 import ConnectedSavedIndicator from 'components/SavedIndicator/SavedIndicator'
-import { i18n } from 'config'
+import i18n from 'util/i18n'
 
 describe('The saved indicator component', () => {
   // Setup

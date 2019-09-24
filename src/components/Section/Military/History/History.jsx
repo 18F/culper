@@ -1,6 +1,6 @@
 import React from 'react'
 import { MILITARY, MILITARY_HISTORY } from 'config/formSections/military'
-import { i18n } from 'config'
+import i18n from 'util/i18n'
 import { Branch, Show, Accordion } from 'components/Form'
 import { Summary, DateSummary } from 'components/Summary'
 import MilitaryService from 'components/Section/Military/History/MilitaryService'

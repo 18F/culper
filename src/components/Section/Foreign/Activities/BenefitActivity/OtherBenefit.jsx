@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { i18n } from '../../../../../config'
+import i18n from 'util/i18n'
 import { ValidationElement, Field, Textarea } from '../../../../Form'
 import ContinuingBenefit from './ContinuingBenefit'
 

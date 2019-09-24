@@ -4,7 +4,7 @@ import { Route } from 'react-router'
 import { connect } from 'react-redux'
 import classnames from 'classnames'
 
-import { i18n } from 'config'
+import i18n from 'util/i18n'
 
 import { ErrorList } from 'components/ErrorList'
 import SectionNavigation from 'components/Section/shared/SectionNavigation'

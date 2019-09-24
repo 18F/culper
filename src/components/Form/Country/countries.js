@@ -1,4 +1,4 @@
-export const countries = {
+const countries = {
   unitedStates: { value: 'United States', text: 'USA' },
   afghanistan: { value: 'Afghanistan', text: 'Afghanistan' },
   akrotiriSovereignBaseArea: {
@@ -331,3 +331,5 @@ export const countries = {
   zambia: { value: 'Zambia', text: 'Zambia' },
   zimbabwe: { value: 'Zimbabwe', text: 'Zimbabwe' }
 }
+
+export default countries

@@ -69,6 +69,7 @@ export const error = {
     required: {
       title: 'Your response is required',
       message: '',
+      note: '',
     },
   },
   birthdate: {
@@ -129,10 +130,12 @@ export const error = {
     required: {
       title: 'Your response is required',
       message: '',
+      note: '',
     },
     invalid: {
       title: 'Invalid social security number',
       message: 'The social security number is considered invalid.',
+      note: '',
     },
   },
   selective: {
@@ -675,6 +678,7 @@ export const error = {
       message:
         'All parts of the date(s) are required even if it is **estimated**.',
     },
+    note: '',
   },
   weight: {
     min: {
@@ -690,6 +694,7 @@ export const error = {
     required: {
       title: 'Your response is required',
       message: '',
+      note: '',
     },
   },
   height: {
@@ -720,6 +725,7 @@ export const error = {
     required: {
       title: 'Your response is required',
       message: '',
+      note: '',
     },
   },
   location: {
@@ -774,6 +780,7 @@ export const error = {
       required: {
         title: 'Your response is required',
         message: '',
+        note: '',
       },
       city: {
         length: {
@@ -848,6 +855,7 @@ export const error = {
       required: {
         title: 'Your response is required',
         message: '',
+        note: '',
       },
       city: {
         length: {
@@ -913,6 +921,13 @@ export const error = {
           },
         },
       },
+    },
+  },
+  toggleablelocation: {
+    required: {
+      title: '',
+      message: '',
+      note: '',
     },
   },
   city: {
@@ -1015,6 +1030,7 @@ export const error = {
         required: {
           title: 'Your response is required',
           message: '',
+          note: '',
         },
       },
       second: {
@@ -1033,6 +1049,7 @@ export const error = {
         required: {
           title: 'Your response is required',
           message: '',
+          note: '',
         },
       },
       third: {
@@ -1051,6 +1068,7 @@ export const error = {
         required: {
           title: 'Your response is required',
           message: '',
+          note: '',
         },
       },
       extension: {
@@ -1090,11 +1108,13 @@ export const error = {
       required: {
         title: 'Your response is required',
         message: '',
+        note: '',
       },
     },
     required: {
       title: 'Your response is required',
       message: '',
+      note: '',
     },
   },
   geocode: {
@@ -1142,6 +1162,7 @@ export const error = {
     required: {
       title: 'Your response is required',
       message: '',
+      note: '',
     },
   },
   treatment: {
@@ -1194,6 +1215,7 @@ export const error = {
   required: {
     title: 'Your response is required',
     message: '',
+    note: '',
   },
   submission: {
     message:

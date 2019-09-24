@@ -2,7 +2,7 @@ import React from 'react'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import { i18n } from '../../../../config'
+import i18n from 'util/i18n'
 import { today, daysAgo } from '../dateranges'
 import ReasonLeft from './ReasonLeft'
 

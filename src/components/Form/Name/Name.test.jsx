@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow, mount } from 'enzyme'
-import { i18n } from 'config'
+import i18n from 'util/i18n'
 import Name from './Name'
 
 describe('The Name component', () => {

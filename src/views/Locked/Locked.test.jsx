@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 import Locked from 'views/Locked/Locked'
-import { i18n } from 'config'
+import i18n from 'util/i18n'
 
 describe('The locked view', () => {
   const mockStore = configureMockStore()

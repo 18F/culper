@@ -1,5 +1,5 @@
 import React from 'react'
-import { i18n } from '../../../../config'
+import i18n from 'util/i18n'
 import { ValidationElement, Field, DateRange, Textarea } from '../../../Form'
 
 export default class AdvocatingItem extends ValidationElement {

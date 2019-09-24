@@ -5325,8 +5325,6 @@ exports[`The section component renders FOREIGN_ACTIVITIES_DIRECT 1`] = `
                   <p>
                     Foreign financial interest examples:  stocks, property, investments, bank accounts, ownership of corporate entities, corporate interests or exchange traded funds (ETFs) held in specific geographical or economic sectors.
                   </p>
-                </div>
-                <div>
                   <p>
                     Exclude financial interests in companies or diversified mutual funds or diversified ETFs that are publicly traded on a U.S. exchange.
                   </p>
@@ -6675,8 +6673,6 @@ exports[`The section component renders FOREIGN_BUSINESS_CONTACT 1`] = `
                   <p>
                     Such as  embassy, consulate, agency, military service, intelligence or security service, etc.
                   </p>
-                </div>
-                <div>
                   <p>
                     Answer 
                     <strong>
@@ -7120,8 +7116,6 @@ exports[`The section component renders FOREIGN_BUSINESS_FAMILY 1`] = `
                   <p>
                     For this question, "Immediate Family" means your spouse or legally recognized civil union/domestic partner, parents, step-parents, siblings, half and step-siblings, children, step-children, and cohabitant.
                   </p>
-                </div>
-                <div>
                   <p>
                     Answer 
                     <strong>
@@ -8836,8 +8830,6 @@ exports[`The section component renders FOREIGN_REVIEW 1`] = `
                       <p>
                         Foreign financial interest examples:  stocks, property, investments, bank accounts, ownership of corporate entities, corporate interests or exchange traded funds (ETFs) held in specific geographical or economic sectors.
                       </p>
-                    </div>
-                    <div>
                       <p>
                         Exclude financial interests in companies or diversified mutual funds or diversified ETFs that are publicly traded on a U.S. exchange.
                       </p>
@@ -9763,8 +9755,6 @@ exports[`The section component renders FOREIGN_REVIEW 1`] = `
                       <p>
                         For this question, "Immediate Family" means your spouse or legally recognized civil union/domestic partner, parents, step-parents, siblings, half and step-siblings, children, step-children, and cohabitant.
                       </p>
-                    </div>
-                    <div>
                       <p>
                         Answer 
                         <strong>
@@ -10379,8 +10369,6 @@ exports[`The section component renders FOREIGN_REVIEW 1`] = `
                       <p>
                         Such as  embassy, consulate, agency, military service, intelligence or security service, etc.
                       </p>
-                    </div>
-                    <div>
                       <p>
                         Answer 
                         <strong>
@@ -26911,8 +26899,6 @@ exports[`The section component renders LEGAL_REVIEW 1`] = `
               <p>
                 We note, with reference to this section, that neither your truthful responses nor information derived from your responses to this section will be used as evidence against you in a subsequent criminal proceeding.
               </p>
-            </div>
-            <div>
               <p>
                 As to this particular section, this applies whether or not you are currently employed by the Federal government. The following questions ask about your use of information technology systems. Information technology systems include all related computer hardware, software, firmware, and data used for the communication, transmission, processing, manipulation, storage or protection of information.
               </p>
@@ -28705,8 +28691,6 @@ exports[`The section component renders LEGAL_TECHNOLOGY_UNAUTHORIZED 1`] = `
           <p>
             We note, with reference to this section, that neither your truthful responses nor information derived from your responses to this section will be used as evidence against you in a subsequent criminal proceeding.
           </p>
-        </div>
-        <div>
           <p>
             As to this particular section, this applies whether or not you are currently employed by the Federal government. The following questions ask about your use of information technology systems. Information technology systems include all related computer hardware, software, firmware, and data used for the communication, transmission, processing, manipulation, storage or protection of information.
           </p>

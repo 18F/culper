@@ -1,5 +1,5 @@
 import React from 'react'
-import { i18n } from 'config'
+import i18n from 'util/i18n'
 import { Summary } from 'components/Summary'
 import { Accordion, Branch, Show } from 'components/Form'
 import { FOREIGN, FOREIGN_ACTIVITIES_INDIRECT } from 'config/formSections/foreign'

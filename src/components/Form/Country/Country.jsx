@@ -1,9 +1,10 @@
 import React from 'react'
-import { i18n } from '../../../config'
+import i18n from 'util/i18n'
 import ValidationElement from '../ValidationElement'
 import Show from '../Show'
 import Dropdown from '../Dropdown'
 import MultipleDropdown from '../MultipleDropdown'
+import countries from './countries'
 
 export default class Country extends ValidationElement {
   constructor(props) {
@@ -13,8 +14,7 @@ export default class Country extends ValidationElement {
       showComents: props.showComments
     }
 
-    this.countries = i18n.value('countries')
-
+    this.countries = countries
     this.update = this.update.bind(this)
     this.updateSingleCountry = this.updateSingleCountry.bind(this)
     this.updateMultipleCountries = this.updateMultipleCountries.bind(this)

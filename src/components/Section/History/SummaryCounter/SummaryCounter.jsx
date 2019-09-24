@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
 import { Svg } from 'components/Form'
-import { i18n } from 'config'
+import i18n from 'util/i18n'
 
 const SummaryCounter = (props) => {
   const {

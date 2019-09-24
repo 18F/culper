@@ -20,5 +20,5 @@ export const name = {
     viii: 'VIII',
     ix: 'IX',
     x: 'X'
-  }
+  },
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import FileSaver from 'file-saver'
-import { i18n, env } from '../../../config'
+import { env } from 'config'
+import i18n from 'util/i18n'
 import { api } from '../../../services'
 import { Show, Field, Text, RadioGroup, Radio, Svg } from '../../Form'
 

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-import { i18n } from 'config'
+import i18n from 'util/i18n'
 import { Field } from 'components/Form'
 import {
   NameSummary,

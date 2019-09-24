@@ -1,7 +1,8 @@
 import React from 'react'
 
 import { updateApplication } from 'actions/ApplicationActions'
-import { i18n, env } from 'config'
+import { env } from 'config'
+import i18n from 'util/i18n'
 import { LocationValidator } from 'validators'
 import { countryString } from 'validators/location'
 

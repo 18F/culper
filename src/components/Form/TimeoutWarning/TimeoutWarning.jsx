@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { i18n } from 'config'
+import i18n from 'util/i18n'
 
 import { renewSession } from 'actions/AuthActions'
 

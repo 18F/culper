@@ -1,6 +1,6 @@
 import React from 'react'
 import classNames from 'classnames'
-import { i18n } from 'config'
+import i18n from 'util/i18n'
 import { pickDate } from 'validators/helpers'
 import {
   ValidationElement,

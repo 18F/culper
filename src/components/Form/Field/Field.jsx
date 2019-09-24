@@ -5,7 +5,7 @@
 import React from 'react'
 import classnames from 'classnames'
 
-import { i18n } from 'config'
+import { i18n } from 'config/locales/i18n'
 
 import ValidationElement, { newGuid } from 'components/Form/ValidationElement'
 import Svg from 'components/Form/Svg'
@@ -19,8 +19,6 @@ const renderMessage = (id, messageString, titleString) => {
     && note.indexOf(noteId) > -1
   ) {
     note = ''
-  } else {
-    note = <em>{note}</em>
   }
 
   const messageId = `${id}.message`
@@ -30,8 +28,6 @@ const renderMessage = (id, messageString, titleString) => {
     && message.indexOf(messageId) > -1
   ) {
     message = ''
-  } else {
-    message = <span>{message}</span>
   }
 
   const title = titleString || i18n.t(`${id}.title`)
@@ -39,8 +35,12 @@ const renderMessage = (id, messageString, titleString) => {
   return (
     <div key={newGuid()} data-i18n={id}>
       <h5 className="usa-alert-heading">{title}</h5>
-      {message}
-      {note}
+      {message && (
+        <span>{message}</span>
+      )}
+      {note && (
+        <em>{note}</em>
+      )}
     </div>
   )
 }
@@ -325,7 +325,6 @@ export default class Field extends ValidationElement {
 
   helpMessage() {
     const { help, helpMessage, helpTitle } = this.props
-
     if (this.state.helpActive && help) {
       return (
         <div className="usa-alert usa-alert-info" role="alert">

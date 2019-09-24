@@ -6,7 +6,6 @@ import { citizenship } from './citizenship'
 import { collection } from './collection'
 import { comments } from './comments'
 import { consent } from './consent'
-import { countries } from './countries'
 import { country } from './country'
 import { currency } from './currency'
 import { date } from './date'
@@ -85,8 +84,7 @@ const en = {
   application,
 
   // Misc
-  countries,
-  temp
+  temp,
 }
 
 export default en

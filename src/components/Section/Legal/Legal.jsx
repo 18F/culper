@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Route } from 'react-router-dom'
 import classnames from 'classnames'
 
-import { i18n } from 'config'
+import i18n from 'util/i18n'
 import { ErrorList } from 'components/ErrorList'
 import * as formTypes from 'config/formTypes'
 import { LEGAL } from 'constants/sections'

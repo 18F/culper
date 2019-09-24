@@ -1,4 +1,4 @@
-import { i18n } from 'config/locales'
+import i18n from 'util/i18n'
 
 const env = {
   SamlEnabled: () => true,

@@ -1,6 +1,6 @@
 import React from 'react'
 import ValidationElement from '../ValidationElement'
-import { i18n } from '../../../config'
+import i18n from 'util/i18n'
 import { alphaNumericRegEx } from '../../../validators/helpers'
 import RadioGroup from '../RadioGroup'
 import Radio from '../Radio'

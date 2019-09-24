@@ -2,7 +2,7 @@
 /* eslint jsx-a11y/label-has-for: 0 */
 
 import React from 'react'
-import { i18n } from 'config'
+import i18n from 'util/i18n'
 import { pickDate, alphaNumericRegEx } from 'validators/helpers'
 import {
   ValidationElement,

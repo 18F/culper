@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
-import { i18n } from 'config'
+import i18n from 'util/i18n'
 import Field from 'components/Form/Field'
 import Radio from 'components/Form/Radio'
 import RadioGroup from 'components/Form/RadioGroup'

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { i18n } from 'config'
+import i18n from 'util/i18n'
 import Subsection from 'components/Section/shared/Subsection'
 import { SignatureValidator } from 'validators'
 import Signature from './Signature'
