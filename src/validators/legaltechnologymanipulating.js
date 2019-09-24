@@ -1,19 +1,7 @@
-import { validateModel, hasYesOrNo } from 'models/validate'
-import manipulatingTech from 'models/manipulatingTech'
+/* eslint-disable import/prefer-default-export */
+import { validateModel } from 'models/validate'
+import legalTechnologyManipulating from 'models/sections/legalTechnologyManipulating'
 
-export const validateLegalTechnologyManipulating = (data, formType, options = {}) => {
-  const legalTechnologyManipulatingModel = {
-    HasManipulating: { presence: true, hasValue: { validator: hasYesOrNo } },
-    List: (value, attributes) => {
-      if (attributes.HasManipulating && attributes.HasManipulating.value === 'Yes') {
-        return {
-          presence: true,
-          accordion: { validator: manipulatingTech },
-        }
-      }
-      return {}
-    },
-  }
-
-  return validateModel(data, legalTechnologyManipulatingModel, options)
-}
+export const validateLegalTechnologyManipulating = (data, formType, options = {}) => (
+  validateModel(data, legalTechnologyManipulating, options)
+)

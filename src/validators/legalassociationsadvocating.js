@@ -1,20 +1,7 @@
-import { validateModel, hasYesOrNo } from 'models/validate'
-import terrorismAdvocate from 'models/terrorismAdvocate'
+/* eslint-disable import/prefer-default-export */
+import { validateModel } from 'models/validate'
+import legalAssociationsAdvocating from 'models/sections/legalAssociationsAdvocating'
 
-export const validateLegalAssociationAdvocate = (data, formType, options = {}) => {
-  const legalAssociationAdvocateModel = {
-    HasAdvocated: { presence: true, hasValue: { validator: hasYesOrNo } },
-    List: (value, attributes) => {
-      if (attributes.HasAdvocated && attributes.HasAdvocated.value === 'Yes') {
-        return {
-          presence: true,
-          accordion: { validator: terrorismAdvocate },
-        }
-      }
-
-      return {}
-    },
-  }
-
-  return validateModel(data, legalAssociationAdvocateModel, options)
-}
+export const validateLegalAssociationAdvocate = (data, formType, options = {}) => (
+  validateModel(data, legalAssociationsAdvocating, options)
+)

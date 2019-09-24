@@ -1,19 +1,7 @@
-import { validateModel, hasYesOrNo } from 'models/validate'
-import nonCriminalCourtAction from 'models/nonCriminalCourtAction'
+/* eslint-disable import/prefer-default-export */
+import { validateModel } from 'models/validate'
+import legalNonCriminalCourtActions from 'models/sections/legalNonCriminalCourtActions'
 
-export const validateLegalNonCriminalCourtActions = (data, formType, options = {}) => {
-  const legalNonCriminalCourtActionsModel = {
-    HasCourtActions: { presence: true, hasValue: { validator: hasYesOrNo } },
-    List: (value, attributes) => {
-      if (attributes.HasCourtActions && attributes.HasCourtActions.value === 'Yes') {
-        return {
-          presence: true,
-          accordion: { validator: nonCriminalCourtAction },
-        }
-      }
-      return {}
-    },
-  }
-
-  return validateModel(data, legalNonCriminalCourtActionsModel, options)
-}
+export const validateLegalNonCriminalCourtActions = (data, formType, options = {}) => (
+  validateModel(data, legalNonCriminalCourtActions, options)
+)

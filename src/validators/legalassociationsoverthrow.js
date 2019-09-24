@@ -1,19 +1,7 @@
-import { validateModel, hasYesOrNo } from 'models/validate'
-import overthrow from 'models/overthrow'
+/* eslint-disable import/prefer-default-export */
+import { validateModel } from 'models/validate'
+import legalAssociationsOverthrow from 'models/sections/legalAssociationsOverthrow'
 
-export const validateLegalOverthrow = (data, formType, options = {}) => {
-  const legalOverthrowModel = {
-    HasOverthrow: { presence: true, hasValue: { validator: hasYesOrNo } },
-    List: (value, attributes) => {
-      if (attributes.HasOverthrow && attributes.HasOverthrow.value === 'Yes') {
-        return {
-          presence: true,
-          accordion: { validator: overthrow },
-        }
-      }
-      return {}
-    },
-  }
-
-  return validateModel(data, legalOverthrowModel, options)
-}
+export const validateLegalOverthrow = (data, formType, options = {}) => (
+  validateModel(data, legalAssociationsOverthrow, options)
+)

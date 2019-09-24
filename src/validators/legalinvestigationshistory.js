@@ -1,25 +1,12 @@
 /* eslint-disable import/prefer-default-export */
-import { validateModel, hasYesOrNo } from 'models/validate'
-import investigation from 'models/investigation'
+import { validateModel } from 'models/validate'
 import { requireLegalInvestigationClearanceGranted } from 'helpers/branches'
+import legalInvestigationsHistory from 'models/sections/legalInvestigationsHistory'
 
 export const validateLegalInvestigationsHistory = (data, formType, options = {}) => {
-  const legalInvestigationsHistoryModel = {
-    HasHistory: { presence: true, hasValue: { validator: hasYesOrNo } },
-    List: (value, attributes) => {
-      if (attributes.HasHistory && attributes.HasHistory.value === 'Yes') {
-        return {
-          presence: true,
-          accordion: { validator: investigation },
-        }
-      }
-      return {}
-    },
-  }
-
   const modelOptions = {
     requireLegalInvestigationClearanceGranted: requireLegalInvestigationClearanceGranted(formType),
   }
 
-  return validateModel(data, legalInvestigationsHistoryModel, { ...options, ...modelOptions })
+  return validateModel(data, legalInvestigationsHistory, { ...options, ...modelOptions })
 }

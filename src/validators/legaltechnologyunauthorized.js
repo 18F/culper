@@ -1,19 +1,7 @@
-import { validateModel, hasYesOrNo } from 'models/validate'
-import unauthorizedTech from 'models/unauthorizedTech'
+/* eslint-disable import/prefer-default-export */
+import { validateModel } from 'models/validate'
+import legalTechnologyUnauthorized from 'models/sections/legalTechnologyUnauthorized'
 
-export const validateLegalTechnologyUnauthorized = (data, formType, options = {}) => {
-  const legalTechnologyUnauthorizedModel = {
-    HasUnauthorized: { presence: true, hasValue: { validator: hasYesOrNo } },
-    List: (value, attributes) => {
-      if (attributes.HasUnauthorized && attributes.HasUnauthorized.value === 'Yes') {
-        return {
-          presence: true,
-          accordion: { validator: unauthorizedTech },
-        }
-      }
-      return {}
-    },
-  }
-
-  return validateModel(data, legalTechnologyUnauthorizedModel, options)
-}
+export const validateLegalTechnologyUnauthorized = (data, formType, options = {}) => (
+  validateModel(data, legalTechnologyUnauthorized, options)
+)
