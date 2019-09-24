@@ -1,5 +1,6 @@
-import { validateModel, hasYesOrNo, checkValue } from 'models/validate'
-import otherOffense from 'models/otherOffense'
+/* eslint-disable import/prefer-default-export */
+import { validateModel } from 'models/validate'
+import legalPoliceOtherOffenses from 'models/sections/legalPoliceOtherOffenses'
 import { requireLegalPoliceFirearms, requireLegalPoliceDrugs } from 'helpers/branches'
 
 export const validatePoliceOtherOffenses = (data, formType, options = {}) => {
@@ -8,17 +9,5 @@ export const validatePoliceOtherOffenses = (data, formType, options = {}) => {
     requireLegalPoliceDrugs: requireLegalPoliceDrugs(formType),
   }
 
-
-  const policeOtherOffensesModel = {
-    HasOtherOffenses: { presence: true, hasValue: { validator: hasYesOrNo } },
-    List: (value, attributes) => (
-      checkValue(attributes.HasOtherOffenses, 'Yes')
-        ? {
-          presence: true,
-          accordion: { validator: otherOffense },
-        } : {}
-    ),
-  }
-
-  return validateModel(data, policeOtherOffensesModel, { ...options, ...modelOptions })
+  return validateModel(data, legalPoliceOtherOffenses, { ...options, ...modelOptions })
 }

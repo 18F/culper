@@ -1,23 +1,7 @@
-import { validateModel, hasYesOrNo } from 'models/validate'
-import financialNonpayment from 'models/financialNonpayment'
-
-const nonpaymentModel = {
-  HasNonpayment: {
-    presence: true,
-    hasValue: { validator: hasYesOrNo },
-  },
-  List: (value, attributes) => {
-    const { HasNonpayment } = attributes
-    if (HasNonpayment && HasNonpayment.value === 'Yes') {
-      return {
-        presence: true,
-        accordion: { validator: financialNonpayment },
-      }
-    }
-    return {}
-  },
-}
+/* eslint-disable import/prefer-default-export */
+import { validateModel } from 'models/validate'
+import financialNonPayment from 'models/sections/financialNonPayment'
 
 export const validateFinancialNonpayment = (data, formType, options = {}) => (
-  validateModel(data, nonpaymentModel, options)
+  validateModel(data, financialNonPayment, options)
 )
