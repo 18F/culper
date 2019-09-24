@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable guard-for-in */
 import {
   daysAgo,
   today,
@@ -5,66 +7,11 @@ import {
   validDate,
 } from '../components/Section/History/dateranges'
 
-/**
-  * Determines if a value is defined vs false, 0, or empty string
-  * Useful when boolean short circuiting a value that might be
-  * 'truthy' even when javascript defines it as false
-*/
-export const isDefined = x => x !== undefined && x !== null
-
-export const validGenericMonthYear = (obj) => {
-  if (!obj || !obj.month || !obj.year) {
-    return false
-  }
-  return true
-}
-
 export const validGenericTextfield = (obj) => {
   if (!obj || !obj.value) {
     return false
   }
   return true
-}
-
-export const validCurrency = (obj) => {
-  if (!obj || !obj.value || isNaN(obj.value)) {
-    return false
-  }
-  return +obj.value < 2147483648
-}
-
-/**
- * Checks if a status exists in a set of completed fields
- */
-export const hasStatus = completed => (property, status, val) => {
-  return (
-    (completed[property] && completed[property].status === val) ||
-    (status && status[property] && status[property].status === val)
-  )
-}
-
-/**
- * Checks if a status exists for all properties for a given value
- */
-export const allHaveStatus = completed => (properties, status, val) => {
-  for (let property of properties) {
-    if (!hasStatus(completed)(property, status, val)) {
-      return false
-    }
-  }
-  return true
-}
-
-/**
- * Checks if any status contains the specified value for all properties
- */
-export const anyHasStatus = completed => (properties, status, val) => {
-  for (let property of properties) {
-    if (hasStatus(completed)(property, status, val)) {
-      return true
-    }
-  }
-  return false
 }
 
 /**
@@ -87,10 +34,9 @@ export const validPhoneNumber = (phone, opts = { numberType: false }) => {
     return false
   }
 
-  const trimmed =
-    parseInt(phone.number, 10) !== 0
-      ? `${parseInt(phone.number, 10)}`
-      : phone.number.trim()
+  const trimmed = parseInt(phone.number, 10) !== 0
+    ? `${parseInt(phone.number, 10)}`
+    : phone.number.trim()
   switch (phone.type) {
     case 'Domestic':
       return trimmed.length === 10
@@ -104,25 +50,7 @@ export const validPhoneNumber = (phone, opts = { numberType: false }) => {
 /**
  * Validates a date
  */
-export const validDateField = (obj = {}) => {
-  return validDate(obj)
-}
-
-export const validNotApplicable = (notApplicable, logic, notLogic) => {
-  // If the `NotApplicable` object is not present then apply the logic
-  if (!notApplicable) {
-    return logic()
-  }
-
-  // If the `NotApplicable` object is present and is applicable then apply the logic
-  if (notApplicable && notApplicable.applicable) {
-    return logic()
-  } else if (notLogic) {
-    return notLogic()
-  }
-
-  return true
-}
+export const validDateField = (obj = {}) => validDate(obj)
 
 export const withinSevenYears = (from, to) => {
   const sevenYearsAgo = daysAgo(today, 365 * 7)
@@ -130,139 +58,35 @@ export const withinSevenYears = (from, to) => {
   const toDate = extractDate(to)
 
   if (
-    (fromDate && fromDate >= sevenYearsAgo) ||
-    (toDate && toDate >= sevenYearsAgo)
+    (fromDate && fromDate >= sevenYearsAgo)
+    || (toDate && toDate >= sevenYearsAgo)
   ) {
     return true
   }
   return false
 }
 
-export const validAccordion = (collection, valid, ignoreBranch = false) => {
-  const branch = ignoreBranch
-    ? { value: 'No' }
-    : (collection || {}).branch || {}
-  const items = (collection || {}).items || []
-  if (branch.value !== 'No') {
-    return false
-  }
-
-  if (items.length === 0) {
-    return false
-  }
-
-  return items.every(x => (
-    valid(x.Item || {})
-  ))
-}
-
-/**
- * Helper for testing components using the branch collection
- */
-export class BranchCollection {
-  constructor(collection = [], key = 'Has') {
-    this.collection = collection
-    this.key = key
-  }
-
-  /**
-   * Returns if the collection is empty
-   */
-  empty() {
-    if (
-      !this.collection
-      || !this.collection.items
-      || !this.collection.items.length
-    ) {
-      return true
-    }
-    return false
-  }
-
-  /**
-    * Ensures that the collection is not empty and that valid Yes/No responses were included.
-    * Since users are required to mark an answer, an empty collection does not mean it's valid. It must have
-    * at least one Yes/No item
-  */
-  validKeyValues() {
-    return !this.empty() && (this.hasNo() || this.hasYes())
-  }
-
-  /**
-   * Checks if an item has been marked with No
-   */
-  hasNo() {
-    return this.hasKeyValue('No')
-  }
-
-  /**
-   * Checks if an item has been marked with Yes
-   */
-  hasYes() {
-    return this.hasKeyValue('Yes')
-  }
-
-  /**
-   * Iterator that goes through each item and executes the isValidFunc. When an item
-   * is invalid, it returns.
-   * @param isValidFunc - Function that is excuted and returns whether the item is valid. This
-   * is meant to be passed in by callers of this method.
-   */
-  each(isValidFunc) {
-    if (this.empty()) {
-      return false
-    }
-
-    for (let item of (this.collection || {}).items) {
-      const key = (item.Item || {})[this.key] || {}
-      if (key.value === 'No') {
-        continue
-      }
-      if (!isValidFunc(item.Item || {})) {
-        return false
-      }
-    }
-    return true
-  }
-
-  /**
-   * Helper function that checks if a given key exists at the root level of a branch collection item
-   */
-  hasKeyValue(value) {
-    if (this.empty()) {
-      return false
-    }
-    for (let item of (this.collection || {}).items) {
-      const key = (item.Item || {})[this.key] || {}
-      if (key.value === value) {
-        return true
-      }
-    }
-    return false
-  }
-}
-
 /**
  * Checks if a branch value is within the set of possible valid yes/no values.
  */
-export const validBranch = (value, yesValue = 'Yes', noValue = 'No') => {
-  return value === yesValue || value === noValue
-}
+export const validBranch = (value, yesValue = 'Yes', noValue = 'No') => (
+  value === yesValue || value === noValue
+)
 
-export const battery = (tests, validator, fn) => {
-  return tests.forEach((test, index) => {
+export const battery = (tests, validator, fn) => (
+  tests.forEach((test) => {
     // This allows us to pass whatever test parameters in to the validation
     // function as we see fit just as long as the match the order in the
     // function signature
-    let props = []
-    for (let p in test) {
+    const props = []
+    for (const p in test) {
       props.push(test[p])
     }
 
     // eslint-disable-next-line new-cap
     expect(new validator(...props)[fn]()).toBe(test.expected)
   })
-}
+)
 
 export const validSSN = (ssn) => {
   if (ssn.notApplicable === true) {
