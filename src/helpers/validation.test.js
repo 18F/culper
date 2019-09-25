@@ -1,9 +1,11 @@
 import * as sections from 'constants/sections'
+import identificationName from 'models/sections/identificationName'
 
 import {
   sectionIsValid,
   sectionIsInvalid,
   validateSection,
+  getValidatorForSection,
 } from './validation'
 
 const validSections = [
@@ -88,6 +90,15 @@ describe('Validation helpers', () => {
 
     it('returns false if no sections are invalid', () => {
       expect(sectionIsInvalid(validSections)).toBe(false)
+    })
+  })
+
+  describe('getValidatorForSection', () => {
+    describe('when called for IDENTIFICATION_NAME', () => {
+      it('returns the identificationName model', () => {
+        expect(getValidatorForSection(sections.IDENTIFICATION_NAME))
+          .toEqual(identificationName)
+      })
     })
   })
 })

@@ -3,8 +3,11 @@
 import { SF86 } from 'constants/formTypes'
 import * as sections from 'constants/sections'
 
+import { validateModel } from 'models/validate'
+
 // IDENTIFICATION
-import { validateIdentificationName } from 'validators/identificationname'
+import identificationName from 'models/sections/identificationName'
+
 import { validateIdentificationBirthDate } from 'validators/identificationbirthdate'
 import { validateIdentificationBirthPlace } from 'validators/identificationbirthplace'
 import { validateIdentificationSSN } from 'validators/identificationssn'
@@ -99,7 +102,7 @@ import validatePackageComments from 'validators/packagecomments'
 export const getValidatorForSection = (section) => {
   switch (section) {
     case sections.IDENTIFICATION_NAME:
-      return validateIdentificationName
+      return identificationName
 
     case sections.IDENTIFICATION_BIRTH_DATE:
       return validateIdentificationBirthDate
@@ -344,12 +347,16 @@ export const getValidatorForSection = (section) => {
   }
 }
 
-export const validateSection = ({ key = '', data = {}, options = {} }, formType = SF86) => {
-  const validator = getValidatorForSection(key)
+export const getValidationOptionsForForm = () => {}
 
-  if (validator) {
+export const validateSection = ({ key = '', data = {}, options = {} }, formType = SF86) => {
+  const validationModel = getValidatorForSection(key)
+  const formOptions = getValidationOptionsForForm(formType)
+
+  if (validationModel) {
     try {
-      return validator(data, formType, options)
+      return validateModel(data, validationModel, { ...formOptions, ...options })
+      // return validator(data, formType, options)
     } catch (e) {
       console.warn(`Invalid validator for section ${key}`, e)
     }
