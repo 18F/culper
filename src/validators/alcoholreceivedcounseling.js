@@ -2,6 +2,7 @@
 import { validateModel } from 'models/validate'
 import substanceAlcoholReceivedCounselingModel from 'models/sections/substanceAlcoholReceivedCounseling'
 
+// TODO remove
 export const validateReceivedCounselings = (data, formType, options = {}) => {
   // We need to make actual date ranges for consistent validation
   const modelData = { ...data }
