@@ -1,39 +1,51 @@
+/* eslint-disable max-len */
 /* eslint import/no-cycle: 0 */
 
 import { SF86 } from 'constants/formTypes'
 import * as sections from 'constants/sections'
+import * as formConfig from 'config/forms'
 
 import { validateModel } from 'models/validate'
+import {
+  requireRelationshipMaritalForeignBornDocExpiration,
+  requireRelationshipMaritalDivorcePhoneNumber,
+  requireMultipleCitizenshipRenounced,
+  requireForeignMilitaryMaintainsContact,
+} from 'helpers/branches'
 
 // IDENTIFICATION
 import identificationName from 'models/sections/identificationName'
+import identificationDateOfBirth from 'models/sections/identificationDateOfBirth'
+import identificationPlaceOfBirth from 'models/sections/identificationPlaceOfBirth'
+import identificationSSN from 'models/sections/identificationSSN'
+import identificationOtherNames from 'models/sections/identificationOtherNames'
+import identificationContactInfo from 'models/sections/identificationContactInfo'
+import identificationPhysical from 'models/sections/identificationPhysical'
 
-import { validateIdentificationBirthDate } from 'validators/identificationbirthdate'
-import { validateIdentificationBirthPlace } from 'validators/identificationbirthplace'
-import { validateIdentificationSSN } from 'validators/identificationssn'
-import { validateOtherNames } from 'validators/identificationothernames'
-import { validateIdentificationContactInformation } from 'validators/identificationcontacts'
-import { validateIdentificationPhysical } from 'validators/identificationphysical'
 // HISTORY
-import { validateHistoryResidence } from 'validators/residence'
-import { validateHistoryEmployment } from 'validators/employment'
-import { validateHistoryEducation } from 'validators/education'
-import { validateHistoryFederal } from 'validators/federalservice'
+import historyResidence from 'models/sections/historyResidence'
+import historyEmployment from 'models/sections/historyEmployment'
+import historyEducation from 'models/sections/historyEducation'
+import historyFederal from 'models/sections/historyFederalService'
+
 // RELATIONSHIPS
-import { validateMarital } from 'validators/marital'
-import { validateCohabitants } from 'validators/cohabitant'
-import { validatePeople } from 'validators/people'
-import { validateRelatives } from 'validators/relatives'
+import relationshipsMaritalModel from 'models/sections/relationshipsMarital'
+import relationshipsCohabitantsModel from 'models/sections/relationshipsCohabitants'
+import relationshipsPeopleModel from 'models/sections/relationshipsPeople'
+import relationshipsRelativesModel from 'models/sections/relationshipsRelatives'
+
 // CITIZENSHIP
-import { validateUsPassport } from 'validators/passport'
-import { validateCitizenshipStatus } from 'validators/citizenship'
-import { validateCitizenshipMultiple } from 'validators/citizenship-multiple'
-import { validateCitizenshipPassports } from 'validators/citizenship-passports'
+import usPassport from 'models/usPassport'
+import citizenshipStatus from 'models/citizenshipStatus'
+import citizenshipMultiple from 'models/sections/citizenshipMultiple'
+import citizenshipPassports from 'models/sections/citizenshipPassports'
+
 // MILITARY
-import { validateSelectiveService } from 'validators/selectiveservice'
-import { validateMilitaryHistory } from 'validators/militaryhistory'
-import { validateMilitaryDisciplinaryProcedures } from 'validators/militarydisciplinary'
-import { validateMilitaryForeign } from 'validators/militaryforeign'
+import selectiveService from 'models/selectiveService'
+import militaryHistory from 'models/militaryHistory'
+import militaryDisciplinary from 'models/sections/militaryDisciplinary'
+import militaryForeign from 'models/sections/militaryForeign'
+
 // FOREIGN
 import { validateForeignContacts } from 'validators/foreigncontacts'
 import { validateForeignDirectActivity } from 'validators/foreigndirectactivity'
@@ -105,70 +117,70 @@ export const getValidatorForSection = (section) => {
       return identificationName
 
     case sections.IDENTIFICATION_BIRTH_DATE:
-      return validateIdentificationBirthDate
+      return identificationDateOfBirth
 
     case sections.IDENTIFICATION_BIRTH_PLACE:
-      return validateIdentificationBirthPlace
+      return identificationPlaceOfBirth
 
     case sections.IDENTIFICATION_SSN:
-      return validateIdentificationSSN
+      return identificationSSN
 
     case sections.IDENTIFICATION_OTHER_NAMES:
-      return validateOtherNames
+      return identificationOtherNames
 
     case sections.IDENTIFICATION_CONTACTS:
-      return validateIdentificationContactInformation
+      return identificationContactInfo
 
     case sections.IDENTIFICATION_PHYSICAL:
-      return validateIdentificationPhysical
+      return identificationPhysical
 
     case sections.HISTORY_RESIDENCE:
-      return validateHistoryResidence
+      return historyResidence
 
     case sections.HISTORY_EMPLOYMENT:
-      return validateHistoryEmployment
+      return historyEmployment
 
     case sections.HISTORY_EDUCATION:
-      return validateHistoryEducation
+      return historyEducation
 
     case sections.HISTORY_FEDERAL:
-      return validateHistoryFederal
+      return historyFederal
 
     case sections.RELATIONSHIPS_STATUS_MARITAL:
-      return validateMarital
+      return relationshipsMaritalModel
 
     case sections.RELATIONSHIPS_STATUS_COHABITANTS:
-      return validateCohabitants
+      return relationshipsCohabitantsModel
 
     case sections.RELATIONSHIPS_PEOPLE:
-      return validatePeople
+      return relationshipsPeopleModel
 
     case sections.RELATIONSHIPS_RELATIVES:
-      return validateRelatives
+      return relationshipsRelativesModel
 
     case sections.CITIZENSHIP_US_PASSPORT:
-      return validateUsPassport
+      return usPassport
 
     case sections.CITIZENSHIP_STATUS:
-      return validateCitizenshipStatus
+      return citizenshipStatus
 
     case sections.CITIZENSHIP_MULTIPLE:
-      return validateCitizenshipMultiple
+      return citizenshipMultiple
 
     case sections.CITIZENSHIP_PASSPORTS:
-      return validateCitizenshipPassports
+      return citizenshipPassports
 
     case sections.MILITARY_SELECTIVE:
-      return validateSelectiveService
+      return selectiveService
 
     case sections.MILITARY_HISTORY:
-      return validateMilitaryHistory
+      return militaryHistory
 
     case sections.MILITARY_DISCIPLINARY:
-      return validateMilitaryDisciplinaryProcedures
+      return militaryDisciplinary
 
     case sections.MILITARY_FOREIGN:
-      return validateMilitaryForeign
+      return militaryForeign
 
     case sections.FOREIGN_CONTACTS:
       return validateForeignContacts
@@ -347,11 +359,38 @@ export const getValidatorForSection = (section) => {
   }
 }
 
-export const getValidationOptionsForForm = () => {}
+export const getValidationOptionsForForm = (formType, key, options) => {
+  const validatorOptions = {}
+
+  switch (key) {
+    case sections.HISTORY_RESIDENCE:
+      validatorOptions.requireYears = formConfig[formType].HISTORY_RESIDENCE_YEARS
+      break
+    case sections.HISTORY_EMPLOYMENT:
+      validatorOptions.requireYears = formConfig[formType].HISTORY_EMPLOYMENT_YEARS
+      break
+    case sections.RELATIONSHIPS_STATUS_MARITAL:
+      validatorOptions.requireForeignBornDocExpiration = requireRelationshipMaritalForeignBornDocExpiration(formType)
+      validatorOptions.requireRelationshipMaritalDivorcePhoneNumber = requireRelationshipMaritalDivorcePhoneNumber(formType)
+      break
+    case sections.CITIZENSHIP_STATUS:
+      validatorOptions.requireForeignBornDocumentation = !options.hasValidUSPassport
+      break
+    case sections.CITIZENSHIP_MULTIPLE:
+      validatorOptions.requireCitizenshipRenounced = requireMultipleCitizenshipRenounced(formType)
+      break
+    case sections.MILITARY_FOREIGN:
+      validatorOptions.requireForeignMilitaryMaintainsContact = requireForeignMilitaryMaintainsContact(formType)
+      break
+    default:
+  }
+
+  return validatorOptions
+}
 
 export const validateSection = ({ key = '', data = {}, options = {} }, formType = SF86) => {
   const validationModel = getValidatorForSection(key)
-  const formOptions = getValidationOptionsForForm(formType)
+  const formOptions = getValidationOptionsForForm(formType, key, options)
 
   if (validationModel) {
     try {
