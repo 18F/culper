@@ -2,6 +2,8 @@ package api
 
 import (
 	"encoding/json"
+	"encoding/xml"
+	"fmt"
 )
 
 // FinancialBankruptcy represents the payload for the financial bankruptcy section.
@@ -66,6 +68,76 @@ type FinancialGambling struct {
 
 	HasGamblingDebt *Branch     `json:"-"`
 	List            *Collection `json:"-"`
+}
+
+// UnmarshalXML is called to unmarshal xml
+func (entity *FinancialGambling) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {
+	fmt.Println("WE CALLING IT", start)
+
+	for {
+		token, tokenErr := d.Token()
+		if tokenErr != nil {
+			fmt.Println("tokener", tokenErr)
+			break
+		}
+
+		if starter, ok := token.(xml.StartElement); ok {
+			// here we decode everything inside
+			if starter.Name.Local == "Answer" {
+				fmt.Println("ANSERING!")
+				answerToken, answerErr := d.Token()
+				if answerErr != nil {
+					return answerErr
+				}
+				answer := answerToken.(xml.CharData)
+				entity.HasGamblingDebt = &Branch{
+					Value: string(answer),
+				}
+			} else if starter.Name.Local == "Incident" {
+				// we gotta do an entire incident in here!
+
+				if entity.List == nil {
+					entity.List = &Collection{}
+				}
+
+				entity.List.Items = append(entity.List.Items, &CollectionItem{Item: map[string]json.RawMessage{}})
+				newItem := entity.List.Items[len(entity.List.Items)-1]
+
+				for {
+					incidentToken, tokenErr := d.Token()
+					if tokenErr != nil {
+						return tokenErr
+					}
+
+					if starter, ok := incidentToken.(xml.StartElement); ok {
+						if starter.Name.Local == "Actions" {
+							actionsToken, actionsErr := d.Token()
+							if actionsErr != nil {
+								return actionsErr
+							}
+							actions := actionsToken.(xml.CharData)
+							fmt.Println("ACTION", string(actions))
+
+							actionEntity := Textarea{
+								Value: string(actions),
+							}
+							newItem.SetItemValue("Actions", &actionEntity)
+						}
+					}
+
+					if ender, ok := incidentToken.(xml.EndElement); ok {
+						if ender.Name.Local == "Incident" {
+							break
+						}
+					}
+				}
+			}
+		} else {
+			fmt.Println("TOKEN", token)
+		}
+	}
+
+	return nil
 }
 
 // Unmarshal bytes in to the entity properties.

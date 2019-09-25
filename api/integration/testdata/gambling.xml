@@ -1,0 +1,44 @@
+<ProblemsDueToGambling>
+    <Answer>Yes</Answer>
+    <Incidents>
+        <Incident ID="1">
+            <Actions>I did not take any action</Actions>
+            <Amount>500</Amount>
+            <DateRange>
+                <From>
+                    <Date>
+                        <Month>01</Month>
+                        <Year>2013</Year>
+                    </Date>
+                </From>
+                <To>
+                    <Date>
+                        <Month>02</Month>
+                        <Year>2013</Year>
+                    </Date>
+                </To>
+            </DateRange>
+            <Description>Moderate financial problems</Description>
+        </Incident>
+        <Incident ID="2">
+            <Actions>No action.</Actions>
+            <Amount>9999</Amount>
+            <DateRange>
+                <From>
+                    <Date>
+                        <Month>11</Month>
+                        <Year>2017</Year>
+                    </Date>
+                </From>
+                <To>
+                    <Date>
+                        <Month>12</Month>
+                        <Year>2017</Year>
+                    </Date>
+                </To>
+            </DateRange>
+            <Description>Slight financial problems</Description>
+        </Incident>
+    </Incidents>
+    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
+</ProblemsDueToGambling>
