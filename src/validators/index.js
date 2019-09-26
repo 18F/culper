@@ -1,5 +1,3 @@
-/* eslint-disable import/no-cycle */
-import validate from './validate'
 import DateControlValidator from './datecontrol'
 import DateRangeValidator from './daterange'
 
@@ -22,7 +20,6 @@ import {
 } from './helpers'
 import { hideHippa, formIsSigned, formIsLocked } from './releases'
 
-export default validate
 export {
   DateControlValidator,
   DateRangeValidator,
