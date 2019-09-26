@@ -12,7 +12,6 @@ describe('The alcoholReceivedCounseling model', () => {
       'CompletedTreatment.presence.REQUIRED',
       'TreatmentBeganDate.presence.REQUIRED',
       'TreatmentEndDate.presence.REQUIRED',
-      'TreatmentDates.presence.REQUIRED',
       'NoCompletedTreatmentExplanation.presence.REQUIRED',
     ]
 
@@ -125,10 +124,6 @@ describe('The alcoholReceivedCounseling model', () => {
         UseSameAddress: { value: 'Yes' },
         TreatmentBeganDate: { month: 8, day: 20, year: 2010 },
         TreatmentEndDate: { month: 10, day: 23, year: 2012 },
-        TreatmentDates: {
-          from: { month: 8, day: 20, year: 2010 },
-          to: { month: 10, day: 23, year: 2012 },
-        },
         CompletedTreatment: { value: 'Yes' },
         NoCompletedTreatmentExplanation: { value: 'Because' },
       }
@@ -186,10 +181,6 @@ describe('The alcoholReceivedCounseling model', () => {
         UseSameAddress: { value: 'No' },
         TreatmentBeganDate: { month: 8, day: 20, year: 2010 },
         TreatmentEndDate: { month: 10, day: 23, year: 2012 },
-        TreatmentDates: {
-          from: { month: 8, day: 20, year: 2010 },
-          to: { month: 10, day: 23, year: 2012 },
-        },
         CompletedTreatment: { value: 'No' },
         NoCompletedTreatmentExplanation: { value: 'Because' },
       }
@@ -204,19 +195,6 @@ describe('The alcoholReceivedCounseling model', () => {
     }
     const expectedErrors = [
       'AgencyName.hasValue.MISSING_VALUE',
-    ]
-
-    expect(validateModel(testData, alcoholReceivedCounseling))
-      .toEqual(expect.arrayContaining(expectedErrors))
-  })
-
-  it('TreatmentDates must be a valid date range', () => {
-    const testData = {
-      TreatmentDates: false,
-    }
-    const expectedErrors = [
-      'TreatmentDates.daterange.from.presence.REQUIRED',
-      'TreatmentDates.daterange.to.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, alcoholReceivedCounseling))
@@ -266,10 +244,6 @@ describe('The alcoholReceivedCounseling model', () => {
       UseSameAddress: { value: 'No' },
       TreatmentBeganDate: { month: 8, day: 20, year: 2010 },
       TreatmentEndDate: { month: 10, day: 23, year: 2012 },
-      TreatmentDates: {
-        from: { month: 8, day: 20, year: 2010 },
-        to: { month: 10, day: 23, year: 2012 },
-      },
       CompletedTreatment: { value: 'Yes' },
       NoCompletedTreatmentExplanation: { value: 'Because' },
     }
