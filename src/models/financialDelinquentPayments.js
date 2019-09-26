@@ -10,15 +10,15 @@ const infractionOptions = [
 
 const financialDelinquentPayments = {
   Name: (value, attributes, attributeName, options) => {
-    const { requiredFinancialDelinquentName } = options
-    if (requiredFinancialDelinquentName) {
+    const { requireFinancialDelinquentName } = options
+    if (requireFinancialDelinquentName) {
       return { presence: true, hasValue: true }
     }
     return {}
   },
   Infractions: (value, attributes, attributeName, options) => {
-    const { requiredFinancialDelinquentInfraction } = options
-    if (requiredFinancialDelinquentInfraction) {
+    const { requireFinancialDelinquentInfraction } = options
+    if (requireFinancialDelinquentInfraction) {
       return {
         presence: true,
         array: {

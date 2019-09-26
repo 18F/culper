@@ -27,7 +27,6 @@ const alcoholReceivedCounseling = {
 
     return { presence: true, date: dateLimits }
   },
-  TreatmentDates: { presence: true, daterange: true },
   CompletedTreatment: { presence: true, hasValue: { validator: hasYesOrNo } },
   NoCompletedTreatmentExplanation: { presence: true, hasValue: true },
 }

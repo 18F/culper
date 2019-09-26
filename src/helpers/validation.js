@@ -1,342 +1,378 @@
-/* eslint import/no-cycle: 0 */
-
 import { SF86 } from 'constants/formTypes'
 import * as sections from 'constants/sections'
+import * as formConfig from 'config/forms'
+
+import { validateModel } from 'models/validate'
+import {
+  requireRelationshipMaritalForeignBornDocExpiration,
+  requireRelationshipMaritalDivorcePhoneNumber,
+  requireRelationshipRelativesForeignBornDoc,
+  requireRelationshipRelativesUSResidenceDoc,
+  requireMultipleCitizenshipRenounced,
+  requireForeignMilitaryMaintainsContact,
+  requireForeignCounterIntelligence,
+  requireForeignExcessiveKnowledge,
+  requireForeignSensitiveInformation,
+  requireForeignThreatened,
+  requireFinancialCardDisciplinaryDate,
+  requireFinancialDelinquentName,
+  requireFinancialDelinquentInfraction,
+  requireDrugWhileSafety,
+  requireDrugWithClearance,
+  requireDrugInFuture,
+  requireAlcoholOrderedCounselingParty,
+  requireLegalOffenseInvolvements,
+  requireLegalOffenseSentenced,
+  requireLegalOffenseIncarcerated,
+  requireLegalPoliceFirearms,
+  requireLegalPoliceDrugs,
+  requireLegalInvestigationClearanceGranted,
+} from 'helpers/branches'
 
 // IDENTIFICATION
-import { validateIdentificationName } from 'validators/identificationname'
-import { validateIdentificationBirthDate } from 'validators/identificationbirthdate'
-import { validateIdentificationBirthPlace } from 'validators/identificationbirthplace'
-import { validateIdentificationSSN } from 'validators/identificationssn'
-import { validateOtherNames } from 'validators/identificationothernames'
-import { validateIdentificationContactInformation } from 'validators/identificationcontacts'
-import { validateIdentificationPhysical } from 'validators/identificationphysical'
+import identificationName from 'models/sections/identificationName'
+import identificationDateOfBirth from 'models/sections/identificationDateOfBirth'
+import identificationPlaceOfBirth from 'models/sections/identificationPlaceOfBirth'
+import identificationSSN from 'models/sections/identificationSSN'
+import identificationOtherNames from 'models/sections/identificationOtherNames'
+import identificationContactInfo from 'models/sections/identificationContactInfo'
+import identificationPhysical from 'models/sections/identificationPhysical'
+
 // HISTORY
-import { validateHistoryResidence } from 'validators/residence'
-import { validateHistoryEmployment } from 'validators/employment'
-import { validateHistoryEducation } from 'validators/education'
-import { validateHistoryFederal } from 'validators/federalservice'
+import historyResidence from 'models/sections/historyResidence'
+import historyEmployment from 'models/sections/historyEmployment'
+import historyEducation from 'models/sections/historyEducation'
+import historyFederal from 'models/sections/historyFederalService'
+
 // RELATIONSHIPS
-import { validateMarital } from 'validators/marital'
-import { validateCohabitants } from 'validators/cohabitant'
-import { validatePeople } from 'validators/people'
-import { validateRelatives } from 'validators/relatives'
+import relationshipsMaritalModel from 'models/sections/relationshipsMarital'
+import relationshipsCohabitantsModel from 'models/sections/relationshipsCohabitants'
+import relationshipsPeopleModel from 'models/sections/relationshipsPeople'
+import relationshipsRelativesModel from 'models/sections/relationshipsRelatives'
+
 // CITIZENSHIP
-import { validateUsPassport } from 'validators/passport'
-import { validateCitizenshipStatus } from 'validators/citizenship'
-import { validateCitizenshipMultiple } from 'validators/citizenship-multiple'
-import { validateCitizenshipPassports } from 'validators/citizenship-passports'
+import usPassport from 'models/usPassport'
+import citizenshipStatus from 'models/citizenshipStatus'
+import citizenshipMultiple from 'models/sections/citizenshipMultiple'
+import citizenshipPassports from 'models/sections/citizenshipPassports'
+
 // MILITARY
-import { validateSelectiveService } from 'validators/selectiveservice'
-import { validateMilitaryHistory } from 'validators/militaryhistory'
-import { validateMilitaryDisciplinaryProcedures } from 'validators/militarydisciplinary'
-import { validateMilitaryForeign } from 'validators/militaryforeign'
+import selectiveService from 'models/selectiveService'
+import militaryHistory from 'models/militaryHistory'
+import militaryDisciplinary from 'models/sections/militaryDisciplinary'
+import militaryForeign from 'models/sections/militaryForeign'
+
 // FOREIGN
-import { validateForeignContacts } from 'validators/foreigncontacts'
-import { validateForeignDirectActivity } from 'validators/foreigndirectactivity'
-import { validateForeignIndirectActivity } from 'validators/foreignindirectactivity'
-import { validateForeignRealEstateActivity } from 'validators/foreignrealestateactivity'
-import { validateForeignBenefitActivity } from 'validators/foreignbenefitactivity'
-import { validateForeignActivitiesSupport } from 'validators/foreignsupport'
-import { validateForeignBusinessAdvice } from 'validators/foreignbusinessadvice'
-import { validateForeignBusinessFamily } from 'validators/foreignbusinessfamily'
-import { validateForeignBusinessEmployment } from 'validators/foreignbusinessemployment'
-import { validateForeignBusinessVentures } from 'validators/foreignbusinessventures'
-import { validateForeignBusinessConferences } from 'validators/foreignbusinessconferences'
-import { validateForeignBusinessContacts } from 'validators/foreignbusinesscontact'
-import { validateForeignBusinessSponsorship } from 'validators/foreignbusinesssponsorship'
-import { validateForeignBusinessPolitical } from 'validators/foreignbusinesspolitical'
-import { validateForeignBusinessVoting } from 'validators/foreignbusinessvoting'
-import { validateForeignTravel } from 'validators/foreigntravel'
+import foreignContacts from 'models/sections/foreignContacts'
+import foreignDirectActivity from 'models/sections/foreignDirectActivity'
+import foreignIndirectActivity from 'models/sections/foreignIndirectActivity'
+import foreignRealEstateActivity from 'models/sections/foreignRealEstateActivity'
+import foreignBenefitActivity from 'models/sections/foreignBenefitActivity'
+import foreignSupport from 'models/sections/foreignSupport'
+import foreignBusinessAdvice from 'models/sections/foreignBusinessAdvice'
+import foreignBusinessFamily from 'models/sections/foreignBusinessFamily'
+import foreignBusinessEmployment from 'models/sections/foreignBusinessEmployment'
+import foreignBusinessVentures from 'models/sections/foreignBusinessVentures'
+import foreignBusinessConferences from 'models/sections/foreignBusinessConferences'
+import foreignBusinessContact from 'models/sections/foreignBusinessContact'
+import foreignBusinessSponsorship from 'models/sections/foreignBusinessSponsorship'
+import foreignBusinessPolitical from 'models/sections/foreignBusinessPolitical'
+import foreignBusinessVoting from 'models/sections/foreignBusinessVoting'
+import foreignTravel from 'models/sections/foreignTravel'
+
 // FINANCIAL
-import { validateFinancialBankruptcy } from 'validators/bankruptcy'
-import { validateFinancialGambling } from 'validators/gambling'
-import { validateFinancialTaxes } from 'validators/taxes'
-import { validateFinancialCardAbuse } from 'validators/cardabuse'
-import { validateFinancialCredit } from 'validators/credit'
-import { validateFinancialDelinquent } from 'validators/delinquent'
-import { validateFinancialNonpayment } from 'validators/nonpayment'
+import financialBankruptcy from 'models/sections/financialBankruptcy'
+import financialGambling from 'models/sections/financialGambling'
+import financialTaxes from 'models/sections/financialTaxes'
+import financialCardAbuse from 'models/sections/financialCardAbuse'
+import financialCredit from 'models/sections/financialCredit'
+import financialDelinquent from 'models/sections/financialDelinquent'
+import financialNonPayment from 'models/sections/financialNonPayment'
+
 // SUBSTANCE
-import { validateDrugUses } from 'validators/druguses'
-import { validateDrugInvolvements } from 'validators/druginvolvements'
-import { validateDrugClearanceUses } from 'validators/drugclearanceuses'
-import { validateDrugSafetyUses } from 'validators/drugpublicsafetyuses'
-import { validateDrugPrescriptionUses } from 'validators/drugprescriptionuses'
-import { validateDrugOrderedTreatments } from 'validators/drugorderedtreatments'
-import { validateDrugVoluntaryTreatments } from 'validators/drugvoluntarytreatments'
-import { validateNegativeImpacts } from 'validators/alcoholnegativeimpact'
-import { validateOrderedCounselings } from 'validators/alcoholorderedcounseling'
-import { validateVoluntaryCounselings } from 'validators/alcoholvoluntarycounseling'
-import { validateReceivedCounselings } from 'validators/alcoholreceivedcounseling'
+import substanceDrugUsesModel from 'models/sections/substanceDrugUses'
+import substanceDrugInvolvementsModel from 'models/sections/substanceDrugInvolvements'
+import substanceDrugClearanceUsesModel from 'models/sections/substanceDrugClearanceUses'
+import substanceDrugPublicSafetyUsesModel from 'models/sections/substanceDrugPublicSafetyUses'
+import substanceDrugPrescriptionUsesModel from 'models/sections/substanceDrugPrescriptionUses'
+import substanceDrugOrderedTreatmentsModel from 'models/sections/substanceDrugOrderedTreatments'
+import substanceDrugVoluntaryTreatmentsModel from 'models/sections/substanceDrugVoluntaryTreatments'
+import substanceAlcoholNegativeImpactsModel from 'models/sections/substanceAlcoholNegativeImpacts'
+import substanceAlcoholOrderedCounselingModel from 'models/sections/substanceAlcoholOrderedCounseling'
+import substanceAlcoholVoluntaryCounselingModel from 'models/sections/substanceAlcoholVoluntaryCounseling'
+import substanceAlcoholReceivedCounselingModel from 'models/sections/substanceAlcoholReceivedCounseling'
+
 // LEGAL
-import { validatePoliceOffenses } from 'validators/policeoffenses'
-import { validatePoliceOtherOffenses } from 'validators/policeotheroffenses'
-import { validateDomesticViolence } from 'validators/domesticviolence'
-import { validateLegalInvestigationsHistory } from 'validators/legalinvestigationshistory'
-import { validateLegalInvestigationsRevoked } from 'validators/legalinvestigationsrevoked'
-import { validateLegalInvestigationsDebarred } from 'validators/legalinvestigationsdebarred'
-import { validateLegalNonCriminalCourtActions } from 'validators/legalnoncriminalcourtactions'
-import { validateLegalTechnologyUnauthorized } from 'validators/legaltechnologyunauthorized'
-import { validateLegalTechnologyManipulating } from 'validators/legaltechnologymanipulating'
-import { validateLegalTechnologyUnlawful } from 'validators/legaltechnologyunlawful'
-import { validateLegalTerrorist } from 'validators/legalassociationsterrorist'
-import { validateLegalAssociationEngaged } from 'validators/legalassociationsengaged'
-import { validateLegalAssociationAdvocate } from 'validators/legalassociationsadvocating'
-import { validateLegalOverthrow } from 'validators/legalassociationsoverthrow'
-import { validateLegalViolence } from 'validators/legalassociationsviolence'
-import { validateLegalAssociationActivities } from 'validators/legalassociationsactivities'
-import { validateLegalAssociationTerrorism } from 'validators/legalassociationsterrorism'
+import legalPoliceOffenses from 'models/sections/legalPoliceOffenses'
+import legalPoliceOtherOffenses from 'models/sections/legalPoliceOtherOffenses'
+import legalDomesticViolence from 'models/sections/legalDomesticViolence'
+import legalInvestigationsHistory from 'models/sections/legalInvestigationsHistory'
+import legalInvestigationsRevoked from 'models/sections/legalInvestigationsRevoked'
+import legalInvestigationsDebarred from 'models/sections/legalInvestigationsDebarred'
+import legalNonCriminalCourtActions from 'models/sections/legalNonCriminalCourtActions'
+import legalTechnologyUnauthorized from 'models/sections/legalTechnologyUnauthorized'
+import legalTechnologyManipulating from 'models/sections/legalTechnologyManipulating'
+import legalTechnologyUnlawful from 'models/sections/legalTechnologyUnlawful'
+import legalAssociationsTerrorist from 'models/sections/legalAssociationsTerrorist'
+import legalAssociationsEngaged from 'models/sections/legalAssociationsEngaged'
+import legalAssociationsAdvocating from 'models/sections/legalAssociationsAdvocating'
+import legalAssociationsOverthrow from 'models/sections/legalAssociationsOverthrow'
+import legalAssociationsViolence from 'models/sections/legalAssociationsViolence'
+import legalAssociationsActivities from 'models/sections/legalAssociationsActivities'
+import terrorism from 'models/terrorism'
+
 // PSYCHOLOGICAL
-import { validateCompetence } from 'validators/competence'
-import { validateConsultations } from 'validators/consultation'
-import { validateHospitalizations } from 'validators/hospitalization'
-import { validateDiagnoses } from 'validators/diagnoses'
-import { validateExistingConditions } from 'validators/existingconditions'
+import competence from 'models/competence'
+import consultation from 'models/consultation'
+import hospitalization from 'models/sections/hospitalization'
+import diagnoses from 'models/diagnoses'
+import existingConditions from 'models/existingConditions'
+
 // PACKAGE
-import validatePackageComments from 'validators/packagecomments'
+import packageComments from 'models/sections/packageComments'
 
 // Map sections to their validator classes (temporary)
 export const getValidatorForSection = (section) => {
   switch (section) {
     case sections.IDENTIFICATION_NAME:
-      return validateIdentificationName
+      return identificationName
 
     case sections.IDENTIFICATION_BIRTH_DATE:
-      return validateIdentificationBirthDate
+      return identificationDateOfBirth
 
     case sections.IDENTIFICATION_BIRTH_PLACE:
-      return validateIdentificationBirthPlace
+      return identificationPlaceOfBirth
 
     case sections.IDENTIFICATION_SSN:
-      return validateIdentificationSSN
+      return identificationSSN
 
     case sections.IDENTIFICATION_OTHER_NAMES:
-      return validateOtherNames
+      return identificationOtherNames
 
     case sections.IDENTIFICATION_CONTACTS:
-      return validateIdentificationContactInformation
+      return identificationContactInfo
 
     case sections.IDENTIFICATION_PHYSICAL:
-      return validateIdentificationPhysical
+      return identificationPhysical
 
     case sections.HISTORY_RESIDENCE:
-      return validateHistoryResidence
+      return historyResidence
 
     case sections.HISTORY_EMPLOYMENT:
-      return validateHistoryEmployment
+      return historyEmployment
 
     case sections.HISTORY_EDUCATION:
-      return validateHistoryEducation
+      return historyEducation
 
     case sections.HISTORY_FEDERAL:
-      return validateHistoryFederal
+      return historyFederal
 
     case sections.RELATIONSHIPS_STATUS_MARITAL:
-      return validateMarital
+      return relationshipsMaritalModel
 
     case sections.RELATIONSHIPS_STATUS_COHABITANTS:
-      return validateCohabitants
+      return relationshipsCohabitantsModel
 
     case sections.RELATIONSHIPS_PEOPLE:
-      return validatePeople
+      return relationshipsPeopleModel
 
     case sections.RELATIONSHIPS_RELATIVES:
-      return validateRelatives
+      return relationshipsRelativesModel
 
     case sections.CITIZENSHIP_US_PASSPORT:
-      return validateUsPassport
+      return usPassport
 
     case sections.CITIZENSHIP_STATUS:
-      return validateCitizenshipStatus
+      return citizenshipStatus
 
     case sections.CITIZENSHIP_MULTIPLE:
-      return validateCitizenshipMultiple
+      return citizenshipMultiple
 
     case sections.CITIZENSHIP_PASSPORTS:
-      return validateCitizenshipPassports
+      return citizenshipPassports
 
     case sections.MILITARY_SELECTIVE:
-      return validateSelectiveService
+      return selectiveService
 
     case sections.MILITARY_HISTORY:
-      return validateMilitaryHistory
+      return militaryHistory
 
     case sections.MILITARY_DISCIPLINARY:
-      return validateMilitaryDisciplinaryProcedures
+      return militaryDisciplinary
 
     case sections.MILITARY_FOREIGN:
-      return validateMilitaryForeign
+      return militaryForeign
 
     case sections.FOREIGN_CONTACTS:
-      return validateForeignContacts
+      return foreignContacts
 
     case sections.FOREIGN_ACTIVITIES_DIRECT:
-      return validateForeignDirectActivity
+      return foreignDirectActivity
 
     case sections.FOREIGN_ACTIVITIES_INDIRECT:
-      return validateForeignIndirectActivity
+      return foreignIndirectActivity
 
     case sections.FOREIGN_ACTIVITIES_REAL_ESTATE:
-      return validateForeignRealEstateActivity
+      return foreignRealEstateActivity
 
     case sections.FOREIGN_ACTIVITIES_BENEFITS:
-      return validateForeignBenefitActivity
+      return foreignBenefitActivity
 
     case sections.FOREIGN_ACTIVITIES_SUPPORT:
-      return validateForeignActivitiesSupport
+      return foreignSupport
 
     case sections.FOREIGN_BUSINESS_ADVICE:
-      return validateForeignBusinessAdvice
+      return foreignBusinessAdvice
 
     case sections.FOREIGN_BUSINESS_FAMILY:
-      return validateForeignBusinessFamily
+      return foreignBusinessFamily
 
     case sections.FOREIGN_BUSINESS_EMPLOYMENT:
-      return validateForeignBusinessEmployment
+      return foreignBusinessEmployment
 
     case sections.FOREIGN_BUSINESS_VENTURES:
-      return validateForeignBusinessVentures
+      return foreignBusinessVentures
 
     case sections.FOREIGN_BUSINESS_CONFERENCES:
-      return validateForeignBusinessConferences
+      return foreignBusinessConferences
 
     case sections.FOREIGN_BUSINESS_CONTACT:
-      return validateForeignBusinessContacts
+      return foreignBusinessContact
 
     case sections.FOREIGN_BUSINESS_SPONSORSHIP:
-      return validateForeignBusinessSponsorship
+      return foreignBusinessSponsorship
 
     case sections.FOREIGN_BUSINESS_POLITICAL:
-      return validateForeignBusinessPolitical
+      return foreignBusinessPolitical
 
     case sections.FOREIGN_BUSINESS_VOTING:
-      return validateForeignBusinessVoting
+      return foreignBusinessVoting
 
     case sections.FOREIGN_TRAVEL:
-      return validateForeignTravel
+      return foreignTravel
 
     case sections.FINANCIAL_BANKRUPTCY:
-      return validateFinancialBankruptcy
+      return financialBankruptcy
 
     case sections.FINANCIAL_GAMBLING:
-      return validateFinancialGambling
+      return financialGambling
 
     case sections.FINANCIAL_TAXES:
-      return validateFinancialTaxes
+      return financialTaxes
 
     case sections.FINANCIAL_CARD:
-      return validateFinancialCardAbuse
+      return financialCardAbuse
 
     case sections.FINANCIAL_CREDIT:
-      return validateFinancialCredit
+      return financialCredit
 
     case sections.FINANCIAL_DELINQUENT:
-      return validateFinancialDelinquent
+      return financialDelinquent
 
     case sections.FINANCIAL_NONPAYMENT:
-      return validateFinancialNonpayment
+      return financialNonPayment
 
     case sections.SUBSTANCE_USE_DRUGS_USAGE:
-      return validateDrugUses
+      return substanceDrugUsesModel
 
     case sections.SUBSTANCE_USE_DRUGS_PURCHASE:
-      return validateDrugInvolvements
+      return substanceDrugInvolvementsModel
 
     case sections.SUBSTANCE_USE_DRUGS_CLEARANCE:
-      return validateDrugClearanceUses
+      return substanceDrugClearanceUsesModel
 
     case sections.SUBSTANCE_USE_DRUGS_PUBLIC_SAFETY:
-      return validateDrugSafetyUses
+      return substanceDrugPublicSafetyUsesModel
 
     case sections.SUBSTANCE_USE_DRUGS_MISUSE:
-      return validateDrugPrescriptionUses
+      return substanceDrugPrescriptionUsesModel
 
     case sections.SUBSTANCE_USE_DRUGS_ORDERED:
-      return validateDrugOrderedTreatments
+      return substanceDrugOrderedTreatmentsModel
 
     case sections.SUBSTANCE_USE_DRUGS_VOLUNTARY:
-      return validateDrugVoluntaryTreatments
+      return substanceDrugVoluntaryTreatmentsModel
 
     case sections.SUBSTANCE_USE_ALCOHOL_NEGATIVE:
-      return validateNegativeImpacts
+      return substanceAlcoholNegativeImpactsModel
 
     case sections.SUBSTANCE_USE_ALCOHOL_ORDERED:
-      return validateOrderedCounselings
+      return substanceAlcoholOrderedCounselingModel
 
     case sections.SUBSTANCE_USE_ALCOHOL_VOLUNTARY:
-      return validateVoluntaryCounselings
+      return substanceAlcoholVoluntaryCounselingModel
 
     case sections.SUBSTANCE_USE_ALCOHOL_ADDITIONAL:
-      return validateReceivedCounselings
+      return substanceAlcoholReceivedCounselingModel
 
     case sections.LEGAL_POLICE_OFFENSES:
-      return validatePoliceOffenses
+      return legalPoliceOffenses
 
     case sections.LEGAL_POLICE_ADDITIONAL_OFFENSES:
-      return validatePoliceOtherOffenses
+      return legalPoliceOtherOffenses
 
     case sections.LEGAL_POLICE_DOMESTIC_VIOLENCE:
-      return validateDomesticViolence
+      return legalDomesticViolence
 
     case sections.LEGAL_INVESTIGATIONS_HISTORY:
-      return validateLegalInvestigationsHistory
+      return legalInvestigationsHistory
 
     case sections.LEGAL_INVESTIGATIONS_REVOKED:
-      return validateLegalInvestigationsRevoked
+      return legalInvestigationsRevoked
 
     case sections.LEGAL_INVESTIGATIONS_DEBARRED:
-      return validateLegalInvestigationsDebarred
+      return legalInvestigationsDebarred
 
     case sections.LEGAL_COURT:
-      return validateLegalNonCriminalCourtActions
+      return legalNonCriminalCourtActions
 
     case sections.LEGAL_TECHNOLOGY_UNAUTHORIZED:
-      return validateLegalTechnologyUnauthorized
+      return legalTechnologyUnauthorized
 
     case sections.LEGAL_TECHNOLOGY_MANIPULATING:
-      return validateLegalTechnologyManipulating
+      return legalTechnologyManipulating
 
     case sections.LEGAL_TECHNOLOGY_UNLAWFUL:
-      return validateLegalTechnologyUnlawful
+      return legalTechnologyUnlawful
 
     case sections.LEGAL_ASSOCIATIONS_TERRORIST_ORGANIZATION:
-      return validateLegalTerrorist
+      return legalAssociationsTerrorist
 
     case sections.LEGAL_ASSOCIATIONS_ENGAGED_IN_TERRORISM:
-      return validateLegalAssociationEngaged
+      return legalAssociationsEngaged
 
     case sections.LEGAL_ASSOCIATIONS_ADVOCATING:
-      return validateLegalAssociationAdvocate
+      return legalAssociationsAdvocating
 
     case sections.LEGAL_ASSOCIATIONS_MEMBERSHIP_OVERTHROW:
-      return validateLegalOverthrow
+      return legalAssociationsOverthrow
 
     case sections.LEGAL_ASSOCIATIONS_MEMBERSHIP_VIOLENCE:
-      return validateLegalViolence
+      return legalAssociationsViolence
 
     case sections.LEGAL_ASSOCIATIONS_ACTIVITIES_TO_OVERTHROW:
-      return validateLegalAssociationActivities
+      return legalAssociationsActivities
 
     case sections.LEGAL_ASSOCIATIONS_TERRORISM_ASSOCIATION:
-      return validateLegalAssociationTerrorism
+      return terrorism
 
     case sections.PSYCHOLOGICAL_COMPETENCE:
-      return validateCompetence
+      return competence
 
     case sections.PSYCHOLOGICAL_CONSULTATIONS:
-      return validateConsultations
+      return consultation
 
     case sections.PSYCHOLOGICAL_HOSPITALIZATIONS:
-      return validateHospitalizations
+      return hospitalization
 
     case sections.PSYCHOLOGICAL_DIAGNOSES:
-      return validateDiagnoses
+      return diagnoses
 
     case sections.PSYCHOLOGICAL_CONDITIONS:
-      return validateExistingConditions
+      return existingConditions
 
     case sections.REVIEW_AND_SUBMIT_COMMENTS:
-      return validatePackageComments
+      return packageComments
 
     default:
       console.warn(`Validator for ${section} section not found`)
@@ -344,12 +380,56 @@ export const getValidatorForSection = (section) => {
   }
 }
 
-export const validateSection = ({ key = '', data = {}, options = {} }, formType = SF86) => {
-  const validator = getValidatorForSection(key)
+export const getValidationOptionsForForm = (formType, key, options) => {
+  const validatorOptions = {
+    requireForeignBornDocExpiration: requireRelationshipMaritalForeignBornDocExpiration(formType),
+    requireRelationshipMaritalDivorcePhoneNumber:
+      requireRelationshipMaritalDivorcePhoneNumber(formType),
+    requireRelationshipRelativesForeignBornDoc:
+      requireRelationshipRelativesForeignBornDoc(formType),
+    requireRelationshipRelativesUSResidenceDoc:
+      requireRelationshipRelativesUSResidenceDoc(formType),
+    requireForeignBornDocumentation: !options.hasValidUSPassport,
+    requireCitizenshipRenounced: requireMultipleCitizenshipRenounced(formType),
+    requireForeignMilitaryMaintainsContact: requireForeignMilitaryMaintainsContact(formType),
+    requireForeignCounterIntelligence: requireForeignCounterIntelligence(formType),
+    requireForeignExcessiveKnowledge: requireForeignExcessiveKnowledge(formType),
+    requireForeignSensitiveInformation: requireForeignSensitiveInformation(formType),
+    requireForeignThreatened: requireForeignThreatened(formType),
+    requireFinancialCardDisciplinaryDate: requireFinancialCardDisciplinaryDate(formType),
+    requireFinancialDelinquentName: requireFinancialDelinquentName(formType),
+    requireFinancialDelinquentInfraction: requireFinancialDelinquentInfraction(formType),
+    requireUseWhileEmployed: requireDrugWhileSafety(formType),
+    requireUseWithClearance: requireDrugWithClearance(formType),
+    requireUseInFuture: requireDrugInFuture(formType),
+    requireInvolvementWhileEmployed: requireDrugWhileSafety(formType),
+    requireInvolvementWithClearance: requireDrugWithClearance(formType),
+    requireInvolvementInFuture: requireDrugInFuture(formType),
+    requireAlcoholOrderedCounselingParty: requireAlcoholOrderedCounselingParty(formType),
+    requireLegalOffenseInvolvements: requireLegalOffenseInvolvements(formType),
+    requireLegalOffenseSentenced: requireLegalOffenseSentenced(formType),
+    requireLegalOffenseIncarcerated: requireLegalOffenseIncarcerated(formType),
+    requireLegalPoliceFirearms: requireLegalPoliceFirearms(formType),
+    requireLegalPoliceDrugs: requireLegalPoliceDrugs(formType),
+    requireLegalInvestigationClearanceGranted: requireLegalInvestigationClearanceGranted(formType),
+  }
 
-  if (validator) {
+  if (key === sections.HISTORY_RESIDENCE) {
+    validatorOptions.requireYears = formConfig[formType].HISTORY_RESIDENCE_YEARS
+  } else if (key === sections.HISTORY_EMPLOYMENT) {
+    validatorOptions.requireYears = formConfig[formType].HISTORY_EMPLOYMENT_YEARS
+  }
+
+  return validatorOptions
+}
+
+export const validateSection = ({ key = '', data = {}, options = {} }, formType = SF86) => {
+  const validationModel = getValidatorForSection(key)
+  const formOptions = getValidationOptionsForForm(formType, key, options)
+
+  if (validationModel) {
     try {
-      return validator(data, formType, options)
+      return validateModel(data, validationModel, { ...formOptions, ...options })
     } catch (e) {
       console.warn(`Invalid validator for section ${key}`, e)
     }

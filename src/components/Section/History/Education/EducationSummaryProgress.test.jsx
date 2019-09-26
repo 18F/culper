@@ -220,3 +220,59 @@ describe('The EducationSummaryProgress component', () => {
     )
   })
 })
+
+describe('EducationSummaryProgress component', () => {
+  describe('with default props', () => {
+    const component = shallow(<EducationSummaryProgress />)
+
+    it('renders without errors', () => {
+      expect(component.exists()).toBe(true)
+    })
+
+    it('renders a SummaryCounter component', () => {
+      expect(component.find('SummaryCounter').length).toEqual(1)
+    })
+
+    it('passes 0 count', () => {
+      expect(component.find('SummaryCounter').prop('schoolCount')).toEqual(0)
+      expect(component.find('SummaryCounter').prop('diplomaCount')).toEqual(0)
+    })
+  })
+
+  describe('with items and no errors', () => {
+    const testItems = [
+      { uuid: '1', Item: 'test' },
+      { uuid: '2', Item: { Diplomas: { items: [{ Item: { Date: 'test date' } }] } } },
+      { uuid: '3', Item: { Diplomas: { items: [{ Item: { data: 'diploma!' } }] } } },
+      { uuid: '4' },
+    ]
+
+    const component = shallow(<EducationSummaryProgress items={testItems} />)
+
+    it('passes valid item count into SummaryCounter', () => {
+      expect(component.find('SummaryCounter').prop('schoolCount')).toEqual(3)
+      expect(component.find('SummaryCounter').prop('diplomaCount')).toEqual(1)
+    })
+  })
+
+  describe('with items and errors', () => {
+    const testItems = [
+      { uuid: '1', Item: 'test' },
+      { uuid: '2', Item: { Diplomas: { items: [{ Item: { Date: 'test date' } }] } } },
+      { uuid: '3', Item: { Diplomas: { items: [{ Item: { data: 'diploma!' } }] } } },
+      { uuid: '4', Item: 'test 2' },
+    ]
+
+    const testErrors = [
+      '2.error',
+      '4.error',
+    ]
+
+    const component = shallow(<EducationSummaryProgress items={testItems} errors={testErrors} />)
+
+    it('passes valid item count into SummaryCounter', () => {
+      expect(component.find('SummaryCounter').prop('schoolCount')).toEqual(2)
+      expect(component.find('SummaryCounter').prop('diplomaCount')).toEqual(0)
+    })
+  })
+})
