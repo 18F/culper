@@ -1,6 +1,3 @@
-/* eslint-disable max-len */
-/* eslint import/no-cycle: 0 */
-
 import { SF86 } from 'constants/formTypes'
 import * as sections from 'constants/sections'
 import * as formConfig from 'config/forms'
@@ -9,6 +6,8 @@ import { validateModel } from 'models/validate'
 import {
   requireRelationshipMaritalForeignBornDocExpiration,
   requireRelationshipMaritalDivorcePhoneNumber,
+  requireRelationshipRelativesForeignBornDoc,
+  requireRelationshipRelativesUSResidenceDoc,
   requireMultipleCitizenshipRenounced,
   requireForeignMilitaryMaintainsContact,
   requireForeignCounterIntelligence,
@@ -382,71 +381,43 @@ export const getValidatorForSection = (section) => {
 }
 
 export const getValidationOptionsForForm = (formType, key, options) => {
-  const validatorOptions = {}
+  const validatorOptions = {
+    requireForeignBornDocExpiration: requireRelationshipMaritalForeignBornDocExpiration(formType),
+    requireRelationshipMaritalDivorcePhoneNumber:
+      requireRelationshipMaritalDivorcePhoneNumber(formType),
+    requireRelationshipRelativesForeignBornDoc:
+      requireRelationshipRelativesForeignBornDoc(formType),
+    requireRelationshipRelativesUSResidenceDoc:
+      requireRelationshipRelativesUSResidenceDoc(formType),
+    requireForeignBornDocumentation: !options.hasValidUSPassport,
+    requireCitizenshipRenounced: requireMultipleCitizenshipRenounced(formType),
+    requireForeignMilitaryMaintainsContact: requireForeignMilitaryMaintainsContact(formType),
+    requireForeignCounterIntelligence: requireForeignCounterIntelligence(formType),
+    requireForeignExcessiveKnowledge: requireForeignExcessiveKnowledge(formType),
+    requireForeignSensitiveInformation: requireForeignSensitiveInformation(formType),
+    requireForeignThreatened: requireForeignThreatened(formType),
+    requireFinancialCardDisciplinaryDate: requireFinancialCardDisciplinaryDate(formType),
+    requireFinancialDelinquentName: requireFinancialDelinquentName(formType),
+    requireFinancialDelinquentInfraction: requireFinancialDelinquentInfraction(formType),
+    requireUseWhileEmployed: requireDrugWhileSafety(formType),
+    requireUseWithClearance: requireDrugWithClearance(formType),
+    requireUseInFuture: requireDrugInFuture(formType),
+    requireInvolvementWhileEmployed: requireDrugWhileSafety(formType),
+    requireInvolvementWithClearance: requireDrugWithClearance(formType),
+    requireInvolvementInFuture: requireDrugInFuture(formType),
+    requireAlcoholOrderedCounselingParty: requireAlcoholOrderedCounselingParty(formType),
+    requireLegalOffenseInvolvements: requireLegalOffenseInvolvements(formType),
+    requireLegalOffenseSentenced: requireLegalOffenseSentenced(formType),
+    requireLegalOffenseIncarcerated: requireLegalOffenseIncarcerated(formType),
+    requireLegalPoliceFirearms: requireLegalPoliceFirearms(formType),
+    requireLegalPoliceDrugs: requireLegalPoliceDrugs(formType),
+    requireLegalInvestigationClearanceGranted: requireLegalInvestigationClearanceGranted(formType),
+  }
 
-  switch (key) {
-    case sections.HISTORY_RESIDENCE:
-      validatorOptions.requireYears = formConfig[formType].HISTORY_RESIDENCE_YEARS
-      break
-    case sections.HISTORY_EMPLOYMENT:
-      validatorOptions.requireYears = formConfig[formType].HISTORY_EMPLOYMENT_YEARS
-      break
-    case sections.RELATIONSHIPS_STATUS_MARITAL:
-      validatorOptions.requireForeignBornDocExpiration = requireRelationshipMaritalForeignBornDocExpiration(formType)
-      validatorOptions.requireRelationshipMaritalDivorcePhoneNumber = requireRelationshipMaritalDivorcePhoneNumber(formType)
-      break
-    case sections.CITIZENSHIP_STATUS:
-      validatorOptions.requireForeignBornDocumentation = !options.hasValidUSPassport
-      break
-    case sections.CITIZENSHIP_MULTIPLE:
-      validatorOptions.requireCitizenshipRenounced = requireMultipleCitizenshipRenounced(formType)
-      break
-    case sections.MILITARY_FOREIGN:
-      validatorOptions.requireForeignMilitaryMaintainsContact = requireForeignMilitaryMaintainsContact(formType)
-      break
-    case sections.FOREIGN_TRAVEL:
-      validatorOptions.requireForeignCounterIntelligence = requireForeignCounterIntelligence(formType)
-      validatorOptions.requireForeignExcessiveKnowledge = requireForeignExcessiveKnowledge(formType)
-      validatorOptions.requireForeignSensitiveInformation = requireForeignSensitiveInformation(formType)
-      validatorOptions.requireForeignThreatened = requireForeignThreatened(formType)
-      break
-    case sections.FINANCIAL_CARD:
-      validatorOptions.requireFinancialCardDisciplinaryDate = requireFinancialCardDisciplinaryDate(formType)
-      break
-    case sections.FINANCIAL_DELINQUENT:
-      validatorOptions.requiredFinancialDelinquentName = requireFinancialDelinquentName(formType)
-      validatorOptions.requiredFinancialDelinquentInfraction = requireFinancialDelinquentInfraction(formType)
-      break
-    case sections.SUBSTANCE_USE_DRUGS_USAGE:
-      validatorOptions.requireUseWhileEmployed = requireDrugWhileSafety(formType)
-      validatorOptions.requireUseWithClearance = requireDrugWithClearance(formType)
-      validatorOptions.requireUseInFuture = requireDrugInFuture(formType)
-      break
-    case sections.SUBSTANCE_USE_DRUGS_PURCHASE:
-      validatorOptions.requireInvolvementWhileEmployed = requireDrugWhileSafety(formType)
-      validatorOptions.requireInvolvementWithClearance = requireDrugWithClearance(formType)
-      validatorOptions.requireInvolvementInFuture = requireDrugInFuture(formType)
-      break
-    case sections.SUBSTANCE_USE_DRUGS_MISUSE:
-      validatorOptions.requireUseWhileEmployed = requireDrugWhileSafety(formType)
-      validatorOptions.requireUseWithClearance = requireDrugWithClearance(formType)
-      break
-    case sections.SUBSTANCE_USE_ALCOHOL_ORDERED:
-      validatorOptions.requireAlcoholOrderedCounselingParty = requireAlcoholOrderedCounselingParty(formType)
-      break
-    case sections.LEGAL_POLICE_OFFENSES:
-      validatorOptions.requireLegalOffenseInvolvements = requireLegalOffenseInvolvements(formType)
-      validatorOptions.requireLegalOffenseSentenced = requireLegalOffenseSentenced(formType)
-      validatorOptions.requireLegalOffenseIncarcerated = requireLegalOffenseIncarcerated(formType)
-      break
-    case sections.LEGAL_POLICE_ADDITIONAL_OFFENSES:
-      validatorOptions.requireLegalPoliceFirearms = requireLegalPoliceFirearms(formType)
-      validatorOptions.requireLegalPoliceDrugs = requireLegalPoliceDrugs(formType)
-      break
-    case sections.LEGAL_INVESTIGATIONS_HISTORY:
-      validatorOptions.requireLegalInvestigationClearanceGranted = requireLegalInvestigationClearanceGranted(formType)
-      break
-    default:
+  if (key === sections.HISTORY_RESIDENCE) {
+    validatorOptions.requireYears = formConfig[formType].HISTORY_RESIDENCE_YEARS
+  } else if (key === sections.HISTORY_EMPLOYMENT) {
+    validatorOptions.requireYears = formConfig[formType].HISTORY_EMPLOYMENT_YEARS
   }
 
   return validatorOptions
@@ -459,7 +430,6 @@ export const validateSection = ({ key = '', data = {}, options = {} }, formType 
   if (validationModel) {
     try {
       return validateModel(data, validationModel, { ...formOptions, ...options })
-      // return validator(data, formType, options)
     } catch (e) {
       console.warn(`Invalid validator for section ${key}`, e)
     }
