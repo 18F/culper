@@ -86,8 +86,8 @@ It should be noted that in general, the SF-86 PDF form, the OPM validation matri
 Some e-QIP terminology knowledge is useful when interacting with the e-QIP web service:
 
 * eApp collects form data for an *incoming investigation request*.
-* Requests are sent to e-QIP by a *submitting agency*; i.e., the government agency making the web service call (the "caller"). See `WS_CALLERINFO*` [configuration variables](https://github.com/18F/e-QIP-prototype/blob/develop/docs/CONFIGURATION.md) in eApp.
-* Requests are directed to a particular *investigation service provider (ISP)* and *group*. See `WS_AGENCY*` [configuration variables](https://github.com/18F/e-QIP-prototype/blob/develop/docs/CONFIGURATION.md) in eApp.
+* Requests are sent to e-QIP by a *submitting agency*; i.e., the government agency making the web service call (the "caller"). See `WS_CALLERINFO*` [configuration variables](https://github.com/18F/culper/blob/develop/docs/CONFIGURATION.md) in eApp.
+* Requests are directed to a particular *investigation service provider (ISP)* and *group*. See `WS_AGENCY*` [configuration variables](https://github.com/18F/culper/blob/develop/docs/CONFIGURATION.md) in eApp.
 
 ### `submit` tool
 
@@ -95,13 +95,13 @@ To submit SF-86 XML to the e-QIP test service, use the `api/bin/submit` tool fro
 
 `submit` requires that the following environment variables be set in its execution environment:
 
-* [WS_URL](https://github.com/18F/e-QIP-prototype/blob/develop/docs/CONFIGURATION.md#ws_url)
-* [WS_KEY](https://github.com/18F/e-QIP-prototype/blob/develop/docs/CONFIGURATION.md#ws_key)
-* [WS_CALLERINFO_AGENCY_ID](https://github.com/18F/e-QIP-prototype/blob/develop/docs/CONFIGURATION.md#ws_callerinfo_agency_id)
-* [WS_CALLERINFO_AGENCY_USER_SSN](https://github.com/18F/e-QIP-prototype/blob/develop/docs/CONFIGURATION.md#ws_callerinfo_agency_user_ssn)
-* [WS_CALLERINFO_AGENCY_USER_PSEUDOSSN](https://github.com/18F/e-QIP-prototype/blob/develop/docs/CONFIGURATION.md#ws_callerinfo_agency_user_pseudossn)
-* [WS_AGENCY_ID](https://github.com/18F/e-QIP-prototype/blob/develop/docs/CONFIGURATION.md#ws_agency_id)
-* [WS_AGENCY_GROUP_ID](https://github.com/18F/e-QIP-prototype/blob/develop/docs/CONFIGURATION.md#ws_agency_group_id)
+* [WS_URL](https://github.com/18F/culper/blob/develop/docs/CONFIGURATION.md#ws_url)
+* [WS_KEY](https://github.com/18F/culper/blob/develop/docs/CONFIGURATION.md#ws_key)
+* [WS_CALLERINFO_AGENCY_ID](https://github.com/18F/culper/blob/develop/docs/CONFIGURATION.md#ws_callerinfo_agency_id)
+* [WS_CALLERINFO_AGENCY_USER_SSN](https://github.com/18F/culper/blob/develop/docs/CONFIGURATION.md#ws_callerinfo_agency_user_ssn)
+* [WS_CALLERINFO_AGENCY_USER_PSEUDOSSN](https://github.com/18F/culper/blob/develop/docs/CONFIGURATION.md#ws_callerinfo_agency_user_pseudossn)
+* [WS_AGENCY_ID](https://github.com/18F/culper/blob/develop/docs/CONFIGURATION.md#ws_agency_id)
+* [WS_AGENCY_GROUP_ID](https://github.com/18F/culper/blob/develop/docs/CONFIGURATION.md#ws_agency_group_id)
 
 For our purposes, `WS_CALLERINFO_AGENCY_USER_PSEUDOSSN` must always be set to `0`. For appropriate values for the other configuration settings, plus network requirements for access, see:
 https://docs.google.com/document/d/1q8uvcc4S9gql4cr8LEJt5wy36Db75e37qzpzJYyGi-w

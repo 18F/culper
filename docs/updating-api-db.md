@@ -12,7 +12,7 @@ Before updating the database and API, make sure that the frontend is handling th
 
 ## Update schema
 
-The frontend has a schema that is used to translate the data coming from, and going into, the database. Without properly representing the data in the schema, it will not populate properly when the app is initially loaded. Find the section in question within `/src/schema/section` and add the new input's name, and input type. Input type will correspond with the component used within React (`daterange`, `text`, `location`, etc). Update corresponding schema tests to account for the new addition. See here for an example of this change: https://github.com/18F/e-QIP-prototype/pull/675/files#diff-553dcd0197b047cac66e517b87577db6
+The frontend has a schema that is used to translate the data coming from, and going into, the database. Without properly representing the data in the schema, it will not populate properly when the app is initially loaded. Find the section in question within `/src/schema/section` and add the new input's name, and input type. Input type will correspond with the component used within React (`daterange`, `text`, `location`, etc). Update corresponding schema tests to account for the new addition. See here for an example of this change: https://github.com/18F/culper/pull/675/files#diff-553dcd0197b047cac66e517b87577db6
 
 ## Update database
 
@@ -22,17 +22,17 @@ If the column for the data does not currently exist in the database, it needs to
 date +%Y%m%d%H%M%S
 ```
 
-Following the pattern shown in previous migrations, alter the existing table to add the new column (using snake case for the name of the column). See here for an example of adding a new column to an existing table: https://github.com/18F/e-QIP-prototype/pull/675/files#diff-9fe41306637d1dbea2da5c055ea410b5
+Following the pattern shown in previous migrations, alter the existing table to add the new column (using snake case for the name of the column). See here for an example of adding a new column to an existing table: https://github.com/18F/culper/pull/675/files#diff-9fe41306637d1dbea2da5c055ea410b5
 
 ## Add API boilerplate code
 
-Next, update the API code to include the new data. In most cases this will involve modifying the corresponding section's Go file in the root `/api` folder. Following the existing patterns, copy and paste the boilerplate code within the various functions in the file (code will be added in roughly ~10 different locations). Take care to follow proper naming styles and reference the proper input type (`DateControl`, `Location`, `Email`, etc). See here for an example of adding a new field to an existing section: https://github.com/18F/e-QIP-prototype/pull/675/files#diff-89cd2ccde37e50062861c1ebdc3b539e
+Next, update the API code to include the new data. In most cases this will involve modifying the corresponding section's Go file in the root `/api` folder. Following the existing patterns, copy and paste the boilerplate code within the various functions in the file (code will be added in roughly ~10 different locations). Take care to follow proper naming styles and reference the proper input type (`DateControl`, `Location`, `Email`, etc). See here for an example of adding a new field to an existing section: https://github.com/18F/culper/pull/675/files#diff-89cd2ccde37e50062861c1ebdc3b539e
 
 ## Update XML template and test data
 
 After finding the corresponding XML file in `/api/templates`, make sure that the data is properly represented within the XML. It is also important to make sure that the new input is added to the corresponding `.json` file found within `/api/testdata` which is used to test the generated XML.
 
-Lastly, if the new data is not already found in at least one of the complete scenarios (in `/api/testdata/complete-scenarios`), then update test case 6 to include the data. This will allow the data to be pre-loaded and tested using the [load-scenario](https://github.com/18F/e-QIP-prototype/blob/develop/docs/test-scenarios.md#loading-existing-test-json-files) script.
+Lastly, if the new data is not already found in at least one of the complete scenarios (in `/api/testdata/complete-scenarios`), then update test case 6 to include the data. This will allow the data to be pre-loaded and tested using the [load-scenario](https://github.com/18F/culper/blob/develop/docs/test-scenarios.md#loading-existing-test-json-files) script.
 
 ## Test the change
 
@@ -46,4 +46,4 @@ If the data is still not present after logging out and back in, check the server
 
 ## Example
 
-For reference, the following pull request is a good representation of most of the steps documented above: https://github.com/18F/e-QIP-prototype/pull/675
+For reference, the following pull request is a good representation of most of the steps documented above: https://github.com/18F/culper/pull/675

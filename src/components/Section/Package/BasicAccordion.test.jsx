@@ -1,23 +1,38 @@
 import React from 'react'
-import { MemoryRouter } from 'react-router'
 import { mount } from 'enzyme'
-import BasicAccordion from './BasicAccordion'
+import BasicAccordion, { BasicAccordionItem } from './BasicAccordion'
 
 describe('Basic accordion component', () => {
-  it('can toggle', () => {
-    const props = {
-      items: [
-        {
-          valid: () => false,
-          component: () => {
-            return <div>test</div>
-          },
-          open: false,
-          scrollIntoView: false
-        }
-      ]
-    }
-    const component = mount(<BasicAccordion {...props} />)
+  const onClick = jest.fn()
+
+  const props = {
+    items: [
+      {
+        title: 'item-uuid',
+        valid: () => false,
+        component: () => <div>test</div>,
+        open: false,
+        scrollIntoView: false,
+        onClick,
+      },
+    ],
+  }
+
+  const component = mount(<BasicAccordion {...props} />)
+
+  it('renders a BasicAccordionItem for each item', () => {
+    expect(component.find(BasicAccordionItem).length).toEqual(1)
+  })
+
+  it('handles toggle', () => {
     component.find('.usa-accordion-button').simulate('click')
+    expect(onClick).toHaveBeenCalledTimes(1)
+  })
+})
+
+describe('BasicAccordionItem', () => {
+  it('renders without errors', () => {
+    const component = mount(<BasicAccordionItem />)
+    expect(component.exists()).toBe(true)
   })
 })

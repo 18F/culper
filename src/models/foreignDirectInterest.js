@@ -1,5 +1,5 @@
 import { DEFAULT_LATEST } from 'constants/dateLimits'
-import { foreignCoOwnersModel } from 'validators/foreigncoowner'
+import foreignCoOwnersModel from 'models/shared/foreignCoOwners'
 
 const foreignDirectInterest = {
   InterestTypes: {

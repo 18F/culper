@@ -23,7 +23,7 @@ import { updateSection } from 'actions/SectionActions'
 //     it handle what to display.
 //  3. The section and subsection are known so the section will
 //     display the subsection only.
-class Form extends React.Component {
+export class Form extends React.Component {
   componentWillMount() {
     this.defaultRedirect()
   }

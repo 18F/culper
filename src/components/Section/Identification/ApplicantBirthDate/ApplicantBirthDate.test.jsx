@@ -37,7 +37,7 @@ describe('The applicant birth date component', () => {
       Date: {
         month: '01',
         day: '01',
-        year: '1700'
+        year: '2018'
       },
       onUpdate: () => {
         updates++
@@ -51,18 +51,48 @@ describe('The applicant birth date component', () => {
     expect(updates).toBe(4)
   })
 
-  it('displays age confirmation', () => {
+  it('displays age confirmation when age is under 16', () => {
     const expected = {
       name: 'input-focus',
       label: 'Text input focused',
       Date: {
         month: '01',
         day: '01',
-        year: '1700'
+        year: '2018'
       },
       onUpdate: () => {}
     }
     const component = createComponent(expected)
     expect(component.find('.age-warning').length).toBe(1)
+  })
+
+  it('it does not display age confirmation when age is over 15 under 101', () => {
+    const expected = {
+      name: 'input-focus',
+      label: 'Text input focused',
+      Date: {
+        month: '01',
+        day: '01',
+        year: '2000'
+      },
+      onUpdate: () => {}
+    }
+    const component = createComponent(expected)
+    expect(component.find('.age-warning').length).toBe(0)
+  })
+
+  it('it displays age error when age is over 100', () => {
+    const expected = {
+      name: 'input-focus',
+      label: 'Text input focused',
+      Date: {
+        month: '01',
+        day: '01',
+        year: '0001'
+      },
+      onUpdate: () => {}
+    }
+    const component = createComponent(expected)
+    expect(component.find('.usa-alert-heading').length).toBe(1)
   })
 })
