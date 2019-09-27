@@ -30,7 +30,7 @@
             <UserPreferences Version="1" Type="Pooled" LastSummaryID="201" LastDynamicListID="201">
               <DisplayNavigation/>
             </UserPreferences>
-            <!-- TODO https://github.com/18F/e-QIP-prototype/issues/759 -->
+            <!-- TODO https://github.com/18F/culper/issues/759 -->
             <ValidationResponses Version="1" Type="FormInstanceSpecific" />
           </FormInstanceSpecific>
           <Pooled>
