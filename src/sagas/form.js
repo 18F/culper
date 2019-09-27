@@ -79,11 +79,27 @@ export const updateSectionData = (prevData, field, data) => ({
 // Loop through all form sections and re-validate with the existing data
 export function* handleValidateForm() {
   const formType = yield select(formTypeSelector)
+
+  const applicantBirthdate = yield select(selectApplicantBirthdate)
+  const maritalStatus = yield select(selectMaritalStatus)
+  const hasValidUSPassport = yield select(selectValidUSPassport)
+  // pass any x-section form data required to validate here
+  const validationOptions = {
+    applicantBirthdate,
+    maritalStatus,
+    ...hasValidUSPassport,
+  }
+
   const formData = yield select(selectForm)
+
   yield all(Object.keys(formData)
     .map((key) => {
       const sectionData = formData[key].data
-      const errors = validateSection({ key, data: sectionData }, formType)
+      const errors = validateSection({
+        key,
+        data: sectionData,
+        options: validationOptions,
+      }, formType)
       const newFormSection = {
         data: sectionData,
         errors: errors === true ? [] : errors,
