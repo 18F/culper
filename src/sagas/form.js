@@ -50,7 +50,7 @@ export function* updateSectionDataLegacy(name, data) {
 export function* setFormData(data) {
   try {
     const { Metadata = {} } = data
-    const formType = window.formType ? window.formType : Metadata.form_type
+    const formType = Metadata.form_type
     const formVersion = Metadata.form_version
 
     yield put(updateApplication('Settings', 'formType', formType))

@@ -326,6 +326,7 @@ export default class ToggleableLocation extends ValidationElement {
           required={this.props.required}
           yesLabel={i18n.m('address.options.us.label')}
           value={branchValue(this.props.country)}
+          disabled={this.props.disabled}
         />
         <Show when={this.addressType() === 'United States'}>
           {domesticFields}

@@ -1,8 +1,21 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable radix */
+/* eslint-disable prefer-template */
+/* eslint-disable no-restricted-globals */
+/* eslint-disable no-param-reassign */
+
+/**
+ * TODO:
+ * most if not all of the functions in this file should be refactored to use the
+ * luxon datetime library. current homegrown date handling functions are buggy
+ * and not accurate.
+ */
+
 /**
  * Take one of the many schemas of a date and always output a valid
  * Date object or null.
  */
-export const extractDate = dateObj => {
+export const extractDate = (dateObj) => {
   if (dateObj instanceof Date) {
     return dateObj
   }
@@ -10,8 +23,10 @@ export const extractDate = dateObj => {
   if (!dateObj || !dateObj.month || !dateObj.day || !dateObj.year) {
     return null
   }
+  var d = new Date(`${dateObj.month}/${dateObj.day}/${dateObj.year}`)
+  d.setFullYear(dateObj.year) // addresses an issue where two digit years are assumed to be in 20th or 21st centry, ex: 99 -> 1999 01 -> 2001
 
-  return new Date(`${dateObj.month}/${dateObj.day}/${dateObj.year}`)
+  return d
 }
 
 /**
@@ -72,14 +87,14 @@ export const rangeSorter = (a, b) => {
 /**
  * Calculate a date in the past
  */
-export const daysAgo = (from, days) => {
-  return new Date(from - 1000 * 60 * 60 * 24 * days)
-}
+export const daysAgo = (from, days) => (
+  new Date(from - 1000 * 60 * 60 * 24 * days)
+)
 
 /**
  * Convert date to UTC
  */
-export const utc = date => {
+export const utc = (date) => {
   if (!date) {
     return null
   }
@@ -90,21 +105,18 @@ export const utc = date => {
   return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()))
 }
 
+export const now = new Date(new Date().toUTCString())
+export const today = utc(now)
+export const ten = daysAgo(today, 365 * 10)
+
 /**
  * Get the Julian date
  */
-export const julian = date => {
+export const julian = (date) => {
   if (!date) {
     return null
   }
   return (+utc(date) / 86400000 + 2440587.5).toFixed(6)
-}
-
-/**
- * Convert a Julian date to a normal date
- */
-export const fromJulian = julian => {
-  return new Date((Number(julian) - 2440587.5) * 86400000)
 }
 
 /**
@@ -121,7 +133,8 @@ export const findPercentage = (max, min, value) => {
   const pos = ((value - smallest) / (largest - smallest)) * 100
   if (pos < 0) {
     return 0
-  } else if (pos > 100) {
+  }
+  if (pos > 100) {
     return 100
   }
 
@@ -143,9 +156,9 @@ export const daysBetween = (from, to) => {
 /**
  * Determine if a specified year is considered a leap year
  */
-export const leapYear = year => {
-  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0
-}
+export const leapYear = year => (
+  (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0
+)
 
 /**
  * Returns how many days are in a month based on the given year
@@ -161,7 +174,7 @@ export const daysInMonth = (month, year) => {
   }
 
   // Setup for upperbounds of days in months
-  let upperBounds = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+  const upperBounds = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
   if (y > 0 && leapYear(y)) {
     upperBounds[1] = 29
   }
@@ -172,38 +185,26 @@ export const daysInMonth = (month, year) => {
 /**
  * Determine if a date is valid with leap years considered
  */
-export const validDate = date => {
+export const validDate = (date) => {
   if (!date) {
     return false
   }
 
-  const month = date.month
-  const day = date.day
-  const year = date.year
+  const { month, day, year } = date
 
   if (isNaN(month) || isNaN(day) || isNaN(year)) {
     return false
   }
   const m = parseInt(month || 0)
   const d = parseInt(day || 0)
-  const y = parseInt(year || 0)
+  const y = parseInt(year || -1)
 
   return (
-    y > 1000 &&
-    y < 10000 &&
-    (m > 0 && m < 13) &&
-    (d > 0 && d <= daysInMonth(m, y))
+    y >= 0
+    && y < 10000
+    && (m > 0 && m < 13)
+    && (d > 0 && d <= daysInMonth(m, y))
   )
-}
-
-export const endOfMonth = date => {
-  if (!date) {
-    return null
-  }
-
-  let proposed = new Date(date)
-  proposed.setDate(daysInMonth(proposed.getMonth() + 1, proposed.getFullYear()))
-  return proposed
 }
 
 /**
@@ -213,14 +214,14 @@ export const gaps = (ranges = [], start = ten, buffer = 30) => {
   // If any of the ranges covers the entire timeline then return no gaps
   for (const range of ranges) {
     if (
-      daysAgo(range.from, -1 * buffer) <= start &&
-      range.to >= daysAgo(today, buffer)
+      daysAgo(range.from, -1 * buffer) <= start
+      && range.to >= daysAgo(today, buffer)
     ) {
       return []
     }
   }
 
-  let holes = []
+  const holes = []
   const fullStop = today
   const length = ranges.length - 1
 
@@ -240,9 +241,9 @@ export const gaps = (ranges = [], start = ten, buffer = 30) => {
 
     // If this is the last date range check for gaps in the future
     if (
-      i === length &&
-      start < fullStop &&
-      daysBetween(start, fullStop) > buffer
+      i === length
+      && start < fullStop
+      && daysBetween(start, fullStop) > buffer
     ) {
       holes.push({ from: range.to, to: fullStop })
     }
@@ -254,8 +255,4 @@ export const gaps = (ranges = [], start = ten, buffer = 30) => {
 /**
  * Common dates used in calculations
  */
-export const now = new Date(new Date().toUTCString())
-export const today = utc(now)
-export const ten = daysAgo(today, 365 * 10)
 export const julianNow = julian(today)
-export const julianTen = julian(ten)

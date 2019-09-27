@@ -1,9 +1,6 @@
 import {
   takeLatest, put, all, call,
 } from 'redux-saga/effects'
-import queryString from 'query-string'
-
-import { env } from 'config'
 
 import { api } from 'services/api'
 import * as actionTypes from 'constants/actionTypes'
@@ -33,15 +30,6 @@ export function* fetchStatus() {
 export function* login({ username, password }) {
   try {
     const response = yield call(api.login, username, password)
-
-    // for testing with query params
-    if (env.IsDevelopment() || env.IsStaging()) {
-      const params = window.location.search
-      const query = queryString.parse(params)
-
-      if (query.formType) window.formType = query.formType
-      if (query.status) window.status = query.status.toUpperCase()
-    }
 
     yield put(handleLoginSuccess(response))
   } catch (error) {

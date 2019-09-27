@@ -19,7 +19,7 @@ import {
 
 import { educationRequiresReference } from 'models/education'
 
-import { DiplomaItem } from './Diploma'
+import DiplomaItem from './Diploma'
 
 /**
  * Education item in a collection
@@ -130,32 +130,6 @@ export default class EducationItem extends ValidationElement {
     })
   }
 
-  diplomaSummary = (item, index) => {
-    const unk = i18n.t('history.education.collection.diploma.summary.unknown')
-    const diploma = item.Diploma || {}
-    const d = diploma.Date || {}
-    const text = (
-      diploma.Diploma === 'Other'
-        ? diploma.DiplomaOther
-        : diploma.Diploma
-    ) || unk
-    const dd = d ? `${d.month}/${d.year}` : unk
-
-    return (
-      <span>
-        <span className="index">
-          {`${i18n.t('history.education.collection.diploma.summary.item')} ${index + 1}:`}
-        </span>
-        <span className="">
-          <strong>{text}</strong>
-        </span>
-        <span className="dates">
-          <strong>{dd}</strong>
-        </span>
-      </span>
-    )
-  }
-
   render() {
     // Certain elements are present if the date range of the attendance was
     // within the last 3 years.
@@ -187,14 +161,14 @@ export default class EducationItem extends ValidationElement {
             titleSize="h4"
             help="history.education.help.dates"
             adjustFor="daterange"
-            shrink
+            shrink={true}
             scrollIntoView={this.props.scrollIntoView}
           >
             <DateRange
               name="Dates"
               {...this.props.Dates}
               label={i18n.t('history.education.label.dates')}
-              minDateEqualTo
+              minDateEqualTo={true}
               onUpdate={this.updateDates}
               onError={this.props.onError}
               required={this.props.required}
@@ -204,11 +178,11 @@ export default class EducationItem extends ValidationElement {
           <Field
             title={i18n.t('history.education.heading.address')}
             titleSize="h4"
-            optional
+            optional={true}
             help="history.education.help.address"
             onError={this.props.onError}
             adjustFor="address"
-            shrink
+            shrink={true}
             scrollIntoView={this.props.scrollIntoView}
           >
             {/* eslint jsx-a11y/label-has-associated-control: 0 */}
@@ -224,8 +198,8 @@ export default class EducationItem extends ValidationElement {
               dispatch={this.props.dispatch}
               addressBooks={this.props.addressBooks}
               addressBook="Education"
-              geocode
-              showPostOffice
+              geocode={true}
+              showPostOffice={true}
               onUpdate={this.updateAddress}
               onError={this.props.onError}
               required={this.props.required}
@@ -236,7 +210,7 @@ export default class EducationItem extends ValidationElement {
             title={i18n.t('history.education.heading.type')}
             titleSize="h4"
             adjustFor="big-buttons"
-            shrink
+            shrink={true}
             scrollIntoView={this.props.scrollIntoView}
           >
             <RadioGroup
@@ -294,7 +268,7 @@ export default class EducationItem extends ValidationElement {
               <Field
                 title={i18n.t('reference.heading.name')}
                 titleSize="h4"
-                optional
+                optional={true}
                 filterErrors={Name.requiredErrorsOnly}
                 scrollIntoView={this.props.scrollIntoView}
               >
@@ -312,7 +286,7 @@ export default class EducationItem extends ValidationElement {
                     className="reference-name"
                     {...this.props.ReferenceName}
                     scrollIntoView={this.props.scrollIntoView}
-                    hideMiddleName
+                    hideMiddleName={true}
                     onUpdate={this.updateReferenceName}
                     onError={this.props.onError}
                     required={this.props.required}
@@ -323,7 +297,7 @@ export default class EducationItem extends ValidationElement {
               <Field
                 title={i18n.t('reference.heading.correspondence')}
                 titleSize="h4"
-                optional
+                optional={true}
                 className="no-margin-bottom"
                 scrollIntoView={this.props.scrollIntoView}
               >
@@ -378,7 +352,7 @@ export default class EducationItem extends ValidationElement {
               <Field
                 title={i18n.t('reference.heading.address')}
                 titleSize="h4"
-                optional
+                optional={true}
                 help="reference.help.address"
                 adjustFor="address"
                 scrollIntoView={this.props.scrollIntoView}
@@ -390,10 +364,10 @@ export default class EducationItem extends ValidationElement {
                   {...this.props.ReferenceAddress}
                   label={i18n.t('reference.label.address')}
                   layout={Location.ADDRESS}
-                  geocode
+                  geocode={true}
                   addressBooks={this.props.addressBooks}
                   addressBook="Reference"
-                  showPostOffice
+                  showPostOffice={true}
                   dispatch={this.props.dispatch}
                   onUpdate={this.updateReferenceAddress}
                   onError={this.props.onError}
@@ -415,7 +389,7 @@ export default class EducationItem extends ValidationElement {
           >
             <DiplomaItem
               name="Item"
-              bind
+              bind={true}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}
             />

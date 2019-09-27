@@ -4,7 +4,7 @@
  */
 import { DateTime } from 'luxon'
 
-const TODAY = DateTime.local()
+export const TODAY = DateTime.local()
 
 export const DEFAULT_LATEST = TODAY
 export const DEFAULT_EARLIEST = TODAY.minus({ years: 200 })
