@@ -45,7 +45,7 @@
       </Date>
       {{if or (text $Item.Status | eq "Divorced") (text $Item.Status | eq "Annulled") }}
       <DivorceRecordLocation>
-        <!-- XXX Placeholder text as work-around for https://github.com/18F//issues/808 -->
+        <!-- XXX Placeholder text as work-around for https://github.com/18F/culper/issues/808 -->
         <Place>
           {{locationOverrideLayout $Item.DivorceLocation "US City, State, Zipcode International city"}}
         </Place>
