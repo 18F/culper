@@ -6,48 +6,44 @@ describe('The legalPoliceOtherOffenses section model', () => {
     const testData = {}
 
     const expectedErrors = [
-      'HasOtherOffenses.presence.REQUIRED',
+      'List.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, legalPoliceOtherOffenses))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
 
-  it('HasOtherOffenses must be a valid value', () => {
-    const testData = {
-      HasOtherOffenses: { value: 'maybe' },
-    }
-
-    const expectedErrors = [
-      'HasOtherOffenses.hasValue.value.inclusion.INCLUSION',
-    ]
-
-    expect(validateModel(testData, legalPoliceOtherOffenses))
-      .toEqual(expect.arrayContaining(expectedErrors))
-  })
-
-  describe('if HasOtherOffenses is "Yes', () => {
+  describe('if Has is "Yes', () => {
     it('List is required', () => {
       const testData = {
-        HasOtherOffenses: { value: 'Yes' },
+        List: {
+          items: [
+            {
+              Item: {
+                Has: { value: 'Yes' },
+                Date: { month: 1, year: 1970, day: 2 },
+              },
+            },
+            { Item: { Has: { value: 'Yes' } } },
+          ],
+        },
       }
 
       const expectedErrors = [
-        'List.presence.REQUIRED',
+        'List.branchCollection.INCOMPLETE_COLLECTION',
       ]
 
       expect(validateModel(testData, legalPoliceOtherOffenses))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
-    it('List must be a valid accordion', () => {
+    it('List must be a valid branchCollection', () => {
       const testData = {
-        HasOtherOffenses: { value: 'Yes' },
         List: ['items'],
       }
 
       const expectedErrors = [
-        'List.accordion.MISSING_ITEMS',
+        'List.branchCollection.MISSING_ITEMS',
       ]
 
       expect(validateModel(testData, legalPoliceOtherOffenses))
@@ -55,10 +51,18 @@ describe('The legalPoliceOtherOffenses section model', () => {
     })
   })
 
-  describe('if HasOtherOffenses is "No', () => {
+  describe('if Has is "No', () => {
     it('List is not required', () => {
       const testData = {
-        HasOtherOffenses: { value: 'No' },
+        List: {
+          items: [
+            {
+              Item: {
+                Has: { value: 'No' },
+              },
+            }
+          ],
+        }
       }
 
       const expectedErrors = [
