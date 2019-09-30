@@ -195,7 +195,7 @@ export default class Country extends ValidationElement {
     const klass = `country usa-form-control ${this.props.className || ''}`.trim()
     const options = this.renderOptions()
     const value = this.appropriateValue(this.props.value, this.props.multiple)
-    const ariaLabel=this.props.ariaLabel || this.props.name;   
+    const ariaLabel = this.props.ariaLabel || this.props.name;   
     return (
       <div aria-label={ariaLabel}>
         <Show when={this.props.multiple}>
