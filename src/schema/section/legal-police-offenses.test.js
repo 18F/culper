@@ -1,38 +1,47 @@
 import { unschema } from '../schema'
 import { legalPoliceOffenses } from './legal-police-offenses'
 
-describe('Schema for financial taxes', () => {
+describe('Schema for police offenses', () => {
   it('can wrap in schema', () => {
     const data = {
-      HasOffenses: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
         items: [
           {
             Item: {
+              Has: { value: 'Yes' },
               Date: {},
               Description: {},
               InvolvedViolence: {},
               InvolvedFirearms: {},
               InvolvedSubstances: {},
               Address: {
-                country: null
+                country: null,
               },
               WasCited: {},
               CitedBy: {},
               AgencyAddress: {
-                country: null
+                country: null,
               },
               WasCharged: {},
               Explanation: {},
               CourtName: {},
               CourtAddress: {
-                country: null
+                country: null,
               },
-              CourtCharge: {},
-              CourtOutcome: {},
-              CourtDate: {},
-              ChargeType: {},
+              Charges: {
+                branch: null,
+                items: [
+                  {
+                    Item: {
+                      CourtCharge: {},
+                      CourtOutcome: {},
+                      CourtDate: {},
+                      ChargeType: {},
+                    },
+                  },
+                ],
+              },
               WasSentenced: {},
               Sentence: {
                 Description: {},
@@ -41,22 +50,22 @@ describe('Schema for financial taxes', () => {
                 IncarcerationDates: {
                   from: {},
                   to: {},
-                  present: null
+                  present: null,
                 },
                 IncarcerationDatesNA: {},
                 ProbationDates: {
                   from: {},
                   to: {},
-                  present: null
+                  present: null,
                 },
-                ProbationDatesNA: {}
+                ProbationDatesNA: {},
               },
               AwaitingTrial: {},
-              AwaitingTrialExplanation: {}
-            }
-          }
-        ]
-      }
+              AwaitingTrialExplanation: {},
+            },
+          },
+        ],
+      },
     }
 
     expect(unschema(legalPoliceOffenses(data))).toEqual(data)
