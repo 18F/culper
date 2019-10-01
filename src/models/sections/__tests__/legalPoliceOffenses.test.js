@@ -6,48 +6,45 @@ describe('The legalPoliceOffenses section model', () => {
     const testData = {}
 
     const expectedErrors = [
-      'HasOffenses.presence.REQUIRED',
+      'List.presence.REQUIRED',
     ]
 
     expect(validateModel(testData, legalPoliceOffenses))
       .toEqual(expect.arrayContaining(expectedErrors))
   })
-
-  it('HasOffenses must be a valid value', () => {
-    const testData = {
-      HasOffenses: { value: 'maybe' },
-    }
-
-    const expectedErrors = [
-      'HasOffenses.hasValue.value.inclusion.INCLUSION',
-    ]
-
-    expect(validateModel(testData, legalPoliceOffenses))
-      .toEqual(expect.arrayContaining(expectedErrors))
-  })
-
-  describe('if HasOffenses is "Yes', () => {
+  
+  describe('if Has is "Yes', () => {
     it('List is required', () => {
       const testData = {
-        HasOffenses: { value: 'Yes' },
+        List: {
+          items: [
+            {
+              Item: {
+                Has: { value: 'Yes' },
+                Date: { month: 1, year: 1970, day: 2 },
+              },
+            },
+            { Item: { Has: { value: 'Yes' } } },
+          ],
+        },
       }
 
       const expectedErrors = [
-        'List.presence.REQUIRED',
+        'List.branchCollection.INCOMPLETE_COLLECTION',
       ]
 
       expect(validateModel(testData, legalPoliceOffenses))
         .toEqual(expect.arrayContaining(expectedErrors))
     })
 
-    it('List must be a valid accordion', () => {
+    it('List must be a valid branchCollection', () => {
       const testData = {
-        HasOffenses: { value: 'Yes' },
+
         List: ['items'],
       }
 
       const expectedErrors = [
-        'List.accordion.MISSING_ITEMS',
+        'List.branchCollection.MISSING_ITEMS',
       ]
 
       expect(validateModel(testData, legalPoliceOffenses))
@@ -55,10 +52,18 @@ describe('The legalPoliceOffenses section model', () => {
     })
   })
 
-  describe('if HasOffenses is "No', () => {
+  describe('if Has is "No', () => {
     it('List is not required', () => {
       const testData = {
-        HasOffenses: { value: 'No' },
+        List: {
+          items: [
+            {
+              Item: {
+                Has: { value: 'No' },
+              },
+            }
+          ],
+        }
       }
 
       const expectedErrors = [
