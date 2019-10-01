@@ -154,6 +154,7 @@ func Test85CleranceGranted(t *testing.T) {
 }
 
 func Test85PSectionsOmitted(t *testing.T) {
+	t.Skip("Skipping until 85P releases are added")
 	services := cleanTestServices(t)
 
 	xmlTemplatePath := "../templates/"
@@ -163,7 +164,7 @@ func Test85PSectionsOmitted(t *testing.T) {
 	submitter := admin.NewSubmitter(services.store, xmlsvc, pdfsvc)
 
 	scenarios := []string{
-		"../testdata/complete-scenarios/test1.json",
+		"../testdata/complete-scenarios/SF85P/test1.json",
 		"../testdata/complete-scenarios/SF85P/test2.json",
 	}
 

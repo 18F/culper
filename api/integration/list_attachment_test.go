@@ -45,7 +45,7 @@ func TestListAttachments(t *testing.T) {
 
 	createdAttachments := map[int]api.Attachment{}
 
-	attachmentPaths := []string{"../testdata/attachments/signature-form.pdf", "../testdata/attachments/release-medical.pdf"}
+	attachmentPaths := []string{"../testdata/attachments/signature-form-SF86.pdf", "../testdata/attachments/release-medical-SF86.pdf"}
 
 	for _, attachmentPath := range attachmentPaths {
 

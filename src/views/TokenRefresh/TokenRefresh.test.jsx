@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
 import TokenRefresh from 'views/TokenRefresh/TokenRefresh'
-import { i18n } from 'config'
+import i18n from 'util/i18n'
 
 describe('The token refresh error view', () => {
   // Setup
@@ -27,9 +27,8 @@ describe('The token refresh error view', () => {
       i18n.t('login.token.title')
     )
     expect(component.find('.auth.denied strong').text()).toEqual(
-      i18n
-        .t('login.token.saved')
-        .replace('{time}', lastSaved.toLocaleTimeString())
+      i18n.t('login.token.saved', { time: lastSaved.toLocaleTimeString() })
+
     )
     expect(component.find('.auth.denied p').length).toEqual(1)
     expect(component.find('.auth.denied a.usa-button-primary').text()).toEqual(

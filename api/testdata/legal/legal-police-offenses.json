@@ -1,20 +1,11 @@
 {
   "type": "legal.police.offenses",
   "props": {
-    "HasOffenses": {
-      "type": "branch",
-      "props": {
-        "value": "Yes"
-      }
-    },
     "List": {
       "type": "collection",
       "props": {
         "branch": {
-          "type": "branch",
-          "props": {
-            "value": "No"
-          }
+          "type": ""
         },
         "items": [
           {
@@ -26,6 +17,7 @@
                   "city": "Arlington",
                   "state": "VA",
                   "zipcode": "22202",
+                  "county": "United States",
                   "country": "United States"
                 }
               },
@@ -33,34 +25,101 @@
                 "type": "location",
                 "props": {
                   "layout": "Offense",
-                  "city": "Arlington",
-                  "state": "VA",
-                  "zipcode": "22202",
+                  "city": "Monterey",
+                  "state": "CA",
+                  "zipcode": "94221",
+                  "county": "Monterey",
                   "country": "United States"
                 }
               },
               "AwaitingTrial": {
                 "type": "branch",
                 "props": {
-                  "value": "Yes"
+                  "value": ""
                 }
               },
               "AwaitingTrialExplanation": {
                 "type": "textarea",
                 "props": {
-                  "value": "my explanation"
+                  "value": ""
                 }
               },
-              "ChargeType": {
-                "type": "radio",
+              "Charges": {
+                "type": "collection",
                 "props": {
-                  "value": "Other"
+                  "branch": {
+                    "type": ""
+                  },
+                  "items": [
+                    {
+                      "Item": {
+                        "ChargeType": {
+                          "type": "radio",
+                          "props": {
+                            "value": "Felony"
+                          }
+                        },
+                        "CourtCharge": {
+                          "type": "text",
+                          "props": {
+                            "value": "my first bad charge"
+                          }
+                        },
+                        "CourtDate": {
+                          "type": "datecontrol",
+                          "props": {
+                            "month": "7",
+                            "day": "1",
+                            "year": "2018",
+                            "estimated": false
+                          }
+                        },
+                        "CourtOutcome": {
+                          "type": "text",
+                          "props": {
+                            "value": "not good"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "Item": {
+                        "ChargeType": {
+                          "type": "radio",
+                          "props": {
+                            "value": "Other"
+                          }
+                        },
+                        "CourtCharge": {
+                          "type": "text",
+                          "props": {
+                            "value": "a lesser charge"
+                          }
+                        },
+                        "CourtDate": {
+                          "type": "datecontrol",
+                          "props": {
+                            "month": "3",
+                            "day": "1",
+                            "year": "2018",
+                            "estimated": false
+                          }
+                        },
+                        "CourtOutcome": {
+                          "type": "text",
+                          "props": {
+                            "value": "plead out"
+                          }
+                        }
+                      }
+                    }
+                  ]
                 }
               },
               "CitedBy": {
                 "type": "text",
                 "props": {
-                  "value": "cited by"
+                  "value": "CHP"
                 }
               },
               "CourtAddress": {
@@ -70,34 +129,14 @@
                   "city": "Arlington",
                   "state": "VA",
                   "zipcode": "22202",
+                  "county": "United States",
                   "country": "United States"
-                }
-              },
-              "CourtCharge": {
-                "type": "text",
-                "props": {
-                  "value": "my charge"
-                }
-              },
-              "CourtDate": {
-                "type": "datecontrol",
-                "props": {
-                  "month": "7",
-                  "day": "25",
-                  "year": "2017",
-                  "estimated": false
                 }
               },
               "CourtName": {
                 "type": "text",
                 "props": {
                   "value": "my court name"
-                }
-              },
-              "CourtOutcome": {
-                "type": "text",
-                "props": {
-                  "value": "my outcome"
                 }
               },
               "Date": {
@@ -118,7 +157,13 @@
               "Explanation": {
                 "type": "textarea",
                 "props": {
-                  "value": "my explanation"
+                  "value": ""
+                }
+              },
+              "Has": {
+                "type": "branch",
+                "props": {
+                  "value": "Yes"
                 }
               },
               "InvolvedFirearms": {
@@ -177,7 +222,7 @@
                         "props": {
                           "month": "7",
                           "day": "25",
-                          "year": "2017",
+                          "year": "2018",
                           "estimated": false
                         }
                       },
@@ -197,17 +242,17 @@
                         "type": "datecontrol",
                         "props": {
                           "month": "7",
-                          "day": "1",
-                          "year": "2017",
+                          "day": "25",
+                          "year": "2018",
                           "estimated": false
                         }
                       },
                       "to": {
                         "type": "datecontrol",
                         "props": {
-                          "month": "7",
-                          "day": "25",
-                          "year": "2017",
+                          "month": "8",
+                          "day": "8",
+                          "year": "2019",
                           "estimated": false
                         }
                       },
@@ -248,10 +293,10 @@
                 "type": "location",
                 "props": {
                   "layout": "Offense",
-                  "city": "San Francisco",
+                  "city": "San Francsico",
                   "state": "CA",
                   "zipcode": "94110",
-                  "county": "San Francisco",
+                  "county": "United States",
                   "country": "United States"
                 }
               },
@@ -262,7 +307,7 @@
                   "city": "Monterey",
                   "state": "CA",
                   "zipcode": "94221",
-                  "county": "Monterey",
+                  "county": "United States",
                   "country": "United States"
                 }
               },
@@ -278,10 +323,13 @@
                   "value": ""
                 }
               },
-              "ChargeType": {
-                "type": "radio",
+              "Charges": {
+                "type": "collection",
                 "props": {
-                  "value": ""
+                  "branch": {
+                    "type": ""
+                  },
+                  "items": []
                 }
               },
               "CitedBy": {
@@ -294,28 +342,7 @@
                 "type": "location",
                 "props": {}
               },
-              "CourtCharge": {
-                "type": "text",
-                "props": {
-                  "value": ""
-                }
-              },
-              "CourtDate": {
-                "type": "datecontrol",
-                "props": {
-                  "month": "",
-                  "day": "",
-                  "year": "",
-                  "estimated": false
-                }
-              },
               "CourtName": {
-                "type": "text",
-                "props": {
-                  "value": ""
-                }
-              },
-              "CourtOutcome": {
                 "type": "text",
                 "props": {
                   "value": ""
@@ -339,7 +366,13 @@
               "Explanation": {
                 "type": "textarea",
                 "props": {
-                  "value": "it weren't no thing"
+                  "value": "there's it"
+                }
+              },
+              "Has": {
+                "type": "branch",
+                "props": {
+                  "value": "Yes"
                 }
               },
               "InvolvedFirearms": {
@@ -453,6 +486,201 @@
                 "type": "branch",
                 "props": {
                   "value": "Yes"
+                }
+              },
+              "WasSentenced": {
+                "type": "branch",
+                "props": {
+                  "value": ""
+                }
+              }
+            }
+          },
+          {
+            "Item": {
+              "Address": {
+                "type": "location",
+                "props": {}
+              },
+              "AgencyAddress": {
+                "type": "location",
+                "props": {}
+              },
+              "AwaitingTrial": {
+                "type": "branch",
+                "props": {
+                  "value": ""
+                }
+              },
+              "AwaitingTrialExplanation": {
+                "type": "textarea",
+                "props": {
+                  "value": ""
+                }
+              },
+              "Charges": {
+                "type": "collection",
+                "props": {
+                  "branch": {
+                    "type": ""
+                  },
+                  "items": []
+                }
+              },
+              "CitedBy": {
+                "type": "text",
+                "props": {
+                  "value": ""
+                }
+              },
+              "CourtAddress": {
+                "type": "location",
+                "props": {}
+              },
+              "CourtName": {
+                "type": "text",
+                "props": {
+                  "value": ""
+                }
+              },
+              "Date": {
+                "type": "datecontrol",
+                "props": {
+                  "month": "",
+                  "day": "",
+                  "year": "",
+                  "estimated": false
+                }
+              },
+              "Description": {
+                "type": "textarea",
+                "props": {
+                  "value": ""
+                }
+              },
+              "Explanation": {
+                "type": "textarea",
+                "props": {
+                  "value": ""
+                }
+              },
+              "Has": {
+                "type": "branch",
+                "props": {
+                  "value": "No"
+                }
+              },
+              "InvolvedFirearms": {
+                "type": "branch",
+                "props": {
+                  "value": ""
+                }
+              },
+              "InvolvedSubstances": {
+                "type": "branch",
+                "props": {
+                  "value": ""
+                }
+              },
+              "InvolvedViolence": {
+                "type": "branch",
+                "props": {
+                  "value": ""
+                }
+              },
+              "Sentence": {
+                "type": "sentence",
+                "props": {
+                  "Description": {
+                    "type": "textarea",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "ExceedsYear": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "Incarcerated": {
+                    "type": "branch",
+                    "props": {
+                      "value": ""
+                    }
+                  },
+                  "IncarcerationDates": {
+                    "type": "daterange",
+                    "props": {
+                      "from": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "",
+                          "day": "",
+                          "year": "",
+                          "estimated": false
+                        }
+                      },
+                      "to": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "",
+                          "day": "",
+                          "year": "",
+                          "estimated": false
+                        }
+                      },
+                      "present": false
+                    }
+                  },
+                  "IncarcerationDatesNA": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": false
+                    }
+                  },
+                  "ProbationDates": {
+                    "type": "daterange",
+                    "props": {
+                      "from": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "",
+                          "day": "",
+                          "year": "",
+                          "estimated": false
+                        }
+                      },
+                      "to": {
+                        "type": "datecontrol",
+                        "props": {
+                          "month": "",
+                          "day": "",
+                          "year": "",
+                          "estimated": false
+                        }
+                      },
+                      "present": false
+                    }
+                  },
+                  "ProbationDatesNA": {
+                    "type": "notapplicable",
+                    "props": {
+                      "applicable": false
+                    }
+                  }
+                }
+              },
+              "WasCharged": {
+                "type": "branch",
+                "props": {
+                  "value": ""
+                }
+              },
+              "WasCited": {
+                "type": "branch",
+                "props": {
+                  "value": ""
                 }
               },
               "WasSentenced": {

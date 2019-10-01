@@ -14,7 +14,7 @@ func TestSingleAttachment(t *testing.T) {
 	defer store.Close()
 	account := createTestAccount(t, store)
 
-	certificationPath := "../testdata/attachments/signature-form.pdf"
+	certificationPath := "../testdata/attachments/signature-form-SF86.pdf"
 	certificationBytes, readErr := ioutil.ReadFile(certificationPath)
 	if readErr != nil {
 		t.Fatal(readErr)
@@ -91,10 +91,10 @@ func TestListAttachments(t *testing.T) {
 	account := createTestAccount(t, store)
 
 	testAttachments := []string{
-		"../testdata/attachments/signature-form.pdf",
-		"../testdata/attachments/release-credit.pdf",
-		"../testdata/attachments/release-information.pdf",
-		"../testdata/attachments/release-medical.pdf",
+		"../testdata/attachments/signature-form-SF86.pdf",
+		"../testdata/attachments/release-credit-SF86.pdf",
+		"../testdata/attachments/release-information-SF86.pdf",
+		"../testdata/attachments/release-medical-SF86.pdf",
 	}
 
 	attachmentCount := 10

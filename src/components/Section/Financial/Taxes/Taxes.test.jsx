@@ -124,7 +124,7 @@ describe('The taxes component', () => {
                   estimated: false,
                   month: '1',
                   day: '1',
-                  year: '1970',
+                  year: '1000',
                 },
               },
             },

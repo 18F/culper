@@ -47,7 +47,7 @@ func TestSaveAttachment(t *testing.T) {
 	defer services.closeDB()
 	account := createTestAccount(t, services.store)
 
-	certificationPath := "../testdata/attachments/signature-form.pdf"
+	certificationPath := "../testdata/attachments/signature-form-SF86.pdf"
 
 	certificationBytes := readTestData(t, certificationPath)
 
@@ -236,7 +236,7 @@ func TestSaveAttachmentTooBig(t *testing.T) {
 	defer services.closeDB()
 	account := createTestAccount(t, services.store)
 
-	certificationPath := "../testdata/attachments/signature-form.pdf"
+	certificationPath := "../testdata/attachments/signature-form-SF86.pdf"
 
 	certificationBytes := readTestData(t, certificationPath)
 
@@ -288,7 +288,7 @@ func TestCreateAttachmentError(t *testing.T) {
 	defer services.closeDB()
 	account := createTestAccount(t, services.store)
 
-	certificationPath := "../testdata/attachments/signature-form.pdf"
+	certificationPath := "../testdata/attachments/signature-form-SF86.pdf"
 
 	certificationBytes := readTestData(t, certificationPath)
 
@@ -330,7 +330,7 @@ func TestGetAttachmentsDisabled(t *testing.T) {
 	defer services.closeDB()
 	account := createTestAccount(t, services.store)
 
-	certificationPath := "../testdata/attachments/signature-form.pdf"
+	certificationPath := "../testdata/attachments/signature-form-SF86.pdf"
 
 	certificationBytes := readTestData(t, certificationPath)
 
@@ -405,7 +405,7 @@ func TestGetAttachmentBadID(t *testing.T) {
 	defer services.closeDB()
 	account := createTestAccount(t, services.store)
 
-	certificationPath := "../testdata/attachments/signature-form.pdf"
+	certificationPath := "../testdata/attachments/signature-form-SF86.pdf"
 
 	certificationBytes := readTestData(t, certificationPath)
 

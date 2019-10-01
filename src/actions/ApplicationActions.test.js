@@ -4,6 +4,7 @@ import {
   updateIdentificationBirthDate,
   updateIdentificationSSN,
   reportErrors,
+  clearErrors,
 } from './ApplicationActions'
 
 describe('Application actions', () => {
@@ -97,5 +98,17 @@ describe('Application actions', () => {
       expect(actual.property).toEqual(t.expected.property)
       expect(actual.values).toEqual(t.expected.values)
     })
+  })
+
+  it('creates an action to clear errors', () => {
+    const expectedAction = {
+      type: 'Errors.testProperty',
+      section: 'Errors',
+      property: 'testProperty',
+      subsection: 'testSection',
+      clear: true,
+    }
+
+    expect(clearErrors('testProperty', 'testSection')).toEqual(expectedAction)
   })
 })

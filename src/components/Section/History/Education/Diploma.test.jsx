@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import configureMockStore from 'redux-mock-store'
 import { Provider } from 'react-redux'
-import { DiplomaItem } from './Diploma'
+import DiplomaItem from './Diploma'
 
 describe('The diploma component', () => {
   const mockStore = configureMockStore()
@@ -10,17 +10,18 @@ describe('The diploma component', () => {
 
   beforeEach(() => {
     const store = mockStore()
-    createComponent = (expected = {}) =>
+    createComponent = (expected = {}) => (
       mount(
         <Provider store={store}>
           <DiplomaItem {...expected} />
         </Provider>
       )
+    )
   })
 
   it('no error on empty', () => {
     const expected = {
-      name: 'diploma'
+      name: 'diploma',
     }
     const component = createComponent(expected)
     expect(component.find('.diploma').length).toEqual(1)
@@ -29,7 +30,7 @@ describe('The diploma component', () => {
   it('display textbox if "Other" is selected', () => {
     const expected = {
       name: 'diploma',
-      Diploma: { value: 'Other' }
+      Diploma: { value: 'Other' },
     }
     const component = createComponent(expected)
     expect(component.find('.other').length).toEqual(1)
@@ -38,7 +39,7 @@ describe('The diploma component', () => {
   it('not display textbox if "Other" is not selected', () => {
     const expected = {
       name: 'diploma',
-      Diploma: { value: 'Doctorate' }
+      Diploma: { value: 'Doctorate' },
     }
     const component = createComponent(expected)
     expect(component.find('.other').length).toEqual(0)
@@ -50,8 +51,8 @@ describe('The diploma component', () => {
       name: 'diploma',
       Diploma: { value: 'Other' },
       onUpdate: () => {
-        updates++
-      }
+        updates += 1
+      },
     }
     const component = createComponent(expected)
     component.find('.diploma-highschool input').simulate('change')

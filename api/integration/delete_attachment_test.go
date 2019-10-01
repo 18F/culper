@@ -29,7 +29,7 @@ func TestDeleteAttachment(t *testing.T) {
 	defer services.closeDB()
 	account := createTestAccount(t, services.store)
 
-	certificationPath := "../testdata/attachments/signature-form.pdf"
+	certificationPath := "../testdata/attachments/signature-form-SF86.pdf"
 
 	certificationBytes := readTestData(t, certificationPath)
 
@@ -123,7 +123,7 @@ func TestDeleteAttachmentDisabled(t *testing.T) {
 	defer services.closeDB()
 	account := createTestAccount(t, services.store)
 
-	certificationPath := "../testdata/attachments/signature-form.pdf"
+	certificationPath := "../testdata/attachments/signature-form-SF86.pdf"
 
 	certificationBytes := readTestData(t, certificationPath)
 

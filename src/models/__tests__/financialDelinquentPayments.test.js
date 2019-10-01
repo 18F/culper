@@ -44,8 +44,8 @@ describe('The financial delinquent payments model', () => {
 
   describe('SF86', () => {
     const options = {
-      requiredFinancialDelinquentName: true,
-      requiredFinancialDelinquentInfraction: true,
+      requireFinancialDelinquentName: true,
+      requireFinancialDelinquentInfraction: true,
     }
     it('errors when required fields arent filled', () => {
       const testData = {
@@ -89,8 +89,8 @@ describe('The financial delinquent payments model', () => {
 
   describe('SF85', () => {
     const options = {
-      requiredFinancialDelinquentName: false,
-      requiredFinancialDelinquentInfraction: false,
+      requireFinancialDelinquentName: false,
+      requireFinancialDelinquentInfraction: false,
     }
     it('does not require a name nor infraction for the delinquent payment item', () => {
       const testData = {

@@ -4,18 +4,18 @@
  */
 import { DateTime } from 'luxon'
 
-const TODAY = DateTime.local()
+export const TODAY = DateTime.local()
 
 export const DEFAULT_LATEST = TODAY
 export const DEFAULT_EARLIEST = TODAY.minus({ years: 200 })
 
 /**
  * Applicant birthdate must be:
- * - less than 130 years, 1 day ago
+ * - less than 100 years, 1 day ago
  * - more than 16 years ago
  */
 export const SELF = {
-  earliest: TODAY.minus({ years: 130, days: 1 }),
+  earliest: TODAY.minus({ years: 100, days: 1 }),
   latest: TODAY.minus({ years: 16 }),
 }
 

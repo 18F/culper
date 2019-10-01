@@ -111,6 +111,7 @@ export class Relatives extends Subsection {
   render() {
     const {
       List,
+      requireRelationshipRelativesForeignBornDoc,
       requireRelationshipRelativesUSResidenceDoc,
       requireRelationshipRelativesForeignGovtAffExplanation,
       errors,
@@ -166,6 +167,7 @@ export class Relatives extends Subsection {
             bind={true}
             scrollIntoView={this.props.scrollIntoView}
             required={this.props.required}
+            requireRelationshipRelativesForeignBornDoc={requireRelationshipRelativesForeignBornDoc}
             requireRelationshipRelativesForeignGovtAffExplanation={
               requireRelationshipRelativesForeignGovtAffExplanation}
             requireRelationshipRelativesUSResidenceDoc={requireRelationshipRelativesUSResidenceDoc}

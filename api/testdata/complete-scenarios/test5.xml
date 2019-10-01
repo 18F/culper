@@ -4664,6 +4664,15 @@
                         <Outcome>Not Guilty</Outcome>
                         <Type>Misdemeanor</Type>
                       </Charge>
+                      <Charge ID="2">
+                        <Charge>my charge</Charge>
+                        <Date>
+                          <Month>07</Month>
+                          <Year>2017</Year>
+                        </Date>
+                        <Outcome>my outcome</Outcome>
+                        <Type>Other</Type>
+                      </Charge>
                     </Charges>
                     <Court>
                       <Location>
