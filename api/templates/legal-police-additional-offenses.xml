@@ -1,9 +1,10 @@
 <Ever>
   <Offenses>
-    <Answer>{{branch .props.HasOtherOffenses}}</Answer>
+    <Answer>{{branchcollectionHas .props.List}}</Answer>
     <Comment></Comment>
     {{range $index, $item := .props.List.props.items}}
     {{with $Item := $item.Item}}
+    {{if branch $Item.Has | eq "Yes"}}
     <Offense ID="{{inc $index}}">
       <AwaitingTrial>
         <Answer>{{branch $Item.AwaitingTrial}}</Answer>
@@ -11,16 +12,18 @@
         <Explanation>{{text $Item.AwaitingTrialExplanation}}</Explanation>
       </AwaitingTrial>
       <Charges>
-        <!-- XXX We don't collect more than one -->
-        <!-- See https://github.com/18F/culper/issues/782 -->
-        <Charge ID="1">
-          <Charge>{{text $Item.CourtCharge}}</Charge>
-          <Date Type="{{dateEstimated $Item.CourtDate}}">
-            {{monthYear $Item.CourtDate}}
+        {{range $chargeindex, $chargeitem := $Item.Charges.props.items}}
+        {{with $ChargeItem := $chargeitem.Item}}
+        <Charge ID="{{inc $chargeindex}}">
+          <Charge>{{text $ChargeItem.CourtCharge}}</Charge>
+          <Date Type="{{dateEstimated $ChargeItem.CourtDate}}">
+            {{monthYear $ChargeItem.CourtDate}}
           </Date>
-          <Outcome>{{text $Item.CourtOutcome}}</Outcome>
-          <Type>{{text $Item.ChargeType}}</Type>
+          <Outcome>{{text $ChargeItem.CourtOutcome}}</Outcome>
+          <Type>{{text $ChargeItem.ChargeType}}</Type>
         </Charge>
+        {{end}}
+        {{end}}
       </Charges>
       <Comment></Comment>
       <Court>
@@ -107,9 +110,10 @@
     </Offense>
     {{end}}
     {{end}}
+    {{end}}
 
-    {{- if branch .props.HasOtherOffenses | eq "Yes"}}
-    <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+    {{- if branchcollectionHas .props.List | eq "Yes"}}
+    <HaveAdditionalEntryAnswer>No</HaveAdditionalEntryAnswer>
     <SummaryComment></SummaryComment>
     {{end}}
   </Offenses>
