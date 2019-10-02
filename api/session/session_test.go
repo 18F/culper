@@ -8,7 +8,6 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/pkg/errors"
 
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/env"
@@ -107,7 +106,7 @@ func TestLogSessionCreatedDestroyed(t *testing.T) {
 	sessionLog := &mock.LogRecorder{}
 	session := NewSessionService(timeout, store, sessionLog)
 
-  account := createTestAccount(t, store.(simplestore.SimpleStore))
+	account := createTestAccount(t, store.(simplestore.SimpleStore))
 
 	sessionKey, authErr := session.UserDidAuthenticate(account.ID, api.NullString())
 	if authErr != nil {
