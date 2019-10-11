@@ -1,5 +1,5 @@
 import streetCityCountry from 'models/shared/locations/streetCityCountry'
-import { foreignCoOwnersModel } from 'validators/foreigncoowner'
+import foreignCoOwnersModel from 'models/shared/foreignCoOwners'
 
 const foreignRealEstateInterest = {
   InterestTypes: {

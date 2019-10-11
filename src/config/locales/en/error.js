@@ -76,9 +76,24 @@ export const error = {
       title: 'The applicant age is not approved',
       message: [
         'Your date of birth indicates you are under the age of 16 or over 100.',
-        'Please confirm the date is correct by checking the box below.'
+        'Please confirm the date is correct by checking the box below.',
       ],
       note: '',
+      min: {
+        title: 'The applicant age is not approved',
+        message: [
+          'Your date of birth indicates you are over the age of 100. Please contact your security office representative or the individual who initiated your investigation regarding further instruction.',
+        ],
+        note: '',
+      },
+      max: {
+        title: 'The applicant age is not approved',
+        message: [
+          'Your date of birth indicates you are under the age of 16.',
+          'Please confirm the date is correct by checking the box below.'
+        ],
+        note: '',
+      },
     },
   },
   ssn: {
@@ -770,7 +785,7 @@ export const error = {
           title: 'There is a problem with the City',
           message: 'City is required if County is not filled in',
           note: '',
-        }
+        },
       },
       state: {
         notfound: {
@@ -793,7 +808,7 @@ export const error = {
           title: 'There is a problem with the County',
           message: 'County is required if City is not filled in',
           note: '',
-        }
+        },
       },
       zipcode: {
         pattern: {

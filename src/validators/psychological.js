@@ -1,41 +1,13 @@
-import { allHaveStatus, anyHasStatus } from './helpers'
-
-export default class PsychologicalValidator {
-  constructor(data = {}) {
-    this.completed = data.Completed
-    this.psychological = data.Psychological
-  }
-
-  completionStatus(status) {
-    let toCheck = [
-      'Competence',
-      'Consultations',
-      'Hospitalizations',
-      'Diagnoses'
-    ]
-
-    if (showQuestion21E(this.psychological)) {
-      toCheck.push('ExistingConditions')
-    }
-
-    if (allHaveStatus(this.completed)(toCheck, status, true)) {
-      return 'complete'
-    } else if (anyHasStatus(this.completed)(toCheck, status, false)) {
-      return 'incomplete'
-    }
-    return 'neutral'
-  }
-}
-
 const defaultPsychologicalState = {
   Competence: null,
   Consultation: null,
   Diagnoses: null,
-  Hospitalization: null
+  Hospitalization: null,
 }
 
 /**
- * Determines if Question 21 E should be rendered. The following subsections must have branch values of No.
+ * Determines if Question 21 E should be rendered.
+ * The following subsections must have branch values of No.
  *   - Competence
  *   - Consultations
  *   - Hospitalizations
@@ -46,7 +18,7 @@ export const showQuestion21E = (psychological = defaultPsychologicalState) => {
     Competence,
     Consultations,
     Diagnoses,
-    Hospitalizations
+    Hospitalizations,
   } = psychological
 
   // We need values for everything before we can do anything

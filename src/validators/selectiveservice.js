@@ -13,31 +13,3 @@ export const hideSelectiveService = (store = {}) => {
 export const validateSelectiveService = (data, formType, options = {}) => (
   validateModel(data, selectiveService, options)
 )
-
-export default class SelectiveServiceValidator {
-  constructor(data = {}) {
-    this.data = data
-  }
-
-  validBornAfter() {
-    return validateModel(this.data, { WasBornAfter: selectiveService.WasBornAfter }) === true
-  }
-
-  validRegistered() {
-    return validateModel(this.data, { HasRegistered: selectiveService.HasRegistered }) === true
-  }
-
-  validRegistrationNumber() {
-    return validateModel(this.data, {
-      RegistrationNumber: selectiveService.RegistrationNumber,
-    }) === true
-  }
-
-  validExplanation() {
-    return validateModel(this.data, { Explanation: selectiveService.Explanation }) === true
-  }
-
-  isValid() {
-    return validateSelectiveService(this.data) === true
-  }
-}

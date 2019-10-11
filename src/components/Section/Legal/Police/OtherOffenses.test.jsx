@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import { OtherOffenses } from './OtherOffenses'
 import Location from '../../../Form/Location'
 
-describe('The offense component', () => {
+describe('The OtherOffenses component', () => {
   const mockStore = configureMockStore()
   let createComponent
 
@@ -46,10 +46,8 @@ describe('The offense component', () => {
     let updates = 0
     const expected = {
       name: 'offense',
-      onUpdate: (storeKey, values) => {
-        if (values.List.length === 0) {
-          updates += 1
-        }
+      onUpdate: () => {
+        updates += 1
       },
       List: {
         branch: {
@@ -66,7 +64,6 @@ describe('The offense component', () => {
   it('populates all fields', () => {
     const expected = {
       name: 'offense',
-      HasOtherOffenses: { value: 'Yes' },
       List: {
         branch: {
           value: 'No',
@@ -74,6 +71,7 @@ describe('The offense component', () => {
         items: [
           {
             Item: {
+              Has: { value: 'Yes' },
               Date: {
                 day: '1',
                 month: '1',
@@ -150,6 +148,6 @@ describe('The offense component', () => {
       },
     }
     const component = createComponent(expected)
-    expect(component.find('.accordion').length).toBe(1)
+    expect(component.find('.offense').length).toBe(1)
   })
 })

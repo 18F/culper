@@ -200,8 +200,6 @@ func TestClearBasicSectionNos(t *testing.T) {
 		{"../testdata/substance/substance-alcohol-voluntary.json", "substance.alcohol.voluntary", "SoughtTreatment"},
 		{"../testdata/substance/substance-alcohol-additional.json", "substance.alcohol.additional", "ReceivedTreatment"},
 
-		{"../testdata/legal/legal-police-offenses.json", "legal.police.offenses", "HasOffenses"},
-		{"../testdata/legal/legal-police-additionaloffenses.json", "legal.police.additionaloffenses", "HasOtherOffenses"},
 		{"../testdata/legal/legal-police-domesticviolence.json", "legal.police.domesticviolence", "HasDomesticViolence"},
 		{"../testdata/legal/legal-police-domesticviolence.json", "legal.police.domesticviolence", "HasDomesticViolence"},
 		{"../testdata/legal/legal-investigations-history.json", "legal.investigations.history", "HasHistory"},
@@ -949,6 +947,14 @@ func TestClearComplexSectionNos(t *testing.T) {
 				t.Log("should clear WasCharged")
 				t.Fail()
 			}
+
+			hasItem := offenses.List.Items[2]
+			has := getBranchItemValue(t, hasItem, "Has")
+			if has.Value != "" {
+				t.Log("should clear the last Has")
+				t.Fail()
+			}
+
 		}},
 
 		{"../testdata/legal/legal-police-additionaloffenses.json", "legal.police.additionaloffenses", func(t *testing.T, section api.Section) {
@@ -963,6 +969,13 @@ func TestClearComplexSectionNos(t *testing.T) {
 			wasCharged = getBranchItemValue(t, offenses.List.Items[1], "WasSentenced")
 			if wasCharged.Value != "" {
 				t.Log("should clear WasSentenced")
+				t.Fail()
+			}
+
+			hasItem := offenses.List.Items[2]
+			has := getBranchItemValue(t, hasItem, "Has")
+			if has.Value != "" {
+				t.Log("should clear the last Has")
 				t.Fail()
 			}
 		}},

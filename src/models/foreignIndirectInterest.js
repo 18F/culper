@@ -1,4 +1,4 @@
-import { foreignCoOwnersModel } from 'validators/foreigncoowner'
+import foreignCoOwnersModel from 'models/shared/foreignCoOwners'
 import { namePattern } from 'constants/patterns'
 import { DEFAULT_LATEST } from 'constants/dateLimits'
 

@@ -1,15 +1,15 @@
 import { unschema } from '../schema'
 import { legalPoliceAdditionalOffenses } from './legal-police-additionaloffenses'
 
-describe('Schema for financial taxes', () => {
+describe('Schema for police additional offenses', () => {
   it('can wrap in schema', () => {
     const data = {
-      HasOtherOffenses: { value: 'Yes' },
       List: {
         branch: { value: 'No' },
         items: [
           {
             Item: {
+              Has: { value: 'Yes' },
               Date: {},
               Description: {},
               InvolvedViolence: {},
@@ -17,12 +17,21 @@ describe('Schema for financial taxes', () => {
               InvolvedSubstances: {},
               CourtName: {},
               CourtAddress: {
-                country: null
+                country: null,
               },
-              CourtCharge: {},
-              CourtOutcome: {},
-              CourtDate: {},
-              ChargeType: {},
+              Charges: {
+                branch: null,
+                items: [
+                  {
+                    Item: {
+                      CourtCharge: {},
+                      CourtOutcome: {},
+                      CourtDate: {},
+                      ChargeType: {},
+                    },
+                  },
+                ],
+              },
               WasSentenced: {},
               Sentence: {
                 Description: {},
@@ -31,22 +40,22 @@ describe('Schema for financial taxes', () => {
                 IncarcerationDates: {
                   from: {},
                   to: {},
-                  present: null
+                  present: null,
                 },
                 IncarcerationDatesNA: {},
                 ProbationDates: {
                   from: {},
                   to: {},
-                  present: null
+                  present: null,
                 },
-                ProbationDatesNA: {}
+                ProbationDatesNA: {},
               },
               AwaitingTrial: {},
-              AwaitingTrialExplanation: {}
-            }
-          }
-        ]
-      }
+              AwaitingTrialExplanation: {},
+            },
+          },
+        ],
+      },
     }
 
     expect(unschema(legalPoliceAdditionalOffenses(data))).toEqual(data)

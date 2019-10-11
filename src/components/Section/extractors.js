@@ -1,6 +1,6 @@
 import { extractDate } from './History/dateranges'
 
-export const extractApplicantBirthdate = app => {
+export const extractApplicantBirthdate = (app) => {
   const section = (app.Identification || {}).ApplicantBirthDate || {}
   if (!section.Date) {
     return null
@@ -11,34 +11,16 @@ export const extractApplicantBirthdate = app => {
   return extractDate(date)
 }
 
-export const extractMaritalStatus = app => {
-  const section = (app.Relationships || {}).Marital || {}
-  if (!section.Status) {
-    return null
-  }
+export const extractOtherNames = (app) => {
+  const identification = app && app.Identification
+  if (!identification) return []
 
-  return section.Status.value
-}
+  const otherNames = identification.OtherNames
+  if (!otherNames || !otherNames.List || !otherNames.List.items) return []
 
-export const extractOtherNames = app => {
-  let names = []
-  let identification = app.Identification
-  if (!identification) {
-    return names
-  }
+  const names = otherNames.List.items
+    .filter(i => i.Item && i.Item.Name)
+    .map(i => i.Item.Name)
 
-  let otherNames = identification.OtherNames
-  if (!otherNames) {
-    return names
-  }
-
-  if (!otherNames.List || !otherNames.List.items) {
-    return names
-  }
-
-  for (let otherName of otherNames.List.items) {
-    const item = otherName.Item || {}
-    names.push(item.Name)
-  }
   return names
 }

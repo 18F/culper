@@ -3,7 +3,6 @@ import {
   daysAgo,
   daysBetween,
   extractDate,
-  gaps,
 } from 'components/Section/History/dateranges'
 
 /**
@@ -29,25 +28,6 @@ export const totalYears = (birthdate, years = 10) => {
   }
 
   return total
-}
-
-export const excludeGaps = items => items.filter(
-  item => !item.type || (item.type && item.type !== 'Gap'),
-)
-
-export const sectionHasGaps = (items = [], years = 10) => {
-  if (!items || !items.length) return true
-
-  const ranges = items
-    .filter(i => i.Item && i.Item.Dates)
-    .map(i => i.Item.Dates)
-
-  if (!ranges.length) return true
-
-  const start = daysAgo(today, 365 * totalYears(null, years))
-  const holes = gaps(ranges, start).length
-
-  return holes > 0
 }
 
 /**

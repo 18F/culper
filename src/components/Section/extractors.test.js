@@ -1,21 +1,21 @@
-import { extractApplicantBirthdate, extractMaritalStatus } from './extractors'
+import { extractApplicantBirthdate, extractOtherNames } from './extractors'
 
-describe('Extractors', function() {
-  it('should return a date', function() {
+describe('Extractors', () => {
+  it('extractApplicantBirthdate should return a date', () => {
     const tests = [
       {
         state: {
           Identification: {
-            ApplicantBirthDate: null
-          }
+            ApplicantBirthDate: null,
+          },
         },
-        expected: null
+        expected: null,
       },
       {
         state: {
-          Identification: null
+          Identification: null,
         },
-        expected: null
+        expected: null,
       },
       {
         state: {
@@ -24,12 +24,12 @@ describe('Extractors', function() {
               Date: {
                 day: '1',
                 month: '1',
-                year: '2010'
-              }
-            }
-          }
+                year: '2010',
+              },
+            },
+          },
         },
-        expected: new Date('1/1/2010')
+        expected: new Date('1/1/2010'),
       },
       {
         state: {
@@ -38,56 +38,52 @@ describe('Extractors', function() {
               Date: {
                 day: null,
                 month: '1',
-                year: '2010'
-              }
-            }
-          }
+                year: '2010',
+              },
+            },
+          },
         },
-        expected: null
-      }
+        expected: null,
+      },
     ]
 
-    tests.forEach(test => {
+    tests.forEach((test) => {
       expect(extractApplicantBirthdate(test.state)).toEqual(test.expected)
     })
   })
 
-  it('should return a marital status', function() {
-    const tests = [
-      {
-        state: {
-          Relationships: {
-            Marital: {
-              Status: null
-            }
-          }
-        },
-        expected: null
-      },
-      {
-        state: {
-          Relationships: {
-            Marital: null
-          }
-        },
-        expected: null
-      },
-      {
-        state: {
-          Relationships: {
-            Marital: {
-              Status: {
-                value: 'Married'
-              }
-            }
-          }
-        },
-        expected: 'Married'
-      }
-    ]
+  describe('extractOtherNames function', () => {
+    describe('if state is missing', () => {
+      it('returns an empty array', () => {
+        expect(extractOtherNames(null)).toEqual([])
+      })
+    })
 
-    tests.forEach(test => {
-      expect(extractMaritalStatus(test.state)).toEqual(test.expected)
+    describe('if state is incomplete', () => {
+      it('returns an empty array', () => {
+        expect(extractOtherNames({ Identification: {} })).toEqual([])
+      })
+    })
+
+    describe('if other names are present', () => {
+      it('returns a list of other names', () => {
+        const otherNames = {
+          List: {
+            items: [
+              { Item: { Name: 'Test name 1' } },
+              { Item: { Name: 'Test name 2' } },
+              { Item: { Name: null } },
+              { data: 'invalid name' },
+            ],
+          },
+        }
+
+        expect(extractOtherNames({
+          Identification: {
+            OtherNames: otherNames,
+          },
+        })).toEqual(['Test name 1', 'Test name 2'])
+      })
     })
   })
 })

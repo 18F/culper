@@ -34,7 +34,7 @@ func NewCSRFMiddleware(log api.LogService, authKey []byte, useSecureCookie bool)
 
 	errorHandler := newCSRFErrorHandler(log)
 
-	gorillaMiddleware := csrf.Protect(authKey, csrf.Secure(useSecureCookie), csrf.ErrorHandler(errorHandler))
+	gorillaMiddleware := csrf.Protect(authKey, csrf.Secure(useSecureCookie), csrf.ErrorHandler(errorHandler), csrf.Path("/"))
 
 	return &CSRFMiddleware{
 		gorillaMiddleware,

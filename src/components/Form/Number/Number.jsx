@@ -9,6 +9,7 @@ export default class Number extends ValidationElement {
     this.state = {
       uid: `${this.props.name}-${super.guid()}`,
       max: props.max,
+      min: props.min,
     }
 
     this.handleError = this.handleError.bind(this)
@@ -19,9 +20,10 @@ export default class Number extends ValidationElement {
       return
     }
 
-    const old = this.state.max
-    this.setState({ max: next.max, value: next.value }, () => {
-      if (old !== next.max) {
+    const oldmax = this.state.max
+    const oldmin = this.state.min
+    this.setState({ max: next.max, min: next.min, value: next.value }, () => {
+      if (oldmax !== next.max || oldmin !== next.min) {
         this.handleValidation(
           {
             fake: true,
@@ -114,6 +116,7 @@ Number.defaultProps = {
   disabled: false,
   value: '',
   max: '',
+  min: '',
   prefix: '',
   pattern: '^(\\s*|\\d+)$',
   errorCode: null,
