@@ -17,7 +17,7 @@ describe('the totalYears function', () => {
   })
 
   describe('if birthdate is less than 2 years older than 18', () => {
-    const birthdate = new Date('1/1/2000')
+    const birthdate = new Date('1/1/2001')
 
     it('returns the minimum of 2 years', () => {
       expect(totalYears(birthdate)).toEqual(2)
@@ -25,7 +25,7 @@ describe('the totalYears function', () => {
   })
 
   describe('if birthdate is less than the years param older than 18', () => {
-    const birthdate = new Date('1/1/1995')
+    const birthdate = new Date('1/1/1996')
 
     it('returns the difference between age and years param', () => {
       expect(totalYears(birthdate, 10)).toEqual(7)
