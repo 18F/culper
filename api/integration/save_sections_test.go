@@ -11,7 +11,7 @@ import (
 func TestSaveSection(t *testing.T) {
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 
 	tests := []struct {
 		path       string
@@ -153,7 +153,7 @@ func TestSaveSection(t *testing.T) {
 func TestSaveMultipleSections(t *testing.T) {
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 
 	employmentSection := readTestData(t, "../testdata/history/history-employment-full.json")
 
@@ -230,7 +230,7 @@ func TestDeleteApplication(t *testing.T) {
 
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 
 	section := readTestData(t, "../testdata/identification/identification-birthplace-full.json")
 

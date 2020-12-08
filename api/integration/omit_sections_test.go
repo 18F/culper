@@ -20,7 +20,7 @@ func Test85SectionsOmitted(t *testing.T) {
 	xmlsvc := xml.NewXMLService(xmlTemplatePath)
 	pdfTemplatePath := "../pdf/templates/"
 	pdfsvc := pdf.NewPDFService(pdfTemplatePath)
-	submitter := admin.NewSubmitter(services.db, services.store, xmlsvc, pdfsvc)
+	submitter := admin.NewSubmitter(services.store, xmlsvc, pdfsvc)
 
 	scenarios := []string{
 		"../testdata/complete-scenarios/SF85/test1.json",
@@ -31,7 +31,7 @@ func Test85SectionsOmitted(t *testing.T) {
 	for _, scenario := range scenarios {
 
 		// provision an 85
-		account := create85TestAccount(t, services.db)
+		account := create85TestAccount(t, services.store)
 		fmt.Println(account)
 
 		// load a complete scenario
@@ -39,7 +39,7 @@ func Test85SectionsOmitted(t *testing.T) {
 		saveFormJSON(t, services, form, account)
 
 		// convert to XML
-		xml, _, xmlErr := submitter.FilesForSubmission(account.ID)
+		xml, _, xmlErr := submitter.FilesForSubmission(account)
 		if xmlErr != nil {
 			t.Fatal(xmlErr)
 		}
@@ -93,12 +93,12 @@ func Test85CleranceGranted(t *testing.T) {
 	xmlsvc := xml.NewXMLService(xmlTemplatePath)
 	pdfTemplatePath := "../pdf/templates/"
 	pdfsvc := pdf.NewPDFService(pdfTemplatePath)
-	submitter := admin.NewSubmitter(services.db, services.store, xmlsvc, pdfsvc)
+	submitter := admin.NewSubmitter(services.store, xmlsvc, pdfsvc)
 
 	scenario := "../testdata/complete-scenarios/SF85/test3.json"
 
 	// provision an 85
-	account := create85TestAccount(t, services.db)
+	account := create85TestAccount(t, services.store)
 	fmt.Println(account)
 
 	// load a complete scenario
@@ -113,7 +113,7 @@ func Test85CleranceGranted(t *testing.T) {
 	}
 
 	// convert to XML
-	xml, _, xmlErr := submitter.FilesForSubmission(account.ID)
+	xml, _, xmlErr := submitter.FilesForSubmission(account)
 	if xmlErr != nil {
 		t.Fatal(xmlErr)
 	}
@@ -136,7 +136,7 @@ func Test85CleranceGranted(t *testing.T) {
 	}
 
 	// convert to XML
-	notGrantedXML, _, xmlErr := submitter.FilesForSubmission(account.ID)
+	notGrantedXML, _, xmlErr := submitter.FilesForSubmission(account)
 	if xmlErr != nil {
 		t.Fatal(xmlErr)
 	}
@@ -161,7 +161,7 @@ func Test85PSectionsOmitted(t *testing.T) {
 	xmlsvc := xml.NewXMLService(xmlTemplatePath)
 	pdfTemplatePath := "../pdf/templates/"
 	pdfsvc := pdf.NewPDFService(pdfTemplatePath)
-	submitter := admin.NewSubmitter(services.db, services.store, xmlsvc, pdfsvc)
+	submitter := admin.NewSubmitter(services.store, xmlsvc, pdfsvc)
 
 	scenarios := []string{
 		"../testdata/complete-scenarios/SF85P/test1.json",
@@ -171,7 +171,7 @@ func Test85PSectionsOmitted(t *testing.T) {
 	for _, scenario := range scenarios {
 
 		// provision an 85
-		account := create85PTestAccount(t, services.db)
+		account := create85PTestAccount(t, services.store)
 		fmt.Println(account)
 
 		// load a complete scenario
@@ -179,7 +179,7 @@ func Test85PSectionsOmitted(t *testing.T) {
 		saveFormJSON(t, services, form, account)
 
 		// convert to XML
-		xml, _, xmlErr := submitter.FilesForSubmission(account.ID)
+		xml, _, xmlErr := submitter.FilesForSubmission(account)
 		if xmlErr != nil {
 			t.Fatal(xmlErr)
 		}

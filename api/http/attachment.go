@@ -16,10 +16,9 @@ import (
 
 // AttachmentListHandler is the handler for listing attachments.
 type AttachmentListHandler struct {
-	Env      api.Settings
-	Log      api.LogService
-	Database api.DatabaseService
-	Store    api.StorageService
+	Env   api.Settings
+	Log   api.LogService
+	Store api.StorageService
 }
 
 // ServeHTTP serves the HTTP response.
@@ -49,10 +48,9 @@ func (service AttachmentListHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 
 // AttachmentSaveHandler is the handler for saving attachments.
 type AttachmentSaveHandler struct {
-	Env      api.Settings
-	Log      api.LogService
-	Database api.DatabaseService
-	Store    api.StorageService
+	Env   api.Settings
+	Log   api.LogService
+	Store api.StorageService
 }
 
 // ServeHTTP serves the HTTP response.
@@ -143,10 +141,9 @@ func (service AttachmentSaveHandler) ServeHTTP(w http.ResponseWriter, r *http.Re
 
 // AttachmentGetHandler is the handler for getting attachments.
 type AttachmentGetHandler struct {
-	Env      api.Settings
-	Log      api.LogService
-	Database api.DatabaseService
-	Store    api.StorageService
+	Env   api.Settings
+	Log   api.LogService
+	Store api.StorageService
 }
 
 // ServeHTTP serves the HTTP response.
@@ -187,10 +184,9 @@ func (service AttachmentGetHandler) ServeHTTP(w http.ResponseWriter, r *http.Req
 
 // AttachmentDeleteHandler is the handler for deleting attachments.
 type AttachmentDeleteHandler struct {
-	Env      api.Settings
-	Log      api.LogService
-	Database api.DatabaseService
-	Store    api.StorageService
+	Env   api.Settings
+	Log   api.LogService
+	Store api.StorageService
 }
 
 // ServeHTTP serves the HTTP response.

@@ -11,6 +11,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/18F/e-QIP-prototype/api/simplestore"
+
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/http"
 	"github.com/18F/e-QIP-prototype/api/mock"
@@ -25,6 +27,15 @@ func (s *errorDeleteApplicationStore) DeleteApplication(accountID int) error {
 	return errors.New("delete application error")
 }
 
+func setAccountPassword(t *testing.T, store simplestore.SimpleStore, account api.Account, password string) {
+	account.HashPassword(password)
+
+	saveErr := store.SetAccountPasswordHash(account)
+	if saveErr != nil {
+		t.Fatal(saveErr)
+	}
+}
+
 func TestBasicAuthDisabled(t *testing.T) {
 	// Basic Auth not enabled
 	os.Setenv(api.BasicEnabled, "0")
@@ -32,27 +43,17 @@ func TestBasicAuthDisabled(t *testing.T) {
 	defer services.closeDB()
 	sessionService := session.NewSessionService(5*time.Minute, services.store, services.log)
 
-	account := createTestAccount(t, services.db)
-
-	authMembership := api.BasicAuthMembership{
-		AccountID: account.ID,
-	}
+	account := createTestAccount(t, services.store)
 
 	password := "so-basic"
-	authMembership.HashPassword(password)
-
-	_, saveErr := authMembership.Save(services.db, 0)
-	if saveErr != nil {
-		t.Fatal(saveErr)
-	}
+	setAccountPassword(t, services.store, account, password)
 
 	loginRequestHandler := http.BasicAuthHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
-		Session:  sessionService,
-		Cookie:   http.NewSessionCookieService(true),
+		Env:     services.env,
+		Log:     services.log,
+		Store:   services.store,
+		Session: sessionService,
+		Cookie:  http.NewSessionCookieService(true),
 	}
 
 	responseWriter := httptest.NewRecorder()
@@ -97,27 +98,17 @@ func TestBasicNoPassword(t *testing.T) {
 	defer services.closeDB()
 	sessionService := session.NewSessionService(5*time.Minute, services.store, services.log)
 
-	account := createTestAccount(t, services.db)
-
-	authMembership := api.BasicAuthMembership{
-		AccountID: account.ID,
-	}
+	account := createTestAccount(t, services.store)
 
 	password := ""
-	authMembership.HashPassword(password)
-
-	_, saveErr := authMembership.Save(services.db, 0)
-	if saveErr != nil {
-		t.Fatal(saveErr)
-	}
+	setAccountPassword(t, services.store, account, password)
 
 	loginRequestHandler := http.BasicAuthHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
-		Session:  sessionService,
-		Cookie:   http.NewSessionCookieService(true),
+		Env:     services.env,
+		Log:     services.log,
+		Store:   services.store,
+		Session: sessionService,
+		Cookie:  http.NewSessionCookieService(true),
 	}
 
 	responseWriter := httptest.NewRecorder()
@@ -161,27 +152,17 @@ func TestBasicNoUsername(t *testing.T) {
 	defer services.closeDB()
 	sessionService := session.NewSessionService(5*time.Minute, services.store, services.log)
 
-	account := createTestAccount(t, services.db)
-
-	authMembership := api.BasicAuthMembership{
-		AccountID: account.ID,
-	}
+	account := createTestAccount(t, services.store)
 
 	password := "sekrit"
-	authMembership.HashPassword(password)
-
-	_, saveErr := authMembership.Save(services.db, 0)
-	if saveErr != nil {
-		t.Fatal(saveErr)
-	}
+	setAccountPassword(t, services.store, account, password)
 
 	loginRequestHandler := http.BasicAuthHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
-		Session:  sessionService,
-		Cookie:   http.NewSessionCookieService(true),
+		Env:     services.env,
+		Log:     services.log,
+		Store:   services.store,
+		Session: sessionService,
+		Cookie:  http.NewSessionCookieService(true),
 	}
 
 	responseWriter := httptest.NewRecorder()
@@ -225,27 +206,17 @@ func TestBasicAccountError(t *testing.T) {
 	defer services.closeDB()
 	sessionService := session.NewSessionService(5*time.Minute, services.store, services.log)
 
-	account := createTestAccount(t, services.db)
-
-	authMembership := api.BasicAuthMembership{
-		AccountID: account.ID,
-	}
+	account := createTestAccount(t, services.store)
 
 	password := "sekrit"
-	authMembership.HashPassword(password)
-
-	_, saveErr := authMembership.Save(services.db, 0)
-	if saveErr != nil {
-		t.Fatal(saveErr)
-	}
+	setAccountPassword(t, services.store, account, password)
 
 	loginRequestHandler := http.BasicAuthHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
-		Session:  sessionService,
-		Cookie:   http.NewSessionCookieService(true),
+		Env:     services.env,
+		Log:     services.log,
+		Store:   services.store,
+		Session: sessionService,
+		Cookie:  http.NewSessionCookieService(true),
 	}
 
 	responseWriter := httptest.NewRecorder()
@@ -291,27 +262,17 @@ func TestBasicWrongPassword(t *testing.T) {
 	defer services.closeDB()
 	sessionService := session.NewSessionService(5*time.Minute, services.store, services.log)
 
-	account := createTestAccount(t, services.db)
-
-	authMembership := api.BasicAuthMembership{
-		AccountID: account.ID,
-	}
+	account := createTestAccount(t, services.store)
 
 	password := "sekrit"
-	authMembership.HashPassword(password)
-
-	_, saveErr := authMembership.Save(services.db, 0)
-	if saveErr != nil {
-		t.Fatal(saveErr)
-	}
+	setAccountPassword(t, services.store, account, password)
 
 	loginRequestHandler := http.BasicAuthHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
-		Session:  sessionService,
-		Cookie:   http.NewSessionCookieService(true),
+		Env:     services.env,
+		Log:     services.log,
+		Store:   services.store,
+		Session: sessionService,
+		Cookie:  http.NewSessionCookieService(true),
 	}
 
 	responseWriter := httptest.NewRecorder()

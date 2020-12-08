@@ -2,8 +2,9 @@ package admin
 
 import (
 	"fmt"
-	"github.com/pkg/errors"
 	"strings"
+
+	"github.com/pkg/errors"
 
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/pdf"
@@ -11,14 +12,12 @@ import (
 
 // Rejecter is used to reject/kickback an application
 type Rejecter struct {
-	db    api.DatabaseService
 	store api.StorageService
 }
 
 // NewRejecter returns a configured Rejecter
-func NewRejecter(db api.DatabaseService, store api.StorageService) Rejecter {
+func NewRejecter(store api.StorageService) Rejecter {
 	return Rejecter{
-		db,
 		store,
 	}
 }
@@ -86,7 +85,7 @@ func (r Rejecter) Reject(account *api.Account) error {
 		return errors.New("The account got into a bad state during the rejection")
 	}
 
-	_, saveAccErr := account.Save(r.db, account.ID)
+	saveAccErr := r.store.UpdateAccountStatus(account)
 	if saveAccErr != nil {
 		return errors.Wrap(saveAccErr, "couldn't save the account after changing the status")
 	}

@@ -11,12 +11,18 @@ var (
 	// ErrApplicationDoesNotExist is an error when a given application does not exist
 	ErrApplicationDoesNotExist = errors.New("Application does not exist")
 
-	// ErrApplicationAlreadyExists is an error when a given application does not exist
+	// ErrApplicationAlreadyExists is an error when a given application already exists
 	ErrApplicationAlreadyExists = errors.New("Application already exists")
+
+	// ErrAccountDoesNotExist is an error when a given account cannot be found
+	ErrAccountDoesNotExist = errors.New("Account does not exist")
 
 	// ErrAttachmentDoesNotExist is returned when the requested attchment does not exist.
 	// Note: this could mean that you requested a valid ID but for a different user.
 	ErrAttachmentDoesNotExist = errors.New("Attachment does not exist")
+
+	// ErrAccountHasNoPassword is an error when a given account has no password
+	ErrAccountHasNoPassword = errors.New("Account has no password")
 )
 
 // StorageService stores eapp related data
@@ -51,6 +57,19 @@ type StorageService interface {
 	DeleteSession(sessionKey string) error
 	// ExtendAndFetchSessionAccount fetches an account and session data from the db
 	ExtendAndFetchSessionAccount(sessionKey string, expirationDuration time.Duration) (Account, Session, error)
+
+	// Can fetch sessions, that's good.
+	// CreateAccount creates a new account
+	CreateAccount(account *Account) error
+	// FetchAccountByUsername gets an account with the given username
+	FetchAccountByUsername(username string) (Account, error)
+	// FetchAccountByExternalID gets an account with the given externalID
+	FetchAccountByExternalID(externalID string) (Account, error)
+	// FetchAccountWithPasswordHash returns an account with the PasswordHash field filled out
+	// it raises an error if the given account has no password
+	FetchAccountWithPasswordHash(username string) (Account, error)
+	// UpdateAccountStatus updates the given account
+	UpdateAccountStatus(account *Account) error
 
 	// Close closes the db connection
 	Close() error

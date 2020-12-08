@@ -20,17 +20,17 @@ func TestClearEmptyAccount(t *testing.T) {
 	// get a setup environment.
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 
 	// Hacky, but seems OK for these tests. Technically you shouldn't be able to submit
 	// anything but a complete application, but I think it's ok to make these tests smaller.
 	account.Submit()
-	_, saveErr := account.Save(services.db, account.ID)
-	if saveErr != nil {
-		t.Fatal(saveErr)
+	updateErr := services.store.UpdateAccountStatus(&account)
+	if updateErr != nil {
+		t.Fatal(updateErr)
 	}
 
-	rejector := admin.NewRejecter(services.db, services.store)
+	rejector := admin.NewRejecter(services.store)
 
 	err := rejector.Reject(&account)
 	if err != nil {
@@ -109,7 +109,7 @@ func getBasicBranches(t *testing.T, section api.Section, branchName string) (*ap
 }
 
 func rejectSection(t *testing.T, services serviceSet, json []byte, sectionName string) api.Section {
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 
 	resp := saveJSON(services, json, account)
 	if resp.StatusCode != 200 {
@@ -119,21 +119,15 @@ func rejectSection(t *testing.T, services serviceSet, json []byte, sectionName s
 	// Hacky, but seems OK for these tests. Technically you shouldn't be able to submit
 	// anything but a complete application, but I think it's ok to make these tests smaller.
 	account.Submit()
-	_, saveErr := account.Save(services.db, account.ID)
-	if saveErr != nil {
-		t.Fatal(saveErr)
+	updateErr := services.store.UpdateAccountStatus(&account)
+	if updateErr != nil {
+		t.Fatal(updateErr)
 	}
 
-	rejector := admin.NewRejecter(services.db, services.store)
+	rejector := admin.NewRejecter(services.store)
 	err := rejector.Reject(&account)
 	if err != nil {
 		t.Fatal("Failed to reject account: ", err)
-	}
-
-	// reload the account now that it's been rejected
-	_, reloadErr := account.Get(services.db, account.ID)
-	if reloadErr != nil {
-		t.Fatal(reloadErr)
 	}
 
 	resetApp := getApplication(t, services, account)
@@ -1074,7 +1068,7 @@ func TestClearComplexSectionNos(t *testing.T) {
 
 		t.Run(path.Base(clearTest.path), func(t *testing.T) {
 
-			account := createTestAccount(t, services.db)
+			account := createTestAccount(t, services.store)
 
 			sectionJSON := readTestData(t, clearTest.path)
 
@@ -1086,21 +1080,15 @@ func TestClearComplexSectionNos(t *testing.T) {
 			// Hacky, but seems OK for these tests. Technically you shouldn't be able to submit
 			// anything but a complete application, but I think it's ok to make these tests smaller.
 			account.Submit()
-			_, saveErr := account.Save(services.db, account.ID)
-			if saveErr != nil {
-				t.Fatal(saveErr)
+			updateErr := services.store.UpdateAccountStatus(&account)
+			if updateErr != nil {
+				t.Fatal(updateErr)
 			}
 
-			rejector := admin.NewRejecter(services.db, services.store)
+			rejector := admin.NewRejecter(services.store)
 			err := rejector.Reject(&account)
 			if err != nil {
 				t.Fatal("Failed to reject account: ", err)
-			}
-
-			// reload the account now that it's been rejected
-			_, reloadErr := account.Get(services.db, account.ID)
-			if reloadErr != nil {
-				t.Fatal(reloadErr)
 			}
 
 			resetApp := getApplication(t, services, account)

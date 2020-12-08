@@ -45,7 +45,7 @@ func TestSaveAttachment(t *testing.T) {
 
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 
 	certificationPath := "../testdata/attachments/signature-form-SF86.pdf"
 
@@ -56,10 +56,9 @@ func TestSaveAttachment(t *testing.T) {
 	w := httptest.NewRecorder()
 
 	createAttachmentHandler := http.AttachmentSaveHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	createAttachmentHandler.ServeHTTP(w, req)
@@ -90,10 +89,9 @@ func TestSaveAttachment(t *testing.T) {
 	})
 
 	getAttachmentHandler := http.AttachmentGetHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	getAttachmentHandler.ServeHTTP(getW, getReq)
@@ -127,13 +125,12 @@ func TestSaveAttachmentDisabled(t *testing.T) {
 
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 
 	saveAttachmentHandler := http.AttachmentSaveHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	// Don't need real file to upload since we expect error first
@@ -164,15 +161,14 @@ func TestSaveAttachmentLockedAccount(t *testing.T) {
 	os.Setenv(api.AttachmentsEnabled, "1")
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 	// Lock account
 	account.Status = api.StatusSubmitted
 
 	saveAttachmentHandler := http.AttachmentSaveHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	// Don't need file to upload since we expect to error first
@@ -203,13 +199,12 @@ func TestSaveAttachmentNoFile(t *testing.T) {
 	os.Setenv(api.AttachmentsEnabled, "1")
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 
 	saveAttachmentHandler := http.AttachmentSaveHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	w, indexReq := standardResponseAndRequest("GET", "/me/attachments/", nil, account)
@@ -239,7 +234,7 @@ func TestSaveAttachmentTooBig(t *testing.T) {
 	os.Setenv(api.FileMaximumSize, "1")
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 
 	certificationPath := "../testdata/attachments/signature-form-SF86.pdf"
 
@@ -250,10 +245,9 @@ func TestSaveAttachmentTooBig(t *testing.T) {
 	w := httptest.NewRecorder()
 
 	createAttachmentHandler := http.AttachmentSaveHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	createAttachmentHandler.ServeHTTP(w, req)
@@ -292,7 +286,7 @@ func TestCreateAttachmentError(t *testing.T) {
 	var mockStore errorCreateAttachmentStore
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 
 	certificationPath := "../testdata/attachments/signature-form-SF86.pdf"
 
@@ -303,10 +297,9 @@ func TestCreateAttachmentError(t *testing.T) {
 	w := httptest.NewRecorder()
 
 	createAttachmentHandler := http.AttachmentSaveHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    &mockStore,
+		Env:   services.env,
+		Log:   services.log,
+		Store: &mockStore,
 	}
 
 	createAttachmentHandler.ServeHTTP(w, req)
@@ -335,7 +328,7 @@ func TestGetAttachmentsDisabled(t *testing.T) {
 
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 
 	certificationPath := "../testdata/attachments/signature-form-SF86.pdf"
 
@@ -346,10 +339,9 @@ func TestGetAttachmentsDisabled(t *testing.T) {
 	w := httptest.NewRecorder()
 
 	createAttachmentHandler := http.AttachmentSaveHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	createAttachmentHandler.ServeHTTP(w, req)
@@ -381,10 +373,9 @@ func TestGetAttachmentsDisabled(t *testing.T) {
 	})
 
 	getAttachmentHandler := http.AttachmentGetHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	getAttachmentHandler.ServeHTTP(getW, getReq)
@@ -412,7 +403,7 @@ func TestGetAttachmentBadID(t *testing.T) {
 
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 
 	certificationPath := "../testdata/attachments/signature-form-SF86.pdf"
 
@@ -423,10 +414,9 @@ func TestGetAttachmentBadID(t *testing.T) {
 	w := httptest.NewRecorder()
 
 	createAttachmentHandler := http.AttachmentSaveHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	createAttachmentHandler.ServeHTTP(w, req)
@@ -453,10 +443,9 @@ func TestGetAttachmentBadID(t *testing.T) {
 	})
 
 	getAttachmentHandler := http.AttachmentGetHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	getAttachmentHandler.ServeHTTP(getW, getReq)

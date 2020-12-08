@@ -14,7 +14,6 @@ import (
 	"github.com/18F/e-QIP-prototype/api"
 	"github.com/18F/e-QIP-prototype/api/env"
 	"github.com/18F/e-QIP-prototype/api/log"
-	"github.com/18F/e-QIP-prototype/api/postgresql"
 )
 
 func getSimpleStore() SimpleStore {
@@ -24,7 +23,7 @@ func getSimpleStore() SimpleStore {
 
 	log := &log.Service{Log: log.NewLogger()}
 
-	dbConf := postgresql.DBConfig{
+	dbConf := DBConfig{
 		User:     env.String(api.DatabaseUser),
 		Password: env.String(api.DatabasePassword),
 		Address:  env.String(api.DatabaseHost),
@@ -32,7 +31,7 @@ func getSimpleStore() SimpleStore {
 		SSLMode:  "disable",
 	}
 
-	connString := postgresql.PostgresConnectURI(dbConf)
+	connString := PostgresConnectURI(dbConf)
 
 	serializer := JSONSerializer{}
 
@@ -41,6 +40,26 @@ func getSimpleStore() SimpleStore {
 		fmt.Println("Unable to configure simple store", storeErr)
 		os.Exit(1)
 	}
+	return store
+}
+
+func getErrorStore() SimpleStore {
+	env := &env.Native{}
+	os.Setenv(api.LogLevel, "info")
+	env.Configure()
+
+	logger := &log.Service{Log: log.NewLogger()}
+
+	serializer := JSONSerializer{}
+
+	db := &errorDB{}
+
+	store := SimpleStore{
+		db,
+		serializer,
+		logger,
+	}
+
 	return store
 }
 
@@ -84,24 +103,28 @@ func areEqualJSON(t *testing.T, s1, s2 []byte) bool {
 	return reflect.DeepEqual(o1, o2)
 }
 
-// CreateTestAccount is exported for now because there is no simplestore way
+// createTestAccount is exported for now because there is no simplestore way
 // of creating an account yet. Once the db stuff is ripped out I bet we can un-export this again
-func CreateTestAccount(t *testing.T, store SimpleStore) api.Account {
+func createTestAccount(t *testing.T, store SimpleStore) api.Account {
 	t.Helper()
 
-	createQuery := `INSERT INTO accounts (username, email, status, form_type, form_version, external_id) VALUES ($1, $1, $2, $3, $4, $5) RETURNING id, username, email, status, form_type, form_version, external_id`
-
 	email := randomEmail()
-
-	result := api.Account{}
-
 	externalID := uuid.New().String()
 
-	createErr := store.db.Get(&result, createQuery, email, api.StatusIncomplete, "SF86", "2017-07", externalID)
+	account := api.Account{
+		Username:    email,
+		Email:       api.NonNullString(email),
+		Status:      api.StatusIncomplete,
+		FormType:    "SF86",
+		FormVersion: "2017-07",
+		ExternalID:  externalID,
+	}
+
+	createErr := store.CreateAccount(&account)
 	if createErr != nil {
 		t.Log("Failed to create Account", createErr)
 		t.Fatal()
 	}
 
-	return result
+	return account
 }

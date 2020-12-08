@@ -89,7 +89,7 @@ func checkInfoRelease(t *testing.T, release api.Attachment) {
 func TestSubmitter(t *testing.T) {
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 
 	mockClock := clock.NewMock()
 	const base = 1536570831 // Epoch seconds for September 10, 2018 PDT
@@ -97,12 +97,11 @@ func TestSubmitter(t *testing.T) {
 
 	xmlService := xml.NewXMLServiceWithMockClock("../templates/", mockClock)
 	pdfService := pdf.NewPDFService("../pdf/templates/")
-	submitter := admin.NewSubmitter(services.db, services.store, xmlService, pdfService)
+	submitter := admin.NewSubmitter(services.store, xmlService, pdfService)
 
 	submitHandler := http.SubmitHandler{
 		Env:       services.env,
 		Log:       services.log,
-		Database:  services.db,
 		Store:     services.store,
 		Submitter: submitter,
 	}
@@ -138,10 +137,9 @@ func TestSubmitter(t *testing.T) {
 
 	// Check that the generated PDFs can be retrieved via the API
 	listAttachmentHandler := http.AttachmentListHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	// Enable Attachments
@@ -184,10 +182,9 @@ func TestSubmitter(t *testing.T) {
 			})
 
 			getAttachmentHandler := http.AttachmentGetHandler{
-				Env:      services.env,
-				Log:      services.log,
-				Database: services.db,
-				Store:    services.store,
+				Env:   services.env,
+				Log:   services.log,
+				Store: services.store,
 			}
 
 			getAttachmentHandler.ServeHTTP(w, req)
@@ -218,7 +215,7 @@ func TestSubmitter(t *testing.T) {
 func TestLockedAccountSubmitter(t *testing.T) {
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 	account.Status = api.StatusSubmitted
 
 	mockClock := clock.NewMock()
@@ -227,12 +224,11 @@ func TestLockedAccountSubmitter(t *testing.T) {
 
 	xmlService := xml.NewXMLServiceWithMockClock("../templates/", mockClock)
 	pdfService := pdf.NewPDFService("../pdf/templates/")
-	submitter := admin.NewSubmitter(services.db, services.store, xmlService, pdfService)
+	submitter := admin.NewSubmitter(services.store, xmlService, pdfService)
 
 	submitHandler := http.SubmitHandler{
 		Env:       services.env,
 		Log:       services.log,
-		Database:  services.db,
 		Store:     services.store,
 		Submitter: submitter,
 	}

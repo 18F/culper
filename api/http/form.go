@@ -11,10 +11,9 @@ import (
 
 // FormHandler is the handler for the form.
 type FormHandler struct {
-	Env      api.Settings
-	Log      api.LogService
-	Database api.DatabaseService
-	Store    api.StorageService
+	Env   api.Settings
+	Log   api.LogService
+	Store api.StorageService
 }
 
 // ServeHTTP will return a JSON object of all currently saved application

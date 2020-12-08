@@ -10,10 +10,9 @@ import (
 
 // StatusHandler is the handler for the application status.
 type StatusHandler struct {
-	Env      api.Settings
-	Log      api.LogService
-	Database api.DatabaseService
-	Store    api.StorageService
+	Env   api.Settings
+	Log   api.LogService
+	Store api.StorageService
 }
 
 // formStatusInfo represents extra information associated with the application

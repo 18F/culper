@@ -27,7 +27,7 @@ func TestDeleteAttachment(t *testing.T) {
 	os.Setenv(api.AttachmentsEnabled, "1")
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 
 	certificationPath := "../testdata/attachments/signature-form-SF86.pdf"
 
@@ -37,10 +37,9 @@ func TestDeleteAttachment(t *testing.T) {
 	w := httptest.NewRecorder()
 
 	createAttachmentHandler := http.AttachmentSaveHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	createAttachmentHandler.ServeHTTP(w, req)
@@ -69,10 +68,9 @@ func TestDeleteAttachment(t *testing.T) {
 	})
 
 	delAttachmentHandler := http.AttachmentDeleteHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	delAttachmentHandler.ServeHTTP(delW, delReq)
@@ -103,10 +101,9 @@ func TestDeleteAttachment(t *testing.T) {
 	})
 
 	getAttachmentHandler := http.AttachmentGetHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	getAttachmentHandler.ServeHTTP(getW, getReq)
@@ -124,7 +121,7 @@ func TestDeleteAttachmentDisabled(t *testing.T) {
 	os.Setenv(api.AttachmentsEnabled, "1")
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 
 	certificationPath := "../testdata/attachments/signature-form-SF86.pdf"
 
@@ -134,10 +131,9 @@ func TestDeleteAttachmentDisabled(t *testing.T) {
 	w := httptest.NewRecorder()
 
 	createAttachmentHandler := http.AttachmentSaveHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	createAttachmentHandler.ServeHTTP(w, req)
@@ -168,10 +164,9 @@ func TestDeleteAttachmentDisabled(t *testing.T) {
 	})
 
 	delAttachmentHandler := http.AttachmentDeleteHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	delAttachmentHandler.ServeHTTP(delW, delReq)
@@ -197,15 +192,14 @@ func TestDeleteAttachmentDisabled(t *testing.T) {
 func TestDeleteAttachmentLockedAccount(t *testing.T) {
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 	// Lock account
 	account.Status = api.StatusSubmitted
 
 	delAttachmentHandler := http.AttachmentDeleteHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	w, indexReq := standardResponseAndRequest("GET", "/me/attachments/", nil, account)
@@ -236,13 +230,12 @@ func TestDeleteAttachmentError(t *testing.T) {
 	var mockStore errorDeleteAttachmentStore
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 
 	delAttachmentHandler := http.AttachmentDeleteHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    &mockStore,
+		Env:   services.env,
+		Log:   services.log,
+		Store: &mockStore,
 	}
 
 	attachmentID := "121342"
@@ -282,13 +275,12 @@ func TestDeleteAttachmentError(t *testing.T) {
 func TestDeleteAttachmentBadID(t *testing.T) {
 	services := cleanTestServices(t)
 	defer services.closeDB()
-	account := createTestAccount(t, services.db)
+	account := createTestAccount(t, services.store)
 
 	delAttachmentHandler := http.AttachmentDeleteHandler{
-		Env:      services.env,
-		Log:      services.log,
-		Database: services.db,
-		Store:    services.store,
+		Env:   services.env,
+		Log:   services.log,
+		Store: services.store,
 	}
 
 	attachmentID := "NaN"

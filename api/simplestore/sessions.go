@@ -61,18 +61,6 @@ func (s SimpleStore) DeleteSession(sessionKey string) error {
 	return nil
 }
 
-// Helper methods for sql.NullString
-
-// NonNullString returns a valid sql.NullString
-func NonNullString(value string) sql.NullString {
-	return sql.NullString{Valid: true, String: value}
-}
-
-// NullString returns an invalid sql.NullString
-func NullString() sql.NullString {
-	return sql.NullString{}
-}
-
 type sessionAccountRow struct {
 	api.Session
 	api.Account
